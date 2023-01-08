@@ -68,7 +68,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.7.2' apply false
     id 'com.modrinth.minotaur' version '2.+' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.9'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.9-1-g25eba7e'
 }
 boolean settingsupdated = verifySettingsGradle()
 settingsupdated = verifyGitAttributes() || settingsupdated
@@ -111,6 +111,7 @@ checkPropertyExists("containsMixinsAndOrCoreModOnly")
 checkPropertyExists("usesShadowedDependencies")
 checkPropertyExists("developmentEnvironmentUserName")
 
+propertyDefaultIfUnset("generateGradleTokenClass", "")
 propertyDefaultIfUnset("includeWellKnownRepositories", true)
 propertyDefaultIfUnset("noPublishedSources", false)
 propertyDefaultIfUnset("usesMixinDebug", project.usesMixins)
@@ -330,18 +331,18 @@ minecraft {
         for (f in replaceGradleTokenInFile.split(',')) {
             tagReplacementFiles.add f
         }
-        if (gradleTokenModId) {
-            injectedTags.put gradleTokenModId, modId
-        }
-        if (gradleTokenModName) {
-            injectedTags.put gradleTokenModName, modName
-        }
-        if (gradleTokenVersion) {
-            injectedTags.put gradleTokenVersion, modVersion
-        }
-        if (gradleTokenGroupName) {
-            injectedTags.put gradleTokenGroupName, modGroup
-        }
+    }
+    if (gradleTokenModId) {
+        injectedTags.put gradleTokenModId, modId
+    }
+    if (gradleTokenModName) {
+        injectedTags.put gradleTokenModName, modName
+    }
+    if (gradleTokenVersion) {
+        injectedTags.put gradleTokenVersion, modVersion
+    }
+    if (gradleTokenGroupName) {
+        injectedTags.put gradleTokenGroupName, modGroup
     }
 
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
@@ -359,6 +360,10 @@ minecraft {
     // Blowdryer is present in some old mod builds, do not propagate it further as a dependency
     // IC2 has no reobf jars in its Maven
     groupsToExcludeFromAutoReobfMapping.addAll(["com.diffplug", "com.diffplug.durian", "net.industrial-craft"])
+}
+
+if (generateGradleTokenClass) {
+    tasks.injectTags.outputClassName.set(generateGradleTokenClass)
 }
 
 // Custom reobf auto-mappings
