@@ -49,7 +49,7 @@ public class AL10 {
     }
 
     public static void alSourceStop(java.nio.IntBuffer sources) {
-        org.lwjgl.openal.AL10.alSourceStop(sources);
+        org.lwjgl.openal.AL10.alSourceStop(sources.get(0));
     }
 
     public static void alDeleteSources(java.nio.IntBuffer sources) {

@@ -236,8 +236,6 @@ public class Util {
      * @return int
      */
     protected static int glGetIntegerv(int what) {
-        scratch.rewind();
-        glGetInteger(what, scratch);
-        return scratch.get();
+        return glGetInteger(what);
     }
 }

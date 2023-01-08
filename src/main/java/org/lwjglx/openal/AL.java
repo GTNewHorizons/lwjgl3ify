@@ -1,16 +1,13 @@
 package org.lwjglx.openal;
 
-import java.nio.IntBuffer;
-import org.lwjgl.BufferUtils;
-import org.lwjgl.openal.ALContext;
-import org.lwjgl.openal.ALDevice;
+import org.lwjgl.openal.ALC10;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 
 public class AL {
 
-    static ALContext alContext;
-    static ALCdevice alcDevice;
+    public static long alContext = -1;
+    public static ALCdevice alcDevice = null;
 
     private static boolean created = false;
 
@@ -19,29 +16,24 @@ public class AL {
     }
 
     public static void create() throws LWJGLException {
-        if (alContext == null) {
-            ALDevice alDevice = ALDevice.create();
+        if (alContext == -1) {
+            final String defaultDevice = ALC10.alcGetString(0, ALC10.ALC_DEFAULT_DEVICE_SPECIFIER);
+            alcDevice = new ALCdevice(ALC10.alcOpenDevice(defaultDevice));
 
-            IntBuffer attribs = BufferUtils.createIntBuffer(16);
+            final int[] attribs = new int[] {
+                org.lwjgl.openal.ALC10.ALC_FREQUENCY,
+                44100,
 
-            attribs.put(org.lwjgl.openal.ALC10.ALC_FREQUENCY);
-            attribs.put(44100);
+                org.lwjgl.openal.ALC10.ALC_REFRESH,
+                60,
 
-            attribs.put(org.lwjgl.openal.ALC10.ALC_REFRESH);
-            attribs.put(60);
+                org.lwjgl.openal.ALC10.ALC_SYNC,
+                org.lwjgl.openal.ALC10.ALC_FALSE,
 
-            attribs.put(org.lwjgl.openal.ALC10.ALC_SYNC);
-            attribs.put(org.lwjgl.openal.ALC10.ALC_FALSE);
+                0,
+            };
 
-            attribs.put(0);
-            attribs.flip();
-
-            long contextHandle = org.lwjgl.openal.ALC10.alcCreateContext(alDevice.getPointer(), attribs);
-
-            alContext = new ALContext(alDevice, contextHandle);
-
-            alcDevice = new ALCdevice(contextHandle);
-
+            alContext = org.lwjgl.openal.ALC10.alcCreateContext(alcDevice.device, attribs);
             created = true;
         }
     }
@@ -51,8 +43,9 @@ public class AL {
     }
 
     public static void destroy() {
-        org.lwjgl.openal.AL.destroy(alContext);
-        alContext = null;
+        ALC10.alcDestroyContext(alContext);
+        ALC10.alcCloseDevice(alcDevice.device);
+        alContext = -1;
         alcDevice = null;
         created = false;
     }

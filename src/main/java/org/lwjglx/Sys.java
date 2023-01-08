@@ -18,7 +18,7 @@ public class Sys {
 
     /** Returns the LWJGL version. */
     public static String getVersion() {
-        return org.lwjgl.Sys.getVersion();
+        return org.lwjgl.Version.getVersion();
     }
 
     /**
