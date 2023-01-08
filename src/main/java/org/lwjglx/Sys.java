@@ -12,21 +12,21 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class Sys {
-	
+
 	static {
-		if ( glfwInit() != GL11.GL_TRUE )
+		if ( !glfwInit() )
 			throw new IllegalStateException("Unable to initialize glfw");
 	}
 	
 	public static void initialize() {
-		
+
 	}
 
 	/** Returns the LWJGL version. */
 	public static String getVersion() {
 		return org.lwjgl.Sys.getVersion();
 	}
-	
+
 	/**
 	 * Obtains the number of ticks that the hires timer does in a second. This method is fast;
 	 * it should be called as frequently as possible, as it recalibrates the timer.
@@ -47,11 +47,11 @@ public class Sys {
 	public static long getTime() {
 		return (long) (GLFW.glfwGetTime() * 1000);
 	}
-	
+
 	public static long getNanoTime() {
 		return (long) (GLFW.glfwGetTime() * (1000L * 1000L * 1000L));
 	}
-	
+
 	public static boolean openURL(String url) {
 		if (!Desktop.isDesktopSupported()) return false;
 
@@ -65,7 +65,7 @@ public class Sys {
 			return false;
 		}
 	}
-	
+
 	public static void alert(String title, String message) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

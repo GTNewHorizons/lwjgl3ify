@@ -1,4 +1,33 @@
 
-dependencies {
+project.ext.lwjglVersion = "3.3.1"
 
+//switch (OperatingSystem.current()) {
+//    case OperatingSystem.LINUX:
+//        def osArch = System.getProperty("os.arch")
+//        project.ext.lwjglNatives = osArch.startsWith("arm") || osArch.startsWith("aarch64")
+//            ? "natives-linux-${osArch.contains("64") || osArch.startsWith("armv8") ? "arm64" : "arm32"}"
+//            : "natives-linux"
+//        break
+//    case OperatingSystem.MAC_OS:
+//        project.ext.lwjglNatives = System.getProperty("os.arch").startsWith("aarch64") ? "natives-macos-arm64" : "natives-macos"
+//        break
+//    case OperatingSystem.WINDOWS:
+//        def osArch = System.getProperty("os.arch")
+//        project.ext.lwjglNatives = osArch.contains("64")
+//            ? "natives-windows${osArch.startsWith("aarch64") ? "-arm64" : ""}"
+//            : "natives-windows-x86"
+//        break
+//}
+
+dependencies {
+    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+    implementation "org.lwjgl:lwjgl"
+    implementation "org.lwjgl:lwjgl-glfw"
+    implementation "org.lwjgl:lwjgl-openal"
+    implementation "org.lwjgl:lwjgl-opengl"
+//    runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+//    runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+//    runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
+//    runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
 }
