@@ -31,7 +31,6 @@
  */
 package org.lwjglx.openal;
 
-
 /**
  * Simple utility class for checking AL/ALC errors
  *
@@ -39,48 +38,44 @@ package org.lwjglx.openal;
  * @author Brian Matzon <brian@matzon.dk>
  * @version $Revision$
  */
-
 public final class Util {
-	/** No c'tor */
-	private Util() {
-	}
+    /** No c'tor */
+    private Util() {}
 
-	/**
-	 * Checks for any ALC errors and throws an unchecked exception on errors
-	 * @param device Device for which to check ALC errors 
-	 */
-	public static void checkALCError(ALCdevice device) {
-		int err = ALC10.alcGetError(device);
-		if (err != ALC10.ALC_NO_ERROR)
-			throw new OpenALException(ALC10.alcGetString(AL.getDevice(), err));
-	}
-	
-	/**
-	 * Checks for any AL errors and throws an unchecked exception on errors
-	 */
-	public static void checkALError() {
-		int err = AL10.alGetError();
-		if (err != AL10.AL_NO_ERROR)
-			throw new OpenALException(err);
-	}
+    /**
+     * Checks for any ALC errors and throws an unchecked exception on errors
+     * @param device Device for which to check ALC errors
+     */
+    public static void checkALCError(ALCdevice device) {
+        int err = ALC10.alcGetError(device);
+        if (err != ALC10.ALC_NO_ERROR) throw new OpenALException(ALC10.alcGetString(AL.getDevice(), err));
+    }
 
-	/**
-	 * Checks for a valid device
-	 * @param device ALCdevice to check the validity of 
-	 */
-	public static void checkALCValidDevice(ALCdevice device) {
-		if(!device.isValid()) {
-			throw new OpenALException("Invalid device: " + device);
-		}
-	}
+    /**
+     * Checks for any AL errors and throws an unchecked exception on errors
+     */
+    public static void checkALError() {
+        int err = AL10.alGetError();
+        if (err != AL10.AL_NO_ERROR) throw new OpenALException(err);
+    }
 
-	/**
-	 * Checks for a valid context
-	 * @param context ALCcontext to check the validity of 
-	 */
-	public static void checkALCValidContext(ALCcontext context) {
-		if(!context.isValid()) {
-			throw new OpenALException("Invalid context: " + context);
-		}
-	}
+    /**
+     * Checks for a valid device
+     * @param device ALCdevice to check the validity of
+     */
+    public static void checkALCValidDevice(ALCdevice device) {
+        if (!device.isValid()) {
+            throw new OpenALException("Invalid device: " + device);
+        }
+    }
+
+    /**
+     * Checks for a valid context
+     * @param context ALCcontext to check the validity of
+     */
+    public static void checkALCValidContext(ALCcontext context) {
+        if (!context.isValid()) {
+            throw new OpenALException("Invalid context: " + context);
+        }
+    }
 }

@@ -31,6 +31,8 @@
  */
 package org.lwjglx.test.spaceinvaders;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -49,12 +51,8 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Hashtable;
-
 import javax.swing.ImageIcon;
-
 import org.lwjgl.BufferUtils;
-
-import static org.lwjgl.opengl.GL11.*;
 
 /**
  * A utility class to load textures for OpenGL. This source is based
@@ -86,19 +84,21 @@ public class TextureLoader {
      * Create a new texture loader based on the game panel
      */
     public TextureLoader() {
-        glAlphaColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
-                                            new int[] {8,8,8,8},
-                                            true,
-                                            false,
-                                            ComponentColorModel.TRANSLUCENT,
-                                            DataBuffer.TYPE_BYTE);
+        glAlphaColorModel = new ComponentColorModel(
+                ColorSpace.getInstance(ColorSpace.CS_sRGB),
+                new int[] {8, 8, 8, 8},
+                true,
+                false,
+                ComponentColorModel.TRANSLUCENT,
+                DataBuffer.TYPE_BYTE);
 
-        glColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
-                                            new int[] {8,8,8,0},
-                                            false,
-                                            false,
-                                            ComponentColorModel.OPAQUE,
-                                            DataBuffer.TYPE_BYTE);
+        glColorModel = new ComponentColorModel(
+                ColorSpace.getInstance(ColorSpace.CS_sRGB),
+                new int[] {8, 8, 8, 0},
+                false,
+                false,
+                ComponentColorModel.OPAQUE,
+                DataBuffer.TYPE_BYTE);
     }
 
     /**
@@ -107,8 +107,8 @@ public class TextureLoader {
      * @return A new texture ID
      */
     private int createTextureID() {
-      glGenTextures(textureIDBuffer);
-      return textureIDBuffer.get(0);
+        glGenTextures(textureIDBuffer);
+        return textureIDBuffer.get(0);
     }
 
     /**
@@ -125,13 +125,14 @@ public class TextureLoader {
             return tex;
         }
 
-        tex = getTexture(resourceName,
-                         GL_TEXTURE_2D, // target
-                         GL_RGBA,     // dst pixel format
-                         GL_LINEAR, // min filter (unused)
-                         GL_LINEAR);
+        tex = getTexture(
+                resourceName,
+                GL_TEXTURE_2D, // target
+                GL_RGBA, // dst pixel format
+                GL_LINEAR, // min filter (unused)
+                GL_LINEAR);
 
-        table.put(resourceName,tex);
+        table.put(resourceName, tex);
 
         return tex;
     }
@@ -148,16 +149,13 @@ public class TextureLoader {
      * @return The loaded texture
      * @throws IOException Indicates a failure to access the resource
      */
-    public Texture getTexture(String resourceName,
-                              int target,
-                              int dstPixelFormat,
-                              int minFilter,
-                              int magFilter) throws IOException {
+    public Texture getTexture(String resourceName, int target, int dstPixelFormat, int minFilter, int magFilter)
+            throws IOException {
         int srcPixelFormat;
 
         // create the texture ID for this texture
         int textureID = createTextureID();
-        Texture texture = new Texture(target,textureID);
+        Texture texture = new Texture(target, textureID);
 
         // bind this texture
         glBindTexture(target, textureID);
@@ -173,7 +171,7 @@ public class TextureLoader {
         }
 
         // convert that image into a byte buffer of texture data
-        ByteBuffer textureBuffer = convertImageData(bufferedImage,texture);
+        ByteBuffer textureBuffer = convertImageData(bufferedImage, texture);
 
         if (target == GL_TEXTURE_2D) {
             glTexParameteri(target, GL_TEXTURE_MIN_FILTER, minFilter);
@@ -181,15 +179,16 @@ public class TextureLoader {
         }
 
         // produce a texture from the byte buffer
-        glTexImage2D(target,
-                      0,
-                      dstPixelFormat,
-                      get2Fold(bufferedImage.getWidth()),
-                      get2Fold(bufferedImage.getHeight()),
-                      0,
-                      srcPixelFormat,
-                      GL_UNSIGNED_BYTE,
-                      textureBuffer );
+        glTexImage2D(
+                target,
+                0,
+                dstPixelFormat,
+                get2Fold(bufferedImage.getWidth()),
+                get2Fold(bufferedImage.getHeight()),
+                0,
+                srcPixelFormat,
+                GL_UNSIGNED_BYTE,
+                textureBuffer);
 
         return texture;
     }
@@ -215,7 +214,7 @@ public class TextureLoader {
      * @param texture The texture to store the data into
      * @return A buffer containing the data
      */
-    private ByteBuffer convertImageData(BufferedImage bufferedImage,Texture texture) {
+    private ByteBuffer convertImageData(BufferedImage bufferedImage, Texture texture) {
         ByteBuffer imageBuffer;
         WritableRaster raster;
         BufferedImage texImage;
@@ -238,18 +237,18 @@ public class TextureLoader {
         // create a raster that can be used by OpenGL as a source
         // for a texture
         if (bufferedImage.getColorModel().hasAlpha()) {
-            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,4,null);
-            texImage = new BufferedImage(glAlphaColorModel,raster,false,new Hashtable());
+            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth, texHeight, 4, null);
+            texImage = new BufferedImage(glAlphaColorModel, raster, false, new Hashtable());
         } else {
-            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,3,null);
-            texImage = new BufferedImage(glColorModel,raster,false,new Hashtable());
+            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth, texHeight, 3, null);
+            texImage = new BufferedImage(glColorModel, raster, false, new Hashtable());
         }
 
         // copy the source image into the produced image
         Graphics g = texImage.getGraphics();
-        g.setColor(new Color(0f,0f,0f,0f));
-        g.fillRect(0,0,texWidth,texHeight);
-        g.drawImage(bufferedImage,0,0,null);
+        g.setColor(new Color(0f, 0f, 0f, 0f));
+        g.fillRect(0, 0, texWidth, texHeight);
+        g.drawImage(bufferedImage, 0, 0, null);
 
         // build a byte buffer from the temporary image
         // that be used by OpenGL to produce a texture.
@@ -281,7 +280,8 @@ public class TextureLoader {
         // we are now using good oldfashioned ImageIcon to load
         // images and the paint it on top of a new BufferedImage
         Image img = new ImageIcon(url).getImage();
-        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        BufferedImage bufferedImage =
+                new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
         Graphics g = bufferedImage.getGraphics();
         g.drawImage(img, 0, 0, null);
         g.dispose();

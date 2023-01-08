@@ -39,12 +39,11 @@ import org.lwjglx.LWJGLException;
  */
 interface Context {
 
-	boolean isCurrent() throws LWJGLException;
+    boolean isCurrent() throws LWJGLException;
 
-	void makeCurrent() throws LWJGLException;
+    void makeCurrent() throws LWJGLException;
 
-	void releaseCurrent() throws LWJGLException;
+    void releaseCurrent() throws LWJGLException;
 
-	void releaseDrawable() throws LWJGLException;
-
+    void releaseDrawable() throws LWJGLException;
 }

@@ -37,164 +37,168 @@ package org.lwjglx.opengl;
  * for each supported platform.
  * @author elias_naur
  */
-
+import java.awt.Canvas;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.awt.Canvas;
-
 import org.lwjglx.LWJGLException;
 
 interface DisplayImplementation extends InputImplementation {
 
-	void createWindow(DrawableLWJGL drawable, DisplayMode mode, Canvas parent, int x, int y) throws LWJGLException;
+    void createWindow(DrawableLWJGL drawable, DisplayMode mode, Canvas parent, int x, int y) throws LWJGLException;
 
-	void destroyWindow();
+    void destroyWindow();
 
-	void switchDisplayMode(DisplayMode mode) throws LWJGLException;
+    void switchDisplayMode(DisplayMode mode) throws LWJGLException;
 
-	/**
-	 * Reset the display mode to whatever it was when LWJGL was initialized.
-	 * Fails silently.
-	 */
-	void resetDisplayMode();
+    /**
+     * Reset the display mode to whatever it was when LWJGL was initialized.
+     * Fails silently.
+     */
+    void resetDisplayMode();
 
-	/**
-	 * Return the length of the gamma ramp arrays. Returns 0 if gamma settings are
-	 * unsupported.
-	 *
-	 * @return the length of each gamma ramp array, or 0 if gamma settings are unsupported.
-	 */
-	int getGammaRampLength();
+    /**
+     * Return the length of the gamma ramp arrays. Returns 0 if gamma settings are
+     * unsupported.
+     *
+     * @return the length of each gamma ramp array, or 0 if gamma settings are unsupported.
+     */
+    int getGammaRampLength();
 
-	/**
-	 * Method to set the gamma ramp.
-	 */
-	void setGammaRamp(FloatBuffer gammaRamp) throws LWJGLException;
+    /**
+     * Method to set the gamma ramp.
+     */
+    void setGammaRamp(FloatBuffer gammaRamp) throws LWJGLException;
 
-	/**
-	 * Get the driver adapter string. This is a unique string describing the actual card's hardware, eg. "Geforce2", "PS2",
-	 * "Radeon9700". If the adapter cannot be determined, this function returns null.
-	 * @return a String
-	 */
-	String getAdapter();
+    /**
+     * Get the driver adapter string. This is a unique string describing the actual card's hardware, eg. "Geforce2", "PS2",
+     * "Radeon9700". If the adapter cannot be determined, this function returns null.
+     * @return a String
+     */
+    String getAdapter();
 
-	/**
-	 * Get the driver version. This is a vendor/adapter specific version string. If the version cannot be determined,
-	 * this function returns null.
-	 * @return a String
-	 */
-	String getVersion();
+    /**
+     * Get the driver version. This is a vendor/adapter specific version string. If the version cannot be determined,
+     * this function returns null.
+     * @return a String
+     */
+    String getVersion();
 
-	/**
-	 * Initialize and return the current display mode.
-	 */
-	DisplayMode init() throws LWJGLException;
+    /**
+     * Initialize and return the current display mode.
+     */
+    DisplayMode init() throws LWJGLException;
 
-	/**
-	 * Implementation of setTitle(). This will read the window's title member
-	 * and stash it in the native title of the window.
-	 */
-	void setTitle(String title);
+    /**
+     * Implementation of setTitle(). This will read the window's title member
+     * and stash it in the native title of the window.
+     */
+    void setTitle(String title);
 
-	boolean isCloseRequested();
+    boolean isCloseRequested();
 
-	boolean isVisible();
-	boolean isActive();
+    boolean isVisible();
 
-	boolean isDirty();
+    boolean isActive();
 
-	/**
-	 * Create the native PeerInfo.
-	 * @throws LWJGLException
-	 */
-	PeerInfo createPeerInfo(PixelFormat pixel_format, ContextAttribs attribs) throws LWJGLException;
+    boolean isDirty();
 
-//	void destroyPeerInfo();
+    /**
+     * Create the native PeerInfo.
+     * @throws LWJGLException
+     */
+    PeerInfo createPeerInfo(PixelFormat pixel_format, ContextAttribs attribs) throws LWJGLException;
 
-	/**
-	 * Updates the windows internal state. This must be called at least once per video frame
-	 * to handle window close requests, moves, paints, etc.
-	 */
-	void update();
+    //	void destroyPeerInfo();
 
-	void reshape(int x, int y, int width, int height);
+    /**
+     * Updates the windows internal state. This must be called at least once per video frame
+     * to handle window close requests, moves, paints, etc.
+     */
+    void update();
 
-	/**
-	 * Method for getting displaymodes
-	 */
-	DisplayMode[] getAvailableDisplayModes() throws LWJGLException;
+    void reshape(int x, int y, int width, int height);
 
-	/* Pbuffer */
-	int getPbufferCapabilities();
+    /**
+     * Method for getting displaymodes
+     */
+    DisplayMode[] getAvailableDisplayModes() throws LWJGLException;
 
-	/**
-	 * Method to test for buffer integrity
-	 */
-	boolean isBufferLost(PeerInfo handle);
+    /* Pbuffer */
+    int getPbufferCapabilities();
 
-	/**
-	 * Method to create a Pbuffer
-	 */
-	PeerInfo createPbuffer(int width, int height, PixelFormat pixel_format, ContextAttribs attribs,
-			IntBuffer pixelFormatCaps,
-			IntBuffer pBufferAttribs) throws LWJGLException;
+    /**
+     * Method to test for buffer integrity
+     */
+    boolean isBufferLost(PeerInfo handle);
 
-	void setPbufferAttrib(PeerInfo handle, int attrib, int value);
+    /**
+     * Method to create a Pbuffer
+     */
+    PeerInfo createPbuffer(
+            int width,
+            int height,
+            PixelFormat pixel_format,
+            ContextAttribs attribs,
+            IntBuffer pixelFormatCaps,
+            IntBuffer pBufferAttribs)
+            throws LWJGLException;
 
-	void bindTexImageToPbuffer(PeerInfo handle, int buffer);
+    void setPbufferAttrib(PeerInfo handle, int attrib, int value);
 
-	void releaseTexImageFromPbuffer(PeerInfo handle, int buffer);
+    void bindTexImageToPbuffer(PeerInfo handle, int buffer);
 
-	/**
-	 * Sets one or more icons for the Display.
-	 * <ul>
-	 * <li>On Windows you should supply at least one 16x16 icon and one 32x32.</li>
-	 * <li>Linux (and similar platforms) expect one 32x32 icon.</li>
-	 * <li>Mac OS X should be supplied one 128x128 icon</li>
-	 * </ul>
-	 * The implementation will use the supplied ByteBuffers with image data in RGBA and perform any conversions nescesarry for the specific platform.
-	 *
-	 * @param icons Array of icons in RGBA mode
-	 * @return number of icons used.
-	 */
-	int setIcon(ByteBuffer[] icons);
+    void releaseTexImageFromPbuffer(PeerInfo handle, int buffer);
 
-	/**
-	 * Enable or disable the Display window to be resized.
-	 *
-	 * @param resizable set to true to make the Display window resizable;
-	 * false to disable resizing on the Display window.
-	 */
-	void setResizable(boolean resizable);
+    /**
+     * Sets one or more icons for the Display.
+     * <ul>
+     * <li>On Windows you should supply at least one 16x16 icon and one 32x32.</li>
+     * <li>Linux (and similar platforms) expect one 32x32 icon.</li>
+     * <li>Mac OS X should be supplied one 128x128 icon</li>
+     * </ul>
+     * The implementation will use the supplied ByteBuffers with image data in RGBA and perform any conversions nescesarry for the specific platform.
+     *
+     * @param icons Array of icons in RGBA mode
+     * @return number of icons used.
+     */
+    int setIcon(ByteBuffer[] icons);
 
-	/**
-	 * @return true if the Display window has been resized since this method was last called.
-	 */
-	boolean wasResized();
+    /**
+     * Enable or disable the Display window to be resized.
+     *
+     * @param resizable set to true to make the Display window resizable;
+     * false to disable resizing on the Display window.
+     */
+    void setResizable(boolean resizable);
 
-	/**
-	 * @return this method will return the width of the Display window.
-	 */
-	int getWidth();
+    /**
+     * @return true if the Display window has been resized since this method was last called.
+     */
+    boolean wasResized();
 
-	/**
-	 * @return this method will return the height of the Display window.
-	 */
-	int getHeight();
-	
-	/**
-	 * @return this method will return the top-left x position of the Display window.
-	 */
-	int getX();
+    /**
+     * @return this method will return the width of the Display window.
+     */
+    int getWidth();
 
-	/**
-	 * @return this method will return the top-left y position of the Display window.
-	 */
-	int getY();
-	
-	/**
-	 * @return this method will return the pixel scale factor of the Display window useful for high resolution modes.
-	 */
-	float getPixelScaleFactor();
+    /**
+     * @return this method will return the height of the Display window.
+     */
+    int getHeight();
+
+    /**
+     * @return this method will return the top-left x position of the Display window.
+     */
+    int getX();
+
+    /**
+     * @return this method will return the top-left y position of the Display window.
+     */
+    int getY();
+
+    /**
+     * @return this method will return the pixel scale factor of the Display window useful for high resolution modes.
+     */
+    float getPixelScaleFactor();
 }

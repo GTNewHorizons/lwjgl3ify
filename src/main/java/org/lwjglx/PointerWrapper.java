@@ -38,6 +38,5 @@ package org.lwjglx;
  */
 public interface PointerWrapper {
 
-	long getPointer();
-
+    long getPointer();
 }

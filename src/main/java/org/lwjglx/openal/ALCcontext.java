@@ -32,7 +32,6 @@
 package org.lwjglx.openal;
 
 import java.nio.IntBuffer;
-
 import org.lwjgl.BufferUtils;
 
 /**
@@ -51,65 +50,65 @@ import org.lwjgl.BufferUtils;
  */
 public final class ALCcontext {
 
-	/** Address of actual context */
-	final long context;
+    /** Address of actual context */
+    final long context;
 
-	/** Whether this context is valid */
-	private boolean valid;
+    /** Whether this context is valid */
+    private boolean valid;
 
-	/**
-	 * Creates a new instance of ALCcontext
-	 *
-	 * @param context address of actual context
-	 */
-	ALCcontext(long context) {
-		this.context = context;
-		this.valid = true;
-	}
+    /**
+     * Creates a new instance of ALCcontext
+     *
+     * @param context address of actual context
+     */
+    ALCcontext(long context) {
+        this.context = context;
+        this.valid = true;
+    }
 
-	/*
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	public boolean equals(Object context) {
-		if(context instanceof ALCcontext) {
-			return ((ALCcontext)context).context == this.context;
-		}
-		return super.equals(context);
-	}
+    /*
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    public boolean equals(Object context) {
+        if (context instanceof ALCcontext) {
+            return ((ALCcontext) context).context == this.context;
+        }
+        return super.equals(context);
+    }
 
-	/**
-	 * Creates an attribute list in a ByteBuffer
-	 * @param contextFrequency Frequency to add
-	 * @param contextRefresh Refresh rate to add
-	 * @param contextSynchronized Whether to synchronize the context
-	 * @return
-	 */
-	static IntBuffer createAttributeList(int contextFrequency, int contextRefresh, int contextSynchronized) {
-		IntBuffer attribList = BufferUtils.createIntBuffer(7);
+    /**
+     * Creates an attribute list in a ByteBuffer
+     * @param contextFrequency Frequency to add
+     * @param contextRefresh Refresh rate to add
+     * @param contextSynchronized Whether to synchronize the context
+     * @return
+     */
+    static IntBuffer createAttributeList(int contextFrequency, int contextRefresh, int contextSynchronized) {
+        IntBuffer attribList = BufferUtils.createIntBuffer(7);
 
-		attribList.put(ALC10.ALC_FREQUENCY);
-		attribList.put(contextFrequency);
-		attribList.put(ALC10.ALC_REFRESH);
-		attribList.put(contextRefresh);
-		attribList.put(ALC10.ALC_SYNC);
-		attribList.put(contextSynchronized);
-		attribList.put(0); //terminating int
+        attribList.put(ALC10.ALC_FREQUENCY);
+        attribList.put(contextFrequency);
+        attribList.put(ALC10.ALC_REFRESH);
+        attribList.put(contextRefresh);
+        attribList.put(ALC10.ALC_SYNC);
+        attribList.put(contextSynchronized);
+        attribList.put(0); // terminating int
 
-		return attribList;
-	}
+        return attribList;
+    }
 
-	/**
-	 * Marks this context as invalid
-	 *
-	 */
-	void setInvalid() {
-		valid = false;
-	}
+    /**
+     * Marks this context as invalid
+     *
+     */
+    void setInvalid() {
+        valid = false;
+    }
 
-	/**
-	 * @return true if this context is still valid
-	 */
-	public boolean isValid() {
-		return valid;
-	}
+    /**
+     * @return true if this context is still valid
+     */
+    public boolean isValid() {
+        return valid;
+    }
 }

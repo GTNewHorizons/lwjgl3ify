@@ -33,80 +33,75 @@ package org.lwjglx.opengl;
 
 public final class ContextAttribs {
 
-	public ContextAttribs() {
-		
-	}
+    public ContextAttribs() {}
 
-	public ContextAttribs(final int majorVersion, final int minorVersion) {
-		
-	}
+    public ContextAttribs(final int majorVersion, final int minorVersion) {}
 
-	public int getMajorVersion() {
-		return 0;
-	}
+    public int getMajorVersion() {
+        return 0;
+    }
 
-	public int getMinorVersion() {
-		return 0;
-	}
+    public int getMinorVersion() {
+        return 0;
+    }
 
-	public int getLayerPlane() {
-		return 0;
-	}
+    public int getLayerPlane() {
+        return 0;
+    }
 
-	public boolean isDebug() {
-		return false;
-	}
+    public boolean isDebug() {
+        return false;
+    }
 
-	public boolean isForwardCompatible() {
-		return false;
-	}
+    public boolean isForwardCompatible() {
+        return false;
+    }
 
-	public boolean isProfileCore() {
-		return false;
-	}
+    public boolean isProfileCore() {
+        return false;
+    }
 
-	public boolean isProfileCompatibility() {
-		return false;
-	}
+    public boolean isProfileCompatibility() {
+        return false;
+    }
 
-	public boolean isProfileES() {
-		return false;
-	}
+    public boolean isProfileES() {
+        return false;
+    }
 
-	public ContextAttribs withLayer(final int layerPlane) {
-		return null;
-	}
+    public ContextAttribs withLayer(final int layerPlane) {
+        return null;
+    }
 
-	public ContextAttribs withDebug(final boolean debug) {
-		return null;
-	}
+    public ContextAttribs withDebug(final boolean debug) {
+        return null;
+    }
 
-	public ContextAttribs withForwardCompatible(final boolean forwardCompatible) {
-		return null;
-	}
+    public ContextAttribs withForwardCompatible(final boolean forwardCompatible) {
+        return null;
+    }
 
-	public ContextAttribs withProfileCore(final boolean profileCore) {
-		return null;
-	}
+    public ContextAttribs withProfileCore(final boolean profileCore) {
+        return null;
+    }
 
-	public ContextAttribs withProfileCompatibility(final boolean profileCompatibility) {
-		return null;
-	}
+    public ContextAttribs withProfileCompatibility(final boolean profileCompatibility) {
+        return null;
+    }
 
-	public ContextAttribs withProfileES(final boolean profileES) {
-		return null;
-	}
+    public ContextAttribs withProfileES(final boolean profileES) {
+        return null;
+    }
 
-	public ContextAttribs withLoseContextOnReset(final boolean loseContextOnReset) {
-		return null;
-	}
+    public ContextAttribs withLoseContextOnReset(final boolean loseContextOnReset) {
+        return null;
+    }
 
-	public ContextAttribs withContextResetIsolation(final boolean contextResetIsolation) {
-		return null;
-	}
+    public ContextAttribs withContextResetIsolation(final boolean contextResetIsolation) {
+        return null;
+    }
 
-	public String toString() {
-		return null;
-	}
-
+    public String toString() {
+        return null;
+    }
 }

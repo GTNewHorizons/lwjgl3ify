@@ -36,5 +36,5 @@ package org.lwjglx.opengl;
  * synchronize access to Display.
  */
 final class GlobalLock {
-	static final Object lock = new Object();
+    static final Object lock = new Object();
 }

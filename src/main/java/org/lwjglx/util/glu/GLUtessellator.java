@@ -34,39 +34,35 @@ package org.lwjglx.util.glu;
 
 public interface GLUtessellator {
 
-	void gluDeleteTess();
+    void gluDeleteTess();
 
-	void gluTessProperty(int which, double value);
+    void gluTessProperty(int which, double value);
 
-	/* Returns tessellator property */
-	void gluGetTessProperty(int which, double[] value,
-			int value_offset); /* gluGetTessProperty() */
+    /* Returns tessellator property */
+    void gluGetTessProperty(int which, double[] value, int value_offset); /* gluGetTessProperty() */
 
-	void gluTessNormal(double x, double y, double z);
+    void gluTessNormal(double x, double y, double z);
 
-	void gluTessCallback(int which,
-			GLUtessellatorCallback aCallback);
+    void gluTessCallback(int which, GLUtessellatorCallback aCallback);
 
-	void gluTessVertex(double[] coords, int coords_offset,
-			Object vertexData);
+    void gluTessVertex(double[] coords, int coords_offset, Object vertexData);
 
-	void gluTessBeginPolygon(Object data);
+    void gluTessBeginPolygon(Object data);
 
-	void gluTessBeginContour();
+    void gluTessBeginContour();
 
-	void gluTessEndContour();
+    void gluTessEndContour();
 
-	void gluTessEndPolygon();
+    void gluTessEndPolygon();
 
-	/*******************************************************/
+    /*******************************************************/
 
-	/* Obsolete calls -- for backward compatibility */
+    /* Obsolete calls -- for backward compatibility */
 
-	void gluBeginPolygon();
+    void gluBeginPolygon();
 
-	/*ARGSUSED*/
-	void gluNextContour(int type);
+    /*ARGSUSED*/
+    void gluNextContour(int type);
 
-	void gluEndPolygon();
-
+    void gluEndPolygon();
 }

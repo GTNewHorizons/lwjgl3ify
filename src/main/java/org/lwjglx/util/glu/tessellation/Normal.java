@@ -31,82 +31,81 @@
  */
 
 /*
-* Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
-* All rights reserved.
-*/
+ * Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
+ * All rights reserved.
+ */
 
 /*
-** License Applicability. Except to the extent portions of this file are
-** made subject to an alternative license as permitted in the SGI Free
-** Software License B, Version 1.1 (the "License"), the contents of this
-** file are subject only to the provisions of the License. You may not use
-** this file except in compliance with the License. You may obtain a copy
-** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
-** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
-**
-** http://oss.sgi.com/projects/FreeB
-**
-** Note that, as provided in the License, the Software is distributed on an
-** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
-** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
-** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
-** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-**
-** NOTE:  The Original Code (as defined below) has been licensed to Sun
-** Microsystems, Inc. ("Sun") under the SGI Free Software License B
-** (Version 1.1), shown above ("SGI License").   Pursuant to Section
-** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
-** you under an alternative license ("Alternative License").  This
-** Alternative License includes all of the provisions of the SGI License
-** except that Section 2.2 and 11 are omitted.  Any differences between
-** the Alternative License and the SGI License are offered solely by Sun
-** and not by SGI.
-**
-** Original Code. The Original Code is: OpenGL Sample Implementation,
-** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
-** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
-** Copyright in any portions created by third parties is as indicated
-** elsewhere herein. All Rights Reserved.
-**
-** Additional Notice Provisions: The application programming interfaces
-** established by SGI in conjunction with the Original Code are The
-** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
-** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
-** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
-** Window System(R) (Version 1.3), released October 19, 1998. This software
-** was created using the OpenGL(R) version 1.2.1 Sample Implementation
-** published by SGI, but has not been independently verified as being
-** compliant with the OpenGL(R) version 1.2.1 Specification.
-**
-** Author: Eric Veach, July 1994
-** Java Port: Pepijn Van Eeckhoudt, July 2003
-** Java Port: Nathan Parker Burg, August 2003
-*/
+ ** License Applicability. Except to the extent portions of this file are
+ ** made subject to an alternative license as permitted in the SGI Free
+ ** Software License B, Version 1.1 (the "License"), the contents of this
+ ** file are subject only to the provisions of the License. You may not use
+ ** this file except in compliance with the License. You may obtain a copy
+ ** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+ ** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+ **
+ ** http://oss.sgi.com/projects/FreeB
+ **
+ ** Note that, as provided in the License, the Software is distributed on an
+ ** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+ ** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+ ** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+ ** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+ **
+ ** NOTE:  The Original Code (as defined below) has been licensed to Sun
+ ** Microsystems, Inc. ("Sun") under the SGI Free Software License B
+ ** (Version 1.1), shown above ("SGI License").   Pursuant to Section
+ ** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
+ ** you under an alternative license ("Alternative License").  This
+ ** Alternative License includes all of the provisions of the SGI License
+ ** except that Section 2.2 and 11 are omitted.  Any differences between
+ ** the Alternative License and the SGI License are offered solely by Sun
+ ** and not by SGI.
+ **
+ ** Original Code. The Original Code is: OpenGL Sample Implementation,
+ ** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
+ ** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
+ ** Copyright in any portions created by third parties is as indicated
+ ** elsewhere herein. All Rights Reserved.
+ **
+ ** Additional Notice Provisions: The application programming interfaces
+ ** established by SGI in conjunction with the Original Code are The
+ ** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
+ ** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
+ ** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
+ ** Window System(R) (Version 1.3), released October 19, 1998. This software
+ ** was created using the OpenGL(R) version 1.2.1 Sample Implementation
+ ** published by SGI, but has not been independently verified as being
+ ** compliant with the OpenGL(R) version 1.2.1 Specification.
+ **
+ ** Author: Eric Veach, July 1994
+ ** Java Port: Pepijn Van Eeckhoudt, July 2003
+ ** Java Port: Nathan Parker Burg, August 2003
+ */
 package org.lwjglx.util.glu.tessellation;
 
 import org.lwjglx.util.glu.GLU;
 
 class Normal {
-    private Normal() {
-    }
+    private Normal() {}
 
     static boolean SLANTED_SWEEP;
-    static double S_UNIT_X;	/* Pre-normalized */
+    static double S_UNIT_X; /* Pre-normalized */
     static double S_UNIT_Y;
     private static final boolean TRUE_PROJECT = false;
 
     static {
         if (SLANTED_SWEEP) {
-/* The "feature merging" is not intended to be complete.  There are
- * special cases where edges are nearly parallel to the sweep line
- * which are not implemented.  The algorithm should still behave
- * robustly (ie. produce a reasonable tesselation) in the presence
- * of such edges, however it may miss features which could have been
- * merged.  We could minimize this effect by choosing the sweep line
- * direction to be something unusual (ie. not parallel to one of the
- * coordinate axes).
- */
-            S_UNIT_X = 0.50941539564955385;	/* Pre-normalized */
+            /* The "feature merging" is not intended to be complete.  There are
+             * special cases where edges are nearly parallel to the sweep line
+             * which are not implemented.  The algorithm should still behave
+             * robustly (ie. produce a reasonable tesselation) in the presence
+             * of such edges, however it may miss features which could have been
+             * merged.  We could minimize this effect by choosing the sweep line
+             * direction to be something unusual (ie. not parallel to one of the
+             * coordinate axes).
+             */
+            S_UNIT_X = 0.50941539564955385; /* Pre-normalized */
             S_UNIT_Y = 0.86052074622010633;
         } else {
             S_UNIT_X = 1.0;
@@ -173,7 +172,7 @@ class Normal {
             }
         }
 
-/* Find two vertices separated by at least 1/sqrt(3) of the maximum
+        /* Find two vertices separated by at least 1/sqrt(3) of the maximum
          * distance between any two vertices
          */
         i = 0;
@@ -184,14 +183,14 @@ class Normal {
             i = 2;
         }
         if (minVal[i] >= maxVal[i]) {
-/* All vertices are the same -- normal doesn't matter */
+            /* All vertices are the same -- normal doesn't matter */
             norm[0] = 0;
             norm[1] = 0;
             norm[2] = 1;
             return;
         }
 
-/* Look for a third vertex which forms the triangle with maximum area
+        /* Look for a third vertex which forms the triangle with maximum area
          * (Length of normal == twice the triangle area)
          */
         maxLen2 = 0;
@@ -217,7 +216,7 @@ class Normal {
         }
 
         if (maxLen2 <= 0) {
-/* All points lie on a single line -- any decent normal will do */
+            /* All points lie on a single line -- any decent normal will do */
             norm[0] = norm[1] = norm[2] = 0;
             norm[LongAxis(d1)] = 1;
         }
@@ -229,9 +228,9 @@ class Normal {
         GLUvertex v, vHead = tess.mesh.vHead;
         GLUhalfEdge e;
 
-/* When we compute the normal automatically, we choose the orientation
- * so that the the sum of the signed areas of all contours is non-negative.
- */
+        /* When we compute the normal automatically, we choose the orientation
+         * so that the the sum of the signed areas of all contours is non-negative.
+         */
         area = 0;
         for (f = fHead.next; f != fHead; f = f.next) {
             e = f.anEdge;
@@ -242,7 +241,7 @@ class Normal {
             } while (e != f.anEdge);
         }
         if (area < 0) {
-/* Reverse the orientation by flipping all the t-coordinates */
+            /* Reverse the orientation by flipping all the t-coordinates */
             for (v = vHead.next; v != vHead; v = v.next) {
                 v.t = -v.t;
             }
@@ -252,9 +251,9 @@ class Normal {
         }
     }
 
-/* Determine the polygon normal and project vertices onto the plane
- * of the polygon.
- */
+    /* Determine the polygon normal and project vertices onto the plane
+     * of the polygon.
+     */
     public static void __gl_projectPolygon(GLUtessellatorImpl tess) {
         GLUvertex v, vHead = tess.mesh.vHead;
         double w;
@@ -275,29 +274,29 @@ class Normal {
         i = LongAxis(norm);
 
         if (TRUE_PROJECT) {
-/* Choose the initial sUnit vector to be approximately perpendicular
- * to the normal.
- */
+            /* Choose the initial sUnit vector to be approximately perpendicular
+             * to the normal.
+             */
             Normalize(norm);
 
             sUnit[i] = 0;
             sUnit[(i + 1) % 3] = S_UNIT_X;
             sUnit[(i + 2) % 3] = S_UNIT_Y;
 
-/* Now make it exactly perpendicular */
+            /* Now make it exactly perpendicular */
             w = Dot(sUnit, norm);
             sUnit[0] -= w * norm[0];
             sUnit[1] -= w * norm[1];
             sUnit[2] -= w * norm[2];
             Normalize(sUnit);
 
-/* Choose tUnit so that (sUnit,tUnit,norm) form a right-handed frame */
+            /* Choose tUnit so that (sUnit,tUnit,norm) form a right-handed frame */
             tUnit[0] = norm[1] * sUnit[2] - norm[2] * sUnit[1];
             tUnit[1] = norm[2] * sUnit[0] - norm[0] * sUnit[2];
             tUnit[2] = norm[0] * sUnit[1] - norm[1] * sUnit[0];
             Normalize(tUnit);
         } else {
-/* Project perpendicular to a coordinate axis -- better numerically */
+            /* Project perpendicular to a coordinate axis -- better numerically */
             sUnit[i] = 0;
             sUnit[(i + 1) % 3] = S_UNIT_X;
             sUnit[(i + 2) % 3] = S_UNIT_Y;
@@ -307,7 +306,7 @@ class Normal {
             tUnit[(i + 2) % 3] = (norm[i] > 0) ? S_UNIT_X : -S_UNIT_X;
         }
 
-/* Project the vertices onto the sweep plane */
+        /* Project the vertices onto the sweep plane */
         for (v = vHead.next; v != vHead; v = v.next) {
             v.s = Dot(v.coords, sUnit);
             v.t = Dot(v.coords, tUnit);

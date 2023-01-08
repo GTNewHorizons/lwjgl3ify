@@ -47,44 +47,25 @@ import org.lwjglx.PointerBuffer;
  */
 final class ContextGL implements Context {
 
-	public void releaseCurrent() throws LWJGLException {
-		
-	}
+    public void releaseCurrent() throws LWJGLException {}
 
-	public synchronized void releaseDrawable() throws LWJGLException {
-		
-	}
+    public synchronized void releaseDrawable() throws LWJGLException {}
 
-	public synchronized void update() {
-		
-	}
+    public synchronized void update() {}
 
-	public static void swapBuffers() throws LWJGLException {
-		
-	}
+    public static void swapBuffers() throws LWJGLException {}
 
-	public synchronized void makeCurrent() throws LWJGLException {
-		
-	}
+    public synchronized void makeCurrent() throws LWJGLException {}
 
-	public synchronized boolean isCurrent() throws LWJGLException {
-		return false;
-	}
+    public synchronized boolean isCurrent() throws LWJGLException {
+        return false;
+    }
 
-	public static void setSwapInterval(int value) {
-		
-	}
+    public static void setSwapInterval(int value) {}
 
-	public synchronized void forceDestroy() throws LWJGLException {
-		
-	}
+    public synchronized void forceDestroy() throws LWJGLException {}
 
-	public synchronized void destroy() throws LWJGLException {
-		
-	}
+    public synchronized void destroy() throws LWJGLException {}
 
-	public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {
-		
-	}
-
+    public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {}
 }

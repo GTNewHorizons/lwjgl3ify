@@ -40,8 +40,7 @@ import org.lwjglx.PointerWrapperAbstract;
  */
 public final class GLSync extends PointerWrapperAbstract {
 
-	GLSync(final long sync) {
-		super(sync);
-	}
-
+    GLSync(final long sync) {
+        super(sync);
+    }
 }

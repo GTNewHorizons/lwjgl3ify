@@ -55,8 +55,8 @@ public final class ALCdevice {
     /** Whether this device is valid */
     private boolean valid;
 
-	/** List of contexts belonging to the device */
-	private final HashMap<Long, ALCcontext> contexts = new HashMap<Long, ALCcontext>();
+    /** List of contexts belonging to the device */
+    private final HashMap<Long, ALCcontext> contexts = new HashMap<Long, ALCcontext>();
 
     /**
      * Creates a new instance of ALCdevice
@@ -71,51 +71,50 @@ public final class ALCdevice {
     /*
      * @see java.lang.Object#equals(java.lang.Object)
      */
-	public boolean equals(Object device) {
-		if(device instanceof ALCdevice) {
-			return ((ALCdevice)device).device == this.device;
-		}
-		return super.equals(device);
-	}
+    public boolean equals(Object device) {
+        if (device instanceof ALCdevice) {
+            return ((ALCdevice) device).device == this.device;
+        }
+        return super.equals(device);
+    }
 
-	/**
-	 * Adds a context to the device
-	 *
-	 * @param context context to add to the list of contexts for this device
-	 */
-	void addContext(ALCcontext context) {
-		synchronized (contexts) {
-			contexts.put(context.context, context);
-		}
-	}
+    /**
+     * Adds a context to the device
+     *
+     * @param context context to add to the list of contexts for this device
+     */
+    void addContext(ALCcontext context) {
+        synchronized (contexts) {
+            contexts.put(context.context, context);
+        }
+    }
 
-	/**
-	 * Remove context associated with device
-	 *
-	 * @param context Context to disassociate with device
-	 */
-	void removeContext(ALCcontext context) {
-		synchronized (contexts) {
-			contexts.remove(context.context);
-		}
-	}
+    /**
+     * Remove context associated with device
+     *
+     * @param context Context to disassociate with device
+     */
+    void removeContext(ALCcontext context) {
+        synchronized (contexts) {
+            contexts.remove(context.context);
+        }
+    }
 
-	/**
-	 * Marks this device and all of its contexts invalid
-	 */
-	void setInvalid() {
-		valid = false;
-		synchronized (contexts) {
-			for ( ALCcontext context : contexts.values() )
-				context.setInvalid();
-		}
-		contexts.clear();
-	}
+    /**
+     * Marks this device and all of its contexts invalid
+     */
+    void setInvalid() {
+        valid = false;
+        synchronized (contexts) {
+            for (ALCcontext context : contexts.values()) context.setInvalid();
+        }
+        contexts.clear();
+    }
 
-	/**
-	 * @return true if this device is still valid
-	 */
-	public boolean isValid() {
-		return valid;
-	}
+    /**
+     * @return true if this device is still valid
+     */
+    public boolean isValid() {
+        return valid;
+    }
 }

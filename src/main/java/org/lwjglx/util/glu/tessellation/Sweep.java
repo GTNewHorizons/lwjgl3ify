@@ -31,111 +31,108 @@
  */
 
 /*
-* Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
-* All rights reserved.
-*/
+ * Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
+ * All rights reserved.
+ */
 
 /*
-** License Applicability. Except to the extent portions of this file are
-** made subject to an alternative license as permitted in the SGI Free
-** Software License B, Version 1.1 (the "License"), the contents of this
-** file are subject only to the provisions of the License. You may not use
-** this file except in compliance with the License. You may obtain a copy
-** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
-** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
-**
-** http://oss.sgi.com/projects/FreeB
-**
-** Note that, as provided in the License, the Software is distributed on an
-** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
-** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
-** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
-** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-**
-** NOTE:  The Original Code (as defined below) has been licensed to Sun
-** Microsystems, Inc. ("Sun") under the SGI Free Software License B
-** (Version 1.1), shown above ("SGI License").   Pursuant to Section
-** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
-** you under an alternative license ("Alternative License").  This
-** Alternative License includes all of the provisions of the SGI License
-** except that Section 2.2 and 11 are omitted.  Any differences between
-** the Alternative License and the SGI License are offered solely by Sun
-** and not by SGI.
-**
-** Original Code. The Original Code is: OpenGL Sample Implementation,
-** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
-** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
-** Copyright in any portions created by third parties is as indicated
-** elsewhere herein. All Rights Reserved.
-**
-** Additional Notice Provisions: The application programming interfaces
-** established by SGI in conjunction with the Original Code are The
-** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
-** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
-** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
-** Window System(R) (Version 1.3), released October 19, 1998. This software
-** was created using the OpenGL(R) version 1.2.1 Sample Implementation
-** published by SGI, but has not been independently verified as being
-** compliant with the OpenGL(R) version 1.2.1 Specification.
-**
-** Author: Eric Veach, July 1994
-** Java Port: Pepijn Van Eeckhoudt, July 2003
-** Java Port: Nathan Parker Burg, August 2003
-*/
+ ** License Applicability. Except to the extent portions of this file are
+ ** made subject to an alternative license as permitted in the SGI Free
+ ** Software License B, Version 1.1 (the "License"), the contents of this
+ ** file are subject only to the provisions of the License. You may not use
+ ** this file except in compliance with the License. You may obtain a copy
+ ** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+ ** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+ **
+ ** http://oss.sgi.com/projects/FreeB
+ **
+ ** Note that, as provided in the License, the Software is distributed on an
+ ** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+ ** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+ ** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+ ** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+ **
+ ** NOTE:  The Original Code (as defined below) has been licensed to Sun
+ ** Microsystems, Inc. ("Sun") under the SGI Free Software License B
+ ** (Version 1.1), shown above ("SGI License").   Pursuant to Section
+ ** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
+ ** you under an alternative license ("Alternative License").  This
+ ** Alternative License includes all of the provisions of the SGI License
+ ** except that Section 2.2 and 11 are omitted.  Any differences between
+ ** the Alternative License and the SGI License are offered solely by Sun
+ ** and not by SGI.
+ **
+ ** Original Code. The Original Code is: OpenGL Sample Implementation,
+ ** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
+ ** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
+ ** Copyright in any portions created by third parties is as indicated
+ ** elsewhere herein. All Rights Reserved.
+ **
+ ** Additional Notice Provisions: The application programming interfaces
+ ** established by SGI in conjunction with the Original Code are The
+ ** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
+ ** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
+ ** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
+ ** Window System(R) (Version 1.3), released October 19, 1998. This software
+ ** was created using the OpenGL(R) version 1.2.1 Sample Implementation
+ ** published by SGI, but has not been independently verified as being
+ ** compliant with the OpenGL(R) version 1.2.1 Specification.
+ **
+ ** Author: Eric Veach, July 1994
+ ** Java Port: Pepijn Van Eeckhoudt, July 2003
+ ** Java Port: Nathan Parker Burg, August 2003
+ */
 package org.lwjglx.util.glu.tessellation;
 
 import static org.lwjglx.util.glu.GLU.*;
 
 class Sweep {
-    private Sweep() {
-    }
+    private Sweep() {}
 
-//    #ifdef FOR_TRITE_TEST_PROGRAM
-//    extern void DebugEvent( GLUtessellator *tess );
-//    #else
-    private static void DebugEvent(GLUtessellatorImpl tess) {
+    //    #ifdef FOR_TRITE_TEST_PROGRAM
+    //    extern void DebugEvent( GLUtessellator *tess );
+    //    #else
+    private static void DebugEvent(GLUtessellatorImpl tess) {}
 
-    }
-//    #endif
+    //    #endif
 
-/*
- * Invariants for the Edge Dictionary.
- * - each pair of adjacent edges e2=Succ(e1) satisfies EdgeLeq(e1,e2)
- *   at any valid location of the sweep event
- * - if EdgeLeq(e2,e1) as well (at any valid sweep event), then e1 and e2
- *   share a common endpoint
- * - for each e, e.Dst has been processed, but not e.Org
- * - each edge e satisfies VertLeq(e.Dst,event) && VertLeq(event,e.Org)
- *   where "event" is the current sweep line event.
- * - no edge e has zero length
- *
- * Invariants for the Mesh (the processed portion).
- * - the portion of the mesh left of the sweep line is a planar graph,
- *   ie. there is *some* way to embed it in the plane
- * - no processed edge has zero length
- * - no two processed vertices have identical coordinates
- * - each "inside" region is monotone, ie. can be broken into two chains
- *   of monotonically increasing vertices according to VertLeq(v1,v2)
- *   - a non-invariant: these chains may intersect (very slightly)
- *
- * Invariants for the Sweep.
- * - if none of the edges incident to the event vertex have an activeRegion
- *   (ie. none of these edges are in the edge dictionary), then the vertex
- *   has only right-going edges.
- * - if an edge is marked "fixUpperEdge" (it is a temporary edge introduced
- *   by ConnectRightVertex), then it is the only right-going edge from
- *   its associated vertex.  (This says that these edges exist only
- *   when it is necessary.)
- */
+    /*
+     * Invariants for the Edge Dictionary.
+     * - each pair of adjacent edges e2=Succ(e1) satisfies EdgeLeq(e1,e2)
+     *   at any valid location of the sweep event
+     * - if EdgeLeq(e2,e1) as well (at any valid sweep event), then e1 and e2
+     *   share a common endpoint
+     * - for each e, e.Dst has been processed, but not e.Org
+     * - each edge e satisfies VertLeq(e.Dst,event) && VertLeq(event,e.Org)
+     *   where "event" is the current sweep line event.
+     * - no edge e has zero length
+     *
+     * Invariants for the Mesh (the processed portion).
+     * - the portion of the mesh left of the sweep line is a planar graph,
+     *   ie. there is *some* way to embed it in the plane
+     * - no processed edge has zero length
+     * - no two processed vertices have identical coordinates
+     * - each "inside" region is monotone, ie. can be broken into two chains
+     *   of monotonically increasing vertices according to VertLeq(v1,v2)
+     *   - a non-invariant: these chains may intersect (very slightly)
+     *
+     * Invariants for the Sweep.
+     * - if none of the edges incident to the event vertex have an activeRegion
+     *   (ie. none of these edges are in the edge dictionary), then the vertex
+     *   has only right-going edges.
+     * - if an edge is marked "fixUpperEdge" (it is a temporary edge introduced
+     *   by ConnectRightVertex), then it is the only right-going edge from
+     *   its associated vertex.  (This says that these edges exist only
+     *   when it is necessary.)
+     */
 
-/* When we merge two edges into one, we need to compute the combined
- * winding of the new edge.
- */
+    /* When we merge two edges into one, we need to compute the combined
+     * winding of the new edge.
+     */
     private static void AddWinding(GLUhalfEdge eDst, GLUhalfEdge eSrc) {
         eDst.winding += eSrc.winding;
         eDst.Sym.winding += eSrc.Sym.winding;
     }
-
 
     private static ActiveRegion RegionBelow(ActiveRegion r) {
         return ((ActiveRegion) Dict.dictKey(Dict.dictPred(r.nodeUp)));
@@ -145,8 +142,7 @@ class Sweep {
         return ((ActiveRegion) Dict.dictKey(Dict.dictSucc(r.nodeUp)));
     }
 
-    static boolean EdgeLeq(GLUtessellatorImpl tess, ActiveRegion reg1, ActiveRegion reg2)
-/*
+    static boolean EdgeLeq(GLUtessellatorImpl tess, ActiveRegion reg1, ActiveRegion reg2) /*
  * Both edges must be directed from right to left (this is the canonical
  * direction for the upper edge of each region).
  *
@@ -186,7 +182,6 @@ class Sweep {
         return (t1 >= t2);
     }
 
-
     static void DeleteRegion(GLUtessellatorImpl tess, ActiveRegion reg) {
         if (reg.fixUpperEdge) {
             /* It was created with zero winding number, so it better be
@@ -199,9 +194,7 @@ class Sweep {
         Dict.dictDelete(tess.dict, reg.nodeUp); /* __gl_dictListDelete */
     }
 
-
-    static boolean FixUpperEdge(ActiveRegion reg, GLUhalfEdge newEdge)
-/*
+    static boolean FixUpperEdge(ActiveRegion reg, GLUhalfEdge newEdge) /*
  * Replace an upper edge which needs fixing (see ConnectRightVertex).
  */ {
         assert (reg.fixUpperEdge);
@@ -244,17 +237,14 @@ class Sweep {
         return reg;
     }
 
-    static ActiveRegion AddRegionBelow(GLUtessellatorImpl tess,
-                                       ActiveRegion regAbove,
-                                       GLUhalfEdge eNewUp)
-/*
+    static ActiveRegion AddRegionBelow(GLUtessellatorImpl tess, ActiveRegion regAbove, GLUhalfEdge eNewUp) /*
  * Add a new active region to the sweep line, *somewhere* below "regAbove"
  * (according to where the new edge belongs in the sweep-line dictionary).
  * The upper edge of the new region will be "eNewUp".
  * Winding number and "inside" flag are not updated.
  */ {
         ActiveRegion regNew = new ActiveRegion();
-        //if (regNew == null) throw new RuntimeException();
+        // if (regNew == null) throw new RuntimeException();
 
         regNew.eUp = eNewUp;
         /* __gl_dictListInsertBefore */
@@ -282,20 +272,17 @@ class Sweep {
                 return (n >= 2) || (n <= -2);
         }
         /*LINTED*/
-//        assert (false);
+        //        assert (false);
         throw new InternalError();
         /*NOTREACHED*/
     }
-
 
     static void ComputeWinding(GLUtessellatorImpl tess, ActiveRegion reg) {
         reg.windingNumber = RegionAbove(reg).windingNumber + reg.eUp.winding;
         reg.inside = IsWindingInside(tess, reg.windingNumber);
     }
 
-
-    static void FinishRegion(GLUtessellatorImpl tess, ActiveRegion reg)
-/*
+    static void FinishRegion(GLUtessellatorImpl tess, ActiveRegion reg) /*
  * Delete a region from the sweep line.  This happens when the upper
  * and lower chains of a region meet (at a vertex on the sweep line).
  * The "inside" flag is copied to the appropriate mesh face (we could
@@ -306,14 +293,11 @@ class Sweep {
         GLUface f = e.Lface;
 
         f.inside = reg.inside;
-        f.anEdge = e;   /* optimization for __gl_meshTessellateMonoRegion() */
+        f.anEdge = e; /* optimization for __gl_meshTessellateMonoRegion() */
         DeleteRegion(tess, reg);
     }
 
-
-    static GLUhalfEdge FinishLeftRegions(GLUtessellatorImpl tess,
-                                         ActiveRegion regFirst, ActiveRegion regLast)
-/*
+    static GLUhalfEdge FinishLeftRegions(GLUtessellatorImpl tess, ActiveRegion regFirst, ActiveRegion regLast) /*
  * We are given a vertex with one or more left-going edges.  All affected
  * edges should be in the edge dictionary.  Starting at regFirst.eUp,
  * we walk down deleting all regions where both edges have the same
@@ -331,7 +315,7 @@ class Sweep {
         regPrev = regFirst;
         ePrev = regFirst.eUp;
         while (regPrev != regLast) {
-            regPrev.fixUpperEdge = false;	/* placement was OK */
+            regPrev.fixUpperEdge = false; /* placement was OK */
             reg = RegionBelow(regPrev);
             e = reg.eUp;
             if (e.Org != ePrev.Org) {
@@ -358,27 +342,30 @@ class Sweep {
                 if (!Mesh.__gl_meshSplice(e.Sym.Lnext, e)) throw new RuntimeException();
                 if (!Mesh.__gl_meshSplice(ePrev, e)) throw new RuntimeException();
             }
-            FinishRegion(tess, regPrev);	/* may change reg.eUp */
+            FinishRegion(tess, regPrev); /* may change reg.eUp */
             ePrev = reg.eUp;
             regPrev = reg;
         }
         return ePrev;
     }
 
-
-    static void AddRightEdges(GLUtessellatorImpl tess, ActiveRegion regUp,
-                              GLUhalfEdge eFirst, GLUhalfEdge eLast, GLUhalfEdge eTopLeft,
-                              boolean cleanUp)
-/*
- * Purpose: insert right-going edges into the edge dictionary, and update
- * winding numbers and mesh connectivity appropriately.  All right-going
- * edges share a common origin vOrg.  Edges are inserted CCW starting at
- * eFirst; the last edge inserted is eLast.Sym.Lnext.  If vOrg has any
- * left-going edges already processed, then eTopLeft must be the edge
- * such that an imaginary upward vertical segment from vOrg would be
- * contained between eTopLeft.Sym.Lnext and eTopLeft; otherwise eTopLeft
- * should be null.
- */ {
+    static void AddRightEdges(
+            GLUtessellatorImpl tess,
+            ActiveRegion regUp,
+            GLUhalfEdge eFirst,
+            GLUhalfEdge eLast,
+            GLUhalfEdge eTopLeft,
+            boolean cleanUp)
+                /*
+                 * Purpose: insert right-going edges into the edge dictionary, and update
+                 * winding numbers and mesh connectivity appropriately.  All right-going
+                 * edges share a common origin vOrg.  Edges are inserted CCW starting at
+                 * eFirst; the last edge inserted is eLast.Sym.Lnext.  If vOrg has any
+                 * left-going edges already processed, then eTopLeft must be the edge
+                 * such that an imaginary upward vertical segment from vOrg would be
+                 * contained between eTopLeft.Sym.Lnext and eTopLeft; otherwise eTopLeft
+                 * should be null.
+                 */ {
         ActiveRegion reg, regPrev;
         GLUhalfEdge e, ePrev;
         boolean firstTime = true;
@@ -400,7 +387,7 @@ class Sweep {
         }
         regPrev = regUp;
         ePrev = eTopLeft;
-        for (; ;) {
+        for (; ; ) {
             reg = RegionBelow(regPrev);
             e = reg.eUp.Sym;
             if (e.Org != ePrev.Org) break;
@@ -436,9 +423,7 @@ class Sweep {
         }
     }
 
-
-    static void CallCombine(GLUtessellatorImpl tess, GLUvertex isect,
-                            Object[] data, float[] weights, boolean needed) {
+    static void CallCombine(GLUtessellatorImpl tess, GLUvertex isect, Object[] data, float[] weights, boolean needed) {
         double[] coords = new double[3];
 
         /* Copy coord data in case the callback changes it. */
@@ -463,14 +448,12 @@ class Sweep {
         }
     }
 
-    static void SpliceMergeVertices(GLUtessellatorImpl tess, GLUhalfEdge e1,
-                                    GLUhalfEdge e2)
-/*
+    static void SpliceMergeVertices(GLUtessellatorImpl tess, GLUhalfEdge e1, GLUhalfEdge e2) /*
  * Two vertices with idential coordinates are combined into one.
  * e1.Org is kept, while e2.Org is discarded.
  */ {
         Object[] data = new Object[4];
-        float[] weights = new float[]{0.5f, 0.5f, 0.0f, 0.0f};
+        float[] weights = new float[] {0.5f, 0.5f, 0.0f, 0.0f};
 
         data[0] = e1.Org.data;
         data[1] = e2.Org.data;
@@ -478,9 +461,7 @@ class Sweep {
         if (!Mesh.__gl_meshSplice(e1, e2)) throw new RuntimeException();
     }
 
-    static void VertexWeights(GLUvertex isect, GLUvertex org, GLUvertex dst,
-                              float[] weights)
-/*
+    static void VertexWeights(GLUvertex isect, GLUvertex org, GLUvertex dst, float[] weights) /*
  * Find some weights which describe how the intersection vertex is
  * a linear combination of "org" and "dest".  Each of the two edges
  * which generated "isect" is allocated 50% of the weight; each edge
@@ -497,15 +478,18 @@ class Sweep {
         isect.coords[2] += weights[0] * org.coords[2] + weights[1] * dst.coords[2];
     }
 
-
-    static void GetIntersectData(GLUtessellatorImpl tess, GLUvertex isect,
-                                 GLUvertex orgUp, GLUvertex dstUp,
-                                 GLUvertex orgLo, GLUvertex dstLo)
-/*
- * We've computed a new intersection point, now we need a "data" pointer
- * from the user so that we can refer to this new vertex in the
- * rendering callbacks.
- */ {
+    static void GetIntersectData(
+            GLUtessellatorImpl tess,
+            GLUvertex isect,
+            GLUvertex orgUp,
+            GLUvertex dstUp,
+            GLUvertex orgLo,
+            GLUvertex dstLo)
+                /*
+                 * We've computed a new intersection point, now we need a "data" pointer
+                 * from the user so that we can refer to this new vertex in the
+                 * rendering callbacks.
+                 */ {
         Object[] data = new Object[4];
         float[] weights = new float[4];
         float[] weights1 = new float[2];
@@ -525,8 +509,7 @@ class Sweep {
         CallCombine(tess, isect, data, weights, true);
     }
 
-    static boolean CheckForRightSplice(GLUtessellatorImpl tess, ActiveRegion regUp)
-/*
+    static boolean CheckForRightSplice(GLUtessellatorImpl tess, ActiveRegion regUp) /*
  * Check the upper and lower edge of "regUp", to make sure that the
  * eUp.Org is above eLo, or eLo.Org is below eUp (depending on which
  * origin is leftmost).
@@ -581,8 +564,7 @@ class Sweep {
         return true;
     }
 
-    static boolean CheckForLeftSplice(GLUtessellatorImpl tess, ActiveRegion regUp)
-/*
+    static boolean CheckForLeftSplice(GLUtessellatorImpl tess, ActiveRegion regUp) /*
  * Check the upper and lower edge of "regUp", to make sure that the
  * eUp.Sym.Org is above eLo, or eLo.Sym.Org is below eUp (depending on which
  * destination is rightmost).
@@ -629,9 +611,7 @@ class Sweep {
         return true;
     }
 
-
-    static boolean CheckForIntersect(GLUtessellatorImpl tess, ActiveRegion regUp)
-/*
+    static boolean CheckForIntersect(GLUtessellatorImpl tess, ActiveRegion regUp) /*
  * Check the upper and lower edges of the given region to see if
  * they intersect.  If so, create the intersection and add it
  * to the data structures.
@@ -658,11 +638,11 @@ class Sweep {
         assert (orgUp != tess.event && orgLo != tess.event);
         assert (!regUp.fixUpperEdge && !regLo.fixUpperEdge);
 
-        if (orgUp == orgLo) return false;	/* right endpoints are the same */
+        if (orgUp == orgLo) return false; /* right endpoints are the same */
 
         tMinUp = Math.min(orgUp.t, dstUp.t);
         tMaxLo = Math.max(orgLo.t, dstLo.t);
-        if (tMinUp > tMaxLo) return false;	/* t ranges do not overlap */
+        if (tMinUp > tMaxLo) return false; /* t ranges do not overlap */
 
         if (Geom.VertLeq(orgUp, orgLo)) {
             if (Geom.EdgeSign(dstLo, orgUp, orgLo) > 0) return false;
@@ -708,10 +688,8 @@ class Sweep {
             return false;
         }
 
-        if ((!Geom.VertEq(dstUp, tess.event)
-                && Geom.EdgeSign(dstUp, tess.event, isect) >= 0)
-                || (!Geom.VertEq(dstLo, tess.event)
-                && Geom.EdgeSign(dstLo, tess.event, isect) <= 0)) {
+        if ((!Geom.VertEq(dstUp, tess.event) && Geom.EdgeSign(dstUp, tess.event, isect) >= 0)
+                || (!Geom.VertEq(dstLo, tess.event) && Geom.EdgeSign(dstLo, tess.event, isect) <= 0)) {
             /* Very unusual -- the new upper or lower edge would pass on the
              * wrong side of the sweep event, or through it.  This can happen
              * due to very small numerical errors in the intersection calculation.
@@ -774,7 +752,7 @@ class Sweep {
         eUp.Org.t = isect.t;
         eUp.Org.pqHandle = tess.pq.pqInsert(eUp.Org); /* __gl_pqSortInsert */
         if (eUp.Org.pqHandle == Long.MAX_VALUE) {
-            tess.pq.pqDeletePriorityQ();	/* __gl_pqSortDeletePriorityQ */
+            tess.pq.pqDeletePriorityQ(); /* __gl_pqSortDeletePriorityQ */
             tess.pq = null;
             throw new RuntimeException();
         }
@@ -783,8 +761,7 @@ class Sweep {
         return false;
     }
 
-    static void WalkDirtyRegions(GLUtessellatorImpl tess, ActiveRegion regUp)
-/*
+    static void WalkDirtyRegions(GLUtessellatorImpl tess, ActiveRegion regUp) /*
  * When the upper or lower edge of any region changes, the region is
  * marked "dirty".  This routine walks through all the dirty regions
  * and makes sure that the dictionary invariants are satisfied
@@ -795,7 +772,7 @@ class Sweep {
         ActiveRegion regLo = RegionBelow(regUp);
         GLUhalfEdge eUp, eLo;
 
-        for (; ;) {
+        for (; ; ) {
             /* Find the lowest dirty region (we walk from the bottom up). */
             while (regLo.dirty) {
                 regUp = regLo;
@@ -836,7 +813,8 @@ class Sweep {
             }
             if (eUp.Org != eLo.Org) {
                 if (eUp.Sym.Org != eLo.Sym.Org
-                        && !regUp.fixUpperEdge && !regLo.fixUpperEdge
+                        && !regUp.fixUpperEdge
+                        && !regLo.fixUpperEdge
                         && (eUp.Sym.Org == tess.event || eLo.Sym.Org == tess.event)) {
                     /* When all else fails in CheckForIntersect(), it uses tess.event
                      * as the intersection location.  To make this possible, it requires
@@ -845,7 +823,7 @@ class Sweep {
                      * case it might splice one of these edges into tess.event, and
                      * violate the invariant that fixable edges are the only right-going
                      * edge from their associated vertex).
-                         */
+                     */
                     if (CheckForIntersect(tess, regUp)) {
                         /* WalkDirtyRegions() was called recursively; we're done */
                         return;
@@ -867,10 +845,7 @@ class Sweep {
         }
     }
 
-
-    static void ConnectRightVertex(GLUtessellatorImpl tess, ActiveRegion regUp,
-                                   GLUhalfEdge eBottomLeft)
-/*
+    static void ConnectRightVertex(GLUtessellatorImpl tess, ActiveRegion regUp, GLUhalfEdge eBottomLeft) /*
  * Purpose: connect a "right" vertex vEvent (one where all edges go left)
  * to the unprocessed portion of the mesh.  Since there are no right-going
  * edges, two regions (one above vEvent and one below) are being merged
@@ -952,18 +927,16 @@ class Sweep {
         WalkDirtyRegions(tess, regUp);
     }
 
-/* Because vertices at exactly the same location are merged together
- * before we process the sweep event, some degenerate cases can't occur.
- * However if someone eventually makes the modifications required to
- * merge features which are close together, the cases below marked
- * TOLERANCE_NONZERO will be useful.  They were debugged before the
- * code to merge identical vertices in the main loop was added.
- */
+    /* Because vertices at exactly the same location are merged together
+     * before we process the sweep event, some degenerate cases can't occur.
+     * However if someone eventually makes the modifications required to
+     * merge features which are close together, the cases below marked
+     * TOLERANCE_NONZERO will be useful.  They were debugged before the
+     * code to merge identical vertices in the main loop was added.
+     */
     private static final boolean TOLERANCE_NONZERO = false;
 
-    static void ConnectLeftDegenerate(GLUtessellatorImpl tess,
-                                      ActiveRegion regUp, GLUvertex vEvent)
-/*
+    static void ConnectLeftDegenerate(GLUtessellatorImpl tess, ActiveRegion regUp, GLUvertex vEvent) /*
  * The event vertex lies exacty on an already-processed edge or vertex.
  * Adding the new vertex involves splicing it into the already-processed
  * part of the mesh.
@@ -990,7 +963,7 @@ class Sweep {
                 regUp.fixUpperEdge = false;
             }
             if (!Mesh.__gl_meshSplice(vEvent.anEdge, e)) throw new RuntimeException();
-            SweepEvent(tess, vEvent);	/* recurse */
+            SweepEvent(tess, vEvent); /* recurse */
             return;
         }
 
@@ -1006,7 +979,7 @@ class Sweep {
             /* Here e.Sym.Org has only a single fixable edge going right.
              * We can delete it since now we have some real right-going edges.
              */
-            assert (eTopLeft != eTopRight);   /* there are some left edges too */
+            assert (eTopLeft != eTopRight); /* there are some left edges too */
             DeleteRegion(tess, reg);
             if (!Mesh.__gl_meshDelete(eTopRight)) throw new RuntimeException();
             eTopRight = eTopLeft.Sym.Lnext;
@@ -1019,9 +992,7 @@ class Sweep {
         AddRightEdges(tess, regUp, eTopRight.Onext, eLast, eTopLeft, true);
     }
 
-
-    static void ConnectLeftVertex(GLUtessellatorImpl tess, GLUvertex vEvent)
-/*
+    static void ConnectLeftVertex(GLUtessellatorImpl tess, GLUvertex vEvent) /*
  * Purpose: connect a "left" vertex (one where both edges go right)
  * to the processed portion of the mesh.  Let R be the active region
  * containing vEvent, and let U and L be the upper and lower edge
@@ -1044,7 +1015,8 @@ class Sweep {
 
         /* Get a pointer to the active region containing vEvent */
         tmp.eUp = vEvent.anEdge.Sym;
-        /* __GL_DICTLISTKEY */ /* __gl_dictListSearch */
+        /* __GL_DICTLISTKEY */
+        /* __gl_dictListSearch */
         regUp = (ActiveRegion) Dict.dictKey(Dict.dictSearch(tess.dict, tmp));
         regLo = RegionBelow(regUp);
         eUp = regUp.eUp;
@@ -1085,16 +1057,14 @@ class Sweep {
         }
     }
 
-
-    static void SweepEvent(GLUtessellatorImpl tess, GLUvertex vEvent)
-/*
+    static void SweepEvent(GLUtessellatorImpl tess, GLUvertex vEvent) /*
  * Does everything necessary when the sweep line crosses a vertex.
  * Updates the mesh and the edge dictionary.
  */ {
         ActiveRegion regUp, reg;
         GLUhalfEdge e, eTopLeft, eBottomLeft;
 
-        tess.event = vEvent;		/* for access in EdgeLeq() */
+        tess.event = vEvent; /* for access in EdgeLeq() */
         DebugEvent(tess);
 
         /* Check if this vertex is the right endpoint of an edge that is
@@ -1137,22 +1107,20 @@ class Sweep {
         }
     }
 
-
-/* Make the sentinel coordinates big enough that they will never be
- * merged with real input features.  (Even with the largest possible
- * input contour and the maximum tolerance of 1.0, no merging will be
- * done with coordinates larger than 3 * GLU_TESS_MAX_COORD).
- */
+    /* Make the sentinel coordinates big enough that they will never be
+     * merged with real input features.  (Even with the largest possible
+     * input contour and the maximum tolerance of 1.0, no merging will be
+     * done with coordinates larger than 3 * GLU_TESS_MAX_COORD).
+     */
     private static final double SENTINEL_COORD = (4.0 * GLU_TESS_MAX_COORD);
 
-    static void AddSentinel(GLUtessellatorImpl tess, double t)
-/*
+    static void AddSentinel(GLUtessellatorImpl tess, double t) /*
  * We add two sentinel edges above and below all other edges,
  * to avoid special cases at the top and bottom.
  */ {
         GLUhalfEdge e;
         ActiveRegion reg = new ActiveRegion();
-        //if (reg == null) throw new RuntimeException();
+        // if (reg == null) throw new RuntimeException();
 
         e = Mesh.__gl_meshMakeEdge(tess.mesh);
         if (e == null) throw new RuntimeException();
@@ -1161,7 +1129,7 @@ class Sweep {
         e.Org.t = t;
         e.Sym.Org.s = -SENTINEL_COORD;
         e.Sym.Org.t = t;
-        tess.event = e.Sym.Org;		/* initialize it */
+        tess.event = e.Sym.Org; /* initialize it */
 
         reg.eUp = e;
         reg.windingNumber = 0;
@@ -1173,9 +1141,7 @@ class Sweep {
         if (reg.nodeUp == null) throw new RuntimeException();
     }
 
-
-    static void InitEdgeDict(final GLUtessellatorImpl tess)
-/*
+    static void InitEdgeDict(final GLUtessellatorImpl tess) /*
  * We maintain an ordering of edge intersections with the sweep line.
  * This order is maintained in a dynamic dictionary.
  */ {
@@ -1191,12 +1157,12 @@ class Sweep {
         AddSentinel(tess, SENTINEL_COORD);
     }
 
-
     static void DoneEdgeDict(GLUtessellatorImpl tess) {
         ActiveRegion reg;
         int fixedEdges = 0;
 
-        /* __GL_DICTLISTKEY */ /* __GL_DICTLISTMIN */
+        /* __GL_DICTLISTKEY */
+        /* __GL_DICTLISTMIN */
         while ((reg = (ActiveRegion) Dict.dictKey(Dict.dictMin(tess.dict))) != null) {
             /*
              * At the end of all processing, the dictionary should contain
@@ -1209,14 +1175,12 @@ class Sweep {
             }
             assert (reg.windingNumber == 0);
             DeleteRegion(tess, reg);
-/*    __gl_meshDelete( reg.eUp );*/
+            /*    __gl_meshDelete( reg.eUp );*/
         }
-        Dict.dictDeleteDict(tess.dict);	/* __gl_dictListDeleteDict */
+        Dict.dictDeleteDict(tess.dict); /* __gl_dictListDeleteDict */
     }
 
-
-    static void RemoveDegenerateEdges(GLUtessellatorImpl tess)
-/*
+    static void RemoveDegenerateEdges(GLUtessellatorImpl tess) /*
  * Remove zero-length edges, and contours with fewer than 3 vertices.
  */ {
         GLUhalfEdge e, eNext, eLnext;
@@ -1230,7 +1194,7 @@ class Sweep {
             if (Geom.VertEq(e.Org, e.Sym.Org) && e.Lnext.Lnext != e) {
                 /* Zero-length edge, contour has at least 3 edges */
 
-                SpliceMergeVertices(tess, eLnext, e);	/* deletes e.Org */
+                SpliceMergeVertices(tess, eLnext, e); /* deletes e.Org */
                 if (!Mesh.__gl_meshDelete(e)) throw new RuntimeException(); /* e is a self-loop */
                 e = eLnext;
                 eLnext = e.Lnext;
@@ -1252,8 +1216,7 @@ class Sweep {
         }
     }
 
-    static boolean InitPriorityQ(GLUtessellatorImpl tess)
-/*
+    static boolean InitPriorityQ(GLUtessellatorImpl tess) /*
  * Insert all vertices into the priority queue which determines the
  * order in which vertices cross the sweep line.
  */ {
@@ -1273,8 +1236,9 @@ class Sweep {
             v.pqHandle = pq.pqInsert(v); /* __gl_pqSortInsert */
             if (v.pqHandle == Long.MAX_VALUE) break;
         }
-        if (v != vHead || !pq.pqInit()) { /* __gl_pqSortInit */
-            tess.pq.pqDeletePriorityQ();	/* __gl_pqSortDeletePriorityQ */
+        if (v != vHead || !pq.pqInit()) {
+            /* __gl_pqSortInit */
+            tess.pq.pqDeletePriorityQ(); /* __gl_pqSortDeletePriorityQ */
             tess.pq = null;
             return false;
         }
@@ -1282,14 +1246,11 @@ class Sweep {
         return true;
     }
 
-
     static void DonePriorityQ(GLUtessellatorImpl tess) {
         tess.pq.pqDeletePriorityQ(); /* __gl_pqSortDeletePriorityQ */
     }
 
-
-    static boolean RemoveDegenerateFaces(GLUmesh mesh)
-/*
+    static boolean RemoveDegenerateFaces(GLUmesh mesh) /*
  * Delete any degenerate faces with only two edges.  WalkDirtyRegions()
  * will catch almost all of these, but it won't catch degenerate faces
  * produced by splice operations on already-processed edges.
@@ -1321,8 +1282,7 @@ class Sweep {
         return true;
     }
 
-    public static boolean __gl_computeInterior(GLUtessellatorImpl tess)
-/*
+    public static boolean __gl_computeInterior(GLUtessellatorImpl tess) /*
  * __gl_computeInterior( tess ) computes the planar arrangement specified
  * by the given contours, and further subdivides this arrangement
  * into regions.  Each region is marked "inside" if it belongs
@@ -1345,7 +1305,7 @@ class Sweep {
 
         /* __gl_pqSortExtractMin */
         while ((v = (GLUvertex) tess.pq.pqExtractMin()) != null) {
-            for (; ;) {
+            for (; ; ) {
                 vNext = (GLUvertex) tess.pq.pqMinimum(); /* __gl_pqSortMinimum */
                 if (vNext == null || !Geom.VertEq(vNext, v)) break;
 
@@ -1370,7 +1330,8 @@ class Sweep {
         }
 
         /* Set tess.event for debugging purposes */
-        /* __GL_DICTLISTKEY */ /* __GL_DICTLISTMIN */
+        /* __GL_DICTLISTKEY */
+        /* __GL_DICTLISTMIN */
         tess.event = ((ActiveRegion) Dict.dictKey(Dict.dictMin(tess.dict))).eUp.Org;
         DebugEvent(tess);
         DoneEdgeDict(tess);

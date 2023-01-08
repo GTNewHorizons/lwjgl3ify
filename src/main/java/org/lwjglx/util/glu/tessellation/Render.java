@@ -31,57 +31,57 @@
  */
 
 /*
-* Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
-* All rights reserved.
-*/
+ * Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
+ * All rights reserved.
+ */
 
 /*
-** License Applicability. Except to the extent portions of this file are
-** made subject to an alternative license as permitted in the SGI Free
-** Software License B, Version 1.1 (the "License"), the contents of this
-** file are subject only to the provisions of the License. You may not use
-** this file except in compliance with the License. You may obtain a copy
-** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
-** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
-**
-** http://oss.sgi.com/projects/FreeB
-**
-** Note that, as provided in the License, the Software is distributed on an
-** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
-** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
-** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
-** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-**
-** NOTE:  The Original Code (as defined below) has been licensed to Sun
-** Microsystems, Inc. ("Sun") under the SGI Free Software License B
-** (Version 1.1), shown above ("SGI License").   Pursuant to Section
-** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
-** you under an alternative license ("Alternative License").  This
-** Alternative License includes all of the provisions of the SGI License
-** except that Section 2.2 and 11 are omitted.  Any differences between
-** the Alternative License and the SGI License are offered solely by Sun
-** and not by SGI.
-**
-** Original Code. The Original Code is: OpenGL Sample Implementation,
-** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
-** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
-** Copyright in any portions created by third parties is as indicated
-** elsewhere herein. All Rights Reserved.
-**
-** Additional Notice Provisions: The application programming interfaces
-** established by SGI in conjunction with the Original Code are The
-** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
-** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
-** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
-** Window System(R) (Version 1.3), released October 19, 1998. This software
-** was created using the OpenGL(R) version 1.2.1 Sample Implementation
-** published by SGI, but has not been independently verified as being
-** compliant with the OpenGL(R) version 1.2.1 Specification.
-**
-** Author: Eric Veach, July 1994
-** Java Port: Pepijn Van Eeckhoudt, July 2003
-** Java Port: Nathan Parker Burg, August 2003
-*/
+ ** License Applicability. Except to the extent portions of this file are
+ ** made subject to an alternative license as permitted in the SGI Free
+ ** Software License B, Version 1.1 (the "License"), the contents of this
+ ** file are subject only to the provisions of the License. You may not use
+ ** this file except in compliance with the License. You may obtain a copy
+ ** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
+ ** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
+ **
+ ** http://oss.sgi.com/projects/FreeB
+ **
+ ** Note that, as provided in the License, the Software is distributed on an
+ ** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
+ ** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
+ ** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+ ** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+ **
+ ** NOTE:  The Original Code (as defined below) has been licensed to Sun
+ ** Microsystems, Inc. ("Sun") under the SGI Free Software License B
+ ** (Version 1.1), shown above ("SGI License").   Pursuant to Section
+ ** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
+ ** you under an alternative license ("Alternative License").  This
+ ** Alternative License includes all of the provisions of the SGI License
+ ** except that Section 2.2 and 11 are omitted.  Any differences between
+ ** the Alternative License and the SGI License are offered solely by Sun
+ ** and not by SGI.
+ **
+ ** Original Code. The Original Code is: OpenGL Sample Implementation,
+ ** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
+ ** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
+ ** Copyright in any portions created by third parties is as indicated
+ ** elsewhere herein. All Rights Reserved.
+ **
+ ** Additional Notice Provisions: The application programming interfaces
+ ** established by SGI in conjunction with the Original Code are The
+ ** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
+ ** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
+ ** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
+ ** Window System(R) (Version 1.3), released October 19, 1998. This software
+ ** was created using the OpenGL(R) version 1.2.1 Sample Implementation
+ ** published by SGI, but has not been independently verified as being
+ ** compliant with the OpenGL(R) version 1.2.1 Specification.
+ **
+ ** Author: Eric Veach, July 1994
+ ** Java Port: Pepijn Van Eeckhoudt, July 2003
+ ** Java Port: Nathan Parker Burg, August 2003
+ */
 package org.lwjglx.util.glu.tessellation;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -90,20 +90,18 @@ import static org.lwjglx.util.glu.GLU.*;
 class Render {
     private static final boolean USE_OPTIMIZED_CODE_PATH = false;
 
-    private Render() {
-    }
+    private Render() {}
 
     private static final RenderFan renderFan = new RenderFan();
     private static final RenderStrip renderStrip = new RenderStrip();
     private static final RenderTriangle renderTriangle = new RenderTriangle();
 
-/* This structure remembers the information we need about a primitive
- * to be able to render it later, once we have determined which
- * primitive is able to use the most triangles.
- */
+    /* This structure remembers the information we need about a primitive
+     * to be able to render it later, once we have determined which
+     * primitive is able to use the most triangles.
+     */
     private static class FaceCount {
-        private FaceCount() {
-        }
+        private FaceCount() {}
 
         private FaceCount(long size, GLUhalfEdge eStart, renderCallBack render) {
             this.size = size;
@@ -111,10 +109,11 @@ class Render {
             this.render = render;
         }
 
-        long size;		/* number of triangles used */
-        GLUhalfEdge eStart;	/* edge where this primitive starts */
+        long size; /* number of triangles used */
+        GLUhalfEdge eStart; /* edge where this primitive starts */
         renderCallBack render;
-    };
+    }
+    ;
 
     private interface renderCallBack {
         void render(GLUtessellatorImpl tess, GLUhalfEdge e, long size);
@@ -122,13 +121,13 @@ class Render {
 
     /************************ Strips and Fans decomposition ******************/
 
-/* __gl_renderMesh( tess, mesh ) takes a mesh and breaks it into triangle
- * fans, strips, and separate triangles.  A substantial effort is made
- * to use as few rendering primitives as possible (ie. to make the fans
- * and strips as large as possible).
- *
- * The rendering output is provided as callbacks (see the api).
- */
+    /* __gl_renderMesh( tess, mesh ) takes a mesh and breaks it into triangle
+     * fans, strips, and separate triangles.  A substantial effort is made
+     * to use as few rendering primitives as possible (ie. to make the fans
+     * and strips as large as possible).
+     *
+     * The rendering output is provided as callbacks (see the api).
+     */
     public static void __gl_renderMesh(GLUtessellatorImpl tess, GLUmesh mesh) {
         GLUface f;
 
@@ -154,7 +153,6 @@ class Render {
             tess.lonelyTriList = null;
         }
     }
-
 
     static void RenderMaximumFaceGroup(GLUtessellatorImpl tess, GLUface fOrig) {
         /* We want to find the largest triangle fan or strip of unmarked faces
@@ -202,14 +200,13 @@ class Render {
         max.render.render(tess, max.eStart, max.size);
     }
 
-
-/* Macros which keep track of faces we have marked temporarily, and allow
- * us to backtrack when necessary.  With triangle fans, this is not
- * really necessary, since the only awkward case is a loop of triangles
- * around a single origin vertex.  However with strips the situation is
- * more complicated, and we need a general tracking method like the
- * one here.
- */
+    /* Macros which keep track of faces we have marked temporarily, and allow
+     * us to backtrack when necessary.  With triangle fans, this is not
+     * really necessary, since the only awkward case is a loop of triangles
+     * around a single origin vertex.  However with strips the situation is
+     * more complicated, and we need a general tracking method like the
+     * one here.
+     */
     private static boolean Marked(GLUface f) {
         return !f.inside || f.marked;
     }
@@ -226,8 +223,8 @@ class Render {
                 t.marked = false;
                 t = t.trail;
             }
-        } 
-        
+        }
+
         /* else absorb trailing semicolon */
     }
 
@@ -253,7 +250,6 @@ class Render {
         FreeTrail(trail);
         return newFace;
     }
-
 
     private static boolean IsEven(long n) {
         return (n & 0x1L) == 0;
@@ -320,14 +316,13 @@ class Render {
         }
     }
 
-
     static void RenderLonelyTriangles(GLUtessellatorImpl tess, GLUface f) {
         /* Now we render all the separate triangles which could not be
          * grouped into a triangle fan or strip.
          */
         GLUhalfEdge e;
         int newState;
-        int edgeState = -1;	/* force edge state output for first vertex */
+        int edgeState = -1; /* force edge state output for first vertex */
 
         tess.callBeginOrBeginData(GL_TRIANGLES);
 
@@ -343,10 +338,10 @@ class Render {
                     newState = (!e.Sym.Lface.inside) ? 1 : 0;
                     if (edgeState != newState) {
                         edgeState = newState;
-                        tess.callEdgeFlagOrEdgeFlagData( edgeState != 0);
+                        tess.callEdgeFlagOrEdgeFlagData(edgeState != 0);
                     }
                 }
-                tess.callVertexOrVertexData( e.Org.data);
+                tess.callVertexOrVertexData(e.Org.data);
 
                 e = e.Lnext;
             } while (e != f.anEdge);
@@ -361,14 +356,14 @@ class Render {
              * (otherwise we've goofed up somewhere).
              */
             tess.callBeginOrBeginData(GL_TRIANGLE_FAN);
-            tess.callVertexOrVertexData( e.Org.data);
-            tess.callVertexOrVertexData( e.Sym.Org.data);
+            tess.callVertexOrVertexData(e.Org.data);
+            tess.callVertexOrVertexData(e.Sym.Org.data);
 
             while (!Marked(e.Lface)) {
                 e.Lface.marked = true;
                 --size;
                 e = e.Onext;
-                tess.callVertexOrVertexData( e.Sym.Org.data);
+                tess.callVertexOrVertexData(e.Sym.Org.data);
             }
 
             assert (size == 0);
@@ -383,20 +378,20 @@ class Render {
              * (otherwise we've goofed up somewhere).
              */
             tess.callBeginOrBeginData(GL_TRIANGLE_STRIP);
-            tess.callVertexOrVertexData( e.Org.data);
-            tess.callVertexOrVertexData( e.Sym.Org.data);
+            tess.callVertexOrVertexData(e.Org.data);
+            tess.callVertexOrVertexData(e.Sym.Org.data);
 
             while (!Marked(e.Lface)) {
                 e.Lface.marked = true;
                 --size;
                 e = e.Lnext.Sym;
-                tess.callVertexOrVertexData( e.Org.data);
+                tess.callVertexOrVertexData(e.Org.data);
                 if (Marked(e.Lface)) break;
 
                 e.Lface.marked = true;
                 --size;
                 e = e.Onext;
-                tess.callVertexOrVertexData( e.Sym.Org.data);
+                tess.callVertexOrVertexData(e.Sym.Org.data);
             }
 
             assert (size == 0);
@@ -406,10 +401,10 @@ class Render {
 
     /************************ Boundary contour decomposition ******************/
 
-/* __gl_renderBoundary( tess, mesh ) takes a mesh, and outputs one
- * contour for each face marked "inside".  The rendering output is
- * provided as callbacks (see the api).
- */
+    /* __gl_renderBoundary( tess, mesh ) takes a mesh, and outputs one
+     * contour for each face marked "inside".  The rendering output is
+     * provided as callbacks (see the api).
+     */
     public static void __gl_renderBoundary(GLUtessellatorImpl tess, GLUmesh mesh) {
         GLUface f;
         GLUhalfEdge e;
@@ -419,7 +414,7 @@ class Render {
                 tess.callBeginOrBeginData(GL_LINE_LOOP);
                 e = f.anEdge;
                 do {
-                    tess.callVertexOrVertexData( e.Org.data);
+                    tess.callVertexOrVertexData(e.Org.data);
                     e = e.Lnext;
                 } while (e != f.anEdge);
                 tess.callEndOrEndData();
@@ -427,13 +422,10 @@ class Render {
         }
     }
 
-
     /************************ Quick-and-dirty decomposition ******************/
-
     private static final int SIGN_INCONSISTENT = 2;
 
-    static int ComputeNormal(GLUtessellatorImpl tess, double[] norm, boolean check)
-/*
+    static int ComputeNormal(GLUtessellatorImpl tess, double[] norm, boolean check) /*
  * If check==false, we compute the polygon normal and place it in norm[].
  * If check==true, we check that each triangle in the fan from v0 has a
  * consistent orientation with respect to norm[].  If triangles are
@@ -442,9 +434,9 @@ class Render {
  * SIGN_INCONSISTENT.
  */ {
         CachedVertex[] v = tess.cache;
-//            CachedVertex vn = v0 + tess.cacheCount;
+        //            CachedVertex vn = v0 + tess.cacheCount;
         int vn = tess.cacheCount;
-//            CachedVertex vc;
+        //            CachedVertex vc;
         int vc;
         double dot, xc, yc, zc, xp, yp, zp;
         double[] n = new double[3];
@@ -512,18 +504,18 @@ class Render {
         return sign;
     }
 
-/* __gl_renderCache( tess ) takes a single contour and tries to render it
- * as a triangle fan.  This handles convex polygons, as well as some
- * non-convex polygons if we get lucky.
- *
- * Returns true if the polygon was successfully rendered.  The rendering
- * output is provided as callbacks (see the api).
- */
+    /* __gl_renderCache( tess ) takes a single contour and tries to render it
+     * as a triangle fan.  This handles convex polygons, as well as some
+     * non-convex polygons if we get lucky.
+     *
+     * Returns true if the polygon was successfully rendered.  The rendering
+     * output is provided as callbacks (see the api).
+     */
     public static boolean __gl_renderCache(GLUtessellatorImpl tess) {
         CachedVertex[] v = tess.cache;
-//            CachedVertex vn = v0 + tess.cacheCount;
+        //            CachedVertex vn = v0 + tess.cacheCount;
         int vn = tess.cacheCount;
-//            CachedVertex vc;
+        //            CachedVertex vc;
         int vc;
         double[] norm = new double[3];
         int sign;
@@ -537,10 +529,10 @@ class Render {
         norm[1] = tess.normal[1];
         norm[2] = tess.normal[2];
         if (norm[0] == 0 && norm[1] == 0 && norm[2] == 0) {
-            ComputeNormal( tess, norm, false);
+            ComputeNormal(tess, norm, false);
         }
 
-        sign = ComputeNormal( tess, norm, true);
+        sign = ComputeNormal(tess, norm, true);
         if (sign == SIGN_INCONSISTENT) {
             /* Fan triangles did not have a consistent orientation */
             return false;
@@ -550,7 +542,7 @@ class Render {
             return true;
         }
 
-        if ( !USE_OPTIMIZED_CODE_PATH ) {
+        if (!USE_OPTIMIZED_CODE_PATH) {
             return false;
         } else {
             /* Make sure we do the right thing for each winding rule */
@@ -568,18 +560,17 @@ class Render {
                     return true;
             }
 
-            tess.callBeginOrBeginData( tess.boundaryOnly ? GL_LINE_LOOP
-                    : (tess.cacheCount > 3) ? GL_TRIANGLE_FAN
-                    : GL_TRIANGLES);
+            tess.callBeginOrBeginData(
+                    tess.boundaryOnly ? GL_LINE_LOOP : (tess.cacheCount > 3) ? GL_TRIANGLE_FAN : GL_TRIANGLES);
 
-            tess.callVertexOrVertexData( v[0].data);
+            tess.callVertexOrVertexData(v[0].data);
             if (sign > 0) {
                 for (vc = 1; vc < vn; ++vc) {
-                    tess.callVertexOrVertexData( v[vc].data);
+                    tess.callVertexOrVertexData(v[vc].data);
                 }
             } else {
                 for (vc = vn - 1; vc > 0; --vc) {
-                    tess.callVertexOrVertexData( v[vc].data);
+                    tess.callVertexOrVertexData(v[vc].data);
                 }
             }
             tess.callEndOrEndData();
