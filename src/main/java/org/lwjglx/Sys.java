@@ -6,19 +6,20 @@ import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 
 public class Sys {
 
     static {
-        if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
+        if (glfwInit() != true) throw new IllegalStateException("Unable to initialize glfw");
     }
 
     public static void initialize() {}
 
     /** Returns the LWJGL version. */
     public static String getVersion() {
-        return org.lwjgl.Version.getVersion();
+        return Version.getVersion();
     }
 
     /**

@@ -1,43 +1,26 @@
 package org.lwjglx.opengl;
 
 import static org.lwjgl.glfw.Callbacks.*;
-import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_DEBUG_CONTEXT;
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
-import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
-import static org.lwjgl.glfw.GLFW.glfwDestroyWindow;
-import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
-import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
-import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
-import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCharCallback;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowFocusCallback;
 import org.lwjgl.glfw.GLFWWindowIconifyCallback;
 import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.glfw.GLFWWindowRefreshCallback;
-import org.lwjgl.glfw.GLFWvidmode;
-import org.lwjgl.opengl.GL11;
-import org.lwjglx.LWJGLException;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.system.libffi.FFICIF;
+import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
@@ -45,8 +28,6 @@ import org.lwjglx.input.Mouse;
 public class Display {
 
     private static String windowTitle = "Game";
-
-    private static org.lwjgl.opengl.GLContext context;
 
     private static boolean displayCreated = false;
     private static boolean displayFocused = false;
@@ -76,41 +57,39 @@ public class Display {
         Sys.initialize(); // init using dummy sys method
 
         long monitor = glfwGetPrimaryMonitor();
-        ByteBuffer vidmode = glfwGetVideoMode(monitor);
+        GLFWVidMode vidmode = glfwGetVideoMode(monitor);
 
-        int monitorWidth = GLFWvidmode.width(vidmode);
-        int monitorHeight = GLFWvidmode.height(vidmode);
-        int monitorBitPerPixel =
-                GLFWvidmode.redBits(vidmode) + GLFWvidmode.greenBits(vidmode) + GLFWvidmode.blueBits(vidmode);
-        int monitorRefreshRate = GLFWvidmode.refreshRate(vidmode);
+        int monitorWidth = vidmode.width();
+        int monitorHeight = vidmode.height();
+        int monitorBitPerPixel = vidmode.redBits() + vidmode.greenBits() + vidmode.blueBits();
+        int monitorRefreshRate = vidmode.refreshRate();
 
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
     }
 
-    public static void create(PixelFormat pixel_format, Drawable shared_drawable) throws LWJGLException {
+    public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
         System.out.println("TODO: Implement Display.create(PixelFormat, Drawable)"); // TODO
         create();
     }
 
-    public static void create(PixelFormat pixel_format, ContextAttribs attribs) throws LWJGLException {
+    public static void create(PixelFormat pixel_format, ContextAttribs attribs) {
         System.out.println("TODO: Implement Display.create(PixelFormat, ContextAttribs)"); // TODO
         create();
     }
 
-    public static void create(PixelFormat pixel_format) throws LWJGLException {
+    public static void create(PixelFormat pixel_format) {
         System.out.println("TODO: Implement Display.create(PixelFormat)"); // TODO
         create();
     }
 
-    public static void create() throws LWJGLException {
+    public static void create() {
         long monitor = glfwGetPrimaryMonitor();
-        ByteBuffer vidmode = glfwGetVideoMode(monitor);
+        GLFWVidMode vidmode = glfwGetVideoMode(monitor);
 
-        int monitorWidth = GLFWvidmode.width(vidmode);
-        int monitorHeight = GLFWvidmode.height(vidmode);
-        int monitorBitPerPixel =
-                GLFWvidmode.redBits(vidmode) + GLFWvidmode.greenBits(vidmode) + GLFWvidmode.blueBits(vidmode);
-        int monitorRefreshRate = GLFWvidmode.refreshRate(vidmode);
+        int monitorWidth = vidmode.width();
+        int monitorHeight = vidmode.height();
+        int monitorBitPerPixel = vidmode.redBits() + vidmode.greenBits() + vidmode.blueBits();
+        int monitorRefreshRate = vidmode.refreshRate();
 
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
 
@@ -156,15 +135,45 @@ public class Display {
 
         Window.windowFocusCallback = new GLFWWindowFocusCallback() {
             @Override
-            public void invoke(long window, int focused) {
-                displayFocused = focused == GL11.GL_TRUE;
+            public void close() {
+                super.close();
+            }
+
+            @Override
+            public FFICIF getCallInterface() {
+                return super.getCallInterface();
+            }
+
+            @Override
+            public void callback(long ret, long args) {
+                super.callback(ret, args);
+            }
+
+            @Override
+            public void invoke(long l, boolean b) {
+                displayFocused = b == true;
             }
         };
 
         Window.windowIconifyCallback = new GLFWWindowIconifyCallback() {
             @Override
-            public void invoke(long window, int iconified) {
-                displayVisible = iconified == GL11.GL_FALSE;
+            public void close() {
+                super.close();
+            }
+
+            @Override
+            public FFICIF getCallInterface() {
+                return super.getCallInterface();
+            }
+
+            @Override
+            public void callback(long ret, long args) {
+                super.callback(ret, args);
+            }
+
+            @Override
+            public void invoke(long l, boolean b) {
+                displayVisible = b == false;
             }
         };
 
@@ -217,7 +226,7 @@ public class Display {
         displayY = (monitorHeight - mode.getHeight()) / 2;
 
         glfwMakeContextCurrent(Window.handle);
-        context = org.lwjgl.opengl.GLContext.createFromCurrent();
+        GL.createCapabilities();
 
         glfwSwapInterval(1);
         glfwShowWindow(Window.handle);
@@ -237,16 +246,12 @@ public class Display {
         return displayVisible;
     }
 
-    public static org.lwjgl.opengl.GLContext getContext() {
-        return context;
-    }
-
     public static void setLocation(int new_x, int new_y) {
         System.out.println("TODO: Implement Display.setLocation(int, int)");
     }
 
     public static void setVSyncEnabled(boolean sync) {
-        System.out.println("TODO: Implement Display.setVSyncEnabled(boolean)"); // TODO
+        glfwSwapInterval(sync ? 1 : 0);
     }
 
     public static long getWindow() {
@@ -258,12 +263,8 @@ public class Display {
     }
 
     public static void update(boolean processMessages) {
-        try {
-            swapBuffers();
-            displayDirty = false;
-        } catch (LWJGLException e) {
-            throw new RuntimeException(e);
-        }
+        swapBuffers();
+        displayDirty = false;
 
         if (processMessages) processMessages();
     }
@@ -283,7 +284,7 @@ public class Display {
         }
     }
 
-    public static void swapBuffers() throws LWJGLException {
+    public static void swapBuffers() {
         glfwSwapBuffers(Window.handle);
     }
 
@@ -299,7 +300,7 @@ public class Display {
         displayCreated = false;
     }
 
-    public static void setDisplayMode(DisplayMode dm) throws LWJGLException {
+    public static void setDisplayMode(DisplayMode dm) {
         mode = dm;
     }
 
@@ -307,19 +308,19 @@ public class Display {
         return mode;
     }
 
-    public static DisplayMode[] getAvailableDisplayModes() throws LWJGLException {
+    public static DisplayMode[] getAvailableDisplayModes() {
         IntBuffer count = BufferUtils.createIntBuffer(1);
-        ByteBuffer modes = GLFW.glfwGetVideoModes(GLFW.glfwGetPrimaryMonitor(), count);
+        GLFWVidMode.Buffer modes = GLFW.glfwGetVideoModes(glfwGetPrimaryMonitor());
 
         DisplayMode[] displayModes = new DisplayMode[count.get(0)];
 
         for (int i = 0; i < count.get(0); i++) {
-            modes.position(i * GLFWvidmode.SIZEOF);
+            modes.position(i * GLFWVidMode.SIZEOF);
 
-            int w = GLFWvidmode.width(modes);
-            int h = GLFWvidmode.height(modes);
-            int b = GLFWvidmode.redBits(modes) + GLFWvidmode.greenBits(modes) + GLFWvidmode.blueBits(modes);
-            int r = GLFWvidmode.refreshRate(modes);
+            int w = modes.width();
+            int h = modes.height();
+            int b = modes.redBits() + modes.greenBits() + modes.blueBits();
+            int r = modes.refreshRate();
 
             displayModes[i] = new DisplayMode(w, h, b, r);
         }
@@ -364,7 +365,7 @@ public class Display {
     }
 
     public static boolean isCloseRequested() {
-        return glfwWindowShouldClose(Window.handle) == GL_TRUE;
+        return glfwWindowShouldClose(Window.handle) == true;
     }
 
     public static boolean isDirty() {
@@ -391,12 +392,12 @@ public class Display {
         return displayResizable;
     }
 
-    public static void setDisplayModeAndFullscreen(DisplayMode mode) throws LWJGLException {
+    public static void setDisplayModeAndFullscreen(DisplayMode mode) {
         // TODO
         System.out.println("TODO: Implement Display.setDisplayModeAndFullscreen(DisplayMode)");
     }
 
-    public static void setFullscreen(boolean fullscreen) throws LWJGLException {
+    public static void setFullscreen(boolean fullscreen) {
         // TODO
     }
 
@@ -405,19 +406,19 @@ public class Display {
         return false;
     }
 
-    public static void setParent(java.awt.Canvas parent) throws LWJGLException {
+    public static void setParent(java.awt.Canvas parent) {
         // Do nothing as set parent not supported
     }
 
-    public static void releaseContext() throws LWJGLException {
+    public static void releaseContext() {
         glfwMakeContextCurrent(0);
     }
 
-    public static boolean isCurrent() throws LWJGLException {
-        return context.isCurrent();
+    public static boolean isCurrent() {
+        return true;
     }
 
-    public static void makeCurrent() throws LWJGLException {
+    public static void makeCurrent() {
         glfwMakeContextCurrent(Window.handle);
     }
 
@@ -464,29 +465,29 @@ public class Display {
         static GLFWFramebufferSizeCallback framebufferSizeCallback;
 
         public static void setCallbacks() {
-            glfwSetCallback(handle, keyCallback);
-            glfwSetCallback(handle, charCallback);
-            glfwSetCallback(handle, cursorPosCallback);
-            glfwSetCallback(handle, mouseButtonCallback);
-            glfwSetCallback(handle, windowFocusCallback);
-            glfwSetCallback(handle, windowIconifyCallback);
-            glfwSetCallback(handle, windowSizeCallback);
-            glfwSetCallback(handle, windowPosCallback);
-            glfwSetCallback(handle, windowRefreshCallback);
-            glfwSetCallback(handle, framebufferSizeCallback);
+            GLFW.glfwSetKeyCallback(handle, keyCallback);
+            GLFW.glfwSetCharCallback(handle, charCallback);
+            GLFW.glfwSetCursorPosCallback(handle, cursorPosCallback);
+            GLFW.glfwSetMouseButtonCallback(handle, mouseButtonCallback);
+            GLFW.glfwSetWindowFocusCallback(handle, windowFocusCallback);
+            GLFW.glfwSetWindowIconifyCallback(handle, windowIconifyCallback);
+            GLFW.glfwSetWindowSizeCallback(handle, windowSizeCallback);
+            GLFW.glfwSetWindowPosCallback(handle, windowPosCallback);
+            GLFW.glfwSetWindowRefreshCallback(handle, windowRefreshCallback);
+            GLFW.glfwSetFramebufferSizeCallback(handle, framebufferSizeCallback);
         }
 
         public static void releaseCallbacks() {
-            keyCallback.release();
-            charCallback.release();
-            cursorPosCallback.release();
-            mouseButtonCallback.release();
-            windowFocusCallback.release();
-            windowIconifyCallback.release();
-            windowSizeCallback.release();
-            windowPosCallback.release();
-            windowRefreshCallback.release();
-            framebufferSizeCallback.release();
+            keyCallback.free();
+            charCallback.free();
+            cursorPosCallback.free();
+            mouseButtonCallback.free();
+            windowFocusCallback.free();
+            windowIconifyCallback.free();
+            windowSizeCallback.free();
+            windowPosCallback.free();
+            windowRefreshCallback.free();
+            framebufferSizeCallback.free();
         }
     }
 }

@@ -42,7 +42,7 @@ import java.nio.ShortBuffer;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import org.lwjgl.openal.AL10;
+import org.lwjgl.openal.AL11;
 
 // import com.sun.media.sound.WaveFileReader;
 
@@ -99,7 +99,7 @@ public class WaveData {
             // WaveFileReader wfr = new WaveFileReader();
             // return create(wfr.getAudioInputStream(new BufferedInputStream(path.openStream())));
         } catch (Exception e) {
-            org.lwjgl.system.APIUtil.apiLog("Unable to create from: " + path + ", " + e.getMessage());
+            org.lwjglx.LWJGLUtil.log("Unable to create from: " + path + ", " + e.getMessage());
             return null;
         }
     }
@@ -124,7 +124,7 @@ public class WaveData {
         try {
             return create(AudioSystem.getAudioInputStream(is));
         } catch (Exception e) {
-            org.lwjgl.system.APIUtil.apiLog("Unable to create from inputstream, " + e.getMessage());
+            org.lwjglx.LWJGLUtil.log("Unable to create from inputstream, " + e.getMessage());
             return null;
         }
     }
@@ -139,7 +139,7 @@ public class WaveData {
         try {
             return create(AudioSystem.getAudioInputStream(new BufferedInputStream(new ByteArrayInputStream(buffer))));
         } catch (Exception e) {
-            org.lwjgl.system.APIUtil.apiLog("Unable to create from byte array, " + e.getMessage());
+            org.lwjglx.LWJGLUtil.log("Unable to create from byte array, " + e.getMessage());
             return null;
         }
     }
@@ -164,7 +164,7 @@ public class WaveData {
             }
             return create(bytes);
         } catch (Exception e) {
-            org.lwjgl.system.APIUtil.apiLog("Unable to create from ByteBuffer, " + e.getMessage());
+            org.lwjglx.LWJGLUtil.log("Unable to create from ByteBuffer, " + e.getMessage());
             return null;
         }
     }
@@ -183,17 +183,17 @@ public class WaveData {
         int channels = 0;
         if (audioformat.getChannels() == 1) {
             if (audioformat.getSampleSizeInBits() == 8) {
-                channels = AL10.AL_FORMAT_MONO8;
+                channels = AL11.AL_FORMAT_MONO8;
             } else if (audioformat.getSampleSizeInBits() == 16) {
-                channels = AL10.AL_FORMAT_MONO16;
+                channels = AL11.AL_FORMAT_MONO16;
             } else {
                 assert false : "Illegal sample size";
             }
         } else if (audioformat.getChannels() == 2) {
             if (audioformat.getSampleSizeInBits() == 8) {
-                channels = AL10.AL_FORMAT_STEREO8;
+                channels = AL11.AL_FORMAT_STEREO8;
             } else if (audioformat.getSampleSizeInBits() == 16) {
-                channels = AL10.AL_FORMAT_STEREO16;
+                channels = AL11.AL_FORMAT_STEREO16;
             } else {
                 assert false : "Illegal sample size";
             }

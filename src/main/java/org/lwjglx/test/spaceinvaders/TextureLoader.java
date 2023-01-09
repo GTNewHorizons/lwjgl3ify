@@ -52,7 +52,7 @@ import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Hashtable;
 import javax.swing.ImageIcon;
-import org.lwjgl.BufferUtils;
+import org.lwjglx.BufferUtils;
 
 /**
  * A utility class to load textures for OpenGL. This source is based

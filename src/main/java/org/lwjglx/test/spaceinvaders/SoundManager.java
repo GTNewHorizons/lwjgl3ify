@@ -32,7 +32,7 @@
 package org.lwjglx.test.spaceinvaders;
 
 import java.nio.IntBuffer;
-import org.lwjgl.BufferUtils;
+import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.openal.AL;
 import org.lwjglx.openal.AL10;

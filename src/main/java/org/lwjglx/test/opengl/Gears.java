@@ -39,10 +39,10 @@ import static org.lwjgl.opengl.ARBTransposeMatrix.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.nio.FloatBuffer;
+import org.lwjgl.Version;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.LWJGLUtil;
-import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
 import org.lwjglx.opengl.DisplayMode;
 import org.lwjglx.opengl.GLContext;
@@ -201,7 +201,7 @@ public class Gears {
 
         glMatrixMode(GL_PROJECTION);
 
-        System.err.println("LWJGL: " + Sys.getVersion() + " / " + LWJGLUtil.getPlatformName());
+        System.err.println("LWJGL: " + Version.getVersion() + " / " + LWJGLUtil.getPlatformName());
         System.err.println("GL_VENDOR: " + glGetString(GL_VENDOR));
         System.err.println("GL_RENDERER: " + glGetString(GL_RENDERER));
         System.err.println("GL_VERSION: " + glGetString(GL_VERSION));

@@ -34,7 +34,6 @@ package org.lwjglx.test.spaceinvaders;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
-import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
@@ -211,52 +210,45 @@ public class Game {
      */
     public void initialize() {
         // initialize the window beforehand
-        try {
-            setDisplayMode();
-            Display.setTitle(WINDOW_TITLE);
-            Display.setFullscreen(fullscreen);
-            Display.create();
+        setDisplayMode();
+        Display.setTitle(WINDOW_TITLE);
+        Display.setFullscreen(fullscreen);
+        Display.create();
 
-            // grab the mouse, dont want that hideous cursor when we're playing!
-            if (isApplication) {
-                Mouse.setGrabbed(true);
-            }
-
-            // enable textures since we're going to use these for our sprites
-            glEnable(GL_TEXTURE_2D);
-
-            // disable the OpenGL depth test since we're rendering 2D graphics
-            glDisable(GL_DEPTH_TEST);
-
-            glMatrixMode(GL_PROJECTION);
-            glLoadIdentity();
-
-            glOrtho(0, width, height, 0, -1, 1);
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            glViewport(0, 0, Display.getFramebufferWidth(), Display.getFramebufferHeight());
-
-            textureLoader = new TextureLoader();
-
-            // create our sound manager, and initialize it with 7 channels
-            // 1 channel for sounds, 6 for effects - this should be enough
-            // since we have a most 4 shots on screen at any one time, which leaves
-            // us with 2 channels for explosions.
-            soundManager = new SoundManager();
-            soundManager.initialize(8);
-
-            // load our sound data
-            SOUND_SHOT = soundManager.addSound("shot.wav");
-            SOUND_HIT = soundManager.addSound("hit.wav");
-            SOUND_START = soundManager.addSound("start.wav");
-            SOUND_WIN = soundManager.addSound("win.wav");
-            SOUND_LOOSE = soundManager.addSound("loose.wav");
-        } catch (LWJGLException le) {
-            System.out.println("Game exiting - exception in initialization:");
-            le.printStackTrace();
-            Game.gameRunning = false;
-            return;
+        // grab the mouse, dont want that hideous cursor when we're playing!
+        if (isApplication) {
+            Mouse.setGrabbed(true);
         }
+
+        // enable textures since we're going to use these for our sprites
+        glEnable(GL_TEXTURE_2D);
+
+        // disable the OpenGL depth test since we're rendering 2D graphics
+        glDisable(GL_DEPTH_TEST);
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
+        glOrtho(0, width, height, 0, -1, 1);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glViewport(0, 0, Display.getFramebufferWidth(), Display.getFramebufferHeight());
+
+        textureLoader = new TextureLoader();
+
+        // create our sound manager, and initialize it with 7 channels
+        // 1 channel for sounds, 6 for effects - this should be enough
+        // since we have a most 4 shots on screen at any one time, which leaves
+        // us with 2 channels for explosions.
+        soundManager = new SoundManager();
+        soundManager.initialize(8);
+
+        // load our sound data
+        SOUND_SHOT = soundManager.addSound("shot.wav");
+        SOUND_HIT = soundManager.addSound("hit.wav");
+        SOUND_START = soundManager.addSound("start.wav");
+        SOUND_WIN = soundManager.addSound("win.wav");
+        SOUND_LOOSE = soundManager.addSound("loose.wav");
 
         // get our sprites
         gotYou = getSprite("gotyou.gif");

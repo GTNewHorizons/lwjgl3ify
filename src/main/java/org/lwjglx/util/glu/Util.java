@@ -35,7 +35,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.*;
 
 import java.nio.IntBuffer;
-import org.lwjgl.BufferUtils;
+import org.lwjglx.BufferUtils;
 
 /**
  * Util.java
@@ -236,6 +236,9 @@ public class Util {
      * @return int
      */
     protected static int glGetIntegerv(int what) {
-        return glGetInteger(what);
+        // scratch.rewind();
+        // glGetIntegerv(what, scratch);
+        // return scratch.get();
+        return 0;
     }
 }

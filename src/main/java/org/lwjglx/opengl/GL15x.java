@@ -11,7 +11,7 @@ public class GL15x {
         int size = GL15.glGetBufferParameteri(target, GL15.GL_BUFFER_SIZE);
 
         PointerBuffer pb = BufferUtils.createPointerBuffer(1);
-        pb.put(0, GL15.glGetBufferPointer(target, pname));
+        GL15.glGetBufferPointerv(target, pname, pb);
 
         return pb.getByteBuffer(0, size);
     }

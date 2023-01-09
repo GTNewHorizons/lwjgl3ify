@@ -50,6 +50,6 @@ public class ALC10 {
     }
 
     public static void alcGetInteger(ALCdevice device, int pname, java.nio.IntBuffer integerdata) {
-        integerdata.put(0, org.lwjgl.openal.ALC10.alcGetInteger(device.device, pname));
+        org.lwjgl.openal.ALC10.alcGetIntegerv(device.device, pname, integerdata);
     }
 }

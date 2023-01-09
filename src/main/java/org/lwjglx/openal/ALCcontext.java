@@ -32,7 +32,7 @@
 package org.lwjglx.openal;
 
 import java.nio.IntBuffer;
-import org.lwjgl.BufferUtils;
+import org.lwjglx.BufferUtils;
 
 /**
  * The ALCcontext class represents a context opened in OpenAL space.

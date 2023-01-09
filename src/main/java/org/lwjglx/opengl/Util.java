@@ -35,8 +35,6 @@ import static org.lwjgl.opengl.ARBImaging.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.*;
 
-import org.lwjgl.opengl.GLContext;
-
 /**
  * Simple utility class.
  *
@@ -45,8 +43,6 @@ import org.lwjgl.opengl.GLContext;
  */
 public final class Util {
 
-    static org.lwjgl.opengl.GLContext glContext = GLContext.createFromCurrent();
-
     /** No c'tor */
     private Util() {}
 
@@ -54,9 +50,7 @@ public final class Util {
      * Throws OpenGLException if glGetError() returns anything else than GL_NO_ERROR
      *
      */
-    public static void checkGLError() throws OpenGLException {
-        glContext.checkGLError();
-    }
+    public static void checkGLError() throws OpenGLException {}
 
     /**
      * Translate a GL error code to a String describing the error

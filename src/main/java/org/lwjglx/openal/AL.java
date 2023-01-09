@@ -1,13 +1,13 @@
 package org.lwjglx.openal;
 
-import org.lwjgl.openal.ALC10;
+import java.nio.IntBuffer;
+import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 
 public class AL {
 
-    public static long alContext = -1;
-    public static ALCdevice alcDevice = null;
+    static ALCdevice alcDevice;
 
     private static boolean created = false;
 
@@ -16,26 +16,27 @@ public class AL {
     }
 
     public static void create() throws LWJGLException {
-        if (alContext == -1) {
-            final String defaultDevice = ALC10.alcGetString(0, ALC10.ALC_DEFAULT_DEVICE_SPECIFIER);
-            alcDevice = new ALCdevice(ALC10.alcOpenDevice(defaultDevice));
+        AL.create();
 
-            final int[] attribs = new int[] {
-                org.lwjgl.openal.ALC10.ALC_FREQUENCY,
-                44100,
+        IntBuffer attribs = BufferUtils.createIntBuffer(16);
 
-                org.lwjgl.openal.ALC10.ALC_REFRESH,
-                60,
+        attribs.put(org.lwjgl.openal.ALC10.ALC_FREQUENCY);
+        attribs.put(44100);
 
-                org.lwjgl.openal.ALC10.ALC_SYNC,
-                org.lwjgl.openal.ALC10.ALC_FALSE,
+        attribs.put(org.lwjgl.openal.ALC10.ALC_REFRESH);
+        attribs.put(60);
 
-                0,
-            };
+        attribs.put(org.lwjgl.openal.ALC10.ALC_SYNC);
+        attribs.put(org.lwjgl.openal.ALC10.ALC_FALSE);
 
-            alContext = org.lwjgl.openal.ALC10.alcCreateContext(alcDevice.device, attribs);
-            created = true;
-        }
+        attribs.put(0);
+        attribs.flip();
+
+        long contextHandle = org.lwjgl.openal.ALC10.alcCreateContext(AL.getDevice().device, attribs);
+
+        alcDevice = new ALCdevice(contextHandle);
+
+        created = true;
     }
 
     public static boolean isCreated() {
@@ -43,9 +44,7 @@ public class AL {
     }
 
     public static void destroy() {
-        ALC10.alcDestroyContext(alContext);
-        ALC10.alcCloseDevice(alcDevice.device);
-        alContext = -1;
+        AL.destroy();
         alcDevice = null;
         created = false;
     }
