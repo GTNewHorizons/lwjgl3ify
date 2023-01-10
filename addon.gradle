@@ -1,0 +1,32 @@
+
+sourceSets {
+    create("util") {
+    }
+}
+
+dependencies {
+    utilImplementation("org.ow2.asm:asm:9.4")
+    utilImplementation("org.ow2.asm:asm-tree:9.4")
+    utilImplementation("org.apache.commons:commons-lang3:3.12.0")
+    utilImplementation("commons-io:commons-io:2.11.0")
+    utilImplementation("commons-collections:commons-collections:3.2.2")
+    utilImplementation("com.google.guava:guava:31.1-jre")
+}
+
+tasks.register("runComparisonTool", JavaExec) {
+    classpath(sourceSets.util.runtimeClasspath)
+    mainClass.set("me.eigenraven.lwjgl3ify.ComparisonTool")
+    minHeapSize = "2G"
+    maxHeapSize = "2G"
+}
+
+afterEvaluate {
+    def lwjgl2Zips = configurations.named("lwjglMcCompileClasspath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}
+    def lwjgl3Zips = configurations.named("lwjglModClasspath").get().resolve().findAll {!it.name.contains("natives")}
+    def lwjgl2Args = lwjgl2Zips.collect {"--2:" + it}
+    def lwjgl3Args = lwjgl3Zips.collect {"--3:" + it}
+    def allArgs = lwjgl2Args + lwjgl3Args
+    tasks.named("runComparisonTool", JavaExec).configure {
+        args(allArgs)
+    }
+}
