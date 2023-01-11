@@ -72,14 +72,14 @@ public class ApiSet {
                 if ((method.access & (Opcodes.ACC_PUBLIC | Opcodes.ACC_PROTECTED)) == 0) {
                     continue;
                 }
-                final String sig = method.name + ":" + method.desc;
+                final String sig = (method.name + ":" + method.desc).replace("/lwjglx/", "/lwjgl/");
                 methods.put(sig, method);
             }
             for (FieldNode field : node.fields) {
                 if ((field.access & (Opcodes.ACC_PUBLIC | Opcodes.ACC_PROTECTED)) == 0) {
                     continue;
                 }
-                final String sig = field.name + ":" + field.desc;
+                final String sig = (field.name + ":" + field.desc).replace("/lwjglx/", "/lwjgl/");
                 fields.put(sig, field);
             }
         }

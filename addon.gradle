@@ -2,6 +2,11 @@
 sourceSets {
     create("util") {
     }
+    named("main").configure {
+        java {
+            srcDirs += ["src/generated/java"]
+        }
+    }
 }
 
 dependencies {
@@ -15,6 +20,7 @@ dependencies {
 
 tasks.register("runComparisonTool", JavaExec) {
     classpath(sourceSets.util.runtimeClasspath)
+    dependsOn("jar")
     mainClass.set("me.eigenraven.lwjgl3ify.ComparisonTool")
     minHeapSize = "2G"
     maxHeapSize = "2G"
@@ -25,7 +31,7 @@ afterEvaluate {
     def lwjgl3Zips = configurations.named("lwjglModClasspath").get().resolve().findAll {!it.name.contains("natives")}
     def lwjgl2Args = lwjgl2Zips.collect {"--2:" + it}
     def lwjgl3Args = lwjgl3Zips.collect {"--3:" + it}
-    def allArgs = lwjgl2Args + lwjgl3Args
+    def allArgs = lwjgl2Args + lwjgl3Args + ["--M:" + tasks.jar.archiveFile.get().asFile.path]
     tasks.named("runComparisonTool", JavaExec).configure {
         args(allArgs)
     }
