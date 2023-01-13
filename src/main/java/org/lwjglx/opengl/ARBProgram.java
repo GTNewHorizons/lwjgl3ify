@@ -1,5 +1,4 @@
 package org.lwjglx.opengl;
 
-public class ARBCLEvent {
-
+public class ARBProgram {
 }

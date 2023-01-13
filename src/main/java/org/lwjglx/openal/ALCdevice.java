@@ -50,7 +50,7 @@ import java.util.HashMap;
 public final class ALCdevice {
 
     /** Address of actual device */
-    final long device;
+    public final long device;
 
     /** Whether this device is valid */
     private boolean valid;

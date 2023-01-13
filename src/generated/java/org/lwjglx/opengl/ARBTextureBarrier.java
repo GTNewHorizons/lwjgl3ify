@@ -1,7 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureBarrier {
-    public void glTextureBarrier() {
+    public static void glTextureBarrier() {
         org.lwjgl.opengl.ARBTextureBarrier.glTextureBarrier();
     }
 

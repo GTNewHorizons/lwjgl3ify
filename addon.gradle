@@ -1,6 +1,8 @@
 
 sourceSets {
     create("util") {
+        java {
+        }
     }
     named("main").configure {
         java {

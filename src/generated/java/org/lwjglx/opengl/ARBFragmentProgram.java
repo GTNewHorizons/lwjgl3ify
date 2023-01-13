@@ -1,5 +1,5 @@
 package org.lwjglx.opengl;
 
-public class ARBFragmentProgram {
+public class ARBFragmentProgram extends org.lwjglx.opengl.ARBProgram {
 
 }

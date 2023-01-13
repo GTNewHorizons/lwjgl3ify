@@ -18,7 +18,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
-public class ApiSet {
+public class JarApiSet {
     public final TreeMap<String, ClassApi> classes = new TreeMap<>();
 
     public void addJar(File jarFile) {
@@ -62,11 +62,13 @@ public class ApiSet {
     }
 
     public static class ClassApi {
+        public final ClassNode asmNode;
         public final String className;
         public final TreeMap<String, MethodNode> methods = new TreeMap<>();
         public final TreeMap<String, FieldNode> fields = new TreeMap<>();
 
         public ClassApi(ClassNode node) {
+            this.asmNode = node;
             className = node.name;
             for (MethodNode method : node.methods) {
                 if ((method.access & (Opcodes.ACC_PUBLIC | Opcodes.ACC_PROTECTED)) == 0) {

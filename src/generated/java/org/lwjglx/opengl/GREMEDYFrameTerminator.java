@@ -1,7 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GREMEDYFrameTerminator {
-    public void glFrameTerminatorGREMEDY() {
+    public static void glFrameTerminatorGREMEDY() {
         org.lwjgl.opengl.GREMEDYFrameTerminator.glFrameTerminatorGREMEDY();
     }
 
