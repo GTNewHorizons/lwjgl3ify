@@ -5,9 +5,7 @@ public class NVBlendEquationAdvanced {
         org.lwjgl.opengl.NVBlendEquationAdvanced.glBlendBarrierNV();
     }
 
-    public static void glBlendParameteriNV(int arg0, int arg1) {
-        org.lwjgl.opengl.NVBlendEquationAdvanced.glBlendParameteriNV(arg0, arg1);
+    public static void glBlendParameteriNV(int pname, int value) {
+        org.lwjgl.opengl.NVBlendEquationAdvanced.glBlendParameteriNV(pname, value);
     }
-
-
 }

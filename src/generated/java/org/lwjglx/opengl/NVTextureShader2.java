@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class NVTextureShader2 {
-
-}
+public class NVTextureShader2 {}

@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class EXTTextureCompressionRGTC {
-
-}
+public class EXTTextureCompressionRGTC {}

@@ -1,187 +1,191 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderObjects {
-    public static void glAttachObjectARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glAttachObjectARB(arg0, arg1);
+    public static void glAttachObjectARB(int containerObj, int obj) {
+        org.lwjgl.opengl.ARBShaderObjects.glAttachObjectARB(containerObj, obj);
     }
 
-    public static void glCompileShaderARB(int arg0) {
-        org.lwjgl.opengl.ARBShaderObjects.glCompileShaderARB(arg0);
+    public static void glCompileShaderARB(int shaderObj) {
+        org.lwjgl.opengl.ARBShaderObjects.glCompileShaderARB(shaderObj);
     }
 
     public static int glCreateProgramObjectARB() {
         return org.lwjgl.opengl.ARBShaderObjects.glCreateProgramObjectARB();
     }
 
-    public static int glCreateShaderObjectARB(int arg0) {
-        return org.lwjgl.opengl.ARBShaderObjects.glCreateShaderObjectARB(arg0);
+    public static int glCreateShaderObjectARB(int shaderType) {
+        return org.lwjgl.opengl.ARBShaderObjects.glCreateShaderObjectARB(shaderType);
     }
 
-    public static void glDeleteObjectARB(int arg0) {
-        org.lwjgl.opengl.ARBShaderObjects.glDeleteObjectARB(arg0);
+    public static void glDeleteObjectARB(int obj) {
+        org.lwjgl.opengl.ARBShaderObjects.glDeleteObjectARB(obj);
     }
 
-    public static void glDetachObjectARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glDetachObjectARB(arg0, arg1);
+    public static void glDetachObjectARB(int containerObj, int attachedObj) {
+        org.lwjgl.opengl.ARBShaderObjects.glDetachObjectARB(containerObj, attachedObj);
     }
 
-    public static void glGetActiveUniformARB(int arg0, int arg1, java.nio.IntBuffer arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetActiveUniformARB(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glGetActiveUniformARB(
+            int programObj,
+            int index,
+            java.nio.IntBuffer length,
+            java.nio.IntBuffer size,
+            java.nio.IntBuffer type,
+            java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetActiveUniformARB(programObj, index, length, size, type, name);
     }
 
-    public static void glGetAttachedObjectsARB(int arg0, java.nio.IntBuffer arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetAttachedObjectsARB(arg0, arg1, arg2);
+    public static void glGetAttachedObjectsARB(int containerObj, java.nio.IntBuffer count, java.nio.IntBuffer obj) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetAttachedObjectsARB(containerObj, count, obj);
     }
 
-    public static int glGetHandleARB(int arg0) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetHandleARB(arg0);
+    public static int glGetHandleARB(int pname) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetHandleARB(pname);
     }
 
-    public static java.lang.String glGetInfoLogARB(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetInfoLogARB(arg0, arg1);
+    public static java.lang.String glGetInfoLogARB(int obj, int maxLength) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetInfoLogARB(obj, maxLength);
     }
 
-    public static void glGetInfoLogARB(int arg0, java.nio.IntBuffer arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetInfoLogARB(arg0, arg1, arg2);
+    public static void glGetInfoLogARB(int obj, java.nio.IntBuffer length, java.nio.ByteBuffer infoLog) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetInfoLogARB(obj, length, infoLog);
     }
 
-    public static void glGetObjectParameterARB(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameterfvARB(arg0, arg1, arg2);
+    public static void glGetObjectParameterARB(int obj, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameterfvARB(obj, pname, params);
     }
 
-    public static void glGetObjectParameterARB(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameterivARB(arg0, arg1, arg2);
+    public static void glGetObjectParameterARB(int obj, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameterivARB(obj, pname, params);
     }
 
-    public static int glGetObjectParameteriARB(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameteriARB(arg0, arg1);
+    public static int glGetObjectParameteriARB(int obj, int pname) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetObjectParameteriARB(obj, pname);
     }
 
-    public static java.lang.String glGetShaderSourceARB(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetShaderSourceARB(arg0, arg1);
+    public static java.lang.String glGetShaderSourceARB(int obj, int maxLength) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetShaderSourceARB(obj, maxLength);
     }
 
-    public static void glGetShaderSourceARB(int arg0, java.nio.IntBuffer arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetShaderSourceARB(arg0, arg1, arg2);
+    public static void glGetShaderSourceARB(int obj, java.nio.IntBuffer length, java.nio.ByteBuffer source) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetShaderSourceARB(obj, length, source);
     }
 
-    public static void glGetUniformARB(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetUniformfvARB(arg0, arg1, arg2);
+    public static void glGetUniformARB(int programObj, int location, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetUniformfvARB(programObj, location, params);
     }
 
-    public static void glGetUniformARB(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glGetUniformivARB(arg0, arg1, arg2);
+    public static void glGetUniformARB(int programObj, int location, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBShaderObjects.glGetUniformivARB(programObj, location, params);
     }
 
-    public static int glGetUniformLocationARB(int arg0, java.lang.CharSequence arg1) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetUniformLocationARB(arg0, arg1);
+    public static int glGetUniformLocationARB(int programObj, java.lang.CharSequence name) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetUniformLocationARB(programObj, name);
     }
 
-    public static int glGetUniformLocationARB(int arg0, java.nio.ByteBuffer arg1) {
-        return org.lwjgl.opengl.ARBShaderObjects.glGetUniformLocationARB(arg0, arg1);
+    public static int glGetUniformLocationARB(int programObj, java.nio.ByteBuffer name) {
+        return org.lwjgl.opengl.ARBShaderObjects.glGetUniformLocationARB(programObj, name);
     }
 
-    public static void glLinkProgramARB(int arg0) {
-        org.lwjgl.opengl.ARBShaderObjects.glLinkProgramARB(arg0);
+    public static void glLinkProgramARB(int programObj) {
+        org.lwjgl.opengl.ARBShaderObjects.glLinkProgramARB(programObj);
     }
 
-    public static void glShaderSourceARB(int arg0, java.lang.CharSequence arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(arg0, arg1);
+    public static void glShaderSourceARB(int shader, java.lang.CharSequence string) {
+        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(shader, string);
     }
 
-    public static void glShaderSourceARB(int arg0, java.nio.ByteBuffer arg1) {
+    public static void glShaderSourceARB(int shader, java.nio.ByteBuffer string) {
 
-        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(arg0, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(arg1));
-
+        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(
+                shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
     }
 
-    public static void glShaderSourceARB(int arg0, java.lang.CharSequence[] arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(arg0, arg1);
+    public static void glShaderSourceARB(int shader, java.lang.CharSequence[] strings) {
+        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(shader, strings);
     }
 
-    public static void glUniform1ARB(int arg0, java.nio.FloatBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform1fvARB(arg0, arg1);
+    public static void glUniform1ARB(int location, java.nio.FloatBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform1fvARB(location, values);
     }
 
-    public static void glUniform1ARB(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform1ivARB(arg0, arg1);
+    public static void glUniform1ARB(int location, java.nio.IntBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform1ivARB(location, values);
     }
 
-    public static void glUniform1fARB(int arg0, float arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform1fARB(arg0, arg1);
+    public static void glUniform1fARB(int location, float v0) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform1fARB(location, v0);
     }
 
-    public static void glUniform1iARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform1iARB(arg0, arg1);
+    public static void glUniform1iARB(int location, int v0) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform1iARB(location, v0);
     }
 
-    public static void glUniform2ARB(int arg0, java.nio.FloatBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform2fvARB(arg0, arg1);
+    public static void glUniform2ARB(int location, java.nio.FloatBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform2fvARB(location, values);
     }
 
-    public static void glUniform2ARB(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform2ivARB(arg0, arg1);
+    public static void glUniform2ARB(int location, java.nio.IntBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform2ivARB(location, values);
     }
 
-    public static void glUniform2fARB(int arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform2fARB(arg0, arg1, arg2);
+    public static void glUniform2fARB(int location, float v0, float v1) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform2fARB(location, v0, v1);
     }
 
-    public static void glUniform2iARB(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform2iARB(arg0, arg1, arg2);
+    public static void glUniform2iARB(int location, int v0, int v1) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform2iARB(location, v0, v1);
     }
 
-    public static void glUniform3ARB(int arg0, java.nio.FloatBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform3fvARB(arg0, arg1);
+    public static void glUniform3ARB(int location, java.nio.FloatBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform3fvARB(location, values);
     }
 
-    public static void glUniform3ARB(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform3ivARB(arg0, arg1);
+    public static void glUniform3ARB(int location, java.nio.IntBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform3ivARB(location, values);
     }
 
-    public static void glUniform3fARB(int arg0, float arg1, float arg2, float arg3) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform3fARB(arg0, arg1, arg2, arg3);
+    public static void glUniform3fARB(int location, float v0, float v1, float v2) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform3fARB(location, v0, v1, v2);
     }
 
-    public static void glUniform3iARB(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform3iARB(arg0, arg1, arg2, arg3);
+    public static void glUniform3iARB(int location, int v0, int v1, int v2) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform3iARB(location, v0, v1, v2);
     }
 
-    public static void glUniform4ARB(int arg0, java.nio.FloatBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform4fvARB(arg0, arg1);
+    public static void glUniform4ARB(int location, java.nio.FloatBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform4fvARB(location, values);
     }
 
-    public static void glUniform4ARB(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform4ivARB(arg0, arg1);
+    public static void glUniform4ARB(int location, java.nio.IntBuffer values) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform4ivARB(location, values);
     }
 
-    public static void glUniform4fARB(int arg0, float arg1, float arg2, float arg3, float arg4) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform4fARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glUniform4fARB(int location, float v0, float v1, float v2, float v3) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform4fARB(location, v0, v1, v2, v3);
     }
 
-    public static void glUniform4iARB(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniform4iARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glUniform4iARB(int location, int v0, int v1, int v2, int v3) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniform4iARB(location, v0, v1, v2, v3);
     }
 
-    public static void glUniformMatrix2ARB(int arg0, boolean arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix2fvARB(arg0, arg1, arg2);
+    public static void glUniformMatrix2ARB(int location, boolean transpose, java.nio.FloatBuffer matrices) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix2fvARB(location, transpose, matrices);
     }
 
-    public static void glUniformMatrix3ARB(int arg0, boolean arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix3fvARB(arg0, arg1, arg2);
+    public static void glUniformMatrix3ARB(int location, boolean transpose, java.nio.FloatBuffer matrices) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix3fvARB(location, transpose, matrices);
     }
 
-    public static void glUniformMatrix4ARB(int arg0, boolean arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix4fvARB(arg0, arg1, arg2);
+    public static void glUniformMatrix4ARB(int location, boolean transpose, java.nio.FloatBuffer matrices) {
+        org.lwjgl.opengl.ARBShaderObjects.glUniformMatrix4fvARB(location, transpose, matrices);
     }
 
-    public static void glUseProgramObjectARB(int arg0) {
-        org.lwjgl.opengl.ARBShaderObjects.glUseProgramObjectARB(arg0);
+    public static void glUseProgramObjectARB(int programObj) {
+        org.lwjgl.opengl.ARBShaderObjects.glUseProgramObjectARB(programObj);
     }
 
-    public static void glValidateProgramARB(int arg0) {
-        org.lwjgl.opengl.ARBShaderObjects.glValidateProgramARB(arg0);
+    public static void glValidateProgramARB(int programObj) {
+        org.lwjgl.opengl.ARBShaderObjects.glValidateProgramARB(programObj);
     }
-
-
 }

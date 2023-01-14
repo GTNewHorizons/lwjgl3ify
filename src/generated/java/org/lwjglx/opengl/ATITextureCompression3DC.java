@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class ATITextureCompression3DC {
-
-}
+public class ATITextureCompression3DC {}

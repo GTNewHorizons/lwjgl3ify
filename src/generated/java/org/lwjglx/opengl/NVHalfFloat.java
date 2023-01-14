@@ -1,105 +1,103 @@
 package org.lwjglx.opengl;
 
 public class NVHalfFloat {
-    public static void glColor3hNV(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glColor3hNV(arg0, arg1, arg2);
+    public static void glColor3hNV(short red, short green, short blue) {
+        org.lwjgl.opengl.NVHalfFloat.glColor3hNV(red, green, blue);
     }
 
-    public static void glColor4hNV(short arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.NVHalfFloat.glColor4hNV(arg0, arg1, arg2, arg3);
+    public static void glColor4hNV(short red, short green, short blue, short alpha) {
+        org.lwjgl.opengl.NVHalfFloat.glColor4hNV(red, green, blue, alpha);
     }
 
-    public static void glFogCoordhNV(short arg0) {
-        org.lwjgl.opengl.NVHalfFloat.glFogCoordhNV(arg0);
+    public static void glFogCoordhNV(short fog) {
+        org.lwjgl.opengl.NVHalfFloat.glFogCoordhNV(fog);
     }
 
-    public static void glMultiTexCoord1hNV(int arg0, short arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord1hNV(arg0, arg1);
+    public static void glMultiTexCoord1hNV(int target, short s) {
+        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord1hNV(target, s);
     }
 
-    public static void glMultiTexCoord2hNV(int arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord2hNV(arg0, arg1, arg2);
+    public static void glMultiTexCoord2hNV(int target, short s, short t) {
+        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord2hNV(target, s, t);
     }
 
-    public static void glMultiTexCoord3hNV(int arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord3hNV(arg0, arg1, arg2, arg3);
+    public static void glMultiTexCoord3hNV(int target, short s, short t, short r) {
+        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord3hNV(target, s, t, r);
     }
 
-    public static void glMultiTexCoord4hNV(int arg0, short arg1, short arg2, short arg3, short arg4) {
-        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord4hNV(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiTexCoord4hNV(int target, short s, short t, short r, short q) {
+        org.lwjgl.opengl.NVHalfFloat.glMultiTexCoord4hNV(target, s, t, r, q);
     }
 
-    public static void glNormal3hNV(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glNormal3hNV(arg0, arg1, arg2);
+    public static void glNormal3hNV(short nx, short ny, short nz) {
+        org.lwjgl.opengl.NVHalfFloat.glNormal3hNV(nx, ny, nz);
     }
 
-    public static void glSecondaryColor3hNV(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glSecondaryColor3hNV(arg0, arg1, arg2);
+    public static void glSecondaryColor3hNV(short red, short green, short blue) {
+        org.lwjgl.opengl.NVHalfFloat.glSecondaryColor3hNV(red, green, blue);
     }
 
-    public static void glTexCoord1hNV(short arg0) {
-        org.lwjgl.opengl.NVHalfFloat.glTexCoord1hNV(arg0);
+    public static void glTexCoord1hNV(short s) {
+        org.lwjgl.opengl.NVHalfFloat.glTexCoord1hNV(s);
     }
 
-    public static void glTexCoord2hNV(short arg0, short arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glTexCoord2hNV(arg0, arg1);
+    public static void glTexCoord2hNV(short s, short t) {
+        org.lwjgl.opengl.NVHalfFloat.glTexCoord2hNV(s, t);
     }
 
-    public static void glTexCoord3hNV(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glTexCoord3hNV(arg0, arg1, arg2);
+    public static void glTexCoord3hNV(short s, short t, short r) {
+        org.lwjgl.opengl.NVHalfFloat.glTexCoord3hNV(s, t, r);
     }
 
-    public static void glTexCoord4hNV(short arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.NVHalfFloat.glTexCoord4hNV(arg0, arg1, arg2, arg3);
+    public static void glTexCoord4hNV(short s, short t, short r, short q) {
+        org.lwjgl.opengl.NVHalfFloat.glTexCoord4hNV(s, t, r, q);
     }
 
-    public static void glVertex2hNV(short arg0, short arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertex2hNV(arg0, arg1);
+    public static void glVertex2hNV(short x, short y) {
+        org.lwjgl.opengl.NVHalfFloat.glVertex2hNV(x, y);
     }
 
-    public static void glVertex3hNV(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glVertex3hNV(arg0, arg1, arg2);
+    public static void glVertex3hNV(short x, short y, short z) {
+        org.lwjgl.opengl.NVHalfFloat.glVertex3hNV(x, y, z);
     }
 
-    public static void glVertex4hNV(short arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.NVHalfFloat.glVertex4hNV(arg0, arg1, arg2, arg3);
+    public static void glVertex4hNV(short x, short y, short z, short w) {
+        org.lwjgl.opengl.NVHalfFloat.glVertex4hNV(x, y, z, w);
     }
 
-    public static void glVertexAttrib1hNV(int arg0, short arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib1hNV(arg0, arg1);
+    public static void glVertexAttrib1hNV(int index, short x) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib1hNV(index, x);
     }
 
-    public static void glVertexAttrib2hNV(int arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib2hNV(arg0, arg1, arg2);
+    public static void glVertexAttrib2hNV(int index, short x, short y) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib2hNV(index, x, y);
     }
 
-    public static void glVertexAttrib3hNV(int arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib3hNV(arg0, arg1, arg2, arg3);
+    public static void glVertexAttrib3hNV(int index, short x, short y, short z) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib3hNV(index, x, y, z);
     }
 
-    public static void glVertexAttrib4hNV(int arg0, short arg1, short arg2, short arg3, short arg4) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib4hNV(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexAttrib4hNV(int index, short x, short y, short z, short w) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttrib4hNV(index, x, y, z, w);
     }
 
-    public static void glVertexAttribs1NV(int arg0, java.nio.ShortBuffer arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs1hvNV(arg0, arg1);
+    public static void glVertexAttribs1NV(int index, java.nio.ShortBuffer attribs) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs1hvNV(index, attribs);
     }
 
-    public static void glVertexAttribs2NV(int arg0, java.nio.ShortBuffer arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs2hvNV(arg0, arg1);
+    public static void glVertexAttribs2NV(int index, java.nio.ShortBuffer attribs) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs2hvNV(index, attribs);
     }
 
-    public static void glVertexAttribs3NV(int arg0, java.nio.ShortBuffer arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs3hvNV(arg0, arg1);
+    public static void glVertexAttribs3NV(int index, java.nio.ShortBuffer attribs) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs3hvNV(index, attribs);
     }
 
-    public static void glVertexAttribs4NV(int arg0, java.nio.ShortBuffer arg1) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs4hvNV(arg0, arg1);
+    public static void glVertexAttribs4NV(int index, java.nio.ShortBuffer attribs) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexAttribs4hvNV(index, attribs);
     }
 
-    public static void glVertexWeighthNV(short arg0) {
-        org.lwjgl.opengl.NVHalfFloat.glVertexWeighthNV(arg0);
+    public static void glVertexWeighthNV(short weight) {
+        org.lwjgl.opengl.NVHalfFloat.glVertexWeighthNV(weight);
     }
-
-
 }

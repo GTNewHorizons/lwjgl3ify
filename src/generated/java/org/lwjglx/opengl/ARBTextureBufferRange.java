@@ -1,13 +1,13 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureBufferRange {
-    public static void glTexBufferRange(int arg0, int arg1, int arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.ARBTextureBufferRange.glTexBufferRange(arg0, arg1, arg2, arg3, arg4);
+    public static void glTexBufferRange(int target, int internalformat, int buffer, long offset, long size) {
+        org.lwjgl.opengl.ARBTextureBufferRange.glTexBufferRange(target, internalformat, buffer, offset, size);
     }
 
-    public static void glTextureBufferRangeEXT(int arg0, int arg1, int arg2, int arg3, long arg4, long arg5) {
-        org.lwjgl.opengl.ARBTextureBufferRange.glTextureBufferRangeEXT(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glTextureBufferRangeEXT(
+            int texture, int target, int internalformat, int buffer, long offset, long size) {
+        org.lwjgl.opengl.ARBTextureBufferRange.glTextureBufferRangeEXT(
+                texture, target, internalformat, buffer, offset, size);
     }
-
-
 }

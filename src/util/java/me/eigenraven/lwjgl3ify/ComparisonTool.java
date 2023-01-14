@@ -1,9 +1,5 @@
 package me.eigenraven.lwjgl3ify;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.objectweb.asm.tree.MethodNode;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +7,9 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.objectweb.asm.tree.MethodNode;
 
 public class ComparisonTool {
     public static void main(String[] args) {
@@ -51,7 +50,9 @@ public class ComparisonTool {
             final JarApiSet.ClassApi gl2Class = gl2Entry.getValue();
             final JarApiSet.ClassApi gl3Class = gl3.classes.get(gl2Entry.getKey());
             final JarApiSet.ClassApi modClass = mod.classes.get(gl2Entry.getKey());
-            if (gl2Class.className.contains("CL") || gl2Class.className.contains("opencl") || gl2Class.className.contains("opengles")) {
+            if (gl2Class.className.contains("CL")
+                    || gl2Class.className.contains("opencl")
+                    || gl2Class.className.contains("opengles")) {
                 continue;
             }
             if (modClass != null) {
@@ -80,10 +81,12 @@ public class ComparisonTool {
             final String packageName = javaName.substring(0, lastDot);
             final String className = javaName.substring(lastDot + 1);
             final String superName = gl2Class.asmNode.superName;
-            final String extendSpec = (superName == null || "java/lang/Object".equals(superName)) ? "" : " extends " + superName.replace('/', '.').replace(".lwjgl.", ".lwjglx.");
+            final String extendSpec = (superName == null || "java/lang/Object".equals(superName))
+                    ? ""
+                    : " extends " + superName.replace('/', '.').replace(".lwjgl.", ".lwjglx.");
             proxyClassP.printf(
-                "package %s;%n%npublic class %s%s {%n",
-                packageName.replace(".lwjgl.", ".lwjglx."), className, extendSpec);
+                    "package %s;%n%npublic class %s%s {%n",
+                    packageName.replace(".lwjgl.", ".lwjglx."), className, extendSpec);
             for (Map.Entry<String, MethodNode> gl2Method : gl2Class.methods.entrySet()) {
                 if (gl2Method.getValue().name.startsWith("<")) {
                     continue;

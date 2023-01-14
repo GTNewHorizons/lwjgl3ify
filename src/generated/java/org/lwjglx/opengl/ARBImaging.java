@@ -1,1051 +1,2317 @@
 package org.lwjglx.opengl;
 
 public class ARBImaging {
-    public static void glBlendColor(float arg0, float arg1, float arg2, float arg3) {
-        org.lwjgl.opengl.ARBImaging.glBlendColor(arg0, arg1, arg2, arg3);
+    public static void glBlendColor(float red, float green, float blue, float alpha) {
+        org.lwjgl.opengl.ARBImaging.glBlendColor(red, green, blue, alpha);
     }
 
-    public static void glBlendEquation(int arg0) {
-        org.lwjgl.opengl.ARBImaging.glBlendEquation(arg0);
+    public static void glBlendEquation(int mode) {
+        org.lwjgl.opengl.ARBImaging.glBlendEquation(mode);
     }
 
-    public static void glColorSubTable(int arg0, int arg1, int arg2, int arg3, int arg4, long arg5) {
-        org.lwjgl.opengl.ARBImaging.glColorSubTable(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glColorSubTable(
+            int target, int start, int count, int format, int type, long data_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glColorSubTable(target, start, count, format, type, data_buffer_offset);
     }
 
-    public static void glColorSubTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBImaging.glColorSubTable(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glColorSubTable(
+            int target, int start, int count, int format, int type, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBImaging.glColorSubTable(target, start, count, format, type, data);
     }
 
-    public static void glColorSubTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.DoubleBuffer arg5) {
+    public static void glColorSubTable(
+            int target, int start, int count, int format, int type, java.nio.DoubleBuffer data) {
 
-        org.lwjgl.opengl.ARBImaging.glColorSubTable(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glColorSubTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.FloatBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glColorSubTable(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glColorTable(int arg0, int arg1, int arg2, int arg3, int arg4, long arg5) {
-        org.lwjgl.opengl.ARBImaging.glColorTable(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glColorTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBImaging.glColorTable(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glColorTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.DoubleBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glColorTable(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glColorTable(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.FloatBuffer arg5) {
-        org.lwjgl.opengl.ARBImaging.glColorTable(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glColorTableParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glColorTableParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glColorTableParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glColorTableParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, long arg5) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.DoubleBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.FloatBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.IntBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.ShortBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4, org.lwjglx.MemoryUtil.getAddress(arg5));
-
-    }
-
-    public static void glConvolutionFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, long arg6) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-    }
-
-    public static void glConvolutionFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
-    }
-
-    public static void glConvolutionFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6));
-
-    }
-
-    public static void glConvolutionFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6) {
-
-        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6));
-
-    }
-
-    public static void glConvolutionParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glConvolutionParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glConvolutionParameterf(int arg0, int arg1, float arg2) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionParameterf(arg0, arg1, arg2);
-    }
-
-    public static void glConvolutionParameteri(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBImaging.glConvolutionParameteri(arg0, arg1, arg2);
-    }
-
-    public static void glCopyColorSubTable(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBImaging.glCopyColorSubTable(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glCopyColorTable(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBImaging.glCopyColorTable(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glCopyConvolutionFilter1D(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBImaging.glCopyConvolutionFilter1D(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glCopyConvolutionFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBImaging.glCopyConvolutionFilter2D(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glGetColorTable(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3) {
-        org.lwjgl.opengl.ARBImaging.glGetColorTable(arg0, arg1, arg2, arg3);
-    }
-
-    public static void glGetColorTable(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3) {
-
-        org.lwjgl.opengl.ARBImaging.glGetColorTable(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3));
-
-    }
-
-    public static void glGetColorTable(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3) {
-        org.lwjgl.opengl.ARBImaging.glGetColorTable(arg0, arg1, arg2, arg3);
-    }
-
-    public static void glGetColorTableParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetColorTableParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glGetColorTableParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetColorTableParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, long arg3) {
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, arg3);
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3) {
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, arg3);
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3) {
-
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3));
-
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3) {
-
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3));
-
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3) {
-
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3));
-
-    }
-
-    public static void glGetConvolutionFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3) {
-
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3));
-
-    }
-
-    public static void glGetConvolutionParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glGetConvolutionParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetConvolutionParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, long arg4) {
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, java.nio.DoubleBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, java.nio.FloatBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, java.nio.IntBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetHistogram(int arg0, boolean arg1, int arg2, int arg3, java.nio.ShortBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetHistogram(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetHistogramParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetHistogramParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glGetHistogramParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetHistogramParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, long arg4) {
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, arg4);
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, java.nio.DoubleBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, java.nio.FloatBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, java.nio.IntBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetMinmax(int arg0, boolean arg1, int arg2, int arg3, java.nio.ShortBuffer arg4) {
-
-        org.lwjgl.opengl.ARBImaging.glGetMinmax(arg0, arg1, arg2, arg3, org.lwjglx.MemoryUtil.getAddress(arg4));
-
-    }
-
-    public static void glGetMinmaxParameter(int arg0, int arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetMinmaxParameterfv(arg0, arg1, arg2);
-    }
-
-    public static void glGetMinmaxParameter(int arg0, int arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBImaging.glGetMinmaxParameteriv(arg0, arg1, arg2);
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, arg3, arg4, arg5);
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ByteBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ByteBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.IntBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.IntBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.IntBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ShortBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ShortBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ByteBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ByteBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+        org.lwjgl.opengl.ARBImaging.glColorSubTable(
+                target, start, count, format, type, org.lwjglx.MemoryUtil.getAddress(data));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glColorSubTable(
+            int target, int start, int count, int format, int type, java.nio.FloatBuffer data) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.IntBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.IntBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.IntBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
-    }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+        org.lwjgl.opengl.ARBImaging.glColorSubTable(
+                target, start, count, format, type, org.lwjglx.MemoryUtil.getAddress(data));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ShortBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glColorTable(
+            int target, int internalFormat, int width, int format, int type, long data_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glColorTable(target, internalFormat, width, format, type, data_buffer_offset);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ShortBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glColorTable(
+            int target, int internalFormat, int width, int format, int type, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBImaging.glColorTable(target, internalFormat, width, format, type, data);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glColorTable(
+            int target, int internalFormat, int width, int format, int type, java.nio.DoubleBuffer data) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glColorTable(
+                target, internalFormat, width, format, type, org.lwjglx.MemoryUtil.getAddress(data));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+    public static void glColorTable(
+            int target, int internalFormat, int width, int format, int type, java.nio.FloatBuffer data) {
+        org.lwjgl.opengl.ARBImaging.glColorTable(target, internalFormat, width, format, type, data);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ByteBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glColorTableParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glColorTableParameterfv(target, pname, params);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ByteBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glColorTableParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glColorTableParameteriv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, long image_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(
+                target, internalformat, width, format, type, image_buffer_offset);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
 
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, java.nio.ByteBuffer image) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(target, internalformat, width, format, type, image);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, java.nio.DoubleBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(
+                target, internalformat, width, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, java.nio.FloatBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(
+                target, internalformat, width, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, java.nio.IntBuffer image) {
 
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(
+                target, internalformat, width, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
+    public static void glConvolutionFilter1D(
+            int target, int internalformat, int width, int format, int type, java.nio.ShortBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter1D(
+                target, internalformat, width, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.IntBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glConvolutionFilter2D(
+            int target, int internalformat, int width, int height, int format, int type, long image_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(
+                target, internalformat, width, height, format, type, image_buffer_offset);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.IntBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glConvolutionFilter2D(
+            int target, int internalformat, int width, int height, int format, int type, java.nio.ByteBuffer image) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(target, internalformat, width, height, format, type, image);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.IntBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glConvolutionFilter2D(
+            int target, int internalformat, int width, int height, int format, int type, java.nio.IntBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(
+                target, internalformat, width, height, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ByteBuffer arg5) {
+    public static void glConvolutionFilter2D(
+            int target, int internalformat, int width, int height, int format, int type, java.nio.ShortBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+        org.lwjgl.opengl.ARBImaging.glConvolutionFilter2D(
+                target, internalformat, width, height, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ShortBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glConvolutionParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionParameterfv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ShortBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glConvolutionParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionParameteriv(target, pname, params);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glConvolutionParameterf(int target, int pname, float params) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionParameterf(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+    public static void glConvolutionParameteri(int target, int pname, int params) {
+        org.lwjgl.opengl.ARBImaging.glConvolutionParameteri(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glCopyColorSubTable(int target, int start, int x, int y, int width) {
+        org.lwjgl.opengl.ARBImaging.glCopyColorSubTable(target, start, x, y, width);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glCopyColorTable(int target, int internalformat, int x, int y, int width) {
+        org.lwjgl.opengl.ARBImaging.glCopyColorTable(target, internalformat, x, y, width);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glCopyConvolutionFilter1D(int target, int internalformat, int x, int y, int width) {
+        org.lwjgl.opengl.ARBImaging.glCopyConvolutionFilter1D(target, internalformat, x, y, width);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
 
+    public static void glCopyConvolutionFilter2D(int target, int internalformat, int x, int y, int width, int height) {
+        org.lwjgl.opengl.ARBImaging.glCopyConvolutionFilter2D(target, internalformat, x, y, width, height);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetColorTable(int target, int format, int type, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBImaging.glGetColorTable(target, format, type, data);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
+    public static void glGetColorTable(int target, int format, int type, java.nio.DoubleBuffer data) {
 
+        org.lwjgl.opengl.ARBImaging.glGetColorTable(target, format, type, org.lwjglx.MemoryUtil.getAddress(data));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetColorTable(int target, int format, int type, java.nio.FloatBuffer data) {
+        org.lwjgl.opengl.ARBImaging.glGetColorTable(target, format, type, data);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+    public static void glGetColorTableParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetColorTableParameterfv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glGetColorTableParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetColorTableParameteriv(target, pname, params);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetConvolutionFilter(int target, int format, int type, long image_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(target, format, type, image_buffer_offset);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetConvolutionFilter(int target, int format, int type, java.nio.ByteBuffer image) {
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(target, format, type, image);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ByteBuffer arg5) {
+    public static void glGetConvolutionFilter(int target, int format, int type, java.nio.DoubleBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(
+                target, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ShortBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
+    public static void glGetConvolutionFilter(int target, int format, int type, java.nio.FloatBuffer image) {
 
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(
+                target, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ShortBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetConvolutionFilter(int target, int format, int type, java.nio.IntBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(
+                target, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetConvolutionFilter(int target, int format, int type, java.nio.ShortBuffer image) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionFilter(
+                target, format, type, org.lwjglx.MemoryUtil.getAddress(image));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+    public static void glGetConvolutionParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionParameterfv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ByteBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glGetConvolutionParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetConvolutionParameteriv(target, pname, params);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ByteBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetHistogram(int target, boolean reset, int format, int type, long values_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(target, reset, format, type, values_buffer_offset);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ByteBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetHistogram(int target, boolean reset, int format, int type, java.nio.ByteBuffer values) {
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(target, reset, format, type, values);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
+    public static void glGetHistogram(int target, boolean reset, int format, int type, java.nio.DoubleBuffer values) {
 
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(
+                target, reset, format, type, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetHistogram(int target, boolean reset, int format, int type, java.nio.FloatBuffer values) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(
+                target, reset, format, type, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetHistogram(int target, boolean reset, int format, int type, java.nio.IntBuffer values) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(
+                target, reset, format, type, org.lwjglx.MemoryUtil.getAddress(values));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.DoubleBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
+    public static void glGetHistogram(int target, boolean reset, int format, int type, java.nio.ShortBuffer values) {
 
+        org.lwjgl.opengl.ARBImaging.glGetHistogram(
+                target, reset, format, type, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
-
+    public static void glGetHistogramParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetHistogramParameterfv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.IntBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetHistogramParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetHistogramParameteriv(target, pname, params);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.IntBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
 
+    public static void glGetMinmax(int target, boolean reset, int format, int types, long values_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, values_buffer_offset);
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.IntBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
-
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+    public static void glGetMinmax(int target, boolean reset, int format, int types, java.nio.ByteBuffer values) {
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, values);
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ByteBuffer arg5) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), arg5);
+    public static void glGetMinmax(int target, boolean reset, int format, int types, java.nio.DoubleBuffer values) {
 
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ShortBuffer arg4, java.nio.DoubleBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetMinmax(int target, boolean reset, int format, int types, java.nio.FloatBuffer values) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ShortBuffer arg4, java.nio.IntBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
+    public static void glGetMinmax(int target, boolean reset, int format, int types, java.nio.IntBuffer values) {
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
-
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, org.lwjglx.MemoryUtil.getAddress(values));
     }
-
-    public static void glGetSeparableFilter(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3, java.nio.ShortBuffer arg4, java.nio.ShortBuffer arg5) {
-        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(arg5);
 
-        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(arg0, arg1, arg2, org.lwjglx.MemoryUtil.getAddress(arg3), org.lwjglx.MemoryUtil.getAddress(arg4), wrappedArg5);
-        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(arg5, wrappedArg5);
+    public static void glGetMinmax(int target, boolean reset, int format, int types, java.nio.ShortBuffer values) {
 
+        org.lwjgl.opengl.ARBImaging.glGetMinmax(target, reset, format, types, org.lwjglx.MemoryUtil.getAddress(values));
     }
 
-    public static void glHistogram(int arg0, int arg1, int arg2, boolean arg3) {
-        org.lwjgl.opengl.ARBImaging.glHistogram(arg0, arg1, arg2, arg3);
+    public static void glGetMinmaxParameter(int target, int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetMinmaxParameterfv(target, pname, params);
     }
 
-    public static void glMinmax(int arg0, int arg1, boolean arg2) {
-        org.lwjgl.opengl.ARBImaging.glMinmax(arg0, arg1, arg2);
+    public static void glGetMinmaxParameter(int target, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBImaging.glGetMinmaxParameteriv(target, pname, params);
     }
 
-    public static void glResetHistogram(int arg0) {
-        org.lwjgl.opengl.ARBImaging.glResetHistogram(arg0);
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ByteBuffer span) {
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(target, format, type, row, column, span);
     }
 
-    public static void glResetMinmax(int arg0) {
-        org.lwjgl.opengl.ARBImaging.glResetMinmax(arg0);
-    }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, long arg6, long arg7) {
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
-    }
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6, java.nio.ByteBuffer arg7) {
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6, java.nio.DoubleBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6, java.nio.FloatBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6, java.nio.IntBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ByteBuffer span) {
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6, java.nio.ShortBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6, java.nio.ByteBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6, java.nio.DoubleBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6, java.nio.FloatBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ByteBuffer span) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6, java.nio.IntBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6, java.nio.ShortBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6, java.nio.ByteBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6, java.nio.DoubleBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ByteBuffer span) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6, java.nio.FloatBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6, java.nio.IntBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6, java.nio.ShortBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6, java.nio.ByteBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ByteBuffer span) {
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6, java.nio.DoubleBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6, java.nio.FloatBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6, java.nio.IntBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6, java.nio.ShortBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ByteBuffer span) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6, java.nio.ByteBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6, java.nio.DoubleBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6, java.nio.FloatBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
     }
 
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6, java.nio.IntBuffer arg7) {
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ByteBuffer span) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
     }
-
-    public static void glSeparableFilter2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6, java.nio.ShortBuffer arg7) {
 
-        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(arg0, arg1, arg2, arg3, arg4, arg5, org.lwjglx.MemoryUtil.getAddress(arg6), org.lwjglx.MemoryUtil.getAddress(arg7));
-
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ByteBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.DoubleBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.IntBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ByteBuffer span) {
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                span);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.DoubleBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.IntBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glGetSeparableFilter(
+            int target,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ShortBuffer column,
+            java.nio.ShortBuffer span) {
+        final java.nio.ByteBuffer wrappedArg5 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(span);
+
+        org.lwjgl.opengl.ARBImaging.glGetSeparableFilter(
+                target,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column),
+                wrappedArg5);
+        me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(span, wrappedArg5);
+    }
+
+    public static void glHistogram(int target, int width, int internalformat, boolean sink) {
+        org.lwjgl.opengl.ARBImaging.glHistogram(target, width, internalformat, sink);
+    }
+
+    public static void glMinmax(int target, int internalformat, boolean sink) {
+        org.lwjgl.opengl.ARBImaging.glMinmax(target, internalformat, sink);
+    }
+
+    public static void glResetHistogram(int target) {
+        org.lwjgl.opengl.ARBImaging.glResetHistogram(target);
+    }
+
+    public static void glResetMinmax(int target) {
+        org.lwjgl.opengl.ARBImaging.glResetMinmax(target);
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            long row_buffer_offset,
+            long column_buffer_offset) {
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target, internalformat, width, height, format, type, row_buffer_offset, column_buffer_offset);
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column) {
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target, internalformat, width, height, format, type, row, column);
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.DoubleBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.FloatBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.IntBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer row,
+            java.nio.ShortBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ByteBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.DoubleBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.FloatBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.IntBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer row,
+            java.nio.ShortBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ByteBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.DoubleBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.FloatBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.IntBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer row,
+            java.nio.ShortBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ByteBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.DoubleBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.FloatBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.IntBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer row,
+            java.nio.ShortBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ByteBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.DoubleBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.FloatBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.IntBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
+    }
+
+    public static void glSeparableFilter2D(
+            int target,
+            int internalformat,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer row,
+            java.nio.ShortBuffer column) {
+
+        org.lwjgl.opengl.ARBImaging.glSeparableFilter2D(
+                target,
+                internalformat,
+                width,
+                height,
+                format,
+                type,
+                org.lwjglx.MemoryUtil.getAddress(row),
+                org.lwjglx.MemoryUtil.getAddress(column));
     }
-
-
 }

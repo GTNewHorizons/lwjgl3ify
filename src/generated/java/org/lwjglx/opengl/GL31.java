@@ -1,85 +1,90 @@
 package org.lwjglx.opengl;
 
 public class GL31 {
-    public static void glCopyBufferSubData(int arg0, int arg1, long arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.GL31.glCopyBufferSubData(arg0, arg1, arg2, arg3, arg4);
+    public static void glCopyBufferSubData(
+            int readtarget, int writetarget, long readoffset, long writeoffset, long size) {
+        org.lwjgl.opengl.GL31.glCopyBufferSubData(readtarget, writetarget, readoffset, writeoffset, size);
     }
 
-    public static void glDrawArraysInstanced(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.GL31.glDrawArraysInstanced(arg0, arg1, arg2, arg3);
+    public static void glDrawArraysInstanced(int mode, int first, int count, int primcount) {
+        org.lwjgl.opengl.GL31.glDrawArraysInstanced(mode, first, count, primcount);
     }
 
-    public static void glDrawElementsInstanced(int arg0, int arg1, int arg2, long arg3, int arg4) {
-        org.lwjgl.opengl.GL31.glDrawElementsInstanced(arg0, arg1, arg2, arg3, arg4);
+    public static void glDrawElementsInstanced(
+            int mode, int indices_count, int type, long indices_buffer_offset, int primcount) {
+        org.lwjgl.opengl.GL31.glDrawElementsInstanced(mode, indices_count, type, indices_buffer_offset, primcount);
     }
 
-    public static void glDrawElementsInstanced(int arg0, java.nio.ByteBuffer arg1, int arg2) {
-        org.lwjgl.opengl.GL31.glDrawElementsInstanced(arg0, arg1, arg2);
+    public static void glDrawElementsInstanced(int mode, java.nio.ByteBuffer indices, int primcount) {
+        org.lwjgl.opengl.GL31.glDrawElementsInstanced(mode, indices, primcount);
     }
 
-    public static void glDrawElementsInstanced(int arg0, java.nio.IntBuffer arg1, int arg2) {
-        org.lwjgl.opengl.GL31.glDrawElementsInstanced(arg0, arg1, arg2);
+    public static void glDrawElementsInstanced(int mode, java.nio.IntBuffer indices, int primcount) {
+        org.lwjgl.opengl.GL31.glDrawElementsInstanced(mode, indices, primcount);
     }
 
-    public static void glDrawElementsInstanced(int arg0, java.nio.ShortBuffer arg1, int arg2) {
-        org.lwjgl.opengl.GL31.glDrawElementsInstanced(arg0, arg1, arg2);
+    public static void glDrawElementsInstanced(int mode, java.nio.ShortBuffer indices, int primcount) {
+        org.lwjgl.opengl.GL31.glDrawElementsInstanced(mode, indices, primcount);
     }
 
-    public static void glGetActiveUniformBlock(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3) {
-        org.lwjgl.opengl.GL31.glGetActiveUniformBlockiv(arg0, arg1, arg2, arg3);
+    public static void glGetActiveUniformBlock(
+            int program, int uniformBlockIndex, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.GL31.glGetActiveUniformBlockiv(program, uniformBlockIndex, pname, params);
     }
 
-    public static java.lang.String glGetActiveUniformBlockName(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.GL31.glGetActiveUniformBlockName(arg0, arg1, arg2);
+    public static java.lang.String glGetActiveUniformBlockName(int program, int uniformBlockIndex, int bufSize) {
+        return org.lwjgl.opengl.GL31.glGetActiveUniformBlockName(program, uniformBlockIndex, bufSize);
     }
 
-    public static void glGetActiveUniformBlockName(int arg0, int arg1, java.nio.IntBuffer arg2, java.nio.ByteBuffer arg3) {
-        org.lwjgl.opengl.GL31.glGetActiveUniformBlockName(arg0, arg1, arg2, arg3);
+    public static void glGetActiveUniformBlockName(
+            int program, int uniformBlockIndex, java.nio.IntBuffer length, java.nio.ByteBuffer uniformBlockName) {
+        org.lwjgl.opengl.GL31.glGetActiveUniformBlockName(program, uniformBlockIndex, length, uniformBlockName);
     }
 
-    public static int glGetActiveUniformBlocki(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.GL31.glGetActiveUniformBlocki(arg0, arg1, arg2);
+    public static int glGetActiveUniformBlocki(int program, int uniformBlockIndex, int pname) {
+        return org.lwjgl.opengl.GL31.glGetActiveUniformBlocki(program, uniformBlockIndex, pname);
     }
 
-    public static java.lang.String glGetActiveUniformName(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.GL31.glGetActiveUniformName(arg0, arg1, arg2);
+    public static java.lang.String glGetActiveUniformName(int program, int uniformIndex, int bufSize) {
+        return org.lwjgl.opengl.GL31.glGetActiveUniformName(program, uniformIndex, bufSize);
     }
 
-    public static void glGetActiveUniformName(int arg0, int arg1, java.nio.IntBuffer arg2, java.nio.ByteBuffer arg3) {
-        org.lwjgl.opengl.GL31.glGetActiveUniformName(arg0, arg1, arg2, arg3);
+    public static void glGetActiveUniformName(
+            int program, int uniformIndex, java.nio.IntBuffer length, java.nio.ByteBuffer uniformName) {
+        org.lwjgl.opengl.GL31.glGetActiveUniformName(program, uniformIndex, length, uniformName);
     }
 
-    public static void glGetActiveUniforms(int arg0, java.nio.IntBuffer arg1, int arg2, java.nio.IntBuffer arg3) {
-        org.lwjgl.opengl.GL31.glGetActiveUniformsiv(arg0, arg1, arg2, arg3);
+    public static void glGetActiveUniforms(
+            int program, java.nio.IntBuffer uniformIndices, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.GL31.glGetActiveUniformsiv(program, uniformIndices, pname, params);
     }
 
-    public static int glGetActiveUniformsi(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.GL31.glGetActiveUniformsi(arg0, arg1, arg2);
+    public static int glGetActiveUniformsi(int program, int uniformIndex, int pname) {
+        return org.lwjgl.opengl.GL31.glGetActiveUniformsi(program, uniformIndex, pname);
     }
 
-    public static int glGetUniformBlockIndex(int arg0, java.lang.CharSequence arg1) {
-        return org.lwjgl.opengl.GL31.glGetUniformBlockIndex(arg0, arg1);
+    public static int glGetUniformBlockIndex(int program, java.lang.CharSequence uniformBlockName) {
+        return org.lwjgl.opengl.GL31.glGetUniformBlockIndex(program, uniformBlockName);
     }
 
-    public static int glGetUniformBlockIndex(int arg0, java.nio.ByteBuffer arg1) {
-        return org.lwjgl.opengl.GL31.glGetUniformBlockIndex(arg0, arg1);
+    public static int glGetUniformBlockIndex(int program, java.nio.ByteBuffer uniformBlockName) {
+        return org.lwjgl.opengl.GL31.glGetUniformBlockIndex(program, uniformBlockName);
     }
 
-    public static void glGetUniformIndices(int arg0, java.lang.CharSequence[] arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.GL31.glGetUniformIndices(arg0, arg1, arg2);
+    public static void glGetUniformIndices(
+            int program, java.lang.CharSequence[] uniformNames, java.nio.IntBuffer uniformIndices) {
+        org.lwjgl.opengl.GL31.glGetUniformIndices(program, uniformNames, uniformIndices);
     }
 
-    public static void glPrimitiveRestartIndex(int arg0) {
-        org.lwjgl.opengl.GL31.glPrimitiveRestartIndex(arg0);
+    public static void glPrimitiveRestartIndex(int index) {
+        org.lwjgl.opengl.GL31.glPrimitiveRestartIndex(index);
     }
 
-    public static void glTexBuffer(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.GL31.glTexBuffer(arg0, arg1, arg2);
+    public static void glTexBuffer(int target, int internalformat, int buffer) {
+        org.lwjgl.opengl.GL31.glTexBuffer(target, internalformat, buffer);
     }
 
-    public static void glUniformBlockBinding(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.GL31.glUniformBlockBinding(arg0, arg1, arg2);
+    public static void glUniformBlockBinding(int program, int uniformBlockIndex, int uniformBlockBinding) {
+        org.lwjgl.opengl.GL31.glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
     }
-
-
 }

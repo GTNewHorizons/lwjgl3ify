@@ -1,21 +1,26 @@
 package org.lwjglx.opengl;
 
 public class AMDDebugOutput {
-    public static void glDebugMessageEnableAMD(int arg0, int arg1, java.nio.IntBuffer arg2, boolean arg3) {
-        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageEnableAMD(arg0, arg1, arg2, arg3);
+    public static void glDebugMessageEnableAMD(int category, int severity, java.nio.IntBuffer ids, boolean enabled) {
+        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageEnableAMD(category, severity, ids, enabled);
     }
 
-    public static void glDebugMessageInsertAMD(int arg0, int arg1, int arg2, java.lang.CharSequence arg3) {
-        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageInsertAMD(arg0, arg1, arg2, arg3);
+    public static void glDebugMessageInsertAMD(int category, int severity, int id, java.lang.CharSequence buf) {
+        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageInsertAMD(category, severity, id, buf);
     }
 
-    public static void glDebugMessageInsertAMD(int arg0, int arg1, int arg2, java.nio.ByteBuffer arg3) {
-        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageInsertAMD(arg0, arg1, arg2, arg3);
+    public static void glDebugMessageInsertAMD(int category, int severity, int id, java.nio.ByteBuffer buf) {
+        org.lwjgl.opengl.AMDDebugOutput.glDebugMessageInsertAMD(category, severity, id, buf);
     }
 
-    public static int glGetDebugMessageLogAMD(int arg0, java.nio.IntBuffer arg1, java.nio.IntBuffer arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-        return org.lwjgl.opengl.AMDDebugOutput.glGetDebugMessageLogAMD(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static int glGetDebugMessageLogAMD(
+            int count,
+            java.nio.IntBuffer categories,
+            java.nio.IntBuffer severities,
+            java.nio.IntBuffer ids,
+            java.nio.IntBuffer lengths,
+            java.nio.ByteBuffer messageLog) {
+        return org.lwjgl.opengl.AMDDebugOutput.glGetDebugMessageLogAMD(
+                count, categories, severities, ids, lengths, messageLog);
     }
-
-
 }

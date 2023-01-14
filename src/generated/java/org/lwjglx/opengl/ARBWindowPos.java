@@ -1,37 +1,35 @@
 package org.lwjglx.opengl;
 
 public class ARBWindowPos {
-    public static void glWindowPos2dARB(double arg0, double arg1) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos2dARB(arg0, arg1);
+    public static void glWindowPos2dARB(double x, double y) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos2dARB(x, y);
     }
 
-    public static void glWindowPos2fARB(float arg0, float arg1) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos2fARB(arg0, arg1);
+    public static void glWindowPos2fARB(float x, float y) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos2fARB(x, y);
     }
 
-    public static void glWindowPos2iARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos2iARB(arg0, arg1);
+    public static void glWindowPos2iARB(int x, int y) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos2iARB(x, y);
     }
 
-    public static void glWindowPos2sARB(short arg0, short arg1) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos2sARB(arg0, arg1);
+    public static void glWindowPos2sARB(short x, short y) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos2sARB(x, y);
     }
 
-    public static void glWindowPos3dARB(double arg0, double arg1, double arg2) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos3dARB(arg0, arg1, arg2);
+    public static void glWindowPos3dARB(double x, double y, double z) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos3dARB(x, y, z);
     }
 
-    public static void glWindowPos3fARB(float arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos3fARB(arg0, arg1, arg2);
+    public static void glWindowPos3fARB(float x, float y, float z) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos3fARB(x, y, z);
     }
 
-    public static void glWindowPos3iARB(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos3iARB(arg0, arg1, arg2);
+    public static void glWindowPos3iARB(int x, int y, int z) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos3iARB(x, y, z);
     }
 
-    public static void glWindowPos3sARB(short arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.ARBWindowPos.glWindowPos3sARB(arg0, arg1, arg2);
+    public static void glWindowPos3sARB(short x, short y, short z) {
+        org.lwjgl.opengl.ARBWindowPos.glWindowPos3sARB(x, y, z);
     }
-
-
 }

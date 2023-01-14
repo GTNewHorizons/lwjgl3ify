@@ -1,29 +1,31 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureStorage {
-    public static void glTexStorage1D(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBTextureStorage.glTexStorage1D(arg0, arg1, arg2, arg3);
+    public static void glTexStorage1D(int target, int levels, int internalformat, int width) {
+        org.lwjgl.opengl.ARBTextureStorage.glTexStorage1D(target, levels, internalformat, width);
     }
 
-    public static void glTexStorage2D(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBTextureStorage.glTexStorage2D(arg0, arg1, arg2, arg3, arg4);
+    public static void glTexStorage2D(int target, int levels, int internalformat, int width, int height) {
+        org.lwjgl.opengl.ARBTextureStorage.glTexStorage2D(target, levels, internalformat, width, height);
     }
 
-    public static void glTexStorage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBTextureStorage.glTexStorage3D(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glTexStorage3D(int target, int levels, int internalformat, int width, int height, int depth) {
+        org.lwjgl.opengl.ARBTextureStorage.glTexStorage3D(target, levels, internalformat, width, height, depth);
     }
 
-    public static void glTextureStorage1DEXT(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage1DEXT(arg0, arg1, arg2, arg3, arg4);
+    public static void glTextureStorage1DEXT(int texture, int target, int levels, int internalformat, int width) {
+        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage1DEXT(texture, target, levels, internalformat, width);
     }
 
-    public static void glTextureStorage2DEXT(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage2DEXT(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glTextureStorage2DEXT(
+            int texture, int target, int levels, int internalformat, int width, int height) {
+        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage2DEXT(
+                texture, target, levels, internalformat, width, height);
     }
 
-    public static void glTextureStorage3DEXT(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6) {
-        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage3DEXT(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureStorage3DEXT(
+            int texture, int target, int levels, int internalformat, int width, int height, int depth) {
+        org.lwjgl.opengl.ARBTextureStorage.glTextureStorage3DEXT(
+                texture, target, levels, internalformat, width, height, depth);
     }
-
-
 }

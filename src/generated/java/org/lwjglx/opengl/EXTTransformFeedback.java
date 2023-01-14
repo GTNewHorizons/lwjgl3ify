@@ -1,37 +1,44 @@
 package org.lwjglx.opengl;
 
 public class EXTTransformFeedback {
-    public static void glBeginTransformFeedbackEXT(int arg0) {
-        org.lwjgl.opengl.EXTTransformFeedback.glBeginTransformFeedbackEXT(arg0);
+    public static void glBeginTransformFeedbackEXT(int primitiveMode) {
+        org.lwjgl.opengl.EXTTransformFeedback.glBeginTransformFeedbackEXT(primitiveMode);
     }
 
-    public static void glBindBufferBaseEXT(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferBaseEXT(arg0, arg1, arg2);
+    public static void glBindBufferBaseEXT(int target, int index, int buffer) {
+        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferBaseEXT(target, index, buffer);
     }
 
-    public static void glBindBufferOffsetEXT(int arg0, int arg1, int arg2, long arg3) {
-        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferOffsetEXT(arg0, arg1, arg2, arg3);
+    public static void glBindBufferOffsetEXT(int target, int index, int buffer, long offset) {
+        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferOffsetEXT(target, index, buffer, offset);
     }
 
-    public static void glBindBufferRangeEXT(int arg0, int arg1, int arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferRangeEXT(arg0, arg1, arg2, arg3, arg4);
+    public static void glBindBufferRangeEXT(int target, int index, int buffer, long offset, long size) {
+        org.lwjgl.opengl.EXTTransformFeedback.glBindBufferRangeEXT(target, index, buffer, offset, size);
     }
 
     public static void glEndTransformFeedbackEXT() {
         org.lwjgl.opengl.EXTTransformFeedback.glEndTransformFeedbackEXT();
     }
 
-    public static java.lang.String glGetTransformFeedbackVaryingEXT(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4) {
-        return org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(arg0, arg1, arg2, arg3, arg4);
+    public static java.lang.String glGetTransformFeedbackVaryingEXT(
+            int program, int index, int bufSize, java.nio.IntBuffer size, java.nio.IntBuffer type) {
+        return org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(
+                program, index, bufSize, size, type);
     }
 
-    public static void glGetTransformFeedbackVaryingEXT(int arg0, int arg1, java.nio.IntBuffer arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glGetTransformFeedbackVaryingEXT(
+            int program,
+            int index,
+            java.nio.IntBuffer length,
+            java.nio.IntBuffer size,
+            java.nio.IntBuffer type,
+            java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(
+                program, index, length, size, type, name);
     }
 
-    public static void glTransformFeedbackVaryingsEXT(int arg0, java.lang.CharSequence[] arg1, int arg2) {
-        org.lwjgl.opengl.EXTTransformFeedback.glTransformFeedbackVaryingsEXT(arg0, arg1, arg2);
+    public static void glTransformFeedbackVaryingsEXT(int program, java.lang.CharSequence[] varyings, int bufferMode) {
+        org.lwjgl.opengl.EXTTransformFeedback.glTransformFeedbackVaryingsEXT(program, varyings, bufferMode);
     }
-
-
 }

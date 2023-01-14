@@ -1,69 +1,67 @@
 package org.lwjglx.opengl;
 
 public class NVShaderBufferLoad {
-    public static void glGetBufferParameteruNV(int arg0, int arg1, java.nio.LongBuffer arg2) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glGetBufferParameterui64vNV(arg0, arg1, arg2);
+    public static void glGetBufferParameteruNV(int target, int pname, java.nio.LongBuffer params) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glGetBufferParameterui64vNV(target, pname, params);
     }
 
-    public static long glGetBufferParameterui64NV(int arg0, int arg1) {
-        return org.lwjgl.opengl.NVShaderBufferLoad.glGetBufferParameterui64NV(arg0, arg1);
+    public static long glGetBufferParameterui64NV(int target, int pname) {
+        return org.lwjgl.opengl.NVShaderBufferLoad.glGetBufferParameterui64NV(target, pname);
     }
 
-    public static void glGetIntegeruNV(int arg0, java.nio.LongBuffer arg1) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glGetIntegerui64vNV(arg0, arg1);
+    public static void glGetIntegeruNV(int value, java.nio.LongBuffer result) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glGetIntegerui64vNV(value, result);
     }
 
-    public static long glGetIntegerui64NV(int arg0) {
-        return org.lwjgl.opengl.NVShaderBufferLoad.glGetIntegerui64NV(arg0);
+    public static long glGetIntegerui64NV(int value) {
+        return org.lwjgl.opengl.NVShaderBufferLoad.glGetIntegerui64NV(value);
     }
 
-    public static void glGetNamedBufferParameteruNV(int arg0, int arg1, java.nio.LongBuffer arg2) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glGetNamedBufferParameterui64vNV(arg0, arg1, arg2);
+    public static void glGetNamedBufferParameteruNV(int buffer, int pname, java.nio.LongBuffer params) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glGetNamedBufferParameterui64vNV(buffer, pname, params);
     }
 
-    public static long glGetNamedBufferParameterui64NV(int arg0, int arg1) {
-        return org.lwjgl.opengl.NVShaderBufferLoad.glGetNamedBufferParameterui64NV(arg0, arg1);
+    public static long glGetNamedBufferParameterui64NV(int buffer, int pname) {
+        return org.lwjgl.opengl.NVShaderBufferLoad.glGetNamedBufferParameterui64NV(buffer, pname);
     }
 
-    public static boolean glIsBufferResidentNV(int arg0) {
-        return org.lwjgl.opengl.NVShaderBufferLoad.glIsBufferResidentNV(arg0);
+    public static boolean glIsBufferResidentNV(int target) {
+        return org.lwjgl.opengl.NVShaderBufferLoad.glIsBufferResidentNV(target);
     }
 
-    public static boolean glIsNamedBufferResidentNV(int arg0) {
-        return org.lwjgl.opengl.NVShaderBufferLoad.glIsNamedBufferResidentNV(arg0);
+    public static boolean glIsNamedBufferResidentNV(int buffer) {
+        return org.lwjgl.opengl.NVShaderBufferLoad.glIsNamedBufferResidentNV(buffer);
     }
 
-    public static void glMakeBufferNonResidentNV(int arg0) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glMakeBufferNonResidentNV(arg0);
+    public static void glMakeBufferNonResidentNV(int target) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glMakeBufferNonResidentNV(target);
     }
 
-    public static void glMakeBufferResidentNV(int arg0, int arg1) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glMakeBufferResidentNV(arg0, arg1);
+    public static void glMakeBufferResidentNV(int target, int access) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glMakeBufferResidentNV(target, access);
     }
 
-    public static void glMakeNamedBufferNonResidentNV(int arg0) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glMakeNamedBufferNonResidentNV(arg0);
+    public static void glMakeNamedBufferNonResidentNV(int buffer) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glMakeNamedBufferNonResidentNV(buffer);
     }
 
-    public static void glMakeNamedBufferResidentNV(int arg0, int arg1) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glMakeNamedBufferResidentNV(arg0, arg1);
+    public static void glMakeNamedBufferResidentNV(int buffer, int access) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glMakeNamedBufferResidentNV(buffer, access);
     }
 
-    public static void glProgramUniformuNV(int arg0, int arg1, java.nio.LongBuffer arg2) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glProgramUniformui64vNV(arg0, arg1, arg2);
+    public static void glProgramUniformuNV(int program, int location, java.nio.LongBuffer value) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glProgramUniformui64vNV(program, location, value);
     }
 
-    public static void glProgramUniformui64NV(int arg0, int arg1, long arg2) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glProgramUniformui64NV(arg0, arg1, arg2);
+    public static void glProgramUniformui64NV(int program, int location, long value) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glProgramUniformui64NV(program, location, value);
     }
 
-    public static void glUniformuNV(int arg0, java.nio.LongBuffer arg1) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glUniformui64vNV(arg0, arg1);
+    public static void glUniformuNV(int location, java.nio.LongBuffer value) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glUniformui64vNV(location, value);
     }
 
-    public static void glUniformui64NV(int arg0, long arg1) {
-        org.lwjgl.opengl.NVShaderBufferLoad.glUniformui64NV(arg0, arg1);
+    public static void glUniformui64NV(int location, long value) {
+        org.lwjgl.opengl.NVShaderBufferLoad.glUniformui64NV(location, value);
     }
-
-
 }

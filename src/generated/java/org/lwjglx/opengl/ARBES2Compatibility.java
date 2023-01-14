@@ -1,25 +1,24 @@
 package org.lwjglx.opengl;
 
 public class ARBES2Compatibility {
-    public static void glClearDepthf(float arg0) {
-        org.lwjgl.opengl.ARBES2Compatibility.glClearDepthf(arg0);
+    public static void glClearDepthf(float d) {
+        org.lwjgl.opengl.ARBES2Compatibility.glClearDepthf(d);
     }
 
-    public static void glDepthRangef(float arg0, float arg1) {
-        org.lwjgl.opengl.ARBES2Compatibility.glDepthRangef(arg0, arg1);
+    public static void glDepthRangef(float n, float f) {
+        org.lwjgl.opengl.ARBES2Compatibility.glDepthRangef(n, f);
     }
 
-    public static void glGetShaderPrecisionFormat(int arg0, int arg1, java.nio.IntBuffer arg2, java.nio.IntBuffer arg3) {
-        org.lwjgl.opengl.ARBES2Compatibility.glGetShaderPrecisionFormat(arg0, arg1, arg2, arg3);
+    public static void glGetShaderPrecisionFormat(
+            int shadertype, int precisiontype, java.nio.IntBuffer range, java.nio.IntBuffer precision) {
+        org.lwjgl.opengl.ARBES2Compatibility.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
     }
 
     public static void glReleaseShaderCompiler() {
         org.lwjgl.opengl.ARBES2Compatibility.glReleaseShaderCompiler();
     }
 
-    public static void glShaderBinary(java.nio.IntBuffer arg0, int arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBES2Compatibility.glShaderBinary(arg0, arg1, arg2);
+    public static void glShaderBinary(java.nio.IntBuffer shaders, int binaryformat, java.nio.ByteBuffer binary) {
+        org.lwjgl.opengl.ARBES2Compatibility.glShaderBinary(shaders, binaryformat, binary);
     }
-
-
 }

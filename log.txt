@@ -1295,14 +1295,8 @@ org/lwjgl/opengl/ARBVertexBlend
  > glWeightARB:(Ljava/nio/IntBuffer;)V --> glWeightivARB:(Ljava/nio/IntBuffer;)V
  > glWeightARB:(Ljava/nio/ShortBuffer;)V --> glWeightsvARB:(Ljava/nio/ShortBuffer;)V
  + glWeightPointerARB:(IIIJ)V
- - glWeightPointerARB:(IILjava/nio/DoubleBuffer;)V
- - glWeightPointerARB:(IILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexBlend : glWeightPointerARB:(IZILjava/nio/ByteBuffer;)V
- - glWeightPointerARB:(IZILjava/nio/ByteBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexBlend : glWeightPointerARB:(IZILjava/nio/IntBuffer;)V
- - glWeightPointerARB:(IZILjava/nio/IntBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexBlend : glWeightPointerARB:(IZILjava/nio/ShortBuffer;)V
- - glWeightPointerARB:(IZILjava/nio/ShortBuffer;)V
+ > glWeightPointerARB:(IILjava/nio/DoubleBuffer;)V --> glWeightPointerARB:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glWeightPointerARB:(IILjava/nio/FloatBuffer;)V --> glWeightPointerARB:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
  > glWeightuARB:(Ljava/nio/ByteBuffer;)V --> glWeightubvARB:(Ljava/nio/ByteBuffer;)V
  > glWeightuARB:(Ljava/nio/IntBuffer;)V --> glWeightuivARB:(Ljava/nio/IntBuffer;)V
  > glWeightuARB:(Ljava/nio/ShortBuffer;)V --> glWeightusvARB:(Ljava/nio/ShortBuffer;)V
@@ -1365,14 +1359,8 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glVertexAttrib4sARB:(ISSSS)V
  + glVertexAttribPointerARB:(IIIZIJ)V
  + glVertexAttribPointerARB:(IIIZILjava/nio/ByteBuffer;)V
- - glVertexAttribPointerARB:(IIZILjava/nio/DoubleBuffer;)V
- - glVertexAttribPointerARB:(IIZILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexShader : glVertexAttribPointerARB:(IIZZILjava/nio/ByteBuffer;)V
- - glVertexAttribPointerARB:(IIZZILjava/nio/ByteBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexShader : glVertexAttribPointerARB:(IIZZILjava/nio/IntBuffer;)V
- - glVertexAttribPointerARB:(IIZZILjava/nio/IntBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/ARBVertexShader : glVertexAttribPointerARB:(IIZZILjava/nio/ShortBuffer;)V
- - glVertexAttribPointerARB:(IIZZILjava/nio/ShortBuffer;)V
+ > glVertexAttribPointerARB:(IIZILjava/nio/DoubleBuffer;)V --> glVertexAttribPointerARB:(IIIZILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexAttribPointerARB:(IIZILjava/nio/FloatBuffer;)V --> glVertexAttribPointerARB:(IIIZILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
 org/lwjgl/opengl/ARBVertexType2_10_10_10_REV
  - glColorP3u:(ILjava/nio/IntBuffer;)V
  + glColorP3ui:(II)V
@@ -1670,8 +1658,8 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glMatrixTranslatefEXT:(IFFF)V
  + glMultiTexBufferEXT:(IIII)V
  + glMultiTexCoordPointerEXT:(IIIIJ)V
- - glMultiTexCoordPointerEXT:(IIILjava/nio/DoubleBuffer;)V
- - glMultiTexCoordPointerEXT:(IIILjava/nio/FloatBuffer;)V
+ > glMultiTexCoordPointerEXT:(IIILjava/nio/DoubleBuffer;)V --> glMultiTexCoordPointerEXT:(IIIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glMultiTexCoordPointerEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexCoordPointerEXT:(IIIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
  > glMultiTexEnvEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexEnvfvEXT:(IIILjava/nio/FloatBuffer;)V
  > glMultiTexEnvEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexEnvivEXT:(IIILjava/nio/IntBuffer;)V
  + glMultiTexEnvfEXT:(IIIF)V
@@ -1925,10 +1913,8 @@ org/lwjgl/opengl/EXTSecondaryColor
  + glSecondaryColor3fEXT:(FFF)V
  + glSecondaryColor3ubEXT:(BBB)V
  + glSecondaryColorPointerEXT:(IIIJ)V
- - glSecondaryColorPointerEXT:(IILjava/nio/DoubleBuffer;)V
- - glSecondaryColorPointerEXT:(IILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/EXTSecondaryColor : glSecondaryColorPointerEXT:(IZILjava/nio/ByteBuffer;)V
- - glSecondaryColorPointerEXT:(IZILjava/nio/ByteBuffer;)V
+ > glSecondaryColorPointerEXT:(IILjava/nio/DoubleBuffer;)V --> glSecondaryColorPointerEXT:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glSecondaryColorPointerEXT:(IILjava/nio/FloatBuffer;)V --> glSecondaryColorPointerEXT:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
 org/lwjgl/opengl/EXTSeparateShaderObjects
  + glActiveProgramEXT:(I)V
  + glCreateShaderProgramEXT:(ILjava/lang/CharSequence;)I
@@ -2037,10 +2023,8 @@ org/lwjgl/opengl/GL11
  + glColorMaterial:(II)V
  + glColorPointer:(IIIJ)V
  + glColorPointer:(IIILjava/nio/ByteBuffer;)V
- - glColorPointer:(IILjava/nio/DoubleBuffer;)V
- - glColorPointer:(IILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/GL11 : glColorPointer:(IZILjava/nio/ByteBuffer;)V
- - glColorPointer:(IZILjava/nio/ByteBuffer;)V
+ > glColorPointer:(IILjava/nio/DoubleBuffer;)V --> glColorPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glColorPointer:(IILjava/nio/FloatBuffer;)V --> glColorPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
  + glCopyPixels:(IIIII)V
  + glCopyTexImage1D:(IIIIIII)V
  + glCopyTexImage2D:(IIIIIIII)V
@@ -2193,10 +2177,10 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glNormal3i:(III)V
  + glNormalPointer:(IIJ)V
  + glNormalPointer:(IILjava/nio/ByteBuffer;)V
- - glNormalPointer:(ILjava/nio/ByteBuffer;)V
- - glNormalPointer:(ILjava/nio/DoubleBuffer;)V
- - glNormalPointer:(ILjava/nio/FloatBuffer;)V
- - glNormalPointer:(ILjava/nio/IntBuffer;)V
+ > glNormalPointer:(ILjava/nio/ByteBuffer;)V --> glNormalPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_BYTE
+ > glNormalPointer:(ILjava/nio/DoubleBuffer;)V --> glNormalPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glNormalPointer:(ILjava/nio/FloatBuffer;)V --> glNormalPointer:(IILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glNormalPointer:(ILjava/nio/IntBuffer;)V --> glNormalPointer:(IILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
  + glOrtho:(DDDDDD)V
  + glPassThrough:(F)V
  > glPixelMap:(ILjava/nio/FloatBuffer;)V --> glPixelMapfv:(ILjava/nio/FloatBuffer;)V
@@ -2263,10 +2247,10 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glTexCoord4f:(FFFF)V
  + glTexCoordPointer:(IIIJ)V
  + glTexCoordPointer:(IIILjava/nio/ByteBuffer;)V
- - glTexCoordPointer:(IILjava/nio/DoubleBuffer;)V
- - glTexCoordPointer:(IILjava/nio/FloatBuffer;)V
- - glTexCoordPointer:(IILjava/nio/IntBuffer;)V
- - glTexCoordPointer:(IILjava/nio/ShortBuffer;)V
+ > glTexCoordPointer:(IILjava/nio/DoubleBuffer;)V --> glTexCoordPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glTexCoordPointer:(IILjava/nio/FloatBuffer;)V --> glTexCoordPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glTexCoordPointer:(IILjava/nio/IntBuffer;)V --> glTexCoordPointer:(IIILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
+ > glTexCoordPointer:(IILjava/nio/ShortBuffer;)V --> glTexCoordPointer:(IIILjava/nio/ShortBuffer;)V @org.lwjgl.opengl.GL11.GL_SHORT
  > glTexEnv:(IILjava/nio/FloatBuffer;)V --> glTexEnvfv:(IILjava/nio/FloatBuffer;)V
  > glTexEnv:(IILjava/nio/IntBuffer;)V --> glTexEnviv:(IILjava/nio/IntBuffer;)V
  + glTexEnvf:(IIF)V
@@ -2318,10 +2302,10 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glVertex4i:(IIII)V
  + glVertexPointer:(IIIJ)V
  + glVertexPointer:(IIILjava/nio/ByteBuffer;)V
- - glVertexPointer:(IILjava/nio/DoubleBuffer;)V
- - glVertexPointer:(IILjava/nio/FloatBuffer;)V
- - glVertexPointer:(IILjava/nio/IntBuffer;)V
- - glVertexPointer:(IILjava/nio/ShortBuffer;)V
+ > glVertexPointer:(IILjava/nio/DoubleBuffer;)V --> glVertexPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexPointer:(IILjava/nio/FloatBuffer;)V --> glVertexPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glVertexPointer:(IILjava/nio/IntBuffer;)V --> glVertexPointer:(IIILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
+ > glVertexPointer:(IILjava/nio/ShortBuffer;)V --> glVertexPointer:(IIILjava/nio/ShortBuffer;)V @org.lwjgl.opengl.GL11.GL_SHORT
  + glViewport:(IIII)V
 org/lwjgl/opengl/GL12
  + glCopyTexSubImage3D:(IIIIIIIII)V
@@ -2379,8 +2363,8 @@ org/lwjgl/opengl/GL14
  + glBlendEquation:(I)V
  + glBlendFuncSeparate:(IIII)V
  + glFogCoordPointer:(IIJ)V
- - glFogCoordPointer:(ILjava/nio/DoubleBuffer;)V
- - glFogCoordPointer:(ILjava/nio/FloatBuffer;)V
+ > glFogCoordPointer:(ILjava/nio/DoubleBuffer;)V --> glFogCoordPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glFogCoordPointer:(ILjava/nio/FloatBuffer;)V --> glFogCoordPointer:(IILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
  + glFogCoordd:(D)V
  + glFogCoordf:(F)V
  + glMultiDrawArrays:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
@@ -2393,10 +2377,8 @@ org/lwjgl/opengl/GL14
  + glSecondaryColor3f:(FFF)V
  + glSecondaryColor3ub:(BBB)V
  + glSecondaryColorPointer:(IIIJ)V
- - glSecondaryColorPointer:(IILjava/nio/DoubleBuffer;)V
- - glSecondaryColorPointer:(IILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/GL14 : glSecondaryColorPointer:(IZILjava/nio/ByteBuffer;)V
- - glSecondaryColorPointer:(IZILjava/nio/ByteBuffer;)V
+ > glSecondaryColorPointer:(IILjava/nio/DoubleBuffer;)V --> glSecondaryColorPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glSecondaryColorPointer:(IILjava/nio/FloatBuffer;)V --> glSecondaryColorPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
  + glWindowPos2d:(DD)V
  + glWindowPos2f:(FF)V
  + glWindowPos2i:(II)V
@@ -2541,14 +2523,8 @@ java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/
  + glVertexAttrib4s:(ISSSS)V
  + glVertexAttribPointer:(IIIZIJ)V
  + glVertexAttribPointer:(IIIZILjava/nio/ByteBuffer;)V
- - glVertexAttribPointer:(IIZILjava/nio/DoubleBuffer;)V
- - glVertexAttribPointer:(IIZILjava/nio/FloatBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/GL20 : glVertexAttribPointer:(IIZZILjava/nio/ByteBuffer;)V
- - glVertexAttribPointer:(IIZZILjava/nio/ByteBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/GL20 : glVertexAttribPointer:(IIZZILjava/nio/IntBuffer;)V
- - glVertexAttribPointer:(IIZZILjava/nio/IntBuffer;)V
-java.lang.UnsupportedOperationException: boolean -> int in org/lwjgl/opengl/GL20 : glVertexAttribPointer:(IIZZILjava/nio/ShortBuffer;)V
- - glVertexAttribPointer:(IIZZILjava/nio/ShortBuffer;)V
+ > glVertexAttribPointer:(IIZILjava/nio/DoubleBuffer;)V --> glVertexAttribPointer:(IIIZILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexAttribPointer:(IIZILjava/nio/FloatBuffer;)V --> glVertexAttribPointer:(IIIZILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
 org/lwjgl/opengl/GL21
  > glUniformMatrix2x3:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2x3fv:(IZLjava/nio/FloatBuffer;)V
  > glUniformMatrix2x4:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2x4fv:(IZLjava/nio/FloatBuffer;)V
@@ -3626,5 +3602,5 @@ Missing in mod: org/lwjgl/util/vector/Vector2f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
 
-BUILD SUCCESSFUL in 1s
+BUILD SUCCESSFUL in 2s
 21 actionable tasks: 2 executed, 19 up-to-date

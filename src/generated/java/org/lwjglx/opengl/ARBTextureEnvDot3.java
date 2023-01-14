@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class ARBTextureEnvDot3 {
-
-}
+public class ARBTextureEnvDot3 {}

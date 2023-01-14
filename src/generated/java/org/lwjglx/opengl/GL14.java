@@ -1,93 +1,122 @@
 package org.lwjglx.opengl;
 
 public class GL14 {
-    public static void glBlendColor(float arg0, float arg1, float arg2, float arg3) {
-        org.lwjgl.opengl.GL14.glBlendColor(arg0, arg1, arg2, arg3);
+    public static void glBlendColor(float red, float green, float blue, float alpha) {
+        org.lwjgl.opengl.GL14.glBlendColor(red, green, blue, alpha);
     }
 
-    public static void glBlendEquation(int arg0) {
-        org.lwjgl.opengl.GL14.glBlendEquation(arg0);
+    public static void glBlendEquation(int mode) {
+        org.lwjgl.opengl.GL14.glBlendEquation(mode);
     }
 
-    public static void glBlendFuncSeparate(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.GL14.glBlendFuncSeparate(arg0, arg1, arg2, arg3);
+    public static void glBlendFuncSeparate(int sfactorRGB, int dfactorRGB, int sfactorAlpha, int dfactorAlpha) {
+        org.lwjgl.opengl.GL14.glBlendFuncSeparate(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
     }
 
-    public static void glFogCoordPointer(int arg0, int arg1, long arg2) {
-        org.lwjgl.opengl.GL14.glFogCoordPointer(arg0, arg1, arg2);
+    public static void glFogCoordPointer(int type, int stride, long data_buffer_offset) {
+        org.lwjgl.opengl.GL14.glFogCoordPointer(type, stride, data_buffer_offset);
     }
 
-    public static void glFogCoordd(double arg0) {
-        org.lwjgl.opengl.GL14.glFogCoordd(arg0);
+    public static void glFogCoordPointer(int stride, java.nio.DoubleBuffer data) {
+
+        org.lwjgl.opengl.GL14.glFogCoordPointer(
+                org.lwjgl.opengl.GL11.GL_DOUBLE, stride, me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
     }
 
-    public static void glFogCoordf(float arg0) {
-        org.lwjgl.opengl.GL14.glFogCoordf(arg0);
+    public static void glFogCoordPointer(int stride, java.nio.FloatBuffer data) {
+
+        org.lwjgl.opengl.GL14.glFogCoordPointer(org.lwjgl.opengl.GL11.GL_FLOAT, stride, data);
     }
 
-    public static void glMultiDrawArrays(int arg0, java.nio.IntBuffer arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.GL14.glMultiDrawArrays(arg0, arg1, arg2);
+    public static void glFogCoordd(double coord) {
+        org.lwjgl.opengl.GL14.glFogCoordd(coord);
     }
 
-    public static void glPointParameter(int arg0, java.nio.FloatBuffer arg1) {
-        org.lwjgl.opengl.GL14.glPointParameterfv(arg0, arg1);
+    public static void glFogCoordf(float coord) {
+        org.lwjgl.opengl.GL14.glFogCoordf(coord);
     }
 
-    public static void glPointParameter(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.GL14.glPointParameteriv(arg0, arg1);
+    public static void glMultiDrawArrays(int mode, java.nio.IntBuffer piFirst, java.nio.IntBuffer piCount) {
+        org.lwjgl.opengl.GL14.glMultiDrawArrays(mode, piFirst, piCount);
     }
 
-    public static void glPointParameterf(int arg0, float arg1) {
-        org.lwjgl.opengl.GL14.glPointParameterf(arg0, arg1);
+    public static void glPointParameter(int pname, java.nio.FloatBuffer params) {
+        org.lwjgl.opengl.GL14.glPointParameterfv(pname, params);
     }
 
-    public static void glPointParameteri(int arg0, int arg1) {
-        org.lwjgl.opengl.GL14.glPointParameteri(arg0, arg1);
+    public static void glPointParameter(int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.GL14.glPointParameteriv(pname, params);
     }
 
-    public static void glSecondaryColor3b(byte arg0, byte arg1, byte arg2) {
-        org.lwjgl.opengl.GL14.glSecondaryColor3b(arg0, arg1, arg2);
+    public static void glPointParameterf(int pname, float param) {
+        org.lwjgl.opengl.GL14.glPointParameterf(pname, param);
     }
 
-    public static void glSecondaryColor3d(double arg0, double arg1, double arg2) {
-        org.lwjgl.opengl.GL14.glSecondaryColor3d(arg0, arg1, arg2);
+    public static void glPointParameteri(int pname, int param) {
+        org.lwjgl.opengl.GL14.glPointParameteri(pname, param);
     }
 
-    public static void glSecondaryColor3f(float arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.GL14.glSecondaryColor3f(arg0, arg1, arg2);
+    public static void glSecondaryColor3b(byte red, byte green, byte blue) {
+        org.lwjgl.opengl.GL14.glSecondaryColor3b(red, green, blue);
     }
 
-    public static void glSecondaryColor3ub(byte arg0, byte arg1, byte arg2) {
-        org.lwjgl.opengl.GL14.glSecondaryColor3ub(arg0, arg1, arg2);
+    public static void glSecondaryColor3d(double red, double green, double blue) {
+        org.lwjgl.opengl.GL14.glSecondaryColor3d(red, green, blue);
     }
 
-    public static void glSecondaryColorPointer(int arg0, int arg1, int arg2, long arg3) {
-        org.lwjgl.opengl.GL14.glSecondaryColorPointer(arg0, arg1, arg2, arg3);
+    public static void glSecondaryColor3f(float red, float green, float blue) {
+        org.lwjgl.opengl.GL14.glSecondaryColor3f(red, green, blue);
     }
 
-    public static void glWindowPos2d(double arg0, double arg1) {
-        org.lwjgl.opengl.GL14.glWindowPos2d(arg0, arg1);
+    public static void glSecondaryColor3ub(byte red, byte green, byte blue) {
+        org.lwjgl.opengl.GL14.glSecondaryColor3ub(red, green, blue);
     }
 
-    public static void glWindowPos2f(float arg0, float arg1) {
-        org.lwjgl.opengl.GL14.glWindowPos2f(arg0, arg1);
+    public static void glSecondaryColorPointer(int size, int type, int stride, long data_buffer_offset) {
+        org.lwjgl.opengl.GL14.glSecondaryColorPointer(size, type, stride, data_buffer_offset);
     }
 
-    public static void glWindowPos2i(int arg0, int arg1) {
-        org.lwjgl.opengl.GL14.glWindowPos2i(arg0, arg1);
+    public static void glSecondaryColorPointer(int size, int stride, java.nio.DoubleBuffer data) {
+
+        org.lwjgl.opengl.GL14.glSecondaryColorPointer(
+                size, org.lwjgl.opengl.GL11.GL_DOUBLE, stride, me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
     }
 
-    public static void glWindowPos3d(double arg0, double arg1, double arg2) {
-        org.lwjgl.opengl.GL14.glWindowPos3d(arg0, arg1, arg2);
+    public static void glSecondaryColorPointer(int size, int stride, java.nio.FloatBuffer data) {
+
+        org.lwjgl.opengl.GL14.glSecondaryColorPointer(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, data);
     }
 
-    public static void glWindowPos3f(float arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.GL14.glWindowPos3f(arg0, arg1, arg2);
+    public static void glSecondaryColorPointer(int size, boolean unsigned, int stride, java.nio.ByteBuffer data) {
+
+        org.lwjgl.opengl.GL14.glSecondaryColorPointer(
+                size,
+                (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
+                stride,
+                org.lwjglx.MemoryUtil.getAddress(data));
     }
 
-    public static void glWindowPos3i(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.GL14.glWindowPos3i(arg0, arg1, arg2);
+    public static void glWindowPos2d(double x, double y) {
+        org.lwjgl.opengl.GL14.glWindowPos2d(x, y);
     }
 
+    public static void glWindowPos2f(float x, float y) {
+        org.lwjgl.opengl.GL14.glWindowPos2f(x, y);
+    }
 
+    public static void glWindowPos2i(int x, int y) {
+        org.lwjgl.opengl.GL14.glWindowPos2i(x, y);
+    }
+
+    public static void glWindowPos3d(double x, double y, double z) {
+        org.lwjgl.opengl.GL14.glWindowPos3d(x, y, z);
+    }
+
+    public static void glWindowPos3f(float x, float y, float z) {
+        org.lwjgl.opengl.GL14.glWindowPos3f(x, y, z);
+    }
+
+    public static void glWindowPos3i(int x, int y, int z) {
+        org.lwjgl.opengl.GL14.glWindowPos3i(x, y, z);
+    }
 }

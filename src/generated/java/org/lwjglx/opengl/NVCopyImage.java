@@ -1,9 +1,24 @@
 package org.lwjglx.opengl;
 
 public class NVCopyImage {
-    public static void glCopyImageSubDataNV(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11, int arg12, int arg13, int arg14) {
-        org.lwjgl.opengl.NVCopyImage.glCopyImageSubDataNV(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
+    public static void glCopyImageSubDataNV(
+            int srcName,
+            int srcTarget,
+            int srcLevel,
+            int srcX,
+            int srcY,
+            int srcZ,
+            int dstName,
+            int dstTarget,
+            int dstLevel,
+            int dstX,
+            int dstY,
+            int dstZ,
+            int width,
+            int height,
+            int depth) {
+        org.lwjgl.opengl.NVCopyImage.glCopyImageSubDataNV(
+                srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width,
+                height, depth);
     }
-
-
 }

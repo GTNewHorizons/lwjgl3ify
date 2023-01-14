@@ -2,6 +2,7 @@ package me.eigenraven.lwjgl3ify;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,10 +18,7 @@ public class Lwjgl3ify {
     public static CommonProxy PROXY;
 
     @Mod.EventHandler
-    // preInit "Run before anything else. Read your config, create blocks, items,
-    // etc, and register them with the GameRegistry."
-    public void preInit(FMLPreInitializationEvent event) {
-        LOG.info("LWJGL3ify reached the preinit stage");
+    public void postInit(FMLPostInitializationEvent event) {
         PROXY.registerF3Handler();
     }
 }

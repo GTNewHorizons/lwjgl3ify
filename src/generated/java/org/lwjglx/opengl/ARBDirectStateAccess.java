@@ -1,521 +1,744 @@
 package org.lwjglx.opengl;
 
 public class ARBDirectStateAccess {
-    public static void glBindTextureUnit(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glBindTextureUnit(arg0, arg1);
+    public static void glBindTextureUnit(int unit, int texture) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glBindTextureUnit(unit, texture);
     }
 
-    public static void glBlitNamedFramebuffer(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, int arg10, int arg11) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glBlitNamedFramebuffer(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+    public static void glBlitNamedFramebuffer(
+            int readFramebuffer,
+            int drawFramebuffer,
+            int srcX0,
+            int srcY0,
+            int srcX1,
+            int srcY1,
+            int dstX0,
+            int dstY0,
+            int dstX1,
+            int dstY1,
+            int mask,
+            int filter) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glBlitNamedFramebuffer(
+                readFramebuffer, drawFramebuffer, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
     }
 
-    public static int glCheckNamedFramebufferStatus(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glCheckNamedFramebufferStatus(arg0, arg1);
+    public static int glCheckNamedFramebufferStatus(int framebuffer, int target) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glCheckNamedFramebufferStatus(framebuffer, target);
     }
 
-    public static void glClearNamedBufferData(int arg0, int arg1, int arg2, int arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glClearNamedBufferData(arg0, arg1, arg2, arg3, arg4);
+    public static void glClearNamedBufferData(
+            int buffer, int internalformat, int format, int type, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glClearNamedBufferData(buffer, internalformat, format, type, data);
     }
 
-    public static void glClearNamedBufferSubData(int arg0, int arg1, long arg2, long arg3, int arg4, int arg5, java.nio.ByteBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glClearNamedBufferSubData(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glClearNamedBufferSubData(
+            int buffer, int internalformat, long offset, long size, int format, int type, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glClearNamedBufferSubData(
+                buffer, internalformat, offset, size, format, type, data);
     }
 
-    public static void glCompressedTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, long arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glCompressedTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int data_imageSize, long data_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage1D(
+                texture, level, xoffset, width, format, data_imageSize, data_buffer_offset);
     }
 
-    public static void glCompressedTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.ByteBuffer arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glCompressedTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage1D(
+                texture, level, xoffset, width, format, data);
     }
 
-    public static void glCompressedTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, long arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glCompressedTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int data_imageSize,
+            long data_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, data_imageSize, data_buffer_offset);
     }
 
-    public static void glCompressedTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, java.nio.ByteBuffer arg7) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    public static void glCompressedTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, data);
     }
 
-    public static void glCompressedTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, long arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glCompressedTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int imageSize,
+            long data_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCompressedTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data_buffer_offset);
     }
 
-    public static void glCopyNamedBufferSubData(int arg0, int arg1, long arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCopyNamedBufferSubData(arg0, arg1, arg2, arg3, arg4);
+    public static void glCopyNamedBufferSubData(
+            int readBuffer, int writeBuffer, long readOffset, long writeOffset, long size) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCopyNamedBufferSubData(
+                readBuffer, writeBuffer, readOffset, writeOffset, size);
     }
 
-    public static void glCopyTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glCopyTextureSubImage1D(int texture, int level, int xoffset, int x, int y, int width) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage1D(texture, level, xoffset, x, y, width);
     }
 
-    public static void glCopyTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    public static void glCopyTextureSubImage2D(
+            int texture, int level, int xoffset, int yoffset, int x, int y, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage2D(
+                texture, level, xoffset, yoffset, x, y, width, height);
     }
 
-    public static void glCopyTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glCopyTextureSubImage3D(
+            int texture, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCopyTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, x, y, width, height);
     }
 
     public static int glCreateBuffers() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateBuffers();
     }
 
-    public static void glCreateBuffers(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateBuffers(arg0);
+    public static void glCreateBuffers(java.nio.IntBuffer buffers) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateBuffers(buffers);
     }
 
     public static int glCreateFramebuffers() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateFramebuffers();
     }
 
-    public static void glCreateFramebuffers(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateFramebuffers(arg0);
+    public static void glCreateFramebuffers(java.nio.IntBuffer framebuffers) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateFramebuffers(framebuffers);
     }
 
     public static int glCreateProgramPipelines() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateProgramPipelines();
     }
 
-    public static void glCreateProgramPipelines(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateProgramPipelines(arg0);
+    public static void glCreateProgramPipelines(java.nio.IntBuffer pipelines) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateProgramPipelines(pipelines);
     }
 
-    public static int glCreateQueries(int arg0) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glCreateQueries(arg0);
+    public static int glCreateQueries(int target) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glCreateQueries(target);
     }
 
-    public static void glCreateQueries(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateQueries(arg0, arg1);
+    public static void glCreateQueries(int target, java.nio.IntBuffer ids) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateQueries(target, ids);
     }
 
     public static int glCreateRenderbuffers() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateRenderbuffers();
     }
 
-    public static void glCreateRenderbuffers(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateRenderbuffers(arg0);
+    public static void glCreateRenderbuffers(java.nio.IntBuffer renderbuffers) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateRenderbuffers(renderbuffers);
     }
 
     public static int glCreateSamplers() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateSamplers();
     }
 
-    public static void glCreateSamplers(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateSamplers(arg0);
+    public static void glCreateSamplers(java.nio.IntBuffer samplers) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateSamplers(samplers);
     }
 
-    public static int glCreateTextures(int arg0) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glCreateTextures(arg0);
+    public static int glCreateTextures(int target) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glCreateTextures(target);
     }
 
-    public static void glCreateTextures(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateTextures(arg0, arg1);
+    public static void glCreateTextures(int target, java.nio.IntBuffer textures) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateTextures(target, textures);
     }
 
     public static int glCreateTransformFeedbacks() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateTransformFeedbacks();
     }
 
-    public static void glCreateTransformFeedbacks(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateTransformFeedbacks(arg0);
+    public static void glCreateTransformFeedbacks(java.nio.IntBuffer ids) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateTransformFeedbacks(ids);
     }
 
     public static int glCreateVertexArrays() {
         return org.lwjgl.opengl.ARBDirectStateAccess.glCreateVertexArrays();
     }
 
-    public static void glCreateVertexArrays(java.nio.IntBuffer arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glCreateVertexArrays(arg0);
+    public static void glCreateVertexArrays(java.nio.IntBuffer arrays) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glCreateVertexArrays(arrays);
     }
 
-    public static void glDisableVertexArrayAttrib(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glDisableVertexArrayAttrib(arg0, arg1);
+    public static void glDisableVertexArrayAttrib(int vaobj, int index) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glDisableVertexArrayAttrib(vaobj, index);
     }
 
-    public static void glEnableVertexArrayAttrib(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glEnableVertexArrayAttrib(arg0, arg1);
+    public static void glEnableVertexArrayAttrib(int vaobj, int index) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glEnableVertexArrayAttrib(vaobj, index);
     }
 
-    public static void glFlushMappedNamedBufferRange(int arg0, long arg1, long arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glFlushMappedNamedBufferRange(arg0, arg1, arg2);
+    public static void glFlushMappedNamedBufferRange(int buffer, long offset, long length) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glFlushMappedNamedBufferRange(buffer, offset, length);
     }
 
-    public static void glGenerateTextureMipmap(int arg0) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGenerateTextureMipmap(arg0);
+    public static void glGenerateTextureMipmap(int texture) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGenerateTextureMipmap(texture);
     }
 
-    public static void glGetCompressedTextureImage(int arg0, int arg1, int arg2, long arg3) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetCompressedTextureImage(arg0, arg1, arg2, arg3);
+    public static void glGetCompressedTextureImage(
+            int texture, int level, int pixels_bufSize, long pixels_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetCompressedTextureImage(
+                texture, level, pixels_bufSize, pixels_buffer_offset);
     }
 
-    public static void glGetCompressedTextureImage(int arg0, int arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetCompressedTextureImage(arg0, arg1, arg2);
+    public static void glGetCompressedTextureImage(int texture, int level, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetCompressedTextureImage(texture, level, pixels);
     }
 
-    public static long glGetNamedBufferParameteri64(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferParameteri64(arg0, arg1);
+    public static long glGetNamedBufferParameteri64(int buffer, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferParameteri64(buffer, pname);
     }
 
-    public static int glGetNamedBufferParameteri(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferParameteri(arg0, arg1);
+    public static int glGetNamedBufferParameteri(int buffer, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferParameteri(buffer, pname);
     }
 
-    public static void glGetNamedBufferSubData(int arg0, long arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(arg0, arg1, arg2);
+    public static void glGetNamedBufferSubData(int buffer, long offset, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetNamedBufferSubData(int arg0, long arg1, java.nio.DoubleBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(arg0, arg1, arg2);
+    public static void glGetNamedBufferSubData(int buffer, long offset, java.nio.DoubleBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetNamedBufferSubData(int arg0, long arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(arg0, arg1, arg2);
+    public static void glGetNamedBufferSubData(int buffer, long offset, java.nio.FloatBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetNamedBufferSubData(int arg0, long arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(arg0, arg1, arg2);
+    public static void glGetNamedBufferSubData(int buffer, long offset, java.nio.IntBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetNamedBufferSubData(int arg0, long arg1, java.nio.ShortBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(arg0, arg1, arg2);
+    public static void glGetNamedBufferSubData(int buffer, long offset, java.nio.ShortBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, int arg4, long arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glGetTextureImage(
+            int texture, int level, int format, int type, int pixels_bufSize, long pixels_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(
+                texture, level, format, type, pixels_bufSize, pixels_buffer_offset);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetTextureImage(int texture, int level, int format, int type, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(texture, level, format, type, pixels);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, java.nio.DoubleBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetTextureImage(int texture, int level, int format, int type, java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(texture, level, format, type, pixels);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, java.nio.FloatBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetTextureImage(int texture, int level, int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(texture, level, format, type, pixels);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, java.nio.IntBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetTextureImage(int texture, int level, int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(texture, level, format, type, pixels);
     }
 
-    public static void glGetTextureImage(int arg0, int arg1, int arg2, int arg3, java.nio.ShortBuffer arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetTextureImage(int texture, int level, int format, int type, java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureImage(texture, level, format, type, pixels);
     }
 
-    public static float glGetTextureLevelParameterf(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureLevelParameterf(arg0, arg1, arg2);
+    public static float glGetTextureLevelParameterf(int texture, int level, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureLevelParameterf(texture, level, pname);
     }
 
-    public static int glGetTextureLevelParameteri(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureLevelParameteri(arg0, arg1, arg2);
+    public static int glGetTextureLevelParameteri(int texture, int level, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureLevelParameteri(texture, level, pname);
     }
 
-    public static int glGetTextureParameterIi(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterIi(arg0, arg1);
+    public static int glGetTextureParameterIi(int texture, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterIi(texture, pname);
     }
 
-    public static int glGetTextureParameterIui(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterIui(arg0, arg1);
+    public static int glGetTextureParameterIui(int texture, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterIui(texture, pname);
     }
 
-    public static float glGetTextureParameterf(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterf(arg0, arg1);
+    public static float glGetTextureParameterf(int texture, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameterf(texture, pname);
     }
 
-    public static int glGetTextureParameteri(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameteri(arg0, arg1);
+    public static int glGetTextureParameteri(int texture, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTextureParameteri(texture, pname);
     }
 
-    public static long glGetTransformFeedbacki64(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki64(arg0, arg1, arg2);
+    public static long glGetTransformFeedbacki64(int xfb, int pname, int index) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki64(xfb, pname, index);
     }
 
-    public static int glGetTransformFeedbacki(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki(arg0, arg1);
+    public static int glGetTransformFeedbacki(int xfb, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki(xfb, pname);
     }
 
-    public static int glGetTransformFeedbacki(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki(arg0, arg1, arg2);
+    public static int glGetTransformFeedbacki(int xfb, int pname, int index) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetTransformFeedbacki(xfb, pname, index);
     }
 
-    public static long glGetVertexArrayIndexed64i(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glGetVertexArrayIndexed64i(arg0, arg1, arg2);
+    public static long glGetVertexArrayIndexed64i(int vaobj, int index, int pname) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glGetVertexArrayIndexed64i(vaobj, index, pname);
     }
 
-    public static void glInvalidateNamedFramebufferData(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glInvalidateNamedFramebufferData(arg0, arg1);
+    public static void glInvalidateNamedFramebufferData(int framebuffer, java.nio.IntBuffer attachments) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glInvalidateNamedFramebufferData(framebuffer, attachments);
     }
 
-    public static void glInvalidateNamedFramebufferSubData(int arg0, java.nio.IntBuffer arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glInvalidateNamedFramebufferSubData(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glInvalidateNamedFramebufferSubData(
+            int framebuffer, java.nio.IntBuffer attachments, int x, int y, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glInvalidateNamedFramebufferSubData(
+                framebuffer, attachments, x, y, width, height);
     }
 
-    public static java.nio.ByteBuffer glMapNamedBuffer(int arg0, int arg1, long arg2, java.nio.ByteBuffer arg3) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBuffer(arg0, arg1, arg2, arg3);
+    public static java.nio.ByteBuffer glMapNamedBuffer(
+            int buffer, int access, long length, java.nio.ByteBuffer old_buffer) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBuffer(buffer, access, length, old_buffer);
     }
 
-    public static java.nio.ByteBuffer glMapNamedBuffer(int arg0, int arg1, java.nio.ByteBuffer arg2) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBuffer(arg0, arg1, arg2);
+    public static java.nio.ByteBuffer glMapNamedBuffer(int buffer, int access, java.nio.ByteBuffer old_buffer) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBuffer(buffer, access, old_buffer);
     }
 
-    public static java.nio.ByteBuffer glMapNamedBufferRange(int arg0, long arg1, long arg2, int arg3, java.nio.ByteBuffer arg4) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBufferRange(arg0, arg1, arg2, arg3, arg4);
+    public static java.nio.ByteBuffer glMapNamedBufferRange(
+            int buffer, long offset, long length, int access, java.nio.ByteBuffer old_buffer) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glMapNamedBufferRange(buffer, offset, length, access, old_buffer);
     }
 
-    public static void glNamedBufferData(int arg0, long arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, long data_size, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data_size, usage);
     }
 
-    public static void glNamedBufferData(int arg0, java.nio.ByteBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, java.nio.ByteBuffer data, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data, usage);
     }
 
-    public static void glNamedBufferData(int arg0, java.nio.DoubleBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, java.nio.DoubleBuffer data, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data, usage);
     }
 
-    public static void glNamedBufferData(int arg0, java.nio.FloatBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, java.nio.FloatBuffer data, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data, usage);
     }
 
-    public static void glNamedBufferData(int arg0, java.nio.IntBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, java.nio.IntBuffer data, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data, usage);
     }
 
-    public static void glNamedBufferData(int arg0, java.nio.ShortBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(arg0, arg1, arg2);
+    public static void glNamedBufferData(int buffer, java.nio.ShortBuffer data, int usage) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferData(buffer, data, usage);
     }
 
-    public static void glNamedBufferStorage(int arg0, long arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, long size, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, size, flags);
     }
 
-    public static void glNamedBufferStorage(int arg0, java.nio.ByteBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, java.nio.ByteBuffer data, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorage(int arg0, java.nio.DoubleBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, java.nio.DoubleBuffer data, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorage(int arg0, java.nio.FloatBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, java.nio.FloatBuffer data, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorage(int arg0, java.nio.IntBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, java.nio.IntBuffer data, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorage(int arg0, java.nio.ShortBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(arg0, arg1, arg2);
+    public static void glNamedBufferStorage(int buffer, java.nio.ShortBuffer data, int flags) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferSubData(int arg0, long arg1, java.nio.ByteBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(arg0, arg1, arg2);
+    public static void glNamedBufferSubData(int buffer, long offset, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glNamedBufferSubData(int arg0, long arg1, java.nio.DoubleBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(arg0, arg1, arg2);
+    public static void glNamedBufferSubData(int buffer, long offset, java.nio.DoubleBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glNamedBufferSubData(int arg0, long arg1, java.nio.FloatBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(arg0, arg1, arg2);
+    public static void glNamedBufferSubData(int buffer, long offset, java.nio.FloatBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glNamedBufferSubData(int arg0, long arg1, java.nio.IntBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(arg0, arg1, arg2);
+    public static void glNamedBufferSubData(int buffer, long offset, java.nio.IntBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glNamedBufferSubData(int arg0, long arg1, java.nio.ShortBuffer arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(arg0, arg1, arg2);
+    public static void glNamedBufferSubData(int buffer, long offset, java.nio.ShortBuffer data) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glNamedFramebufferDrawBuffer(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferDrawBuffer(arg0, arg1);
+    public static void glNamedFramebufferDrawBuffer(int framebuffer, int mode) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferDrawBuffer(framebuffer, mode);
     }
 
-    public static void glNamedFramebufferDrawBuffers(int arg0, java.nio.IntBuffer arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferDrawBuffers(arg0, arg1);
+    public static void glNamedFramebufferDrawBuffers(int framebuffer, java.nio.IntBuffer bufs) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferDrawBuffers(framebuffer, bufs);
     }
 
-    public static void glNamedFramebufferParameteri(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferParameteri(arg0, arg1, arg2);
+    public static void glNamedFramebufferParameteri(int framebuffer, int pname, int param) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferParameteri(framebuffer, pname, param);
     }
 
-    public static void glNamedFramebufferReadBuffer(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferReadBuffer(arg0, arg1);
+    public static void glNamedFramebufferReadBuffer(int framebuffer, int mode) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferReadBuffer(framebuffer, mode);
     }
 
-    public static void glNamedFramebufferRenderbuffer(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferRenderbuffer(arg0, arg1, arg2, arg3);
+    public static void glNamedFramebufferRenderbuffer(
+            int framebuffer, int attachment, int renderbuffertarget, int renderbuffer) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferRenderbuffer(
+                framebuffer, attachment, renderbuffertarget, renderbuffer);
     }
 
-    public static void glNamedFramebufferTexture(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferTexture(arg0, arg1, arg2, arg3);
+    public static void glNamedFramebufferTexture(int framebuffer, int attachment, int texture, int level) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferTexture(framebuffer, attachment, texture, level);
     }
 
-    public static void glNamedFramebufferTextureLayer(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferTextureLayer(arg0, arg1, arg2, arg3, arg4);
+    public static void glNamedFramebufferTextureLayer(
+            int framebuffer, int attachment, int texture, int level, int layer) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedFramebufferTextureLayer(
+                framebuffer, attachment, texture, level, layer);
     }
 
-    public static void glNamedRenderbufferStorage(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedRenderbufferStorage(arg0, arg1, arg2, arg3);
+    public static void glNamedRenderbufferStorage(int renderbuffer, int internalformat, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedRenderbufferStorage(renderbuffer, internalformat, width, height);
     }
 
-    public static void glNamedRenderbufferStorageMultisample(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glNamedRenderbufferStorageMultisample(arg0, arg1, arg2, arg3, arg4);
+    public static void glNamedRenderbufferStorageMultisample(
+            int renderbuffer, int samples, int internalformat, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glNamedRenderbufferStorageMultisample(
+                renderbuffer, samples, internalformat, width, height);
     }
 
-    public static void glTextureBuffer(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureBuffer(arg0, arg1, arg2);
+    public static void glTextureBuffer(int texture, int internalformat, int buffer) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureBuffer(texture, internalformat, buffer);
     }
 
-    public static void glTextureBufferRange(int arg0, int arg1, int arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureBufferRange(arg0, arg1, arg2, arg3, arg4);
+    public static void glTextureBufferRange(int texture, int internalformat, int buffer, long offset, long size) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureBufferRange(texture, internalformat, buffer, offset, size);
     }
 
-    public static void glTextureParameterf(int arg0, int arg1, float arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameterf(arg0, arg1, arg2);
+    public static void glTextureParameterf(int texture, int pname, float param) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameterf(texture, pname, param);
     }
 
-    public static void glTextureParameteri(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameteri(arg0, arg1, arg2);
+    public static void glTextureParameteri(int texture, int pname, int param) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameteri(texture, pname, param);
     }
 
-    public static void glTextureStorage1D(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage1D(arg0, arg1, arg2, arg3);
+    public static void glTextureStorage1D(int texture, int levels, int internalformat, int width) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage1D(texture, levels, internalformat, width);
     }
 
-    public static void glTextureStorage2D(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage2D(arg0, arg1, arg2, arg3, arg4);
+    public static void glTextureStorage2D(int texture, int levels, int internalformat, int width, int height) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage2D(texture, levels, internalformat, width, height);
     }
 
-    public static void glTextureStorage2DMultisample(int arg0, int arg1, int arg2, int arg3, int arg4, boolean arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage2DMultisample(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glTextureStorage2DMultisample(
+            int texture, int samples, int internalformat, int width, int height, boolean fixedsamplelocations) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage2DMultisample(
+                texture, samples, internalformat, width, height, fixedsamplelocations);
     }
 
-    public static void glTextureStorage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage3D(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glTextureStorage3D(
+            int texture, int levels, int internalformat, int width, int height, int depth) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage3D(texture, levels, internalformat, width, height, depth);
     }
 
-    public static void glTextureStorage3DMultisample(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, boolean arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage3DMultisample(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureStorage3DMultisample(
+            int texture,
+            int samples,
+            int internalformat,
+            int width,
+            int height,
+            int depth,
+            boolean fixedsamplelocations) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage3DMultisample(
+                texture, samples, internalformat, width, height, depth, fixedsamplelocations);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, long arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, long pixels_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(
+                texture, level, xoffset, width, format, type, pixels_buffer_offset);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.DoubleBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage1D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glTextureSubImage1D(
+            int texture, int level, int xoffset, int width, int format, int type, java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, long arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            long pixels_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels_buffer_offset);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.nio.ByteBuffer arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.nio.DoubleBuffer arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.nio.FloatBuffer arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.nio.IntBuffer arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, java.nio.ShortBuffer arg8) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTextureSubImage2D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int width,
+            int height,
+            int format,
+            int type,
+            java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage2D(
+                texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, long arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            long pixels_buffer_offset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels_buffer_offset);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, java.nio.ByteBuffer arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, java.nio.DoubleBuffer arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, java.nio.FloatBuffer arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, java.nio.IntBuffer arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9, java.nio.ShortBuffer arg10) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+    public static void glTextureSubImage3D(
+            int texture,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            int format,
+            int type,
+            java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureSubImage3D(
+                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
-    public static void glTransformFeedbackBufferBase(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTransformFeedbackBufferBase(arg0, arg1, arg2);
+    public static void glTransformFeedbackBufferBase(int xfb, int index, int buffer) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTransformFeedbackBufferBase(xfb, index, buffer);
     }
 
-    public static void glTransformFeedbackBufferRange(int arg0, int arg1, int arg2, long arg3, long arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glTransformFeedbackBufferRange(arg0, arg1, arg2, arg3, arg4);
+    public static void glTransformFeedbackBufferRange(int xfb, int index, int buffer, long offset, long size) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTransformFeedbackBufferRange(xfb, index, buffer, offset, size);
     }
 
-    public static boolean glUnmapNamedBuffer(int arg0) {
-        return org.lwjgl.opengl.ARBDirectStateAccess.glUnmapNamedBuffer(arg0);
+    public static boolean glUnmapNamedBuffer(int buffer) {
+        return org.lwjgl.opengl.ARBDirectStateAccess.glUnmapNamedBuffer(buffer);
     }
 
-    public static void glVertexArrayAttribBinding(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribBinding(arg0, arg1, arg2);
+    public static void glVertexArrayAttribBinding(int vaobj, int attribindex, int bindingindex) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribBinding(vaobj, attribindex, bindingindex);
     }
 
-    public static void glVertexArrayAttribFormat(int arg0, int arg1, int arg2, int arg3, boolean arg4, int arg5) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribFormat(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glVertexArrayAttribFormat(
+            int vaobj, int attribindex, int size, int type, boolean normalized, int relativeoffset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribFormat(
+                vaobj, attribindex, size, type, normalized, relativeoffset);
     }
 
-    public static void glVertexArrayAttribIFormat(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribIFormat(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexArrayAttribIFormat(int vaobj, int attribindex, int size, int type, int relativeoffset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribIFormat(
+                vaobj, attribindex, size, type, relativeoffset);
     }
 
-    public static void glVertexArrayAttribLFormat(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribLFormat(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexArrayAttribLFormat(int vaobj, int attribindex, int size, int type, int relativeoffset) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayAttribLFormat(
+                vaobj, attribindex, size, type, relativeoffset);
     }
 
-    public static void glVertexArrayBindingDivisor(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayBindingDivisor(arg0, arg1, arg2);
+    public static void glVertexArrayBindingDivisor(int vaobj, int bindingindex, int divisor) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayBindingDivisor(vaobj, bindingindex, divisor);
     }
 
-    public static void glVertexArrayElementBuffer(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayElementBuffer(arg0, arg1);
+    public static void glVertexArrayElementBuffer(int vaobj, int buffer) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayElementBuffer(vaobj, buffer);
     }
 
-    public static void glVertexArrayVertexBuffer(int arg0, int arg1, int arg2, long arg3, int arg4) {
-        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayVertexBuffer(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexArrayVertexBuffer(int vaobj, int bindingindex, int buffer, long offset, int stride) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayVertexBuffer(vaobj, bindingindex, buffer, offset, stride);
     }
-
-
 }

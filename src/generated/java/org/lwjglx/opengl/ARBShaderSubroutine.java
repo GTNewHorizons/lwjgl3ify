@@ -1,49 +1,51 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderSubroutine {
-    public static java.lang.String glGetActiveSubroutineName(int arg0, int arg1, int arg2, int arg3) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(arg0, arg1, arg2, arg3);
+    public static java.lang.String glGetActiveSubroutineName(int program, int shadertype, int index, int bufsize) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(program, shadertype, index, bufsize);
     }
 
-    public static void glGetActiveSubroutineName(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetActiveSubroutineName(
+            int program, int shadertype, int index, java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(program, shadertype, index, length, name);
     }
 
-    public static java.lang.String glGetActiveSubroutineUniformName(int arg0, int arg1, int arg2, int arg3) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformName(arg0, arg1, arg2, arg3);
+    public static java.lang.String glGetActiveSubroutineUniformName(
+            int program, int shadertype, int index, int bufsize) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformName(
+                program, shadertype, index, bufsize);
     }
 
-    public static void glGetActiveSubroutineUniformName(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.ByteBuffer arg4) {
-        org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformName(arg0, arg1, arg2, arg3, arg4);
+    public static void glGetActiveSubroutineUniformName(
+            int program, int shadertype, int index, java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformName(program, shadertype, index, length, name);
     }
 
-    public static int glGetActiveSubroutineUniformi(int arg0, int arg1, int arg2, int arg3) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformi(arg0, arg1, arg2, arg3);
+    public static int glGetActiveSubroutineUniformi(int program, int shadertype, int index, int pname) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformi(program, shadertype, index, pname);
     }
 
-    public static int glGetProgramStagei(int arg0, int arg1, int arg2) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetProgramStagei(arg0, arg1, arg2);
+    public static int glGetProgramStagei(int program, int shadertype, int pname) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetProgramStagei(program, shadertype, pname);
     }
 
-    public static int glGetSubroutineIndex(int arg0, int arg1, java.lang.CharSequence arg2) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineIndex(arg0, arg1, arg2);
+    public static int glGetSubroutineIndex(int program, int shadertype, java.lang.CharSequence name) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineIndex(program, shadertype, name);
     }
 
-    public static int glGetSubroutineIndex(int arg0, int arg1, java.nio.ByteBuffer arg2) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineIndex(arg0, arg1, arg2);
+    public static int glGetSubroutineIndex(int program, int shadertype, java.nio.ByteBuffer name) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineIndex(program, shadertype, name);
     }
 
-    public static int glGetSubroutineUniformLocation(int arg0, int arg1, java.lang.CharSequence arg2) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineUniformLocation(arg0, arg1, arg2);
+    public static int glGetSubroutineUniformLocation(int program, int shadertype, java.lang.CharSequence name) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineUniformLocation(program, shadertype, name);
     }
 
-    public static int glGetSubroutineUniformLocation(int arg0, int arg1, java.nio.ByteBuffer arg2) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineUniformLocation(arg0, arg1, arg2);
+    public static int glGetSubroutineUniformLocation(int program, int shadertype, java.nio.ByteBuffer name) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetSubroutineUniformLocation(program, shadertype, name);
     }
 
-    public static int glGetUniformSubroutineui(int arg0, int arg1) {
-        return org.lwjgl.opengl.ARBShaderSubroutine.glGetUniformSubroutineui(arg0, arg1);
+    public static int glGetUniformSubroutineui(int shadertype, int location) {
+        return org.lwjgl.opengl.ARBShaderSubroutine.glGetUniformSubroutineui(shadertype, location);
     }
-
-
 }

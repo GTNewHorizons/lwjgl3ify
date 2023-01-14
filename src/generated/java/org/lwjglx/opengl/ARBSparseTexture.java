@@ -1,9 +1,17 @@
 package org.lwjglx.opengl;
 
 public class ARBSparseTexture {
-    public static void glTexPageCommitmentARB(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, boolean arg8) {
-        org.lwjgl.opengl.ARBSparseTexture.glTexPageCommitmentARB(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    public static void glTexPageCommitmentARB(
+            int target,
+            int level,
+            int xoffset,
+            int yoffset,
+            int zoffset,
+            int width,
+            int height,
+            int depth,
+            boolean commit) {
+        org.lwjgl.opengl.ARBSparseTexture.glTexPageCommitmentARB(
+                target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
     }
-
-
 }

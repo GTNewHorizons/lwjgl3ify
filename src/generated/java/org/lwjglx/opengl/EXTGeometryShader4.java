@@ -1,21 +1,19 @@
 package org.lwjglx.opengl;
 
 public class EXTGeometryShader4 {
-    public static void glFramebufferTextureEXT(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureEXT(arg0, arg1, arg2, arg3);
+    public static void glFramebufferTextureEXT(int target, int attachment, int texture, int level) {
+        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureEXT(target, attachment, texture, level);
     }
 
-    public static void glFramebufferTextureFaceEXT(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureFaceEXT(arg0, arg1, arg2, arg3, arg4);
+    public static void glFramebufferTextureFaceEXT(int target, int attachment, int texture, int level, int face) {
+        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureFaceEXT(target, attachment, texture, level, face);
     }
 
-    public static void glFramebufferTextureLayerEXT(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureLayerEXT(arg0, arg1, arg2, arg3, arg4);
+    public static void glFramebufferTextureLayerEXT(int target, int attachment, int texture, int level, int layer) {
+        org.lwjgl.opengl.EXTGeometryShader4.glFramebufferTextureLayerEXT(target, attachment, texture, level, layer);
     }
 
-    public static void glProgramParameteriEXT(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.EXTGeometryShader4.glProgramParameteriEXT(arg0, arg1, arg2);
+    public static void glProgramParameteriEXT(int program, int pname, int value) {
+        org.lwjgl.opengl.EXTGeometryShader4.glProgramParameteriEXT(program, pname, value);
     }
-
-
 }

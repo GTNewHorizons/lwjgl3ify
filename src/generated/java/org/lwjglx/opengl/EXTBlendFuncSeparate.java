@@ -1,9 +1,8 @@
 package org.lwjglx.opengl;
 
 public class EXTBlendFuncSeparate {
-    public static void glBlendFuncSeparateEXT(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.EXTBlendFuncSeparate.glBlendFuncSeparateEXT(arg0, arg1, arg2, arg3);
+    public static void glBlendFuncSeparateEXT(int sfactorRGB, int dfactorRGB, int sfactorAlpha, int dfactorAlpha) {
+        org.lwjgl.opengl.EXTBlendFuncSeparate.glBlendFuncSeparateEXT(
+                sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
     }
-
-
 }

@@ -1,69 +1,69 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexProgram extends org.lwjglx.opengl.ARBProgram {
-    public static void glDisableVertexAttribArrayARB(int arg0) {
-        org.lwjgl.opengl.ARBVertexProgram.glDisableVertexAttribArrayARB(arg0);
+    public static void glDisableVertexAttribArrayARB(int index) {
+        org.lwjgl.opengl.ARBVertexProgram.glDisableVertexAttribArrayARB(index);
     }
 
-    public static void glEnableVertexAttribArrayARB(int arg0) {
-        org.lwjgl.opengl.ARBVertexProgram.glEnableVertexAttribArrayARB(arg0);
+    public static void glEnableVertexAttribArrayARB(int index) {
+        org.lwjgl.opengl.ARBVertexProgram.glEnableVertexAttribArrayARB(index);
     }
 
-    public static void glVertexAttrib1dARB(int arg0, double arg1) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1dARB(arg0, arg1);
+    public static void glVertexAttrib1dARB(int index, double x) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1dARB(index, x);
     }
 
-    public static void glVertexAttrib1fARB(int arg0, float arg1) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1fARB(arg0, arg1);
+    public static void glVertexAttrib1fARB(int index, float x) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1fARB(index, x);
     }
 
-    public static void glVertexAttrib1sARB(int arg0, short arg1) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1sARB(arg0, arg1);
+    public static void glVertexAttrib1sARB(int index, short x) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib1sARB(index, x);
     }
 
-    public static void glVertexAttrib2dARB(int arg0, double arg1, double arg2) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2dARB(arg0, arg1, arg2);
+    public static void glVertexAttrib2dARB(int index, double x, double y) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2dARB(index, x, y);
     }
 
-    public static void glVertexAttrib2fARB(int arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2fARB(arg0, arg1, arg2);
+    public static void glVertexAttrib2fARB(int index, float x, float y) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2fARB(index, x, y);
     }
 
-    public static void glVertexAttrib2sARB(int arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2sARB(arg0, arg1, arg2);
+    public static void glVertexAttrib2sARB(int index, short x, short y) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib2sARB(index, x, y);
     }
 
-    public static void glVertexAttrib3dARB(int arg0, double arg1, double arg2, double arg3) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3dARB(arg0, arg1, arg2, arg3);
+    public static void glVertexAttrib3dARB(int index, double x, double y, double z) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3dARB(index, x, y, z);
     }
 
-    public static void glVertexAttrib3fARB(int arg0, float arg1, float arg2, float arg3) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3fARB(arg0, arg1, arg2, arg3);
+    public static void glVertexAttrib3fARB(int index, float x, float y, float z) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3fARB(index, x, y, z);
     }
 
-    public static void glVertexAttrib3sARB(int arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3sARB(arg0, arg1, arg2, arg3);
+    public static void glVertexAttrib3sARB(int index, short x, short y, short z) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib3sARB(index, x, y, z);
     }
 
-    public static void glVertexAttrib4NubARB(int arg0, byte arg1, byte arg2, byte arg3, byte arg4) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4NubARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexAttrib4NubARB(int index, byte x, byte y, byte z, byte w) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4NubARB(index, x, y, z, w);
     }
 
-    public static void glVertexAttrib4dARB(int arg0, double arg1, double arg2, double arg3, double arg4) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4dARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexAttrib4dARB(int index, double x, double y, double z, double w) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4dARB(index, x, y, z, w);
     }
 
-    public static void glVertexAttrib4fARB(int arg0, float arg1, float arg2, float arg3, float arg4) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4fARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexAttrib4fARB(int index, float x, float y, float z, float w) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4fARB(index, x, y, z, w);
     }
 
-    public static void glVertexAttrib4sARB(int arg0, short arg1, short arg2, short arg3, short arg4) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4sARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glVertexAttrib4sARB(int index, short x, short y, short z, short w) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4sARB(index, x, y, z, w);
     }
 
-    public static void glVertexAttribPointerARB(int arg0, int arg1, int arg2, boolean arg3, int arg4, long arg5) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttribPointerARB(arg0, arg1, arg2, arg3, arg4, arg5);
+    public static void glVertexAttribPointerARB(
+            int index, int size, int type, boolean normalized, int stride, long buffer_buffer_offset) {
+        org.lwjgl.opengl.ARBVertexProgram.glVertexAttribPointerARB(
+                index, size, type, normalized, stride, buffer_buffer_offset);
     }
-
-
 }

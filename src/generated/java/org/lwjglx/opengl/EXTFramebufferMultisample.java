@@ -1,9 +1,9 @@
 package org.lwjglx.opengl;
 
 public class EXTFramebufferMultisample {
-    public static void glRenderbufferStorageMultisampleEXT(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.EXTFramebufferMultisample.glRenderbufferStorageMultisampleEXT(arg0, arg1, arg2, arg3, arg4);
+    public static void glRenderbufferStorageMultisampleEXT(
+            int target, int samples, int internalformat, int width, int height) {
+        org.lwjgl.opengl.EXTFramebufferMultisample.glRenderbufferStorageMultisampleEXT(
+                target, samples, internalformat, width, height);
     }
-
-
 }

@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class NVDeepTexture3D {
-
-}
+public class NVDeepTexture3D {}

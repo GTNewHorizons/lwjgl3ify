@@ -1,77 +1,75 @@
 package org.lwjglx.opengl;
 
 public class ARBMultitexture {
-    public static void glActiveTextureARB(int arg0) {
-        org.lwjgl.opengl.ARBMultitexture.glActiveTextureARB(arg0);
+    public static void glActiveTextureARB(int texture) {
+        org.lwjgl.opengl.ARBMultitexture.glActiveTextureARB(texture);
     }
 
-    public static void glClientActiveTextureARB(int arg0) {
-        org.lwjgl.opengl.ARBMultitexture.glClientActiveTextureARB(arg0);
+    public static void glClientActiveTextureARB(int texture) {
+        org.lwjgl.opengl.ARBMultitexture.glClientActiveTextureARB(texture);
     }
 
-    public static void glMultiTexCoord1dARB(int arg0, double arg1) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1dARB(arg0, arg1);
+    public static void glMultiTexCoord1dARB(int target, double s) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1dARB(target, s);
     }
 
-    public static void glMultiTexCoord1fARB(int arg0, float arg1) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1fARB(arg0, arg1);
+    public static void glMultiTexCoord1fARB(int target, float s) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1fARB(target, s);
     }
 
-    public static void glMultiTexCoord1iARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1iARB(arg0, arg1);
+    public static void glMultiTexCoord1iARB(int target, int s) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1iARB(target, s);
     }
 
-    public static void glMultiTexCoord1sARB(int arg0, short arg1) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1sARB(arg0, arg1);
+    public static void glMultiTexCoord1sARB(int target, short s) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord1sARB(target, s);
     }
 
-    public static void glMultiTexCoord2dARB(int arg0, double arg1, double arg2) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2dARB(arg0, arg1, arg2);
+    public static void glMultiTexCoord2dARB(int target, double s, double t) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2dARB(target, s, t);
     }
 
-    public static void glMultiTexCoord2fARB(int arg0, float arg1, float arg2) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2fARB(arg0, arg1, arg2);
+    public static void glMultiTexCoord2fARB(int target, float s, float t) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2fARB(target, s, t);
     }
 
-    public static void glMultiTexCoord2iARB(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2iARB(arg0, arg1, arg2);
+    public static void glMultiTexCoord2iARB(int target, int s, int t) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2iARB(target, s, t);
     }
 
-    public static void glMultiTexCoord2sARB(int arg0, short arg1, short arg2) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2sARB(arg0, arg1, arg2);
+    public static void glMultiTexCoord2sARB(int target, short s, short t) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord2sARB(target, s, t);
     }
 
-    public static void glMultiTexCoord3dARB(int arg0, double arg1, double arg2, double arg3) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3dARB(arg0, arg1, arg2, arg3);
+    public static void glMultiTexCoord3dARB(int target, double s, double t, double r) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3dARB(target, s, t, r);
     }
 
-    public static void glMultiTexCoord3fARB(int arg0, float arg1, float arg2, float arg3) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3fARB(arg0, arg1, arg2, arg3);
+    public static void glMultiTexCoord3fARB(int target, float s, float t, float r) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3fARB(target, s, t, r);
     }
 
-    public static void glMultiTexCoord3iARB(int arg0, int arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3iARB(arg0, arg1, arg2, arg3);
+    public static void glMultiTexCoord3iARB(int target, int s, int t, int r) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3iARB(target, s, t, r);
     }
 
-    public static void glMultiTexCoord3sARB(int arg0, short arg1, short arg2, short arg3) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3sARB(arg0, arg1, arg2, arg3);
+    public static void glMultiTexCoord3sARB(int target, short s, short t, short r) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord3sARB(target, s, t, r);
     }
 
-    public static void glMultiTexCoord4dARB(int arg0, double arg1, double arg2, double arg3, double arg4) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4dARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiTexCoord4dARB(int target, double s, double t, double r, double q) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4dARB(target, s, t, r, q);
     }
 
-    public static void glMultiTexCoord4fARB(int arg0, float arg1, float arg2, float arg3, float arg4) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4fARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiTexCoord4fARB(int target, float s, float t, float r, float q) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4fARB(target, s, t, r, q);
     }
 
-    public static void glMultiTexCoord4iARB(int arg0, int arg1, int arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4iARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiTexCoord4iARB(int target, int s, int t, int r, int q) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4iARB(target, s, t, r, q);
     }
 
-    public static void glMultiTexCoord4sARB(int arg0, short arg1, short arg2, short arg3, short arg4) {
-        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4sARB(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiTexCoord4sARB(int target, short s, short t, short r, short q) {
+        org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4sARB(target, s, t, r, q);
     }
-
-
 }

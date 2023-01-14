@@ -1,59 +1,57 @@
 package org.lwjglx.opengl;
 
 public class ARBBufferStorage {
-    public static void glBufferStorage(int arg0, long arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, long size, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, size, flags);
     }
 
-    public static void glBufferStorage(int arg0, java.nio.ByteBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, java.nio.ByteBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, data, flags);
     }
 
-    public static void glBufferStorage(int arg0, java.nio.DoubleBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, java.nio.DoubleBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, data, flags);
     }
 
-    public static void glBufferStorage(int arg0, java.nio.FloatBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, java.nio.FloatBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, data, flags);
     }
 
-    public static void glBufferStorage(int arg0, java.nio.IntBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, java.nio.IntBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, data, flags);
     }
 
-    public static void glBufferStorage(int arg0, java.nio.ShortBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(arg0, arg1, arg2);
+    public static void glBufferStorage(int target, java.nio.ShortBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glBufferStorage(target, data, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, long arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, long size, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, size, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.ByteBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.ByteBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.DoubleBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.DoubleBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.FloatBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.FloatBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.IntBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.IntBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.LongBuffer arg1, int arg2) {
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.LongBuffer data, int flags) {
 
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, org.lwjglx.MemoryUtil.getAddress(arg1), arg2);
-
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(
+                buffer, org.lwjglx.MemoryUtil.getAddress(data), flags);
     }
 
-    public static void glNamedBufferStorageEXT(int arg0, java.nio.ShortBuffer arg1, int arg2) {
-        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(arg0, arg1, arg2);
+    public static void glNamedBufferStorageEXT(int buffer, java.nio.ShortBuffer data, int flags) {
+        org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
-
-
 }

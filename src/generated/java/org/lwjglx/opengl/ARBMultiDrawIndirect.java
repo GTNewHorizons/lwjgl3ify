@@ -1,29 +1,32 @@
 package org.lwjglx.opengl;
 
 public class ARBMultiDrawIndirect {
-    public static void glMultiDrawArraysIndirect(int arg0, long arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(arg0, arg1, arg2, arg3);
+    public static void glMultiDrawArraysIndirect(int mode, long indirect_buffer_offset, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(
+                mode, indirect_buffer_offset, primcount, stride);
     }
 
-    public static void glMultiDrawArraysIndirect(int arg0, java.nio.ByteBuffer arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(arg0, arg1, arg2, arg3);
+    public static void glMultiDrawArraysIndirect(int mode, java.nio.ByteBuffer indirect, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(mode, indirect, primcount, stride);
     }
 
-    public static void glMultiDrawArraysIndirect(int arg0, java.nio.IntBuffer arg1, int arg2, int arg3) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(arg0, arg1, arg2, arg3);
+    public static void glMultiDrawArraysIndirect(int mode, java.nio.IntBuffer indirect, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawArraysIndirect(mode, indirect, primcount, stride);
     }
 
-    public static void glMultiDrawElementsIndirect(int arg0, int arg1, long arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiDrawElementsIndirect(
+            int mode, int type, long indirect_buffer_offset, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(
+                mode, type, indirect_buffer_offset, primcount, stride);
     }
 
-    public static void glMultiDrawElementsIndirect(int arg0, int arg1, java.nio.ByteBuffer arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiDrawElementsIndirect(
+            int mode, int type, java.nio.ByteBuffer indirect, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(mode, type, indirect, primcount, stride);
     }
 
-    public static void glMultiDrawElementsIndirect(int arg0, int arg1, java.nio.IntBuffer arg2, int arg3, int arg4) {
-        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(arg0, arg1, arg2, arg3, arg4);
+    public static void glMultiDrawElementsIndirect(
+            int mode, int type, java.nio.IntBuffer indirect, int primcount, int stride) {
+        org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(mode, type, indirect, primcount, stride);
     }
-
-
 }

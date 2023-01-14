@@ -1,5 +1,3 @@
 package org.lwjglx.opengl;
 
-public class ARBTransformFeedbackOverflowQuery {
-
-}
+public class ARBTransformFeedbackOverflowQuery {}

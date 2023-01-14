@@ -5,25 +5,29 @@ public class KHRRobustness {
         return org.lwjgl.opengl.KHRRobustness.glGetGraphicsResetStatus();
     }
 
-    public static void glReadnPixels(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, long arg7) {
-        org.lwjgl.opengl.KHRRobustness.glReadnPixels(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+    public static void glReadnPixels(
+            int x, int y, int width, int height, int format, int type, int pixels_bufSize, long pixels_buffer_offset) {
+        org.lwjgl.opengl.KHRRobustness.glReadnPixels(
+                x, y, width, height, format, type, pixels_bufSize, pixels_buffer_offset);
     }
 
-    public static void glReadnPixels(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6) {
-        org.lwjgl.opengl.KHRRobustness.glReadnPixels(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glReadnPixels(
+            int x, int y, int width, int height, int format, int type, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.KHRRobustness.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.FloatBuffer arg6) {
-        org.lwjgl.opengl.KHRRobustness.glReadnPixels(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glReadnPixels(
+            int x, int y, int width, int height, int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.KHRRobustness.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.IntBuffer arg6) {
-        org.lwjgl.opengl.KHRRobustness.glReadnPixels(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glReadnPixels(
+            int x, int y, int width, int height, int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.KHRRobustness.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ShortBuffer arg6) {
-        org.lwjgl.opengl.KHRRobustness.glReadnPixels(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+    public static void glReadnPixels(
+            int x, int y, int width, int height, int format, int type, java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.KHRRobustness.glReadnPixels(x, y, width, height, format, type, pixels);
     }
-
-
 }

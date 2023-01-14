@@ -1,9 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBColorBufferFloat {
-    public static void glClampColorARB(int arg0, int arg1) {
-        org.lwjgl.opengl.ARBColorBufferFloat.glClampColorARB(arg0, arg1);
+    public static void glClampColorARB(int target, int clamp) {
+        org.lwjgl.opengl.ARBColorBufferFloat.glClampColorARB(target, clamp);
     }
-
-
 }

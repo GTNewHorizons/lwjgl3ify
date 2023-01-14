@@ -1,9 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTextureBufferObject {
-    public static void glTexBufferEXT(int arg0, int arg1, int arg2) {
-        org.lwjgl.opengl.EXTTextureBufferObject.glTexBufferEXT(arg0, arg1, arg2);
+    public static void glTexBufferEXT(int target, int internalformat, int buffer) {
+        org.lwjgl.opengl.EXTTextureBufferObject.glTexBufferEXT(target, internalformat, buffer);
     }
-
-
 }

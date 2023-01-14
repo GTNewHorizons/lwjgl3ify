@@ -1,9 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBSparseBuffer {
-    public static void glBufferPageCommitmentARB(int arg0, long arg1, long arg2, boolean arg3) {
-        org.lwjgl.opengl.ARBSparseBuffer.glBufferPageCommitmentARB(arg0, arg1, arg2, arg3);
+    public static void glBufferPageCommitmentARB(int target, long offset, long size, boolean commit) {
+        org.lwjgl.opengl.ARBSparseBuffer.glBufferPageCommitmentARB(target, offset, size, commit);
     }
-
-
 }
