@@ -10,8 +10,18 @@ import org.objectweb.asm.commons.RemappingClassAdapter;
 public class LwjglRedirectTransformer extends Remapper implements IClassTransformer {
     int remaps = 0, calls = 0;
 
+    public static LwjglRedirectTransformer activeInstance = null;
+
+    public LwjglRedirectTransformer() {
+        // Only use the last constructed transformer
+        activeInstance = this;
+    }
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
+        if (this != activeInstance) {
+            return basicClass;
+        }
         if (basicClass == null) {
             return null;
         }

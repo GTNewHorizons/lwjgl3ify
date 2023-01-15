@@ -4,4 +4,5 @@ minecraft {
 }
 
 dependencies {
+    implementation('com.gtnewhorizon:gtnhmixins:2.1.3')
 }

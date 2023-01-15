@@ -1,9 +1,12 @@
 package me.eigenraven.lwjgl3ify;
 
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.launch.GlobalProperties;
+import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions({"org.lwjglx", "org.lwjgl", "me.eigenraven.lwjgl3ify"})
@@ -15,6 +18,12 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
     @Override
     public String[] getASMTransformerClass() {
         LOGGER.info("Registering lwjgl3ify redirect transformer");
+
+        List<String> tweakClasses = GlobalProperties.get(MixinServiceLaunchWrapper.BLACKBOARD_KEY_TWEAKCLASSES);
+        if (tweakClasses != null) {
+            tweakClasses.add(PostMixinTransformInjector.class.getName());
+        }
+
         return new String[] {"me.eigenraven.lwjgl3ify.LwjglRedirectTransformer"};
     }
 
