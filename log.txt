@@ -2,7 +2,7 @@
 > Configure project :
 Configuring spotless
 
-> Task :compileUtilJava
+> Task :compileUtilJava UP-TO-DATE
 > Task :compileUtilScala NO-SOURCE
 > Task :injectTags UP-TO-DATE
 > Task :compileInjectedTagsJava UP-TO-DATE
@@ -39,12 +39,52 @@ Configuring spotless
 > Task :classes UP-TO-DATE
 > Task :jar UP-TO-DATE
 > Task :processUtilResources NO-SOURCE
-> Task :utilClasses
+> Task :utilClasses UP-TO-DATE
 
 > Task :runComparisonTool
-Missing in mod: org/lwjgl/LWJGLUtil : mapLibraryName:(Ljava/lang/String;)Ljava/lang/String;
-Missing in mod: org/lwjgl/Sys : getClipboard:()Ljava/lang/String;
-Missing in mod: org/lwjgl/Sys : is64Bit:()Z
+Missing in mod: org/lwjgl/PointerBuffer : <init>:(I)V
+Missing in mod: org/lwjgl/PointerBuffer : <init>:(Ljava/nio/ByteBuffer;)V
+Missing in mod: org/lwjgl/PointerBuffer : asReadOnlyBuffer:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : capacity:()I
+Missing in mod: org/lwjgl/PointerBuffer : clear:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : compact:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : compareTo:(Ljava/lang/Object;)I
+Missing in mod: org/lwjgl/PointerBuffer : duplicate:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : equals:(Ljava/lang/Object;)Z
+Missing in mod: org/lwjgl/PointerBuffer : flip:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : get:()J
+Missing in mod: org/lwjgl/PointerBuffer : get:(I)J
+Missing in mod: org/lwjgl/PointerBuffer : get:([J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : get:([JII)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : getBuffer:()Ljava/nio/ByteBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : getPointerSize:()I
+Missing in mod: org/lwjgl/PointerBuffer : hasRemaining:()Z
+Missing in mod: org/lwjgl/PointerBuffer : hashCode:()I
+Missing in mod: org/lwjgl/PointerBuffer : is64Bit:()Z
+Missing in mod: org/lwjgl/PointerBuffer : isReadOnly:()Z
+Missing in mod: org/lwjgl/PointerBuffer : limit:()I
+Missing in mod: org/lwjgl/PointerBuffer : limit:(I)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : mark:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : newInstance:(Ljava/nio/ByteBuffer;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : order:()Ljava/nio/ByteOrder;
+Missing in mod: org/lwjgl/PointerBuffer : position:()I
+Missing in mod: org/lwjgl/PointerBuffer : position:(I)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : positionByte:()I
+Missing in mod: org/lwjgl/PointerBuffer : put:(IJ)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(ILorg/lwjgl/PointerWrapper;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(Ljava/nio/ByteBuffer;IJ)V
+Missing in mod: org/lwjgl/PointerBuffer : put:(Ljava/nio/ByteBuffer;J)V
+Missing in mod: org/lwjgl/PointerBuffer : put:(Lorg/lwjgl/PointerBuffer;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(Lorg/lwjgl/PointerWrapper;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:([J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:([JII)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : remaining:()I
+Missing in mod: org/lwjgl/PointerBuffer : remainingByte:()I
+Missing in mod: org/lwjgl/PointerBuffer : reset:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : rewind:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : slice:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : toString:()Ljava/lang/String;
 Missing gl3: org/lwjgl/input/Controller
 Missing gl3: org/lwjgl/input/Controllers
 Missing in mod: org/lwjgl/input/Keyboard : areRepeatEventsEnabled:()Z
@@ -3566,4 +3606,4 @@ Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
 
 BUILD SUCCESSFUL in 1s
-21 actionable tasks: 2 executed, 19 up-to-date
+21 actionable tasks: 1 executed, 20 up-to-date

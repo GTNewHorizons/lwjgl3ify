@@ -8,11 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.system.Platform;
+import org.lwjglx.opengl.Display;
 
 public class Sys {
 
     static {
-        if (glfwInit() != true) throw new IllegalStateException("Unable to initialize glfw");
+        if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
     }
 
     public static void initialize() {}
@@ -68,5 +70,13 @@ public class Sys {
             LWJGLUtil.log("Caught exception while setting LAF: " + e);
         }
         JOptionPane.showMessageDialog(null, message, title, JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static boolean is64Bit() {
+        return Platform.getArchitecture().toString().endsWith("64");
+    }
+
+    public String getClipboard() {
+        return GLFW.glfwGetClipboardString(Display.getWindow());
     }
 }

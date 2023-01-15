@@ -5,37 +5,37 @@ import java.nio.charset.StandardCharsets;
 
 public class BufferCasts {
     public static ByteBuffer toByteBuffer(CharBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asCharBuffer().put(buffer);
         return newBuffer;
     }
 
     public static ByteBuffer toByteBuffer(ShortBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asShortBuffer().put(buffer);
         return newBuffer;
     }
 
     public static ByteBuffer toByteBuffer(IntBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asIntBuffer().put(buffer);
         return newBuffer;
     }
 
     public static ByteBuffer toByteBuffer(LongBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asLongBuffer().put(buffer);
         return newBuffer;
     }
 
     public static ByteBuffer toByteBuffer(FloatBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asFloatBuffer().put(buffer);
         return newBuffer;
     }
 
     public static ByteBuffer toByteBuffer(DoubleBuffer buffer) {
-        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4);
+        ByteBuffer newBuffer = ByteBuffer.allocateDirect(buffer.capacity() * 4).order(ByteOrder.nativeOrder());
         newBuffer.asDoubleBuffer().put(buffer);
         return newBuffer;
     }

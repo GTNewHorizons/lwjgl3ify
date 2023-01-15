@@ -41,6 +41,7 @@ import java.security.PrivilegedAction;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 import java.util.*;
+import org.lwjgl.system.Platform;
 
 /**
  * <p>
@@ -269,14 +270,19 @@ public class LWJGLUtil {
     private static final int PLATFORM;
 
     static {
-        final String osName = getPrivilegedProperty("os.name");
-        if (osName.startsWith("Windows")) PLATFORM = PLATFORM_WINDOWS;
-        else if (osName.startsWith("Linux")
-                || osName.startsWith("FreeBSD")
-                || osName.startsWith("SunOS")
-                || osName.startsWith("Unix")) PLATFORM = PLATFORM_LINUX;
-        else if (osName.startsWith("Mac OS X") || osName.startsWith("Darwin")) PLATFORM = PLATFORM_MACOSX;
-        else throw new LinkageError("Unknown platform: " + osName);
+        switch (Platform.get()) {
+            case WINDOWS:
+                PLATFORM = PLATFORM_WINDOWS;
+                break;
+            case LINUX:
+                PLATFORM = PLATFORM_LINUX;
+                break;
+            case MACOSX:
+                PLATFORM = PLATFORM_MACOSX;
+                break;
+            default:
+                throw new LinkageError("Unknown platform: " + Platform.get());
+        }
     }
 
     private static ByteBuffer loadIcon(String data) {
@@ -384,28 +390,8 @@ public class LWJGLUtil {
         return possible_paths.toArray(new String[possible_paths.size()]);
     }
 
-    static void execPrivileged(final String[] cmd_array) throws Exception {
-        try {
-            Process process = AccessController.doPrivileged(new PrivilegedExceptionAction<Process>() {
-                public Process run() throws Exception {
-                    return Runtime.getRuntime().exec(cmd_array);
-                }
-            });
-            // Close unused streams to make sure the child process won't hang
-            process.getInputStream().close();
-            process.getOutputStream().close();
-            process.getErrorStream().close();
-        } catch (PrivilegedActionException e) {
-            throw (Exception) e.getCause();
-        }
-    }
-
     private static String getPrivilegedProperty(final String property_name) {
-        return AccessController.doPrivileged(new PrivilegedAction<String>() {
-            public String run() {
-                return System.getProperty(property_name);
-            }
-        });
+        return AccessController.doPrivileged((PrivilegedAction<String>) () -> System.getProperty(property_name));
     }
 
     /**
@@ -449,11 +435,7 @@ public class LWJGLUtil {
      * Gets a boolean property as a privileged action.
      */
     public static boolean getPrivilegedBoolean(final String property_name) {
-        return AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
-            public Boolean run() {
-                return Boolean.getBoolean(property_name);
-            }
-        });
+        return AccessController.doPrivileged((PrivilegedAction<Boolean>) () -> Boolean.getBoolean(property_name));
     }
 
     /**
@@ -464,11 +446,7 @@ public class LWJGLUtil {
      * @return the property value
      */
     public static Integer getPrivilegedInteger(final String property_name) {
-        return AccessController.doPrivileged(new PrivilegedAction<Integer>() {
-            public Integer run() {
-                return Integer.getInteger(property_name);
-            }
-        });
+        return AccessController.doPrivileged((PrivilegedAction<Integer>) () -> Integer.getInteger(property_name));
     }
 
     /**
@@ -480,11 +458,8 @@ public class LWJGLUtil {
      * @return the property value
      */
     public static Integer getPrivilegedInteger(final String property_name, final int default_val) {
-        return AccessController.doPrivileged(new PrivilegedAction<Integer>() {
-            public Integer run() {
-                return Integer.getInteger(property_name, default_val);
-            }
-        });
+        return AccessController.doPrivileged(
+                (PrivilegedAction<Integer>) () -> Integer.getInteger(property_name, default_val));
     }
 
     /**
@@ -604,5 +579,9 @@ public class LWJGLUtil {
          * @result true if the Field is accepted
          */
         boolean accept(Field field, int value);
+    }
+
+    public static String mapLibraryName(String libName) {
+        return Platform.mapLibraryNameBundled(libName);
     }
 }
