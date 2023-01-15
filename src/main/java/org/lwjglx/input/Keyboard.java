@@ -256,7 +256,7 @@ public class Keyboard {
     }
 
     public static void poll() {
-        GLFW.glfwPollEvents();
+        // no-op
     }
 
     public static void enableRepeatEvents(boolean enable) {

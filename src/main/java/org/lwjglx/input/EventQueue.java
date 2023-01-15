@@ -20,7 +20,10 @@ class EventQueue {
      */
     void add() {
         eventCount++; // increment event count
-        if (eventCount > maxEvents) eventCount = maxEvents; // cap max events
+        if (eventCount > maxEvents) {
+            eventCount = maxEvents; // cap max events
+            System.out.println("Dropping LWJGL input events due to not frequent enough polling");
+        }
 
         nextEventPos++; // increment next event position
         if (nextEventPos == maxEvents) nextEventPos = 0; // wrap next event position
