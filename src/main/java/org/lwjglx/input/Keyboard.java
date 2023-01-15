@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
@@ -156,26 +157,37 @@ public class Keyboard {
     public static final int KEY_POWER = 0xDE;
     public static final int KEY_SLEEP = 0xDF;
 
-    private static EventQueue queue = new EventQueue(32);
-    // private static int maxEvents = 32;
+    public static final int keyCount;
 
-    // private static int eventCount = 0;
-    // private static int currentEventPos = -1;
-    // private static int nextEventPos = 0;
+    private static EventQueue queue = new EventQueue(128);
+
+    private enum KeyState {
+        PRESS(true),
+        RELEASE(false),
+        REPEAT(true);
+        public final boolean isPressed;
+
+        KeyState(boolean isPressed) {
+            this.isPressed = isPressed;
+        }
+    }
+
+    private static boolean doRepeatEvents = true;
 
     private static int[] keyEvents = new int[queue.getMaxEvents()];
-    private static boolean[] keyEventStates = new boolean[queue.getMaxEvents()];
+    private static KeyState[] keyEventStates = new KeyState[queue.getMaxEvents()];
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
     private static char[] keyEventChars = new char[256];
 
     public static final int KEYBOARD_SIZE = 256;
 
     private static final String[] keyName = new String[KEYBOARD_SIZE];
-    private static final Map<String, Integer> keyMap = new HashMap<String, Integer>(253);
+    private static final Map<String, Integer> keyMap = new HashMap<>(253);
 
     static {
         // Use reflection to find out key names
         Field[] fields = Keyboard.class.getFields();
+        int keyCounter = 0;
         try {
             for (Field field : fields) {
                 if (Modifier.isStatic(field.getModifiers())
@@ -190,27 +202,46 @@ public class Keyboard {
                     String name = field.getName().substring(4);
                     keyName[key] = name;
                     keyMap.put(name, key);
+                    keyCounter++;
                 }
             }
         } catch (Exception e) {
         }
+        keyCount = keyCounter;
     }
 
-    public static void addKeyEvent(int key, boolean pressed) {
-        // eventCount++;
-        // if (eventCount > maxEvents) eventCount = maxEvents;
-
+    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
+        final KeyState state;
+        switch (action) {
+            case GLFW.GLFW_PRESS:
+                state = KeyState.PRESS;
+                break;
+            case GLFW.GLFW_RELEASE:
+                state = KeyState.RELEASE;
+                break;
+            case GLFW.GLFW_REPEAT:
+                state = KeyState.REPEAT;
+                if (!doRepeatEvents) {
+                    return;
+                }
+                break;
+            default:
+                state = KeyState.RELEASE;
+                break;
+        }
         keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
-        keyEventStates[queue.getNextPos()] = pressed;
-
+        keyEventStates[queue.getNextPos()] = state;
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
         queue.add();
-        /*nextEventPos++;
-        if (nextEventPos == maxEvents) nextEventPos = 0;
+    }
 
-        if (currentEventPos == nextEventPos) currentEventPos++;
-        if (currentEventPos == maxEvents) currentEventPos = 0;*/
+    public static void addKeyEvent(int key, boolean pressed) {
+        keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
+        keyEventStates[queue.getNextPos()] = pressed ? KeyState.PRESS : KeyState.RELEASE;
+        nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+
+        queue.add();
     }
 
     public static void addCharEvent(int key, char c) {
@@ -225,28 +256,31 @@ public class Keyboard {
     }
 
     public static void poll() {
-        // TODO
+        GLFW.glfwPollEvents();
     }
 
     public static void enableRepeatEvents(boolean enable) {
-        // TODO
-        System.out.println("TODO: Implement Keyboad.enableRepeatEvents(boolean)");
+        doRepeatEvents = enable;
+    }
+
+    public static boolean areRepeatEventsEnabled() {
+        return doRepeatEvents;
+    }
+
+    public static int getKeyCount() {
+        return keyCount;
+    }
+
+    public static int getNumKeyboardEvents() {
+        return queue.getEventCount();
     }
 
     public static boolean isRepeatEvent() {
-        // TODO
-        return false;
+        return keyEventStates[queue.getCurrentPos()] == KeyState.REPEAT;
     }
 
     public static boolean next() {
         return queue.next();
-        /*if (eventCount == 0) return false;
-
-        eventCount--;
-        currentEventPos++;
-        if (currentEventPos == maxEvents) currentEventPos = 0;
-
-        return true;*/
     }
 
     public static int getEventKey() {
@@ -258,7 +292,7 @@ public class Keyboard {
     }
 
     public static boolean getEventKeyState() {
-        return keyEventStates[queue.getCurrentPos()];
+        return keyEventStates[queue.getCurrentPos()].isPressed;
     }
 
     public static long getEventNanoseconds() {
@@ -266,13 +300,21 @@ public class Keyboard {
     }
 
     public static String getKeyName(int key) {
-        return keyName[key];
+        if (key >= 0 && key < keyName.length) {
+            return keyName[key];
+        } else {
+            return "Key " + key;
+        }
     }
 
     public static int getKeyIndex(java.lang.String keyName) {
         Integer ret = keyMap.get(keyName);
-        if (ret == null) return KEY_NONE;
-        else return ret;
+        if (ret == null) {
+            if (keyName.matches("Key -?[0-9]+]")) {
+                return Integer.parseInt(StringUtils.removeStart(keyName, "Key "));
+            }
+            return KEY_NONE;
+        } else return ret;
     }
 
     public static boolean isCreated() {

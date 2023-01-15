@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
@@ -52,6 +53,7 @@ public class Display {
     private static boolean latestResized = false;
     private static int latestWidth = 0;
     private static int latestHeight = 0;
+    private static ByteBuffer[] savedIcons;
 
     static {
         Sys.initialize(); // init using dummy sys method
@@ -106,9 +108,7 @@ public class Display {
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 latestEventKey = key;
 
-                if (action == GLFW_RELEASE || action == GLFW.GLFW_PRESS) {
-                    Keyboard.addKeyEvent(key, action == GLFW.GLFW_PRESS ? true : false);
-                }
+                Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
             }
         };
 
@@ -227,6 +227,11 @@ public class Display {
 
         glfwMakeContextCurrent(Window.handle);
         GL.createCapabilities();
+
+        if (savedIcons != null) {
+            setIcon(savedIcons);
+            savedIcons = null;
+        }
 
         glfwSwapInterval(1);
         glfwShowWindow(Window.handle);
@@ -378,8 +383,22 @@ public class Display {
     }
 
     public static int setIcon(java.nio.ByteBuffer[] icons) {
-        // TODO
-        System.out.println("TODO: Implement Display.setIcon(ByteBuffer[])");
+        if (getWindow() == 0) {
+            savedIcons = icons;
+            return 0;
+        }
+        GLFWImage.Buffer glfwImages = GLFWImage.calloc(icons.length);
+        for (int icon = 0; icon < icons.length; icon++) {
+            ByteBuffer iconBytes = org.lwjgl.BufferUtils.createByteBuffer(icons[icon].capacity());
+            iconBytes.put(icons[icon]);
+            int dimension = (int) Math.sqrt(iconBytes.limit() / 4D);
+            if (dimension * dimension * 4 != iconBytes.limit()) {
+                throw new IllegalStateException();
+            }
+            glfwImages.put(icon, GLFWImage.create().set(dimension, dimension, iconBytes));
+        }
+        GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
+        glfwImages.free();
         return 0;
     }
 

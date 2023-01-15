@@ -43,6 +43,10 @@ class EventQueue {
         return true;
     }
 
+    int getEventCount() {
+        return eventCount;
+    }
+
     int getMaxEvents() {
         return maxEvents;
     }

@@ -18,7 +18,7 @@ public class Mouse {
     private static int x = 0;
     private static int y = 0;
 
-    private static EventQueue queue = new EventQueue(32);
+    private static EventQueue queue = new EventQueue(128);
 
     private static int[] buttonEvents = new int[queue.getMaxEvents()];
     private static boolean[] buttonEventStates = new boolean[queue.getMaxEvents()];
