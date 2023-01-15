@@ -60,49 +60,6 @@ Missing in mod: org/lwjgl/input/Mouse : updateCursor:()V
 Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZ)V
 Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZZ)V
 Missing in mod: org/lwjgl/openal/AL : getContext:()Lorg/lwjgl/openal/ALCcontext;
-Missing in mod: org/lwjgl/openal/AL10 : alBufferData:(IILjava/nio/IntBuffer;I)V
-Missing in mod: org/lwjgl/openal/AL10 : alBufferData:(IILjava/nio/ShortBuffer;I)V
-Missing in mod: org/lwjgl/openal/AL10 : alDeleteBuffers:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alDeleteSources:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alDisable:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alDistanceModel:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alDopplerFactor:(F)V
-Missing in mod: org/lwjgl/openal/AL10 : alDopplerVelocity:(F)V
-Missing in mod: org/lwjgl/openal/AL10 : alEnable:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alGenBuffers:()I
-Missing in mod: org/lwjgl/openal/AL10 : alGenSources:()I
-Missing in mod: org/lwjgl/openal/AL10 : alGetBoolean:(I)Z
-Missing in mod: org/lwjgl/openal/AL10 : alGetBufferf:(II)F
-Missing in mod: org/lwjgl/openal/AL10 : alGetBufferi:(II)I
-Missing in mod: org/lwjgl/openal/AL10 : alGetDouble:(I)D
-Missing in mod: org/lwjgl/openal/AL10 : alGetDouble:(ILjava/nio/DoubleBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alGetEnumValue:(Ljava/lang/String;)I
-Missing in mod: org/lwjgl/openal/AL10 : alGetFloat:(I)F
-Missing in mod: org/lwjgl/openal/AL10 : alGetFloat:(ILjava/nio/FloatBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alGetInteger:(I)I
-Missing in mod: org/lwjgl/openal/AL10 : alGetInteger:(ILjava/nio/IntBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alGetListener:(ILjava/nio/FloatBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alGetListenerf:(I)F
-Missing in mod: org/lwjgl/openal/AL10 : alGetListeneri:(I)I
-Missing in mod: org/lwjgl/openal/AL10 : alGetSource:(IILjava/nio/FloatBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alGetSourcef:(II)F
-Missing in mod: org/lwjgl/openal/AL10 : alIsBuffer:(I)Z
-Missing in mod: org/lwjgl/openal/AL10 : alIsEnabled:(I)Z
-Missing in mod: org/lwjgl/openal/AL10 : alIsExtensionPresent:(Ljava/lang/String;)Z
-Missing in mod: org/lwjgl/openal/AL10 : alIsSource:(I)Z
-Missing in mod: org/lwjgl/openal/AL10 : alListener:(ILjava/nio/FloatBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alListenerf:(IF)V
-Missing in mod: org/lwjgl/openal/AL10 : alListeneri:(II)V
-Missing in mod: org/lwjgl/openal/AL10 : alSource:(IILjava/nio/FloatBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourcePause:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourcePause:(Ljava/nio/IntBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourcePlay:(Ljava/nio/IntBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourceQueueBuffers:(II)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourceQueueBuffers:(ILjava/nio/IntBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourceRewind:(I)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourceRewind:(Ljava/nio/IntBuffer;)V
-Missing in mod: org/lwjgl/openal/AL10 : alSourceUnqueueBuffers:(I)I
-Missing in mod: org/lwjgl/openal/AL10 : alSourceUnqueueBuffers:(ILjava/nio/IntBuffer;)V
 org/lwjgl/openal/AL11
  + alBuffer3f:(IIFFF)V
  + alBuffer3i:(IIIII)V
@@ -3602,5 +3559,5 @@ Missing in mod: org/lwjgl/util/vector/Vector2f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
 
-BUILD SUCCESSFUL in 2s
+BUILD SUCCESSFUL in 1s
 21 actionable tasks: 2 executed, 19 up-to-date

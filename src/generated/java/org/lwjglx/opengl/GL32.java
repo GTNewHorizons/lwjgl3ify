@@ -62,7 +62,8 @@ public class GL32 {
 
     public static org.lwjglx.opengl.GLSync glFenceSync(int condition, int flags) {
 
-        org.lwjglx.opengl.GLSync returnValue = new GLSync(org.lwjgl.opengl.GL32.glFenceSync(condition, flags));
+        org.lwjglx.opengl.GLSync returnValue =
+                new org.lwjglx.opengl.GLSync(org.lwjgl.opengl.GL32.glFenceSync(condition, flags));
 
         return returnValue;
     }

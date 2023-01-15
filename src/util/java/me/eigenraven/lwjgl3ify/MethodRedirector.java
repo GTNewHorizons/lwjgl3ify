@@ -99,15 +99,24 @@ public abstract class MethodRedirector {
             if (preCode != null) {
                 writer.println(preCode);
             }
-            writer.printf(
-                    "        %s%s.%s(%s);%n",
-                    matcher.methodType.getReturnType().equals(Type.VOID_TYPE)
-                            ? ""
-                            : matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx.")
-                                    + " returnValue = ",
-                    this.javaClassName,
-                    newMethod.name,
-                    argCall);
+            if (matcher.methodType.getReturnType().equals(Type.VOID_TYPE)) {
+                writer.printf("        %s.%s(%s);%n", this.javaClassName, newMethod.name, argCall);
+            } else {
+                final String retType =
+                        matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx.");
+                String preRet = "", postRet = "";
+                if (retType.endsWith("ALCdevice")) {
+                    preRet = "new org.lwjglx.openal.ALCdevice(";
+                    postRet = ")";
+                }
+                if (retType.endsWith("GLSync")) {
+                    preRet = "new org.lwjglx.opengl.GLSync(";
+                    postRet = ")";
+                }
+                writer.printf(
+                        "        %s returnValue = %s%s.%s(%s)%s;%n",
+                        retType, preRet, this.javaClassName, newMethod.name, argCall, postRet);
+            }
             if (postCode != null) {
                 writer.println(postCode);
             }
