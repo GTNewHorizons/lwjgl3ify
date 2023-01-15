@@ -692,11 +692,6 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glNamedBufferStorage(buffer, data, flags);
     }
 
-    public static void glNamedBufferStorage(int buffer, java.nio.LongBuffer data, int flags) {
-
-        org.lwjgl.opengl.GL45.glNamedBufferStorage(buffer, org.lwjglx.MemoryUtil.getAddress(data), flags);
-    }
-
     public static void glNamedBufferStorage(int buffer, java.nio.ShortBuffer data, int flags) {
         org.lwjgl.opengl.GL45.glNamedBufferStorage(buffer, data, flags);
     }

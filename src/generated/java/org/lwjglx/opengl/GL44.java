@@ -21,11 +21,6 @@ public class GL44 {
         org.lwjgl.opengl.GL44.glBufferStorage(target, data, flags);
     }
 
-    public static void glBufferStorage(int target, java.nio.LongBuffer data, int flags) {
-
-        org.lwjgl.opengl.GL44.glBufferStorage(target, org.lwjglx.MemoryUtil.getAddress(data), flags);
-    }
-
     public static void glBufferStorage(int target, java.nio.ShortBuffer data, int flags) {
         org.lwjgl.opengl.GL44.glBufferStorage(target, data, flags);
     }

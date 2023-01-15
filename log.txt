@@ -240,6 +240,8 @@ org/lwjgl/opengl/ARBBufferStorage
  + glNamedBufferStorageEXT:(ILjava/nio/DoubleBuffer;I)V
  + glNamedBufferStorageEXT:(ILjava/nio/FloatBuffer;I)V
  + glNamedBufferStorageEXT:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/ARBBufferStorage : glNamedBufferStorageEXT:(ILjava/nio/LongBuffer;I)V
+ - glNamedBufferStorageEXT:(ILjava/nio/LongBuffer;I)V
  + glNamedBufferStorageEXT:(ILjava/nio/ShortBuffer;I)V
 org/lwjgl/opengl/ARBClearBufferObject
  + glClearBufferData:(IIIILjava/nio/ByteBuffer;)V
@@ -2990,6 +2992,8 @@ org/lwjgl/opengl/GL44
  + glBufferStorage:(ILjava/nio/DoubleBuffer;I)V
  + glBufferStorage:(ILjava/nio/FloatBuffer;I)V
  + glBufferStorage:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/GL44 : glBufferStorage:(ILjava/nio/LongBuffer;I)V
+ - glBufferStorage:(ILjava/nio/LongBuffer;I)V
  + glBufferStorage:(ILjava/nio/ShortBuffer;I)V
  + glClearTexImage:(IIIILjava/nio/ByteBuffer;)V
  + glClearTexImage:(IIIILjava/nio/DoubleBuffer;)V
@@ -3126,6 +3130,8 @@ org/lwjgl/opengl/GL45
  + glNamedBufferStorage:(ILjava/nio/DoubleBuffer;I)V
  + glNamedBufferStorage:(ILjava/nio/FloatBuffer;I)V
  + glNamedBufferStorage:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/GL45 : glNamedBufferStorage:(ILjava/nio/LongBuffer;I)V
+ - glNamedBufferStorage:(ILjava/nio/LongBuffer;I)V
  + glNamedBufferStorage:(ILjava/nio/ShortBuffer;I)V
  + glNamedBufferSubData:(IJLjava/nio/ByteBuffer;)V
  + glNamedBufferSubData:(IJLjava/nio/DoubleBuffer;)V

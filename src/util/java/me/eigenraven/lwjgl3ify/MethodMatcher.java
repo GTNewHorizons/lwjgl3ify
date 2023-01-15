@@ -1,11 +1,13 @@
 package me.eigenraven.lwjgl3ify;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.LocalVariableNode;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -153,6 +155,16 @@ public class MethodMatcher {
                     for (int i = 0; i < newArgTypes.length; i++) {
                         final String oldArgType = argTypes[i];
                         final String newArgType = newArgTypes[i];
+                        List<AnnotationNode>[] paramAnnotations = fuzzyMatch.getValue().visibleParameterAnnotations;
+                        String newNativeType = "";
+                        if (paramAnnotations != null && paramAnnotations.length > i && !paramAnnotations[i].isEmpty()) {
+                            for (AnnotationNode annotation : paramAnnotations[i]) {
+                                if (annotation.desc.equals("Lorg/lwjgl/system/NativeType;")) {
+                                    newNativeType =
+                                            annotation.values.get(1).toString().trim();
+                                }
+                            }
+                        }
                         if (!oldArgType.equals(newArgType)) {
                             if (newArgType.startsWith("java.nio.")
                                     && newArgType.endsWith("Buffer")
@@ -189,6 +201,7 @@ public class MethodMatcher {
                                     && oldArgType.equals("long")) {
                                 changedArgs[i] = "new long[]{" + argNames[i] + "}";
                             } else if (newArgType.equals("long")
+                                    && newNativeType.endsWith("*")
                                     && oldArgType.startsWith("java.nio.")
                                     && oldArgType.endsWith("Buffer")) {
                                 changedArgs[i] = "org.lwjglx.MemoryUtil.getAddress(" + argNames[i] + ")";
