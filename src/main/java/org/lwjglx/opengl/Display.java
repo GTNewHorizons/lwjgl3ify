@@ -69,6 +69,20 @@ public class Display {
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
     }
 
+    /**
+     * Create the OpenGL context with the given minimum parameters. If isFullscreen() is true or if windowed
+     * context are not supported on the platform, the display mode will be switched to the mode returned by
+     * getDisplayMode(), and a fullscreen context will be created. If isFullscreen() is false, a windowed context
+     * will be created with the dimensions given in the mode returned by getDisplayMode(). If a context can't be
+     * created with the given parameters, a LWJGLException will be thrown.
+     * <p/>
+     * <p>The window created will be set up in orthographic 2D projection, with 1:1 pixel ratio with GL coordinates.
+     *
+     * @param pixel_format    Describes the minimum specifications the context must fulfill.
+     * @param shared_drawable The Drawable to share context with. (optional, may be null)
+     *
+     * @throws org.lwjglx.LWJGLException
+     */
     public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
         System.out.println("TODO: Implement Display.create(PixelFormat, Drawable)"); // TODO
         create();
@@ -85,6 +99,10 @@ public class Display {
     }
 
     public static void create() {
+        if (displayCreated) {
+            return;
+        }
+
         long monitor = glfwGetPrimaryMonitor();
         GLFWVidMode vidmode = glfwGetVideoMode(monitor);
 
@@ -98,6 +116,8 @@ public class Display {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, displayResizable ? GL_TRUE : GL_FALSE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
@@ -226,6 +246,7 @@ public class Display {
         displayY = (monitorHeight - mode.getHeight()) / 2;
 
         glfwMakeContextCurrent(Window.handle);
+        drawable = new DrawableGL();
         GL.createCapabilities();
 
         if (savedIcons != null) {
@@ -461,8 +482,10 @@ public class Display {
         Sync.sync(fps);
     }
 
+    protected static DrawableGL drawable = null;
+
     public static Drawable getDrawable() {
-        return null;
+        return drawable;
     }
 
     static DisplayImplementation getImplementation() {

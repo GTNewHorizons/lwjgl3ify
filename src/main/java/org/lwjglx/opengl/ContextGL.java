@@ -31,6 +31,8 @@
  */
 package org.lwjglx.opengl;
 
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.PointerBuffer;
 
@@ -47,25 +49,50 @@ import org.lwjglx.PointerBuffer;
  */
 final class ContextGL implements Context {
 
-    public void releaseCurrent() throws LWJGLException {}
+    public long glfwWindow = Long.MIN_VALUE;
+    public final boolean shared;
+
+    public ContextGL(long glfwWindow, boolean shared) {
+        this.glfwWindow = glfwWindow;
+        this.shared = shared;
+    }
+
+    public void releaseCurrent() throws LWJGLException {
+        GLFW.glfwMakeContextCurrent(0);
+        GL.setCapabilities(null);
+    }
 
     public synchronized void releaseDrawable() throws LWJGLException {}
 
     public synchronized void update() {}
 
-    public static void swapBuffers() throws LWJGLException {}
-
-    public synchronized void makeCurrent() throws LWJGLException {}
-
-    public synchronized boolean isCurrent() throws LWJGLException {
-        return false;
+    public static void swapBuffers() throws LWJGLException {
+        GLFW.glfwSwapBuffers(Display.getWindow());
     }
 
-    public static void setSwapInterval(int value) {}
+    public synchronized void makeCurrent() throws LWJGLException {
+        GLFW.glfwMakeContextCurrent(glfwWindow);
+        GL.createCapabilities();
+    }
 
-    public synchronized void forceDestroy() throws LWJGLException {}
+    public synchronized boolean isCurrent() throws LWJGLException {
+        return GLFW.glfwGetCurrentContext() == glfwWindow;
+    }
 
-    public synchronized void destroy() throws LWJGLException {}
+    public static void setSwapInterval(int value) {
+        GLFW.glfwSwapInterval(value);
+    }
+
+    public synchronized void forceDestroy() throws LWJGLException {
+        destroy();
+    }
+
+    public synchronized void destroy() throws LWJGLException {
+        if (shared && glfwWindow > 0) {
+            GLFW.glfwDestroyWindow(glfwWindow);
+            glfwWindow = -1;
+        }
+    }
 
     public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {}
 }

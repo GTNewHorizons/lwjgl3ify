@@ -33,12 +33,13 @@ package org.lwjglx.opengl;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.LWJGLUtil;
 import org.lwjglx.PointerBuffer;
 
 /** @author Spasi */
-abstract class DrawableGL implements DrawableLWJGL {
+class DrawableGL implements DrawableLWJGL {
 
     /** The PixelFormat used to create the drawable. */
     protected PixelFormat pixel_format;
@@ -49,7 +50,9 @@ abstract class DrawableGL implements DrawableLWJGL {
     /** The OpenGL Context. */
     protected ContextGL context;
 
-    protected DrawableGL() {}
+    protected DrawableGL() {
+        context = new ContextGL(Display.getWindow(), false);
+    }
 
     public void setPixelFormat(final PixelFormatLWJGL pf) throws LWJGLException {
         throw new UnsupportedOperationException();
@@ -72,9 +75,11 @@ abstract class DrawableGL implements DrawableLWJGL {
 
     public ContextGL createSharedContext() throws LWJGLException {
         synchronized (GlobalLock.lock) {
-            // checkDestroyed();
-            // return new ContextGL(peer_info, context.getContextAttribs(), context);
-            return null;
+            long hiddenWindow = GLFW.glfwCreateWindow(16, 16, "MC - Shared Drawable", 0, this.context.glfwWindow);
+            if (hiddenWindow == 0) {
+                throw new LWJGLException("Couldn't create shared context hidden window");
+            }
+            return new ContextGL(hiddenWindow, true);
         }
     }
 
