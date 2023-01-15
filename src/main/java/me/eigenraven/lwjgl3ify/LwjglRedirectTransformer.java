@@ -12,6 +12,9 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
+        if (basicClass == null) {
+            return null;
+        }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
         ClassVisitor visitor = new RemappingClassAdapter(writer, this);
@@ -28,6 +31,9 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
 
     @Override
     public String map(String typeName) {
+        if (typeName == null) {
+            return null;
+        }
         calls++;
         final String OLD_PREFIX_GL = "org/lwjgl/";
         final String NEW_PREFIX_GL = "org/lwjglx/";

@@ -10,6 +10,7 @@ class EventQueue {
     private int eventCount = 0;
     private int currentEventPos = -1;
     private int nextEventPos = 0;
+    private long lastDroppedMessageMs = 0;
 
     EventQueue(int maxEvents) {
         this.maxEvents = maxEvents;
@@ -22,7 +23,11 @@ class EventQueue {
         eventCount++; // increment event count
         if (eventCount > maxEvents) {
             eventCount = maxEvents; // cap max events
-            System.out.println("Dropping LWJGL input events due to not frequent enough polling");
+            long ms = System.currentTimeMillis();
+            if (ms - lastDroppedMessageMs > 1000) {
+                lastDroppedMessageMs = ms;
+                System.out.println("Dropping LWJGL input events due to not frequent enough polling");
+            }
         }
 
         nextEventPos++; // increment next event position

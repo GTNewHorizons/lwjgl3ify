@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions({"org.lwjglx", "org.lwjgl", "me.eigenraven.lwjgl3ify"})
-@IFMLLoadingPlugin.SortingIndex(1000000)
+@IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
 public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
