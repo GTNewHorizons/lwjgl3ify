@@ -29,12 +29,17 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
     @Override
     public String map(String typeName) {
         calls++;
-        final String OLD_PREFIX = "org/lwjgl/";
-        final String NEW_PREFIX = "org/lwjglx/";
-        if (typeName.startsWith(OLD_PREFIX)) {
+        final String OLD_PREFIX_GL = "org/lwjgl/";
+        final String NEW_PREFIX_GL = "org/lwjglx/";
+        final String OLD_PREFIX_PCS = "paulscode/sound/libraries/";
+        final String NEW_PREFIX_PCS = "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/";
+        if (typeName.startsWith(OLD_PREFIX_GL)) {
             remaps++;
-            final String newName = NEW_PREFIX + typeName.substring(OLD_PREFIX.length());
+            final String newName = NEW_PREFIX_GL + typeName.substring(OLD_PREFIX_GL.length());
             return newName;
+        } else if (typeName.startsWith(OLD_PREFIX_PCS)) {
+            remaps++;
+            return NEW_PREFIX_PCS + typeName.substring(OLD_PREFIX_PCS.length());
         } else {
             return typeName;
         }

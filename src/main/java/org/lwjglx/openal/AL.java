@@ -43,11 +43,7 @@ public class AL {
 
         long contextHandle = org.lwjgl.openal.ALC10.alcCreateContext(AL.getDevice().device, attribs);
         alcContext = new ALCcontext(contextHandle);
-        if (deviceCaps.ALC_EXT_thread_local_context) {
-            org.lwjgl.openal.EXTThreadLocalContext.alcSetThreadContext(contextHandle);
-        } else {
-            org.lwjgl.openal.ALC10.alcMakeContextCurrent(contextHandle);
-        }
+        org.lwjgl.openal.ALC10.alcMakeContextCurrent(contextHandle);
         org.lwjgl.openal.AL.createCapabilities(deviceCaps);
 
         created = true;
