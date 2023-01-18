@@ -2,6 +2,7 @@ package org.lwjglx.input;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
@@ -176,6 +177,11 @@ public class Keyboard {
 
     private static int[] keyEvents = new int[queue.getMaxEvents()];
     private static KeyState[] keyEventStates = new KeyState[queue.getMaxEvents()];
+
+    static {
+        Arrays.fill(keyEventStates, KeyState.RELEASE);
+    }
+
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
     private static char[] keyEventChars = new char[256];
 
