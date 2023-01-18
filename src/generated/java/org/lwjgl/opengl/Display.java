@@ -30,17 +30,6 @@ public class Display {
         throw new UnsupportedOperationException();
     }
 
-    public static void create(
-            org.lwjgl.opengl.PixelFormatLWJGL arg0,
-            org.lwjgl.opengl.Drawable arg1,
-            org.lwjgl.opengles.ContextAttribs arg2) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static void create(org.lwjgl.opengl.PixelFormatLWJGL arg0, org.lwjgl.opengles.ContextAttribs arg1) {
-        throw new UnsupportedOperationException();
-    }
-
     public static void destroy() {
         throw new UnsupportedOperationException();
     }

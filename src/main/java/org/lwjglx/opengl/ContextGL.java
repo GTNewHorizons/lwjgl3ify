@@ -47,7 +47,7 @@ import org.lwjglx.PointerBuffer;
  * @version $Revision$
  *          $Id$
  */
-final class ContextGL implements Context {
+public final class ContextGL implements Context {
 
     public long glfwWindow = Long.MIN_VALUE;
     public final boolean shared;

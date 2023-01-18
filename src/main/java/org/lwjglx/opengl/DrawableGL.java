@@ -39,7 +39,7 @@ import org.lwjglx.LWJGLUtil;
 import org.lwjglx.PointerBuffer;
 
 /** @author Spasi */
-class DrawableGL implements DrawableLWJGL {
+public class DrawableGL implements DrawableLWJGL {
 
     /** The PixelFormat used to create the drawable. */
     protected PixelFormat pixel_format;
