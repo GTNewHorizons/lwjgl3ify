@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify;
+package me.eigenraven.lwjgl3ify.core;
 
 import java.io.File;
 import java.util.List;

@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify;
+package me.eigenraven.lwjgl3ify.core;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
@@ -24,6 +24,9 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         }
         if (basicClass == null) {
             return null;
+        }
+        if (name.contains("lwjgl3ify")) {
+            return basicClass;
         }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);

@@ -1,7 +1,7 @@
 package me.eigenraven.lwjgl3ify;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,22 +10,14 @@ import org.apache.logging.log4j.Logger;
 public class Lwjgl3ify {
     private static Logger LOG = LogManager.getLogger(Tags.MODID);
 
+    @Mod.Instance
     public static Lwjgl3ify INSTANCE;
 
-    // Can't use @SidedProxy because it seems to crash because of the post-mixin injection hack
+    @SidedProxy(clientSide = Tags.GROUPNAME + ".ClientProxy", serverSide = Tags.GROUPNAME + ".CommonProxy")
     public static CommonProxy PROXY;
-
-    public Lwjgl3ify() {
-        INSTANCE = this;
-    }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        if (FMLCommonHandler.instance().getSide().isClient()) {
-            PROXY = new ClientProxy();
-        } else {
-            PROXY = new CommonProxy();
-        }
         PROXY.registerF3Handler();
     }
 }
