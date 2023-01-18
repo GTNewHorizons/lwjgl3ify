@@ -24,6 +24,7 @@ public class Mouse {
     private static boolean[] buttonEventStates = new boolean[queue.getMaxEvents()];
     private static int[] xEvents = new int[queue.getMaxEvents()];
     private static int[] yEvents = new int[queue.getMaxEvents()];
+    private static int[] wheelEvents = new int[queue.getMaxEvents()];
     private static int[] lastxEvents = new int[queue.getMaxEvents()];
     private static int[] lastyEvents = new int[queue.getMaxEvents()];
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
@@ -40,6 +41,8 @@ public class Mouse {
         xEvents[queue.getNextPos()] = latestX;
         yEvents[queue.getNextPos()] = latestY;
 
+        wheelEvents[queue.getNextPos()] = 0;
+
         buttonEvents[queue.getNextPos()] = -1;
         buttonEventStates[queue.getNextPos()] = false;
 
@@ -55,8 +58,27 @@ public class Mouse {
         xEvents[queue.getNextPos()] = latestX;
         yEvents[queue.getNextPos()] = latestY;
 
+        wheelEvents[queue.getNextPos()] = 0;
+
         buttonEvents[queue.getNextPos()] = button;
         buttonEventStates[queue.getNextPos()] = pressed;
+
+        nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+
+        queue.add();
+    }
+
+    public static void addWheelEvent(int dwheel) {
+        lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
+        lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
+
+        xEvents[queue.getNextPos()] = latestX;
+        yEvents[queue.getNextPos()] = latestY;
+
+        wheelEvents[queue.getNextPos()] = dwheel;
+
+        buttonEvents[queue.getNextPos()] = -1;
+        buttonEventStates[queue.getNextPos()] = false;
 
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
@@ -131,7 +153,7 @@ public class Mouse {
     }
 
     public static int getEventDWheel() {
-        return 0; // TODO
+        return wheelEvents[queue.getCurrentPos()];
     }
 
     public static int getX() {
@@ -151,8 +173,7 @@ public class Mouse {
     }
 
     public static int getDWheel() {
-        // TODO
-        return 0;
+        return getEventDWheel();
     }
 
     public static int getButtonCount() {

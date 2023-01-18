@@ -153,6 +153,13 @@ public class Display {
             }
         };
 
+        Window.scrollCallback = new GLFWScrollCallback() {
+            @Override
+            public void invoke(long window, double xoffset, double yoffset) {
+                Mouse.addWheelEvent((int) Math.round(yoffset));
+            }
+        };
+
         Window.windowFocusCallback = new GLFWWindowFocusCallback() {
             @Override
             public void close() {
@@ -499,6 +506,7 @@ public class Display {
         static GLFWCharCallback charCallback;
         static GLFWCursorPosCallback cursorPosCallback;
         static GLFWMouseButtonCallback mouseButtonCallback;
+        static GLFWScrollCallback scrollCallback;
         static GLFWWindowFocusCallback windowFocusCallback;
         static GLFWWindowIconifyCallback windowIconifyCallback;
         static GLFWWindowSizeCallback windowSizeCallback;
@@ -511,6 +519,7 @@ public class Display {
             GLFW.glfwSetCharCallback(handle, charCallback);
             GLFW.glfwSetCursorPosCallback(handle, cursorPosCallback);
             GLFW.glfwSetMouseButtonCallback(handle, mouseButtonCallback);
+            GLFW.glfwSetScrollCallback(handle, scrollCallback);
             GLFW.glfwSetWindowFocusCallback(handle, windowFocusCallback);
             GLFW.glfwSetWindowIconifyCallback(handle, windowIconifyCallback);
             GLFW.glfwSetWindowSizeCallback(handle, windowSizeCallback);
@@ -524,6 +533,7 @@ public class Display {
             charCallback.free();
             cursorPosCallback.free();
             mouseButtonCallback.free();
+            scrollCallback.free();
             windowFocusCallback.free();
             windowIconifyCallback.free();
             windowSizeCallback.free();
