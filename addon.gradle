@@ -1,3 +1,4 @@
+import org.gradle.jvm.toolchain.internal.DefaultToolchainSpec
 
 sourceSets {
     create("util") {
@@ -36,5 +37,20 @@ afterEvaluate {
     def allArgs = lwjgl2Args + lwjgl3Args + ["--M:" + tasks.jar.archiveFile.get().asFile.path]
     tasks.named("runComparisonTool", JavaExec).configure {
         args(allArgs)
+    }
+}
+
+def java11ToolchainSpec = new DefaultToolchainSpec(objects)
+java11ToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
+java11ToolchainSpec.languageVersion.set(JavaLanguageVersion.of(11))
+def java11Launcher = javaToolchains.launcherFor(java11ToolchainSpec)
+
+for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
+    tasks.named(runTask, JavaExec).configure {
+        javaLauncher.set(java11Launcher)
+        jvmArgs(
+            "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
+            "--add-opens", "java.base/java.net=ALL-UNNAMED",
+        )
     }
 }

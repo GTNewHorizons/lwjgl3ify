@@ -4,5 +4,9 @@ minecraft {
 }
 
 dependencies {
-    implementation('com.gtnewhorizon:gtnhmixins:2.1.3')
+    // Resolve newer versions of LaunchWrapper to allow java 9+ compat
+    vanilla_minecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
+    patchedMinecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
+
+    implementation('com.gtnewhorizon:gtnhmixins:2.1.5.dirty')
 }
