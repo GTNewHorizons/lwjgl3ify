@@ -1,9 +1,12 @@
 package me.eigenraven.lwjgl3ify.core;
 
+import me.eigenraven.lwjgl3ify.Lwjgl3Aware;
 import net.minecraft.launchwrapper.IClassTransformer;
+import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.commons.RemappingClassAdapter;
 
@@ -30,10 +33,20 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
-        ClassVisitor visitor = new RemappingClassAdapter(writer, this);
+        ClassVisitor visitor = new RemappingClassAdapter(writer, this) {
+            @Override
+            public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+                if (desc.equals(Type.getDescriptor(Lwjgl3Aware.class))) {
+                    throw new Lwjgl3AwareException();
+                }
+                return super.visitAnnotation(desc, visible);
+            }
+        };
 
         try {
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
+        } catch (Lwjgl3AwareException e) {
+            return basicClass;
         } catch (Exception e) {
             Lwjgl3ifyCoremod.LOGGER.warn("Couldn't remap class {}", transformedName, e);
             return basicClass;
@@ -63,4 +76,6 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
             return typeName;
         }
     }
+
+    private class Lwjgl3AwareException extends RuntimeException {}
 }
