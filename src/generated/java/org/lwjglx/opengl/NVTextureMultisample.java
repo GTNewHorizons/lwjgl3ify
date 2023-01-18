@@ -1,8 +1,8 @@
 package org.lwjglx.opengl;
 
 public class NVTextureMultisample {
-    public static final int GL_TEXTURE_COLOR_SAMPLES_NV = 36934;
-    public static final int GL_TEXTURE_COVERAGE_SAMPLES_NV = 36933;
+    public static final int GL_TEXTURE_COLOR_SAMPLES_NV = (int) 36934;
+    public static final int GL_TEXTURE_COVERAGE_SAMPLES_NV = (int) 36933;
 
     public static void glTexImage2DMultisampleCoverageNV(
             int target,

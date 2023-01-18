@@ -1,9 +1,9 @@
 package org.lwjglx.opengl;
 
 public class ARBShadingLanguageInclude {
-    public static final int GL_NAMED_STRING_LENGTH_ARB = 36329;
-    public static final int GL_NAMED_STRING_TYPE_ARB = 36330;
-    public static final int GL_SHADER_INCLUDE_ARB = 36270;
+    public static final int GL_NAMED_STRING_LENGTH_ARB = (int) 36329;
+    public static final int GL_NAMED_STRING_TYPE_ARB = (int) 36330;
+    public static final int GL_SHADER_INCLUDE_ARB = (int) 36270;
 
     public static void glDeleteNamedStringARB(java.lang.CharSequence name) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glDeleteNamedStringARB(name);

@@ -1,15 +1,15 @@
 package org.lwjglx.opengl;
 
 public class ARBSeparateShaderObjects {
-    public static final int GL_ACTIVE_PROGRAM = 33369;
-    public static final int GL_ALL_SHADER_BITS = -1;
-    public static final int GL_FRAGMENT_SHADER_BIT = 2;
-    public static final int GL_GEOMETRY_SHADER_BIT = 4;
-    public static final int GL_PROGRAM_PIPELINE_BINDING = 33370;
-    public static final int GL_PROGRAM_SEPARABLE = 33368;
-    public static final int GL_TESS_CONTROL_SHADER_BIT = 8;
-    public static final int GL_TESS_EVALUATION_SHADER_BIT = 16;
-    public static final int GL_VERTEX_SHADER_BIT = 1;
+    public static final int GL_ACTIVE_PROGRAM = (int) 33369;
+    public static final int GL_ALL_SHADER_BITS = (int) -1;
+    public static final int GL_FRAGMENT_SHADER_BIT = (int) 2;
+    public static final int GL_GEOMETRY_SHADER_BIT = (int) 4;
+    public static final int GL_PROGRAM_PIPELINE_BINDING = (int) 33370;
+    public static final int GL_PROGRAM_SEPARABLE = (int) 33368;
+    public static final int GL_TESS_CONTROL_SHADER_BIT = (int) 8;
+    public static final int GL_TESS_EVALUATION_SHADER_BIT = (int) 16;
+    public static final int GL_VERTEX_SHADER_BIT = (int) 1;
 
     public static void glActiveShaderProgram(int pipeline, int program) {
         org.lwjgl.opengl.ARBSeparateShaderObjects.glActiveShaderProgram(pipeline, program);

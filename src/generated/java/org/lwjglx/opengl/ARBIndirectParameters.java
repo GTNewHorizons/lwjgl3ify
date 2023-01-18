@@ -1,8 +1,8 @@
 package org.lwjglx.opengl;
 
 public class ARBIndirectParameters {
-    public static final int GL_PARAMETER_BUFFER_ARB = 33006;
-    public static final int GL_PARAMETER_BUFFER_BINDING_ARB = 33007;
+    public static final int GL_PARAMETER_BUFFER_ARB = (int) 33006;
+    public static final int GL_PARAMETER_BUFFER_BINDING_ARB = (int) 33007;
 
     public static void glMultiDrawArraysIndirectCountARB(
             int mode, long indirect_buffer_offset, long drawcount, int maxdrawcount, int stride) {

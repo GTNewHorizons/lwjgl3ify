@@ -1,9 +1,9 @@
 package org.lwjglx.opengl;
 
 public class EXTDirectStateAccess {
-    public static final int GL_PROGRAM_MATRIX_EXT = 36397;
-    public static final int GL_PROGRAM_MATRIX_STACK_DEPTH_EXT = 36399;
-    public static final int GL_TRANSPOSE_PROGRAM_MATRIX_EXT = 36398;
+    public static final int GL_PROGRAM_MATRIX_EXT = (int) 36397;
+    public static final int GL_PROGRAM_MATRIX_STACK_DEPTH_EXT = (int) 36399;
+    public static final int GL_TRANSPOSE_PROGRAM_MATRIX_EXT = (int) 36398;
 
     public static void glBindMultiTextureEXT(int texunit, int target, int texture) {
         org.lwjgl.opengl.EXTDirectStateAccess.glBindMultiTextureEXT(texunit, target, texture);

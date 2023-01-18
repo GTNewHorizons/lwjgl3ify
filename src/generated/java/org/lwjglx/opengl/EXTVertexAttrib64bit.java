@@ -1,18 +1,18 @@
 package org.lwjglx.opengl;
 
 public class EXTVertexAttrib64bit {
-    public static final int GL_DOUBLE_MAT2_EXT = 36678;
-    public static final int GL_DOUBLE_MAT2x3_EXT = 36681;
-    public static final int GL_DOUBLE_MAT2x4_EXT = 36682;
-    public static final int GL_DOUBLE_MAT3_EXT = 36679;
-    public static final int GL_DOUBLE_MAT3x2_EXT = 36683;
-    public static final int GL_DOUBLE_MAT3x4_EXT = 36684;
-    public static final int GL_DOUBLE_MAT4_EXT = 36680;
-    public static final int GL_DOUBLE_MAT4x2_EXT = 36685;
-    public static final int GL_DOUBLE_MAT4x3_EXT = 36686;
-    public static final int GL_DOUBLE_VEC2_EXT = 36860;
-    public static final int GL_DOUBLE_VEC3_EXT = 36861;
-    public static final int GL_DOUBLE_VEC4_EXT = 36862;
+    public static final int GL_DOUBLE_MAT2_EXT = (int) 36678;
+    public static final int GL_DOUBLE_MAT2x3_EXT = (int) 36681;
+    public static final int GL_DOUBLE_MAT2x4_EXT = (int) 36682;
+    public static final int GL_DOUBLE_MAT3_EXT = (int) 36679;
+    public static final int GL_DOUBLE_MAT3x2_EXT = (int) 36683;
+    public static final int GL_DOUBLE_MAT3x4_EXT = (int) 36684;
+    public static final int GL_DOUBLE_MAT4_EXT = (int) 36680;
+    public static final int GL_DOUBLE_MAT4x2_EXT = (int) 36685;
+    public static final int GL_DOUBLE_MAT4x3_EXT = (int) 36686;
+    public static final int GL_DOUBLE_VEC2_EXT = (int) 36860;
+    public static final int GL_DOUBLE_VEC3_EXT = (int) 36861;
+    public static final int GL_DOUBLE_VEC4_EXT = (int) 36862;
 
     public static void glGetVertexAttribLEXT(int index, int pname, java.nio.DoubleBuffer params) {
         org.lwjgl.opengl.EXTVertexAttrib64bit.glGetVertexAttribLdvEXT(index, pname, params);

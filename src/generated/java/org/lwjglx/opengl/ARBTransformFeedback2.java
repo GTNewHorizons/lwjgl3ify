@@ -1,10 +1,10 @@
 package org.lwjglx.opengl;
 
 public class ARBTransformFeedback2 {
-    public static final int GL_TRANSFORM_FEEDBACK = 36386;
-    public static final int GL_TRANSFORM_FEEDBACK_BINDING = 36389;
-    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE = 36388;
-    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED = 36387;
+    public static final int GL_TRANSFORM_FEEDBACK = (int) 36386;
+    public static final int GL_TRANSFORM_FEEDBACK_BINDING = (int) 36389;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE = (int) 36388;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED = (int) 36387;
 
     public static void glBindTransformFeedback(int target, int id) {
         org.lwjgl.opengl.ARBTransformFeedback2.glBindTransformFeedback(target, id);

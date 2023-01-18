@@ -1,9 +1,9 @@
 package org.lwjglx.opengl;
 
 public class ARBDirectStateAccess {
-    public static final int GL_QUERY_TARGET = 33514;
-    public static final int GL_TEXTURE_BINDING = 33515;
-    public static final int GL_TEXTURE_TARGET = 4102;
+    public static final int GL_QUERY_TARGET = (int) 33514;
+    public static final int GL_TEXTURE_BINDING = (int) 33515;
+    public static final int GL_TEXTURE_TARGET = (int) 4102;
 
     public static void glBindTextureUnit(int unit, int texture) {
         org.lwjgl.opengl.ARBDirectStateAccess.glBindTextureUnit(unit, texture);

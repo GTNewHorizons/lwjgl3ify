@@ -1,22 +1,22 @@
 package org.lwjglx.opengl;
 
 public class GL33 {
-    public static final int GL_ANY_SAMPLES_PASSED = 35887;
-    public static final int GL_INT_2_10_10_10_REV = 36255;
-    public static final int GL_MAX_DUAL_SOURCE_DRAW_BUFFERS = 35068;
-    public static final int GL_ONE_MINUS_SRC1_ALPHA = 35067;
-    public static final int GL_ONE_MINUS_SRC1_COLOR = 35066;
-    public static final int GL_RGB10_A2UI = 36975;
-    public static final int GL_SAMPLER_BINDING = 35097;
-    public static final int GL_SRC1_COLOR = 35065;
-    public static final int GL_TEXTURE_SWIZZLE_A = 36421;
-    public static final int GL_TEXTURE_SWIZZLE_B = 36420;
-    public static final int GL_TEXTURE_SWIZZLE_G = 36419;
-    public static final int GL_TEXTURE_SWIZZLE_R = 36418;
-    public static final int GL_TEXTURE_SWIZZLE_RGBA = 36422;
-    public static final int GL_TIMESTAMP = 36392;
-    public static final int GL_TIME_ELAPSED = 35007;
-    public static final int GL_VERTEX_ATTRIB_ARRAY_DIVISOR = 35070;
+    public static final int GL_ANY_SAMPLES_PASSED = (int) 35887;
+    public static final int GL_INT_2_10_10_10_REV = (int) 36255;
+    public static final int GL_MAX_DUAL_SOURCE_DRAW_BUFFERS = (int) 35068;
+    public static final int GL_ONE_MINUS_SRC1_ALPHA = (int) 35067;
+    public static final int GL_ONE_MINUS_SRC1_COLOR = (int) 35066;
+    public static final int GL_RGB10_A2UI = (int) 36975;
+    public static final int GL_SAMPLER_BINDING = (int) 35097;
+    public static final int GL_SRC1_COLOR = (int) 35065;
+    public static final int GL_TEXTURE_SWIZZLE_A = (int) 36421;
+    public static final int GL_TEXTURE_SWIZZLE_B = (int) 36420;
+    public static final int GL_TEXTURE_SWIZZLE_G = (int) 36419;
+    public static final int GL_TEXTURE_SWIZZLE_R = (int) 36418;
+    public static final int GL_TEXTURE_SWIZZLE_RGBA = (int) 36422;
+    public static final int GL_TIMESTAMP = (int) 36392;
+    public static final int GL_TIME_ELAPSED = (int) 35007;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_DIVISOR = (int) 35070;
 
     public static void glBindFragDataLocationIndexed(
             int program, int colorNumber, int index, java.lang.CharSequence name) {

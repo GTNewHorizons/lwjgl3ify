@@ -3,6 +3,7 @@
 Configuring spotless
 
 > Task :compileUtilJava
+
 > Task :compileUtilScala NO-SOURCE
 > Task :injectTags UP-TO-DATE
 > Task :compileInjectedTagsJava UP-TO-DATE
@@ -42,6 +43,11 @@ Configuring spotless
 > Task :utilClasses
 
 > Task :runComparisonTool
+Missing gl3: org/lwjgl/BufferChecks
+Missing gl3: org/lwjgl/LWJGLException
+Missing gl3: org/lwjgl/LWJGLUtil
+Missing gl3: org/lwjgl/LWJGLUtil$TokenFilter
+Missing gl3: org/lwjgl/MemoryUtil
 Missing in mod: org/lwjgl/PointerBuffer : <init>:(I)V
 Missing in mod: org/lwjgl/PointerBuffer : <init>:(Ljava/nio/ByteBuffer;)V
 Missing in mod: org/lwjgl/PointerBuffer : asReadOnlyBuffer:()Lorg/lwjgl/PointerBuffer;
@@ -85,8 +91,13 @@ Missing in mod: org/lwjgl/PointerBuffer : reset:()Lorg/lwjgl/PointerBuffer;
 Missing in mod: org/lwjgl/PointerBuffer : rewind:()Lorg/lwjgl/PointerBuffer;
 Missing in mod: org/lwjgl/PointerBuffer : slice:()Lorg/lwjgl/PointerBuffer;
 Missing in mod: org/lwjgl/PointerBuffer : toString:()Ljava/lang/String;
+Missing gl3: org/lwjgl/PointerWrapper
+Missing gl3: org/lwjgl/PointerWrapperAbstract
+Missing gl3: org/lwjgl/Sys
 Missing gl3: org/lwjgl/input/Controller
 Missing gl3: org/lwjgl/input/Controllers
+Missing gl3: org/lwjgl/input/Cursor
+Missing gl3: org/lwjgl/input/Keyboard
 Missing in mod: org/lwjgl/input/Mouse : getButtonIndex:(Ljava/lang/String;)I
 Missing in mod: org/lwjgl/input/Mouse : getButtonName:(I)Ljava/lang/String;
 Missing in mod: org/lwjgl/input/Mouse : getNativeCursor:()Lorg/lwjgl/input/Cursor;
@@ -94,6 +105,7 @@ Missing in mod: org/lwjgl/input/Mouse : hasWheel:()Z
 Missing in mod: org/lwjgl/input/Mouse : isClipMouseCoordinatesToWindow:()Z
 Missing in mod: org/lwjgl/input/Mouse : isInsideWindow:()Z
 Missing in mod: org/lwjgl/input/Mouse : updateCursor:()V
+Missing gl3: org/lwjgl/input/Mouse
 Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZ)V
 Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZZ)V
 Missing in mod: org/lwjgl/openal/AL : getContext:()Lorg/lwjgl/openal/ALCcontext;
@@ -120,6 +132,8 @@ Missing in mod: org/lwjgl/openal/ALC10 : alcOpenDevice:(Ljava/lang/String;)Lorg/
 Missing in mod: org/lwjgl/openal/ALC10 : alcProcessContext:(Lorg/lwjgl/openal/ALCcontext;)V
 Missing in mod: org/lwjgl/openal/ALC10 : alcSuspendContext:(Lorg/lwjgl/openal/ALCcontext;)V
 org/lwjgl/openal/ALC11
+Missing gl3: org/lwjgl/openal/ALCcontext
+Missing gl3: org/lwjgl/openal/ALCdevice
 Missing in mod: org/lwjgl/openal/EFX10 : alAuxiliaryEffectSlot:(IILjava/nio/FloatBuffer;)V
 Missing in mod: org/lwjgl/openal/EFX10 : alAuxiliaryEffectSlot:(IILjava/nio/IntBuffer;)V
 Missing in mod: org/lwjgl/openal/EFX10 : alAuxiliaryEffectSlotf:(IIF)V
@@ -139,6 +153,10 @@ Missing in mod: org/lwjgl/openal/EFX10 : alGetFilteri:(II)I
 Missing in mod: org/lwjgl/openal/EFX10 : alIsAuxiliaryEffectSlot:(I)Z
 Missing in mod: org/lwjgl/openal/EFX10 : alIsEffect:(I)Z
 Missing in mod: org/lwjgl/openal/EFX10 : alIsFilter:(I)Z
+Missing gl3: org/lwjgl/openal/EFX10
+Missing gl3: org/lwjgl/openal/EFXUtil
+Missing gl3: org/lwjgl/openal/OpenALException
+Missing gl3: org/lwjgl/openal/Util
 org/lwjgl/opengl/AMDBlendMinmaxFactor
 org/lwjgl/opengl/AMDDebugOutput
  - glDebugMessageCallbackAMD:(Lorg/lwjgl/opengl/AMDDebugOutputCallback;)V
@@ -264,6 +282,7 @@ Missing in mod: org/lwjgl/opengl/ARBBufferObject : glIsBufferARB:(I)Z
 Missing in mod: org/lwjgl/opengl/ARBBufferObject : glMapBufferARB:(IIJLjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
 Missing in mod: org/lwjgl/opengl/ARBBufferObject : glMapBufferARB:(IILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
 Missing in mod: org/lwjgl/opengl/ARBBufferObject : glUnmapBufferARB:(I)Z
+Missing gl3: org/lwjgl/opengl/ARBBufferObject
 org/lwjgl/opengl/ARBBufferStorage
  + glBufferStorage:(IJI)V
  + glBufferStorage:(ILjava/nio/ByteBuffer;I)V
@@ -763,6 +782,7 @@ Missing in mod: org/lwjgl/opengl/ARBProgram : glProgramLocalParameter4dARB:(IIDD
 Missing in mod: org/lwjgl/opengl/ARBProgram : glProgramLocalParameter4fARB:(IIFFFF)V
 Missing in mod: org/lwjgl/opengl/ARBProgram : glProgramStringARB:(IILjava/lang/CharSequence;)V
 Missing in mod: org/lwjgl/opengl/ARBProgram : glProgramStringARB:(IILjava/nio/ByteBuffer;)V
+Missing gl3: org/lwjgl/opengl/ARBProgram
 org/lwjgl/opengl/ARBProgramInterfaceQuery
  - glGetProgramInterface:(IIILjava/nio/IntBuffer;)V
  + glGetProgramInterfacei:(III)I
@@ -1453,6 +1473,8 @@ Missing in mod: org/lwjgl/opengl/ContextAttribs : isRobustAccess:()Z
 Missing in mod: org/lwjgl/opengl/ContextAttribs : withContextReleaseBehavior:(I)Lorg/lwjgl/opengl/ContextAttribs;
 Missing in mod: org/lwjgl/opengl/ContextAttribs : withResetNotificationStrategy:(I)Lorg/lwjgl/opengl/ContextAttribs;
 Missing in mod: org/lwjgl/opengl/ContextAttribs : withRobustAccess:(Z)Lorg/lwjgl/opengl/ContextAttribs;
+Missing gl3: org/lwjgl/opengl/ContextAttribs
+Missing gl3: org/lwjgl/opengl/ContextCapabilities
 Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormat;Lorg/lwjgl/opengl/Drawable;Lorg/lwjgl/opengl/ContextAttribs;)V
 Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;)V
 Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengl/Drawable;)V
@@ -1463,6 +1485,9 @@ Missing in mod: org/lwjgl/opengl/Display : getPixelScaleFactor:()F
 Missing in mod: org/lwjgl/opengl/Display : getTitle:()Ljava/lang/String;
 Missing in mod: org/lwjgl/opengl/Display : setDisplayConfiguration:(FFF)V
 Missing in mod: org/lwjgl/opengl/Display : setSwapInterval:(I)V
+Missing gl3: org/lwjgl/opengl/Display
+Missing gl3: org/lwjgl/opengl/DisplayMode
+Missing gl3: org/lwjgl/opengl/Drawable
 Missing gl3: org/lwjgl/opengl/EXTAbgr
 Missing gl3: org/lwjgl/opengl/EXTBgra
 org/lwjgl/opengl/EXTBindableUniform
@@ -1986,7 +2011,6 @@ org/lwjgl/opengl/EXTVertexAttrib64bit
  + glVertexAttribLPointerEXT:(IIILjava/nio/DoubleBuffer;)V
 Missing gl3: org/lwjgl/opengl/EXTVertexShader
 Missing gl3: org/lwjgl/opengl/EXTVertexWeighting
-Missing gl3: org/lwjgl/opengl/FastIntMap$EntryIterator
 org/lwjgl/opengl/GL11
  + glAccum:(IF)V
  + glAlphaFunc:(IF)V
@@ -3237,6 +3261,8 @@ Missing in mod: org/lwjgl/opengl/GLContext : loadOpenGLLibrary:()V
 Missing in mod: org/lwjgl/opengl/GLContext : unloadOpenGLLibrary:()V
 Missing in mod: org/lwjgl/opengl/GLContext : useContext:(Ljava/lang/Object;)V
 Missing in mod: org/lwjgl/opengl/GLContext : useContext:(Ljava/lang/Object;Z)V
+Missing gl3: org/lwjgl/opengl/GLContext
+Missing gl3: org/lwjgl/opengl/GLSync
 Missing gl3: org/lwjgl/opengl/GLUConstants
 org/lwjgl/opengl/GREMEDYFrameTerminator
  + glFrameTerminatorGREMEDY:()V
@@ -3249,6 +3275,7 @@ org/lwjgl/opengl/INTELMapTexture
  - glMapTexture2DINTEL:(IIJILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
  + glSyncTextureINTEL:(I)V
  + glUnmapTexture2DINTEL:(II)V
+Missing gl3: org/lwjgl/opengl/InputImplementation
 org/lwjgl/opengl/KHRContextFlushControl
 org/lwjgl/opengl/KHRDebug
  - glDebugMessageCallback:(Lorg/lwjgl/opengl/KHRDebugCallback;)V
@@ -3562,13 +3589,21 @@ Missing gl3: org/lwjgl/opengl/NVVertexProgram3
 Missing gl3: org/lwjgl/opengl/NVVideoCapture
 Missing gl3: org/lwjgl/opengl/NVVideoCaptureUtil
 Missing gl3: org/lwjgl/opengl/NVXGpuMemoryInfo
+Missing gl3: org/lwjgl/opengl/OpenGLException
+Missing gl3: org/lwjgl/opengl/Pbuffer
+Missing gl3: org/lwjgl/opengl/PixelFormat
+Missing gl3: org/lwjgl/opengl/PixelFormatLWJGL
+Missing gl3: org/lwjgl/opengl/RenderTexture
 Missing gl3: org/lwjgl/opengl/SGISGenerateMipmap
 Missing gl3: org/lwjgl/opengl/SGISTextureLOD
 Missing gl3: org/lwjgl/opengl/SUNSliceAccum
+Missing gl3: org/lwjgl/opengl/SharedDrawable
+Missing gl3: org/lwjgl/opengl/Util
 Missing gl3: org/lwjgl/opengl/XRandR
 Missing gl3: org/lwjgl/opengl/XRandR$Screen
 Missing gl3: org/lwjgl/util/Color
 Missing gl3: org/lwjgl/util/Dimension
+Missing gl3: org/lwjgl/util/Display
 Missing gl3: org/lwjgl/util/Point
 Missing gl3: org/lwjgl/util/ReadableColor
 Missing gl3: org/lwjgl/util/ReadableDimension
@@ -3577,11 +3612,30 @@ Missing gl3: org/lwjgl/util/ReadableRectangle
 Missing gl3: org/lwjgl/util/Rectangle
 Missing gl3: org/lwjgl/util/Renderable
 Missing gl3: org/lwjgl/util/Timer
+Missing gl3: org/lwjgl/util/WaveData
 Missing gl3: org/lwjgl/util/WritableColor
 Missing gl3: org/lwjgl/util/WritableDimension
 Missing gl3: org/lwjgl/util/WritablePoint
 Missing gl3: org/lwjgl/util/WritableRectangle
 Missing gl3: org/lwjgl/util/XPMFile
+Missing gl3: org/lwjgl/util/glu/Cylinder
+Missing gl3: org/lwjgl/util/glu/Disk
+Missing gl3: org/lwjgl/util/glu/GLU
+Missing gl3: org/lwjgl/util/glu/GLUtessellator
+Missing gl3: org/lwjgl/util/glu/GLUtessellatorCallback
+Missing gl3: org/lwjgl/util/glu/GLUtessellatorCallbackAdapter
+Missing gl3: org/lwjgl/util/glu/MipMap
+Missing gl3: org/lwjgl/util/glu/PartialDisk
+Missing gl3: org/lwjgl/util/glu/Project
+Missing gl3: org/lwjgl/util/glu/Quadric
+Missing gl3: org/lwjgl/util/glu/Registry
+Missing gl3: org/lwjgl/util/glu/Sphere
+Missing gl3: org/lwjgl/util/glu/Util
+Missing gl3: org/lwjgl/util/glu/tessellation/Dict$DictLeq
+Missing gl3: org/lwjgl/util/glu/tessellation/GLUtessellatorImpl
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$Leq
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$PQhandleElem
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$PQnode
 Missing gl3: org/lwjgl/util/input/ControllerAdapter
 Missing gl3: org/lwjgl/util/jinput/LWJGLEnvironmentPlugin
 Missing gl3: org/lwjgl/util/mapped/CacheLinePad
@@ -3589,7 +3643,6 @@ Missing gl3: org/lwjgl/util/mapped/CacheUtil
 Missing gl3: org/lwjgl/util/mapped/MappedField
 Missing gl3: org/lwjgl/util/mapped/MappedHelper
 Missing gl3: org/lwjgl/util/mapped/MappedObject
-Missing gl3: org/lwjgl/util/mapped/MappedObjectClassLoader
 Missing gl3: org/lwjgl/util/mapped/MappedObjectTransformer
 Missing gl3: org/lwjgl/util/mapped/MappedSet
 Missing gl3: org/lwjgl/util/mapped/MappedSet2
@@ -3597,9 +3650,25 @@ Missing gl3: org/lwjgl/util/mapped/MappedSet3
 Missing gl3: org/lwjgl/util/mapped/MappedSet4
 Missing gl3: org/lwjgl/util/mapped/MappedType
 Missing gl3: org/lwjgl/util/mapped/Pointer
+Missing gl3: org/lwjgl/util/vector/Matrix
+Missing gl3: org/lwjgl/util/vector/Matrix2f
+Missing gl3: org/lwjgl/util/vector/Matrix3f
+Missing gl3: org/lwjgl/util/vector/Matrix4f
+Missing gl3: org/lwjgl/util/vector/Quaternion
+Missing gl3: org/lwjgl/util/vector/ReadableVector
+Missing gl3: org/lwjgl/util/vector/ReadableVector2f
+Missing gl3: org/lwjgl/util/vector/ReadableVector3f
+Missing gl3: org/lwjgl/util/vector/ReadableVector4f
+Missing gl3: org/lwjgl/util/vector/Vector
 Missing in mod: org/lwjgl/util/vector/Vector2f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector2f
 Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector3f
 Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector4f
+Missing gl3: org/lwjgl/util/vector/WritableVector2f
+Missing gl3: org/lwjgl/util/vector/WritableVector3f
+Missing gl3: org/lwjgl/util/vector/WritableVector4f
 
 BUILD SUCCESSFUL in 1s
 21 actionable tasks: 2 executed, 19 up-to-date
