@@ -168,6 +168,10 @@ idea {
                         taskNames = ["spotlessApply"]
                     }
                 }
+                def coreModArgs = ""
+                if (coreModClass) {
+                    coreModArgs = ' "-Dfml.coreMods.load=' + modGroup + '.' + coreModClass + '"'
+                }
                 "Run Client (IJ Native)"(Application) {
                     mainClass = "GradleStart"
                     moduleName = project.name + ".main"
@@ -175,7 +179,8 @@ idea {
                         workingDirectory = tasks.runClient.workingDir.absolutePath
                         programParameters = tasks.runClient.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
                         jvmArgs = tasks.runClient.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                         ' ' + tasks.runClient.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ')
+                         ' ' + tasks.runClient.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                            coreModArgs
                     }
                 }
                 "Run Server (IJ Native)"(Application) {
@@ -185,7 +190,8 @@ idea {
                         workingDirectory = tasks.runServer.workingDir.absolutePath
                         programParameters = tasks.runServer.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
                         jvmArgs = tasks.runServer.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                            ' ' + tasks.runServer.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ')
+                            ' ' + tasks.runServer.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                            coreModArgs
                     }
                 }
             }
