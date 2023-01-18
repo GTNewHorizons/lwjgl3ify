@@ -8,8 +8,8 @@ class EventQueue {
 
     private int maxEvents = 32;
     private int eventCount = 0;
-    private int currentEventPos = -1;
-    private int nextEventPos = 0;
+    private int readEventPos = 0;
+    private int writeEventPos = 1;
     private long lastDroppedMessageMs = 0;
 
     EventQueue(int maxEvents) {
@@ -19,7 +19,7 @@ class EventQueue {
     /**
      * add event to the queue
      */
-    void add() {
+    synchronized void add() {
         eventCount++; // increment event count
         if (eventCount > maxEvents) {
             eventCount = maxEvents; // cap max events
@@ -30,23 +30,26 @@ class EventQueue {
             }
         }
 
-        nextEventPos++; // increment next event position
-        if (nextEventPos == maxEvents) nextEventPos = 0; // wrap next event position
+        writeEventPos++; // increment next event position
+        if (writeEventPos >= maxEvents) writeEventPos = 0; // wrap next event position
 
-        if (nextEventPos == currentEventPos) currentEventPos++; // skip oldest event is queue full
-        if (currentEventPos == maxEvents) currentEventPos = 0; // wrap current event position
+        if (writeEventPos == readEventPos) {
+            readEventPos++;
+            eventCount--;
+        } // skip oldest event is queue full
+        if (readEventPos >= maxEvents) readEventPos = 0; // wrap current event position
     }
 
     /**
      * Increment the event queue
      * @return - true if there is an event available
      */
-    boolean next() {
+    synchronized boolean next() {
         if (eventCount == 0) return false;
 
         eventCount--; // decrement event count
-        currentEventPos++; // increment current event position
-        if (currentEventPos == maxEvents) currentEventPos = 0; // wrap current event position
+        readEventPos++; // increment current event position
+        if (readEventPos >= maxEvents) readEventPos = 0; // wrap current event position
 
         return true;
     }
@@ -60,10 +63,10 @@ class EventQueue {
     }
 
     int getCurrentPos() {
-        return Math.max(0, currentEventPos);
+        return readEventPos;
     }
 
     int getNextPos() {
-        return nextEventPos;
+        return writeEventPos;
     }
 }
