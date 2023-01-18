@@ -132,6 +132,24 @@ public class Util {
     }
 
     /**
+     * @param format OpenGL image format
+     * @return Index of the alpha channel, or -1 if not found
+     */
+    protected static int formatAlphaIndex(int format) {
+        switch (format) {
+            case GL_ALPHA:
+                return 0;
+            case GL_LUMINANCE_ALPHA:
+                return 1;
+            case GL_RGBA:
+            case GL_BGRA:
+                return 3;
+            default:
+                return -1;
+        }
+    }
+
+    /**
      * Method nearestPower.
      * <p/>
      * Compute the nearest power of 2 number.  This algorithm is a little strange, but it works quite well.

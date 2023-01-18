@@ -32,6 +32,7 @@
 package org.lwjglx.util.glu;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.stb.STBImageResize.*;
 import static org.lwjglx.util.glu.GLU.*;
 
 import java.nio.ByteBuffer;
@@ -79,15 +80,6 @@ public class MipMap extends Util {
         int h = nearestPower(height);
         if (h > maxSize) h = maxSize;
 
-        // Get current glPixelStore state
-        PixelStoreState pss = new PixelStoreState();
-
-        // set pixel packing
-        glPixelStorei(GL_PACK_ROW_LENGTH, 0);
-        glPixelStorei(GL_PACK_ALIGNMENT, 1);
-        glPixelStorei(GL_PACK_SKIP_ROWS, 0);
-        glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
-
         ByteBuffer image;
         int retVal = 0;
         boolean done = false;
@@ -101,11 +93,6 @@ public class MipMap extends Util {
                 done = true;
             }
 
-            /* set pixel unpacking */
-            glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-            glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-            glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
-            glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
         } else {
             image = data;
         }
@@ -115,14 +102,6 @@ public class MipMap extends Util {
 
         int level = 0;
         while (!done) {
-            if (image != data) {
-                /* set pixel unpacking */
-                glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-                glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-                glPixelStorei(GL_UNPACK_SKIP_ROWS, 0);
-                glPixelStorei(GL_UNPACK_SKIP_PIXELS, 0);
-            }
-
             glTexImage2D(target, level, components, w, h, 0, format, type, image);
 
             if (w == 1 && h == 1) break;
@@ -149,9 +128,6 @@ public class MipMap extends Util {
             h = newH;
             level++;
         }
-
-        // Restore original glPixelStore state
-        pss.save();
 
         return retVal;
     }
@@ -181,162 +157,50 @@ public class MipMap extends Util {
             ByteBuffer dataOut) {
 
         final int components = compPerPix(format);
+        final int alphaIdx = formatAlphaIndex(format);
         if (components == -1) return GLU_INVALID_ENUM;
+        final int strideIn = widthIn * components;
+        final int strideOut = widthOut * components;
 
-        int i, j, k;
-        float[] tempIn, tempOut;
-        float sx, sy;
-        int sizein, sizeout;
-        int rowstride, rowlen;
-
-        // temp image data
-        tempIn = new float[widthIn * heightIn * components];
-        tempOut = new float[widthOut * heightOut * components];
+        if (typein != typeOut) {
+            // We don't care about float->int resizing unless proven otherwise
+            return GLU_INVALID_ENUM;
+        }
 
         // Determine bytes per input type
         switch (typein) {
             case GL_UNSIGNED_BYTE:
-                sizein = 1;
+                if (!stbir_resize_uint8_srgb(
+                        dataIn,
+                        widthIn,
+                        heightIn,
+                        strideIn,
+                        dataOut,
+                        widthOut,
+                        heightOut,
+                        strideOut,
+                        components,
+                        alphaIdx,
+                        0)) {
+                    throw new RuntimeException("Couldn't resize image with stbir");
+                }
                 break;
             case GL_FLOAT:
-                sizein = 4;
+                if (!stbir_resize_float(
+                        dataIn.asFloatBuffer(),
+                        widthIn,
+                        heightIn,
+                        strideIn * 4,
+                        dataOut.asFloatBuffer(),
+                        widthOut,
+                        heightOut,
+                        strideOut * 4,
+                        components)) {
+                    throw new RuntimeException("Couldn't resize image with stbir");
+                }
                 break;
             default:
                 return GL_INVALID_ENUM;
-        }
-
-        // Determine bytes per output type
-        switch (typeOut) {
-            case GL_UNSIGNED_BYTE:
-                sizeout = 1;
-                break;
-            case GL_FLOAT:
-                sizeout = 4;
-                break;
-            default:
-                return GL_INVALID_ENUM;
-        }
-
-        // Get glPixelStore state
-        PixelStoreState pss = new PixelStoreState();
-
-        // Unpack the pixel data and convert to floating point
-        if (pss.unpackRowLength > 0) rowlen = pss.unpackRowLength;
-        else rowlen = widthIn;
-
-        if (sizein >= pss.unpackAlignment) rowstride = components * rowlen;
-        else rowstride = pss.unpackAlignment / sizein * ceil(components * rowlen * sizein, pss.unpackAlignment);
-
-        switch (typein) {
-            case GL_UNSIGNED_BYTE:
-                k = 0;
-                dataIn.rewind();
-                for (i = 0; i < heightIn; i++) {
-                    int ubptr = i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components;
-                    for (j = 0; j < widthIn * components; j++) {
-                        tempIn[k++] = dataIn.get(ubptr++) & 0xff;
-                    }
-                }
-                break;
-            case GL_FLOAT:
-                k = 0;
-                dataIn.rewind();
-                for (i = 0; i < heightIn; i++) {
-                    int fptr = 4 * (i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components);
-                    for (j = 0; j < widthIn * components; j++) {
-                        tempIn[k++] = dataIn.getFloat(fptr);
-                        fptr += 4;
-                    }
-                }
-                break;
-            default:
-                return GLU_INVALID_ENUM;
-        }
-
-        // Do scaling
-        sx = (float) widthIn / (float) widthOut;
-        sy = (float) heightIn / (float) heightOut;
-
-        float[] c = new float[components];
-        int src, dst;
-
-        for (int iy = 0; iy < heightOut; iy++) {
-            for (int ix = 0; ix < widthOut; ix++) {
-                int x0 = (int) (ix * sx);
-                int x1 = (int) ((ix + 1) * sx);
-                int y0 = (int) (iy * sy);
-                int y1 = (int) ((iy + 1) * sy);
-
-                int readPix = 0;
-
-                // reset weighted pixel
-                for (int ic = 0; ic < components; ic++) {
-                    c[ic] = 0;
-                }
-
-                // create weighted pixel
-                for (int ix0 = x0; ix0 < x1; ix0++) {
-                    for (int iy0 = y0; iy0 < y1; iy0++) {
-
-                        src = (iy0 * widthIn + ix0) * components;
-
-                        for (int ic = 0; ic < components; ic++) {
-                            c[ic] += tempIn[src + ic];
-                        }
-
-                        readPix++;
-                    }
-                }
-
-                // store weighted pixel
-                dst = (iy * widthOut + ix) * components;
-
-                if (readPix == 0) {
-                    // Image is sized up, caused by non power of two texture as input
-                    src = (y0 * widthIn + x0) * components;
-                    for (int ic = 0; ic < components; ic++) {
-                        tempOut[dst++] = tempIn[src + ic];
-                    }
-                } else {
-                    // sized down
-                    for (k = 0; k < components; k++) {
-                        tempOut[dst++] = c[k] / readPix;
-                    }
-                }
-            }
-        }
-
-        // Convert temp output
-        if (pss.packRowLength > 0) rowlen = pss.packRowLength;
-        else rowlen = widthOut;
-
-        if (sizeout >= pss.packAlignment) rowstride = components * rowlen;
-        else rowstride = pss.packAlignment / sizeout * ceil(components * rowlen * sizeout, pss.packAlignment);
-
-        switch (typeOut) {
-            case GL_UNSIGNED_BYTE:
-                k = 0;
-                for (i = 0; i < heightOut; i++) {
-                    int ubptr = i * rowstride + pss.packSkipRows * rowstride + pss.packSkipPixels * components;
-
-                    for (j = 0; j < widthOut * components; j++) {
-                        dataOut.put(ubptr++, (byte) tempOut[k++]);
-                    }
-                }
-                break;
-            case GL_FLOAT:
-                k = 0;
-                for (i = 0; i < heightOut; i++) {
-                    int fptr = 4 * (i * rowstride + pss.unpackSkipRows * rowstride + pss.unpackSkipPixels * components);
-
-                    for (j = 0; j < widthOut * components; j++) {
-                        dataOut.putFloat(fptr, tempOut[k++]);
-                        fptr += 4;
-                    }
-                }
-                break;
-            default:
-                return GLU_INVALID_ENUM;
         }
 
         return 0;
