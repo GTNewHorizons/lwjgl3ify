@@ -10,7 +10,13 @@ import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
-@IFMLLoadingPlugin.TransformerExclusions({"org.lwjglx", "org.lwjgl", "me.eigenraven.lwjgl3ify.core"})
+@IFMLLoadingPlugin.TransformerExclusions({
+    "org.lwjglx",
+    "org.lwjgl",
+    "org.lwjgl.input",
+    "org.lwjglx.input",
+    "me.eigenraven.lwjgl3ify.core"
+})
 @IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
 public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
 

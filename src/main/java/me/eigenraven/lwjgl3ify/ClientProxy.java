@@ -6,8 +6,16 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy {
-    static final String javaVersion = "Java: " + System.getProperty("java.version");
+    static final String javaVersion;
     static final String lwjglVersion = "LWJGL: " + org.lwjgl.Version.getVersion();
+
+    static {
+        String javaVersionRaw = "Java: " + System.getProperty("java.version");
+        if (javaVersionRaw.length() > 32) {
+            javaVersionRaw = javaVersionRaw.substring(0, 29) + "...";
+        }
+        javaVersion = javaVersionRaw;
+    }
 
     @Override
     public void registerF3Handler() {

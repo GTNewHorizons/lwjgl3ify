@@ -274,6 +274,8 @@ public class KeyCodes {
     public static int toGlfwKey(int lwjglKeyCode) {
 
         switch (lwjglKeyCode) {
+            case Keyboard.KEY_NONE:
+                return 0;
             case Keyboard.KEY_ESCAPE:
                 return GLFW.GLFW_KEY_ESCAPE;
             case Keyboard.KEY_BACK:

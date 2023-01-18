@@ -183,12 +183,12 @@ public class Keyboard {
     }
 
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
-    private static char[] keyEventChars = new char[256];
+    private static char[] keyEventChars = new char[Short.MAX_VALUE];
 
-    public static final int KEYBOARD_SIZE = 256;
+    public static final int KEYBOARD_SIZE = Short.MAX_VALUE;
 
-    private static final String[] keyName = new String[KEYBOARD_SIZE];
-    private static final Map<String, Integer> keyMap = new HashMap<>(253);
+    private static final String[] keyName = new String[Short.MAX_VALUE];
+    private static final Map<String, Integer> keyMap = new HashMap<>(Short.MAX_VALUE);
 
     static {
         // Use reflection to find out key names
@@ -203,17 +203,21 @@ public class Keyboard {
                         && field.getName().startsWith("KEY_")
                         && !field.getName().endsWith("WIN")) {
                     /* Don't use deprecated names */
-
                     int key = field.getInt(null);
                     String name = field.getName().substring(4);
                     keyName[key] = name;
-                    keyMap.put(name, key);
                     keyCounter++;
                 }
             }
         } catch (Exception e) {
         }
         keyCount = keyCounter;
+        for (int i = 0; i < keyName.length; i++) {
+            if (keyName[i] == null) {
+                keyName[i] = "Key " + i;
+            }
+            keyMap.put(keyName[i], i);
+        }
     }
 
     public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
