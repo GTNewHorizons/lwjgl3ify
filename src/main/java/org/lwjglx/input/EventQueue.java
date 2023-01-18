@@ -60,7 +60,7 @@ class EventQueue {
     }
 
     int getCurrentPos() {
-        return currentEventPos;
+        return Math.max(0, currentEventPos);
     }
 
     int getNextPos() {
