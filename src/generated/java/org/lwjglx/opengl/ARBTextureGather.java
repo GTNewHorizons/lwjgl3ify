@@ -1,3 +1,7 @@
 package org.lwjglx.opengl;
 
-public class ARBTextureGather {}
+public class ARBTextureGather {
+    public static final int GL_MAX_PROGRAM_TEXTURE_GATHER_COMPONENTS_ARB = 36767;
+    public static final int GL_MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 36447;
+    public static final int GL_MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 36446;
+}

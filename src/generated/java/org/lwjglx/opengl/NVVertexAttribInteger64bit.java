@@ -1,6 +1,9 @@
 package org.lwjglx.opengl;
 
 public class NVVertexAttribInteger64bit {
+    public static final int GL_INT64_NV = 5134;
+    public static final int GL_UNSIGNED_INT64_NV = 5135;
+
     public static void glGetVertexAttribLNV(int index, int pname, java.nio.LongBuffer params) {
         org.lwjgl.opengl.NVVertexAttribInteger64bit.glGetVertexAttribLi64vNV(index, pname, params);
     }

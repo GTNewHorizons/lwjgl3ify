@@ -1,6 +1,23 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexProgram extends org.lwjglx.opengl.ARBProgram {
+    public static final int GL_COLOR_SUM_ARB = 33880;
+    public static final int GL_CURRENT_VERTEX_ATTRIB_ARB = 34342;
+    public static final int GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB = 34993;
+    public static final int GL_MAX_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 34995;
+    public static final int GL_MAX_VERTEX_ATTRIBS_ARB = 34921;
+    public static final int GL_PROGRAM_ADDRESS_REGISTERS_ARB = 34992;
+    public static final int GL_PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB = 34994;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB = 34338;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB = 34922;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB = 34373;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB = 34339;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB = 34340;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB = 34341;
+    public static final int GL_VERTEX_PROGRAM_ARB = 34336;
+    public static final int GL_VERTEX_PROGRAM_POINT_SIZE_ARB = 34370;
+    public static final int GL_VERTEX_PROGRAM_TWO_SIDE_ARB = 34371;
+
     public static void glDisableVertexAttribArrayARB(int index) {
         org.lwjgl.opengl.ARBVertexProgram.glDisableVertexAttribArrayARB(index);
     }

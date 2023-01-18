@@ -1,6 +1,9 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexType2_10_10_10_REV {
+    public static final int GL_INT_2_10_10_10_REV = 36255;
+    public static final int GL_UNSIGNED_INT_2_10_10_10_REV = 33640;
+
     public static void glColorP3ui(int type, int color) {
         org.lwjgl.opengl.ARBVertexType2_10_10_10_REV.glColorP3ui(type, color);
     }

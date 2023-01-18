@@ -1,6 +1,9 @@
 package org.lwjglx.opengl;
 
 public class ARBDrawIndirect {
+    public static final int GL_DRAW_INDIRECT_BUFFER = 36671;
+    public static final int GL_DRAW_INDIRECT_BUFFER_BINDING = 36675;
+
     public static void glDrawArraysIndirect(int mode, long indirect_buffer_offset) {
         org.lwjgl.opengl.ARBDrawIndirect.glDrawArraysIndirect(mode, indirect_buffer_offset);
     }

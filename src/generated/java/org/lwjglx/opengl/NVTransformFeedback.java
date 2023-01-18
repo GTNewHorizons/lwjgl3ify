@@ -1,6 +1,33 @@
 package org.lwjglx.opengl;
 
 public class NVTransformFeedback {
+    public static final int GL_ACTIVE_VARYINGS_NV = 35969;
+    public static final int GL_ACTIVE_VARYING_MAX_LENGTH_NV = 35970;
+    public static final int GL_BACK_PRIMARY_COLOR_NV = 35959;
+    public static final int GL_BACK_SECONDARY_COLOR_NV = 35960;
+    public static final int GL_CLIP_DISTANCE_NV = 35962;
+    public static final int GL_GENERIC_ATTRIB_NV = 35965;
+    public static final int GL_INTERLEAVED_ATTRIBS_NV = 35980;
+    public static final int GL_LAYER_NV = 36266;
+    public static final int GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_NV = 35978;
+    public static final int GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_NV = 35979;
+    public static final int GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_NV = 35968;
+    public static final int GL_PRIMITIVES_GENERATED_NV = 35975;
+    public static final int GL_PRIMITIVE_ID_NV = 35964;
+    public static final int GL_RASTERIZER_DISCARD_NV = 35977;
+    public static final int GL_SEPARATE_ATTRIBS_NV = 35981;
+    public static final int GL_TEXTURE_COORD_NV = 35961;
+    public static final int GL_TRANSFORM_FEEDBACK_ATTRIBS_NV = 35966;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_NV = 35983;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_MODE_NV = 35967;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_NV = 35982;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_SIZE_NV = 35973;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_START_NV = 35972;
+    public static final int GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN_NV = 35976;
+    public static final int GL_TRANSFORM_FEEDBACK_RECORD_NV = 35974;
+    public static final int GL_TRANSFORM_FEEDBACK_VARYINGS_NV = 35971;
+    public static final int GL_VERTEX_ID_NV = 35963;
+
     public static void glActiveVaryingNV(int program, java.lang.CharSequence name) {
         org.lwjgl.opengl.NVTransformFeedback.glActiveVaryingNV(program, name);
     }

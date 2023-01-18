@@ -1,6 +1,12 @@
 package org.lwjglx.opengl;
 
 public class ARBOcclusionQuery {
+    public static final int GL_CURRENT_QUERY_ARB = 34917;
+    public static final int GL_QUERY_COUNTER_BITS_ARB = 34916;
+    public static final int GL_QUERY_RESULT_ARB = 34918;
+    public static final int GL_QUERY_RESULT_AVAILABLE_ARB = 34919;
+    public static final int GL_SAMPLES_PASSED_ARB = 35092;
+
     public static void glBeginQueryARB(int target, int id) {
         org.lwjgl.opengl.ARBOcclusionQuery.glBeginQueryARB(target, id);
     }

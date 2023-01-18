@@ -1,6 +1,11 @@
 package org.lwjglx.opengl;
 
 public class EXTFramebufferBlit {
+    public static final int GL_DRAW_FRAMEBUFFER_BINDING_EXT = 36006;
+    public static final int GL_DRAW_FRAMEBUFFER_EXT = 36009;
+    public static final int GL_READ_FRAMEBUFFER_BINDING_EXT = 36010;
+    public static final int GL_READ_FRAMEBUFFER_EXT = 36008;
+
     public static void glBlitFramebufferEXT(
             int srcX0,
             int srcY0,

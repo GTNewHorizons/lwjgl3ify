@@ -1,6 +1,10 @@
 package org.lwjglx.opengl;
 
 public class NVFence {
+    public static final int GL_ALL_COMPLETED_NV = 34034;
+    public static final int GL_FENCE_CONDITION_NV = 34036;
+    public static final int GL_FENCE_STATUS_NV = 34035;
+
     public static void glDeleteFencesNV(int fence) {
         org.lwjgl.opengl.NVFence.glDeleteFencesNV(fence);
     }

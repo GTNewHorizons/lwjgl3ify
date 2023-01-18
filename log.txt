@@ -2,7 +2,7 @@
 > Configure project :
 Configuring spotless
 
-> Task :compileUtilJava UP-TO-DATE
+> Task :compileUtilJava
 > Task :compileUtilScala NO-SOURCE
 > Task :injectTags UP-TO-DATE
 > Task :compileInjectedTagsJava UP-TO-DATE
@@ -39,7 +39,7 @@ Configuring spotless
 > Task :classes UP-TO-DATE
 > Task :jar UP-TO-DATE
 > Task :processUtilResources NO-SOURCE
-> Task :utilClasses UP-TO-DATE
+> Task :utilClasses
 
 > Task :runComparisonTool
 Missing in mod: org/lwjgl/PointerBuffer : <init>:(I)V
@@ -87,9 +87,6 @@ Missing in mod: org/lwjgl/PointerBuffer : slice:()Lorg/lwjgl/PointerBuffer;
 Missing in mod: org/lwjgl/PointerBuffer : toString:()Ljava/lang/String;
 Missing gl3: org/lwjgl/input/Controller
 Missing gl3: org/lwjgl/input/Controllers
-Missing in mod: org/lwjgl/input/Keyboard : areRepeatEventsEnabled:()Z
-Missing in mod: org/lwjgl/input/Keyboard : getKeyCount:()I
-Missing in mod: org/lwjgl/input/Keyboard : getNumKeyboardEvents:()I
 Missing in mod: org/lwjgl/input/Mouse : getButtonIndex:(Ljava/lang/String;)I
 Missing in mod: org/lwjgl/input/Mouse : getButtonName:(I)Ljava/lang/String;
 Missing in mod: org/lwjgl/input/Mouse : getNativeCursor:()Lorg/lwjgl/input/Cursor;
@@ -3568,7 +3565,6 @@ Missing gl3: org/lwjgl/opengl/NVXGpuMemoryInfo
 Missing gl3: org/lwjgl/opengl/SGISGenerateMipmap
 Missing gl3: org/lwjgl/opengl/SGISTextureLOD
 Missing gl3: org/lwjgl/opengl/SUNSliceAccum
-Missing gl3: org/lwjgl/opengl/SharedDrawable
 Missing gl3: org/lwjgl/opengl/XRandR
 Missing gl3: org/lwjgl/opengl/XRandR$Screen
 Missing gl3: org/lwjgl/util/Color
@@ -3606,4 +3602,4 @@ Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
 Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
 
 BUILD SUCCESSFUL in 1s
-21 actionable tasks: 1 executed, 20 up-to-date
+21 actionable tasks: 2 executed, 19 up-to-date

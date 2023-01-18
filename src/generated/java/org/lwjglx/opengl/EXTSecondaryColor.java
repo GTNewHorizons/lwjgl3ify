@@ -1,6 +1,14 @@
 package org.lwjglx.opengl;
 
 public class EXTSecondaryColor {
+    public static final int GL_COLOR_SUM_EXT = 33880;
+    public static final int GL_CURRENT_SECONDARY_COLOR_EXT = 33881;
+    public static final int GL_SECONDARY_COLOR_ARRAY_EXT = 33886;
+    public static final int GL_SECONDARY_COLOR_ARRAY_POINTER_EXT = 33885;
+    public static final int GL_SECONDARY_COLOR_ARRAY_SIZE_EXT = 33882;
+    public static final int GL_SECONDARY_COLOR_ARRAY_STRIDE_EXT = 33884;
+    public static final int GL_SECONDARY_COLOR_ARRAY_TYPE_EXT = 33883;
+
     public static void glSecondaryColor3bEXT(byte red, byte green, byte blue) {
         org.lwjgl.opengl.EXTSecondaryColor.glSecondaryColor3bEXT(red, green, blue);
     }

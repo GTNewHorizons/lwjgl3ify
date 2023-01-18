@@ -1,3 +1,6 @@
 package org.lwjglx.opengl;
 
-public class EXTTextureFilterAnisotropic {}
+public class EXTTextureFilterAnisotropic {
+    public static final int GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT = 34047;
+    public static final int GL_TEXTURE_MAX_ANISOTROPY_EXT = 34046;
+}

@@ -1,6 +1,12 @@
 package org.lwjglx.opengl;
 
 public class NVVertexArrayRange {
+    public static final int GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV = 34080;
+    public static final int GL_VERTEX_ARRAY_RANGE_LENGTH_NV = 34078;
+    public static final int GL_VERTEX_ARRAY_RANGE_NV = 34077;
+    public static final int GL_VERTEX_ARRAY_RANGE_POINTER_NV = 34081;
+    public static final int GL_VERTEX_ARRAY_RANGE_VALID_NV = 34079;
+
     public static void glFlushVertexArrayRangeNV() {
         org.lwjgl.opengl.NVVertexArrayRange.glFlushVertexArrayRangeNV();
     }

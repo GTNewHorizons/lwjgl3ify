@@ -1,6 +1,14 @@
 package org.lwjglx.opengl;
 
 public class ARBRobustness {
+    public static final int GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB = 4;
+    public static final int GL_GUILTY_CONTEXT_RESET_ARB = 33363;
+    public static final int GL_INNOCENT_CONTEXT_RESET_ARB = 33364;
+    public static final int GL_LOSE_CONTEXT_ON_RESET_ARB = 33362;
+    public static final int GL_NO_RESET_NOTIFICATION_ARB = 33377;
+    public static final int GL_RESET_NOTIFICATION_STRATEGY_ARB = 33366;
+    public static final int GL_UNKNOWN_CONTEXT_RESET_ARB = 33365;
+
     public static int glGetGraphicsResetStatusARB() {
         return org.lwjgl.opengl.ARBRobustness.glGetGraphicsResetStatusARB();
     }

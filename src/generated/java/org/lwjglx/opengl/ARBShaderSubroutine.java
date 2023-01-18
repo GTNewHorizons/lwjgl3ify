@@ -1,6 +1,16 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderSubroutine {
+    public static final int GL_ACTIVE_SUBROUTINES = 36325;
+    public static final int GL_ACTIVE_SUBROUTINE_MAX_LENGTH = 36424;
+    public static final int GL_ACTIVE_SUBROUTINE_UNIFORMS = 36326;
+    public static final int GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS = 36423;
+    public static final int GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH = 36425;
+    public static final int GL_COMPATIBLE_SUBROUTINES = 36427;
+    public static final int GL_MAX_SUBROUTINES = 36327;
+    public static final int GL_MAX_SUBROUTINE_UNIFORM_LOCATIONS = 36328;
+    public static final int GL_NUM_COMPATIBLE_SUBROUTINES = 36426;
+
     public static java.lang.String glGetActiveSubroutineName(int program, int shadertype, int index, int bufsize) {
         return org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(program, shadertype, index, bufsize);
     }

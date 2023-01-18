@@ -1,6 +1,19 @@
 package org.lwjglx.openal;
 
 public class AL11 {
+    public static final int AL_BYTE_OFFSET = 4134;
+    public static final int AL_EXPONENT_DISTANCE = 53253;
+    public static final int AL_EXPONENT_DISTANCE_CLAMPED = 53254;
+    public static final int AL_ILLEGAL_COMMAND = 40964;
+    public static final int AL_LINEAR_DISTANCE = 53251;
+    public static final int AL_LINEAR_DISTANCE_CLAMPED = 53252;
+    public static final int AL_SAMPLE_OFFSET = 4133;
+    public static final int AL_SEC_OFFSET = 4132;
+    public static final int AL_SPEED_OF_SOUND = 49155;
+    public static final int AL_STATIC = 4136;
+    public static final int AL_STREAMING = 4137;
+    public static final int AL_UNDETERMINED = 4144;
+
     public static void alBuffer3f(int buffer, int pname, float v1, float v2, float v3) {
         org.lwjgl.openal.AL11.alBuffer3f(buffer, pname, v1, v2, v3);
     }

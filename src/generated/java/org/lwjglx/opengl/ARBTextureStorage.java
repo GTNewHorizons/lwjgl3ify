@@ -1,6 +1,8 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureStorage {
+    public static final int GL_TEXTURE_IMMUTABLE_FORMAT = 37167;
+
     public static void glTexStorage1D(int target, int levels, int internalformat, int width) {
         org.lwjgl.opengl.ARBTextureStorage.glTexStorage1D(target, levels, internalformat, width);
     }

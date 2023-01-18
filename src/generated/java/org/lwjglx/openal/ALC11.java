@@ -1,6 +1,14 @@
 package org.lwjglx.openal;
 
 public class ALC11 {
+    public static final int ALC_ALL_DEVICES_SPECIFIER = 4115;
+    public static final int ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER = 785;
+    public static final int ALC_CAPTURE_DEVICE_SPECIFIER = 784;
+    public static final int ALC_CAPTURE_SAMPLES = 786;
+    public static final int ALC_DEFAULT_ALL_DEVICES_SPECIFIER = 4114;
+    public static final int ALC_MONO_SOURCES = 4112;
+    public static final int ALC_STEREO_SOURCES = 4113;
+
     public static boolean alcCaptureCloseDevice(org.lwjglx.openal.ALCdevice device) {
 
         boolean returnValue = org.lwjgl.openal.ALC11.alcCaptureCloseDevice(device.device);

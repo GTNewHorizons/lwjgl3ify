@@ -1,6 +1,10 @@
 package org.lwjglx.opengl;
 
 public class NVPointSprite {
+    public static final int GL_COORD_REPLACE_NV = 34914;
+    public static final int GL_POINT_SPRITE_NV = 34913;
+    public static final int GL_POINT_SPRITE_R_MODE_NV = 34915;
+
     public static void glPointParameterNV(int pname, java.nio.IntBuffer params) {
         org.lwjgl.opengl.NVPointSprite.glPointParameterivNV(pname, params);
     }

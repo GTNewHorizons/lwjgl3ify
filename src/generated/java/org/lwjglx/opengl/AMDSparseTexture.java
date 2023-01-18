@@ -1,6 +1,16 @@
 package org.lwjglx.opengl;
 
 public class AMDSparseTexture {
+    public static final int GL_MAX_SPARSE_3D_TEXTURE_SIZE_AMD = 37273;
+    public static final int GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS = 37274;
+    public static final int GL_MAX_SPARSE_TEXTURE_SIZE_AMD = 37272;
+    public static final int GL_MIN_LOD_WARNING_AMD = 37276;
+    public static final int GL_MIN_SPARSE_LEVEL_AMD = 37275;
+    public static final int GL_TEXTURE_STORAGE_SPARSE_BIT_AMD = 1;
+    public static final int GL_VIRTUAL_PAGE_SIZE_X_AMD = 37269;
+    public static final int GL_VIRTUAL_PAGE_SIZE_Y_AMD = 37270;
+    public static final int GL_VIRTUAL_PAGE_SIZE_Z_AMD = 37271;
+
     public static void glTexStorageSparseAMD(
             int target, int internalFormat, int width, int height, int depth, int layers, int flags) {
         org.lwjgl.opengl.AMDSparseTexture.glTexStorageSparseAMD(

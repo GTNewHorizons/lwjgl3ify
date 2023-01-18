@@ -1,6 +1,8 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexArrayObject {
+    public static final int GL_VERTEX_ARRAY_BINDING = 34229;
+
     public static void glBindVertexArray(int array) {
         org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray(array);
     }

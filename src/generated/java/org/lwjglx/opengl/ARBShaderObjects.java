@@ -1,6 +1,41 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderObjects {
+    public static final int GL_BOOL_ARB = 35670;
+    public static final int GL_BOOL_VEC2_ARB = 35671;
+    public static final int GL_BOOL_VEC3_ARB = 35672;
+    public static final int GL_BOOL_VEC4_ARB = 35673;
+    public static final int GL_FLOAT_MAT2_ARB = 35674;
+    public static final int GL_FLOAT_MAT3_ARB = 35675;
+    public static final int GL_FLOAT_MAT4_ARB = 35676;
+    public static final int GL_FLOAT_VEC2_ARB = 35664;
+    public static final int GL_FLOAT_VEC3_ARB = 35665;
+    public static final int GL_FLOAT_VEC4_ARB = 35666;
+    public static final int GL_INT_VEC2_ARB = 35667;
+    public static final int GL_INT_VEC3_ARB = 35668;
+    public static final int GL_INT_VEC4_ARB = 35669;
+    public static final int GL_OBJECT_ACTIVE_UNIFORMS_ARB = 35718;
+    public static final int GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 35719;
+    public static final int GL_OBJECT_ATTACHED_OBJECTS_ARB = 35717;
+    public static final int GL_OBJECT_COMPILE_STATUS_ARB = 35713;
+    public static final int GL_OBJECT_DELETE_STATUS_ARB = 35712;
+    public static final int GL_OBJECT_INFO_LOG_LENGTH_ARB = 35716;
+    public static final int GL_OBJECT_LINK_STATUS_ARB = 35714;
+    public static final int GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 35720;
+    public static final int GL_OBJECT_SUBTYPE_ARB = 35663;
+    public static final int GL_OBJECT_TYPE_ARB = 35662;
+    public static final int GL_OBJECT_VALIDATE_STATUS_ARB = 35715;
+    public static final int GL_PROGRAM_OBJECT_ARB = 35648;
+    public static final int GL_SAMPLER_1D_ARB = 35677;
+    public static final int GL_SAMPLER_1D_SHADOW_ARB = 35681;
+    public static final int GL_SAMPLER_2D_ARB = 35678;
+    public static final int GL_SAMPLER_2D_RECT_ARB = 35683;
+    public static final int GL_SAMPLER_2D_RECT_SHADOW_ARB = 35684;
+    public static final int GL_SAMPLER_2D_SHADOW_ARB = 35682;
+    public static final int GL_SAMPLER_3D_ARB = 35679;
+    public static final int GL_SAMPLER_CUBE_ARB = 35680;
+    public static final int GL_SHADER_OBJECT_ARB = 35656;
+
     public static void glAttachObjectARB(int containerObj, int obj) {
         org.lwjgl.opengl.ARBShaderObjects.glAttachObjectARB(containerObj, obj);
     }

@@ -1,6 +1,14 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexAttribBinding {
+    public static final int GL_MAX_VERTEX_ATTRIB_BINDINGS = 33498;
+    public static final int GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET = 33497;
+    public static final int GL_VERTEX_ATTRIB_BINDING = 33492;
+    public static final int GL_VERTEX_ATTRIB_RELATIVE_OFFSET = 33493;
+    public static final int GL_VERTEX_BINDING_DIVISOR = 33494;
+    public static final int GL_VERTEX_BINDING_OFFSET = 33495;
+    public static final int GL_VERTEX_BINDING_STRIDE = 33496;
+
     public static void glBindVertexBuffer(int bindingindex, int buffer, long offset, int stride) {
         org.lwjgl.opengl.ARBVertexAttribBinding.glBindVertexBuffer(bindingindex, buffer, offset, stride);
     }

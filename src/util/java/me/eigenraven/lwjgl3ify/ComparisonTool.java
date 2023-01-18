@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
+import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class ComparisonTool {
@@ -87,6 +90,31 @@ public class ComparisonTool {
             proxyClassP.printf(
                     "package %s;%n%npublic class %s%s {%n",
                     packageName.replace(".lwjgl.", ".lwjglx."), className, extendSpec);
+            for (FieldNode gl2Field : gl2Class.fields.values()) {
+                if (gl2Field.name.contains("<")) {
+                    continue;
+                }
+                if ((gl2Field.access & Opcodes.ACC_PUBLIC) == 0) {
+                    continue;
+                }
+                if ((gl2Field.access & Opcodes.ACC_SYNTHETIC) != 0) {
+                    continue;
+                }
+                String protKws = "";
+                if ((gl2Field.access & Opcodes.ACC_STATIC) != 0) {
+                    protKws += " static";
+                }
+                if ((gl2Field.access & Opcodes.ACC_FINAL) != 0) {
+                    protKws += " final";
+                }
+                final String initializer = gl2Field.value == null ? "" : (" = " + gl2Field.value.toString());
+                proxyClassP.printf(
+                        "        public%s %s %s%s;%n",
+                        protKws,
+                        Type.getType(gl2Field.desc).getClassName().replace("org.lwjgl.", "org.lwjglx."),
+                        gl2Field.name,
+                        initializer);
+            }
             for (Map.Entry<String, MethodNode> gl2Method : gl2Class.methods.entrySet()) {
                 if (gl2Method.getValue().name.startsWith("<")) {
                     continue;

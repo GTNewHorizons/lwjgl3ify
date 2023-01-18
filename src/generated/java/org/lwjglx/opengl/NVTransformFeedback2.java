@@ -1,6 +1,11 @@
 package org.lwjglx.opengl;
 
 public class NVTransformFeedback2 {
+    public static final int GL_TRANSFORM_FEEDBACK_BINDING_NV = 36389;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_ACTIVE_NV = 36388;
+    public static final int GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED_NV = 36387;
+    public static final int GL_TRANSFORM_FEEDBACK_NV = 36386;
+
     public static void glBindTransformFeedbackNV(int target, int id) {
         org.lwjgl.opengl.NVTransformFeedback2.glBindTransformFeedbackNV(target, id);
     }

@@ -1,6 +1,29 @@
 package org.lwjglx.opengl;
 
 public class NVVertexBufferUnifiedMemory {
+    public static final int GL_COLOR_ARRAY_ADDRESS_NV = 36643;
+    public static final int GL_COLOR_ARRAY_LENGTH_NV = 36653;
+    public static final int GL_EDGE_FLAG_ARRAY_ADDRESS_NV = 36646;
+    public static final int GL_EDGE_FLAG_ARRAY_LENGTH_NV = 36656;
+    public static final int GL_ELEMENT_ARRAY_ADDRESS_NV = 36649;
+    public static final int GL_ELEMENT_ARRAY_LENGTH_NV = 36659;
+    public static final int GL_ELEMENT_ARRAY_UNIFIED_NV = 36639;
+    public static final int GL_FOG_COORD_ARRAY_ADDRESS_NV = 36648;
+    public static final int GL_FOG_COORD_ARRAY_LENGTH_NV = 36658;
+    public static final int GL_INDEX_ARRAY_ADDRESS_NV = 36644;
+    public static final int GL_INDEX_ARRAY_LENGTH_NV = 36654;
+    public static final int GL_NORMAL_ARRAY_ADDRESS_NV = 36642;
+    public static final int GL_NORMAL_ARRAY_LENGTH_NV = 36652;
+    public static final int GL_SECONDARY_COLOR_ARRAY_ADDRESS_NV = 36647;
+    public static final int GL_SECONDARY_COLOR_ARRAY_LENGTH_NV = 36657;
+    public static final int GL_TEXTURE_COORD_ARRAY_ADDRESS_NV = 36645;
+    public static final int GL_TEXTURE_COORD_ARRAY_LENGTH_NV = 36655;
+    public static final int GL_VERTEX_ARRAY_ADDRESS_NV = 36641;
+    public static final int GL_VERTEX_ARRAY_LENGTH_NV = 36651;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_ADDRESS_NV = 36640;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_LENGTH_NV = 36650;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_UNIFIED_NV = 36638;
+
     public static void glBufferAddressRangeNV(int pname, int index, long address, long length) {
         org.lwjgl.opengl.NVVertexBufferUnifiedMemory.glBufferAddressRangeNV(pname, index, address, length);
     }

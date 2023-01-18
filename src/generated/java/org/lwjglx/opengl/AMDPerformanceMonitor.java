@@ -1,6 +1,14 @@
 package org.lwjglx.opengl;
 
 public class AMDPerformanceMonitor {
+    public static final int GL_COUNTER_RANGE_AMD = 35777;
+    public static final int GL_COUNTER_TYPE_AMD = 35776;
+    public static final int GL_PERCENTAGE_AMD = 35779;
+    public static final int GL_PERFMON_RESULT_AMD = 35782;
+    public static final int GL_PERFMON_RESULT_AVAILABLE_AMD = 35780;
+    public static final int GL_PERFMON_RESULT_SIZE_AMD = 35781;
+    public static final int GL_UNSIGNED_INT64_AMD = 35778;
+
     public static void glBeginPerfMonitorAMD(int monitor) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glBeginPerfMonitorAMD(monitor);
     }

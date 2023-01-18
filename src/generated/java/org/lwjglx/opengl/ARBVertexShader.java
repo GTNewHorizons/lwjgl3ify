@@ -1,6 +1,32 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexShader {
+    public static final int GL_CURRENT_VERTEX_ATTRIB_ARB = 34342;
+    public static final int GL_FLOAT_MAT2_ARB = 35674;
+    public static final int GL_FLOAT_MAT3_ARB = 35675;
+    public static final int GL_FLOAT_MAT4_ARB = 35676;
+    public static final int GL_FLOAT_VEC2_ARB = 35664;
+    public static final int GL_FLOAT_VEC3_ARB = 35665;
+    public static final int GL_FLOAT_VEC4_ARB = 35666;
+    public static final int GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS_ARB = 35661;
+    public static final int GL_MAX_TEXTURE_COORDS_ARB = 34929;
+    public static final int GL_MAX_TEXTURE_IMAGE_UNITS_ARB = 34930;
+    public static final int GL_MAX_VARYING_FLOATS_ARB = 35659;
+    public static final int GL_MAX_VERTEX_ATTRIBS_ARB = 34921;
+    public static final int GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB = 35660;
+    public static final int GL_MAX_VERTEX_UNIFORM_COMPONENTS_ARB = 35658;
+    public static final int GL_OBJECT_ACTIVE_ATTRIBUTES_ARB = 35721;
+    public static final int GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB = 35722;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_ENABLED_ARB = 34338;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB = 34922;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_POINTER_ARB = 34373;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_SIZE_ARB = 34339;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_STRIDE_ARB = 34340;
+    public static final int GL_VERTEX_ATTRIB_ARRAY_TYPE_ARB = 34341;
+    public static final int GL_VERTEX_PROGRAM_POINT_SIZE_ARB = 34370;
+    public static final int GL_VERTEX_PROGRAM_TWO_SIDE_ARB = 34371;
+    public static final int GL_VERTEX_SHADER_ARB = 35633;
+
     public static void glBindAttribLocationARB(int programObj, int index, java.lang.CharSequence name) {
         org.lwjgl.opengl.ARBVertexShader.glBindAttribLocationARB(programObj, index, name);
     }

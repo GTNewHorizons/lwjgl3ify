@@ -1,6 +1,10 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureBufferRange {
+    public static final int GL_TEXTURE_BUFFER_OFFSET = 37277;
+    public static final int GL_TEXTURE_BUFFER_OFFSET_ALIGNMENT = 37279;
+    public static final int GL_TEXTURE_BUFFER_SIZE = 37278;
+
     public static void glTexBufferRange(int target, int internalformat, int buffer, long offset, long size) {
         org.lwjgl.opengl.ARBTextureBufferRange.glTexBufferRange(target, internalformat, buffer, offset, size);
     }
