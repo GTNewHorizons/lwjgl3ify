@@ -2,6 +2,22 @@
     "+tweakers": [
         "cpw.mods.fml.common.launcher.FMLTweaker"
     ],
+    "+jvmArgs": [
+        "--add-opens",
+        "java.base/jdk.internal.loader=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.net=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.nio=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.io=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.text=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.util=ALL-UNNAMED"
+    ],
     "formatVersion": 1,
     "libraries": [
         {
@@ -9,7 +25,8 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "net.minecraft:launchwrapper:1.12"
+            "name": "net.minecraft:launchwrapper:1.13",
+            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
         },
         {
             "name": "org.ow2.asm:asm-all:5.0.3"

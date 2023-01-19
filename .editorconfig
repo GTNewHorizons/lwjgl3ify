@@ -20,3 +20,6 @@ indent_size = 2
 
 [*.lang]
 trim_trailing_whitespace = false
+
+[prism-libraries/**.json]
+indent_size = 4

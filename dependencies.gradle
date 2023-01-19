@@ -3,10 +3,27 @@ minecraft {
     lwjglVersion.set("3.3.1")
 }
 
+// Swap out asm for a newer version for testing in development
+def useNewAsm = false
+
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
     vanilla_minecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
     patchedMinecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
 
+    if (useNewAsm) {
+        patchedMinecraft('org.ow2.asm:asm:9.4')
+        patchedMinecraft('org.ow2.asm:asm-commons:9.4')
+        patchedMinecraft('org.ow2.asm:asm-tree:9.4')
+        patchedMinecraft('org.ow2.asm:asm-analysis:9.4')
+        patchedMinecraft('org.ow2.asm:asm-deprecated:7.1')
+    }
+
     implementation('com.gtnewhorizon:gtnhmixins:2.1.7')
+}
+
+if (useNewAsm) {
+    configurations.patchedMinecraft {
+        exclude group: 'org.ow2.asm', module: 'asm-debug-all'
+    }
 }

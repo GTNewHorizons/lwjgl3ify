@@ -1,8 +1,15 @@
 import org.gradle.jvm.toolchain.internal.DefaultToolchainSpec
 
+SourceSet forgePatchesSet
+
 sourceSets {
     create("util") {
         java {
+        }
+    }
+    forgePatchesSet = create("forgePatches") {
+        java {
+            compileClasspath += mcpTasks.patchedMcSources.output
         }
     }
     named("main").configure {
@@ -12,6 +19,11 @@ sourceSets {
     }
 }
 
+configurations {
+    forgePatchesCompileClasspath.extendsFrom(compileClasspath)
+    forgePatchesRuntimeClasspath.extendsFrom(runtimeClasspath)
+}
+
 dependencies {
     utilImplementation("org.ow2.asm:asm:9.4")
     utilImplementation("org.ow2.asm:asm-tree:9.4")
@@ -19,6 +31,15 @@ dependencies {
     utilImplementation("commons-io:commons-io:2.11.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
     utilImplementation("com.google.guava:guava:31.1-jre")
+}
+
+tasks.register(forgePatchesSet.jarTaskName, Jar) {
+    from(forgePatchesSet.output)
+    archiveClassifier.set("forgePatches")
+}
+
+tasks.named("assemble").configure {
+    dependsOn(forgePatchesSet.jarTaskName)
 }
 
 tasks.register("runComparisonTool", JavaExec) {
@@ -51,6 +72,11 @@ for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
         jvmArgs(
             "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
             "--add-opens", "java.base/java.net=ALL-UNNAMED",
+            "--add-opens", "java.base/java.nio=ALL-UNNAMED",
+            "--add-opens", "java.base/java.io=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.text=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED",
         )
     }
 }
