@@ -25,7 +25,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             final ClassReader reader = new ClassReader(basicClass);
             final ClassNode node = new ClassNode();
             reader.accept(node, ClassReader.EXPAND_FRAMES);
-            final Type classType = Type.getType("L" + transformedName.replace('.', '/') + ";");
+            final Type classType = Type.getType("L" + name.replace('.', '/') + ";");
 
             boolean transformClass = false;
             boolean workDone = false;
@@ -85,7 +85,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
 
             if (enumsTransformed) {
                 workDone = true;
-                Lwjgl3ifyCoremod.LOGGER.info("Dynamicized enum {}", transformedName);
+                Lwjgl3ifyCoremod.LOGGER.info("Dynamicized enum {}={}", name, transformedName);
             }
 
             if (workDone) {
