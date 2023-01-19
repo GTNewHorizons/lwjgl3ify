@@ -10,6 +10,7 @@ sourceSets {
     forgePatchesSet = create("forgePatches") {
         java {
             compileClasspath += mcpTasks.patchedMcSources.output
+            compileClasspath += mcpTasks.patchedConfiguration
         }
     }
     named("main").configure {
@@ -17,11 +18,6 @@ sourceSets {
             srcDirs += ["src/generated/java"]
         }
     }
-}
-
-configurations {
-    forgePatchesCompileClasspath.extendsFrom(compileClasspath)
-    forgePatchesRuntimeClasspath.extendsFrom(runtimeClasspath)
 }
 
 dependencies {
@@ -69,15 +65,21 @@ def java11Launcher = javaToolchains.launcherFor(java11ToolchainSpec)
 
 for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
     tasks.named(runTask, JavaExec).configure {
+        classpath = forgePatchesSet.output + classpath
         javaLauncher.set(java11Launcher)
         jvmArgs(
+            "--illegal-access=warn",
             "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
             "--add-opens", "java.base/java.net=ALL-UNNAMED",
             "--add-opens", "java.base/java.nio=ALL-UNNAMED",
             "--add-opens", "java.base/java.io=ALL-UNNAMED",
             "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
             "--add-opens", "java.base/java.text=ALL-UNNAMED",
             "--add-opens", "java.base/java.util=ALL-UNNAMED",
+            "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED"
         )
+        // IC2 crash
+        enableAssertions = false
     }
 }

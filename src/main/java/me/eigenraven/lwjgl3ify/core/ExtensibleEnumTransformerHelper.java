@@ -6,7 +6,7 @@ package me.eigenraven.lwjgl3ify.core;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
@@ -20,129 +20,149 @@ public class ExtensibleEnumTransformerHelper {
     private final Logger LOGGER = Lwjgl3ifyCoremod.LOGGER;
     private final Type STRING = Type.getType(String.class);
     private final Type ENUM = Type.getType(Enum.class);
-    private final Type MARKER_IFACE = Type.getType("Lnet/minecraftforge/common/IExtensibleEnum;");
-    private final Type ARRAY_UTILS = Type.getType("Lorg/apache/commons/lang3/ArrayUtils;"); //Don't directly reference this to prevent class loading.
-    private final String ADD_DESC = Type.getMethodDescriptor(Type.getType(Object[].class), Type.getType(Object[].class), Type.getType(Object.class));
-    private final Type UNSAFE_HACKS = Type.getType("Lnet/minecraftforge/fml/unsafe/UnsafeHacks;"); //Again, not direct reference to prevent class loading.
+    public final Type MARKER_IFACE = Type.getType("Lme/eigenraven/lwjgl3ify/IExtensibleEnum;");
+    private final Type ARRAY_UTILS = Type.getType(
+            "Lorg/apache/commons/lang3/ArrayUtils;"); // Don't directly reference this to prevent class loading.
+    private final String ADD_DESC = Type.getMethodDescriptor(
+            Type.getType(Object[].class), Type.getType(Object[].class), Type.getType(Object.class));
+    private final Type UNSAFE_HACKS = Type.getType(
+            "Lme/eigenraven/lwjgl3ify/UnsafeHacks;"); // Again, not direct reference to prevent class loading.
     private final String CLEAN_DESC = Type.getMethodDescriptor(Type.VOID_TYPE, Type.getType(Class.class));
     private final String NAME_DESC = Type.getMethodDescriptor(STRING);
     private final String EQUALS_DESC = Type.getMethodDescriptor(Type.BOOLEAN_TYPE, STRING);
+    public static final String CREATE_METHOD_NAME = "dynamicCreate";
 
     /**
      * @return Were changes made?
      */
-    public boolean processClassWithFlags(final ClassNode classNode, final Type classType)
-    {
-        if ((classNode.access & Opcodes.ACC_ENUM) == 0)
-            return false;
+    public boolean processClassWithFlags(final ClassNode classNode, final Type classType) {
+        if ((classNode.access & Opcodes.ACC_ENUM) == 0) return false;
 
         Type array = Type.getType("[" + classType.getDescriptor());
         final int flags = Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL | Opcodes.ACC_SYNTHETIC;
 
-        FieldNode values = classNode.fields.stream().filter(f -> f.desc.contentEquals(array.getDescriptor()) && ((f.access & flags) == flags)).findFirst().orElse(null);
+        FieldNode values = classNode.fields.stream()
+                .filter(f -> f.desc.contentEquals(array.getDescriptor()) && ((f.access & flags) == flags))
+                .findFirst()
+                .orElse(null);
 
         if (!classNode.interfaces.contains(MARKER_IFACE.getInternalName())) {
             return false;
         }
 
-        //Static methods named "create" with first argument as a string
-        List<MethodNode> candidates = classNode.methods.stream()
-            .filter(m -> ((m.access & Opcodes.ACC_STATIC) != 0) && m.name.equals("create"))
-            .collect(Collectors.toList());
+        List<MethodNode> constructors =
+                classNode.methods.stream().filter(m -> m.name.equals("<init>")).collect(Collectors.toList());
+
+        // Static methods named "create" with first argument as a string
+        List<MethodNode> candidates = constructors.stream()
+                .map(ctor -> {
+                    final String[] exceptions = ctor.exceptions == null ? null : ctor.exceptions.toArray(new String[0]);
+                    final Type ctorDesc = Type.getMethodType(ctor.desc);
+                    final Type creatorDesc =
+                            Type.getMethodType(classType, ArrayUtils.remove(ctorDesc.getArgumentTypes(), 1));
+                    final MethodNode creator = new MethodNode(
+                            ctor.access, CREATE_METHOD_NAME, creatorDesc.getDescriptor(), null, exceptions);
+                    creator.access = Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC;
+                    return creator;
+                })
+                .collect(Collectors.toList());
 
         if (candidates.isEmpty()) {
-            throw new IllegalStateException("IExtensibleEnum has no candidate factory methods: " + classType.getClassName());
+            throw new IllegalStateException(
+                    "IExtensibleEnum has no candidate factory methods: " + classType.getClassName());
         }
 
-        candidates.forEach(mtd ->
-        {
+        classNode.methods.addAll(candidates);
+
+        candidates.forEach(mtd -> {
             Type[] args = Type.getArgumentTypes(mtd.desc);
             if (args.length == 0 || !args[0].equals(STRING)) {
-                if (LOGGER.isErrorEnabled())
-                {
-                    String sb = "Enum has create method without String as first parameter:\n" +
-                        "  Enum: " + classType.getDescriptor() + "\n" +
-                        "  Target: " + mtd.name + mtd.desc + "\n";
+                if (LOGGER.isErrorEnabled()) {
+                    String sb = "Enum has create method without String as first parameter:\n" + "  Enum: "
+                            + classType.getDescriptor() + "\n" + "  Target: "
+                            + mtd.name + mtd.desc + "\n";
                     LOGGER.error(sb);
                 }
-                throw new IllegalStateException("Enum has create method without String as first parameter: " + mtd.name + mtd.desc);
+                throw new IllegalStateException(
+                        "Enum has create method without String as first parameter: " + mtd.name + mtd.desc);
             }
 
             Type ret = Type.getReturnType(mtd.desc);
             if (!ret.equals(classType)) {
-                if (LOGGER.isErrorEnabled())
-                {
-                    String sb = "Enum has create method with incorrect return type:\n" +
-                        "  Enum: " + classType.getDescriptor() + "\n" +
-                        "  Target: " + mtd.name + mtd.desc + "\n" +
-                        "  Found: " + ret.getClassName() + ", Expected: " + classType.getClassName();
+                if (LOGGER.isErrorEnabled()) {
+                    String sb = "Enum has create method with incorrect return type:\n" + "  Enum: "
+                            + classType.getDescriptor() + "\n" + "  Target: "
+                            + mtd.name + mtd.desc + "\n" + "  Found: "
+                            + ret.getClassName() + ", Expected: " + classType.getClassName();
                     LOGGER.error(sb);
                 }
-                throw new IllegalStateException("Enum has create method with incorrect return type: " + mtd.name + mtd.desc);
+                throw new IllegalStateException(
+                        "Enum has create method with incorrect return type: " + mtd.name + mtd.desc);
             }
 
             Type[] ctrArgs = new Type[args.length + 1];
             ctrArgs[0] = STRING;
             ctrArgs[1] = Type.INT_TYPE;
-            for (int x = 1; x < args.length; x++)
-                ctrArgs[1 + x] = args[x];
+            for (int x = 1; x < args.length; x++) ctrArgs[1 + x] = args[x];
 
             String desc = Type.getMethodDescriptor(Type.VOID_TYPE, ctrArgs);
 
-            MethodNode ctr = classNode.methods.stream().filter(m -> m.name.equals("<init>") && m.desc.equals(desc)).findFirst().orElse(null);
-            if (ctr == null)
-            {
-                if (LOGGER.isErrorEnabled())
-                {
+            MethodNode ctr = classNode.methods.stream()
+                    .filter(m -> m.name.equals("<init>") && m.desc.equals(desc))
+                    .findFirst()
+                    .orElse(null);
+            if (ctr == null) {
+                if (LOGGER.isErrorEnabled()) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("Enum has create method with no matching constructor:\n");
                     sb.append("  Enum: ").append(classType.getDescriptor()).append("\n");
                     sb.append("  Candidate: ").append(mtd.desc).append("\n");
                     sb.append("  Target: ").append(desc).append("\n");
-                    classNode.methods.stream().filter(m -> m.name.equals("<init>")).forEach(m -> sb.append("        : ").append(m.desc).append("\n"));
+                    classNode.methods.stream()
+                            .filter(m -> m.name.equals("<init>"))
+                            .forEach(m -> sb.append("        : ").append(m.desc).append("\n"));
                     LOGGER.error(sb.toString());
                 }
                 throw new IllegalStateException("Enum has create method with no matching constructor: " + desc);
             }
 
-            if (values == null)
-            {
-                if (LOGGER.isErrorEnabled())
-                {
+            if (values == null) {
+                if (LOGGER.isErrorEnabled()) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("Enum has create method but we could not find $VALUES. Found:\n");
-                    classNode.fields.stream().filter(f -> (f.access & Opcodes.ACC_STATIC) != 0).
-                        forEach(m -> sb.append("  ").append(m.name).append(" ").append(m.desc).append("\n"));
+                    classNode.fields.stream()
+                            .filter(f -> (f.access & Opcodes.ACC_STATIC) != 0)
+                            .forEach(m -> sb.append("  ")
+                                    .append(m.name)
+                                    .append(" ")
+                                    .append(m.desc)
+                                    .append("\n"));
                     LOGGER.error(sb.toString());
                 }
                 throw new IllegalStateException("Enum has create method but we could not find $VALUES");
             }
 
-            values.access &= values.access & ~Opcodes.ACC_FINAL; //Strip the final so JITer doesn't inline things.
+            values.access &= values.access & ~Opcodes.ACC_FINAL; // Strip the final so JITer doesn't inline things.
 
             mtd.access |= Opcodes.ACC_SYNCHRONIZED;
             mtd.instructions.clear();
             mtd.localVariables.clear();
-            if (mtd.tryCatchBlocks != null)
-            {
+            if (mtd.tryCatchBlocks != null) {
                 mtd.tryCatchBlocks.clear();
             }
-            if (mtd.visibleLocalVariableAnnotations != null)
-            {
+            if (mtd.visibleLocalVariableAnnotations != null) {
                 mtd.visibleLocalVariableAnnotations.clear();
             }
-            if (mtd.invisibleLocalVariableAnnotations != null)
-            {
+            if (mtd.invisibleLocalVariableAnnotations != null) {
                 mtd.invisibleLocalVariableAnnotations.clear();
             }
             InstructionAdapter ins = new InstructionAdapter(mtd);
 
             int vars = 0;
-            for (Type arg : args)
-                vars += arg.getSize();
+            for (Type arg : args) vars += arg.getSize();
 
             {
-                vars += 1; //int x
+                vars += 1; // int x
                 Label for_start = new Label();
                 Label for_condition = new Label();
                 Label for_inc = new Label();
@@ -150,7 +170,7 @@ public class ExtensibleEnumTransformerHelper {
                 ins.iconst(0);
                 ins.store(vars, Type.INT_TYPE);
                 ins.goTo(for_condition);
-                //if (!VALUES[x].name().equalsIgnoreCase(name)) goto for_inc
+                // if (!VALUES[x].name().equalsIgnoreCase(name)) goto for_inc
                 ins.mark(for_start);
                 ins.getstatic(classType.getInternalName(), values.name, values.desc);
                 ins.load(vars, Type.INT_TYPE);
@@ -159,15 +179,15 @@ public class ExtensibleEnumTransformerHelper {
                 ins.load(0, STRING);
                 ins.invokevirtual(STRING.getInternalName(), "equalsIgnoreCase", EQUALS_DESC, false);
                 ins.ifeq(for_inc);
-                //return VALUES[x];
+                // return VALUES[x];
                 ins.getstatic(classType.getInternalName(), values.name, values.desc);
                 ins.load(vars, Type.INT_TYPE);
                 ins.aload(array);
                 ins.areturn(classType);
-                //x++
+                // x++
                 ins.mark(for_inc);
                 ins.iinc(vars, 1);
-                //if (x < VALUES.length) goto for_start
+                // if (x < VALUES.length) goto for_start
                 ins.mark(for_condition);
                 ins.load(vars, Type.INT_TYPE);
                 ins.getstatic(classType.getInternalName(), values.name, values.desc);
@@ -176,16 +196,15 @@ public class ExtensibleEnumTransformerHelper {
             }
 
             {
-                vars += 1; //enum ret;
-                //ret = new ThisType(name, VALUES.length, args..)
+                vars += 1; // enum ret;
+                // ret = new ThisType(name, VALUES.length, args..)
                 ins.anew(classType);
                 ins.dup();
                 ins.load(0, STRING);
                 ins.getstatic(classType.getInternalName(), values.name, values.desc);
                 ins.arraylength();
                 int idx = 1;
-                for (int x = 1; x < args.length; x++)
-                {
+                for (int x = 1; x < args.length; x++) {
                     ins.load(idx, args[x]);
                     idx += args[x].getSize();
                 }
@@ -197,13 +216,13 @@ public class ExtensibleEnumTransformerHelper {
                 ins.invokestatic(ARRAY_UTILS.getInternalName(), "add", ADD_DESC, false);
                 ins.checkcast(array);
                 ins.putstatic(classType.getInternalName(), values.name, values.desc);
-                //EnumHelper.cleanEnumCache(ThisType.class)
+                // EnumHelper.cleanEnumCache(ThisType.class)
                 ins.visitLdcInsn(classType);
                 ins.invokestatic(UNSAFE_HACKS.getInternalName(), "cleanEnumCache", CLEAN_DESC, false);
-                //init ret
+                // init ret
                 ins.load(vars, classType);
                 ins.invokeinterface(MARKER_IFACE.getInternalName(), "init", "()V");
-                //return ret
+                // return ret
                 ins.load(vars, classType);
                 ins.areturn(classType);
             }

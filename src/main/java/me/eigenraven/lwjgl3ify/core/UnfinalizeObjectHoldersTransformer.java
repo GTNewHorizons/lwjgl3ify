@@ -1,5 +1,6 @@
 package me.eigenraven.lwjgl3ify.core;
 
+import java.util.ArrayList;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -16,6 +17,9 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
         if (basicClass == null) {
             return null;
+        }
+        if (transformedName.startsWith("me.eigenraven.lwjgl3ify")) {
+            return basicClass;
         }
         try {
             final ClassReader reader = new ClassReader(basicClass);
@@ -70,6 +74,13 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                 Lwjgl3ifyCoremod.LOGGER.info("Unfinalized {} Holder fields in {}", fieldsModified, transformedName);
             }
 
+            if (Config.EXTENSIBLE_ENUMS.contains(transformedName)) {
+                if (node.interfaces == null) {
+                    node.interfaces = new ArrayList<>(1);
+                }
+                node.interfaces.add(enumTransformer.MARKER_IFACE.getInternalName());
+            }
+
             final boolean enumsTransformed = enumTransformer.processClassWithFlags(node, classType);
 
             if (enumsTransformed) {
@@ -78,7 +89,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             }
 
             if (workDone) {
-                final ClassWriter writer = new ClassWriter(0);
+                final ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
                 node.accept(writer);
                 return writer.toByteArray();
             }

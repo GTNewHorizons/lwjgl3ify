@@ -467,6 +467,9 @@ repositories {
             content {
                 includeGroup "curse.maven"
             }
+            metadataSources {
+                mavenPom()
+            }
         }
         maven {
             name = "ic2"

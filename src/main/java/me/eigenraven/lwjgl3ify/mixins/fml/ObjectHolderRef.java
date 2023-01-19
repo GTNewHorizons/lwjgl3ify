@@ -29,13 +29,12 @@ public class ObjectHolderRef {
     @Shadow(remap = false)
     private boolean isItem;
 
-    private static MethodHandle fieldSetter;
+    private MethodHandle fieldSetter = null;
 
     @Overwrite(remap = false)
     private static void makeWritable(Field f) {
         try {
             f.setAccessible(true);
-            fieldSetter = MethodHandles.lookup().unreflectSetter(f);
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -43,6 +42,13 @@ public class ObjectHolderRef {
 
     @Overwrite
     public void apply() {
+        if (fieldSetter == null) {
+            try {
+                fieldSetter = MethodHandles.lookup().unreflectSetter(this.field);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
         Object thing;
         if (isBlock) {
             thing = GameData.getBlockRegistry().getObject(injectedObject);
