@@ -25,7 +25,16 @@ public class Config {
         "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
         "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
         "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
+        // From GTNH crashes
+        "vswe.stevesfactory.Localization",
+        "vswe.stevesfactory.blocks.ClusterMethodRegistration",
+        "vswe.stevesfactory.blocks.ConnectionBlockType",
+        "vswe.stevesfactory.components.ComponentType",
+        "vswe.stevesfactory.components.ConnectionSet",
+        "vswe.stevesfactory.components.ConnectionOption",
     };
 
+
+    // TODO: Make this an actual config file :P
     public static List<String> EXTENSIBLE_ENUMS = Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS);
 }
