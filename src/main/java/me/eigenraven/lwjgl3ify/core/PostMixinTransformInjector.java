@@ -1,12 +1,7 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import com.google.common.base.Throwables;
-import cpw.mods.fml.common.asm.transformers.EventSubscriptionTransformer;
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -24,25 +19,7 @@ public class PostMixinTransformInjector implements ITweaker {
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-        try {
-            // Wrap EventSubscriptionTransformer
-            final Field transformersF = classLoader.getClass().getDeclaredField("transformers");
-            transformersF.setAccessible(true);
-            final List<IClassTransformer> transformers = (List<IClassTransformer>) transformersF.get(classLoader);
-
-            final AtomicInteger replaces = new AtomicInteger();
-            transformers.replaceAll(tf -> {
-                if (tf instanceof EventSubscriptionTransformer) {
-                    replaces.getAndIncrement();
-                    return new EventSubscriptionTransformerFixer();
-                } else {
-                    return tf;
-                }
-            });
-            Lwjgl3ifyCoremod.LOGGER.info("Replaced {} transformers with more compatible variants", replaces.get());
-        } catch (Throwable e) {
-            Throwables.propagate(e);
-        }
+        // no-op
     }
 
     @Override

@@ -1,7 +1,4 @@
-/**
- * Copied from FML source code and adapted for compatibility with newer asm versions.
- */
-package me.eigenraven.lwjgl3ify.core;
+package cpw.mods.fml.common.asm.transformers;
 
 import static org.objectweb.asm.ClassWriter.COMPUTE_FRAMES;
 import static org.objectweb.asm.Opcodes.ACC_PRIVATE;
@@ -24,8 +21,9 @@ import static org.objectweb.asm.Type.BOOLEAN_TYPE;
 import static org.objectweb.asm.Type.VOID_TYPE;
 import static org.objectweb.asm.Type.getMethodDescriptor;
 
-import cpw.mods.fml.common.asm.transformers.EventSubscriptionTransformer;
 import cpw.mods.fml.common.eventhandler.Event;
+import java.util.List;
+import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Type;
@@ -42,8 +40,8 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-public class EventSubscriptionTransformerFixer extends EventSubscriptionTransformer {
-    public EventSubscriptionTransformerFixer() {}
+public class EventSubscriptionTransformer implements IClassTransformer {
+    public EventSubscriptionTransformer() {}
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
@@ -97,7 +95,7 @@ public class EventSubscriptionTransformerFixer extends EventSubscriptionTransfor
         String listDesc = tList.getDescriptor();
         String listDescM = Type.getMethodDescriptor(tList);
 
-        for (MethodNode method : classNode.methods) {
+        for (MethodNode method : (List<MethodNode>) classNode.methods) {
             if (method.name.equals("setup")
                     && method.desc.equals(voidDesc)
                     && (method.access & ACC_PROTECTED) == ACC_PROTECTED) hasSetup = true;
