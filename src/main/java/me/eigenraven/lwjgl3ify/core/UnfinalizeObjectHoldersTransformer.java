@@ -4,11 +4,14 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 
 public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
+    final ExtensibleEnumTransformerHelper enumTransformer = new ExtensibleEnumTransformerHelper();
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
         if (basicClass == null) {
@@ -18,6 +21,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             final ClassReader reader = new ClassReader(basicClass);
             final ClassNode node = new ClassNode();
             reader.accept(node, ClassReader.EXPAND_FRAMES);
+            final Type classType = Type.getType("L" + transformedName.replace('.', '/') + ";");
 
             boolean transformClass = false;
             boolean workDone = false;
@@ -64,6 +68,16 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             }
             if (workDone) {
                 Lwjgl3ifyCoremod.LOGGER.info("Unfinalized {} Holder fields in {}", fieldsModified, transformedName);
+            }
+
+            final boolean enumsTransformed = enumTransformer.processClassWithFlags(node, classType);
+
+            if (enumsTransformed) {
+                workDone = true;
+                Lwjgl3ifyCoremod.LOGGER.info("Dynamicized enum {}", transformedName);
+            }
+
+            if (workDone) {
                 final ClassWriter writer = new ClassWriter(0);
                 node.accept(writer);
                 return writer.toByteArray();
