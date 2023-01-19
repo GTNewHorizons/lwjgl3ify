@@ -1,0 +1,13 @@
+{
+    "formatVersion": 1,
+    "name": "Forge-J9-Patches",
+    "uid": "me.eigenraven.lwjgl3ify.forgepatches",
+    "version": "1",
+    "order": 3,
+    "libraries": [
+        {
+            "name": "com.gtnewhorizons:lwjgl3ify:1.0:forgePatches",
+            "MMC-hint": "local"
+        }
+    ]
+}

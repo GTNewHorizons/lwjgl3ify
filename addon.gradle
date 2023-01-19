@@ -36,6 +36,7 @@ dependencies {
 tasks.register(forgePatchesSet.jarTaskName, Jar) {
     from(forgePatchesSet.output)
     archiveClassifier.set("forgePatches")
+    archiveVersion.set("1.0") // TODO
 }
 
 tasks.named("assemble").configure {

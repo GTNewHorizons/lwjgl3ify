@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -383,13 +384,24 @@ public class CoreModManager {
             File coreMod, JarFile jar, String cascadedTweaker, LaunchClassLoader classLoader, Integer sortingOrder) {
         try {
             // Have to manually stuff the tweaker into the parent classloader
-            if (ADDURL == null) {
-                ADDURL = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-                ADDURL.setAccessible(true);
+            // PATCHED BEGIN
+            URL coreModUrl = coreMod.toURI().toURL();
+            ClassLoader myLoader = classLoader.getClass().getClassLoader();
+            if (myLoader instanceof URLClassLoader) {
+                if (ADDURL == null) {
+                    ADDURL = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+                    ADDURL.setAccessible(true);
+                }
+                ADDURL.invoke(myLoader, coreModUrl);
+            } else {
+                final Field ucpField = myLoader.getClass().getDeclaredField("ucp");
+                ucpField.setAccessible(true);
+                final Object ucp = ucpField.get(myLoader);
+                final Method urlAdder = ucp.getClass().getDeclaredMethod("addURL", URL.class);
+                urlAdder.invoke(ucp, coreModUrl);
             }
-            ADDURL.invoke(
-                    classLoader.getClass().getClassLoader(), coreMod.toURI().toURL());
-            classLoader.addURL(coreMod.toURI().toURL());
+            classLoader.addURL(coreModUrl);
+            // PATCHED END
             CoreModManager.tweaker.injectCascadingTweak(cascadedTweaker);
             tweakSorting.put(cascadedTweaker, sortingOrder);
         } catch (Exception e) {
