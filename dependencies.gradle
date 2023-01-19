@@ -8,5 +8,5 @@ dependencies {
     vanilla_minecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
     patchedMinecraft('net.minecraft:launchwrapper:1.13') { transitive = false }
 
-    implementation('com.gtnewhorizon:gtnhmixins:2.1.5.dirty')
+    implementation('com.gtnewhorizon:gtnhmixins:2.1.7')
 }
