@@ -31,7 +31,9 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
             tweakClasses.add(PostMixinTransformInjector.class.getName());
         }
 
-        return new String[] {LwjglRedirectTransformer.class.getName()};
+        return new String[] {
+            LwjglRedirectTransformer.class.getName(), UnfinalizeObjectHoldersTransformer.class.getName()
+        };
     }
 
     @Override

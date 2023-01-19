@@ -4,14 +4,13 @@ import com.google.common.base.Throwables;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameData;
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import net.minecraft.init.Blocks;
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import sun.misc.Unsafe;
 
 @Mixin(
         targets = {"cpw.mods.fml.common.registry.ObjectHolderRef"},
@@ -30,33 +29,13 @@ public class ObjectHolderRef {
     @Shadow(remap = false)
     private boolean isItem;
 
-    @Shadow(remap = false)
-    private static Field modifiersField;
-
-    @Shadow(remap = false)
-    private static Object reflectionFactory;
-
-    @Shadow(remap = false)
-    private static Method newFieldAccessor;
-
-    @Shadow(remap = false)
-    private static Method fieldAccessorSet;
-
     private static MethodHandle fieldSetter;
-    private static Unsafe unsafe;
-    private static Object fieldBase;
-    private static long fieldOffset;
 
     @Overwrite(remap = false)
     private static void makeWritable(Field f) {
         try {
-            if (unsafe == null) {
-                final Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-                unsafeField.setAccessible(true);
-                unsafe = (Unsafe) unsafeField.get(null);
-            }
-            fieldBase = unsafe.staticFieldBase(f);
-            fieldOffset = unsafe.staticFieldOffset(f);
+            f.setAccessible(true);
+            fieldSetter = MethodHandles.lookup().unreflectSetter(f);
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -86,8 +65,7 @@ public class ObjectHolderRef {
             return;
         }
         try {
-            // https://stackoverflow.com/questions/61141836/change-static-final-field-in-java-12
-            unsafe.putObject(fieldBase, fieldOffset, thing);
+            fieldSetter.invoke(thing);
         } catch (Throwable e) {
             FMLLog.log(Level.WARN, e, "Unable to set %s with value %s (%s)", this.field, thing, this.injectedObject);
         }

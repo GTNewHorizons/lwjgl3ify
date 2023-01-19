@@ -4,7 +4,7 @@ minecraft {
 }
 
 // Swap out asm for a newer version for testing in development
-def useNewAsm = false
+def useNewAsm = true
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
@@ -16,6 +16,7 @@ dependencies {
         patchedMinecraft('org.ow2.asm:asm-commons:9.4')
         patchedMinecraft('org.ow2.asm:asm-tree:9.4')
         patchedMinecraft('org.ow2.asm:asm-analysis:9.4')
+        patchedMinecraft('org.ow2.asm:asm-util:9.4')
         patchedMinecraft('org.ow2.asm:asm-deprecated:7.1')
     }
 
