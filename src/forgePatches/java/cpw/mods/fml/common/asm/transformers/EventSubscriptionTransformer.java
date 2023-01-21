@@ -109,7 +109,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
 
         if (classNode.visibleAnnotations != null) {
             for (AnnotationNode node : classNode.visibleAnnotations) {
-                if (!hasResult && node.desc.equals("Lcpw/mods/fml/common/eventhandler/Event$HasResult;")) {
+                if (!hasResult
+                        && node.desc.replace('$', '/').equals("Lcpw/mods/fml/common/eventhandler/Event/HasResult;")) {
                     /* Add:
                      *      public boolean hasResult()
                      *      {

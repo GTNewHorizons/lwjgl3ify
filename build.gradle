@@ -650,6 +650,11 @@ if (usesShadowedDependencies.toBoolean()) {
     javaComponent.withVariantsFromConfiguration(configurations.shadowRuntimeElements) {
         skip()
     }
+    for (runTask in ["runClient", "runServer"]) {
+        tasks.named(runTask).configure {
+            dependsOn("shadowJar")
+        }
+    }
 }
 ext.publishableDevJar = usesShadowedDependencies.toBoolean() ? tasks.shadowJar : tasks.jar
 ext.publishableObfJar = tasks.reobfJar

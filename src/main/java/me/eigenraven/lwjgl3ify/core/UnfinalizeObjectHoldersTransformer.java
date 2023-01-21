@@ -1,6 +1,8 @@
 package me.eigenraven.lwjgl3ify.core;
 
 import java.util.ArrayList;
+import java.util.List;
+import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -15,6 +17,23 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
     final ExtensibleEnumTransformerHelper enumTransformer = new ExtensibleEnumTransformerHelper();
     final FixConstantPoolInterfaceMethodRefHelper cpiMethodRefTransformer =
             new FixConstantPoolInterfaceMethodRefHelper();
+
+    private static boolean isHolder(List<AnnotationNode> annotations) {
+        if (annotations == null) {
+            return false;
+        }
+        for (AnnotationNode annotationNode : annotations) {
+            // Java 17 uses $ instead of /
+            final String desc = annotationNode.desc.replace('$', '/');
+            if (desc.contains("cpw/mods/fml/common/registry/GameRegistry/ObjectHolder")) {
+                return true;
+            }
+            if (desc.contains("cpw/mods/fml/common/registry/GameRegistry/ItemStackHolder")) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
@@ -36,40 +55,26 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                     || transformedName.equals("net.minecraft.init.Items")) {
                 transformClass = true;
             }
-            if (node.visibleAnnotations != null) {
-                for (AnnotationNode annotationNode : node.visibleAnnotations) {
-                    if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ObjectHolder")) {
-                        transformClass = true;
-                        break;
-                    }
-                    if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ItemStackHolder")) {
-                        transformClass = true;
-                        break;
-                    }
-                }
+            transformClass |= isHolder(node.visibleAnnotations);
+            if (transformedName.equals("team.chisel.init.ChiselBlocks")) {
+                Lwjgl3ifyCoremod.LOGGER.info("chiselblocks");
             }
             int fieldsModified = 0;
             for (FieldNode field : node.fields) {
                 boolean transform = transformClass;
                 if (!transform) {
-                    if (field.visibleAnnotations != null) {
-                        for (AnnotationNode annotationNode : field.visibleAnnotations) {
-                            if (annotationNode.desc.contains(
-                                    "cpw/mods/fml/common/registry/GameRegistry/ObjectHolder")) {
-                                transform = true;
-                                break;
-                            }
-                            if (annotationNode.desc.contains(
-                                    "cpw/mods/fml/common/registry/GameRegistry/ItemStackHolder")) {
-                                transformClass = true;
-                                break;
-                            }
-                        }
-                    }
+                    transform = isHolder(field.visibleAnnotations);
                 }
                 if (transform) {
                     workDone = true;
-                    field.access = field.access & (~Opcodes.ACC_FINAL);
+                    if ((field.access & Opcodes.ACC_FINAL) != 0) {
+                        if (field.visibleAnnotations == null) {
+                            field.visibleAnnotations = new ArrayList<>(1);
+                            field.visibleAnnotations.add(
+                                    new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
+                        }
+                        field.access = field.access & (~Opcodes.ACC_FINAL);
+                    }
                     fieldsModified++;
                 }
             }
