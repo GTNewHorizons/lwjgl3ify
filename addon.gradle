@@ -27,10 +27,17 @@ dependencies {
     utilImplementation("commons-io:commons-io:2.11.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
     utilImplementation("com.google.guava:guava:31.1-jre")
+
+    forgePatchesImplementation("org.apache.commons:commons-compress:1.21")
 }
 
 tasks.register(forgePatchesSet.jarTaskName, Jar) {
     from(forgePatchesSet.output)
+    def resolvable = configurations.detachedConfiguration(dependencies.create("org.apache.commons:commons-compress:1.21"))
+    // Bootleg shadow jar
+    resolvable.resolve().each {dep ->
+        from(zipTree(dep))
+    }
     archiveClassifier.set("forgePatches")
     archiveVersion.set("1.0") // TODO
 }

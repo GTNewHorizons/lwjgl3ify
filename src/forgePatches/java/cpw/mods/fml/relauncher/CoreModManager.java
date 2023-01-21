@@ -97,7 +97,7 @@ public class CoreModManager {
 
         @Override
         public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-            FMLRelaunchLog.fine(
+            FMLRelaunchLog.info(
                     "Injecting coremod %s {%s} class transformers",
                     name, coreModInstance.getClass().getName());
             if (coreModInstance.getASMTransformerClass() != null)
@@ -380,6 +380,33 @@ public class CoreModManager {
 
     private static Method ADDURL;
 
+    private static void addUrlToClassloader(ClassLoader loader, URL coreModUrl) {
+        try {
+            if (loader instanceof URLClassLoader) {
+                if (ADDURL == null) {
+                    ADDURL = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
+                    ADDURL.setAccessible(true);
+                }
+                ADDURL.invoke(loader, coreModUrl);
+            } else {
+                Field ucpField;
+                try {
+                    // Java 8-11
+                    ucpField = loader.getClass().getDeclaredField("ucp");
+                } catch (NoSuchFieldException e) {
+                    // Java 17
+                    ucpField = loader.getClass().getSuperclass().getDeclaredField("ucp");
+                }
+                ucpField.setAccessible(true);
+                final Object ucp = ucpField.get(loader);
+                final Method urlAdder = ucp.getClass().getDeclaredMethod("addURL", URL.class);
+                urlAdder.invoke(ucp, coreModUrl);
+            }
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException("Couldn't add url to classpath in loader " + loader.getClass(), e);
+        }
+    }
+
     private static void handleCascadingTweak(
             File coreMod, JarFile jar, String cascadedTweaker, LaunchClassLoader classLoader, Integer sortingOrder) {
         try {
@@ -387,19 +414,7 @@ public class CoreModManager {
             // PATCHED BEGIN
             URL coreModUrl = coreMod.toURI().toURL();
             ClassLoader myLoader = classLoader.getClass().getClassLoader();
-            if (myLoader instanceof URLClassLoader) {
-                if (ADDURL == null) {
-                    ADDURL = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-                    ADDURL.setAccessible(true);
-                }
-                ADDURL.invoke(myLoader, coreModUrl);
-            } else {
-                final Field ucpField = myLoader.getClass().getDeclaredField("ucp");
-                ucpField.setAccessible(true);
-                final Object ucp = ucpField.get(myLoader);
-                final Method urlAdder = ucp.getClass().getDeclaredMethod("addURL", URL.class);
-                urlAdder.invoke(ucp, coreModUrl);
-            }
+            addUrlToClassloader(myLoader, coreModUrl);
             classLoader.addURL(coreModUrl);
             // PATCHED END
             CoreModManager.tweaker.injectCascadingTweak(cascadedTweaker);
