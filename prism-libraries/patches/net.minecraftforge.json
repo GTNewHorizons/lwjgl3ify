@@ -12,6 +12,7 @@
         "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
         "--add-opens", "java.base/java.text=ALL-UNNAMED",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
+        "--add-opens", "java.base/jdk.internal.reflect=ALL-UNNAMED",
         "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED"
     ],
     "formatVersion": 1,
@@ -21,7 +22,7 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "net.minecraft:launchwrapper:1.13",
+            "name": "net.minecraft:launchwrapper:1.14",
             "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
         },
         {
@@ -47,10 +48,6 @@
         {
             "name": "org.ow2.asm:asm-deprecated:7.1",
             "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "javax.xml.bind:jaxb-api:2.3.1",
-            "url": "https://repo1.maven.org/maven2/"
         },
         {
             "name": "com.typesafe.akka:akka-actor_2.11:2.3.3",
@@ -103,7 +100,7 @@
             "name": "com.google.guava:guava:17.0"
         },
         {
-            "name": "org.apache.commons:commons-lang3:3.3.2"
+            "name": "org.apache.commons:commons-lang3:3.12.0"
         }
     ],
     "mainClass": "net.minecraft.launchwrapper.Launch",

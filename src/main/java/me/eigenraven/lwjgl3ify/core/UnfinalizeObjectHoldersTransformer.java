@@ -11,7 +11,10 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 
 public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
+    // Keep ClassNode-operating transformers together for efficiency (don't read/write the class multiple times)
     final ExtensibleEnumTransformerHelper enumTransformer = new ExtensibleEnumTransformerHelper();
+    final FixConstantPoolInterfaceMethodRefHelper cpiMethodRefTransformer =
+            new FixConstantPoolInterfaceMethodRefHelper();
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
@@ -86,6 +89,14 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             if (enumsTransformed) {
                 workDone = true;
                 Lwjgl3ifyCoremod.LOGGER.info("Dynamicized enum {}={}", name, transformedName);
+            }
+
+            final boolean ifaceMethodRefsTransformed = cpiMethodRefTransformer.transform(node);
+
+            if (ifaceMethodRefsTransformed) {
+                workDone = true;
+                Lwjgl3ifyCoremod.LOGGER.warn(
+                        "Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}", name, transformedName);
             }
 
             if (workDone) {

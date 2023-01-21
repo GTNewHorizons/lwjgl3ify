@@ -122,6 +122,7 @@ propertyDefaultIfUnset("modrinthProjectId", "")
 propertyDefaultIfUnset("modrinthRelations", "")
 propertyDefaultIfUnset("curseForgeProjectId", "")
 propertyDefaultIfUnset("curseForgeRelations", "")
+propertyDefaultIfUnset("minimizeShadowedDependencies", true)
 
 String javaSourceDir = "src/main/java/"
 String scalaSourceDir = "src/main/scala/"
@@ -623,7 +624,9 @@ if (usesShadowedDependencies.toBoolean()) {
             attributes(getManifestAttributes())
         }
 
-        minimize()  // This will only allow shading for actually used classes
+        if (minimizeShadowedDependencies.toBoolean()) {
+            minimize()  // This will only allow shading for actually used classes
+        }
         configurations = [
             project.configurations.shadowImplementation,
             project.configurations.shadowCompile,

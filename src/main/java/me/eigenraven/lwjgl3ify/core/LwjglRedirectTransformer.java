@@ -55,26 +55,29 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         return writer.toByteArray();
     }
 
+    final String[] fromPrefixes = new String[] {
+        "org/lwjgl/", "paulscode/sound/libraries/", "javax/xml/bind/",
+    };
+
+    final String[] toPrefixes = new String[] {
+        "org/lwjglx/", "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/", "jakarta/xml/bind/",
+    };
+
     @Override
     public String map(String typeName) {
         if (typeName == null) {
             return null;
         }
         calls++;
-        final String OLD_PREFIX_GL = "org/lwjgl/";
-        final String NEW_PREFIX_GL = "org/lwjglx/";
-        final String OLD_PREFIX_PCS = "paulscode/sound/libraries/";
-        final String NEW_PREFIX_PCS = "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/";
-        if (typeName.startsWith(OLD_PREFIX_GL)) {
-            remaps++;
-            final String newName = NEW_PREFIX_GL + typeName.substring(OLD_PREFIX_GL.length());
-            return newName;
-        } else if (typeName.startsWith(OLD_PREFIX_PCS)) {
-            remaps++;
-            return NEW_PREFIX_PCS + typeName.substring(OLD_PREFIX_PCS.length());
-        } else {
-            return typeName;
+        for (int pfx = 0; pfx < fromPrefixes.length; pfx++) {
+            if (typeName.startsWith(fromPrefixes[pfx])) {
+                remaps++;
+                final String newName = toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
+                return newName;
+            }
         }
+
+        return typeName;
     }
 
     private class Lwjgl3AwareException extends RuntimeException {}

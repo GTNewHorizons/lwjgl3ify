@@ -21,6 +21,9 @@ dependencies {
         patchedMinecraft('org.ow2.asm:asm-deprecated:7.1')
     }
 
+    shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
+    shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")
+
     annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.8:processor')
     implementation('com.gtnewhorizon:gtnhmixins:2.1.8')
 

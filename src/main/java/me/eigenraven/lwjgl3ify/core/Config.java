@@ -32,8 +32,14 @@ public class Config {
         "vswe.stevesfactory.components.ComponentType",
         "vswe.stevesfactory.components.ConnectionSet",
         "vswe.stevesfactory.components.ConnectionOption",
+        "ic2.core.init.InternalName",
+        "gregtech.api.enums.Element",
+        "gregtech.api.enums.OrePrefixes",
+        "net.minecraft.client.audio.MusicTicker$MusicType",
+        "org.bukkit.Material",
+        "buildcraft.api.transport.IPipeTile.PipeType",
+        "thaumcraft.common.entities.golems.EnumGolemType",
     };
-
 
     // TODO: Make this an actual config file :P
     public static List<String> EXTENSIBLE_ENUMS = Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS);

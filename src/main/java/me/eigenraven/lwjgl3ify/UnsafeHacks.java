@@ -47,23 +47,47 @@ public class UnsafeHacks {
 
     @SuppressWarnings("unchecked")
     public static <T> T getField(Field field, Object object) {
-        final long l = UNSAFE.objectFieldOffset(field);
-        return (T) UNSAFE.getObject(object, l);
+        if (object == null) {
+            long offset = UNSAFE.staticFieldOffset(field);
+            Object base = UNSAFE.staticFieldBase(field);
+            return (T) UNSAFE.getObject(base, offset);
+        } else {
+            long offset = UNSAFE.objectFieldOffset(field);
+            return (T) UNSAFE.getObject(object, offset);
+        }
     }
 
     public static void setField(Field data, Object object, Object value) {
-        long offset = UNSAFE.objectFieldOffset(data);
-        UNSAFE.putObject(object, offset, value);
+        if (object == null) {
+            long offset = UNSAFE.staticFieldOffset(data);
+            Object base = UNSAFE.staticFieldBase(data);
+            UNSAFE.putObject(base, offset, value);
+        } else {
+            long offset = UNSAFE.objectFieldOffset(data);
+            UNSAFE.putObject(object, offset, value);
+        }
     }
 
-    public static int getIntField(Field f, Object obj) {
-        long offset = UNSAFE.objectFieldOffset(f);
-        return UNSAFE.getInt(obj, offset);
+    public static int getIntField(Field field, Object object) {
+        if (object == null) {
+            long offset = UNSAFE.staticFieldOffset(field);
+            Object base = UNSAFE.staticFieldBase(field);
+            return UNSAFE.getInt(base, offset);
+        } else {
+            long offset = UNSAFE.objectFieldOffset(field);
+            return UNSAFE.getInt(object, offset);
+        }
     }
 
     public static void setIntField(Field data, Object object, int value) {
-        long offset = UNSAFE.objectFieldOffset(data);
-        UNSAFE.putInt(object, offset, value);
+        if (object == null) {
+            long offset = UNSAFE.staticFieldOffset(data);
+            Object base = UNSAFE.staticFieldBase(data);
+            UNSAFE.putInt(base, offset, value);
+        } else {
+            long offset = UNSAFE.objectFieldOffset(data);
+            UNSAFE.putInt(object, offset, value);
+        }
     }
 
     // Make sure we don't crash if any future versions change field names
