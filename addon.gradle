@@ -64,15 +64,15 @@ afterEvaluate {
     }
 }
 
-def java11ToolchainSpec = new DefaultToolchainSpec(objects)
-java11ToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
-java11ToolchainSpec.languageVersion.set(JavaLanguageVersion.of(11))
-def java11Launcher = javaToolchains.launcherFor(java11ToolchainSpec)
+def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
+newJavaToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
+newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
+def newJavaLauncher = javaToolchains.launcherFor(newJavaToolchainSpec)
 
 for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
     tasks.named(runTask, JavaExec).configure {
         classpath = forgePatchesSet.output + classpath
-        javaLauncher.set(java11Launcher)
+        javaLauncher.set(newJavaLauncher)
         jvmArgs(
             "--illegal-access=warn",
             "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
