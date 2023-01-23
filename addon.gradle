@@ -93,7 +93,5 @@ for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
             "--add-opens", "java.base/jdk.internal.reflect=ALL-UNNAMED",
             "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED"
         )
-        // IC2 crash
-        enableAssertions = false
     }
 }

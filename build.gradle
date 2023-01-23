@@ -68,7 +68,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.7.2' apply false
     id 'com.modrinth.minotaur' version '2.+' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.12'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.13'
 }
 boolean settingsupdated = verifySettingsGradle()
 settingsupdated = verifyGitAttributes() || settingsupdated
@@ -140,75 +140,6 @@ java {
     if (!noPublishedSources) {
         withSourcesJar()
     }
-}
-
-idea {
-    module {
-        downloadJavadoc = true
-        downloadSources = true
-    }
-    project {
-        languageLevel = "1.8"
-        jdkName = "1.8"
-        settings {
-            runConfigurations {
-                "1. Run Client"(Gradle) {
-                    taskNames = ["runClient"]
-                }
-                "2. Run Server"(Gradle) {
-                    taskNames = ["runServer"]
-                }
-                "3. Run Obfuscated Client"(Gradle) {
-                    taskNames = ["runObfClient"]
-                }
-                "4. Run Obfuscated Server"(Gradle) {
-                    taskNames = ["runObfServer"]
-                }
-                if (!disableSpotless) {
-                    "5. Apply spotless"(Gradle) {
-                        taskNames = ["spotlessApply"]
-                    }
-                }
-                def coreModArgs = ""
-                if (coreModClass) {
-                    coreModArgs = ' "-Dfml.coreMods.load=' + modGroup + '.' + coreModClass + '"'
-                }
-                "Run Client (IJ Native)"(Application) {
-                    mainClass = "GradleStart"
-                    moduleName = project.name + ".main"
-                    afterEvaluate {
-                        workingDirectory = tasks.runClient.workingDir.absolutePath
-                        programParameters = tasks.runClient.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
-                        jvmArgs = tasks.runClient.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                         ' ' + tasks.runClient.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
-                            coreModArgs
-                    }
-                }
-                "Run Server (IJ Native)"(Application) {
-                    mainClass = "GradleStartServer"
-                    moduleName = project.name + ".main"
-                    afterEvaluate {
-                        workingDirectory = tasks.runServer.workingDir.absolutePath
-                        programParameters = tasks.runServer.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
-                        jvmArgs = tasks.runServer.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                            ' ' + tasks.runServer.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
-                            coreModArgs
-                    }
-                }
-            }
-            compiler.javac {
-                afterEvaluate {
-                    moduleJavacAdditionalOptions = [
-                        (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
-                    ]
-                }
-            }
-        }
-    }
-}
-
-tasks.named("processIdeaSettings").configure {
-    dependsOn("injectTags")
 }
 
 eclipse {
@@ -317,7 +248,7 @@ catch (Exception ignored) {
     versionOverride = 'NO-GIT-TAG-SET'
     identifiedVersion = versionOverride
 }
-version = minecraftVersion + '-' + identifiedVersion
+version = identifiedVersion
 ext {
     modVersion = identifiedVersion
 }
@@ -332,6 +263,7 @@ if (project.hasProperty("customArchiveBaseName") && customArchiveBaseName) {
 } else {
     archivesBaseName = modId
 }
+
 
 minecraft {
     if (replaceGradleTokenInFile) {
@@ -351,6 +283,9 @@ minecraft {
     if (gradleTokenGroupName) {
         injectedTags.put gradleTokenGroupName, modGroup
     }
+
+    // Enable assertions in the current mod
+    extraRunJvmArguments.add("-ea:${modGroup}")
 
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
         extraTweakClasses.add("org.spongepowered.asm.launch.MixinTweaker")
@@ -497,13 +432,13 @@ dependencies {
         annotationProcessor('org.ow2.asm:asm-debug-all:5.0.3')
         annotationProcessor('com.google.guava:guava:24.1.1-jre')
         annotationProcessor('com.google.code.gson:gson:2.8.6')
-        annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.3:processor')
+        annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.10:processor')
         if (usesMixinDebug.toBoolean()) {
             runtimeOnlyNonPublishable('org.jetbrains:intellij-fernflower:1.2.1.16')
         }
     }
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
-        implementation('com.gtnewhorizon:gtnhmixins:2.1.3')
+        implementation('com.gtnewhorizon:gtnhmixins:2.1.10')
     }
 }
 
@@ -659,6 +594,16 @@ if (usesShadowedDependencies.toBoolean()) {
 ext.publishableDevJar = usesShadowedDependencies.toBoolean() ? tasks.shadowJar : tasks.jar
 ext.publishableObfJar = tasks.reobfJar
 
+tasks.named('extractForgeUserdev', Copy).configure { efu ->
+    doLast {
+        // Fix CoFH-repackaged CCL not finding mappings
+        project.copy {
+            from(mcpTasks.userdevDir("conf"))
+            into(new File(project.buildDir, "unpacked/conf"))
+        }
+    }
+}
+
 tasks.register('apiJar', Jar) {
     from(sourceSets.main.allSource) {
         include modGroupPath + "/" + apiPackagePath + '/**'
@@ -682,6 +627,75 @@ artifacts {
     if (apiPackage) {
         archives tasks.named("apiJar")
     }
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+    project {
+        languageLevel = "1.8"
+        jdkName = "1.8"
+        settings {
+            runConfigurations {
+                "1. Run Client"(Gradle) {
+                    taskNames = ["runClient"]
+                }
+                "2. Run Server"(Gradle) {
+                    taskNames = ["runServer"]
+                }
+                "3. Run Obfuscated Client"(Gradle) {
+                    taskNames = ["runObfClient"]
+                }
+                "4. Run Obfuscated Server"(Gradle) {
+                    taskNames = ["runObfServer"]
+                }
+                if (!disableSpotless) {
+                    "5. Apply spotless"(Gradle) {
+                        taskNames = ["spotlessApply"]
+                    }
+                }
+                def coreModArgs = ""
+                if (coreModClass) {
+                    coreModArgs = ' "-Dfml.coreMods.load=' + modGroup + '.' + coreModClass + '"'
+                }
+                "Run Client (IJ Native)"(Application) {
+                    mainClass = "GradleStart"
+                    moduleName = project.name + ".main"
+                    afterEvaluate {
+                        workingDirectory = tasks.runClient.workingDir.absolutePath
+                        programParameters = tasks.runClient.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
+                        jvmArgs = tasks.runClient.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
+                            ' ' + tasks.runClient.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                            coreModArgs
+                    }
+                }
+                "Run Server (IJ Native)"(Application) {
+                    mainClass = "GradleStartServer"
+                    moduleName = project.name + ".main"
+                    afterEvaluate {
+                        workingDirectory = tasks.runServer.workingDir.absolutePath
+                        programParameters = tasks.runServer.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
+                        jvmArgs = tasks.runServer.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
+                            ' ' + tasks.runServer.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                            coreModArgs
+                    }
+                }
+            }
+            compiler.javac {
+                afterEvaluate {
+                    moduleJavacAdditionalOptions = [
+                        (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
+                    ]
+                }
+            }
+        }
+    }
+}
+
+tasks.named("processIdeaSettings").configure {
+    dependsOn("injectTags")
 }
 
 // workaround variable hiding in pom processing
