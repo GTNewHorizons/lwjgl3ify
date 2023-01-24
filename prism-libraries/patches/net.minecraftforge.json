@@ -3,6 +3,7 @@
         "cpw.mods.fml.common.launcher.FMLTweaker"
     ],
     "+jvmArgs": [
+        "-Djava.security.manager=allow",
         "--illegal-access=warn",
         "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
         "--add-opens", "java.base/java.net=ALL-UNNAMED",

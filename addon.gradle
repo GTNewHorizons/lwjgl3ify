@@ -75,11 +75,12 @@ afterEvaluate {
 
 def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
 newJavaToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
-newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
+newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(19))
 def newJavaLauncher = javaToolchains.launcherFor(newJavaToolchainSpec)
 
 minecraft.extraRunJvmArguments.addAll(
     "--illegal-access=warn",
+    "-Djava.security.manager=allow",
     "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
     "--add-opens", "java.base/java.net=ALL-UNNAMED",
     "--add-opens", "java.base/java.nio=ALL-UNNAMED",
