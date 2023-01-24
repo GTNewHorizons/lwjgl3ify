@@ -7,7 +7,7 @@
     "libraries": [
         {
             "name": "com.gtnewhorizons:lwjgl3ify:1.1.2:forgePatches",
-            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
+            "MMC-hint": "local"
         }
     ]
 }

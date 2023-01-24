@@ -33,7 +33,7 @@ dependencies {
     forgePatchesImplementation("org.apache.commons:commons-compress:1.21")
 }
 
-tasks.register(forgePatchesSet.jarTaskName, Jar) {
+def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
     from(forgePatchesSet.output)
     def resolvable = configurations.detachedConfiguration(dependencies.create("org.apache.commons:commons-compress:1.21"))
     // Bootleg shadow jar
@@ -59,6 +59,10 @@ tasks.register("runComparisonTool", JavaExec) {
 afterEvaluate {
     tasks.named("relocateShadowJar").configure {
         enabled = false
+    }
+
+    publishing.publications.named("maven", MavenPublication) {
+        artifact forgePatchesJar
     }
 }
 
