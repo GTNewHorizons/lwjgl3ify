@@ -2,11 +2,26 @@
     "formatVersion": 1,
     "name": "Forge-J9-Patches",
     "uid": "me.eigenraven.lwjgl3ify.forgepatches",
-    "version": "1.1.2",
+    "version": "${version}",
     "order": 3,
+    "+jvmArgs": [
+        "-Djava.security.manager=allow",
+        "--illegal-access=warn",
+        "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
+        "--add-opens", "java.base/java.net=ALL-UNNAMED",
+        "--add-opens", "java.base/java.nio=ALL-UNNAMED",
+        "--add-opens", "java.base/java.io=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens", "java.base/java.text=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED",
+        "--add-opens", "java.base/jdk.internal.reflect=ALL-UNNAMED",
+        "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
+        "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED"
+    ],
     "libraries": [
         {
-            "name": "com.gtnewhorizons:lwjgl3ify:1.1.2:forgePatches",
+            "name": "com.github.GTNewHorizons:lwjgl3ify:${version}:forgePatches",
             "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
         }
     ]

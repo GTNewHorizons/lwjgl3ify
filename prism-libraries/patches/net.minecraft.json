@@ -7,8 +7,11 @@
         "url": "https://piston-meta.mojang.com/v1/packages/1863782e33ce7b584fc45b037325a1964e095d3e/1.7.10.json"
     },
     "compatibleJavaMajors": [
+        8,
         11,
-        17
+        17,
+        18,
+        19
     ],
     "formatVersion": 1,
     "libraries": [

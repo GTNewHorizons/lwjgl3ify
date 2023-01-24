@@ -23,7 +23,7 @@
         },
         {
             "cachedName": "Forge-J9-Patches",
-            "cachedVersion": "1.1.2",
+            "cachedVersion": "${version}",
             "uid": "me.eigenraven.lwjgl3ify.forgepatches"
         },
         {
