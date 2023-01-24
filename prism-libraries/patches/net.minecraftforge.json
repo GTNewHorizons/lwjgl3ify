@@ -13,7 +13,8 @@
         "--add-opens", "java.base/java.text=ALL-UNNAMED",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/jdk.internal.reflect=ALL-UNNAMED",
-        "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED"
+        "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
+        "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED"
     ],
     "formatVersion": 1,
     "libraries": [

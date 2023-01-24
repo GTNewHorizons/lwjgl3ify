@@ -1,6 +1,7 @@
 package me.eigenraven.lwjgl3ify;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import me.eigenraven.lwjgl3ify.core.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,8 +28,12 @@ public class ClientProxy extends CommonProxy {
     public void onRenderGameOverlayTextEvent(RenderGameOverlayEvent.Text event) {
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo
                 && event.type == RenderGameOverlayEvent.ElementType.TEXT) {
-            event.right.add(Math.min(3, event.right.size()), javaVersion);
-            event.right.add(Math.min(4, event.right.size()), lwjglVersion);
+            if (Config.SHOW_LWJGL_VERSION) {
+                event.right.add(Math.min(3, event.right.size()), lwjglVersion);
+            }
+            if (Config.SHOW_JAVA_VERSION) {
+                event.right.add(Math.min(3, event.right.size()), javaVersion);
+            }
         }
     }
 }
