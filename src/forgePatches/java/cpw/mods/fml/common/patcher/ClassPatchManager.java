@@ -26,7 +26,7 @@ import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
 import java.util.regex.Pattern;
 import net.minecraft.launchwrapper.LaunchClassLoader;
-import org.apache.commons.compress.java.util.jar.Pack200;
+import org.apache.commons.compress.harmony.unpack200.Pack200UnpackerAdapter;
 import org.apache.logging.log4j.Level;
 
 public class ClassPatchManager {
@@ -141,7 +141,7 @@ public class ClassPatchManager {
             ByteArrayInputStream binpatchesDecompressed = new ByteArrayInputStream(decompressed);
             ByteArrayOutputStream jarBytes = new ByteArrayOutputStream();
             JarOutputStream jos = new JarOutputStream(jarBytes);
-            Pack200.newUnpacker().unpack(binpatchesDecompressed, jos);
+            new Pack200UnpackerAdapter().unpack(binpatchesDecompressed, jos);
             jis = new JarInputStream(new ByteArrayInputStream(jarBytes.toByteArray()));
         } catch (Exception e) {
             FMLRelaunchLog.log(Level.ERROR, e, "Error occurred reading binary patches. Expect severe problems!");

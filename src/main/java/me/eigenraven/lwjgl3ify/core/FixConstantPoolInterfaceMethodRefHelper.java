@@ -18,6 +18,9 @@ import org.objectweb.asm.tree.MethodNode;
  */
 public class FixConstantPoolInterfaceMethodRefHelper {
     public boolean transform(ClassNode node) {
+        if (System.getProperty("java.specification.version", "1.8").trim().startsWith("1.8")) {
+            return false;
+        }
         if ((node.access & Opcodes.ACC_INTERFACE) == 0) {
             return false;
         }
