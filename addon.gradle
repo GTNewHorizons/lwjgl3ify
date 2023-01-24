@@ -41,11 +41,17 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
         from(zipTree(dep))
     }
     archiveClassifier.set("forgePatches")
-    archiveVersion.set("1.0") // TODO
+}
+
+def mmcInstanceFilesZip = tasks.register("mmcInstanceFiles", Zip) {
+    archiveClassifier.set("multimc")
+    from(new File(projectDir, "prism-libraries/"))
+    exclude("forgepatches-for-dev-work.json", "META-INF", "META-INF/**")
 }
 
 tasks.named("assemble").configure {
     dependsOn(forgePatchesSet.jarTaskName)
+    dependsOn(mmcInstanceFilesZip)
 }
 
 tasks.register("runComparisonTool", JavaExec) {
@@ -63,6 +69,7 @@ afterEvaluate {
 
     publishing.publications.named("maven", MavenPublication) {
         artifact forgePatchesJar
+        artifact mmcInstanceFilesZip
     }
 }
 

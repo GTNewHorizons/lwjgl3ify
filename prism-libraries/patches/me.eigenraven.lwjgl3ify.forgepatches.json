@@ -2,7 +2,7 @@
     "formatVersion": 1,
     "name": "Forge-J9-Patches",
     "uid": "me.eigenraven.lwjgl3ify.forgepatches",
-    "version": "1",
+    "version": "1.1.2",
     "order": 3,
     "libraries": [
         {
