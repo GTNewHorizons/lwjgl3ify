@@ -43,7 +43,7 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
     archiveClassifier.set("forgePatches")
     manifest {
         def libraryList = [
-            "libraries/net/minecraft/launchwrapper/1.14/launchwrapper-1.14.jar",
+            "libraries/net/minecraft/launchwrapper/1.15/launchwrapper-1.15.jar",
             "libraries/org/ow2/asm/asm/9.4/asm-9.4.jar",
             "libraries/org/ow2/asm/asm-commons/9.4/asm-commons-9.4.jar",
             "libraries/org/ow2/asm/asm-tree/9.4/asm-tree-9.4.jar",

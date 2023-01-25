@@ -9,7 +9,7 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "net.minecraft:launchwrapper:1.14",
+            "name": "net.minecraft:launchwrapper:1.15",
             "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
         },
         {

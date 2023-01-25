@@ -7,8 +7,8 @@ def addGtForTesting = true
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
-    vanilla_minecraft('net.minecraft:launchwrapper:1.14') { transitive = false }
-    patchedMinecraft('net.minecraft:launchwrapper:1.14') { transitive = false }
+    vanilla_minecraft('net.minecraft:launchwrapper:1.15') { transitive = false }
+    patchedMinecraft('net.minecraft:launchwrapper:1.15') { transitive = false }
 
     patchedMinecraft('org.ow2.asm:asm:9.4')
     patchedMinecraft('org.ow2.asm:asm-commons:9.4')
