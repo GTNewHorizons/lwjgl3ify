@@ -16,7 +16,7 @@ Change the instance java version to 11, 17 or 19 (these are the currently suppor
 
 ## Server
 Install the mod jar in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
-Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of <java9args.txt>.
+Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
 You can now launch the server with a command like the following, assuming the first java executable on your PATH is java 11/17/19:
 ```
 java -Xmx6G -Xms6G -XX:+UseShenandoahGC @java9args.txt nogui
