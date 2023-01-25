@@ -14,6 +14,35 @@ The forgePatches jar will get automatically downloaded by the launcher.
 
 Change the instance java version to 11, 17 or 19 (these are the currently supported versions).
 
+For MultiMC, you need to manually put in extra java arguments, prismlauncher can load them from the patches json files automatically:
+```
+--illegal-access=warn
+-Djava.security.manager=allow
+-Dfile.encoding=UTF-8
+--add-opens
+java.base/jdk.internal.loader=ALL-UNNAMED
+--add-opens
+java.base/java.net=ALL-UNNAMED
+--add-opens
+java.base/java.nio=ALL-UNNAMED
+--add-opens
+java.base/java.io=ALL-UNNAMED
+--add-opens
+java.base/java.lang=ALL-UNNAMED
+--add-opens
+java.base/java.lang.reflect=ALL-UNNAMED
+--add-opens
+java.base/java.text=ALL-UNNAMED
+--add-opens
+java.base/java.util=ALL-UNNAMED
+--add-opens
+java.base/jdk.internal.reflect=ALL-UNNAMED
+--add-opens
+java.base/sun.nio.ch=ALL-UNNAMED
+--add-opens
+java.desktop/sun.awt.image=ALL-UNNAMED
+```
+
 ## Server
 Install the mod jar in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
 Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
