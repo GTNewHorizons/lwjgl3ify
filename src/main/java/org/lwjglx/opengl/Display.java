@@ -20,6 +20,7 @@ import org.lwjgl.glfw.GLFWWindowIconifyCallback;
 import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.glfw.GLFWWindowRefreshCallback;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.libffi.FFICIF;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
@@ -35,6 +36,7 @@ public class Display {
     private static boolean displayVisible = true;
     private static boolean displayDirty = false;
     private static boolean displayResizable = false;
+    private static boolean startFullscreen = false;
 
     private static DisplayMode mode = new DisplayMode(640, 480);
     private static DisplayMode desktopDisplayMode = new DisplayMode(640, 480);
@@ -265,6 +267,10 @@ public class Display {
         glfwShowWindow(Window.handle);
 
         displayCreated = true;
+
+        if (startFullscreen) {
+            setFullscreen(true);
+        }
     }
 
     public static boolean isCreated() {
@@ -398,7 +404,7 @@ public class Display {
     }
 
     public static boolean isCloseRequested() {
-        return glfwWindowShouldClose(Window.handle) == true;
+        return glfwWindowShouldClose(Window.handle);
     }
 
     public static boolean isDirty() {
@@ -406,8 +412,7 @@ public class Display {
     }
 
     public static void setInitialBackground(float red, float green, float blue) {
-        // TODO
-        System.out.println("TODO: Implement Display.setInitialBackground(float, float, float)");
+        // no-op
     }
 
     public static int setIcon(java.nio.ByteBuffer[] icons) {
@@ -434,7 +439,9 @@ public class Display {
 
     public static void setResizable(boolean resizable) {
         displayResizable = resizable;
-        // TODO
+        if (getWindow() != 0) {
+            glfwSetWindowAttrib(getWindow(), GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
+        }
     }
 
     public static boolean isResizable() {
@@ -446,12 +453,34 @@ public class Display {
         System.out.println("TODO: Implement Display.setDisplayModeAndFullscreen(DisplayMode)");
     }
 
+    private static int savedX[] = new int[1], savedY[] = new int[1];
+    private static int savedW[] = new int[1], savedH[] = new int[1];
+
     public static void setFullscreen(boolean fullscreen) {
-        // TODO
+        final long window = getWindow();
+        if (window == 0) {
+            startFullscreen = fullscreen;
+            return;
+        }
+        final boolean currentState = isFullscreen();
+        if (currentState == fullscreen) {
+            return;
+        }
+        if (fullscreen) {
+            glfwGetWindowPos(window, savedX, savedY);
+            glfwGetWindowSize(window, savedW, savedH);
+            long monitorId = glfwGetPrimaryMonitor();
+            final GLFWVidMode vidMode = glfwGetVideoMode(monitorId);
+            glfwSetWindowMonitor(window, monitorId, 0, 0, vidMode.width(), vidMode.height(), vidMode.refreshRate());
+        } else {
+            glfwSetWindowMonitor(window, NULL, savedX[0], savedY[0], savedW[0], savedH[0], 0);
+        }
     }
 
     public static boolean isFullscreen() {
-        // TODO
+        if (getWindow() != 0) {
+            return glfwGetWindowMonitor(getWindow()) != NULL;
+        }
         return false;
     }
 
@@ -472,13 +501,17 @@ public class Display {
     }
 
     public static java.lang.String getAdapter() {
-        // TODO
-        return "GeNotSupportedAdapter";
+        if (isCreated()) {
+            return GL11.glGetString(GL11.GL_VENDOR);
+        }
+        return "Unknown";
     }
 
     public static java.lang.String getVersion() {
-        // TODO
-        return "1.0 NOT SUPPORTED";
+        if (isCreated()) {
+            return GL11.glGetString(GL11.GL_VERSION);
+        }
+        return "Unknown";
     }
 
     /**
