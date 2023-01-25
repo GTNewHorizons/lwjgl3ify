@@ -118,6 +118,10 @@ public class Mouse {
     public static void setGrabbed(boolean grab) {
         GLFW.glfwSetInputMode(
                 Display.getWindow(), GLFW.GLFW_CURSOR, grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
+        if (!grab) {
+            setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);
+            addMoveEvent(Display.getWidth() / 2, Display.getHeight() / 2);
+        }
         grabbed = grab;
     }
 
