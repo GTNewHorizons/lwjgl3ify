@@ -39,10 +39,18 @@ public class Mouse {
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
 
     private static boolean clipPostionToDisplay = true;
+    private static boolean ignoreNextDelta = false;
 
     public static void addMoveEvent(double mouseX, double mouseY) {
         latestX = (int) mouseX;
         latestY = Display.getHeight() - (int) mouseY;
+        if (ignoreNextDelta) {
+            ignoreNextDelta = false;
+            x = latestX;
+            y = latestY;
+            lastX = latestX;
+            lastY = latestY;
+        }
 
         lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
         lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
@@ -118,11 +126,11 @@ public class Mouse {
     public static void setGrabbed(boolean grab) {
         GLFW.glfwSetInputMode(
                 Display.getWindow(), GLFW.GLFW_CURSOR, grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
+        grabbed = grab;
         if (!grab) {
             setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);
-            addMoveEvent(Display.getWidth() / 2, Display.getHeight() / 2);
         }
-        grabbed = grab;
+        ignoreNextDelta = true;
     }
 
     public static boolean isGrabbed() {
@@ -198,6 +206,9 @@ public class Mouse {
     }
 
     public static void setCursorPosition(int new_x, int new_y) {
+        if (grabbed) {
+            return;
+        }
         GLFW.glfwSetCursorPos(Display.getWindow(), new_x, new_y);
     }
 
