@@ -121,7 +121,7 @@ public class Display {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
-        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
+        Window.handle = glfwCreateWindow(640, 480, windowTitle, NULL, NULL);
         if (Window.handle == 0L) throw new IllegalStateException("Failed to create Display window");
 
         Window.keyCallback = new GLFWKeyCallback() {
