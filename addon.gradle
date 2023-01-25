@@ -140,9 +140,16 @@ minecraft.extraRunJvmArguments.addAll(
     "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED"
 )
 
-for (runTask in ["runClient", "runServer", "runObfClient", "runObfServer"]) {
+for (runTask in ["runClient", "runServer"]) {
     tasks.named(runTask, JavaExec).configure {
         classpath = forgePatchesSet.output + classpath
+        javaLauncher.set(newJavaLauncher)
+    }
+}
+
+for (runTask in ["runObfClient", "runObfServer"]) {
+    tasks.named(runTask, JavaExec).configure {
+        classpath = files(forgePatchesJar) + classpath
         javaLauncher.set(newJavaLauncher)
     }
 }

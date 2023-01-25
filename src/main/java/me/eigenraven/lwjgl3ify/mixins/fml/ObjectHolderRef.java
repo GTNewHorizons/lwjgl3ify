@@ -72,7 +72,7 @@ public class ObjectHolderRef {
         }
         try {
             fieldSetter.invoke(thing);
-            FMLLog.info("Set field " + field.toString() + " to " + thing);
+            FMLLog.finer("Set field " + field.toString() + " to " + thing);
         } catch (Throwable e) {
             FMLLog.log(Level.WARN, e, "Unable to set %s with value %s (%s)", this.field, thing, this.injectedObject);
         }

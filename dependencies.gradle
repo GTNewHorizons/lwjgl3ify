@@ -4,6 +4,7 @@ minecraft {
 }
 
 def addGtForTesting = true
+def addReikaModsForTesting = false
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
@@ -36,6 +37,12 @@ dependencies {
         runtimeOnly("com.github.GTNewHorizons:ForgeRelocation:0.0.3:dev")
         reobfJarConfiguration group: 'curse.maven', name: 'cofh-core-69162', version: '2388750'
         runtimeOnly("com.github.GTNewHorizons:AppleCore:3.2.6-pre:dev")
+    }
+    if (addReikaModsForTesting) {
+        // DragonAPI
+        reobfJarConfiguration('curse.maven:dragon-api-235591:3574508')
+        // Chromaticraft
+        reobfJarConfiguration('curse.maven:chromaticraft-235590:3574503')
     }
 }
 
