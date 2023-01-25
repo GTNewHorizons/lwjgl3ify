@@ -21,7 +21,6 @@ import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.glfw.GLFWWindowRefreshCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.system.libffi.FFICIF;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -164,45 +163,15 @@ public class Display {
 
         Window.windowFocusCallback = new GLFWWindowFocusCallback() {
             @Override
-            public void close() {
-                super.close();
-            }
-
-            @Override
-            public FFICIF getCallInterface() {
-                return super.getCallInterface();
-            }
-
-            @Override
-            public void callback(long ret, long args) {
-                super.callback(ret, args);
-            }
-
-            @Override
-            public void invoke(long l, boolean b) {
-                displayFocused = b == true;
+            public void invoke(long window, boolean focused) {
+                displayFocused = focused == true;
             }
         };
 
         Window.windowIconifyCallback = new GLFWWindowIconifyCallback() {
             @Override
-            public void close() {
-                super.close();
-            }
-
-            @Override
-            public FFICIF getCallInterface() {
-                return super.getCallInterface();
-            }
-
-            @Override
-            public void callback(long ret, long args) {
-                super.callback(ret, args);
-            }
-
-            @Override
-            public void invoke(long l, boolean b) {
-                displayVisible = b == false;
+            public void invoke(long window, boolean iconified) {
+                displayVisible = iconified == false;
             }
         };
 

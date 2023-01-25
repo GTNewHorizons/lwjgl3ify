@@ -2,6 +2,7 @@ package org.lwjglx.input;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
@@ -213,10 +214,41 @@ public class Mouse {
     }
 
     public static Cursor setNativeCursor(Cursor cursor) throws LWJGLException {
-        // TODO
-        System.out.println("TODO: Implement Mouse.setNativeCursor(Cursor)");
+        // no-op
         return null;
     }
 
     public static void destroy() {}
+
+    public static int getButtonIndex(String buttonName) {
+        if (buttonName.matches("BUTTON[0-9]+")) {
+            return Integer.parseInt(StringUtils.removeStart(buttonName, "BUTTON"));
+        } else {
+            return -1;
+        }
+    }
+
+    public static String getButtonName(int button) {
+        return "BUTTON" + button;
+    }
+
+    public static Cursor getNativeCursor() {
+        return null;
+    }
+
+    public static boolean hasWheel() {
+        return true;
+    }
+
+    public static boolean isClipMouseCoordinatesToWindow() {
+        return clipPostionToDisplay;
+    }
+
+    public static boolean isInsideWindow() {
+        return Display.isVisible();
+    }
+
+    public static void updateCursor() {
+        // no-op
+    }
 }
