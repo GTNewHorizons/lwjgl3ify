@@ -121,7 +121,7 @@ afterEvaluate {
 
 def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
 newJavaToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
-newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(19))
+newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
 def newJavaLauncher = javaToolchains.launcherFor(newJavaToolchainSpec)
 
 minecraft.extraRunJvmArguments.addAll(

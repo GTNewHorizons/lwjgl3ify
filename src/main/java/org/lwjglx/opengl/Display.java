@@ -416,14 +416,16 @@ public class Display {
             return 0;
         }
         GLFWImage.Buffer glfwImages = GLFWImage.calloc(icons.length);
+        ByteBuffer[] nativeBuffers = new ByteBuffer[icons.length];
         for (int icon = 0; icon < icons.length; icon++) {
-            ByteBuffer iconBytes = org.lwjgl.BufferUtils.createByteBuffer(icons[icon].capacity());
-            iconBytes.put(icons[icon]);
-            int dimension = (int) Math.sqrt(iconBytes.limit() / 4D);
-            if (dimension * dimension * 4 != iconBytes.limit()) {
+            nativeBuffers[icon] = org.lwjgl.BufferUtils.createByteBuffer(icons[icon].capacity());
+            nativeBuffers[icon].put(icons[icon]);
+            nativeBuffers[icon].flip();
+            int dimension = (int) Math.sqrt(nativeBuffers[icon].limit() / 4D);
+            if (dimension * dimension * 4 != nativeBuffers[icon].limit()) {
                 throw new IllegalStateException();
             }
-            glfwImages.put(icon, GLFWImage.create().set(dimension, dimension, iconBytes));
+            glfwImages.put(icon, GLFWImage.create().set(dimension, dimension, nativeBuffers[icon]));
         }
         GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
         glfwImages.free();
