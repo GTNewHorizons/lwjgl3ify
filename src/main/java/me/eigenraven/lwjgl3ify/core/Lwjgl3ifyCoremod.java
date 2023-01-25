@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import java.util.List;
 import java.util.Map;
 import me.eigenraven.lwjgl3ify.Tags;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.launch.GlobalProperties;
@@ -24,6 +25,21 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
 
     public Lwjgl3ifyCoremod() {
         Config.loadConfig();
+        try {
+            LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
+            launchLoader.addClassLoaderExclusion("javax.script");
+        } catch (ClassCastException e) {
+            LOGGER.warn(
+                    "Unsupported launch class loader type "
+                            + getClass().getClassLoader().getClass(),
+                    e);
+        }
+        // Ensure javax.script.ScriptEngineManager gets loaded
+        try {
+            Class.forName("javax.script.ScriptEngineManager");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

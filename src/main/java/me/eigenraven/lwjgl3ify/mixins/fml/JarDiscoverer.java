@@ -21,7 +21,9 @@ public class JarDiscoverer {
         if (name == null) {
             return null;
         }
-        if (name.contains("module-info.class") || name.startsWith("META-INF/versions/")) {
+        if (name.contains("module-info.class")
+                || name.startsWith("META-INF/versions/")
+                || name.contains("org/openjdk/nashorn")) {
             // Triggers the continue in the loop
             return "__MACOSX_ignoreme";
         }
