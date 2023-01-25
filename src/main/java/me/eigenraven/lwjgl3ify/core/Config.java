@@ -44,13 +44,21 @@ public class Config {
         "thaumcraft.common.entities.golems.EnumGolemType",
     };
 
-    public static List<String> EXTENSIBLE_ENUMS;
+    private static List<String> EXTENSIBLE_ENUMS;
 
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
-    static {
-        final Configuration config = new Configuration(new File(Launch.minecraftHome, "config/lwjgl3ify.cfg"));
+    static void loadConfig() {
+        if (EXTENSIBLE_ENUMS != null) {
+            return;
+        }
+        final File configDir = new File(Launch.minecraftHome, "config");
+        if (!configDir.isDirectory()) {
+            configDir.mkdirs();
+        }
+        final File configFile = new File(configDir, "lwjgl3ify.cfg");
+        final Configuration config = new Configuration(configFile);
         final String CATEGORY_CORE = "core";
         EXTENSIBLE_ENUMS = Arrays.asList(config.get(
                         CATEGORY_CORE,
@@ -65,5 +73,9 @@ public class Config {
         if (config.hasChanged()) {
             config.save();
         }
+    }
+
+    public static List<String> getExtensibleEnums() {
+        return EXTENSIBLE_ENUMS;
     }
 }

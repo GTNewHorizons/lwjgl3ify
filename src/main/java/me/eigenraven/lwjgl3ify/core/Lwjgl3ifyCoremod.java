@@ -22,6 +22,10 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
 
+    public Lwjgl3ifyCoremod() {
+        Config.loadConfig();
+    }
+
     @Override
     public String[] getASMTransformerClass() {
         LOGGER.info("Registering lwjgl3ify redirect transformer");

@@ -82,7 +82,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                 Lwjgl3ifyCoremod.LOGGER.info("Unfinalized {} Holder fields in {}", fieldsModified, transformedName);
             }
 
-            if (Config.EXTENSIBLE_ENUMS.contains(transformedName)) {
+            if (Config.getExtensibleEnums().contains(transformedName)) {
                 if (node.interfaces == null) {
                     node.interfaces = new ArrayList<>(1);
                 }
