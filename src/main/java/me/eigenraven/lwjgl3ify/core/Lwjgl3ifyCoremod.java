@@ -27,7 +27,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
         Config.loadConfig();
         try {
             LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
-            launchLoader.addClassLoaderExclusion("javax.script");
+            launchLoader.addClassLoaderExclusion("javax");
         } catch (ClassCastException e) {
             LOGGER.warn(
                     "Unsupported launch class loader type "
