@@ -1,4 +1,4 @@
-//version: 1673027205
+//version: 1674409054
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -68,7 +68,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.7.2' apply false
     id 'com.modrinth.minotaur' version '2.+' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.13'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.0.14'
 }
 boolean settingsupdated = verifySettingsGradle()
 settingsupdated = verifyGitAttributes() || settingsupdated
@@ -84,11 +84,6 @@ def out = services.get(StyledTextOutputFactory).create('an-output')
 def projectJavaVersion = JavaLanguageVersion.of(8)
 
 boolean disableSpotless = project.hasProperty("disableSpotless") ? project.disableSpotless.toBoolean() : false
-
-if (!disableSpotless) {
-    apply plugin: 'com.diffplug.spotless'
-    apply from: Blowdryer.file('spotless.gradle')
-}
 
 checkPropertyExists("modName")
 checkPropertyExists("modId")
@@ -123,6 +118,12 @@ propertyDefaultIfUnset("modrinthRelations", "")
 propertyDefaultIfUnset("curseForgeProjectId", "")
 propertyDefaultIfUnset("curseForgeRelations", "")
 propertyDefaultIfUnset("minimizeShadowedDependencies", true)
+propertyDefaultIfUnset("enableModernJavaSyntax", false) // On by default for new projects only
+
+if (!disableSpotless) {
+    apply plugin: 'com.diffplug.spotless'
+    apply from: Blowdryer.file('spotless.gradle')
+}
 
 String javaSourceDir = "src/main/java/"
 String scalaSourceDir = "src/main/scala/"
@@ -134,7 +135,11 @@ if (usesShadowedDependencies.toBoolean()) {
 
 java {
     toolchain {
-        languageVersion.set(projectJavaVersion)
+        if (enableModernJavaSyntax.toBoolean()) {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        } else {
+            languageVersion.set(projectJavaVersion)
+        }
         vendor.set(JvmVendorSpec.ADOPTIUM)
     }
     if (!noPublishedSources) {
@@ -142,14 +147,40 @@ java {
     }
 }
 
+configurations {
+    create("runtimeOnlyNonPublishable") {
+        description = "Runtime only dependencies that are not published alongside the jar"
+        canBeConsumed = false
+        canBeResolved = false
+    }
+}
+
+if (enableModernJavaSyntax.toBoolean()) {
+    dependencies {
+        annotationProcessor 'com.github.bsideup.jabel:jabel-javac-plugin:1.0.0'
+        compileOnly('com.github.bsideup.jabel:jabel-javac-plugin:1.0.0') {
+            transitive = false // We only care about the 1 annotation class
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        if (it.name in ["compileMcLauncherJava", "compilePatchedMcJava"]) {
+            return
+        }
+        sourceCompatibility = 17 // for the IDE support
+        options.release.set(8)
+
+        javaCompiler.set(javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(17))
+            vendor.set(JvmVendorSpec.ADOPTIUM)
+        })
+    }
+}
+
 eclipse {
     classpath {
         downloadSources = true
         downloadJavadoc = true
-    }
-    jdt {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
     }
 }
 
@@ -337,11 +368,6 @@ repositories.configureEach { repo ->
 apply from: 'repositories.gradle'
 
 configurations {
-    create("runtimeOnlyNonPublishable") {
-        description = "Runtime only dependencies that are not published alongside the jar"
-        canBeConsumed = false
-        canBeResolved = false
-    }
     for (config in [compileClasspath, runtimeClasspath, testCompileClasspath, testRuntimeClasspath]) {
         config.extendsFrom(runtimeOnlyNonPublishable)
         if (usesShadowedDependencies.toBoolean()) {
@@ -635,8 +661,6 @@ idea {
         downloadSources = true
     }
     project {
-        languageLevel = "1.8"
-        jdkName = "1.8"
         settings {
             runConfigurations {
                 "1. Run Client"(Gradle) {
@@ -688,6 +712,40 @@ idea {
                     moduleJavacAdditionalOptions = [
                         (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
                     ]
+                }
+            }
+            withIDEADir { File dir ->
+                def giInspections = new File(dir, "inspectionProfiles/Project_Default.xml")
+                if (!giInspections.exists()) {
+                    giInspections.parentFile.mkdirs()
+                    giInspections.withWriter {inspOut ->
+                        inspOut.println('<profile version="1.0"></profile>')
+                    }
+                }
+            }
+            withIDEAFileXml("inspectionProfiles/Project_Default.xml") { XmlProvider p ->
+                /*
+                  <profile version="1.0">
+                    <option name="myName" value="Project Default" />
+                    <inspection_tool class="Since15" enabled="false" level="ERROR" enabled_by_default="false">
+                      <effectiveLL value="JDK_1_8" />
+                    </inspection_tool>
+                  </profile>
+                */
+                def java8ApisNode = new NodeBuilder().inspection_tool('class': "Since15", enabled: true, level: "ERROR", enabled_by_default: false) {
+                    effectiveLL(value: "JDK_1_8")
+                }
+                def root = p.asNode()
+                boolean found = false
+                for (childNode in root.inspection_tool) {
+                    if (childNode.name() == "inspection_tool" && childNode.'@class' == "Since15") {
+                        found = true
+                        childNode.replaceNode(java8ApisNode)
+                        break;
+                    }
+                }
+                if (!found) {
+                    root.append(java8ApisNode)
                 }
             }
         }
