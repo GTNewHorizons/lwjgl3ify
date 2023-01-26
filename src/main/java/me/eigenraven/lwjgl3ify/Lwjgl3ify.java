@@ -4,6 +4,8 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import me.eigenraven.lwjgl3ify.api.ConfigUtils;
+import me.eigenraven.lwjgl3ify.core.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +28,18 @@ public class Lwjgl3ify {
     public void preInit(FMLPreInitializationEvent event) {
         PROXY.runCompatHooks();
         LOG.info("Lwjgl3ify preInit - Java version {}", System.getProperty("java.specification.version"));
+
+        // Test that ConfigUtils works as expected
+        ConfigUtils utils = new ConfigUtils(LOG);
+        if (!utils.isLwjgl3ifyLoaded()) {
+            throw new IllegalStateException();
+        }
+        if (!utils.isConfigLoaded()) {
+            throw new IllegalStateException();
+        }
+        if (utils.getExtensibleEnums() != Config.getExtensibleEnums()) {
+            throw new IllegalStateException();
+        }
     }
 
     @Mod.EventHandler

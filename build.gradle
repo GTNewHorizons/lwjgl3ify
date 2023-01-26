@@ -689,9 +689,9 @@ idea {
                     moduleName = project.name + ".main"
                     afterEvaluate {
                         workingDirectory = tasks.runClient.workingDir.absolutePath
-                        programParameters = tasks.runClient.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
-                        jvmArgs = tasks.runClient.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                            ' ' + tasks.runClient.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                        programParameters = tasks.runClient.calculateArgs(project).collect { '"' + it + '"' }.join(' ')
+                        jvmArgs = tasks.runClient.calculateJvmArgs(project).collect { '"' + it + '"' }.join(' ') +
+                            ' ' + tasks.runClient.systemProperties.collect { '"-D' + it.key + '=' + it.value.toString() + '"' }.join(' ') +
                             coreModArgs
                     }
                 }
@@ -700,9 +700,9 @@ idea {
                     moduleName = project.name + ".main"
                     afterEvaluate {
                         workingDirectory = tasks.runServer.workingDir.absolutePath
-                        programParameters = tasks.runServer.calculateArgs(project).collect {'"' + it + '"'}.join(' ')
-                        jvmArgs = tasks.runServer.calculateJvmArgs(project).collect {'"' + it + '"'}.join(' ') +
-                            ' ' + tasks.runServer.systemProperties.collect {'"-D' + it.key + '=' + it.value.toString() + '"'}.join(' ') +
+                        programParameters = tasks.runServer.calculateArgs(project).collect { '"' + it + '"' }.join(' ')
+                        jvmArgs = tasks.runServer.calculateJvmArgs(project).collect { '"' + it + '"' }.join(' ') +
+                            ' ' + tasks.runServer.systemProperties.collect { '"-D' + it.key + '=' + it.value.toString() + '"' }.join(' ') +
                             coreModArgs
                     }
                 }
@@ -712,40 +712,6 @@ idea {
                     moduleJavacAdditionalOptions = [
                         (project.name + ".main"): tasks.compileJava.options.compilerArgs.collect { '"' + it + '"' }.join(' ')
                     ]
-                }
-            }
-            withIDEADir { File dir ->
-                def giInspections = new File(dir, "inspectionProfiles/Project_Default.xml")
-                if (!giInspections.exists()) {
-                    giInspections.parentFile.mkdirs()
-                    giInspections.withWriter {inspOut ->
-                        inspOut.println('<profile version="1.0"></profile>')
-                    }
-                }
-            }
-            withIDEAFileXml("inspectionProfiles/Project_Default.xml") { XmlProvider p ->
-                /*
-                  <profile version="1.0">
-                    <option name="myName" value="Project Default" />
-                    <inspection_tool class="Since15" enabled="false" level="ERROR" enabled_by_default="false">
-                      <effectiveLL value="JDK_1_8" />
-                    </inspection_tool>
-                  </profile>
-                */
-                def java8ApisNode = new NodeBuilder().inspection_tool('class': "Since15", enabled: true, level: "ERROR", enabled_by_default: false) {
-                    effectiveLL(value: "JDK_1_8")
-                }
-                def root = p.asNode()
-                boolean found = false
-                for (childNode in root.inspection_tool) {
-                    if (childNode.name() == "inspection_tool" && childNode.'@class' == "Since15") {
-                        found = true
-                        childNode.replaceNode(java8ApisNode)
-                        break;
-                    }
-                }
-                if (!found) {
-                    root.append(java8ApisNode)
                 }
             }
         }

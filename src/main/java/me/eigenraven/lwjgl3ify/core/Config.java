@@ -2,7 +2,9 @@ package me.eigenraven.lwjgl3ify.core;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import me.eigenraven.lwjgl3ify.Tags;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 
@@ -44,15 +46,19 @@ public class Config {
         "thaumcraft.common.entities.golems.EnumGolemType",
     };
 
-    private static List<String> EXTENSIBLE_ENUMS;
+    private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
+    private static boolean configLoaded = false;
 
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
+    public static String LWJGL3IFY_VERSION = Tags.VERSION;
+
     static void loadConfig() {
-        if (EXTENSIBLE_ENUMS != null) {
+        if (configLoaded) {
             return;
         }
+        configLoaded = true;
         final File configDir = new File(Launch.minecraftHome, "config");
         if (!configDir.isDirectory()) {
             configDir.mkdirs();
@@ -60,12 +66,12 @@ public class Config {
         final File configFile = new File(configDir, "lwjgl3ify.cfg");
         final Configuration config = new Configuration(configFile);
         final String CATEGORY_CORE = "core";
-        EXTENSIBLE_ENUMS = Arrays.asList(config.get(
+        EXTENSIBLE_ENUMS.addAll(Arrays.asList(config.get(
                         CATEGORY_CORE,
                         "extensibleEnums",
-                        DEFAULT_EXTENSIBLE_ENUMS,
+                        EXTENSIBLE_ENUMS.toArray(new String[0]),
                         "Enums to make extensible at runtime")
-                .getStringList());
+                .getStringList()));
         SHOW_JAVA_VERSION = config.getBoolean(
                 "showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
         SHOW_LWJGL_VERSION = config.getBoolean(
@@ -75,7 +81,15 @@ public class Config {
         }
     }
 
-    public static List<String> getExtensibleEnums() {
+    public static Set<String> getExtensibleEnums() {
         return EXTENSIBLE_ENUMS;
+    }
+
+    public static void addExtensibleEnum(String className) {
+        EXTENSIBLE_ENUMS.add(className);
+    }
+
+    public static boolean isConfigLoaded() {
+        return configLoaded;
     }
 }
