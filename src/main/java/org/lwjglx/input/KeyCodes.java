@@ -266,7 +266,6 @@ public class KeyCodes {
                 //		public static final int KEY_SLEEP           = 0xDF;
 
             default:
-                System.out.println("UNKNOWN GLFW KEY CODE: " + glfwKeyCode);
                 return Keyboard.KEY_NONE;
         }
     }
@@ -537,7 +536,6 @@ public class KeyCodes {
                 //		public static final int KEY_SLEEP           = 0xDF;
 
             default:
-                System.out.println("UNKNOWN LWJGL KEY CODE: " + lwjglKeyCode);
                 return GLFW.GLFW_KEY_UNKNOWN;
         }
     }
