@@ -7,7 +7,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = "lwjgl3ify", name = "Lwjgl3ify", version = Tags.VERSION, acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+        modid = "lwjgl3ify",
+        name = "Lwjgl3ify",
+        version = Tags.VERSION,
+        acceptedMinecraftVersions = "[1.7.10]",
+        acceptableRemoteVersions = "*")
 public class Lwjgl3ify {
     public static Logger LOG = LogManager.getLogger(Tags.MODID);
 
@@ -20,6 +25,7 @@ public class Lwjgl3ify {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         PROXY.runCompatHooks();
+        LOG.info("Lwjgl3ify preInit - Java version {}", System.getProperty("java.specification.version"));
     }
 
     @Mod.EventHandler
