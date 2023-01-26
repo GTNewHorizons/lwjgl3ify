@@ -6,12 +6,15 @@ package me.eigenraven.lwjgl3ify.core;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import me.eigenraven.lwjgl3ify.IExtensibleEnum;
+import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.InstructionAdapter;
+import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -20,7 +23,8 @@ public class ExtensibleEnumTransformerHelper {
     private final Logger LOGGER = Lwjgl3ifyCoremod.LOGGER;
     private final Type STRING = Type.getType(String.class);
     private final Type ENUM = Type.getType(Enum.class);
-    public final Type MARKER_IFACE = Type.getType("Lme/eigenraven/lwjgl3ify/IExtensibleEnum;");
+    public final Type MARKER_IFACE = Type.getType(IExtensibleEnum.class);
+    public final Type MARKER_ANNOTATION = Type.getType(MakeEnumExtensible.class);
     private final Type ARRAY_UTILS = Type.getType(
             "Lorg/apache/commons/lang3/ArrayUtils;"); // Don't directly reference this to prevent class loading.
     private final String ADD_DESC = Type.getMethodDescriptor(
@@ -46,7 +50,17 @@ public class ExtensibleEnumTransformerHelper {
                 .findFirst()
                 .orElse(null);
 
-        if (!classNode.interfaces.contains(MARKER_IFACE.getInternalName())) {
+        boolean process = false;
+        if (classNode.interfaces.contains(MARKER_IFACE.getInternalName())) {
+            process = true;
+        } else if (classNode.visibleAnnotations != null && !classNode.visibleAnnotations.isEmpty()) {
+            for (AnnotationNode annotation : classNode.visibleAnnotations) {
+                if (annotation.desc.equals(MARKER_ANNOTATION.getDescriptor())) {
+                    process = true;
+                }
+            }
+        }
+        if (!process) {
             return false;
         }
 

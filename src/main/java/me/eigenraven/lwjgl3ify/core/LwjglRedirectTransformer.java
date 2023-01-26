@@ -1,6 +1,6 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import me.eigenraven.lwjgl3ify.Lwjgl3Aware;
+import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassReader;

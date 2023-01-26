@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify;
+package me.eigenraven.lwjgl3ify.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
