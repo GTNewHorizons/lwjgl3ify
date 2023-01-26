@@ -31,6 +31,10 @@ public class ObjectHolderRef {
 
     private MethodHandle fieldSetter = null;
 
+    /**
+     * @author eigenraven
+     * @reason Simple helper function
+     */
     @Overwrite(remap = false)
     private static void makeWritable(Field f) {
         try {
@@ -40,6 +44,10 @@ public class ObjectHolderRef {
         }
     }
 
+    /**
+     * @author eigenraven
+     * @reason Logic has to be significantly altered
+     */
     @Overwrite(remap = false)
     public void apply() {
         if (fieldSetter == null) {

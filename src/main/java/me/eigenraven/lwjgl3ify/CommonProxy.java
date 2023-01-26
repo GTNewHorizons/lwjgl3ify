@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class CommonProxy {
     public void registerF3Handler() {}
 
+    @SuppressWarnings("unchecked")
     public void runCompatHooks() {
         // Fix crash with OpenComputers/COFHCore due to a class extending OpenALException
         try {

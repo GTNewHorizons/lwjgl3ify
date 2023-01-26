@@ -31,6 +31,10 @@ public class ItemStackHolderRef {
 
     private static MethodHandle fieldSetter;
 
+    /**
+     * @author eigenraven
+     * @reason Simple helper function
+     */
     @Overwrite(remap = false)
     private static void makeWritable(Field f) {
         try {
@@ -41,6 +45,10 @@ public class ItemStackHolderRef {
         }
     }
 
+    /**
+     * @author eigenraven
+     * @reason Logic has to be significantly altered
+     */
     @Overwrite
     public void apply() {
         ItemStack is;

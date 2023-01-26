@@ -22,7 +22,7 @@ import java.lang.reflect.Field;
 import java.util.Optional;
 import sun.misc.Unsafe;
 
-@SuppressWarnings("restriction")
+@SuppressWarnings({"restriction", "sunapi"})
 public class UnsafeHacks {
     private static final Unsafe UNSAFE;
 
