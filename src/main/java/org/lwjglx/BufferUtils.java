@@ -151,39 +151,36 @@ public final class BufferUtils {
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(ByteBuffer b) {
-        zeroBuffer0(b, b.position(), b.remaining());
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(ShortBuffer b) {
-        zeroBuffer0(b, b.position() * 2L, b.remaining() * 2L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(CharBuffer b) {
-        zeroBuffer0(b, b.position() * 2L, b.remaining() * 2L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(IntBuffer b) {
-        zeroBuffer0(b, b.position() * 4L, b.remaining() * 4L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(FloatBuffer b) {
-        zeroBuffer0(b, b.position() * 4L, b.remaining() * 4L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(LongBuffer b) {
-        zeroBuffer0(b, b.position() * 8L, b.remaining() * 8L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
 
     /** Fill buffer with zeros from position to remaining */
     public static void zeroBuffer(DoubleBuffer b) {
-        zeroBuffer0(b, b.position() * 8L, b.remaining() * 8L);
+        org.lwjgl.BufferUtils.zeroBuffer(b);
     }
-
-    /** Fill buffer with zeros from position to remaining */
-    private static native void zeroBuffer0(Buffer b, long off, long size);
 }
