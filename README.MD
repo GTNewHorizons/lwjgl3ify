@@ -45,6 +45,8 @@ java.base/sun.nio.ch=ALL-UNNAMED
 java.desktop/sun.awt.image=ALL-UNNAMED
 ```
 
+If you want to tweak your default window size, OpenGL context properties or other more advanced settings, check out the config file in `config/lwjgl3ify.cfg` after the first startup.
+
 ## Server
 Install the mod jar in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
 Lwjgl3ify also depends on GTNHMixins (<https://github.com/GTNewHorizons/GTNHmixins>), use at least version 2.1.10.

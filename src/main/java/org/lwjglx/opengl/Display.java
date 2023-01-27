@@ -2,12 +2,11 @@ package org.lwjglx.opengl;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import me.eigenraven.lwjgl3ify.core.Config;
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCharCallback;
@@ -115,14 +114,29 @@ public class Display {
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
 
         glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, displayResizable ? GL_TRUE : GL_FALSE);
+        glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 
-        Window.handle = glfwCreateWindow(640, 480, windowTitle, NULL, NULL);
-        if (Window.handle == 0L) throw new IllegalStateException("Failed to create Display window");
+        glfwWindowHint(GLFW_MAXIMIZED, Config.WINDOW_START_MAXIMIZED ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_FOCUSED, Config.WINDOW_START_FOCUSED ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_ICONIFIED, Config.WINDOW_START_ICONIFIED ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_DECORATED, Config.WINDOW_DECORATED ? GLFW_TRUE : GLFW_FALSE);
+
+        glfwWindowHint(GLFW_SRGB_CAPABLE, Config.OPENGL_SRGB_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_DOUBLEBUFFER, Config.OPENGL_DOUBLEBUFFER ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_CONTEXT_NO_ERROR, Config.OPENGL_CONTEXT_NO_ERROR ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, Config.OPENGL_DEBUG_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, Config.OPENGL_DEBUG_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
+
+        glfwWindowHintString(GLFW_X11_CLASS_NAME, Config.X11_CLASS_NAME);
+        glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
+
+        Window.handle = glfwCreateWindow(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, windowTitle, NULL, NULL);
+        if (Window.handle == 0L) {
+            throw new IllegalStateException("Failed to create Display window");
+        }
 
         Window.keyCallback = new GLFWKeyCallback() {
             @Override
@@ -218,8 +232,6 @@ public class Display {
         displayFramebufferWidth = fbw.get(0);
         displayFramebufferHeight = fbh.get(0);
 
-        glfwSetWindowPos(Window.handle, (monitorWidth - mode.getWidth()) / 2, (monitorHeight - mode.getHeight()) / 2);
-
         displayX = (monitorWidth - mode.getWidth()) / 2;
         displayY = (monitorHeight - mode.getHeight()) / 2;
 
@@ -233,7 +245,6 @@ public class Display {
         }
 
         glfwSwapInterval(1);
-        glfwShowWindow(Window.handle);
 
         displayCreated = true;
 
@@ -408,9 +419,7 @@ public class Display {
 
     public static void setResizable(boolean resizable) {
         displayResizable = resizable;
-        if (getWindow() != 0) {
-            glfwSetWindowAttrib(getWindow(), GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE);
-        }
+        // Ignore the request because why would you make the game window non-resizable
     }
 
     public static boolean isResizable() {

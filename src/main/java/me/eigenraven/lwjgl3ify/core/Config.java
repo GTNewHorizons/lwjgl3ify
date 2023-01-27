@@ -52,6 +52,18 @@ public class Config {
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
+    public static int WINDOW_WIDTH = 854;
+    public static int WINDOW_HEIGHT = 480;
+    public static boolean WINDOW_START_MAXIMIZED = false, WINDOW_START_FOCUSED = true, WINDOW_START_ICONIFIED = false;
+    public static boolean WINDOW_DECORATED = true;
+    public static boolean OPENGL_DEBUG_CONTEXT = false;
+    public static boolean OPENGL_SRGB_CONTEXT = false;
+    public static boolean OPENGL_DOUBLEBUFFER = true;
+    public static boolean OPENGL_CONTEXT_NO_ERROR = false;
+
+    public static String X11_CLASS_NAME = "minecraft";
+    public static String COCOA_FRAME_NAME = "minecraft";
+
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
     static void loadConfig() {
@@ -66,6 +78,8 @@ public class Config {
         final File configFile = new File(configDir, "lwjgl3ify.cfg");
         final Configuration config = new Configuration(configFile);
         final String CATEGORY_CORE = "core";
+        final String CATEGORY_WINDOW = "window";
+        final String CATEGORY_GLCONTEXT = "openglContext";
         EXTENSIBLE_ENUMS.addAll(Arrays.asList(config.get(
                         CATEGORY_CORE,
                         "extensibleEnums",
@@ -76,6 +90,48 @@ public class Config {
                 "showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
         SHOW_LWJGL_VERSION = config.getBoolean(
                 "showLwjglVersion", CATEGORY_CORE, SHOW_LWJGL_VERSION, "Show lwjgl version in the debug hud");
+
+        WINDOW_WIDTH = config.getInt("width", CATEGORY_WINDOW, WINDOW_WIDTH, 64, 65536, "Default window width");
+        WINDOW_HEIGHT = config.getInt("height", CATEGORY_WINDOW, WINDOW_HEIGHT, 64, 65536, "Default window height");
+        WINDOW_START_MAXIMIZED =
+                config.getBoolean("maximized", CATEGORY_WINDOW, WINDOW_START_MAXIMIZED, "Start maximized?");
+        WINDOW_START_FOCUSED = config.getBoolean("focused", CATEGORY_WINDOW, WINDOW_START_FOCUSED, "Start focused?");
+        WINDOW_START_ICONIFIED =
+                config.getBoolean("iconified", CATEGORY_WINDOW, WINDOW_START_ICONIFIED, "Start iconified?");
+        WINDOW_DECORATED = config.getBoolean(
+                "decorated",
+                CATEGORY_WINDOW,
+                WINDOW_DECORATED,
+                "Should the window have decorations (titlebar, border, close button)");
+        X11_CLASS_NAME = config.getString(
+                "x11ClassName",
+                CATEGORY_WINDOW,
+                X11_CLASS_NAME,
+                "Linux-only - change the X11 class name, which is used by your window manager to identify the running application");
+        COCOA_FRAME_NAME = config.getString(
+                "cocoaFrameName",
+                CATEGORY_WINDOW,
+                COCOA_FRAME_NAME,
+                "OSX-only - identifier used to save and restore the window position and size");
+
+        OPENGL_DEBUG_CONTEXT = config.getBoolean(
+                "debugContext",
+                CATEGORY_GLCONTEXT,
+                OPENGL_DEBUG_CONTEXT,
+                "Enable KHR_debug in the OpenGL context for advanced debugging capabilities");
+        OPENGL_SRGB_CONTEXT = config.getBoolean(
+                "srgb", CATEGORY_GLCONTEXT, OPENGL_SRGB_CONTEXT, "Make the framebuffer use the sRGB color space");
+        OPENGL_DOUBLEBUFFER = config.getBoolean(
+                "doubleBuffer",
+                CATEGORY_GLCONTEXT,
+                OPENGL_DOUBLEBUFFER,
+                "Make the framebuffer double-buffered (will cause visual artifacts if disabled)");
+        OPENGL_CONTEXT_NO_ERROR = config.getBoolean(
+                "noError",
+                CATEGORY_GLCONTEXT,
+                OPENGL_CONTEXT_NO_ERROR,
+                "Enable GL_KHR_no_error to use faster driver code, but which can cause memory corruption in case of OpenGL errors");
+
         if (config.hasChanged()) {
             config.save();
         }
