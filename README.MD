@@ -43,6 +43,12 @@ java.base/jdk.internal.reflect=ALL-UNNAMED
 java.base/sun.nio.ch=ALL-UNNAMED
 --add-opens
 java.desktop/sun.awt.image=ALL-UNNAMED
+--add-modules jdk.dynalink
+--add-opens
+jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED
+--add-modules java.sql.rowset
+--add-opens
+java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 ```
 
 If you want to tweak your default window size, OpenGL context properties or other more advanced settings, check out the config file in `config/lwjgl3ify.cfg` after the first startup.
