@@ -121,7 +121,9 @@ public class Display {
 
         glfwWindowHint(GLFW_MAXIMIZED, Config.WINDOW_START_MAXIMIZED ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_FOCUSED, Config.WINDOW_START_FOCUSED ? GLFW_TRUE : GLFW_FALSE);
+        displayFocused = Config.WINDOW_START_FOCUSED;
         glfwWindowHint(GLFW_ICONIFIED, Config.WINDOW_START_ICONIFIED ? GLFW_TRUE : GLFW_FALSE);
+        displayVisible = !Config.WINDOW_START_ICONIFIED;
         glfwWindowHint(GLFW_DECORATED, Config.WINDOW_DECORATED ? GLFW_TRUE : GLFW_FALSE);
 
         glfwWindowHint(GLFW_SRGB_CAPABLE, Config.OPENGL_SRGB_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
@@ -183,14 +185,14 @@ public class Display {
         Window.windowFocusCallback = new GLFWWindowFocusCallback() {
             @Override
             public void invoke(long window, boolean focused) {
-                displayFocused = focused == true;
+                displayFocused = focused;
             }
         };
 
         Window.windowIconifyCallback = new GLFWWindowIconifyCallback() {
             @Override
             public void invoke(long window, boolean iconified) {
-                displayVisible = iconified == false;
+                displayVisible = !iconified;
             }
         };
 

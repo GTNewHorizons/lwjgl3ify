@@ -1,4 +1,4 @@
-//version: 1675164841
+//version: 1675173326
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -743,6 +743,7 @@ idea {
     module {
         downloadJavadoc = true
         downloadSources = true
+        inheritOutputDirs = true
     }
     project {
         settings {
