@@ -218,6 +218,9 @@ public class Keyboard {
             }
             keyMap.put(keyName[i], i);
         }
+        for (int key = 32; key < 128; key++) {
+            keyEventChars[key] = (char) key;
+        }
     }
 
     public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {

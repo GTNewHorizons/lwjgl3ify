@@ -5,7 +5,9 @@ import org.lwjgl.glfw.GLFW;
 public class KeyCodes {
 
     public static int toLwjglKey(int glfwKeyCode) {
-
+        if (glfwKeyCode > GLFW.GLFW_KEY_LAST) {
+            return glfwKeyCode;
+        }
         switch (glfwKeyCode) {
             case GLFW.GLFW_KEY_ESCAPE:
                 return Keyboard.KEY_ESCAPE;
@@ -271,7 +273,9 @@ public class KeyCodes {
     }
 
     public static int toGlfwKey(int lwjglKeyCode) {
-
+        if (lwjglKeyCode > GLFW.GLFW_KEY_LAST) {
+            return lwjglKeyCode;
+        }
         switch (lwjglKeyCode) {
             case Keyboard.KEY_NONE:
                 return 0;
