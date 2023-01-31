@@ -176,7 +176,7 @@ public class Display {
         Window.scrollCallback = new GLFWScrollCallback() {
             @Override
             public void invoke(long window, double xoffset, double yoffset) {
-                Mouse.addWheelEvent((int) Math.round(yoffset));
+                Mouse.addWheelEvent(yoffset);
             }
         };
 

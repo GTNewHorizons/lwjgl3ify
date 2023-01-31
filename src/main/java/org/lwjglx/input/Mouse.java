@@ -2,6 +2,7 @@ package org.lwjglx.input;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import me.eigenraven.lwjgl3ify.core.Config;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
@@ -86,21 +87,34 @@ public class Mouse {
         queue.add();
     }
 
-    public static void addWheelEvent(int dwheel) {
-        lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
-        lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
+    static double fractionalWheelPosition = 0.0;
 
-        xEvents[queue.getNextPos()] = latestX;
-        yEvents[queue.getNextPos()] = latestY;
+    public static void addWheelEvent(double dwheel) {
+        if (Config.INPUT_INVERT_WHEEL) {
+            dwheel = -dwheel;
+        }
+        dwheel *= Config.INPUT_SCROLL_SPEED;
 
-        wheelEvents[queue.getNextPos()] = dwheel;
+        final int lastWheel = (int) fractionalWheelPosition;
+        fractionalWheelPosition += dwheel;
+        final int newWheel = (int) fractionalWheelPosition;
+        if (newWheel != lastWheel) {
+            lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
+            lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
 
-        buttonEvents[queue.getNextPos()] = -1;
-        buttonEventStates[queue.getNextPos()] = false;
+            xEvents[queue.getNextPos()] = latestX;
+            yEvents[queue.getNextPos()] = latestY;
 
-        nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+            wheelEvents[queue.getNextPos()] = newWheel - lastWheel;
 
-        queue.add();
+            buttonEvents[queue.getNextPos()] = -1;
+            buttonEventStates[queue.getNextPos()] = false;
+
+            nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+
+            queue.add();
+        }
+        fractionalWheelPosition = fractionalWheelPosition % 1;
     }
 
     public static void poll() {

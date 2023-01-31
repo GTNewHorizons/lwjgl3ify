@@ -61,6 +61,9 @@ public class Config {
     public static boolean OPENGL_DOUBLEBUFFER = true;
     public static boolean OPENGL_CONTEXT_NO_ERROR = false;
 
+    public static boolean INPUT_INVERT_WHEEL = false;
+    public static double INPUT_SCROLL_SPEED = 1.0;
+
     public static String X11_CLASS_NAME = "minecraft";
     public static String COCOA_FRAME_NAME = "minecraft";
 
@@ -79,6 +82,7 @@ public class Config {
         final Configuration config = new Configuration(configFile);
         final String CATEGORY_CORE = "core";
         final String CATEGORY_WINDOW = "window";
+        final String CATEGORY_INPUT = "input";
         final String CATEGORY_GLCONTEXT = "openglContext";
         EXTENSIBLE_ENUMS.addAll(Arrays.asList(config.get(
                         CATEGORY_CORE,
@@ -113,6 +117,16 @@ public class Config {
                 CATEGORY_WINDOW,
                 COCOA_FRAME_NAME,
                 "OSX-only - identifier used to save and restore the window position and size");
+
+        INPUT_INVERT_WHEEL = config.getBoolean(
+                "invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
+        INPUT_SCROLL_SPEED = (double) config.getFloat(
+                "scrollSpeedMultiplier",
+                CATEGORY_INPUT,
+                (float) INPUT_SCROLL_SPEED,
+                +0.05f,
+                +20.0f,
+                "Scrolling speed multiplier");
 
         OPENGL_DEBUG_CONTEXT = config.getBoolean(
                 "debugContext",
