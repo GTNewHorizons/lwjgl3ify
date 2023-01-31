@@ -14,7 +14,8 @@ import org.apache.logging.log4j.Logger;
         name = "Lwjgl3ify",
         version = Tags.VERSION,
         acceptedMinecraftVersions = "[1.7.10]",
-        acceptableRemoteVersions = "*")
+        acceptableRemoteVersions = "*",
+        guiFactory = "me.eigenraven.lwjgl3ify.client.GuiFactory")
 public class Lwjgl3ify {
     public static Logger LOG = LogManager.getLogger(Tags.MODID);
 

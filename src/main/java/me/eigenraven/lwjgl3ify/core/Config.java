@@ -69,6 +69,13 @@ public class Config {
 
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
+    public static final String CATEGORY_CORE = "core";
+    public static final String CATEGORY_WINDOW = "window";
+    public static final String CATEGORY_INPUT = "input";
+    public static final String CATEGORY_GLCONTEXT = "openglContext";
+
+    public static Configuration config = null;
+
     static void loadConfig() {
         if (configLoaded) {
             return;
@@ -79,11 +86,16 @@ public class Config {
             configDir.mkdirs();
         }
         final File configFile = new File(configDir, "lwjgl3ify.cfg");
-        final Configuration config = new Configuration(configFile);
-        final String CATEGORY_CORE = "core";
-        final String CATEGORY_WINDOW = "window";
-        final String CATEGORY_INPUT = "input";
-        final String CATEGORY_GLCONTEXT = "openglContext";
+        config = new Configuration(configFile);
+
+        reloadConfigObject();
+
+        if (config.hasChanged()) {
+            config.save();
+        }
+    }
+
+    public static void reloadConfigObject() {
         EXTENSIBLE_ENUMS.addAll(Arrays.asList(config.get(
                         CATEGORY_CORE,
                         "extensibleEnums",
@@ -145,10 +157,6 @@ public class Config {
                 CATEGORY_GLCONTEXT,
                 OPENGL_CONTEXT_NO_ERROR,
                 "Enable GL_KHR_no_error to use faster driver code, but which can cause memory corruption in case of OpenGL errors");
-
-        if (config.hasChanged()) {
-            config.save();
-        }
     }
 
     public static Set<String> getExtensibleEnums() {

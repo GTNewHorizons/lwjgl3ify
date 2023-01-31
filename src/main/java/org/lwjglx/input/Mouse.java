@@ -88,6 +88,8 @@ public class Mouse {
     }
 
     static double fractionalWheelPosition = 0.0;
+    // Used for our config screen for ease of access
+    public static double totalScrollAmount = 0.0;
 
     public static void addWheelEvent(double dwheel) {
         if (Config.INPUT_INVERT_WHEEL) {
@@ -97,6 +99,7 @@ public class Mouse {
 
         final int lastWheel = (int) fractionalWheelPosition;
         fractionalWheelPosition += dwheel;
+        totalScrollAmount += dwheel;
         final int newWheel = (int) fractionalWheelPosition;
         if (newWheel != lastWheel) {
             lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
