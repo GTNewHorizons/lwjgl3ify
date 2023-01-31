@@ -157,3 +157,7 @@ for (runTask in ["runObfClient", "runObfServer"]) {
         javaLauncher.set(newJavaLauncher)
     }
 }
+
+tasks.named("runObfServer", JavaExec) {
+    tweakClasses.set([])
+}
