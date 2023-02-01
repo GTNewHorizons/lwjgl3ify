@@ -20,17 +20,16 @@ package me.eigenraven.lwjgl3ify;
 
 import java.lang.reflect.Field;
 import java.util.Optional;
-import sun.misc.Unsafe;
 
 @SuppressWarnings({"restriction", "sunapi"})
 public class UnsafeHacks {
-    private static final Unsafe UNSAFE;
+    private static final sun.misc.Unsafe UNSAFE;
 
     static {
         try {
-            final Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+            final Field theUnsafe = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
             theUnsafe.setAccessible(true);
-            UNSAFE = (Unsafe) theUnsafe.get(null);
+            UNSAFE = (sun.misc.Unsafe) theUnsafe.get(null);
         } catch (IllegalAccessException | NoSuchFieldException e) {
             throw new RuntimeException("BARF!", e);
         }

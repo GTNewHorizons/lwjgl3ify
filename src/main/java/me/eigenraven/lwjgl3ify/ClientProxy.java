@@ -34,6 +34,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    @SuppressWarnings("unchecked")
     private void replaceOpenGLCrashHandler() {
         // Use a crash handler that's safe against being called from another thread
         try {
