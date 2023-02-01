@@ -1,6 +1,11 @@
 package me.eigenraven.lwjgl3ify;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ICrashCallable;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.lang.reflect.Field;
+import java.util.List;
+import me.eigenraven.lwjgl3ify.client.GLInfoCrashCallable;
 import me.eigenraven.lwjgl3ify.core.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -19,8 +24,32 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    public void runCompatHooks() {
+        super.runCompatHooks();
+        replaceOpenGLCrashHandler();
+    }
+
+    @Override
     public void registerF3Handler() {
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void replaceOpenGLCrashHandler() {
+        // Use a crash handler that's safe against being called from another thread
+        try {
+            final Field callablesField = FMLCommonHandler.class.getDeclaredField("crashCallables");
+            callablesField.setAccessible(true);
+            List<ICrashCallable> crashCallables =
+                    (List<ICrashCallable>) callablesField.get(FMLCommonHandler.instance());
+            for (int i = 0; i < crashCallables.size(); i++) {
+                ICrashCallable original = crashCallables.get(i);
+                if ("GL info".equals(original.getLabel()) && !(original instanceof GLInfoCrashCallable)) {
+                    crashCallables.set(i, new GLInfoCrashCallable());
+                }
+            }
+        } catch (ReflectiveOperationException e) {
+            Lwjgl3ify.LOG.error("Could not access crash callables to make them OpenGL thread-safe", e);
+        }
     }
 
     @SubscribeEvent
