@@ -2,13 +2,13 @@ package me.eigenraven.lwjgl3ify.core;
 
 import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 import net.minecraft.launchwrapper.IClassTransformer;
-import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Type;
-import org.objectweb.asm.commons.Remapper;
-import org.objectweb.asm.commons.RemappingClassAdapter;
+import org.spongepowered.libraries.org.objectweb.asm.AnnotationVisitor;
+import org.spongepowered.libraries.org.objectweb.asm.ClassReader;
+import org.spongepowered.libraries.org.objectweb.asm.ClassVisitor;
+import org.spongepowered.libraries.org.objectweb.asm.ClassWriter;
+import org.spongepowered.libraries.org.objectweb.asm.Type;
+import org.spongepowered.libraries.org.objectweb.asm.commons.ClassRemapper;
+import org.spongepowered.libraries.org.objectweb.asm.commons.Remapper;
 
 public class LwjglRedirectTransformer extends Remapper implements IClassTransformer {
     int remaps = 0, calls = 0;
@@ -33,7 +33,7 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
-        ClassVisitor visitor = new RemappingClassAdapter(writer, this) {
+        ClassVisitor visitor = new ClassRemapper(writer, this) {
             @Override
             public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
                 if (desc.equals(Type.getDescriptor(Lwjgl3Aware.class))) {
@@ -72,13 +72,12 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         for (int pfx = 0; pfx < fromPrefixes.length; pfx++) {
             if (typeName.startsWith(fromPrefixes[pfx])) {
                 remaps++;
-                final String newName = toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
-                return newName;
+                return toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
             }
         }
 
         return typeName;
     }
 
-    private class Lwjgl3AwareException extends RuntimeException {}
+    private static class Lwjgl3AwareException extends RuntimeException {}
 }
