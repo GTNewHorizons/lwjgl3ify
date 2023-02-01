@@ -219,8 +219,9 @@ public class Keyboard {
             keyMap.put(keyName[i], i);
         }
         for (int key = 32; key < 128; key++) {
-            keyEventChars[key] = (char) key;
+            keyEventChars[KeyCodes.toLwjglKey(key)] = (char) key;
         }
+        keyEventChars[KEY_NONE] = '\0';
     }
 
     public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
