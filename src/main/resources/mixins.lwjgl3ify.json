@@ -12,6 +12,9 @@
     "fml.ObjectHolderRef",
     "fml.ObjectHolderRegistry",
     "fml.ItemStackHolderRef",
-    "fml.JarDiscoverer"
+    "fml.JarDiscoverer",
+    "game.MixinTextureMap",
+    "game.MixinStitcher",
+    "game.MixinTextureAtlasSprite"
   ]
 }
