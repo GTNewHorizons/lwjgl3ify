@@ -19,8 +19,8 @@ public class StbStitcher {
 
         // Allocate memory for the rectangles and the context
         try (
-            STBRPRect.Buffer rectBuf = STBRPRect.calloc(holderSize);
-            STBRPContext ctx = STBRPContext.calloc();
+            STBRPRect.Buffer rectBuf = STBRPRect.malloc(holderSize);
+            STBRPContext ctx = STBRPContext.malloc();
             ) {
 
             // Initialize the rectangles that we'll be using in the calculation
@@ -44,7 +44,7 @@ public class StbStitcher {
             // TODO: if sqSize < (size * size) / 2, then we can use size / 2 for the height to save VRAM
 
             // Internal node structure needed for STB
-            try (STBRPNode.Buffer nodes = STBRPNode.calloc(size + 1)) {
+            try (STBRPNode.Buffer nodes = STBRPNode.malloc(size + 1)) {
                 // Initialize the rect packer
                 STBRectPack.stbrp_init_target(ctx, size, size, nodes);
 

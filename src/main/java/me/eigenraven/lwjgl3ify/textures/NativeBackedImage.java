@@ -17,7 +17,7 @@ import java.nio.channels.ReadableByteChannel;
 public class NativeBackedImage extends BufferedImage implements AutoCloseable {
     private final int width;
     private final int height;
-    private final long pointer;
+    private long pointer;
     private final int sizeBytes;
 
     private NativeBackedImage(int width, int height, long pointer) {
@@ -81,7 +81,11 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        STBImage.nstbi_image_free(this.pointer);
+        if (this.pointer != 0) {
+            STBImage.nstbi_image_free(this.pointer);
+
+            this.pointer = 0;
+        }
     }
 
     private void checkBounds(int x, int z) {
@@ -131,7 +135,13 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
             while(fileChannel.read(byteBuffer) != -1) {
             }
         } else {
-            byteBuffer = MemoryUtil.memAlloc(8192);
+            int sizeGuess = 4096;
+            try {
+                sizeGuess = Math.max(4096, inputStream.available());
+            } catch (IOException ignored) {
+            }
+
+            byteBuffer = MemoryUtil.memAlloc(sizeGuess * 2);
             ReadableByteChannel readableByteChannel = new FastByteChannel(inputStream);
 
             while(readableByteChannel.read(byteBuffer) != -1) {
