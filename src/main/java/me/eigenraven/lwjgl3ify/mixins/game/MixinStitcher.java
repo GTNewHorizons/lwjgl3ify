@@ -1,5 +1,6 @@
 package me.eigenraven.lwjgl3ify.mixins.game;
 
+import java.util.*;
 import me.eigenraven.lwjgl3ify.textures.StbStitcher;
 import net.minecraft.client.renderer.texture.Stitcher;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -8,15 +9,15 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.*;
-
 @Mixin(Stitcher.class)
 public abstract class MixinStitcher {
     @Shadow
     @Final
     private Set setStitchHolders = new HashSet(256);
+
     @Shadow
     private int currentWidth;
+
     @Shadow
     private int currentHeight;
 
@@ -26,7 +27,8 @@ public abstract class MixinStitcher {
      */
     @Overwrite
     public void doStitch() {
-        Stitcher.Holder[] aholder = (Stitcher.Holder[])this.setStitchHolders.toArray(new Stitcher.Holder[this.setStitchHolders.size()]);
+        Stitcher.Holder[] aholder =
+                (Stitcher.Holder[]) this.setStitchHolders.toArray(new Stitcher.Holder[this.setStitchHolders.size()]);
         Arrays.sort(aholder);
 
         int size = StbStitcher.packRects(aholder);
@@ -43,7 +45,7 @@ public abstract class MixinStitcher {
     public List getStichSlots() {
         ArrayList<TextureAtlasSprite> arraylist = new ArrayList<>();
 
-        for (Stitcher.Holder holder : (Set<Stitcher.Holder>)this.setStitchHolders) {
+        for (Stitcher.Holder holder : (Set<Stitcher.Holder>) this.setStitchHolders) {
             arraylist.add(holder.getAtlasSprite());
         }
 

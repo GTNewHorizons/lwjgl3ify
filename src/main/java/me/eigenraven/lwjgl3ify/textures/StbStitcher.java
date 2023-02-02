@@ -18,10 +18,8 @@ public class StbStitcher {
         int holderSize = holders.length;
 
         // Allocate memory for the rectangles and the context
-        try (
-            STBRPRect.Buffer rectBuf = STBRPRect.malloc(holderSize);
-            STBRPContext ctx = STBRPContext.malloc();
-            ) {
+        try (STBRPRect.Buffer rectBuf = STBRPRect.malloc(holderSize);
+                STBRPContext ctx = STBRPContext.malloc(); ) {
 
             // Initialize the rectangles that we'll be using in the calculation
             // While that's happening, sum up the area needed to fit all of the images
@@ -59,7 +57,10 @@ public class StbStitcher {
 
                     // Ensure that everything is properly packed!
                     if (!rect.was_packed()) {
-                        throw new StitcherException(holder, "Could not fit " + holder.getAtlasSprite().getIconName() + " into " + size + "x" + size + " atlas!");
+                        throw new StitcherException(
+                                holder,
+                                "Could not fit " + holder.getAtlasSprite().getIconName() + " into " + size + "x" + size
+                                        + " atlas!");
                     }
 
                     bar.step(holder.getAtlasSprite().getIconName());

@@ -1,10 +1,5 @@
 package me.eigenraven.lwjgl3ify.textures;
 
-import org.apache.commons.io.IOUtils;
-import org.lwjgl.stb.STBImage;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
-
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,6 +8,10 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+import org.apache.commons.io.IOUtils;
+import org.lwjgl.stb.STBImage;
+import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 
 public class NativeBackedImage extends BufferedImage implements AutoCloseable {
     private final int width;
@@ -90,7 +89,8 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
 
     private void checkBounds(int x, int z) {
         if (x < 0 || x >= this.width || z < 0 || z >= this.height) {
-            throw new IllegalStateException("Out of bounds: " + x + ", " + z + " (width: " + this.width + ", height: " + this.height + ")");
+            throw new IllegalStateException(
+                    "Out of bounds: " + x + ", " + z + " (width: " + this.width + ", height: " + this.height + ")");
         }
     }
 
@@ -114,9 +114,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
                     throw new IOException("Could not load image: " + STBImage.stbi_failure_reason());
                 }
 
-                return new NativeBackedImage(
-                    width.get(0), height.get(0), MemoryUtil.memAddress(buf)
-                );
+                return new NativeBackedImage(width.get(0), height.get(0), MemoryUtil.memAddress(buf));
             }
 
         } finally {
@@ -129,11 +127,10 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
     private static ByteBuffer readResource(InputStream inputStream) throws IOException {
         ByteBuffer byteBuffer;
         if (inputStream instanceof FileInputStream) {
-            FileChannel fileChannel = ((FileInputStream)inputStream).getChannel();
-            byteBuffer = MemoryUtil.memAlloc((int)fileChannel.size() + 1);
+            FileChannel fileChannel = ((FileInputStream) inputStream).getChannel();
+            byteBuffer = MemoryUtil.memAlloc((int) fileChannel.size() + 1);
 
-            while(fileChannel.read(byteBuffer) != -1) {
-            }
+            while (fileChannel.read(byteBuffer) != -1) {}
         } else {
             int sizeGuess = 4096;
             try {
@@ -144,7 +141,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
             byteBuffer = MemoryUtil.memAlloc(sizeGuess * 2);
             ReadableByteChannel readableByteChannel = new FastByteChannel(inputStream);
 
-            while(readableByteChannel.read(byteBuffer) != -1) {
+            while (readableByteChannel.read(byteBuffer) != -1) {
                 // If we've filled the buffer, make it twice as large and re-parse
                 if (byteBuffer.remaining() == 0) {
                     byteBuffer = MemoryUtil.memRealloc(byteBuffer, byteBuffer.capacity() * 2);
