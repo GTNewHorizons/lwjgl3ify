@@ -1,6 +1,7 @@
 package me.eigenraven.lwjgl3ify.textures;
 
 import cpw.mods.fml.common.ProgressManager;
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 import net.minecraft.client.renderer.StitcherException;
 import net.minecraft.client.renderer.texture.Stitcher;
@@ -11,10 +12,11 @@ import org.lwjgl.stb.STBRPRect;
 import org.lwjgl.stb.STBRectPack;
 
 @Lwjgl3Aware
+@SuppressWarnings("deprecation")
 public class StbStitcher {
     // Returns size
     public static int packRects(Stitcher.Holder[] holders) {
-        ProgressManager.ProgressBar bar = ProgressManager.push("Stitch setup", holders.length);
+        ProgressManager.ProgressBar bar = ProgressManager.push("Stitch setup", (holders.length + 99) / 100);
         int holderSize = holders.length;
 
         // Allocate memory for the rectangles and the context
@@ -26,7 +28,9 @@ public class StbStitcher {
             int sqSize = 0;
             for (int j = 0; j < holderSize; ++j) {
                 Stitcher.Holder holder = holders[j];
-                bar.step(holder.getAtlasSprite().getIconName());
+                if ((j % 100) == 0 && bar.getStep() < bar.getSteps()) {
+                    bar.step(holder.getAtlasSprite().getIconName());
+                }
 
                 int width = holder.getWidth();
                 int height = holder.getHeight();
@@ -49,9 +53,6 @@ public class StbStitcher {
                 // Perform rectangle packing
                 STBRectPack.stbrp_pack_rects(ctx, rectBuf);
 
-                ProgressManager.pop(bar);
-                bar = ProgressManager.push("Stitch retrieve", holders.length);
-
                 for (STBRPRect rect : rectBuf) {
                     Stitcher.Holder holder = holders[rect.id()];
 
@@ -63,12 +64,16 @@ public class StbStitcher {
                                         + " atlas!");
                     }
 
-                    bar.step(holder.getAtlasSprite().getIconName());
-
                     // Initialize the sprite now with the position and size that we've calculated so far
 
                     // texture should not be rotated, so use false
                     holder.getAtlasSprite().initSprite(size, size, rect.x(), rect.y(), false);
+                }
+
+                // Safeguard in case our calculation was off
+                while (bar.getStep() < bar.getSteps()) {
+                    Lwjgl3ify.LOG.warn("Progressbar calculation was off");
+                    bar.step("noop");
                 }
 
                 ProgressManager.pop(bar);
