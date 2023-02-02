@@ -52,8 +52,6 @@ public class Config {
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
-    public static int WINDOW_WIDTH = 854;
-    public static int WINDOW_HEIGHT = 480;
     public static boolean WINDOW_START_MAXIMIZED = false, WINDOW_START_FOCUSED = true, WINDOW_START_ICONIFIED = false;
     public static boolean WINDOW_DECORATED = true;
     public static boolean OPENGL_DEBUG_CONTEXT = false;
@@ -107,8 +105,6 @@ public class Config {
         SHOW_LWJGL_VERSION = config.getBoolean(
                 "showLwjglVersion", CATEGORY_CORE, SHOW_LWJGL_VERSION, "Show lwjgl version in the debug hud");
 
-        WINDOW_WIDTH = config.getInt("width", CATEGORY_WINDOW, WINDOW_WIDTH, 64, 65536, "Default window width");
-        WINDOW_HEIGHT = config.getInt("height", CATEGORY_WINDOW, WINDOW_HEIGHT, 64, 65536, "Default window height");
         WINDOW_START_MAXIMIZED =
                 config.getBoolean("maximized", CATEGORY_WINDOW, WINDOW_START_MAXIMIZED, "Start maximized?");
         WINDOW_START_FOCUSED = config.getBoolean("focused", CATEGORY_WINDOW, WINDOW_START_FOCUSED, "Start focused?");

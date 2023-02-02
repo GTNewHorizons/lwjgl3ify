@@ -36,8 +36,8 @@ public class Display {
     private static boolean displayResizable = false;
     private static boolean startFullscreen = false;
 
-    private static DisplayMode mode = new DisplayMode(640, 480);
-    private static DisplayMode desktopDisplayMode = new DisplayMode(640, 480);
+    private static DisplayMode mode = new DisplayMode(854, 480);
+    private static DisplayMode desktopDisplayMode = new DisplayMode(854, 480);
 
     private static int latestEventKey = 0;
 
@@ -135,7 +135,7 @@ public class Display {
         glfwWindowHintString(GLFW_X11_CLASS_NAME, Config.X11_CLASS_NAME);
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
 
-        Window.handle = glfwCreateWindow(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, windowTitle, NULL, NULL);
+        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");
         }
