@@ -12,7 +12,9 @@
     "fml.ObjectHolderRef",
     "fml.ObjectHolderRegistry",
     "fml.ItemStackHolderRef",
-    "fml.JarDiscoverer",
+    "fml.JarDiscoverer"
+  ],
+  "client": [
     "game.MixinTextureMap",
     "game.MixinStitcher",
     "game.MixinTextureAtlasSprite"
