@@ -22,6 +22,7 @@ plugins {
 }
 
 blowdryerSetup {
-    github('GTNewHorizons/ExampleMod1.7.10', 'commit', '6800410e7856020a08baf9b10924ba73ad355db4')
+    repoSubfolder 'gtnhShared'
+    github('GTNewHorizons/ExampleMod1.7.10', 'tag', '0.2.0')
     //devLocal '.' // Use this when testing config updates locally
 }
