@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * A 2D integer point class, which looks remarkably like an AWT one.
- * 
+ *
  * @author $Author$
  * @version $Revision$ $Id$
  */
@@ -71,7 +71,7 @@ public final class Point implements ReadablePoint, WritablePoint, Serializable {
 
     /**
      * Translate a point.
-     * 
+     *
      * @param dx The translation to apply
      * @param dy The translation to apply
      */
@@ -82,7 +82,7 @@ public final class Point implements ReadablePoint, WritablePoint, Serializable {
 
     /**
      * Translate a point.
-     * 
+     *
      * @param p The translation to apply
      */
     public void translate(ReadablePoint p) {
@@ -92,7 +92,7 @@ public final class Point implements ReadablePoint, WritablePoint, Serializable {
 
     /**
      * Un-translate a point.
-     * 
+     *
      * @param p The translation to apply
      */
     public void untranslate(ReadablePoint p) {
@@ -104,14 +104,13 @@ public final class Point implements ReadablePoint, WritablePoint, Serializable {
      * Determines whether an instance of <code>Point2D</code> is equal to this point. Two instances of
      * <code>Point2D</code> are equal if the values of their <code>x</code> and <code>y</code> member fields,
      * representing their position in the coordinate space, are the same.
-     * 
+     *
      * @param obj an object to be compared with this point
      * @return <code>true</code> if the object to be compared is an instance of <code>Point</code> and has the same
      *         values; <code>false</code> otherwise
      */
     public boolean equals(Object obj) {
-        if (obj instanceof Point) {
-            Point pt = (Point) obj;
+        if (obj instanceof Point pt) {
             return (x == pt.x) && (y == pt.y);
         }
         return super.equals(obj);

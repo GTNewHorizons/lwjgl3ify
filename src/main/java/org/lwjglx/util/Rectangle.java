@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * A 2D integer Rectangle class which looks remarkably like an AWT one.
- * 
+ *
  * @author $Author$
  * @version $Revision$ $Id$
  */
@@ -134,7 +134,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Translate the rectangle by an amount.
-     * 
+     *
      * @param x The translation amount on the x axis
      * @param y The translation amount on the y axis
      */
@@ -145,7 +145,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Translate the rectangle by an amount.
-     * 
+     *
      * @param point The translation amount
      */
     public void translate(ReadablePoint point) {
@@ -155,7 +155,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Un-translate the rectangle by an amount.
-     * 
+     *
      * @param point The translation amount
      */
     public void untranslate(ReadablePoint point) {
@@ -165,7 +165,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Checks whether or not this <code>Rectangle</code> contains the specified <code>Point</code>.
-     * 
+     *
      * @param p the <code>Point</code> to test
      * @return <code>true</code> if the <code>Point</code> (<i>x</i>,&nbsp;<i>y</i>) is inside this
      *         <code>Rectangle</code>; <code>false</code> otherwise.
@@ -177,7 +177,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
     /**
      * Checks whether or not this <code>Rectangle</code> contains the point at the specified location
      * (<i>x</i>,&nbsp;<i>y</i>).
-     * 
+     *
      * @param X the specified x coordinate
      * @param Y the specified y coordinate
      * @return <code>true</code> if the point (<i>x</i>,&nbsp;<i>y</i>) is inside this <code>Rectangle</code>;
@@ -204,7 +204,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Checks whether or not this <code>Rectangle</code> entirely contains the specified <code>Rectangle</code>.
-     * 
+     *
      * @param r the specified <code>Rectangle</code>
      * @return <code>true</code> if the <code>Rectangle</code> is contained entirely inside this <code>Rectangle</code>;
      *         <code>false</code> otherwise.
@@ -216,7 +216,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
     /**
      * Checks whether this <code>Rectangle</code> entirely contains the <code>Rectangle</code> at the specified location
      * (<i>X</i>,&nbsp;<i>Y</i>) with the specified dimensions (<i>W</i>,&nbsp;<i>H</i>).
-     * 
+     *
      * @param X the specified x coordinate
      * @param Y the specified y coordinate
      * @param W the width of the <code>Rectangle</code>
@@ -331,7 +331,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
     /**
      * Computes the union of this <code>Rectangle</code> with the specified <code>Rectangle</code>. Returns a new
      * <code>Rectangle</code> that represents the union of the two rectangles
-     * 
+     *
      * @param r the specified <code>Rectangle</code>
      * @return the smallest <code>Rectangle</code> containing both the specified <code>Rectangle</code> and this
      *         <code>Rectangle</code>.
@@ -354,7 +354,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
      * return <code>true</code>. The <code>contains</code> method does not return <code>true</code> for points on the
      * right or bottom edges of a <code>Rectangle</code>. Therefore, if the added point falls on the right or bottom
      * edge of the enlarged <code>Rectangle</code>, <code>contains</code> returns <code>false</code> for that point.
-     * 
+     *
      * @param newx the x coordinates of the new point
      * @param newy the y coordinates of the new point
      */
@@ -379,7 +379,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
      * <code>true</code> for points on the right or bottom edges of a <code>Rectangle</code>. Therefore if the added
      * <code>Point</code> falls on the right or bottom edge of the enlarged <code>Rectangle</code>,
      * <code>contains</code> returns <code>false</code> for that <code>Point</code>.
-     * 
+     *
      * @param pt the new <code>Point</code> to add to this <code>Rectangle</code>
      */
     public void add(ReadablePoint pt) {
@@ -389,7 +389,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
     /**
      * Adds a <code>Rectangle</code> to this <code>Rectangle</code>. The resulting <code>Rectangle</code> is the union
      * of the two rectangles.
-     * 
+     *
      * @param r the specified <code>Rectangle</code>
      */
     public void add(ReadableRectangle r) {
@@ -416,7 +416,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
      * If negative values are supplied for <code>h</code> and <code>v</code>, the size of the <code>Rectangle</code>
      * decreases accordingly. The <code>grow</code> method does not check whether the resulting values of
      * <code>width</code> and <code>height</code> are non-negative.
-     * 
+     *
      * @param h the horizontal expansion
      * @param v the vertical expansion
      */
@@ -430,7 +430,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
     /**
      * Determines whether or not this <code>Rectangle</code> is empty. A <code>Rectangle</code> is empty if its width or
      * its height is less than or equal to zero.
-     * 
+     *
      * @return <code>true</code> if this <code>Rectangle</code> is empty; <code>false</code> otherwise.
      */
     public boolean isEmpty() {
@@ -443,13 +443,12 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
      * The result is <code>true</code> if and only if the argument is not <code>null</code> and is a
      * <code>Rectangle</code> object that has the same top-left corner, width, and height as this
      * <code>Rectangle</code>.
-     * 
+     *
      * @param obj the <code>Object</code> to compare with this <code>Rectangle</code>
      * @return <code>true</code> if the objects are equal; <code>false</code> otherwise.
      */
     public boolean equals(Object obj) {
-        if (obj instanceof Rectangle) {
-            Rectangle r = (Rectangle) obj;
+        if (obj instanceof Rectangle r) {
             return ((x == r.x) && (y == r.y) && (width == r.width) && (height == r.height));
         }
         return super.equals(obj);
@@ -457,7 +456,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Debugging
-     * 
+     *
      * @return a String
      */
     public String toString() {
@@ -466,7 +465,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Gets the height.
-     * 
+     *
      * @return Returns a int
      */
     public int getHeight() {
@@ -475,7 +474,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Sets the height.
-     * 
+     *
      * @param height The height to set
      */
     public void setHeight(int height) {
@@ -484,7 +483,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Gets the width.
-     * 
+     *
      * @return Returns a int
      */
     public int getWidth() {
@@ -493,7 +492,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Sets the width.
-     * 
+     *
      * @param width The width to set
      */
     public void setWidth(int width) {
@@ -502,7 +501,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Gets the x.
-     * 
+     *
      * @return Returns a int
      */
     public int getX() {
@@ -511,7 +510,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Sets the x.
-     * 
+     *
      * @param x The x to set
      */
     public void setX(int x) {
@@ -520,7 +519,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Gets the y.
-     * 
+     *
      * @return Returns a int
      */
     public int getY() {
@@ -529,7 +528,7 @@ public final class Rectangle implements ReadableRectangle, WritableRectangle, Se
 
     /**
      * Sets the y.
-     * 
+     *
      * @param y The y to set
      */
     public void setY(int y) {

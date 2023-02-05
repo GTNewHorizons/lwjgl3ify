@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * A 2D integer Dimension class, which looks remarkably like an AWT one.
- * 
+ *
  * @author $Author$
  * @version $Revision$ $Id$
  */
@@ -74,8 +74,7 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
      * Checks whether two dimension objects have equal values.
      */
     public boolean equals(Object obj) {
-        if (obj instanceof ReadableDimension) {
-            ReadableDimension d = (ReadableDimension) obj;
+        if (obj instanceof ReadableDimension d) {
             return (width == d.getWidth()) && (height == d.getHeight());
         }
         return false;
@@ -105,7 +104,7 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
 
     /**
      * Gets the height.
-     * 
+     *
      * @return Returns a int
      */
     public int getHeight() {
@@ -114,7 +113,7 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
 
     /**
      * Sets the height.
-     * 
+     *
      * @param height The height to set
      */
     public void setHeight(int height) {
@@ -123,7 +122,7 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
 
     /**
      * Gets the width.
-     * 
+     *
      * @return Returns a int
      */
     public int getWidth() {
@@ -132,7 +131,7 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
 
     /**
      * Sets the width.
-     * 
+     *
      * @param width The width to set
      */
     public void setWidth(int width) {
