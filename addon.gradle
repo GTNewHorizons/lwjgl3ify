@@ -98,17 +98,11 @@ tasks.register("runComparisonTool", JavaExec) {
 }
 
 afterEvaluate {
-    tasks.named("relocateShadowJar").configure {
-        enabled = false
-    }
-
     publishing.publications.named("maven", MavenPublication) {
         artifact forgePatchesJar
         artifact mmcInstanceFilesZip
     }
-}
 
-afterEvaluate {
     def lwjgl2Zips = configurations.named("lwjglMcCompileClasspath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}
     def lwjgl3Zips = configurations.named("lwjglModClasspath").get().resolve().findAll {!it.name.contains("natives")}
     def lwjgl2Args = lwjgl2Zips.collect {"--2:" + it}
