@@ -1,13 +1,14 @@
 /*
- * Copyright (c) Forge Development LLC and contributors
- * SPDX-License-Identifier: LGPL-2.1-only
+ * Copyright (c) Forge Development LLC and contributors SPDX-License-Identifier: LGPL-2.1-only
  */
 package me.eigenraven.lwjgl3ify.core;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import me.eigenraven.lwjgl3ify.IExtensibleEnum;
 import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Label;
@@ -20,17 +21,22 @@ import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class ExtensibleEnumTransformerHelper {
+
     private final Logger LOGGER = Lwjgl3ifyCoremod.LOGGER;
     private final Type STRING = Type.getType(String.class);
     private final Type ENUM = Type.getType(Enum.class);
     public final Type MARKER_IFACE = Type.getType(IExtensibleEnum.class);
     public final Type MARKER_ANNOTATION = Type.getType(MakeEnumExtensible.class);
-    private final Type ARRAY_UTILS = Type.getType(
-            "Lorg/apache/commons/lang3/ArrayUtils;"); // Don't directly reference this to prevent class loading.
+    private final Type ARRAY_UTILS = Type.getType("Lorg/apache/commons/lang3/ArrayUtils;"); // Don't directly reference
+                                                                                            // this to prevent class
+                                                                                            // loading.
     private final String ADD_DESC = Type.getMethodDescriptor(
-            Type.getType(Object[].class), Type.getType(Object[].class), Type.getType(Object.class));
-    private final Type UNSAFE_HACKS = Type.getType(
-            "Lme/eigenraven/lwjgl3ify/UnsafeHacks;"); // Again, not direct reference to prevent class loading.
+            Type.getType(Object[].class),
+            Type.getType(Object[].class),
+            Type.getType(Object.class));
+    private final Type UNSAFE_HACKS = Type.getType("Lme/eigenraven/lwjgl3ify/UnsafeHacks;"); // Again, not direct
+                                                                                             // reference to prevent
+                                                                                             // class loading.
     private final String CLEAN_DESC = Type.getMethodDescriptor(Type.VOID_TYPE, Type.getType(Class.class));
     private final String NAME_DESC = Type.getMethodDescriptor(STRING);
     private final String EQUALS_DESC = Type.getMethodDescriptor(Type.BOOLEAN_TYPE, STRING);
@@ -46,8 +52,7 @@ public class ExtensibleEnumTransformerHelper {
         final int flags = Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL | Opcodes.ACC_SYNTHETIC;
 
         FieldNode values = classNode.fields.stream()
-                .filter(f -> f.desc.contentEquals(array.getDescriptor()) && ((f.access & flags) == flags))
-                .findFirst()
+                .filter(f -> f.desc.contentEquals(array.getDescriptor()) && ((f.access & flags) == flags)).findFirst()
                 .orElse(null);
 
         boolean process = false;
@@ -64,22 +69,23 @@ public class ExtensibleEnumTransformerHelper {
             return false;
         }
 
-        List<MethodNode> constructors =
-                classNode.methods.stream().filter(m -> m.name.equals("<init>")).collect(Collectors.toList());
+        List<MethodNode> constructors = classNode.methods.stream().filter(m -> m.name.equals("<init>"))
+                .collect(Collectors.toList());
 
         // Static methods named "create" with first argument as a string
-        List<MethodNode> candidates = constructors.stream()
-                .map(ctor -> {
-                    final String[] exceptions = ctor.exceptions == null ? null : ctor.exceptions.toArray(new String[0]);
-                    final Type ctorDesc = Type.getMethodType(ctor.desc);
-                    final Type creatorDesc =
-                            Type.getMethodType(classType, ArrayUtils.remove(ctorDesc.getArgumentTypes(), 1));
-                    final MethodNode creator = new MethodNode(
-                            ctor.access, CREATE_METHOD_NAME, creatorDesc.getDescriptor(), null, exceptions);
-                    creator.access = Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC;
-                    return creator;
-                })
-                .collect(Collectors.toList());
+        List<MethodNode> candidates = constructors.stream().map(ctor -> {
+            final String[] exceptions = ctor.exceptions == null ? null : ctor.exceptions.toArray(new String[0]);
+            final Type ctorDesc = Type.getMethodType(ctor.desc);
+            final Type creatorDesc = Type.getMethodType(classType, ArrayUtils.remove(ctorDesc.getArgumentTypes(), 1));
+            final MethodNode creator = new MethodNode(
+                    ctor.access,
+                    CREATE_METHOD_NAME,
+                    creatorDesc.getDescriptor(),
+                    null,
+                    exceptions);
+            creator.access = Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC;
+            return creator;
+        }).collect(Collectors.toList());
 
         if (candidates.isEmpty()) {
             throw new IllegalStateException(
@@ -93,8 +99,12 @@ public class ExtensibleEnumTransformerHelper {
             if (args.length == 0 || !args[0].equals(STRING)) {
                 if (LOGGER.isErrorEnabled()) {
                     String sb = "Enum has create method without String as first parameter:\n" + "  Enum: "
-                            + classType.getDescriptor() + "\n" + "  Target: "
-                            + mtd.name + mtd.desc + "\n";
+                            + classType.getDescriptor()
+                            + "\n"
+                            + "  Target: "
+                            + mtd.name
+                            + mtd.desc
+                            + "\n";
                     LOGGER.error(sb);
                 }
                 throw new IllegalStateException(
@@ -105,9 +115,16 @@ public class ExtensibleEnumTransformerHelper {
             if (!ret.equals(classType)) {
                 if (LOGGER.isErrorEnabled()) {
                     String sb = "Enum has create method with incorrect return type:\n" + "  Enum: "
-                            + classType.getDescriptor() + "\n" + "  Target: "
-                            + mtd.name + mtd.desc + "\n" + "  Found: "
-                            + ret.getClassName() + ", Expected: " + classType.getClassName();
+                            + classType.getDescriptor()
+                            + "\n"
+                            + "  Target: "
+                            + mtd.name
+                            + mtd.desc
+                            + "\n"
+                            + "  Found: "
+                            + ret.getClassName()
+                            + ", Expected: "
+                            + classType.getClassName();
                     LOGGER.error(sb);
                 }
                 throw new IllegalStateException(
@@ -121,10 +138,8 @@ public class ExtensibleEnumTransformerHelper {
 
             String desc = Type.getMethodDescriptor(Type.VOID_TYPE, ctrArgs);
 
-            MethodNode ctr = classNode.methods.stream()
-                    .filter(m -> m.name.equals("<init>") && m.desc.equals(desc))
-                    .findFirst()
-                    .orElse(null);
+            MethodNode ctr = classNode.methods.stream().filter(m -> m.name.equals("<init>") && m.desc.equals(desc))
+                    .findFirst().orElse(null);
             if (ctr == null) {
                 if (LOGGER.isErrorEnabled()) {
                     StringBuilder sb = new StringBuilder();
@@ -132,8 +147,7 @@ public class ExtensibleEnumTransformerHelper {
                     sb.append("  Enum: ").append(classType.getDescriptor()).append("\n");
                     sb.append("  Candidate: ").append(mtd.desc).append("\n");
                     sb.append("  Target: ").append(desc).append("\n");
-                    classNode.methods.stream()
-                            .filter(m -> m.name.equals("<init>"))
+                    classNode.methods.stream().filter(m -> m.name.equals("<init>"))
                             .forEach(m -> sb.append("        : ").append(m.desc).append("\n"));
                     LOGGER.error(sb.toString());
                 }
@@ -144,13 +158,8 @@ public class ExtensibleEnumTransformerHelper {
                 if (LOGGER.isErrorEnabled()) {
                     StringBuilder sb = new StringBuilder();
                     sb.append("Enum has create method but we could not find $VALUES. Found:\n");
-                    classNode.fields.stream()
-                            .filter(f -> (f.access & Opcodes.ACC_STATIC) != 0)
-                            .forEach(m -> sb.append("  ")
-                                    .append(m.name)
-                                    .append(" ")
-                                    .append(m.desc)
-                                    .append("\n"));
+                    classNode.fields.stream().filter(f -> (f.access & Opcodes.ACC_STATIC) != 0)
+                            .forEach(m -> sb.append("  ").append(m.name).append(" ").append(m.desc).append("\n"));
                     LOGGER.error(sb.toString());
                 }
                 throw new IllegalStateException("Enum has create method but we could not find $VALUES");

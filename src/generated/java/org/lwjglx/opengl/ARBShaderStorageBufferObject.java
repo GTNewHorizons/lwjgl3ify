@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderStorageBufferObject {
+
     public static final int GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES = (int) 36665;
     public static final int GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS = (int) 37084;
     public static final int GL_MAX_COMPUTE_SHADER_STORAGE_BLOCKS = (int) 37083;
@@ -19,7 +20,7 @@ public class ARBShaderStorageBufferObject {
     public static final int GL_SHADER_STORAGE_BUFFER_START = (int) 37076;
 
     public static void glShaderStorageBlockBinding(int program, int storageBlockIndex, int storageBlockBinding) {
-        org.lwjgl.opengl.ARBShaderStorageBufferObject.glShaderStorageBlockBinding(
-                program, storageBlockIndex, storageBlockBinding);
+        org.lwjgl.opengl.ARBShaderStorageBufferObject
+                .glShaderStorageBlockBinding(program, storageBlockIndex, storageBlockBinding);
     }
 }

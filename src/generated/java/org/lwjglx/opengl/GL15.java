@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL15 {
+
     public static final int GL_ARRAY_BUFFER = (int) 34962;
     public static final int GL_ARRAY_BUFFER_BINDING = (int) 34964;
     public static final int GL_BUFFER_ACCESS = (int) 35003;

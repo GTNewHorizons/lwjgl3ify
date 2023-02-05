@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTTextureEnvCombine {
+
     public static final int GL_ADD_SIGNED_EXT = (int) 34164;
     public static final int GL_COMBINE_ALPHA_EXT = (int) 34162;
     public static final int GL_COMBINE_EXT = (int) 34160;

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEVertexArrayRange {
+
     public static final int GL_DRAW_PIXELS_APPLE = (int) 35338;
     public static final int GL_FENCE_APPLE = (int) 35339;
     public static final int GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_APPLE = (int) 34080;

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBDrawBuffers {
+
     public static final int GL_DRAW_BUFFER0_ARB = (int) 34853;
     public static final int GL_DRAW_BUFFER10_ARB = (int) 34863;
     public static final int GL_DRAW_BUFFER11_ARB = (int) 34864;
@@ -21,7 +22,7 @@ public class ARBDrawBuffers {
 
     public static void glDrawBuffersARB(int buffer) {
 
-        org.lwjgl.opengl.ARBDrawBuffers.glDrawBuffersARB(new int[] {buffer});
+        org.lwjgl.opengl.ARBDrawBuffers.glDrawBuffersARB(new int[] { buffer });
     }
 
     public static void glDrawBuffersARB(java.nio.IntBuffer buffers) {

@@ -1,6 +1,7 @@
 package org.lwjgl;
 
 public class BufferChecks {
+
     public static void checkArray(long[] arg0, int arg1) {
         throw new UnsupportedOperationException();
     }

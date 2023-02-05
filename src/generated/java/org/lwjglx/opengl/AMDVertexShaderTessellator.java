@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class AMDVertexShaderTessellator {
+
     public static final int GL_CONTINUOUS_AMD = (int) 36871;
     public static final int GL_DISCRETE_AMD = (int) 36870;
     public static final int GL_INT_SAMPLER_BUFFER_AMD = (int) 36866;

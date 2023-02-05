@@ -1,3 +1,4 @@
 package org.lwjglx.opengl;
 
-public class ARBBufferObject {}
+public class ARBBufferObject {
+}

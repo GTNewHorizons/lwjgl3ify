@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIVertexArrayObject {
+
     public static final int GL_ARRAY_OBJECT_BUFFER_ATI = (int) 34662;
     public static final int GL_ARRAY_OBJECT_OFFSET_ATI = (int) 34663;
     public static final int GL_DISCARD_ATI = (int) 34659;

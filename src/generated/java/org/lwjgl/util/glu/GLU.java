@@ -1,6 +1,7 @@
 package org.lwjgl.util.glu;
 
 public class GLU {
+
     public static final int GLU_AUTO_LOAD_MATRIX = (int) 100200;
     public static final int GLU_BEGIN = (int) 100100;
     public static final int GLU_CCW = (int) 100121;
@@ -117,8 +118,8 @@ public class GLU {
     public static final int GLU_V_STEP = (int) 100207;
     public static final double TESS_MAX_COORD = (double) 1.0E150;
 
-    public static int gluBuild2DMipmaps(
-            int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, java.nio.ByteBuffer arg6) {
+    public static int gluBuild2DMipmaps(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5,
+            java.nio.ByteBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
@@ -134,16 +135,8 @@ public class GLU {
         throw new UnsupportedOperationException();
     }
 
-    public static void gluLookAt(
-            float arg0,
-            float arg1,
-            float arg2,
-            float arg3,
-            float arg4,
-            float arg5,
-            float arg6,
-            float arg7,
-            float arg8) {
+    public static void gluLookAt(float arg0, float arg1, float arg2, float arg3, float arg4, float arg5, float arg6,
+            float arg7, float arg8) {
         throw new UnsupportedOperationException();
     }
 
@@ -163,38 +156,18 @@ public class GLU {
         throw new UnsupportedOperationException();
     }
 
-    public static boolean gluProject(
-            float arg0,
-            float arg1,
-            float arg2,
-            java.nio.FloatBuffer arg3,
-            java.nio.FloatBuffer arg4,
-            java.nio.IntBuffer arg5,
-            java.nio.FloatBuffer arg6) {
+    public static boolean gluProject(float arg0, float arg1, float arg2, java.nio.FloatBuffer arg3,
+            java.nio.FloatBuffer arg4, java.nio.IntBuffer arg5, java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
-    public static int gluScaleImage(
-            int arg0,
-            int arg1,
-            int arg2,
-            int arg3,
-            java.nio.ByteBuffer arg4,
-            int arg5,
-            int arg6,
-            int arg7,
-            java.nio.ByteBuffer arg8) {
+    public static int gluScaleImage(int arg0, int arg1, int arg2, int arg3, java.nio.ByteBuffer arg4, int arg5,
+            int arg6, int arg7, java.nio.ByteBuffer arg8) {
         throw new UnsupportedOperationException();
     }
 
-    public static boolean gluUnProject(
-            float arg0,
-            float arg1,
-            float arg2,
-            java.nio.FloatBuffer arg3,
-            java.nio.FloatBuffer arg4,
-            java.nio.IntBuffer arg5,
-            java.nio.FloatBuffer arg6) {
+    public static boolean gluUnProject(float arg0, float arg1, float arg2, java.nio.FloatBuffer arg3,
+            java.nio.FloatBuffer arg4, java.nio.IntBuffer arg5, java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 }

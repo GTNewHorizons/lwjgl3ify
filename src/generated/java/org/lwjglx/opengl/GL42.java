@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL42 {
+
     public static final int GL_ACTIVE_ATOMIC_COUNTER_BUFFERS = (int) 37593;
     public static final int GL_ALL_BARRIER_BITS = (int) -1;
     public static final int GL_ATOMIC_COUNTER_BARRIER_BIT = (int) 4096;
@@ -110,65 +111,70 @@ public class GL42 {
     public static final int GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = (int) 1;
     public static final int IMAGE_FORMAT_COMPATIBILITY_BY_CLASS = (int) 37065;
 
-    public static void glBindImageTexture(
-            int unit, int texture, int level, boolean layered, int layer, int access, int format) {
+    public static void glBindImageTexture(int unit, int texture, int level, boolean layered, int layer, int access,
+            int format) {
         org.lwjgl.opengl.GL42.glBindImageTexture(unit, texture, level, layered, layer, access, format);
     }
 
-    public static void glDrawArraysInstancedBaseInstance(
-            int mode, int first, int count, int primcount, int baseinstance) {
+    public static void glDrawArraysInstancedBaseInstance(int mode, int first, int count, int primcount,
+            int baseinstance) {
         org.lwjgl.opengl.GL42.glDrawArraysInstancedBaseInstance(mode, first, count, primcount, baseinstance);
     }
 
-    public static void glDrawElementsInstancedBaseInstance(
-            int mode, int indices_count, int type, long indices_buffer_offset, int primcount, int baseinstance) {
+    public static void glDrawElementsInstancedBaseInstance(int mode, int indices_count, int type,
+            long indices_buffer_offset, int primcount, int baseinstance) {
         org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(
-                mode, indices_count, type, indices_buffer_offset, primcount, baseinstance);
+                mode,
+                indices_count,
+                type,
+                indices_buffer_offset,
+                primcount,
+                baseinstance);
     }
 
-    public static void glDrawElementsInstancedBaseInstance(
-            int mode, java.nio.ByteBuffer indices, int primcount, int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
-    }
-
-    public static void glDrawElementsInstancedBaseInstance(
-            int mode, java.nio.IntBuffer indices, int primcount, int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
-    }
-
-    public static void glDrawElementsInstancedBaseInstance(
-            int mode, java.nio.ShortBuffer indices, int primcount, int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
-    }
-
-    public static void glDrawElementsInstancedBaseVertexBaseInstance(
-            int mode,
-            int indices_count,
-            int type,
-            long indices_buffer_offset,
-            int primcount,
-            int basevertex,
+    public static void glDrawElementsInstancedBaseInstance(int mode, java.nio.ByteBuffer indices, int primcount,
             int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseVertexBaseInstance(
-                mode, indices_count, type, indices_buffer_offset, primcount, basevertex, baseinstance);
+        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
     }
 
-    public static void glDrawElementsInstancedBaseVertexBaseInstance(
-            int mode, java.nio.ByteBuffer indices, int primcount, int basevertex, int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseVertexBaseInstance(
-                mode, indices, primcount, basevertex, baseinstance);
+    public static void glDrawElementsInstancedBaseInstance(int mode, java.nio.IntBuffer indices, int primcount,
+            int baseinstance) {
+        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
     }
 
-    public static void glDrawElementsInstancedBaseVertexBaseInstance(
-            int mode, java.nio.IntBuffer indices, int primcount, int basevertex, int baseinstance) {
-        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseVertexBaseInstance(
-                mode, indices, primcount, basevertex, baseinstance);
+    public static void glDrawElementsInstancedBaseInstance(int mode, java.nio.ShortBuffer indices, int primcount,
+            int baseinstance) {
+        org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseInstance(mode, indices, primcount, baseinstance);
     }
 
-    public static void glDrawElementsInstancedBaseVertexBaseInstance(
-            int mode, java.nio.ShortBuffer indices, int primcount, int basevertex, int baseinstance) {
+    public static void glDrawElementsInstancedBaseVertexBaseInstance(int mode, int indices_count, int type,
+            long indices_buffer_offset, int primcount, int basevertex, int baseinstance) {
         org.lwjgl.opengl.GL42.glDrawElementsInstancedBaseVertexBaseInstance(
-                mode, indices, primcount, basevertex, baseinstance);
+                mode,
+                indices_count,
+                type,
+                indices_buffer_offset,
+                primcount,
+                basevertex,
+                baseinstance);
+    }
+
+    public static void glDrawElementsInstancedBaseVertexBaseInstance(int mode, java.nio.ByteBuffer indices,
+            int primcount, int basevertex, int baseinstance) {
+        org.lwjgl.opengl.GL42
+                .glDrawElementsInstancedBaseVertexBaseInstance(mode, indices, primcount, basevertex, baseinstance);
+    }
+
+    public static void glDrawElementsInstancedBaseVertexBaseInstance(int mode, java.nio.IntBuffer indices,
+            int primcount, int basevertex, int baseinstance) {
+        org.lwjgl.opengl.GL42
+                .glDrawElementsInstancedBaseVertexBaseInstance(mode, indices, primcount, basevertex, baseinstance);
+    }
+
+    public static void glDrawElementsInstancedBaseVertexBaseInstance(int mode, java.nio.ShortBuffer indices,
+            int primcount, int basevertex, int baseinstance) {
+        org.lwjgl.opengl.GL42
+                .glDrawElementsInstancedBaseVertexBaseInstance(mode, indices, primcount, basevertex, baseinstance);
     }
 
     public static void glDrawTransformFeedbackInstanced(int mode, int id, int primcount) {
@@ -179,8 +185,8 @@ public class GL42 {
         org.lwjgl.opengl.GL42.glDrawTransformFeedbackStreamInstanced(mode, id, stream, primcount);
     }
 
-    public static void glGetActiveAtomicCounterBuffer(
-            int program, int bufferIndex, int pname, java.nio.IntBuffer params) {
+    public static void glGetActiveAtomicCounterBuffer(int program, int bufferIndex, int pname,
+            java.nio.IntBuffer params) {
         org.lwjgl.opengl.GL42.glGetActiveAtomicCounterBufferiv(program, bufferIndex, pname, params);
     }
 

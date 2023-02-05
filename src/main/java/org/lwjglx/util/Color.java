@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util;
 
@@ -36,9 +20,9 @@ import java.nio.ByteBuffer;
 
 /**
  * A mutable Color class
+ * 
  * @author $Author$
- * @version $Revision$
- * $Id$
+ * @version $Revision$ $Id$
  */
 public final class Color implements ReadableColor, Serializable, WritableColor {
 
@@ -218,8 +202,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
      * Equals
      */
     public boolean equals(Object o) {
-        return (o != null)
-                && (o instanceof ReadableColor)
+        return (o != null) && (o instanceof ReadableColor)
                 && (((ReadableColor) o).getRed() == this.getRed())
                 && (((ReadableColor) o).getGreen() == this.getGreen())
                 && (((ReadableColor) o).getBlue() == this.getBlue())
@@ -233,35 +216,40 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         return (red << 24) | (green << 16) | (blue << 8) | alpha;
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#getAlphaByte()
      */
     public byte getAlphaByte() {
         return alpha;
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#getBlueByte()
      */
     public byte getBlueByte() {
         return blue;
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#getGreenByte()
      */
     public byte getGreenByte() {
         return green;
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#getRedByte()
      */
     public byte getRedByte() {
         return red;
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeRGBA(java.nio.ByteBuffer)
      */
     public void writeRGBA(ByteBuffer dest) {
@@ -271,7 +259,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         dest.put(alpha);
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeRGB(java.nio.ByteBuffer)
      */
     public void writeRGB(ByteBuffer dest) {
@@ -280,7 +269,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         dest.put(blue);
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeABGR(java.nio.ByteBuffer)
      */
     public void writeABGR(ByteBuffer dest) {
@@ -290,7 +280,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         dest.put(red);
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeARGB(java.nio.ByteBuffer)
      */
     public void writeARGB(ByteBuffer dest) {
@@ -300,7 +291,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         dest.put(blue);
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeBGR(java.nio.ByteBuffer)
      */
     public void writeBGR(ByteBuffer dest) {
@@ -309,7 +301,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
         dest.put(red);
     }
 
-    /* (Overrides)
+    /*
+     * (Overrides)
      * @see com.shavenpuppy.jglib.ReadableColor#writeBGRA(java.nio.ByteBuffer)
      */
     public void writeBGRA(ByteBuffer dest) {
@@ -321,6 +314,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readRGBA(ByteBuffer src) {
@@ -332,6 +326,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readRGB(ByteBuffer src) {
@@ -342,6 +337,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readARGB(ByteBuffer src) {
@@ -353,6 +349,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readBGRA(ByteBuffer src) {
@@ -364,6 +361,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readBGR(ByteBuffer src) {
@@ -374,6 +372,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Read a color from a byte buffer
+     * 
      * @param src The source buffer
      */
     public void readABGR(ByteBuffer src) {
@@ -385,6 +384,7 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * Set this color's color by copying another color
+     * 
      * @param src The source color
      */
     public void setColor(ReadableColor src) {
@@ -396,7 +396,8 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
 
     /**
      * HSB to RGB conversion, pinched from java.awt.Color.
-     * @param hue (0..1.0f)
+     * 
+     * @param hue        (0..1.0f)
      * @param saturation (0..1.0f)
      * @param brightness (0..1.0f)
      */
@@ -445,9 +446,9 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
     }
 
     /**
-     * RGB to HSB conversion, pinched from java.awt.Color.
-     * The HSB value is returned in dest[] if dest[] is supplied.
+     * RGB to HSB conversion, pinched from java.awt.Color. The HSB value is returned in dest[] if dest[] is supplied.
      * Values range from 0..1
+     * 
      * @param dest Destination floats, or null
      * @return dest, or a new float array
      */

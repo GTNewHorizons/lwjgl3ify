@@ -1,8 +1,8 @@
 package org.lwjglx.input;
 
 /**
- * Internal utility class to keep track of event positions in an array.
- * When the array is full the position will wrap to the beginning.
+ * Internal utility class to keep track of event positions in an array. When the array is full the position will wrap to
+ * the beginning.
  */
 class EventQueue {
 
@@ -42,6 +42,7 @@ class EventQueue {
 
     /**
      * Increment the event queue
+     * 
      * @return - true if there is an event available
      */
     synchronized boolean next() {

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public interface Drawable {
+
     public abstract void destroy();
 
     public abstract boolean isCurrent();

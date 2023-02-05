@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBGpuShader5 {
+
     public static final int GL_FRAGMENT_INTERPOLATION_OFFSET_BITS = (int) 36445;
     public static final int GL_GEOMETRY_SHADER_INVOCATIONS = (int) 34943;
     public static final int GL_MAX_FRAGMENT_INTERPOLATION_OFFSET = (int) 36444;

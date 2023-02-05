@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBES3Compatibility {
+
     public static final int GL_ANY_SAMPLES_PASSED_CONSERVATIVE = (int) 36202;
     public static final int GL_COMPRESSED_R11_EAC = (int) 37488;
     public static final int GL_COMPRESSED_RG11_EAC = (int) 37490;

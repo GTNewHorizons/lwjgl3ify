@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBSync {
+
     public static final int GL_ALREADY_SIGNALED = (int) 37146;
     public static final int GL_CONDITION_SATISFIED = (int) 37148;
     public static final int GL_MAX_SERVER_WAIT_TIMEOUT = (int) 37137;

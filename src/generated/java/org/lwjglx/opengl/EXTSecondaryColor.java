@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTSecondaryColor {
+
     public static final int GL_COLOR_SUM_EXT = (int) 33880;
     public static final int GL_CURRENT_SECONDARY_COLOR_EXT = (int) 33881;
     public static final int GL_SECONDARY_COLOR_ARRAY_EXT = (int) 33886;
@@ -40,12 +41,12 @@ public class EXTSecondaryColor {
 
     public static void glSecondaryColorPointerEXT(int size, int stride, java.nio.FloatBuffer pPointer) {
 
-        org.lwjgl.opengl.EXTSecondaryColor.glSecondaryColorPointerEXT(
-                size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pPointer);
+        org.lwjgl.opengl.EXTSecondaryColor
+                .glSecondaryColorPointerEXT(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pPointer);
     }
 
-    public static void glSecondaryColorPointerEXT(
-            int size, boolean unsigned, int stride, java.nio.ByteBuffer pPointer) {
+    public static void glSecondaryColorPointerEXT(int size, boolean unsigned, int stride,
+            java.nio.ByteBuffer pPointer) {
 
         org.lwjgl.opengl.EXTSecondaryColor.glSecondaryColorPointerEXT(
                 size,

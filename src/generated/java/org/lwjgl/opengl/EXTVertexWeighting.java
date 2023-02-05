@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTVertexWeighting {
+
     public static final int GL_CURRENT_VERTEX_WEIGHT_EXT = (int) 34059;
     public static final int GL_MODELVIEW0_EXT = (int) 5888;
     public static final int GL_MODELVIEW0_MATRIX_EXT = (int) 2982;

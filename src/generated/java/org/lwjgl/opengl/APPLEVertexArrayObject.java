@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEVertexArrayObject {
+
     public static final int GL_VERTEX_ARRAY_BINDING_APPLE = (int) 34229;
 
     public static void glBindVertexArrayAPPLE(int arg0) {

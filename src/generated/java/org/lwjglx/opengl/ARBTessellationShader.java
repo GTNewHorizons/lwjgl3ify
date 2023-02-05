@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTessellationShader {
+
     public static final int GL_FRACTIONAL_EVEN = (int) 36476;
     public static final int GL_FRACTIONAL_ODD = (int) 36475;
     public static final int GL_ISOLINES = (int) 36474;

@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class CommonProxy {
+
     public void registerF3Handler() {}
 
     @SuppressWarnings("unchecked")

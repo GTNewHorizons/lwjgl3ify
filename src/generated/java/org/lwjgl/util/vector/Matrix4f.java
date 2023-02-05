@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjgl.util.vector;
 
@@ -40,6 +24,7 @@ import java.nio.FloatBuffer;
  * @author foo
  */
 public class Matrix4f extends Matrix implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     public float m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33;
@@ -62,43 +47,16 @@ public class Matrix4f extends Matrix implements Serializable {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(m00)
-                .append(' ')
-                .append(m10)
-                .append(' ')
-                .append(m20)
-                .append(' ')
-                .append(m30)
-                .append('\n');
-        buf.append(m01)
-                .append(' ')
-                .append(m11)
-                .append(' ')
-                .append(m21)
-                .append(' ')
-                .append(m31)
-                .append('\n');
-        buf.append(m02)
-                .append(' ')
-                .append(m12)
-                .append(' ')
-                .append(m22)
-                .append(' ')
-                .append(m32)
-                .append('\n');
-        buf.append(m03)
-                .append(' ')
-                .append(m13)
-                .append(' ')
-                .append(m23)
-                .append(' ')
-                .append(m33)
-                .append('\n');
+        buf.append(m00).append(' ').append(m10).append(' ').append(m20).append(' ').append(m30).append('\n');
+        buf.append(m01).append(' ').append(m11).append(' ').append(m21).append(' ').append(m31).append('\n');
+        buf.append(m02).append(' ').append(m12).append(' ').append(m22).append(' ').append(m32).append('\n');
+        buf.append(m03).append(' ').append(m13).append(' ').append(m23).append(' ').append(m33).append('\n');
         return buf.toString();
     }
 
     /**
      * Set this matrix to be the identity matrix.
+     * 
      * @return this
      */
     public Matrix setIdentity() {
@@ -107,6 +65,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Set the given matrix to be the identity matrix.
+     * 
      * @param m The matrix to set to the identity
      * @return m
      */
@@ -133,6 +92,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Set this matrix to 0.
+     * 
      * @return this
      */
     public Matrix setZero() {
@@ -141,6 +101,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Set the given matrix to 0.
+     * 
      * @param m The matrix to set to 0
      * @return m
      */
@@ -167,6 +128,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Load from another matrix4f
+     * 
      * @param src The source matrix
      * @return this
      */
@@ -176,7 +138,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Copy the source matrix to the destination matrix
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix, or null of a new one is to be created
      * @return The copied matrix
      */
@@ -203,8 +166,7 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Load from a float buffer. The buffer stores the matrix in column major
-     * (OpenGL) order.
+     * Load from a float buffer. The buffer stores the matrix in column major (OpenGL) order.
      *
      * @param buf A float buffer to read from
      * @return this
@@ -232,8 +194,7 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Load from a float buffer. The buffer stores the matrix in row major
-     * (maths) order.
+     * Load from a float buffer. The buffer stores the matrix in row major (maths) order.
      *
      * @param buf A float buffer to read from
      * @return this
@@ -261,8 +222,8 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Store this matrix in a float buffer. The matrix is stored in column
-     * major (openGL) order.
+     * Store this matrix in a float buffer. The matrix is stored in column major (openGL) order.
+     * 
      * @param buf The buffer to store this matrix in
      */
     public Matrix store(FloatBuffer buf) {
@@ -286,8 +247,8 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Store this matrix in a float buffer. The matrix is stored in row
-     * major (maths) order.
+     * Store this matrix in a float buffer. The matrix is stored in row major (maths) order.
+     * 
      * @param buf The buffer to store this matrix in
      */
     public Matrix storeTranspose(FloatBuffer buf) {
@@ -311,8 +272,8 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Store the rotation portion of this matrix in a float buffer. The matrix is stored in column
-     * major (openGL) order.
+     * Store the rotation portion of this matrix in a float buffer. The matrix is stored in column major (openGL) order.
+     * 
      * @param buf The buffer to store this matrix in
      */
     public Matrix store3f(FloatBuffer buf) {
@@ -330,9 +291,10 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Add two matrices together and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix4f add(Matrix4f left, Matrix4f right, Matrix4f dest) {
@@ -360,9 +322,10 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Subtract the right matrix from the left and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix4f sub(Matrix4f left, Matrix4f right, Matrix4f dest) {
@@ -390,9 +353,10 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Multiply the right matrix by the left and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix4f mul(Matrix4f left, Matrix4f right, Matrix4f dest) {
@@ -436,11 +400,11 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Transform a Vector by a matrix and return the result in a destination
-     * vector.
-     * @param left The left matrix
+     * Transform a Vector by a matrix and return the result in a destination vector.
+     * 
+     * @param left  The left matrix
      * @param right The right vector
-     * @param dest The destination vector, or null if a new one is to be created
+     * @param dest  The destination vector, or null if a new one is to be created
      * @return the destination vector
      */
     public static Vector4f transform(Matrix4f left, Vector4f right, Vector4f dest) {
@@ -461,6 +425,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Transpose this matrix
+     * 
      * @return this
      */
     public Matrix transpose() {
@@ -469,6 +434,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate this matrix
+     * 
      * @param vec The vector to translate by
      * @return this
      */
@@ -478,6 +444,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate this matrix
+     * 
      * @param vec The vector to translate by
      * @return this
      */
@@ -487,6 +454,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Scales this matrix
+     * 
      * @param vec The vector to scale by
      * @return this
      */
@@ -496,8 +464,9 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Scales the source matrix and put the result in the destination matrix
-     * @param vec The vector to scale by
-     * @param src The source matrix
+     * 
+     * @param vec  The vector to scale by
+     * @param src  The source matrix
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return The scaled matrix
      */
@@ -520,8 +489,9 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Rotates the matrix around the given axis the specified angle
+     * 
      * @param angle the angle, in radians.
-     * @param axis The vector representing the rotation axis. Must be normalized.
+     * @param axis  The vector representing the rotation axis. Must be normalized.
      * @return this
      */
     public Matrix4f rotate(float angle, Vector3f axis) {
@@ -530,9 +500,10 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Rotates the matrix around the given axis the specified angle
+     * 
      * @param angle the angle, in radians.
-     * @param axis The vector representing the rotation axis. Must be normalized.
-     * @param dest The matrix to put the result, or null if a new matrix is to be created
+     * @param axis  The vector representing the rotation axis. Must be normalized.
+     * @param dest  The matrix to put the result, or null if a new matrix is to be created
      * @return The rotated matrix
      */
     public Matrix4f rotate(float angle, Vector3f axis, Matrix4f dest) {
@@ -540,12 +511,12 @@ public class Matrix4f extends Matrix implements Serializable {
     }
 
     /**
-     * Rotates the source matrix around the given axis the specified angle and
-     * put the result in the destination matrix.
+     * Rotates the source matrix around the given axis the specified angle and put the result in the destination matrix.
+     * 
      * @param angle the angle, in radians.
-     * @param axis The vector representing the rotation axis. Must be normalized.
-     * @param src The matrix to rotate
-     * @param dest The matrix to put the result, or null if a new matrix is to be created
+     * @param axis  The vector representing the rotation axis. Must be normalized.
+     * @param src   The matrix to rotate
+     * @param dest  The matrix to put the result, or null if a new matrix is to be created
      * @return The rotated matrix
      */
     public static Matrix4f rotate(float angle, Vector3f axis, Matrix4f src, Matrix4f dest) {
@@ -597,7 +568,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate this matrix and stash the result in another matrix
-     * @param vec The vector to translate by
+     * 
+     * @param vec  The vector to translate by
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the translated matrix
      */
@@ -607,8 +579,9 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate the source matrix and stash the result in the destination matrix
-     * @param vec The vector to translate by
-     * @param src The source matrix
+     * 
+     * @param vec  The vector to translate by
+     * @param src  The source matrix
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return The translated matrix
      */
@@ -625,7 +598,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate this matrix and stash the result in another matrix
-     * @param vec The vector to translate by
+     * 
+     * @param vec  The vector to translate by
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the translated matrix
      */
@@ -635,8 +609,9 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Translate the source matrix and stash the result in the destination matrix
-     * @param vec The vector to translate by
-     * @param src The source matrix
+     * 
+     * @param vec  The vector to translate by
+     * @param src  The source matrix
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return The translated matrix
      */
@@ -653,6 +628,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Transpose this matrix and place the result in another matrix
+     * 
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the transposed matrix
      */
@@ -662,7 +638,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Transpose the source matrix and place the result in the destination matrix
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the transposed matrix
      */
@@ -709,40 +686,34 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the determinant of the matrix
      */
     public float determinant() {
-        float f = m00
-                * ((m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32)
-                        - m13 * m22 * m31
-                        - m11 * m23 * m32
-                        - m12 * m21 * m33);
-        f -= m01
-                * ((m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32)
-                        - m13 * m22 * m30
-                        - m10 * m23 * m32
-                        - m12 * m20 * m33);
-        f += m02
-                * ((m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31)
-                        - m13 * m21 * m30
-                        - m10 * m23 * m31
-                        - m11 * m20 * m33);
-        f -= m03
-                * ((m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31)
-                        - m12 * m21 * m30
-                        - m10 * m22 * m31
-                        - m11 * m20 * m32);
+        float f = m00 * ((m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32) - m13 * m22 * m31
+                - m11 * m23 * m32
+                - m12 * m21 * m33);
+        f -= m01 * ((m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32) - m13 * m22 * m30
+                - m10 * m23 * m32
+                - m12 * m20 * m33);
+        f += m02 * ((m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31) - m13 * m21 * m30
+                - m10 * m23 * m31
+                - m11 * m20 * m33);
+        f -= m03 * ((m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31) - m12 * m21 * m30
+                - m10 * m22 * m31
+                - m11 * m20 * m32);
         return f;
     }
 
     /**
      * Calculate the determinant of a 3x3 matrix
+     * 
      * @return result
      */
-    private static float determinant3x3(
-            float t00, float t01, float t02, float t10, float t11, float t12, float t20, float t21, float t22) {
+    private static float determinant3x3(float t00, float t01, float t02, float t10, float t11, float t12, float t20,
+            float t21, float t22) {
         return t00 * (t11 * t22 - t12 * t21) + t01 * (t12 * t20 - t10 * t22) + t02 * (t10 * t21 - t11 * t20);
     }
 
     /**
      * Invert this matrix
+     * 
      * @return this if successful, null otherwise
      */
     public Matrix invert() {
@@ -751,7 +722,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Invert the source matrix and put the result in the destination
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return The inverted matrix if successful, null otherwise
      */
@@ -760,41 +732,102 @@ public class Matrix4f extends Matrix implements Serializable {
 
         if (determinant != 0) {
             /*
-             * m00 m01 m02 m03
-             * m10 m11 m12 m13
-             * m20 m21 m22 m23
-             * m30 m31 m32 m33
+             * m00 m01 m02 m03 m10 m11 m12 m13 m20 m21 m22 m23 m30 m31 m32 m33
              */
             if (dest == null) dest = new Matrix4f();
             float determinant_inv = 1f / determinant;
 
             // first row
             float t00 = determinant3x3(src.m11, src.m12, src.m13, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
-            float t01 =
-                    -determinant3x3(src.m10, src.m12, src.m13, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
+            float t01 = -determinant3x3(
+                    src.m10,
+                    src.m12,
+                    src.m13,
+                    src.m20,
+                    src.m22,
+                    src.m23,
+                    src.m30,
+                    src.m32,
+                    src.m33);
             float t02 = determinant3x3(src.m10, src.m11, src.m13, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
-            float t03 =
-                    -determinant3x3(src.m10, src.m11, src.m12, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
+            float t03 = -determinant3x3(
+                    src.m10,
+                    src.m11,
+                    src.m12,
+                    src.m20,
+                    src.m21,
+                    src.m22,
+                    src.m30,
+                    src.m31,
+                    src.m32);
             // second row
-            float t10 =
-                    -determinant3x3(src.m01, src.m02, src.m03, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
+            float t10 = -determinant3x3(
+                    src.m01,
+                    src.m02,
+                    src.m03,
+                    src.m21,
+                    src.m22,
+                    src.m23,
+                    src.m31,
+                    src.m32,
+                    src.m33);
             float t11 = determinant3x3(src.m00, src.m02, src.m03, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
-            float t12 =
-                    -determinant3x3(src.m00, src.m01, src.m03, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
+            float t12 = -determinant3x3(
+                    src.m00,
+                    src.m01,
+                    src.m03,
+                    src.m20,
+                    src.m21,
+                    src.m23,
+                    src.m30,
+                    src.m31,
+                    src.m33);
             float t13 = determinant3x3(src.m00, src.m01, src.m02, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
             // third row
             float t20 = determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m31, src.m32, src.m33);
-            float t21 =
-                    -determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m30, src.m32, src.m33);
+            float t21 = -determinant3x3(
+                    src.m00,
+                    src.m02,
+                    src.m03,
+                    src.m10,
+                    src.m12,
+                    src.m13,
+                    src.m30,
+                    src.m32,
+                    src.m33);
             float t22 = determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m30, src.m31, src.m33);
-            float t23 =
-                    -determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m30, src.m31, src.m32);
+            float t23 = -determinant3x3(
+                    src.m00,
+                    src.m01,
+                    src.m02,
+                    src.m10,
+                    src.m11,
+                    src.m12,
+                    src.m30,
+                    src.m31,
+                    src.m32);
             // fourth row
-            float t30 =
-                    -determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m21, src.m22, src.m23);
+            float t30 = -determinant3x3(
+                    src.m01,
+                    src.m02,
+                    src.m03,
+                    src.m11,
+                    src.m12,
+                    src.m13,
+                    src.m21,
+                    src.m22,
+                    src.m23);
             float t31 = determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m20, src.m22, src.m23);
-            float t32 =
-                    -determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m20, src.m21, src.m23);
+            float t32 = -determinant3x3(
+                    src.m00,
+                    src.m01,
+                    src.m03,
+                    src.m10,
+                    src.m11,
+                    src.m13,
+                    src.m20,
+                    src.m21,
+                    src.m23);
             float t33 = determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m20, src.m21, src.m22);
 
             // transpose and divide by the determinant
@@ -820,6 +853,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Negate this matrix
+     * 
      * @return this
      */
     public Matrix negate() {
@@ -828,6 +862,7 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Negate this matrix and place the result in a destination matrix.
+     * 
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return the negated matrix
      */
@@ -837,7 +872,8 @@ public class Matrix4f extends Matrix implements Serializable {
 
     /**
      * Negate this matrix and place the result in a destination matrix.
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return The negated matrix
      */

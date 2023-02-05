@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBProvokingVertex {
+
     public static final int GL_FIRST_VERTEX_CONVENTION = (int) 36429;
     public static final int GL_LAST_VERTEX_CONVENTION = (int) 36430;
     public static final int GL_PROVOKING_VERTEX = (int) 36431;

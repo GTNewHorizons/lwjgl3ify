@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.CloseShieldInputStream;
@@ -19,6 +20,7 @@ import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
 public class JarApiSet {
+
     public final TreeMap<String, ClassApi> classes = new TreeMap<>();
 
     public void addJar(File jarFile) {
@@ -62,6 +64,7 @@ public class JarApiSet {
     }
 
     public static class ClassApi {
+
         public final ClassNode asmNode;
         public final String className;
         public final TreeMap<String, MethodNode> methods = new TreeMap<>();

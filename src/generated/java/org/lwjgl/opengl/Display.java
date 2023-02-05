@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class Display {
+
     public static void create() {
         throw new UnsupportedOperationException();
     }
@@ -17,8 +18,8 @@ public class Display {
         throw new UnsupportedOperationException();
     }
 
-    public static void create(
-            org.lwjgl.opengl.PixelFormat arg0, org.lwjgl.opengl.Drawable arg1, org.lwjgl.opengl.ContextAttribs arg2) {
+    public static void create(org.lwjgl.opengl.PixelFormat arg0, org.lwjgl.opengl.Drawable arg1,
+            org.lwjgl.opengl.ContextAttribs arg2) {
         throw new UnsupportedOperationException();
     }
 

@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util.vector;
 
@@ -39,8 +23,7 @@ import java.nio.FloatBuffer;
  * Holds a 3x3 matrix.
  *
  * @author cix_foo <cix_foo@users.sourceforge.net>
- * @version $Revision: 3799 $
- * $Id: Matrix3f.java 3799 2012-09-12 11:29:40Z kappa1 $
+ * @version $Revision: 3799 $ $Id: Matrix3f.java 3799 2012-09-12 11:29:40Z kappa1 $
  */
 public class Matrix3f extends Matrix implements Serializable {
 
@@ -58,6 +41,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Load from another matrix
+     * 
      * @param src The source matrix
      * @return this
      */
@@ -67,7 +51,8 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Copy source matrix to destination matrix
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix, or null of a new matrix is to be created
      * @return The copied matrix
      */
@@ -88,8 +73,7 @@ public class Matrix3f extends Matrix implements Serializable {
     }
 
     /**
-     * Load from a float buffer. The buffer stores the matrix in column major
-     * (OpenGL) order.
+     * Load from a float buffer. The buffer stores the matrix in column major (OpenGL) order.
      *
      * @param buf A float buffer to read from
      * @return this
@@ -110,8 +94,7 @@ public class Matrix3f extends Matrix implements Serializable {
     }
 
     /**
-     * Load from a float buffer. The buffer stores the matrix in row major
-     * (maths) order.
+     * Load from a float buffer. The buffer stores the matrix in row major (maths) order.
      *
      * @param buf A float buffer to read from
      * @return this
@@ -132,8 +115,8 @@ public class Matrix3f extends Matrix implements Serializable {
     }
 
     /**
-     * Store this matrix in a float buffer. The matrix is stored in column
-     * major (openGL) order.
+     * Store this matrix in a float buffer. The matrix is stored in column major (openGL) order.
+     * 
      * @param buf The buffer to store this matrix in
      */
     public Matrix store(FloatBuffer buf) {
@@ -150,8 +133,8 @@ public class Matrix3f extends Matrix implements Serializable {
     }
 
     /**
-     * Store this matrix in a float buffer. The matrix is stored in row
-     * major (maths) order.
+     * Store this matrix in a float buffer. The matrix is stored in row major (maths) order.
+     * 
      * @param buf The buffer to store this matrix in
      */
     public Matrix storeTranspose(FloatBuffer buf) {
@@ -169,9 +152,10 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Add two matrices together and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix3f add(Matrix3f left, Matrix3f right, Matrix3f dest) {
@@ -192,9 +176,10 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Subtract the right matrix from the left and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix3f sub(Matrix3f left, Matrix3f right, Matrix3f dest) {
@@ -215,9 +200,10 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Multiply the right matrix by the left and place the result in a third matrix.
-     * @param left The left source matrix
+     * 
+     * @param left  The left source matrix
      * @param right The right source matrix
-     * @param dest The destination matrix, or null if a new one is to be created
+     * @param dest  The destination matrix, or null if a new one is to be created
      * @return the destination matrix
      */
     public static Matrix3f mul(Matrix3f left, Matrix3f right, Matrix3f dest) {
@@ -247,11 +233,11 @@ public class Matrix3f extends Matrix implements Serializable {
     }
 
     /**
-     * Transform a Vector by a matrix and return the result in a destination
-     * vector.
-     * @param left The left matrix
+     * Transform a Vector by a matrix and return the result in a destination vector.
+     * 
+     * @param left  The left matrix
      * @param right The right vector
-     * @param dest The destination vector, or null if a new one is to be created
+     * @param dest  The destination vector, or null if a new one is to be created
      * @return the destination vector
      */
     public static Vector3f transform(Matrix3f left, Vector3f right, Vector3f dest) {
@@ -270,6 +256,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Transpose this matrix
+     * 
      * @return this
      */
     public Matrix transpose() {
@@ -278,6 +265,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Transpose this matrix and place the result in another matrix
+     * 
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the transposed matrix
      */
@@ -287,7 +275,8 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Transpose the source matrix and place the result into the destination matrix
-     * @param src The source matrix to be transposed
+     * 
+     * @param src  The source matrix to be transposed
      * @param dest The destination matrix or null if a new matrix is to be created
      * @return the transposed matrix
      */
@@ -328,32 +317,15 @@ public class Matrix3f extends Matrix implements Serializable {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(m00)
-                .append(' ')
-                .append(m10)
-                .append(' ')
-                .append(m20)
-                .append(' ')
-                .append('\n');
-        buf.append(m01)
-                .append(' ')
-                .append(m11)
-                .append(' ')
-                .append(m21)
-                .append(' ')
-                .append('\n');
-        buf.append(m02)
-                .append(' ')
-                .append(m12)
-                .append(' ')
-                .append(m22)
-                .append(' ')
-                .append('\n');
+        buf.append(m00).append(' ').append(m10).append(' ').append(m20).append(' ').append('\n');
+        buf.append(m01).append(' ').append(m11).append(' ').append(m21).append(' ').append('\n');
+        buf.append(m02).append(' ').append(m12).append(' ').append(m22).append(' ').append('\n');
         return buf.toString();
     }
 
     /**
      * Invert this matrix
+     * 
      * @return this if successful, null otherwise
      */
     public Matrix invert() {
@@ -362,7 +334,8 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Invert the source matrix and put the result into the destination matrix
-     * @param src The source matrix to be inverted
+     * 
+     * @param src  The source matrix to be inverted
      * @param dest The destination matrix, or null if a new one is to be created
      * @return The inverted matrix if successful, null otherwise
      */
@@ -371,13 +344,9 @@ public class Matrix3f extends Matrix implements Serializable {
 
         if (determinant != 0) {
             if (dest == null) dest = new Matrix3f();
-            /* do it the ordinary way
-             *
-             * inv(A) = 1/det(A) * adj(T), where adj(T) = transpose(Conjugate Matrix)
-             *
-             * m00 m01 m02
-             * m10 m11 m12
-             * m20 m21 m22
+            /*
+             * do it the ordinary way inv(A) = 1/det(A) * adj(T), where adj(T) = transpose(Conjugate Matrix) m00 m01 m02
+             * m10 m11 m12 m20 m21 m22
              */
             float determinant_inv = 1f / determinant;
 
@@ -407,6 +376,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Negate this matrix
+     * 
      * @return this
      */
     public Matrix negate() {
@@ -415,6 +385,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Negate this matrix and place the result in a destination matrix.
+     * 
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return the negated matrix
      */
@@ -424,7 +395,8 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Negate the source matrix and place the result in the destination matrix.
-     * @param src The source matrix
+     * 
+     * @param src  The source matrix
      * @param dest The destination matrix, or null if a new matrix is to be created
      * @return the negated matrix
      */
@@ -445,6 +417,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Set this matrix to be the identity matrix.
+     * 
      * @return this
      */
     public Matrix setIdentity() {
@@ -453,6 +426,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Set the matrix to be the identity matrix.
+     * 
      * @param m The matrix to be set to the identity
      * @return m
      */
@@ -471,6 +445,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Set this matrix to 0.
+     * 
      * @return this
      */
     public Matrix setZero() {
@@ -479,6 +454,7 @@ public class Matrix3f extends Matrix implements Serializable {
 
     /**
      * Set the matrix matrix to 0.
+     * 
      * @param m The matrix to be set to 0
      * @return m
      */

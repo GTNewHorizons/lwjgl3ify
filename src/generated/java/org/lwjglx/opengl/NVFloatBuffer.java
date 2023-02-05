@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVFloatBuffer {
+
     public static final int GL_FLOAT_CLEAR_COLOR_VALUE_NV = (int) 34957;
     public static final int GL_FLOAT_R16_NV = (int) 34948;
     public static final int GL_FLOAT_R32_NV = (int) 34949;

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVProgram {
+
     public static final int GL_PROGRAM_ERROR_POSITION_NV = (int) 34379;
     public static final int GL_PROGRAM_ERROR_STRING_NV = (int) 34932;
     public static final int GL_PROGRAM_LENGTH_NV = (int) 34343;

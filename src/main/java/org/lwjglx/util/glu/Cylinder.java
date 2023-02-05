@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util.glu;
 
@@ -39,6 +23,7 @@ import static org.lwjglx.util.glu.GLU.*;
  *
  *
  * Created 23-dec-2003
+ * 
  * @author Erik Duijs
  */
 public class Cylinder extends Quadric {
@@ -51,29 +36,23 @@ public class Cylinder extends Quadric {
     }
 
     /**
-     * draws a cylinder oriented along the z axis. The base of the
-     * cylinder is placed at z = 0, and the top at z=height. Like a sphere, a
-     * cylinder is subdivided around the z axis into slices, and along the z axis
-     * into stacks.
+     * draws a cylinder oriented along the z axis. The base of the cylinder is placed at z = 0, and the top at z=height.
+     * Like a sphere, a cylinder is subdivided around the z axis into slices, and along the z axis into stacks.
      *
-     * Note that if topRadius is set to zero, then this routine will generate a
-     * cone.
+     * Note that if topRadius is set to zero, then this routine will generate a cone.
      *
-     * If the orientation is set to GLU.OUTSIDE (with glu.quadricOrientation), then
-     * any generated normals point away from the z axis. Otherwise, they point
-     * toward the z axis.
+     * If the orientation is set to GLU.OUTSIDE (with glu.quadricOrientation), then any generated normals point away
+     * from the z axis. Otherwise, they point toward the z axis.
      *
-     * If texturing is turned on (with glu.quadricTexture), then texture
-     * coordinates are generated so that t ranges linearly from 0.0 at z = 0 to
-     * 1.0 at z = height, and s ranges from 0.0 at the +y axis, to 0.25 at the +x
-     * axis, to 0.5 at the -y axis, to 0.75 at the -x axis, and back to 1.0 at the
-     * +y axis.
+     * If texturing is turned on (with glu.quadricTexture), then texture coordinates are generated so that t ranges
+     * linearly from 0.0 at z = 0 to 1.0 at z = height, and s ranges from 0.0 at the +y axis, to 0.25 at the +x axis, to
+     * 0.5 at the -y axis, to 0.75 at the -x axis, and back to 1.0 at the +y axis.
      *
-     * @param baseRadius  Specifies the radius of the cylinder at z = 0.
-     * @param topRadius   Specifies the radius of the cylinder at z = height.
-     * @param height      Specifies the height of the cylinder.
-     * @param slices      Specifies the number of subdivisions around the z axis.
-     * @param stacks      Specifies the number of subdivisions along the z axis.
+     * @param baseRadius Specifies the radius of the cylinder at z = 0.
+     * @param topRadius  Specifies the radius of the cylinder at z = height.
+     * @param height     Specifies the height of the cylinder.
+     * @param slices     Specifies the number of subdivisions around the z axis.
+     * @param stacks     Specifies the number of subdivisions along the z axis.
      */
     public void draw(float baseRadius, float topRadius, float height, int slices, int stacks) {
 

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBColorBufferFloat {
+
     public static final int GLX_RGBA_FLOAT_BIT = (int) 4;
     public static final int GLX_RGBA_FLOAT_TYPE = (int) 8377;
     public static final int GL_CLAMP_FRAGMENT_COLOR_ARB = (int) 35099;

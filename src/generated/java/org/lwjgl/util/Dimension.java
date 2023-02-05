@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public class Dimension {
+
     public boolean equals(java.lang.Object arg0) {
         throw new UnsupportedOperationException();
     }

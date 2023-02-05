@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBBufferStorage {
+
     public static final int GL_BUFFER_IMMUTABLE_STORAGE = (int) 33311;
     public static final int GL_BUFFER_STORAGE_FLAGS = (int) 33312;
     public static final int GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT = (int) 16384;

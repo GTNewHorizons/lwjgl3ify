@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTextureInteger {
+
     public static final int GL_ALPHA16I_EXT = (int) 36234;
     public static final int GL_ALPHA16UI_EXT = (int) 36216;
     public static final int GL_ALPHA32I_EXT = (int) 36228;

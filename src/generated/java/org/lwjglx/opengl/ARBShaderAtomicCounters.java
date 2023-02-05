@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderAtomicCounters {
+
     public static final int GL_ACTIVE_ATOMIC_COUNTER_BUFFERS = (int) 37593;
     public static final int GL_ATOMIC_COUNTER_BUFFER = (int) 37568;
     public static final int GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS = (int) 37573;

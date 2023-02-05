@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEFlushBufferRange {
+
     public static final int GL_BUFFER_FLUSHING_UNMAP_APPLE = (int) 35347;
     public static final int GL_BUFFER_SERIALIZED_MODIFY_APPLE = (int) 35346;
 

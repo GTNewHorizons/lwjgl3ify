@@ -2,8 +2,11 @@ package me.eigenraven.lwjgl3ify.core;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
+
 import net.minecraft.launchwrapper.IClassTransformer;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -13,10 +16,10 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 
 public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
+
     // Keep ClassNode-operating transformers together for efficiency (don't read/write the class multiple times)
     final ExtensibleEnumTransformerHelper enumTransformer = new ExtensibleEnumTransformerHelper();
-    final FixConstantPoolInterfaceMethodRefHelper cpiMethodRefTransformer =
-            new FixConstantPoolInterfaceMethodRefHelper();
+    final FixConstantPoolInterfaceMethodRefHelper cpiMethodRefTransformer = new FixConstantPoolInterfaceMethodRefHelper();
 
     private static boolean isHolder(List<AnnotationNode> annotations) {
         if (annotations == null) {
@@ -70,8 +73,8 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                     if ((field.access & Opcodes.ACC_FINAL) != 0) {
                         if (field.visibleAnnotations == null) {
                             field.visibleAnnotations = new ArrayList<>(1);
-                            field.visibleAnnotations.add(
-                                    new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
+                            field.visibleAnnotations
+                                    .add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
                         }
                         field.access = field.access & (~Opcodes.ACC_FINAL);
                     }
@@ -101,7 +104,9 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             if (ifaceMethodRefsTransformed) {
                 workDone = true;
                 Lwjgl3ifyCoremod.LOGGER.warn(
-                        "Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}", name, transformedName);
+                        "Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}",
+                        name,
+                        transformedName);
             }
 
             if (workDone) {

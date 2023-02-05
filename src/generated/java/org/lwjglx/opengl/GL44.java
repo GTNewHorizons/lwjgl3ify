@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL44 {
+
     public static final int GL_BUFFER_IMMUTABLE_STORAGE = (int) 33311;
     public static final int GL_BUFFER_STORAGE_FLAGS = (int) 33312;
     public static final int GL_CLEAR_TEXTURE = (int) 37733;
@@ -70,102 +71,102 @@ public class GL44 {
         org.lwjgl.opengl.GL44.glClearTexImage(texture, level, format, type, data);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ByteBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                data);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.DoubleBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.DoubleBuffer data) {
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                data);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.FloatBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.FloatBuffer data) {
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                data);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.IntBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.IntBuffer data) {
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                data);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.LongBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.LongBuffer data) {
         final java.nio.ByteBuffer wrappedArg10 = me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data);
 
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, wrappedArg10);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                wrappedArg10);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg10);
     }
 
-    public static void glClearTexSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ShortBuffer data) {
+    public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ShortBuffer data) {
         org.lwjgl.opengl.GL44.glClearTexSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, data);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                data);
     }
 }

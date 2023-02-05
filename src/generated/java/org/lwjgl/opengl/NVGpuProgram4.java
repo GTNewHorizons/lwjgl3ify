@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVGpuProgram4 {
+
     public static final int GL_MAX_PROGRAM_ATTRIB_COMPONENTS_NV = (int) 35080;
     public static final int GL_MAX_PROGRAM_GENERIC_ATTRIBS_NV = (int) 36261;
     public static final int GL_MAX_PROGRAM_GENERIC_RESULTS_NV = (int) 36262;

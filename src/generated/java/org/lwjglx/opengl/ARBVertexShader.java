@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexShader {
+
     public static final int GL_CURRENT_VERTEX_ATTRIB_ARB = (int) 34342;
     public static final int GL_FLOAT_MAT2_ARB = (int) 35674;
     public static final int GL_FLOAT_MAT3_ARB = (int) 35675;
@@ -43,13 +44,8 @@ public class ARBVertexShader {
         org.lwjgl.opengl.ARBVertexShader.glEnableVertexAttribArrayARB(index);
     }
 
-    public static void glGetActiveAttribARB(
-            int programObj,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
+    public static void glGetActiveAttribARB(int programObj, int index, java.nio.IntBuffer length,
+            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBVertexShader.glGetActiveAttribARB(programObj, index, length, size, type, name);
     }
 
@@ -125,19 +121,19 @@ public class ARBVertexShader {
         org.lwjgl.opengl.ARBVertexShader.glVertexAttrib4sARB(index, v0, v1, v2, v3);
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, int type, boolean normalized, int stride, long buffer_buffer_offset) {
-        org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
-                index, size, type, normalized, stride, buffer_buffer_offset);
+    public static void glVertexAttribPointerARB(int index, int size, int type, boolean normalized, int stride,
+            long buffer_buffer_offset) {
+        org.lwjgl.opengl.ARBVertexShader
+                .glVertexAttribPointerARB(index, size, type, normalized, stride, buffer_buffer_offset);
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, int type, boolean normalized, int stride, java.nio.ByteBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, int type, boolean normalized, int stride,
+            java.nio.ByteBuffer buffer) {
         org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(index, size, type, normalized, stride, buffer);
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, boolean normalized, int stride, java.nio.DoubleBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, boolean normalized, int stride,
+            java.nio.DoubleBuffer buffer) {
 
         org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
                 index,
@@ -148,15 +144,15 @@ public class ARBVertexShader {
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(buffer));
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, boolean normalized, int stride, java.nio.FloatBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, boolean normalized, int stride,
+            java.nio.FloatBuffer buffer) {
 
-        org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
-                index, size, org.lwjgl.opengl.GL11.GL_FLOAT, normalized, stride, buffer);
+        org.lwjgl.opengl.ARBVertexShader
+                .glVertexAttribPointerARB(index, size, org.lwjgl.opengl.GL11.GL_FLOAT, normalized, stride, buffer);
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.ByteBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.ByteBuffer buffer) {
 
         org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
                 index,
@@ -167,8 +163,8 @@ public class ARBVertexShader {
                 org.lwjglx.MemoryUtil.getAddress(buffer));
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.IntBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.IntBuffer buffer) {
 
         org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
                 index,
@@ -179,8 +175,8 @@ public class ARBVertexShader {
                 org.lwjglx.MemoryUtil.getAddress(buffer));
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.ShortBuffer buffer) {
+    public static void glVertexAttribPointerARB(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.ShortBuffer buffer) {
 
         org.lwjgl.opengl.ARBVertexShader.glVertexAttribPointerARB(
                 index,

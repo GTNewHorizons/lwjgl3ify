@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class XRandR {
+
     public static org.lwjgl.opengl.XRandR$Screen[] getConfiguration() {
         throw new UnsupportedOperationException();
     }

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTextureSnorm {
+
     public static final int GL_ALPHA16_SNORM = (int) 36888;
     public static final int GL_ALPHA8_SNORM = (int) 36884;
     public static final int GL_ALPHA_SNORM = (int) 36880;

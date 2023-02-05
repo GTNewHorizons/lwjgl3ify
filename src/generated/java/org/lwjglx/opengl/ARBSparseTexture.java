@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBSparseTexture {
+
     public static final int GL_MAX_SPARSE_3D_TEXTURE_SIZE_ARB = (int) 37273;
     public static final int GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS_ARB = (int) 37274;
     public static final int GL_MAX_SPARSE_TEXTURE_SIZE_ARB = (int) 37272;
@@ -13,17 +14,9 @@ public class ARBSparseTexture {
     public static final int GL_VIRTUAL_PAGE_SIZE_Y_ARB = (int) 37270;
     public static final int GL_VIRTUAL_PAGE_SIZE_Z_ARB = (int) 37271;
 
-    public static void glTexPageCommitmentARB(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            boolean commit) {
-        org.lwjgl.opengl.ARBSparseTexture.glTexPageCommitmentARB(
-                target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
+    public static void glTexPageCommitmentARB(int target, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, boolean commit) {
+        org.lwjgl.opengl.ARBSparseTexture
+                .glTexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
     }
 }

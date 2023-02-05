@@ -1,41 +1,24 @@
 /*
- * Copyright (c) 2002-2012 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2012 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.opengl;
 
 import org.lwjglx.Sys;
 
 /**
- * A highly accurate sync method that continually adapts to the system
- * it runs on to provide reliable results.
+ * A highly accurate sync method that continually adapts to the system it runs on to provide reliable results.
  *
  * @author Riven
  * @author kappaOne
@@ -57,8 +40,7 @@ class Sync {
     private static RunningAvg yieldDurations = new RunningAvg(10);
 
     /**
-     * An accurate sync method that will attempt to run at a constant frame rate.
-     * It should be called once every frame.
+     * An accurate sync method that will attempt to run at a constant frame rate. It should be called once every frame.
      *
      * @param fps - the desired frame rate, in frames per second
      */
@@ -90,8 +72,8 @@ class Sync {
     }
 
     /**
-     * This method will initialise the sync method by setting initial
-     * values for sleepDurations/yieldDurations and nextFrame.
+     * This method will initialise the sync method by setting initial values for sleepDurations/yieldDurations and
+     * nextFrame.
      *
      * If running on windows it will start the sleep timer fix.
      */
@@ -113,8 +95,7 @@ class Sync {
             Thread timerAccuracyThread = new Thread(() -> {
                 try {
                     Thread.sleep(Long.MAX_VALUE);
-                } catch (Exception e) {
-                }
+                } catch (Exception e) {}
             });
 
             timerAccuracyThread.setName("LWJGL Timer");
@@ -133,6 +114,7 @@ class Sync {
     }
 
     private static class RunningAvg {
+
         private final long[] slots;
         private int offset;
 

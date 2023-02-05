@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIDrawBuffers {
+
     public static final int GL_DRAW_BUFFER0_ATI = (int) 34853;
     public static final int GL_DRAW_BUFFER10_ATI = (int) 34863;
     public static final int GL_DRAW_BUFFER11_ATI = (int) 34864;

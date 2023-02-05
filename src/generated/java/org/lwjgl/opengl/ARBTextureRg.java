@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBTextureRg {
+
     public static final int GL_R16 = (int) 33322;
     public static final int GL_R16F = (int) 33325;
     public static final int GL_R16I = (int) 33331;

@@ -1,6 +1,7 @@
 package org.lwjgl.openal;
 
 public class Util {
+
     public static void checkALCError(org.lwjgl.openal.ALCdevice arg0) {
         throw new UnsupportedOperationException();
     }

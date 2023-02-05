@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBGeometryShader4 {
+
     public static final int GL_FRAMEBUFFER_ATTACHMENT_LAYERED_ARB = (int) 36263;
     public static final int GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER_ARB = (int) 36052;
     public static final int GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB = (int) 36265;

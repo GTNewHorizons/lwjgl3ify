@@ -1,3 +1,4 @@
 package org.lwjgl.opengl;
 
-public interface PixelFormatLWJGL {}
+public interface PixelFormatLWJGL {
+}

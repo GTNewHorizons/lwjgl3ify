@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBGpuShaderFp64 {
+
     public static final int GL_DOUBLE_MAT2 = (int) 36678;
     public static final int GL_DOUBLE_MAT2x3 = (int) 36681;
     public static final int GL_DOUBLE_MAT2x4 = (int) 36682;

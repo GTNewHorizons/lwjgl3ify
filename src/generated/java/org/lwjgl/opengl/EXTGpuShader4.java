@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTGpuShader4 {
+
     public static final int GL_INT_SAMPLER_1D_ARRAY_EXT = (int) 36302;
     public static final int GL_INT_SAMPLER_1D_EXT = (int) 36297;
     public static final int GL_INT_SAMPLER_2D_ARRAY_EXT = (int) 36303;

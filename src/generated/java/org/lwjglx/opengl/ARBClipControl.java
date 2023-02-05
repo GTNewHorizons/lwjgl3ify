@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBClipControl {
+
     public static final int GL_CLIP_DEPTH_MODE = (int) 37725;
     public static final int GL_CLIP_ORIGIN = (int) 37724;
     public static final int GL_LOWER_LEFT = (int) 36001;

@@ -1,6 +1,7 @@
 package org.lwjgl.input;
 
 public class Cursor {
+
     public static final int CURSOR_8_BIT_ALPHA = (int) 2;
     public static final int CURSOR_ANIMATION = (int) 4;
     public static final int CURSOR_ONE_BIT_TRANSPARENCY = (int) 1;

@@ -1,6 +1,7 @@
 package org.lwjgl.openal;
 
 public class OpenALException extends org.lwjglx.openal.OpenALException {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -19,6 +20,7 @@ public class OpenALException extends org.lwjglx.openal.OpenALException {
 
     /**
      * Constructor for OpenALException.
+     * 
      * @param message
      */
     public OpenALException(String message) {
@@ -27,6 +29,7 @@ public class OpenALException extends org.lwjglx.openal.OpenALException {
 
     /**
      * Constructor for OpenALException.
+     * 
      * @param message
      * @param cause
      */
@@ -36,6 +39,7 @@ public class OpenALException extends org.lwjglx.openal.OpenALException {
 
     /**
      * Constructor for OpenALException.
+     * 
      * @param cause
      */
     public OpenALException(Throwable cause) {

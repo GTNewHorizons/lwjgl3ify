@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL45 {
+
     public static final int GL_CLIP_DEPTH_MODE = (int) 37725;
     public static final int GL_CLIP_ORIGIN = (int) 37724;
     public static final int GL_CONTEXT_LOST = (int) 1287;
@@ -29,39 +30,39 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glBindTextureUnit(unit, texture);
     }
 
-    public static void glBlitNamedFramebuffer(
-            int readFramebuffer,
-            int drawFramebuffer,
-            int srcX0,
-            int srcY0,
-            int srcX1,
-            int srcY1,
-            int dstX0,
-            int dstY0,
-            int dstX1,
-            int dstY1,
-            int mask,
-            int filter) {
+    public static void glBlitNamedFramebuffer(int readFramebuffer, int drawFramebuffer, int srcX0, int srcY0, int srcX1,
+            int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter) {
         org.lwjgl.opengl.GL45.glBlitNamedFramebuffer(
-                readFramebuffer, drawFramebuffer, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+                readFramebuffer,
+                drawFramebuffer,
+                srcX0,
+                srcY0,
+                srcX1,
+                srcY1,
+                dstX0,
+                dstY0,
+                dstX1,
+                dstY1,
+                mask,
+                filter);
     }
 
     public static int glCheckNamedFramebufferStatus(int framebuffer, int target) {
         return org.lwjgl.opengl.GL45.glCheckNamedFramebufferStatus(framebuffer, target);
     }
 
-    public static void glClearNamedBufferData(
-            int buffer, int internalformat, int format, int type, java.nio.ByteBuffer data) {
+    public static void glClearNamedBufferData(int buffer, int internalformat, int format, int type,
+            java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL45.glClearNamedBufferData(buffer, internalformat, format, type, data);
     }
 
-    public static void glClearNamedBufferSubData(
-            int buffer, int internalformat, long offset, long size, int format, int type, java.nio.ByteBuffer data) {
+    public static void glClearNamedBufferSubData(int buffer, int internalformat, long offset, long size, int format,
+            int type, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL45.glClearNamedBufferSubData(buffer, internalformat, offset, size, format, type, data);
     }
 
-    public static void glClearNamedFramebuffer(
-            int framebuffer, int buffer, int drawbuffer, java.nio.FloatBuffer value) {
+    public static void glClearNamedFramebuffer(int framebuffer, int buffer, int drawbuffer,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL45.glClearNamedFramebufferfv(framebuffer, buffer, drawbuffer, value);
     }
 
@@ -77,72 +78,61 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glClipControl(origin, depth);
     }
 
-    public static void glCompressedTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int data_imageSize, long data_buffer_offset) {
+    public static void glCompressedTextureSubImage1D(int texture, int level, int xoffset, int width, int format,
+            int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL45.glCompressedTextureSubImage1D(
-                texture, level, xoffset, width, format, data_imageSize, data_buffer_offset);
+                texture,
+                level,
+                xoffset,
+                width,
+                format,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, java.nio.ByteBuffer data) {
+    public static void glCompressedTextureSubImage1D(int texture, int level, int xoffset, int width, int format,
+            java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL45.glCompressedTextureSubImage1D(texture, level, xoffset, width, format, data);
     }
 
-    public static void glCompressedTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width,
+            int height, int format, int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL45.glCompressedTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, data_imageSize, data_buffer_offset);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                width,
+                height,
+                format,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            java.nio.ByteBuffer data) {
-        org.lwjgl.opengl.GL45.glCompressedTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, data);
+    public static void glCompressedTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width,
+            int height, int format, java.nio.ByteBuffer data) {
+        org.lwjgl.opengl.GL45
+                .glCompressedTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, data);
     }
 
-    public static void glCompressedTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, int format, int imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL45.glCompressedTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data_buffer_offset);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int imageSize,
-            java.nio.ByteBuffer data) {
+    public static void glCompressedTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, int format, int imageSize, java.nio.ByteBuffer data) {
 
         org.lwjgl.opengl.GL45.glCompressedTextureSubImage3D(
                 texture,
@@ -158,8 +148,8 @@ public class GL45 {
                 org.lwjglx.MemoryUtil.getAddress(data));
     }
 
-    public static void glCopyNamedBufferSubData(
-            int readBuffer, int writeBuffer, long readOffset, long writeOffset, long size) {
+    public static void glCopyNamedBufferSubData(int readBuffer, int writeBuffer, long readOffset, long writeOffset,
+            long size) {
         org.lwjgl.opengl.GL45.glCopyNamedBufferSubData(readBuffer, writeBuffer, readOffset, writeOffset, size);
     }
 
@@ -167,13 +157,13 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glCopyTextureSubImage1D(texture, level, xoffset, x, y, width);
     }
 
-    public static void glCopyTextureSubImage2D(
-            int texture, int level, int xoffset, int yoffset, int x, int y, int width, int height) {
+    public static void glCopyTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int x, int y,
+            int width, int height) {
         org.lwjgl.opengl.GL45.glCopyTextureSubImage2D(texture, level, xoffset, yoffset, x, y, width, height);
     }
 
-    public static void glCopyTextureSubImage3D(
-            int texture, int level, int xoffset, int yoffset, int zoffset, int x, int y, int width, int height) {
+    public static void glCopyTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int x,
+            int y, int width, int height) {
         org.lwjgl.opengl.GL45.glCopyTextureSubImage3D(texture, level, xoffset, yoffset, zoffset, x, y, width, height);
     }
 
@@ -265,8 +255,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glGenerateTextureMipmap(texture);
     }
 
-    public static void glGetCompressedTextureImage(
-            int texture, int level, int pixels_bufSize, long pixels_buffer_offset) {
+    public static void glGetCompressedTextureImage(int texture, int level, int pixels_bufSize,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureImage(texture, level, pixels_bufSize, pixels_buffer_offset);
     }
 
@@ -274,89 +264,89 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glGetCompressedTextureImage(texture, level, pixels);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int pixels_bufSize,
-            long pixels_buffer_offset) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, int pixels_bufSize, long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels_bufSize, pixels_buffer_offset);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels_bufSize,
+                pixels_buffer_offset);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            java.nio.ByteBuffer pixels) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            java.nio.DoubleBuffer pixels) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, java.nio.DoubleBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            java.nio.FloatBuffer pixels) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            java.nio.IntBuffer pixels) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels);
     }
 
-    public static void glGetCompressedTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            java.nio.ShortBuffer pixels) {
+    public static void glGetCompressedTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetCompressedTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                pixels);
     }
 
     public static int glGetGraphicsResetStatus() {
@@ -399,8 +389,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glGetNamedBufferSubData(buffer, offset, data);
     }
 
-    public static void glGetNamedFramebufferAttachmentParameter(
-            int framebuffer, int attachment, int pname, java.nio.IntBuffer params) {
+    public static void glGetNamedFramebufferAttachmentParameter(int framebuffer, int attachment, int pname,
+            java.nio.IntBuffer params) {
         org.lwjgl.opengl.GL45.glGetNamedFramebufferAttachmentParameteriv(framebuffer, attachment, pname, params);
     }
 
@@ -412,8 +402,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glGetNamedRenderbufferParameteriv(renderbuffer, pname, params);
     }
 
-    public static void glGetTextureImage(
-            int texture, int level, int format, int type, int pixels_bufSize, long pixels_buffer_offset) {
+    public static void glGetTextureImage(int texture, int level, int format, int type, int pixels_bufSize,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glGetTextureImage(texture, level, format, type, pixels_bufSize, pixels_buffer_offset);
     }
 
@@ -485,19 +475,8 @@ public class GL45 {
         return org.lwjgl.opengl.GL45.glGetTextureParameteri(texture, pname);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            int pixels_bufSize,
-            long pixels_buffer_offset) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, int pixels_bufSize, long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
                 texture,
                 level,
@@ -513,84 +492,84 @@ public class GL45 {
                 pixels_buffer_offset);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ByteBuffer pixels) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.DoubleBuffer pixels) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.DoubleBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.FloatBuffer pixels) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.IntBuffer pixels) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
-    public static void glGetTextureSubImage(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ShortBuffer pixels) {
+    public static void glGetTextureSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL45.glGetTextureSubImage(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
     public static void glGetTransformFeedback(int xfb, int pname, int index, java.nio.IntBuffer param) {
@@ -649,13 +628,13 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glInvalidateNamedFramebufferData(framebuffer, attachments);
     }
 
-    public static void glInvalidateNamedFramebufferSubData(
-            int framebuffer, java.nio.IntBuffer attachments, int x, int y, int width, int height) {
+    public static void glInvalidateNamedFramebufferSubData(int framebuffer, java.nio.IntBuffer attachments, int x,
+            int y, int width, int height) {
         org.lwjgl.opengl.GL45.glInvalidateNamedFramebufferSubData(framebuffer, attachments, x, y, width, height);
     }
 
-    public static java.nio.ByteBuffer glMapNamedBuffer(
-            int buffer, int access, long length, java.nio.ByteBuffer old_buffer) {
+    public static java.nio.ByteBuffer glMapNamedBuffer(int buffer, int access, long length,
+            java.nio.ByteBuffer old_buffer) {
         return org.lwjgl.opengl.GL45.glMapNamedBuffer(buffer, access, length, old_buffer);
     }
 
@@ -663,8 +642,8 @@ public class GL45 {
         return org.lwjgl.opengl.GL45.glMapNamedBuffer(buffer, access, old_buffer);
     }
 
-    public static java.nio.ByteBuffer glMapNamedBufferRange(
-            int buffer, long offset, long length, int access, java.nio.ByteBuffer old_buffer) {
+    public static java.nio.ByteBuffer glMapNamedBufferRange(int buffer, long offset, long length, int access,
+            java.nio.ByteBuffer old_buffer) {
         return org.lwjgl.opengl.GL45.glMapNamedBufferRange(buffer, offset, length, access, old_buffer);
     }
 
@@ -756,8 +735,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glNamedFramebufferReadBuffer(framebuffer, mode);
     }
 
-    public static void glNamedFramebufferRenderbuffer(
-            int framebuffer, int attachment, int renderbuffertarget, int renderbuffer) {
+    public static void glNamedFramebufferRenderbuffer(int framebuffer, int attachment, int renderbuffertarget,
+            int renderbuffer) {
         org.lwjgl.opengl.GL45.glNamedFramebufferRenderbuffer(framebuffer, attachment, renderbuffertarget, renderbuffer);
     }
 
@@ -765,8 +744,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glNamedFramebufferTexture(framebuffer, attachment, texture, level);
     }
 
-    public static void glNamedFramebufferTextureLayer(
-            int framebuffer, int attachment, int texture, int level, int layer) {
+    public static void glNamedFramebufferTextureLayer(int framebuffer, int attachment, int texture, int level,
+            int layer) {
         org.lwjgl.opengl.GL45.glNamedFramebufferTextureLayer(framebuffer, attachment, texture, level, layer);
     }
 
@@ -774,34 +753,34 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glNamedRenderbufferStorage(renderbuffer, internalformat, width, height);
     }
 
-    public static void glNamedRenderbufferStorageMultisample(
-            int renderbuffer, int samples, int internalformat, int width, int height) {
-        org.lwjgl.opengl.GL45.glNamedRenderbufferStorageMultisample(
-                renderbuffer, samples, internalformat, width, height);
+    public static void glNamedRenderbufferStorageMultisample(int renderbuffer, int samples, int internalformat,
+            int width, int height) {
+        org.lwjgl.opengl.GL45
+                .glNamedRenderbufferStorageMultisample(renderbuffer, samples, internalformat, width, height);
     }
 
-    public static void glReadnPixels(
-            int x, int y, int width, int height, int format, int type, int pixels_bufSize, long pixels_buffer_offset) {
+    public static void glReadnPixels(int x, int y, int width, int height, int format, int type, int pixels_bufSize,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glReadnPixels(x, y, width, height, format, type, pixels_bufSize, pixels_buffer_offset);
     }
 
-    public static void glReadnPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.ByteBuffer pixels) {
+    public static void glReadnPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL45.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.FloatBuffer pixels) {
+    public static void glReadnPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL45.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.IntBuffer pixels) {
+    public static void glReadnPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL45.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadnPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.ShortBuffer pixels) {
+    public static void glReadnPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL45.glReadnPixels(x, y, width, height, format, type, pixels);
     }
 
@@ -849,237 +828,197 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glTextureStorage2D(texture, levels, internalformat, width, height);
     }
 
-    public static void glTextureStorage2DMultisample(
-            int texture, int samples, int internalformat, int width, int height, boolean fixedsamplelocations) {
-        org.lwjgl.opengl.GL45.glTextureStorage2DMultisample(
-                texture, samples, internalformat, width, height, fixedsamplelocations);
+    public static void glTextureStorage2DMultisample(int texture, int samples, int internalformat, int width,
+            int height, boolean fixedsamplelocations) {
+        org.lwjgl.opengl.GL45
+                .glTextureStorage2DMultisample(texture, samples, internalformat, width, height, fixedsamplelocations);
     }
 
-    public static void glTextureStorage3D(
-            int texture, int levels, int internalformat, int width, int height, int depth) {
+    public static void glTextureStorage3D(int texture, int levels, int internalformat, int width, int height,
+            int depth) {
         org.lwjgl.opengl.GL45.glTextureStorage3D(texture, levels, internalformat, width, height, depth);
     }
 
-    public static void glTextureStorage3DMultisample(
-            int texture,
-            int samples,
-            int internalformat,
-            int width,
-            int height,
-            int depth,
-            boolean fixedsamplelocations) {
+    public static void glTextureStorage3DMultisample(int texture, int samples, int internalformat, int width,
+            int height, int depth, boolean fixedsamplelocations) {
         org.lwjgl.opengl.GL45.glTextureStorage3DMultisample(
-                texture, samples, internalformat, width, height, depth, fixedsamplelocations);
+                texture,
+                samples,
+                internalformat,
+                width,
+                height,
+                depth,
+                fixedsamplelocations);
     }
 
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, long pixels_buffer_offset) {
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels_buffer_offset);
     }
 
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, java.nio.ByteBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, java.nio.DoubleBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, java.nio.FloatBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, java.nio.IntBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTextureSubImage1D(
-            int texture, int level, int xoffset, int width, int format, int type, java.nio.ShortBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
-            long pixels_buffer_offset) {
-        org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels_buffer_offset);
-    }
-
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
             java.nio.ByteBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
             java.nio.DoubleBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
             java.nio.FloatBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
             java.nio.IntBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTextureSubImage2D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTextureSubImage1D(int texture, int level, int xoffset, int width, int format, int type,
             java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage1D(texture, level, xoffset, width, format, type, pixels);
+    }
+
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glTextureSubImage2D(
-                texture, level, xoffset, yoffset, width, height, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                width,
+                height,
+                format,
+                type,
+                pixels_buffer_offset);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            long pixels_buffer_offset) {
-        org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels_buffer_offset);
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.GL45
+                .glTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ByteBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.GL45
+                .glTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.DoubleBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.GL45
+                .glTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.FloatBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.GL45
+                .glTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.IntBuffer pixels) {
-        org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+    public static void glTextureSubImage2D(int texture, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.GL45
+                .glTextureSubImage2D(texture, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTextureSubImage3D(
-            int texture,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int type,
-            java.nio.ShortBuffer pixels) {
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, long pixels_buffer_offset) {
         org.lwjgl.opengl.GL45.glTextureSubImage3D(
-                texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels_buffer_offset);
+    }
+
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ByteBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage3D(
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
+    }
+
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage3D(
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
+    }
+
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage3D(
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
+    }
+
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage3D(
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
+    }
+
+    public static void glTextureSubImage3D(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
+            int height, int depth, int format, int type, java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.GL45.glTextureSubImage3D(
+                texture,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                type,
+                pixels);
     }
 
     public static void glTransformFeedbackBufferBase(int xfb, int index, int buffer) {
@@ -1098,8 +1037,8 @@ public class GL45 {
         org.lwjgl.opengl.GL45.glVertexArrayAttribBinding(vaobj, attribindex, bindingindex);
     }
 
-    public static void glVertexArrayAttribFormat(
-            int vaobj, int attribindex, int size, int type, boolean normalized, int relativeoffset) {
+    public static void glVertexArrayAttribFormat(int vaobj, int attribindex, int size, int type, boolean normalized,
+            int relativeoffset) {
         org.lwjgl.opengl.GL45.glVertexArrayAttribFormat(vaobj, attribindex, size, type, normalized, relativeoffset);
     }
 

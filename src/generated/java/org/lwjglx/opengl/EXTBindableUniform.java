@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTBindableUniform {
+
     public static final int GL_MAX_BINDABLE_UNIFORM_SIZE_EXT = (int) 36333;
     public static final int GL_MAX_FRAGMENT_BINDABLE_UNIFORMS_EXT = (int) 36323;
     public static final int GL_MAX_GEOMETRY_BINDABLE_UNIFORMS_EXT = (int) 36324;

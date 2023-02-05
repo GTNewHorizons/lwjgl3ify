@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public interface WritableColor {
+
     public abstract void readABGR(java.nio.ByteBuffer arg0);
 
     public abstract void readARGB(java.nio.ByteBuffer arg0);

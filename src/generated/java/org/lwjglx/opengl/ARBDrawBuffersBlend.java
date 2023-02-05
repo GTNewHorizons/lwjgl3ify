@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBDrawBuffersBlend {
+
     public static void glBlendEquationSeparateiARB(int buf, int modeRGB, int modeAlpha) {
         org.lwjgl.opengl.ARBDrawBuffersBlend.glBlendEquationSeparateiARB(buf, modeRGB, modeAlpha);
     }

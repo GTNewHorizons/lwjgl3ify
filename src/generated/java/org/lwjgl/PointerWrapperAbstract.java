@@ -1,6 +1,7 @@
 package org.lwjgl;
 
 public abstract class PointerWrapperAbstract {
+
     public final void checkValid() {
         throw new UnsupportedOperationException();
     }

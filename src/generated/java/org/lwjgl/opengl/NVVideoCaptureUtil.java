@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVVideoCaptureUtil {
+
     public static boolean glBindVideoCaptureDeviceNV(int arg0, long arg1) {
         throw new UnsupportedOperationException();
     }

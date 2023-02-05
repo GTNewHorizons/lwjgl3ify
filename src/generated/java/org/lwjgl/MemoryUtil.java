@@ -1,6 +1,7 @@
 package org.lwjgl;
 
 public class MemoryUtil {
+
     public static java.lang.String decodeASCII(java.nio.ByteBuffer arg0) {
         throw new UnsupportedOperationException();
     }

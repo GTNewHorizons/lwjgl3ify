@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEPackedPixels {
+
     public static final int GL_UNSIGNED_BYTE_2_3_3_REV = (int) 33634;
     public static final int GL_UNSIGNED_BYTE_3_3_2 = (int) 32818;
     public static final int GL_UNSIGNED_INT_10_10_10_2 = (int) 32822;

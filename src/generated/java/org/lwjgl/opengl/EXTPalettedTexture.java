@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTPalettedTexture {
+
     public static final int GL_COLOR_INDEX12_EXT = (int) 32998;
     public static final int GL_COLOR_INDEX16_EXT = (int) 32999;
     public static final int GL_COLOR_INDEX1_EXT = (int) 32994;
@@ -21,8 +22,8 @@ public class EXTPalettedTexture {
         throw new UnsupportedOperationException();
     }
 
-    public static void glColorSubTableEXT(
-            int arg0, int arg1, int arg2, int arg3, int arg4, java.nio.DoubleBuffer arg5) {
+    public static void glColorSubTableEXT(int arg0, int arg1, int arg2, int arg3, int arg4,
+            java.nio.DoubleBuffer arg5) {
         throw new UnsupportedOperationException();
     }
 

@@ -10,6 +10,7 @@ import java.nio.channels.spi.AbstractInterruptibleChannel;
 // ReadableByteChannel impl without locking.
 // In cases where the channel can never be accessed concurrently, this is a significant performance improvement.
 public class FastByteChannel extends AbstractInterruptibleChannel implements ReadableByteChannel {
+
     private final InputStream in;
     private static final int TRANSFER_SIZE = 8192;
     private byte[] buf = new byte[0];

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTSeparateShaderObjects {
+
     public static final int GL_ACTIVE_PROGRAM_EXT = (int) 35725;
 
     public static void glActiveProgramEXT(int program) {

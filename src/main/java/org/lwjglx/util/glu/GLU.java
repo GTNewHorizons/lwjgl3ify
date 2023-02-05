@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util.glu;
 
@@ -36,6 +20,7 @@ import static org.lwjgl.opengl.GL11.*;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+
 import org.lwjglx.opengl.Util;
 import org.lwjglx.util.glu.tessellation.GLUtessellatorImpl;
 
@@ -44,9 +29,11 @@ import org.lwjglx.util.glu.tessellation.GLUtessellatorImpl;
  *
  *
  * Created 23-dec-2003
+ * 
  * @author Erik Duijs
  */
 public class GLU {
+
     static final float PI = (float) Math.PI;
 
     /* Errors: (return value 0 = no error) */
@@ -63,7 +50,7 @@ public class GLU {
     public static final boolean GLU_TRUE = true;
     public static final boolean GLU_FALSE = false;
 
-    /****           Quadric constants               ****/
+    /**** Quadric constants ****/
 
     /* QuadricNormal */
     public static final int GLU_SMOOTH = 100000;
@@ -82,9 +69,9 @@ public class GLU {
     public static final int GLU_INSIDE = 100021;
 
     /* Callback types: */
-    /*      ERROR               = 100103 */
+    /* ERROR = 100103 */
 
-    /****           Tesselation constants           ****/
+    /**** Tesselation constants ****/
     public static final double GLU_TESS_MAX_COORD = 1.0e150;
 
     public static final double TESS_MAX_COORD = 1.0e150;
@@ -102,29 +89,33 @@ public class GLU {
     public static final int GLU_TESS_WINDING_ABS_GEQ_TWO = 100134;
 
     /* TessCallback */
-    public static final int GLU_TESS_BEGIN = 100100; /* void (CALLBACK*)(GLenum    type)  */
-    public static final int GLU_TESS_VERTEX = 100101; /* void (CALLBACK*)(void      *data) */
-    public static final int GLU_TESS_END = 100102; /* void (CALLBACK*)(void)            */
-    public static final int GLU_TESS_ERROR = 100103; /* void (CALLBACK*)(GLenum    errno) */
-    public static final int GLU_TESS_EDGE_FLAG = 100104; /* void (CALLBACK*)(GLboolean boundaryEdge)  */
-    public static final int GLU_TESS_COMBINE = 100105; /* void (CALLBACK*)(GLdouble  coords[3],
-	                                                            void      *data[4],
-	                                                            GLfloat   weight[4],
-	                                                            void      **dataOut)     */
-    public static final int GLU_TESS_BEGIN_DATA = 100106; /* void (CALLBACK*)(GLenum    type,
-	                                                            void      *polygon_data) */
-    public static final int GLU_TESS_VERTEX_DATA = 100107; /* void (CALLBACK*)(void      *data,
-	                                                            void      *polygon_data) */
-    public static final int GLU_TESS_END_DATA = 100108; /* void (CALLBACK*)(void      *polygon_data) */
-    public static final int GLU_TESS_ERROR_DATA = 100109; /* void (CALLBACK*)(GLenum    errno,
-	                                                            void      *polygon_data) */
-    public static final int GLU_TESS_EDGE_FLAG_DATA = 100110; /* void (CALLBACK*)(GLboolean boundaryEdge,
-	                                                            void      *polygon_data) */
-    public static final int GLU_TESS_COMBINE_DATA = 100111; /* void (CALLBACK*)(GLdouble  coords[3],
-	                                                            void      *data[4],
-	                                                            GLfloat   weight[4],
-	                                                            void      **dataOut,
-	                                                            void      *polygon_data) */
+    public static final int GLU_TESS_BEGIN = 100100; /* void (CALLBACK*)(GLenum type) */
+    public static final int GLU_TESS_VERTEX = 100101; /* void (CALLBACK*)(void *data) */
+    public static final int GLU_TESS_END = 100102; /* void (CALLBACK*)(void) */
+    public static final int GLU_TESS_ERROR = 100103; /* void (CALLBACK*)(GLenum errno) */
+    public static final int GLU_TESS_EDGE_FLAG = 100104; /* void (CALLBACK*)(GLboolean boundaryEdge) */
+    public static final int GLU_TESS_COMBINE = 100105; /*
+                                                        * void (CALLBACK*)(GLdouble coords[3], void *data[4], GLfloat
+                                                        * weight[4], void **dataOut)
+                                                        */
+    public static final int GLU_TESS_BEGIN_DATA = 100106; /*
+                                                           * void (CALLBACK*)(GLenum type, void *polygon_data)
+                                                           */
+    public static final int GLU_TESS_VERTEX_DATA = 100107; /*
+                                                            * void (CALLBACK*)(void *data, void *polygon_data)
+                                                            */
+    public static final int GLU_TESS_END_DATA = 100108; /* void (CALLBACK*)(void *polygon_data) */
+    public static final int GLU_TESS_ERROR_DATA = 100109; /*
+                                                           * void (CALLBACK*)(GLenum errno, void *polygon_data)
+                                                           */
+    public static final int GLU_TESS_EDGE_FLAG_DATA = 100110; /*
+                                                               * void (CALLBACK*)(GLboolean boundaryEdge, void
+                                                               * *polygon_data)
+                                                               */
+    public static final int GLU_TESS_COMBINE_DATA = 100111; /*
+                                                             * void (CALLBACK*)(GLdouble coords[3], void *data[4],
+                                                             * GLfloat weight[4], void **dataOut, void *polygon_data)
+                                                             */
 
     /* TessError */
     public static final int GLU_TESS_ERROR1 = 100151;
@@ -143,7 +134,7 @@ public class GLU {
     public static final int GLU_TESS_COORD_TOO_LARGE = GLU_TESS_ERROR5;
     public static final int GLU_TESS_NEED_COMBINE_CALLBACK = GLU_TESS_ERROR6;
 
-    /****           NURBS constants                 ****/
+    /**** NURBS constants ****/
 
     /* NurbsProperty */
     public static final int GLU_AUTO_LOAD_MATRIX = 100200;
@@ -166,12 +157,12 @@ public class GLU {
     public static final int GLU_MAP1_TRIM_3 = 100211;
 
     /* NurbsDisplay */
-    /*      FILL                = 100012 */
+    /* FILL = 100012 */
     public static final int GLU_OUTLINE_POLYGON = 100240;
     public static final int GLU_OUTLINE_PATCH = 100241;
 
     /* NurbsCallback */
-    /*      ERROR               = 100103 */
+    /* ERROR = 100103 */
 
     /* NurbsErrors */
     public static final int GLU_NURBS_ERROR1 = 100251;
@@ -228,6 +219,7 @@ public class GLU {
 
     /**
      * Method gluLookAt
+     * 
      * @param eyex
      * @param eyey
      * @param eyez
@@ -238,22 +230,15 @@ public class GLU {
      * @param upy
      * @param upz
      */
-    public static void gluLookAt(
-            float eyex,
-            float eyey,
-            float eyez,
-            float centerx,
-            float centery,
-            float centerz,
-            float upx,
-            float upy,
-            float upz) {
+    public static void gluLookAt(float eyex, float eyey, float eyez, float centerx, float centery, float centerz,
+            float upx, float upy, float upz) {
 
         Project.gluLookAt(eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz);
     }
 
     /**
      * Method gluOrtho2D
+     * 
      * @param left
      * @param right
      * @param bottom
@@ -266,6 +251,7 @@ public class GLU {
 
     /**
      * Method gluPerspective
+     * 
      * @param fovy
      * @param aspect
      * @param zNear
@@ -278,6 +264,7 @@ public class GLU {
 
     /**
      * Method gluProject
+     * 
      * @param objx
      * @param objy
      * @param objz
@@ -286,19 +273,14 @@ public class GLU {
      * @param viewport
      * @param win_pos
      */
-    public static boolean gluProject(
-            float objx,
-            float objy,
-            float objz,
-            FloatBuffer modelMatrix,
-            FloatBuffer projMatrix,
-            IntBuffer viewport,
-            FloatBuffer win_pos) {
+    public static boolean gluProject(float objx, float objy, float objz, FloatBuffer modelMatrix,
+            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer win_pos) {
         return Project.gluProject(objx, objy, objz, modelMatrix, projMatrix, viewport, win_pos);
     }
 
     /**
      * Method gluUnproject
+     * 
      * @param winx
      * @param winy
      * @param winz
@@ -307,19 +289,14 @@ public class GLU {
      * @param viewport
      * @param obj_pos
      */
-    public static boolean gluUnProject(
-            float winx,
-            float winy,
-            float winz,
-            FloatBuffer modelMatrix,
-            FloatBuffer projMatrix,
-            IntBuffer viewport,
-            FloatBuffer obj_pos) {
+    public static boolean gluUnProject(float winx, float winy, float winz, FloatBuffer modelMatrix,
+            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer obj_pos) {
         return Project.gluUnProject(winx, winy, winz, modelMatrix, projMatrix, viewport, obj_pos);
     }
 
     /**
      * Method gluPickMatrix
+     * 
      * @param x
      * @param y
      * @param width
@@ -333,6 +310,7 @@ public class GLU {
 
     /**
      * Method gluGetString.
+     * 
      * @param name
      * @return String
      */
@@ -342,6 +320,7 @@ public class GLU {
 
     /**
      * Method gluCheckExtension.
+     * 
      * @param extName
      * @param extString
      * @return boolean
@@ -352,6 +331,7 @@ public class GLU {
 
     /**
      * Method gluBuild2DMipmaps
+     * 
      * @param target
      * @param components
      * @param width
@@ -361,14 +341,15 @@ public class GLU {
      * @param data
      * @return int
      */
-    public static int gluBuild2DMipmaps(
-            int target, int components, int width, int height, int format, int type, ByteBuffer data) {
+    public static int gluBuild2DMipmaps(int target, int components, int width, int height, int format, int type,
+            ByteBuffer data) {
 
         return MipMap.gluBuild2DMipmaps(target, components, width, height, format, type, data);
     }
 
     /**
      * Method gluScaleImage.
+     * 
      * @param format
      * @param widthIn
      * @param heightIn
@@ -380,16 +361,8 @@ public class GLU {
      * @param dataOut
      * @return int
      */
-    public static int gluScaleImage(
-            int format,
-            int widthIn,
-            int heightIn,
-            int typeIn,
-            ByteBuffer dataIn,
-            int widthOut,
-            int heightOut,
-            int typeOut,
-            ByteBuffer dataOut) {
+    public static int gluScaleImage(int format, int widthIn, int heightIn, int typeIn, ByteBuffer dataIn, int widthOut,
+            int heightOut, int typeOut, ByteBuffer dataOut) {
 
         return MipMap.gluScaleImage(format, widthIn, heightIn, typeIn, dataIn, widthOut, heightOut, typeOut, dataOut);
     }

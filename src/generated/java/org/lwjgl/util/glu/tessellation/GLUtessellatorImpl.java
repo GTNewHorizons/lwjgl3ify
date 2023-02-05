@@ -1,6 +1,7 @@
 package org.lwjgl.util.glu.tessellation;
 
 public class GLUtessellatorImpl {
+
     public static final int TESS_MAX_CACHE = (int) 100;
 
     public void gluBeginPolygon() {

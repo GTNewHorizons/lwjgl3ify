@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBProgramInterfaceQuery {
+
     public static final int GL_ACTIVE_RESOURCES = (int) 37621;
     public static final int GL_ACTIVE_VARIABLES = (int) 37637;
     public static final int GL_ARRAY_SIZE = (int) 37627;
@@ -69,25 +70,25 @@ public class ARBProgramInterfaceQuery {
         return org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocation(program, programInterface, name);
     }
 
-    public static int glGetProgramResourceLocationIndex(
-            int program, int programInterface, java.lang.CharSequence name) {
-        return org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocationIndex(
-                program, programInterface, name);
+    public static int glGetProgramResourceLocationIndex(int program, int programInterface,
+            java.lang.CharSequence name) {
+        return org.lwjgl.opengl.ARBProgramInterfaceQuery
+                .glGetProgramResourceLocationIndex(program, programInterface, name);
     }
 
     public static int glGetProgramResourceLocationIndex(int program, int programInterface, java.nio.ByteBuffer name) {
-        return org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceLocationIndex(
-                program, programInterface, name);
+        return org.lwjgl.opengl.ARBProgramInterfaceQuery
+                .glGetProgramResourceLocationIndex(program, programInterface, name);
     }
 
     public static java.lang.String glGetProgramResourceName(int program, int programInterface, int index, int bufSize) {
-        return org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceName(
-                program, programInterface, index, bufSize);
+        return org.lwjgl.opengl.ARBProgramInterfaceQuery
+                .glGetProgramResourceName(program, programInterface, index, bufSize);
     }
 
-    public static void glGetProgramResourceName(
-            int program, int programInterface, int index, java.nio.IntBuffer length, java.nio.ByteBuffer name) {
-        org.lwjgl.opengl.ARBProgramInterfaceQuery.glGetProgramResourceName(
-                program, programInterface, index, length, name);
+    public static void glGetProgramResourceName(int program, int programInterface, int index, java.nio.IntBuffer length,
+            java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.ARBProgramInterfaceQuery
+                .glGetProgramResourceName(program, programInterface, index, length, name);
     }
 }

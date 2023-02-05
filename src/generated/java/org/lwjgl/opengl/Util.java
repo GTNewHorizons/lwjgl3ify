@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class Util {
+
     public static void checkGLError() {
         throw new UnsupportedOperationException();
     }

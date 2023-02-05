@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVHalfFloat {
+
     public static final int GL_HALF_FLOAT_NV = (int) 5131;
 
     public static void glColor3hNV(short red, short green, short blue) {

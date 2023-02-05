@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public class WaveData {
+
     public final java.nio.ByteBuffer data = null;
     public final int format = 0;
     public final int samplerate = 0;

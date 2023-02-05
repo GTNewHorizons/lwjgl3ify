@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class GLContext {
+
     public static org.lwjgl.opengl.ContextCapabilities getCapabilities() {
         throw new UnsupportedOperationException();
     }

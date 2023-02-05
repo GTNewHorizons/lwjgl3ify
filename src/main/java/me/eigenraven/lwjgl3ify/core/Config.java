@@ -4,47 +4,37 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
 import me.eigenraven.lwjgl3ify.Tags;
+
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config {
+
     public static final String[] DEFAULT_EXTENSIBLE_ENUMS = new String[] {
-        // From EnumHelper
-        "net.minecraft.item.EnumAction",
-        "net.minecraft.item.ItemArmor$ArmorMaterial",
-        "net.minecraft.entity.item.EntityPainting$EnumArt",
-        "net.minecraft.entity.EnumCreatureAttribute",
-        "net.minecraft.entity.EnumCreatureType",
-        "net.minecraft.world.gen.structure.StructureStrongholdPieces$Stronghold$Door",
-        "net.minecraft.enchantment.EnumEnchantmentType",
-        "net.minecraft.entity.Entity$EnumEntitySize",
-        "net.minecraft.block.BlockPressurePlate$Sensitivity",
-        "net.minecraft.util.MovingObjectPosition$MovingObjectType",
-        "net.minecraft.world.EnumSkyBlock",
-        "net.minecraft.entity.player.EntityPlayer$EnumStatus",
-        "net.minecraft.item.Item$ToolMaterial",
-        "net.minecraft.item.EnumRarity",
-        //
-        "net.minecraftforge.event.terraingen.PopulateChunkEvent$Populate$EventType",
-        "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
-        "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
-        "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
-        // From GTNH crashes
-        "vswe.stevesfactory.Localization",
-        "vswe.stevesfactory.blocks.ClusterMethodRegistration",
-        "vswe.stevesfactory.blocks.ConnectionBlockType",
-        "vswe.stevesfactory.components.ComponentType",
-        "vswe.stevesfactory.components.ConnectionSet",
-        "vswe.stevesfactory.components.ConnectionOption",
-        "ic2.core.init.InternalName",
-        "gregtech.api.enums.Element",
-        "gregtech.api.enums.OrePrefixes",
-        "net.minecraft.client.audio.MusicTicker$MusicType",
-        "org.bukkit.Material",
-        "buildcraft.api.transport.IPipeTile.PipeType",
-        "thaumcraft.common.entities.golems.EnumGolemType",
-    };
+            // From EnumHelper
+            "net.minecraft.item.EnumAction", "net.minecraft.item.ItemArmor$ArmorMaterial",
+            "net.minecraft.entity.item.EntityPainting$EnumArt", "net.minecraft.entity.EnumCreatureAttribute",
+            "net.minecraft.entity.EnumCreatureType",
+            "net.minecraft.world.gen.structure.StructureStrongholdPieces$Stronghold$Door",
+            "net.minecraft.enchantment.EnumEnchantmentType", "net.minecraft.entity.Entity$EnumEntitySize",
+            "net.minecraft.block.BlockPressurePlate$Sensitivity",
+            "net.minecraft.util.MovingObjectPosition$MovingObjectType", "net.minecraft.world.EnumSkyBlock",
+            "net.minecraft.entity.player.EntityPlayer$EnumStatus", "net.minecraft.item.Item$ToolMaterial",
+            "net.minecraft.item.EnumRarity",
+            //
+            "net.minecraftforge.event.terraingen.PopulateChunkEvent$Populate$EventType",
+            "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
+            "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
+            "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
+            // From GTNH crashes
+            "vswe.stevesfactory.Localization", "vswe.stevesfactory.blocks.ClusterMethodRegistration",
+            "vswe.stevesfactory.blocks.ConnectionBlockType", "vswe.stevesfactory.components.ComponentType",
+            "vswe.stevesfactory.components.ConnectionSet", "vswe.stevesfactory.components.ConnectionOption",
+            "ic2.core.init.InternalName", "gregtech.api.enums.Element", "gregtech.api.enums.OrePrefixes",
+            "net.minecraft.client.audio.MusicTicker$MusicType", "org.bukkit.Material",
+            "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType", };
 
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
@@ -94,22 +84,26 @@ public class Config {
     }
 
     public static void reloadConfigObject() {
-        EXTENSIBLE_ENUMS.addAll(Arrays.asList(config.get(
-                        CATEGORY_CORE,
-                        "extensibleEnums",
-                        EXTENSIBLE_ENUMS.toArray(new String[0]),
-                        "Enums to make extensible at runtime")
-                .getStringList()));
-        SHOW_JAVA_VERSION = config.getBoolean(
-                "showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
+        EXTENSIBLE_ENUMS.addAll(
+                Arrays.asList(
+                        config.get(
+                                CATEGORY_CORE,
+                                "extensibleEnums",
+                                EXTENSIBLE_ENUMS.toArray(new String[0]),
+                                "Enums to make extensible at runtime").getStringList()));
+        SHOW_JAVA_VERSION = config
+                .getBoolean("showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
         SHOW_LWJGL_VERSION = config.getBoolean(
-                "showLwjglVersion", CATEGORY_CORE, SHOW_LWJGL_VERSION, "Show lwjgl version in the debug hud");
+                "showLwjglVersion",
+                CATEGORY_CORE,
+                SHOW_LWJGL_VERSION,
+                "Show lwjgl version in the debug hud");
 
-        WINDOW_START_MAXIMIZED =
-                config.getBoolean("maximized", CATEGORY_WINDOW, WINDOW_START_MAXIMIZED, "Start maximized?");
+        WINDOW_START_MAXIMIZED = config
+                .getBoolean("maximized", CATEGORY_WINDOW, WINDOW_START_MAXIMIZED, "Start maximized?");
         WINDOW_START_FOCUSED = config.getBoolean("focused", CATEGORY_WINDOW, WINDOW_START_FOCUSED, "Start focused?");
-        WINDOW_START_ICONIFIED =
-                config.getBoolean("iconified", CATEGORY_WINDOW, WINDOW_START_ICONIFIED, "Start iconified?");
+        WINDOW_START_ICONIFIED = config
+                .getBoolean("iconified", CATEGORY_WINDOW, WINDOW_START_ICONIFIED, "Start iconified?");
         WINDOW_DECORATED = config.getBoolean(
                 "decorated",
                 CATEGORY_WINDOW,
@@ -126,8 +120,8 @@ public class Config {
                 COCOA_FRAME_NAME,
                 "OSX-only - identifier used to save and restore the window position and size");
 
-        INPUT_INVERT_WHEEL = config.getBoolean(
-                "invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
+        INPUT_INVERT_WHEEL = config
+                .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
         INPUT_SCROLL_SPEED = (double) config.getFloat(
                 "scrollSpeedMultiplier",
                 CATEGORY_INPUT,
@@ -142,7 +136,10 @@ public class Config {
                 OPENGL_DEBUG_CONTEXT,
                 "Enable KHR_debug in the OpenGL context for advanced debugging capabilities");
         OPENGL_SRGB_CONTEXT = config.getBoolean(
-                "srgb", CATEGORY_GLCONTEXT, OPENGL_SRGB_CONTEXT, "Make the framebuffer use the sRGB color space");
+                "srgb",
+                CATEGORY_GLCONTEXT,
+                OPENGL_SRGB_CONTEXT,
+                "Make the framebuffer use the sRGB color space");
         OPENGL_DOUBLEBUFFER = config.getBoolean(
                 "doubleBuffer",
                 CATEGORY_GLCONTEXT,

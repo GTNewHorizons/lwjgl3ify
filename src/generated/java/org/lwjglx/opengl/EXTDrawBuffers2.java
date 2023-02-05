@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTDrawBuffers2 {
+
     public static void glColorMaskIndexedEXT(int buf, boolean r, boolean g, boolean b, boolean a) {
         org.lwjgl.opengl.EXTDrawBuffers2.glColorMaskIndexedEXT(buf, r, g, b, a);
     }

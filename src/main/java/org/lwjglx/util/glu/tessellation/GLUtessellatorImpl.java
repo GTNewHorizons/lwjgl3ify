@@ -1,86 +1,46 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /*
- * Portions Copyright (C) 2003-2006 Sun Microsystems, Inc.
- * All rights reserved.
+ * Portions Copyright (C) 2003-2006 Sun Microsystems, Inc. All rights reserved.
  */
 
 /*
- ** License Applicability. Except to the extent portions of this file are
- ** made subject to an alternative license as permitted in the SGI Free
- ** Software License B, Version 1.1 (the "License"), the contents of this
- ** file are subject only to the provisions of the License. You may not use
- ** this file except in compliance with the License. You may obtain a copy
- ** of the License at Silicon Graphics, Inc., attn: Legal Services, 1600
- ** Amphitheatre Parkway, Mountain View, CA 94043-1351, or at:
- **
- ** http://oss.sgi.com/projects/FreeB
- **
- ** Note that, as provided in the License, the Software is distributed on an
- ** "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS
- ** DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND
- ** CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
- ** PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
- **
- ** NOTE:  The Original Code (as defined below) has been licensed to Sun
- ** Microsystems, Inc. ("Sun") under the SGI Free Software License B
- ** (Version 1.1), shown above ("SGI License").   Pursuant to Section
- ** 3.2(3) of the SGI License, Sun is distributing the Covered Code to
- ** you under an alternative license ("Alternative License").  This
- ** Alternative License includes all of the provisions of the SGI License
- ** except that Section 2.2 and 11 are omitted.  Any differences between
- ** the Alternative License and the SGI License are offered solely by Sun
- ** and not by SGI.
- **
- ** Original Code. The Original Code is: OpenGL Sample Implementation,
- ** Version 1.2.1, released January 26, 2000, developed by Silicon Graphics,
- ** Inc. The Original Code is Copyright (c) 1991-2000 Silicon Graphics, Inc.
- ** Copyright in any portions created by third parties is as indicated
- ** elsewhere herein. All Rights Reserved.
- **
- ** Additional Notice Provisions: The application programming interfaces
- ** established by SGI in conjunction with the Original Code are The
- ** OpenGL(R) Graphics System: A Specification (Version 1.2.1), released
- ** April 1, 1999; The OpenGL(R) Graphics System Utility Library (Version
- ** 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
- ** Window System(R) (Version 1.3), released October 19, 1998. This software
- ** was created using the OpenGL(R) version 1.2.1 Sample Implementation
- ** published by SGI, but has not been independently verified as being
- ** compliant with the OpenGL(R) version 1.2.1 Specification.
- **
- ** Author: Eric Veach, July 1994
- ** Java Port: Pepijn Van Eeckhoudt, July 2003
- ** Java Port: Nathan Parker Burg, August 2003
+ ** License Applicability. Except to the extent portions of this file are made subject to an alternative license as
+ * permitted in the SGI Free Software License B, Version 1.1 (the "License"), the contents of this file are subject only
+ * to the provisions of the License. You may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at Silicon Graphics, Inc., attn: Legal Services, 1600 Amphitheatre Parkway, Mountain View, CA
+ * 94043-1351, or at: http://oss.sgi.com/projects/FreeB Note that, as provided in the License, the Software is
+ * distributed on an "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS DISCLAIMED, INCLUDING,
+ * WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A
+ ** PARTICULAR PURPOSE, AND NON-INFRINGEMENT. NOTE: The Original Code (as defined below) has been licensed to Sun
+ ** Microsystems, Inc. ("Sun") under the SGI Free Software License B (Version 1.1), shown above ("SGI License"). Pursuant
+ * to Section 3.2(3) of the SGI License, Sun is distributing the Covered Code to you under an alternative license
+ * ("Alternative License"). This Alternative License includes all of the provisions of the SGI License except that
+ * Section 2.2 and 11 are omitted. Any differences between the Alternative License and the SGI License are offered
+ * solely by Sun and not by SGI. Original Code. The Original Code is: OpenGL Sample Implementation, Version 1.2.1,
+ * released January 26, 2000, developed by Silicon Graphics, Inc. The Original Code is Copyright (c) 1991-2000 Silicon
+ * Graphics, Inc. Copyright in any portions created by third parties is as indicated elsewhere herein. All Rights
+ * Reserved. Additional Notice Provisions: The application programming interfaces established by SGI in conjunction with
+ * the Original Code are The OpenGL(R) Graphics System: A Specification (Version 1.2.1), released April 1, 1999; The
+ * OpenGL(R) Graphics System Utility Library (Version 1.3), released November 4, 1998; and OpenGL(R) Graphics with the X
+ ** Window System(R) (Version 1.3), released October 19, 1998. This software was created using the OpenGL(R) version
+ * 1.2.1 Sample Implementation published by SGI, but has not been independently verified as being compliant with the
+ * OpenGL(R) version 1.2.1 Specification. Author: Eric Veach, July 1994 Java Port: Pepijn Van Eeckhoudt, July 2003 Java
+ * Port: Nathan Parker Burg, August 2003
  */
 package org.lwjglx.util.glu.tessellation;
 
@@ -91,13 +51,15 @@ import org.lwjglx.util.glu.GLUtessellatorCallback;
 import org.lwjglx.util.glu.GLUtessellatorCallbackAdapter;
 
 public class GLUtessellatorImpl implements GLUtessellator {
+
     public static final int TESS_MAX_CACHE = 100;
 
     private int state; /* what begin/end calls have we seen? */
 
     private GLUhalfEdge lastEdge; /* lastEdge->Org is the most recent vertex */
-    GLUmesh mesh; /* stores the input contours, and eventually
-                                   the tessellation itself */
+    GLUmesh mesh; /*
+                   * stores the input contours, and eventually the tessellation itself
+                   */
 
     /*** state needed for projecting onto the sweep plane ***/
     double[] normal = new double[3]; /* user-specified normal (if provided) */
@@ -128,14 +90,14 @@ public class GLUtessellatorImpl implements GLUtessellator {
     int cacheCount; /* number of cached vertices */
     CachedVertex[] cache = new CachedVertex[TESS_MAX_CACHE]; /* the vertex data */
 
-    /*** rendering callbacks that also pass polygon data  ***/
+    /*** rendering callbacks that also pass polygon data ***/
     private Object polygonData; /* client data for current polygon */
 
     private GLUtessellatorCallback callBegin;
     private GLUtessellatorCallback callEdgeFlag;
     private GLUtessellatorCallback callVertex;
     private GLUtessellatorCallback callEnd;
-    //    private GLUtessellatorCallback callMesh;
+    // private GLUtessellatorCallback callMesh;
     private GLUtessellatorCallback callError;
     private GLUtessellatorCallback callCombine;
 
@@ -143,16 +105,16 @@ public class GLUtessellatorImpl implements GLUtessellator {
     private GLUtessellatorCallback callEdgeFlagData;
     private GLUtessellatorCallback callVertexData;
     private GLUtessellatorCallback callEndData;
-    //    private GLUtessellatorCallback callMeshData;
+    // private GLUtessellatorCallback callMeshData;
     private GLUtessellatorCallback callErrorData;
     private GLUtessellatorCallback callCombineData;
 
     private static final double GLU_TESS_DEFAULT_TOLERANCE = 0.0;
-    //    private static final int GLU_TESS_MESH = 100112;	/* void (*)(GLUmesh *mesh)	    */
+    // private static final int GLU_TESS_MESH = 100112; /* void (*)(GLUmesh *mesh) */
     private static GLUtessellatorCallback NULL_CB = new GLUtessellatorCallbackAdapter();
 
-    //    #define MAX_FAST_ALLOC	(MAX(sizeof(EdgePair), \
-    //                 MAX(sizeof(GLUvertex),sizeof(GLUface))))
+    // #define MAX_FAST_ALLOC (MAX(sizeof(EdgePair), \
+    // MAX(sizeof(GLUvertex),sizeof(GLUface))))
 
     public GLUtessellatorImpl() {
         state = TessState.T_DORMANT;
@@ -172,7 +134,7 @@ public class GLUtessellatorImpl implements GLUtessellator {
         callEnd = NULL_CB;
         callError = NULL_CB;
         callCombine = NULL_CB;
-        //        callMesh = NULL_CB;
+        // callMesh = NULL_CB;
 
         callBeginData = NULL_CB;
         callEdgeFlagData = NULL_CB;
@@ -209,8 +171,8 @@ public class GLUtessellatorImpl implements GLUtessellator {
 
     private void gotoState(int newState) {
         while (state != newState) {
-            /* We change the current state one level at a time, to get to
-             * the desired state.
+            /*
+             * We change the current state one level at a time, to get to the desired state.
              */
             if (state < newState) {
                 if (state == TessState.T_DORMANT) {
@@ -253,8 +215,7 @@ public class GLUtessellatorImpl implements GLUtessellator {
                         this.windingRule = windingRule;
                         return;
                     }
-                    default -> {
-                    }
+                    default -> {}
                 }
 
             case GLU_TESS_BOUNDARY_ONLY:
@@ -277,11 +238,10 @@ public class GLUtessellatorImpl implements GLUtessellator {
                 value[value_offset] = relTolerance;
             }
             case GLU_TESS_WINDING_RULE -> {
-                assert (windingRule == GLU_TESS_WINDING_ODD
-                    || windingRule == GLU_TESS_WINDING_NONZERO
-                    || windingRule == GLU_TESS_WINDING_POSITIVE
-                    || windingRule == GLU_TESS_WINDING_NEGATIVE
-                    || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
+                assert (windingRule == GLU_TESS_WINDING_ODD || windingRule == GLU_TESS_WINDING_NONZERO
+                        || windingRule == GLU_TESS_WINDING_POSITIVE
+                        || windingRule == GLU_TESS_WINDING_NEGATIVE
+                        || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
                 value[value_offset] = windingRule;
             }
             case GLU_TESS_BOUNDARY_ONLY -> {
@@ -313,16 +273,18 @@ public class GLUtessellatorImpl implements GLUtessellator {
             }
             case GLU_TESS_EDGE_FLAG -> {
                 callEdgeFlag = aCallback == null ? NULL_CB : aCallback;
-                /* If the client wants boundary edges to be flagged,
-                 * we render everything as separate triangles (no strips or fans).
+                /*
+                 * If the client wants boundary edges to be flagged, we render everything as separate triangles (no
+                 * strips or fans).
                  */
                 flagBoundary = aCallback != null;
                 return;
             }
             case GLU_TESS_EDGE_FLAG_DATA -> {
                 callEdgeFlagData = callBegin = aCallback == null ? NULL_CB : aCallback;
-                /* If the client wants boundary edges to be flagged,
-                 * we render everything as separate triangles (no strips or fans).
+                /*
+                 * If the client wants boundary edges to be flagged, we render everything as separate triangles (no
+                 * strips or fans).
                  */
                 flagBoundary = (aCallback != null);
                 return;
@@ -359,9 +321,9 @@ public class GLUtessellatorImpl implements GLUtessellator {
                 callCombineData = aCallback == null ? NULL_CB : aCallback;
                 return;
             }
-            //            case GLU_TESS_MESH:
-            //                callMesh = aCallback == null ? NULL_CB : aCallback;
-            //                return;
+            // case GLU_TESS_MESH:
+            // callMesh = aCallback == null ? NULL_CB : aCallback;
+            // return;
             default -> {
                 callErrorOrErrorData(GLU_INVALID_ENUM);
                 return;
@@ -380,8 +342,8 @@ public class GLUtessellatorImpl implements GLUtessellator {
             if (e == null) return false;
             if (!Mesh.__gl_meshSplice(e, e.Sym)) return false;
         } else {
-            /* Create a new vertex and edge which immediately follow e
-             * in the ordering around the left face.
+            /*
+             * Create a new vertex and edge which immediately follow e in the ordering around the left face.
              */
             if (Mesh.__gl_meshSplitEdge(e) == null) return false;
             e = e.Lnext;
@@ -393,10 +355,10 @@ public class GLUtessellatorImpl implements GLUtessellator {
         e.Org.coords[1] = coords[1];
         e.Org.coords[2] = coords[2];
 
-        /* The winding of an edge says how the winding number changes as we
-         * cross from the edge''s right face to its left face.  We add the
-         * vertices in such an order that a CCW contour will add +1 to
-         * the winding number of the region inside the contour.
+        /*
+         * The winding of an edge says how the winding number changes as we cross from the edge''s right face to its
+         * left face. We add the vertices in such an order that a CCW contour will add +1 to the winding number of the
+         * region inside the contour.
          */
         e.winding = 1;
         e.Sym.winding = -1;
@@ -500,9 +462,9 @@ public class GLUtessellatorImpl implements GLUtessellator {
         state = TessState.T_IN_CONTOUR;
         lastEdge = null;
         if (cacheCount > 0) {
-            /* Just set a flag so we don't get confused by empty contours
-             * -- these can be generated accidentally with the obsolete
-             * NextContour() interface.
+            /*
+             * Just set a flag so we don't get confused by empty contours -- these can be generated accidentally with
+             * the obsolete NextContour() interface.
              */
             flushCacheOnNextVertex = true;
         }
@@ -521,31 +483,30 @@ public class GLUtessellatorImpl implements GLUtessellator {
             state = TessState.T_DORMANT;
 
             if (this.mesh == null) {
-                if (!flagBoundary /*&& callMesh == NULL_CB*/) {
+                if (!flagBoundary /* && callMesh == NULL_CB */) {
 
-                    /* Try some special code to make the easy cases go quickly
-                     * (eg. convex polygons).  This code does NOT handle multiple contours,
-                     * intersections, edge flags, and of course it does not generate
-                     * an explicit mesh either.
+                    /*
+                     * Try some special code to make the easy cases go quickly (eg. convex polygons). This code does NOT
+                     * handle multiple contours, intersections, edge flags, and of course it does not generate an
+                     * explicit mesh either.
                      */
                     if (Render.__gl_renderCache(this)) {
                         polygonData = null;
                         return;
                     }
                 }
-                if (!flushCache()) throw new RuntimeException(); /* could've used a label*/
+                if (!flushCache()) throw new RuntimeException(); /* could've used a label */
             }
 
-            /* Determine the polygon normal and project vertices onto the plane
-             * of the polygon.
+            /*
+             * Determine the polygon normal and project vertices onto the plane of the polygon.
              */
             Normal.__gl_projectPolygon(this);
 
-            /* __gl_computeInterior( tess ) computes the planar arrangement specified
-             * by the given contours, and further subdivides this arrangement
-             * into regions.  Each region is marked "inside" if it belongs
-             * to the polygon, according to the rule given by windingRule.
-             * Each interior region is guaranteed be monotone.
+            /*
+             * __gl_computeInterior( tess ) computes the planar arrangement specified by the given contours, and further
+             * subdivides this arrangement into regions. Each region is marked "inside" if it belongs to the polygon,
+             * according to the rule given by windingRule. Each interior region is guaranteed be monotone.
              */
             if (!Sweep.__gl_computeInterior(this)) {
                 throw new RuntimeException(); /* could've used a label */
@@ -555,9 +516,9 @@ public class GLUtessellatorImpl implements GLUtessellator {
             if (!fatalError) {
                 boolean rc = true;
 
-                /* If the user wants only the boundary contours, we throw away all edges
-                 * except those which separate the interior from the exterior.
-                 * Otherwise we tessellate all the regions marked "inside".
+                /*
+                 * If the user wants only the boundary contours, we throw away all edges except those which separate the
+                 * interior from the exterior. Otherwise we tessellate all the regions marked "inside".
                  */
                 if (boundaryOnly) {
                     rc = TessMono.__gl_meshSetWindingNumber(mesh, 1, true);
@@ -568,8 +529,7 @@ public class GLUtessellatorImpl implements GLUtessellator {
 
                 Mesh.__gl_meshCheckMesh(mesh);
 
-                if (callBegin != NULL_CB
-                        || callEnd != NULL_CB
+                if (callBegin != NULL_CB || callEnd != NULL_CB
                         || callVertex != NULL_CB
                         || callEdgeFlag != NULL_CB
                         || callBeginData != NULL_CB
@@ -582,20 +542,20 @@ public class GLUtessellatorImpl implements GLUtessellator {
                         Render.__gl_renderMesh(this, mesh); /* output strips and fans */
                     }
                 }
-                //                if (callMesh != NULL_CB) {
+                // if (callMesh != NULL_CB) {
                 //
                 /// * Throw away the exterior faces, so that all faces are interior.
-                //                 * This way the user doesn't have to check the "inside" flag,
-                //                 * and we don't need to even reveal its existence.  It also leaves
-                //                 * the freedom for an implementation to not generate the exterior
-                //                 * faces in the first place.
-                //                 */
-                //                    TessMono.__gl_meshDiscardExterior(mesh);
-                //                    callMesh.mesh(mesh);		/* user wants the mesh itself */
-                //                    mesh = null;
-                //                    polygonData = null;
-                //                    return;
-                //                }
+                // * This way the user doesn't have to check the "inside" flag,
+                // * and we don't need to even reveal its existence. It also leaves
+                // * the freedom for an implementation to not generate the exterior
+                // * faces in the first place.
+                // */
+                // TessMono.__gl_meshDiscardExterior(mesh);
+                // callMesh.mesh(mesh); /* user wants the mesh itself */
+                // mesh = null;
+                // polygonData = null;
+                // return;
+                // }
             }
             Mesh.__gl_meshDeleteMesh(mesh);
             polygonData = null;
@@ -615,7 +575,7 @@ public class GLUtessellatorImpl implements GLUtessellator {
         gluTessBeginContour();
     }
 
-    /*ARGSUSED*/
+    /* ARGSUSED */
     public void gluNextContour(int type) {
         gluTessEndContour();
         gluTessBeginContour();

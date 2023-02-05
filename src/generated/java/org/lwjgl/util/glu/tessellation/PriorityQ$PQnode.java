@@ -1,3 +1,4 @@
 package org.lwjgl.util.glu.tessellation;
 
-public class PriorityQ$PQnode {}
+public class PriorityQ$PQnode {
+}

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIPnTriangles {
+
     public static final int GL_MAX_PN_TRIANGLES_TESSELATION_LEVEL_ATI = (int) 34801;
     public static final int GL_PN_TRIANGLES_ATI = (int) 34800;
     public static final int GL_PN_TRIANGLES_NORMAL_MODE_ATI = (int) 34803;

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBSeparateShaderObjects {
+
     public static final int GL_ACTIVE_PROGRAM = (int) 33369;
     public static final int GL_ALL_SHADER_BITS = (int) -1;
     public static final int GL_FRAGMENT_SHADER_BIT = (int) 2;
@@ -39,8 +40,8 @@ public class ARBSeparateShaderObjects {
         return org.lwjgl.opengl.ARBSeparateShaderObjects.glGetProgramPipelineInfoLog(pipeline, bufSize);
     }
 
-    public static void glGetProgramPipelineInfoLog(
-            int pipeline, java.nio.IntBuffer length, java.nio.ByteBuffer infoLog) {
+    public static void glGetProgramPipelineInfoLog(int pipeline, java.nio.IntBuffer length,
+            java.nio.ByteBuffer infoLog) {
         org.lwjgl.opengl.ARBSeparateShaderObjects.glGetProgramPipelineInfoLog(pipeline, length, infoLog);
     }
 

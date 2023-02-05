@@ -1,6 +1,7 @@
 package org.lwjgl.util.mapped;
 
 public abstract class MappedObject {
+
     public static int SIZEOF = 0;
     public long baseAddress = 0;
     public int view = 0;

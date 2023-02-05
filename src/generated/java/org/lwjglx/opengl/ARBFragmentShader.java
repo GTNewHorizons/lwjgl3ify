@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBFragmentShader {
+
     public static final int GL_FRAGMENT_SHADER_ARB = (int) 35632;
     public static final int GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = (int) 35723;
     public static final int GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB = (int) 35657;

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBBindlessTexture {
+
     public static final int GL_UNSIGNED_INT64_ARB = (int) 5135;
 
     public static long glGetImageHandleARB(int texture, int level, boolean layered, int layer, int format) {

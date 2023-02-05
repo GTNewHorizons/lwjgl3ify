@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVTextureShader {
+
     public static final int GL_CONST_EYE_NV = (int) 34533;
     public static final int GL_CULL_FRAGMENT_NV = (int) 34535;
     public static final int GL_CULL_MODES_NV = (int) 34528;

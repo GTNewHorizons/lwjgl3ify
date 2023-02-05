@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ContextAttribs {
+
     public static final int CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = (int) 2;
     public static final int CONTEXT_CORE_PROFILE_BIT_ARB = (int) 1;
     public static final int CONTEXT_DEBUG_BIT_ARB = (int) 1;

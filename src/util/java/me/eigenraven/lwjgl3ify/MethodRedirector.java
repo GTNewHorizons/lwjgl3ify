@@ -1,14 +1,17 @@
 package me.eigenraven.lwjgl3ify;
 
-import com.google.common.collect.Streams;
 import java.io.PrintWriter;
 import java.util.Arrays;
+
 import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.MethodNode;
 
+import com.google.common.collect.Streams;
+
 public abstract class MethodRedirector {
+
     public final MethodMatcher matcher;
 
     public final String javaClassName;
@@ -25,16 +28,15 @@ public abstract class MethodRedirector {
             access = access + " static";
         }
         this.access = access;
-        this.javaClassName =
-                matcher.oldClassNode.getValue().className.replace('/', '.').replace(".lwjglx.", ".lwjgl.");
+        this.javaClassName = matcher.oldClassNode.getValue().className.replace('/', '.').replace(".lwjglx.", ".lwjgl.");
         final int lastDot = javaClassName.lastIndexOf('.');
         this.packageName = javaClassName.substring(0, lastDot);
         this.className = javaClassName.substring(lastDot + 1);
     }
 
     public void outputRedirector(final PrintWriter writer) {
-        final String[] argDefs = Streams.zip(
-                        Arrays.stream(matcher.argTypes), Arrays.stream(matcher.argNames), ((t, n) -> t + " " + n))
+        final String[] argDefs = Streams
+                .zip(Arrays.stream(matcher.argTypes), Arrays.stream(matcher.argNames), ((t, n) -> t + " " + n))
                 .toArray(String[]::new);
         final String argDef = StringUtils.join(argDefs, ", ");
         writer.printf(
@@ -71,14 +73,11 @@ public abstract class MethodRedirector {
     }
 
     public static class TransformingRedirector extends DirectMethodRedirector {
+
         public final String preCode, postCode;
         public final String[] argumentReplacements;
 
-        public TransformingRedirector(
-                MethodMatcher matcher,
-                MethodNode newMethod,
-                String preCode,
-                String postCode,
+        public TransformingRedirector(MethodMatcher matcher, MethodNode newMethod, String preCode, String postCode,
                 String[] argumentReplacements) {
             super(matcher, newMethod);
             this.preCode = preCode;
@@ -88,8 +87,8 @@ public abstract class MethodRedirector {
 
         @Override
         protected void writeBody(PrintWriter writer) {
-            final String[] transformedArgNames =
-                    Arrays.copyOf(matcher.argNames, Math.max(matcher.argNames.length, argumentReplacements.length));
+            final String[] transformedArgNames = Arrays
+                    .copyOf(matcher.argNames, Math.max(matcher.argNames.length, argumentReplacements.length));
             for (int i = 0; i < transformedArgNames.length; i++) {
                 if (i < argumentReplacements.length && argumentReplacements[i] != null) {
                     transformedArgNames[i] = argumentReplacements[i];
@@ -102,8 +101,7 @@ public abstract class MethodRedirector {
             if (matcher.methodType.getReturnType().equals(Type.VOID_TYPE)) {
                 writer.printf("        %s.%s(%s);%n", this.javaClassName, newMethod.name, argCall);
             } else {
-                final String retType =
-                        matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx.");
+                final String retType = matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx.");
                 String preRet = "", postRet = "";
                 if (retType.endsWith("ALCdevice")) {
                     preRet = "new org.lwjglx.openal.ALCdevice(";
@@ -115,7 +113,12 @@ public abstract class MethodRedirector {
                 }
                 writer.printf(
                         "        %s returnValue = %s%s.%s(%s)%s;%n",
-                        retType, preRet, this.javaClassName, newMethod.name, argCall, postRet);
+                        retType,
+                        preRet,
+                        this.javaClassName,
+                        newMethod.name,
+                        argCall,
+                        postRet);
             }
             if (postCode != null) {
                 writer.println(postCode);

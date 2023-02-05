@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureMultisample {
+
     public static final int GL_INT_SAMPLER_2D_MULTISAMPLE = (int) 37129;
     public static final int GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = (int) 37132;
     public static final int GL_MAX_COLOR_TEXTURE_SAMPLES = (int) 37134;
@@ -27,21 +28,15 @@ public class ARBTextureMultisample {
         org.lwjgl.opengl.ARBTextureMultisample.glSampleMaski(index, mask);
     }
 
-    public static void glTexImage2DMultisample(
-            int target, int samples, int internalformat, int width, int height, boolean fixedsamplelocations) {
-        org.lwjgl.opengl.ARBTextureMultisample.glTexImage2DMultisample(
-                target, samples, internalformat, width, height, fixedsamplelocations);
+    public static void glTexImage2DMultisample(int target, int samples, int internalformat, int width, int height,
+            boolean fixedsamplelocations) {
+        org.lwjgl.opengl.ARBTextureMultisample
+                .glTexImage2DMultisample(target, samples, internalformat, width, height, fixedsamplelocations);
     }
 
-    public static void glTexImage3DMultisample(
-            int target,
-            int samples,
-            int internalformat,
-            int width,
-            int height,
-            int depth,
-            boolean fixedsamplelocations) {
-        org.lwjgl.opengl.ARBTextureMultisample.glTexImage3DMultisample(
-                target, samples, internalformat, width, height, depth, fixedsamplelocations);
+    public static void glTexImage3DMultisample(int target, int samples, int internalformat, int width, int height,
+            int depth, boolean fixedsamplelocations) {
+        org.lwjgl.opengl.ARBTextureMultisample
+                .glTexImage3DMultisample(target, samples, internalformat, width, height, depth, fixedsamplelocations);
     }
 }

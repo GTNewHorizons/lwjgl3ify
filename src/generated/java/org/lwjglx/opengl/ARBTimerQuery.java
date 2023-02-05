@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTimerQuery {
+
     public static final int GL_TIMESTAMP = (int) 36392;
     public static final int GL_TIME_ELAPSED = (int) 35007;
 

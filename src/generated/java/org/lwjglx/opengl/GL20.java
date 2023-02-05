@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL20 {
+
     public static final int GL_ACTIVE_ATTRIBUTES = (int) 35721;
     public static final int GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = (int) 35722;
     public static final int GL_ACTIVE_UNIFORMS = (int) 35718;
@@ -143,23 +144,13 @@ public class GL20 {
         org.lwjgl.opengl.GL20.glEnableVertexAttribArray(index);
     }
 
-    public static void glGetActiveAttrib(
-            int program,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
+    public static void glGetActiveAttrib(int program, int index, java.nio.IntBuffer length, java.nio.IntBuffer size,
+            java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL20.glGetActiveAttrib(program, index, length, size, type, name);
     }
 
-    public static void glGetActiveUniform(
-            int program,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
+    public static void glGetActiveUniform(int program, int index, java.nio.IntBuffer length, java.nio.IntBuffer size,
+            java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL20.glGetActiveUniform(program, index, length, size, type, name);
     }
 
@@ -416,18 +407,18 @@ public class GL20 {
         org.lwjgl.opengl.GL20.glVertexAttrib4s(index, x, y, z, w);
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, int type, boolean normalized, int stride, long buffer_buffer_offset) {
+    public static void glVertexAttribPointer(int index, int size, int type, boolean normalized, int stride,
+            long buffer_buffer_offset) {
         org.lwjgl.opengl.GL20.glVertexAttribPointer(index, size, type, normalized, stride, buffer_buffer_offset);
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, int type, boolean normalized, int stride, java.nio.ByteBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, int type, boolean normalized, int stride,
+            java.nio.ByteBuffer buffer) {
         org.lwjgl.opengl.GL20.glVertexAttribPointer(index, size, type, normalized, stride, buffer);
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, boolean normalized, int stride, java.nio.DoubleBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, boolean normalized, int stride,
+            java.nio.DoubleBuffer buffer) {
 
         org.lwjgl.opengl.GL20.glVertexAttribPointer(
                 index,
@@ -438,15 +429,15 @@ public class GL20 {
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(buffer));
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, boolean normalized, int stride, java.nio.FloatBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, boolean normalized, int stride,
+            java.nio.FloatBuffer buffer) {
 
-        org.lwjgl.opengl.GL20.glVertexAttribPointer(
-                index, size, org.lwjgl.opengl.GL11.GL_FLOAT, normalized, stride, buffer);
+        org.lwjgl.opengl.GL20
+                .glVertexAttribPointer(index, size, org.lwjgl.opengl.GL11.GL_FLOAT, normalized, stride, buffer);
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.ByteBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.ByteBuffer buffer) {
 
         org.lwjgl.opengl.GL20.glVertexAttribPointer(
                 index,
@@ -457,8 +448,8 @@ public class GL20 {
                 org.lwjglx.MemoryUtil.getAddress(buffer));
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.IntBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.IntBuffer buffer) {
 
         org.lwjgl.opengl.GL20.glVertexAttribPointer(
                 index,
@@ -469,8 +460,8 @@ public class GL20 {
                 org.lwjglx.MemoryUtil.getAddress(buffer));
     }
 
-    public static void glVertexAttribPointer(
-            int index, int size, boolean unsigned, boolean normalized, int stride, java.nio.ShortBuffer buffer) {
+    public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
+            java.nio.ShortBuffer buffer) {
 
         org.lwjgl.opengl.GL20.glVertexAttribPointer(
                 index,

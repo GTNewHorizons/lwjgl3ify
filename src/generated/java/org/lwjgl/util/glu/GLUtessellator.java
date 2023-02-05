@@ -1,6 +1,7 @@
 package org.lwjgl.util.glu;
 
 public interface GLUtessellator {
+
     public abstract void gluBeginPolygon();
 
     public abstract void gluDeleteTess();

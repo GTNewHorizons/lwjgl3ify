@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATITextureFloat {
+
     public static final int GL_ALPHA_FLOAT16_ATI = (int) 34844;
     public static final int GL_ALPHA_FLOAT32_ATI = (int) 34838;
     public static final int GL_INTENSITY_FLOAT16_ATI = (int) 34845;

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBVertexAttrib64bit {
+
     public static final int GL_DOUBLE_MAT2 = (int) 36678;
     public static final int GL_DOUBLE_MAT2x3 = (int) 36681;
     public static final int GL_DOUBLE_MAT2x4 = (int) 36682;
@@ -18,8 +19,8 @@ public class ARBVertexAttrib64bit {
         throw new UnsupportedOperationException();
     }
 
-    public static void glVertexArrayVertexAttribLOffsetEXT(
-            int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, long arg6) {
+    public static void glVertexArrayVertexAttribLOffsetEXT(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5,
+            long arg6) {
         throw new UnsupportedOperationException();
     }
 

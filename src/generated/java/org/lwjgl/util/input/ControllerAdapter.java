@@ -1,6 +1,7 @@
 package org.lwjgl.util.input;
 
 public class ControllerAdapter {
+
     public int getAxisCount() {
         throw new UnsupportedOperationException();
     }

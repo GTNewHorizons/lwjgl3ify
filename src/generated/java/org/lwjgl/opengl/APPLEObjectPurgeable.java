@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEObjectPurgeable {
+
     public static final int GL_BUFFER_OBJECT_APPLE = (int) 34227;
     public static final int GL_PURGEABLE_APPLE = (int) 35357;
     public static final int GL_RELEASED_APPLE = (int) 35353;

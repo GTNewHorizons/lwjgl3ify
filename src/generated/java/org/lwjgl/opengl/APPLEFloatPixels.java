@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEFloatPixels {
+
     public static final int GL_ALPHA_FLOAT16_APPLE = (int) 34844;
     public static final int GL_ALPHA_FLOAT32_APPLE = (int) 34838;
     public static final int GL_COLOR_FLOAT_APPLE = (int) 35343;

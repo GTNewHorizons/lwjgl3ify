@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderObjects {
+
     public static final int GL_BOOL_ARB = (int) 35670;
     public static final int GL_BOOL_VEC2_ARB = (int) 35671;
     public static final int GL_BOOL_VEC3_ARB = (int) 35672;
@@ -60,13 +61,8 @@ public class ARBShaderObjects {
         org.lwjgl.opengl.ARBShaderObjects.glDetachObjectARB(containerObj, attachedObj);
     }
 
-    public static void glGetActiveUniformARB(
-            int programObj,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
+    public static void glGetActiveUniformARB(int programObj, int index, java.nio.IntBuffer length,
+            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBShaderObjects.glGetActiveUniformARB(programObj, index, length, size, type, name);
     }
 
@@ -132,8 +128,8 @@ public class ARBShaderObjects {
 
     public static void glShaderSourceARB(int shader, java.nio.ByteBuffer string) {
 
-        org.lwjgl.opengl.ARBShaderObjects.glShaderSourceARB(
-                shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
+        org.lwjgl.opengl.ARBShaderObjects
+                .glShaderSourceARB(shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
     }
 
     public static void glShaderSourceARB(int shader, java.lang.CharSequence[] strings) {

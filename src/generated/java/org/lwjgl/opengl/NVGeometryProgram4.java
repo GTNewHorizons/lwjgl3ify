@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVGeometryProgram4 {
+
     public static final int GL_GEOMETRY_PROGRAM_NV = (int) 35878;
     public static final int GL_MAX_PROGRAM_OUTPUT_VERTICES_NV = (int) 35879;
     public static final int GL_MAX_PROGRAM_TOTAL_OUTPUT_COMPONENTS_NV = (int) 35880;

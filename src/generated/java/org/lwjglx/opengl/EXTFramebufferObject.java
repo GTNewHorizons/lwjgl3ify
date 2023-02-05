@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTFramebufferObject {
+
     public static final int GL_COLOR_ATTACHMENT0_EXT = (int) 36064;
     public static final int GL_COLOR_ATTACHMENT10_EXT = (int) 36074;
     public static final int GL_COLOR_ATTACHMENT11_EXT = (int) 36075;
@@ -81,10 +82,10 @@ public class EXTFramebufferObject {
         org.lwjgl.opengl.EXTFramebufferObject.glDeleteRenderbuffersEXT(renderbuffers);
     }
 
-    public static void glFramebufferRenderbufferEXT(
-            int target, int attachment, int renderbuffertarget, int renderbuffer) {
-        org.lwjgl.opengl.EXTFramebufferObject.glFramebufferRenderbufferEXT(
-                target, attachment, renderbuffertarget, renderbuffer);
+    public static void glFramebufferRenderbufferEXT(int target, int attachment, int renderbuffertarget,
+            int renderbuffer) {
+        org.lwjgl.opengl.EXTFramebufferObject
+                .glFramebufferRenderbufferEXT(target, attachment, renderbuffertarget, renderbuffer);
     }
 
     public static void glFramebufferTexture1DEXT(int target, int attachment, int textarget, int texture, int level) {
@@ -95,10 +96,10 @@ public class EXTFramebufferObject {
         org.lwjgl.opengl.EXTFramebufferObject.glFramebufferTexture2DEXT(target, attachment, textarget, texture, level);
     }
 
-    public static void glFramebufferTexture3DEXT(
-            int target, int attachment, int textarget, int texture, int level, int zoffset) {
-        org.lwjgl.opengl.EXTFramebufferObject.glFramebufferTexture3DEXT(
-                target, attachment, textarget, texture, level, zoffset);
+    public static void glFramebufferTexture3DEXT(int target, int attachment, int textarget, int texture, int level,
+            int zoffset) {
+        org.lwjgl.opengl.EXTFramebufferObject
+                .glFramebufferTexture3DEXT(target, attachment, textarget, texture, level, zoffset);
     }
 
     public static int glGenFramebuffersEXT() {
@@ -121,10 +122,10 @@ public class EXTFramebufferObject {
         org.lwjgl.opengl.EXTFramebufferObject.glGenerateMipmapEXT(target);
     }
 
-    public static void glGetFramebufferAttachmentParameterEXT(
-            int target, int attachment, int pname, java.nio.IntBuffer params) {
-        org.lwjgl.opengl.EXTFramebufferObject.glGetFramebufferAttachmentParameterivEXT(
-                target, attachment, pname, params);
+    public static void glGetFramebufferAttachmentParameterEXT(int target, int attachment, int pname,
+            java.nio.IntBuffer params) {
+        org.lwjgl.opengl.EXTFramebufferObject
+                .glGetFramebufferAttachmentParameterivEXT(target, attachment, pname, params);
     }
 
     public static int glGetFramebufferAttachmentParameteriEXT(int target, int attachment, int pname) {

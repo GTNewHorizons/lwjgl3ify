@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBOcclusionQuery {
+
     public static final int GL_CURRENT_QUERY_ARB = (int) 34917;
     public static final int GL_QUERY_COUNTER_BITS_ARB = (int) 34916;
     public static final int GL_QUERY_RESULT_ARB = (int) 34918;

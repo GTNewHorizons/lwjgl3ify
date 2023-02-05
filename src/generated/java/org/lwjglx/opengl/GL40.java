@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL40 {
+
     public static final int GL_ACTIVE_SUBROUTINES = (int) 36325;
     public static final int GL_ACTIVE_SUBROUTINE_MAX_LENGTH = (int) 36424;
     public static final int GL_ACTIVE_SUBROUTINE_UNIFORMS = (int) 36326;
@@ -162,23 +163,23 @@ public class GL40 {
         return org.lwjgl.opengl.GL40.glGetActiveSubroutineName(program, shadertype, index, bufsize);
     }
 
-    public static void glGetActiveSubroutineName(
-            int program, int shadertype, int index, java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+    public static void glGetActiveSubroutineName(int program, int shadertype, int index, java.nio.IntBuffer length,
+            java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineName(program, shadertype, index, length, name);
     }
 
-    public static void glGetActiveSubroutineUniform(
-            int program, int shadertype, int index, int pname, java.nio.IntBuffer values) {
+    public static void glGetActiveSubroutineUniform(int program, int shadertype, int index, int pname,
+            java.nio.IntBuffer values) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformiv(program, shadertype, index, pname, values);
     }
 
-    public static java.lang.String glGetActiveSubroutineUniformName(
-            int program, int shadertype, int index, int bufsize) {
+    public static java.lang.String glGetActiveSubroutineUniformName(int program, int shadertype, int index,
+            int bufsize) {
         return org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformName(program, shadertype, index, bufsize);
     }
 
-    public static void glGetActiveSubroutineUniformName(
-            int program, int shadertype, int index, java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+    public static void glGetActiveSubroutineUniformName(int program, int shadertype, int index,
+            java.nio.IntBuffer length, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformName(program, shadertype, index, length, name);
     }
 

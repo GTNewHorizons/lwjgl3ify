@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVTransformFeedback {
+
     public static final int GL_ACTIVE_VARYINGS_NV = (int) 35969;
     public static final int GL_ACTIVE_VARYING_MAX_LENGTH_NV = (int) 35970;
     public static final int GL_BACK_PRIMARY_COLOR_NV = (int) 35959;
@@ -56,13 +57,8 @@ public class NVTransformFeedback {
         org.lwjgl.opengl.NVTransformFeedback.glEndTransformFeedbackNV();
     }
 
-    public static void glGetActiveVaryingNV(
-            int program,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
+    public static void glGetActiveVaryingNV(int program, int index, java.nio.IntBuffer length, java.nio.IntBuffer size,
+            java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.NVTransformFeedback.glGetActiveVaryingNV(program, index, length, size, type, name);
     }
 

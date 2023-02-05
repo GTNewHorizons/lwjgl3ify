@@ -1,39 +1,24 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.test.spaceinvaders;
 
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
+
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
@@ -41,26 +26,22 @@ import org.lwjglx.opengl.Display;
 import org.lwjglx.opengl.DisplayMode;
 
 /**
- * The main hook of our game. This class with both act as a manager
- * for the display and central mediator for the game logic.
+ * The main hook of our game. This class with both act as a manager for the display and central mediator for the game
+ * logic.
  *
- * Display management will consist of a loop that cycles round all
- * entities in the game asking them to move and then drawing them
- * in the appropriate place. With the help of an inner class it
- * will also allow the player to control the main ship.
+ * Display management will consist of a loop that cycles round all entities in the game asking them to move and then
+ * drawing them in the appropriate place. With the help of an inner class it will also allow the player to control the
+ * main ship.
  *
- * As a mediator it will be informed when entities within our game
- * detect events (e.g. alient killed, played died) and will take
- * appropriate game actions.
+ * As a mediator it will be informed when entities within our game detect events (e.g. alient killed, played died) and
+ * will take appropriate game actions.
  *
  * <p>
  * NOTE:<br>
- * This game is a LWJGLized implementation of the Space Invaders game by Kevin
- * Glass. The original implementation is renderer agnostic and supports other
- * OpenGL implementations as well as Java2D. This version has been made specific
- * for LWJGL, and has added input control as well as sound (which the original doesn't,
- * at the time of writing).
- * You can find the original article here:<br>
+ * This game is a LWJGLized implementation of the Space Invaders game by Kevin Glass. The original implementation is
+ * renderer agnostic and supports other OpenGL implementations as well as Java2D. This version has been made specific
+ * for LWJGL, and has added input control as well as sound (which the original doesn't, at the time of writing). You can
+ * find the original article here:<br>
  * <a href="http://www.cokeandcode.com/" target="_blank">http://www.cokeandcode.com</a>
  * </p>
  *
@@ -172,6 +153,7 @@ public class Game {
 
     /**
      * Construct our game and set it running.
+     * 
      * @param fullscreen
      *
      */
@@ -201,8 +183,7 @@ public class Game {
     public static void sleep(long duration) {
         try {
             Thread.sleep((duration * timerTicksPerSecond) / 1000);
-        } catch (InterruptedException inte) {
-        }
+        } catch (InterruptedException inte) {}
     }
 
     /**
@@ -275,12 +256,10 @@ public class Game {
             // get modes
             DisplayMode[] dm = org.lwjglx.util.Display.getAvailableDisplayModes(width, height, -1, -1, -1, -1, 60, 60);
 
-            org.lwjglx.util.Display.setDisplayMode(dm, new String[] {
-                "width=" + width,
-                "height=" + height,
-                "freq=" + 60,
-                "bpp=" + org.lwjglx.opengl.Display.getDisplayMode().getBitsPerPixel()
-            });
+            org.lwjglx.util.Display.setDisplayMode(
+                    dm,
+                    new String[] { "width=" + width, "height=" + height, "freq=" + 60,
+                            "bpp=" + org.lwjglx.opengl.Display.getDisplayMode().getBitsPerPixel() });
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,8 +270,7 @@ public class Game {
     }
 
     /**
-     * Start a fresh game, this should clear out any old data and
-     * create a new set.
+     * Start a fresh game, this should clear out any old data and create a new set.
      */
     private void startGame() {
         // clear out any existing entities and intialise a new set
@@ -301,8 +279,8 @@ public class Game {
     }
 
     /**
-     * Initialise the starting state of the entities (ship and aliens). Each
-     * entitiy will be added to the overall list of entities in the game.
+     * Initialise the starting state of the entities (ship and aliens). Each entitiy will be added to the overall list
+     * of entities in the game.
      */
     private void initEntities() {
         // create the player ship and place it roughly in the center of the screen
@@ -321,17 +299,15 @@ public class Game {
     }
 
     /**
-     * Notification from a game entity that the logic of the game
-     * should be run at the next opportunity (normally as a result of some
-     * game event)
+     * Notification from a game entity that the logic of the game should be run at the next opportunity (normally as a
+     * result of some game event)
      */
     public void updateLogic() {
         logicRequiredThisLoop = true;
     }
 
     /**
-     * Remove an entity from the game. The entity removed will
-     * no longer move or be drawn.
+     * Remove an entity from the game. The entity removed will no longer move or be drawn.
      *
      * @param entity The entity that should be removed
      */
@@ -351,8 +327,7 @@ public class Game {
     }
 
     /**
-     * Notification that the player has won since all the aliens
-     * are dead.
+     * Notification that the player has won since all the aliens are dead.
      */
     public void notifyWin() {
         message = youWin;
@@ -384,9 +359,8 @@ public class Game {
     }
 
     /**
-     * Attempt to fire a shot from the player. Its called "try"
-     * since we must first check that the player can fire at this
-     * point, i.e. has he/she waited long enough between shots
+     * Attempt to fire a shot from the player. Its called "try" since we must first check that the player can fire at
+     * this point, i.e. has he/she waited long enough between shots
      */
     public void tryToFire() {
         // check that we have waiting long enough to fire
@@ -404,8 +378,7 @@ public class Game {
     }
 
     /**
-     * Run the main game loop. This method keeps rendering the scene
-     * and requesting that the callback update its screen.
+     * Run the main game loop. This method keeps rendering the scene and requesting that the callback update its screen.
      */
     private void gameLoop() {
         while (Game.gameRunning) {
@@ -427,8 +400,7 @@ public class Game {
     }
 
     /**
-     * Notification that a frame is being rendered. Responsible for
-     * running game logic and rendering the scene.
+     * Notification that a frame is being rendered. Responsible for running game logic and rendering the scene.
      */
     public void frameRendering() {
         // SystemTimer.sleep(lastLoopTime+10-SystemTimer.getTime());
@@ -556,8 +528,7 @@ public class Game {
     }
 
     /**
-     * The entry point into the game. We'll simply create an
-     * instance of class which will start the display and game
+     * The entry point into the game. We'll simply create an instance of class which will start the display and game
      * loop.
      *
      * @param argv The arguments that are passed into our game
@@ -577,8 +548,7 @@ public class Game {
     }
 
     /**
-     * Create or get a sprite which displays the image that is pointed
-     * to in the classpath by "ref"
+     * Create or get a sprite which displays the image that is pointed to in the classpath by "ref"
      *
      * @param ref A reference to the image to load
      * @return A sprite that can be drawn onto the current graphics context.

@@ -1,6 +1,7 @@
 package org.lwjglx.openal;
 
 import java.nio.IntBuffer;
+
 import org.lwjgl.openal.EXTEfx;
 
 public class EFX10 {

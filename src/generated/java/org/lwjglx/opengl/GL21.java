@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL21 {
+
     public static final int GL_COMPRESSED_SLUMINANCE = (int) 35914;
     public static final int GL_COMPRESSED_SLUMINANCE_ALPHA = (int) 35915;
     public static final int GL_COMPRESSED_SRGB = (int) 35912;

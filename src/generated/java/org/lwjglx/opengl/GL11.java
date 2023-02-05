@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL11 {
+
     public static final int GL_2D = (int) 1536;
     public static final int GL_2_BYTES = (int) 5127;
     public static final int GL_3D = (int) 1537;
@@ -558,13 +559,13 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glBindTexture(target, texture);
     }
 
-    public static void glBitmap(
-            int width, int height, float xorig, float yorig, float xmove, float ymove, long bitmap_buffer_offset) {
+    public static void glBitmap(int width, int height, float xorig, float yorig, float xmove, float ymove,
+            long bitmap_buffer_offset) {
         org.lwjgl.opengl.GL11.glBitmap(width, height, xorig, yorig, xmove, ymove, bitmap_buffer_offset);
     }
 
-    public static void glBitmap(
-            int width, int height, float xorig, float yorig, float xmove, float ymove, java.nio.ByteBuffer bitmap) {
+    public static void glBitmap(int width, int height, float xorig, float yorig, float xmove, float ymove,
+            java.nio.ByteBuffer bitmap) {
         org.lwjgl.opengl.GL11.glBitmap(width, height, xorig, yorig, xmove, ymove, bitmap);
     }
 
@@ -687,13 +688,13 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glCopyPixels(x, y, width, height, type);
     }
 
-    public static void glCopyTexImage1D(
-            int target, int level, int internalFormat, int x, int y, int width, int border) {
+    public static void glCopyTexImage1D(int target, int level, int internalFormat, int x, int y, int width,
+            int border) {
         org.lwjgl.opengl.GL11.glCopyTexImage1D(target, level, internalFormat, x, y, width, border);
     }
 
-    public static void glCopyTexImage2D(
-            int target, int level, int internalFormat, int x, int y, int width, int height, int border) {
+    public static void glCopyTexImage2D(int target, int level, int internalFormat, int x, int y, int width, int height,
+            int border) {
         org.lwjgl.opengl.GL11.glCopyTexImage2D(target, level, internalFormat, x, y, width, height, border);
     }
 
@@ -701,8 +702,8 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glCopyTexSubImage1D(target, level, xoffset, x, y, width);
     }
 
-    public static void glCopyTexSubImage2D(
-            int target, int level, int xoffset, int yoffset, int x, int y, int width, int height) {
+    public static void glCopyTexSubImage2D(int target, int level, int xoffset, int yoffset, int x, int y, int width,
+            int height) {
         org.lwjgl.opengl.GL11.glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
     }
 
@@ -1211,31 +1212,13 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glMap1f(target, u1, u2, stride, order, points);
     }
 
-    public static void glMap2d(
-            int target,
-            double u1,
-            double u2,
-            int ustride,
-            int uorder,
-            double v1,
-            double v2,
-            int vstride,
-            int vorder,
-            java.nio.DoubleBuffer points) {
+    public static void glMap2d(int target, double u1, double u2, int ustride, int uorder, double v1, double v2,
+            int vstride, int vorder, java.nio.DoubleBuffer points) {
         org.lwjgl.opengl.GL11.glMap2d(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
     }
 
-    public static void glMap2f(
-            int target,
-            float u1,
-            float u2,
-            int ustride,
-            int uorder,
-            float v1,
-            float v2,
-            int vstride,
-            int vorder,
-            java.nio.FloatBuffer points) {
+    public static void glMap2f(int target, float u1, float u2, int ustride, int uorder, float v1, float v2, int vstride,
+            int vorder, java.nio.FloatBuffer points) {
         org.lwjgl.opengl.GL11.glMap2f(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
     }
 
@@ -1319,7 +1302,9 @@ public class GL11 {
     public static void glNormalPointer(int stride, java.nio.DoubleBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glNormalPointer(
-                org.lwjgl.opengl.GL11.GL_DOUBLE, stride, me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+                org.lwjgl.opengl.GL11.GL_DOUBLE,
+                stride,
+                me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
     }
 
     public static void glNormalPointer(int stride, java.nio.FloatBuffer pointer) {
@@ -1480,34 +1465,34 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glReadBuffer(mode);
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, long pixels_buffer_offset) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, pixels_buffer_offset);
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.ByteBuffer pixels) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.DoubleBuffer pixels) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.DoubleBuffer pixels) {
 
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, org.lwjglx.MemoryUtil.getAddress(pixels));
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.FloatBuffer pixels) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.IntBuffer pixels) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, pixels);
     }
 
-    public static void glReadPixels(
-            int x, int y, int width, int height, int format, int type, java.nio.ShortBuffer pixels) {
+    public static void glReadPixels(int x, int y, int width, int height, int format, int type,
+            java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, pixels);
     }
 
@@ -1671,155 +1656,65 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glTexGeni(coord, pname, param);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            long pixels_buffer_offset) {
-        org.lwjgl.opengl.GL11.glTexImage1D(
-                target, level, internalformat, width, border, format, type, pixels_buffer_offset);
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, long pixels_buffer_offset) {
+        org.lwjgl.opengl.GL11
+                .glTexImage1D(target, level, internalformat, width, border, format, type, pixels_buffer_offset);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            java.nio.ByteBuffer pixels) {
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            java.nio.DoubleBuffer pixels) {
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, java.nio.DoubleBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            java.nio.FloatBuffer pixels) {
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            java.nio.IntBuffer pixels) {
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
-    public static void glTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int format,
-            int type,
-            java.nio.ShortBuffer pixels) {
+    public static void glTexImage1D(int target, int level, int internalformat, int width, int border, int format,
+            int type, java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            long pixels_buffer_offset) {
-        org.lwjgl.opengl.GL11.glTexImage2D(
-                target, level, internalformat, width, height, border, format, type, pixels_buffer_offset);
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, long pixels_buffer_offset) {
+        org.lwjgl.opengl.GL11
+                .glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels_buffer_offset);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            java.nio.ByteBuffer pixels) {
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            java.nio.DoubleBuffer pixels) {
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, java.nio.DoubleBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            java.nio.FloatBuffer pixels) {
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, java.nio.FloatBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            java.nio.IntBuffer pixels) {
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, java.nio.IntBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
-    public static void glTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int format,
-            int type,
-            java.nio.ShortBuffer pixels) {
+    public static void glTexImage2D(int target, int level, int internalformat, int width, int height, int border,
+            int format, int type, java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
@@ -1839,112 +1734,64 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glTexParameteri(target, pname, param);
     }
 
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, long pixels_buffer_offset) {
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
+            long pixels_buffer_offset) {
         org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels_buffer_offset);
     }
 
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, java.nio.ByteBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, java.nio.DoubleBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, java.nio.FloatBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, java.nio.IntBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int type, java.nio.ShortBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
-    }
-
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
-            long pixels_buffer_offset) {
-        org.lwjgl.opengl.GL11.glTexSubImage2D(
-                target, level, xoffset, yoffset, width, height, format, type, pixels_buffer_offset);
-    }
-
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
             java.nio.ByteBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
             java.nio.DoubleBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
             java.nio.FloatBuffer pixels) {
-        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
             java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
+    }
+
+    public static void glTexSubImage1D(int target, int level, int xoffset, int width, int format, int type,
+            java.nio.ShortBuffer pixels) {
+        org.lwjgl.opengl.GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
+    }
+
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, long pixels_buffer_offset) {
+        org.lwjgl.opengl.GL11
+                .glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels_buffer_offset);
+    }
+
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.ByteBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
-    public static void glTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int type,
-            java.nio.ShortBuffer pixels) {
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.DoubleBuffer pixels) {
+        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+    }
+
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.FloatBuffer pixels) {
+        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+    }
+
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.IntBuffer pixels) {
+        org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+    }
+
+    public static void glTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int type, java.nio.ShortBuffer pixels) {
         org.lwjgl.opengl.GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 

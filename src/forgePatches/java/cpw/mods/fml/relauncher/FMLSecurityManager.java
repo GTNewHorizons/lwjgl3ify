@@ -3,8 +3,7 @@ package cpw.mods.fml.relauncher;
 import java.security.Permission;
 
 /**
- * A custom security manager stopping certain events from happening
- * unexpectedly.
+ * A custom security manager stopping certain events from happening unexpectedly.
  *
  * @author cpw
  *
@@ -12,6 +11,7 @@ import java.security.Permission;
  *
  */
 public class FMLSecurityManager extends SecurityManager {
+
     @Override
     public void checkPermission(Permission perm) {
         String permName = perm.getName() != null ? perm.getName() : "missing";
@@ -34,6 +34,7 @@ public class FMLSecurityManager extends SecurityManager {
     }
 
     public static class ExitTrappedException extends SecurityException {
+
         private static final long serialVersionUID = 1L;
     }
 }

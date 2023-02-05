@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTVertexShader {
+
     public static final int GL_CURRENT_VERTEX_EXT = (int) 34786;
     public static final int GL_FULL_RANGE_EXT = (int) 34785;
     public static final int GL_INVARIANT_DATATYPE_EXT = (int) 34795;

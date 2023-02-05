@@ -1,9 +1,11 @@
 package me.eigenraven.lwjgl3ify;
 
 import java.nio.*;
+
 import org.lwjgl.system.MemoryUtil;
 
 public class BufferCasts {
+
     public static ByteBuffer toByteBuffer(CharBuffer buffer) {
         return MemoryUtil.memByteBuffer(buffer);
     }

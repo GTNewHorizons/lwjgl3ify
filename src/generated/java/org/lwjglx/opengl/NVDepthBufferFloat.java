@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVDepthBufferFloat {
+
     public static final int GL_DEPTH32F_STENCIL8_NV = (int) 36268;
     public static final int GL_DEPTH_BUFFER_FLOAT_MODE_NV = (int) 36271;
     public static final int GL_DEPTH_COMPONENT32F_NV = (int) 36267;

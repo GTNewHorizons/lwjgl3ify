@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL32 {
+
     public static final int GL_ALREADY_SIGNALED = (int) 37146;
     public static final int GL_CONDITION_SATISFIED = (int) 37148;
     public static final int GL_CONTEXT_COMPATIBILITY_PROFILE_BIT = (int) 2;
@@ -66,8 +67,8 @@ public class GL32 {
     public static final int GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = (int) 37133;
     public static final int GL_WAIT_FAILED = (int) 37149;
 
-    public static void glDrawElementsBaseVertex(
-            int mode, int indices_count, int type, long indices_buffer_offset, int basevertex) {
+    public static void glDrawElementsBaseVertex(int mode, int indices_count, int type, long indices_buffer_offset,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawElementsBaseVertex(mode, indices_count, type, indices_buffer_offset, basevertex);
     }
 
@@ -83,52 +84,63 @@ public class GL32 {
         org.lwjgl.opengl.GL32.glDrawElementsBaseVertex(mode, indices, basevertex);
     }
 
-    public static void glDrawElementsInstancedBaseVertex(
-            int mode, int indices_count, int type, long indices_buffer_offset, int primcount, int basevertex) {
+    public static void glDrawElementsInstancedBaseVertex(int mode, int indices_count, int type,
+            long indices_buffer_offset, int primcount, int basevertex) {
         org.lwjgl.opengl.GL32.glDrawElementsInstancedBaseVertex(
-                mode, indices_count, type, indices_buffer_offset, primcount, basevertex);
+                mode,
+                indices_count,
+                type,
+                indices_buffer_offset,
+                primcount,
+                basevertex);
     }
 
-    public static void glDrawElementsInstancedBaseVertex(
-            int mode, java.nio.ByteBuffer indices, int primcount, int basevertex) {
+    public static void glDrawElementsInstancedBaseVertex(int mode, java.nio.ByteBuffer indices, int primcount,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawElementsInstancedBaseVertex(mode, indices, primcount, basevertex);
     }
 
-    public static void glDrawElementsInstancedBaseVertex(
-            int mode, java.nio.IntBuffer indices, int primcount, int basevertex) {
+    public static void glDrawElementsInstancedBaseVertex(int mode, java.nio.IntBuffer indices, int primcount,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawElementsInstancedBaseVertex(mode, indices, primcount, basevertex);
     }
 
-    public static void glDrawElementsInstancedBaseVertex(
-            int mode, java.nio.ShortBuffer indices, int primcount, int basevertex) {
+    public static void glDrawElementsInstancedBaseVertex(int mode, java.nio.ShortBuffer indices, int primcount,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawElementsInstancedBaseVertex(mode, indices, primcount, basevertex);
     }
 
-    public static void glDrawRangeElementsBaseVertex(
-            int mode, int start, int end, int indices_count, int type, long indices_buffer_offset, int basevertex) {
+    public static void glDrawRangeElementsBaseVertex(int mode, int start, int end, int indices_count, int type,
+            long indices_buffer_offset, int basevertex) {
         org.lwjgl.opengl.GL32.glDrawRangeElementsBaseVertex(
-                mode, start, end, indices_count, type, indices_buffer_offset, basevertex);
+                mode,
+                start,
+                end,
+                indices_count,
+                type,
+                indices_buffer_offset,
+                basevertex);
     }
 
-    public static void glDrawRangeElementsBaseVertex(
-            int mode, int start, int end, java.nio.ByteBuffer indices, int basevertex) {
+    public static void glDrawRangeElementsBaseVertex(int mode, int start, int end, java.nio.ByteBuffer indices,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawRangeElementsBaseVertex(mode, start, end, indices, basevertex);
     }
 
-    public static void glDrawRangeElementsBaseVertex(
-            int mode, int start, int end, java.nio.IntBuffer indices, int basevertex) {
+    public static void glDrawRangeElementsBaseVertex(int mode, int start, int end, java.nio.IntBuffer indices,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawRangeElementsBaseVertex(mode, start, end, indices, basevertex);
     }
 
-    public static void glDrawRangeElementsBaseVertex(
-            int mode, int start, int end, java.nio.ShortBuffer indices, int basevertex) {
+    public static void glDrawRangeElementsBaseVertex(int mode, int start, int end, java.nio.ShortBuffer indices,
+            int basevertex) {
         org.lwjgl.opengl.GL32.glDrawRangeElementsBaseVertex(mode, start, end, indices, basevertex);
     }
 
     public static org.lwjglx.opengl.GLSync glFenceSync(int condition, int flags) {
 
-        org.lwjglx.opengl.GLSync returnValue =
-                new org.lwjglx.opengl.GLSync(org.lwjgl.opengl.GL32.glFenceSync(condition, flags));
+        org.lwjglx.opengl.GLSync returnValue = new org.lwjglx.opengl.GLSync(
+                org.lwjgl.opengl.GL32.glFenceSync(condition, flags));
 
         return returnValue;
     }
@@ -169,21 +181,15 @@ public class GL32 {
         org.lwjgl.opengl.GL32.glSampleMaski(index, mask);
     }
 
-    public static void glTexImage2DMultisample(
-            int target, int samples, int internalformat, int width, int height, boolean fixedsamplelocations) {
-        org.lwjgl.opengl.GL32.glTexImage2DMultisample(
-                target, samples, internalformat, width, height, fixedsamplelocations);
+    public static void glTexImage2DMultisample(int target, int samples, int internalformat, int width, int height,
+            boolean fixedsamplelocations) {
+        org.lwjgl.opengl.GL32
+                .glTexImage2DMultisample(target, samples, internalformat, width, height, fixedsamplelocations);
     }
 
-    public static void glTexImage3DMultisample(
-            int target,
-            int samples,
-            int internalformat,
-            int width,
-            int height,
-            int depth,
-            boolean fixedsamplelocations) {
-        org.lwjgl.opengl.GL32.glTexImage3DMultisample(
-                target, samples, internalformat, width, height, depth, fixedsamplelocations);
+    public static void glTexImage3DMultisample(int target, int samples, int internalformat, int width, int height,
+            int depth, boolean fixedsamplelocations) {
+        org.lwjgl.opengl.GL32
+                .glTexImage3DMultisample(target, samples, internalformat, width, height, depth, fixedsamplelocations);
     }
 }

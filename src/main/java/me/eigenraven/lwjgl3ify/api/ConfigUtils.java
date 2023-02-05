@@ -1,18 +1,21 @@
 package me.eigenraven.lwjgl3ify.api;
 
-import com.google.common.base.Throwables;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.util.Collections;
 import java.util.Set;
+
 import org.apache.logging.log4j.Logger;
 
+import com.google.common.base.Throwables;
+
 /**
- * Utilities to access the Lwjgl3ify configuration safely at runtime via reflection.
- * Does nothing when the mod is not loaded.
+ * Utilities to access the Lwjgl3ify configuration safely at runtime via reflection. Does nothing when the mod is not
+ * loaded.
  */
 public class ConfigUtils {
+
     private Class<?> configClass;
     private String modVersion = "";
     private MethodHandle getExtensibleEnumsHandle;
@@ -20,7 +23,8 @@ public class ConfigUtils {
     private MethodHandle isConfigLoadedHandle;
 
     /**
-     * @param logger If lwjgl3ify cannot be found or there's some other exception, it will be logged here if it's not null.
+     * @param logger If lwjgl3ify cannot be found or there's some other exception, it will be logged here if it's not
+     *               null.
      */
     public ConfigUtils(Logger logger) {
         try {
@@ -28,12 +32,12 @@ public class ConfigUtils {
             modVersion = (String) configClass.getField("LWJGL3IFY_VERSION").get(null);
 
             final MethodHandles.Lookup lookup = MethodHandles.publicLookup().in(configClass);
-            getExtensibleEnumsHandle =
-                    lookup.findStatic(configClass, "getExtensibleEnums", MethodType.methodType(Set.class));
-            addExtensibleEnumHandle = lookup.findStatic(
-                    configClass, "addExtensibleEnum", MethodType.methodType(void.class, String.class));
-            isConfigLoadedHandle =
-                    lookup.findStatic(configClass, "isConfigLoaded", MethodType.methodType(boolean.class));
+            getExtensibleEnumsHandle = lookup
+                    .findStatic(configClass, "getExtensibleEnums", MethodType.methodType(Set.class));
+            addExtensibleEnumHandle = lookup
+                    .findStatic(configClass, "addExtensibleEnum", MethodType.methodType(void.class, String.class));
+            isConfigLoadedHandle = lookup
+                    .findStatic(configClass, "isConfigLoaded", MethodType.methodType(boolean.class));
         } catch (ReflectiveOperationException e) {
             configClass = null;
             if (logger != null) {
@@ -66,7 +70,9 @@ public class ConfigUtils {
 
     /**
      * Add an enum to the list of enums to make extensible via EnumHelper, it can't already have been loaded.
-     * @param className Class name of the enum to make extensible, e.g. {@literal net.minecraftforge.event.terraingen.PopulateChunkEvent$Populate$EventType}
+     * 
+     * @param className Class name of the enum to make extensible, e.g.
+     *                  {@literal net.minecraftforge.event.terraingen.PopulateChunkEvent$Populate$EventType}
      */
     public void addExtensibleEnum(String className) {
         try {

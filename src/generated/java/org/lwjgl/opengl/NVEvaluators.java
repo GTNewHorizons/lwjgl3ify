@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVEvaluators {
+
     public static final int GL_EVAL_2D_NV = (int) 34496;
     public static final int GL_EVAL_FRACTIONAL_TESSELLATION_NV = (int) 34501;
     public static final int GL_EVAL_TRIANGULAR_2D_NV = (int) 34497;
@@ -38,8 +39,8 @@ public class NVEvaluators {
         throw new UnsupportedOperationException();
     }
 
-    public static void glGetMapControlPointsNV(
-            int arg0, int arg1, int arg2, int arg3, int arg4, boolean arg5, java.nio.FloatBuffer arg6) {
+    public static void glGetMapControlPointsNV(int arg0, int arg1, int arg2, int arg3, int arg4, boolean arg5,
+            java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
@@ -51,16 +52,8 @@ public class NVEvaluators {
         throw new UnsupportedOperationException();
     }
 
-    public static void glMapControlPointsNV(
-            int arg0,
-            int arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            boolean arg7,
-            java.nio.FloatBuffer arg8) {
+    public static void glMapControlPointsNV(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            boolean arg7, java.nio.FloatBuffer arg8) {
         throw new UnsupportedOperationException();
     }
 

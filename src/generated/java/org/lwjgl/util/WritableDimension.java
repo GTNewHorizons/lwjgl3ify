@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public interface WritableDimension {
+
     public abstract void setHeight(int arg0);
 
     public abstract void setSize(int arg0, int arg1);

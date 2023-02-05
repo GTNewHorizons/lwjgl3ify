@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexBlend {
+
     public static final int GL_ACTIVE_VERTEX_UNITS_ARB = (int) 34469;
     public static final int GL_CURRENT_WEIGHT_ARB = (int) 34472;
     public static final int GL_MAX_VERTEX_UNITS_ARB = (int) 34468;

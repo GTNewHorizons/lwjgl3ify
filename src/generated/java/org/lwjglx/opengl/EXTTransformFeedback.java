@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTransformFeedback {
+
     public static final int GL_INTERLEAVED_ATTRIBS_EXT = (int) 35980;
     public static final int GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT = (int) 35978;
     public static final int GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT = (int) 35979;
@@ -37,21 +38,16 @@ public class EXTTransformFeedback {
         org.lwjgl.opengl.EXTTransformFeedback.glEndTransformFeedbackEXT();
     }
 
-    public static java.lang.String glGetTransformFeedbackVaryingEXT(
-            int program, int index, int bufSize, java.nio.IntBuffer size, java.nio.IntBuffer type) {
-        return org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(
-                program, index, bufSize, size, type);
+    public static java.lang.String glGetTransformFeedbackVaryingEXT(int program, int index, int bufSize,
+            java.nio.IntBuffer size, java.nio.IntBuffer type) {
+        return org.lwjgl.opengl.EXTTransformFeedback
+                .glGetTransformFeedbackVaryingEXT(program, index, bufSize, size, type);
     }
 
-    public static void glGetTransformFeedbackVaryingEXT(
-            int program,
-            int index,
-            java.nio.IntBuffer length,
-            java.nio.IntBuffer size,
-            java.nio.IntBuffer type,
-            java.nio.ByteBuffer name) {
-        org.lwjgl.opengl.EXTTransformFeedback.glGetTransformFeedbackVaryingEXT(
-                program, index, length, size, type, name);
+    public static void glGetTransformFeedbackVaryingEXT(int program, int index, java.nio.IntBuffer length,
+            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
+        org.lwjgl.opengl.EXTTransformFeedback
+                .glGetTransformFeedbackVaryingEXT(program, index, length, size, type, name);
     }
 
     public static void glTransformFeedbackVaryingsEXT(int program, java.lang.CharSequence[] varyings, int bufferMode) {

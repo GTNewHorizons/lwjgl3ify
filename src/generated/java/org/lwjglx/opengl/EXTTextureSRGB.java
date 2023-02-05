@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTextureSRGB {
+
     public static final int GL_COMPRESSED_SLUMINANCE_ALPHA_EXT = (int) 35915;
     public static final int GL_COMPRESSED_SLUMINANCE_EXT = (int) 35914;
     public static final int GL_COMPRESSED_SRGB_ALPHA_EXT = (int) 35913;

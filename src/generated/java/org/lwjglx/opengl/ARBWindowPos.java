@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBWindowPos {
+
     public static void glWindowPos2dARB(double x, double y) {
         org.lwjgl.opengl.ARBWindowPos.glWindowPos2dARB(x, y);
     }

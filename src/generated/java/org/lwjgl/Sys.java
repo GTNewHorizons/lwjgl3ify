@@ -1,6 +1,7 @@
 package org.lwjgl;
 
 public class Sys {
+
     public static void alert(java.lang.String arg0, java.lang.String arg1) {
         throw new UnsupportedOperationException();
     }

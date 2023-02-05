@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVShaderBufferLoad {
+
     public static final int GL_BUFFER_GPU_ADDRESS_NV = (int) 36637;
     public static final int GL_GPU_ADDRESS_NV = (int) 36660;
     public static final int GL_MAX_SHADER_BUFFER_ADDRESS_NV = (int) 36661;

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVRegisterCombiners {
+
     public static final int GL_BIAS_BY_NEGATIVE_ONE_HALF_NV = (int) 34113;
     public static final int GL_COLOR_SUM_CLAMP_NV = (int) 34127;
     public static final int GL_COMBINER0_NV = (int) 34128;
@@ -57,17 +58,8 @@ public class NVRegisterCombiners {
         throw new UnsupportedOperationException();
     }
 
-    public static void glCombinerOutputNV(
-            int arg0,
-            int arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            boolean arg7,
-            boolean arg8,
-            boolean arg9) {
+    public static void glCombinerOutputNV(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            boolean arg7, boolean arg8, boolean arg9) {
         throw new UnsupportedOperationException();
     }
 
@@ -91,8 +83,8 @@ public class NVRegisterCombiners {
         throw new UnsupportedOperationException();
     }
 
-    public static void glGetCombinerInputParameterNV(
-            int arg0, int arg1, int arg2, int arg3, java.nio.FloatBuffer arg4) {
+    public static void glGetCombinerInputParameterNV(int arg0, int arg1, int arg2, int arg3,
+            java.nio.FloatBuffer arg4) {
         throw new UnsupportedOperationException();
     }
 

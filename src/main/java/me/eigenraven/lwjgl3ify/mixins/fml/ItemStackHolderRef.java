@@ -1,20 +1,22 @@
 package me.eigenraven.lwjgl3ify.mixins.fml;
 
-import com.google.common.base.Throwables;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
+
 import net.minecraft.item.ItemStack;
+
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(
-        targets = {"cpw.mods.fml.common.registry.ItemStackHolderRef"},
-        remap = false)
+import com.google.common.base.Throwables;
+
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+@Mixin(targets = { "cpw.mods.fml.common.registry.ItemStackHolderRef" }, remap = false)
 public class ItemStackHolderRef {
 
     @Shadow(remap = false)
@@ -55,28 +57,26 @@ public class ItemStackHolderRef {
         try {
             is = GameRegistry.makeItemStack(itemName, meta, 1, serializednbt);
         } catch (RuntimeException e) {
-            FMLLog.getLogger()
-                    .log(
-                            Level.ERROR,
-                            "Caught exception processing itemstack {},{},{} in annotation at {}.{}",
-                            itemName,
-                            meta,
-                            serializednbt,
-                            field.getClass().getName(),
-                            field.getName());
+            FMLLog.getLogger().log(
+                    Level.ERROR,
+                    "Caught exception processing itemstack {},{},{} in annotation at {}.{}",
+                    itemName,
+                    meta,
+                    serializednbt,
+                    field.getClass().getName(),
+                    field.getName());
             throw e;
         }
         try {
             fieldSetter.invoke(is);
         } catch (Throwable e) {
-            FMLLog.getLogger()
-                    .log(
-                            Level.WARN,
-                            "Unable to set {} with value {},{},{}",
-                            this.field,
-                            this.itemName,
-                            this.meta,
-                            this.serializednbt);
+            FMLLog.getLogger().log(
+                    Level.WARN,
+                    "Unable to set {} with value {},{},{}",
+                    this.field,
+                    this.itemName,
+                    this.meta,
+                    this.serializednbt);
         }
     }
 }

@@ -22,8 +22,7 @@ public class ContextCapabilities {
                     try {
                         Field f = this.getClass().getField(name);
                         f.setBoolean(this, value);
-                    } catch (Exception e) {
-                    }
+                    } catch (Exception e) {}
                 }
             }
         } catch (Exception e) {
@@ -177,8 +176,7 @@ public class ContextCapabilities {
     public boolean GL_ARB_texture_env_combine;
     public boolean GL_ARB_texture_env_crossbar;
     public boolean GL_ARB_texture_env_dot3;
-    public boolean GL_ARB_texture_float;
-    ;
+    public boolean GL_ARB_texture_float;;
     public boolean GL_ARB_texture_gather;
     public boolean GL_ARB_texture_mirror_clamp_to_edge;
     public boolean GL_ARB_texture_mirrored_repeat;

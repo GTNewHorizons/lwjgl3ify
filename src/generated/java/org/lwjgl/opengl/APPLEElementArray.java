@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLEElementArray {
+
     public static final int GL_ELEMENT_ARRAY_APPLE = (int) 34664;
     public static final int GL_ELEMENT_ARRAY_POINTER_APPLE = (int) 34666;
     public static final int GL_ELEMENT_ARRAY_TYPE_APPLE = (int) 34665;
@@ -29,8 +30,8 @@ public class APPLEElementArray {
         throw new UnsupportedOperationException();
     }
 
-    public static void glMultiDrawRangeElementArrayAPPLE(
-            int arg0, int arg1, int arg2, java.nio.IntBuffer arg3, java.nio.IntBuffer arg4) {
+    public static void glMultiDrawRangeElementArrayAPPLE(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3,
+            java.nio.IntBuffer arg4) {
         throw new UnsupportedOperationException();
     }
 }

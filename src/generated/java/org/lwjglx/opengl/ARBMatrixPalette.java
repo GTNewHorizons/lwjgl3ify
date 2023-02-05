@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBMatrixPalette {
+
     public static final int GL_CURRENT_MATRIX_INDEX_ARB = (int) 34885;
     public static final int GL_CURRENT_PALETTE_MATRIX_ARB = (int) 34883;
     public static final int GL_MATRIX_INDEX_ARRAY_ARB = (int) 34884;

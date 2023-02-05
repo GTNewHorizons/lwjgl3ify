@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVPixelDataRange {
+
     public static final int GL_READ_PIXEL_DATA_RANGE_LENGTH_NV = (int) 34939;
     public static final int GL_READ_PIXEL_DATA_RANGE_NV = (int) 34937;
     public static final int GL_READ_PIXEL_DATA_RANGE_POINTER_NV = (int) 34941;

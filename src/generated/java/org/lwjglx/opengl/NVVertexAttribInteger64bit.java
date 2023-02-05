@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVVertexAttribInteger64bit {
+
     public static final int GL_INT64_NV = (int) 5134;
     public static final int GL_UNSIGNED_INT64_NV = (int) 5135;
 

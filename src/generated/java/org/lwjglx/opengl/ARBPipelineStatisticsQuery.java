@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBPipelineStatisticsQuery {
+
     public static final int GL_CLIPPING_INPUT_PRIMITIVES_ARB = (int) 33526;
     public static final int GL_CLIPPING_OUTPUT_PRIMITIVES_ARB = (int) 33527;
     public static final int GL_COMPUTE_SHADER_INVOCATIONS_ARB = (int) 33525;

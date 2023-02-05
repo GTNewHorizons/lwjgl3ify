@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBDrawIndirect {
+
     public static final int GL_DRAW_INDIRECT_BUFFER = (int) 36671;
     public static final int GL_DRAW_INDIRECT_BUFFER_BINDING = (int) 36675;
 

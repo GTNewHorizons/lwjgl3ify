@@ -2,7 +2,9 @@ package org.lwjglx.input;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+
 import me.eigenraven.lwjgl3ify.core.Config;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
@@ -143,7 +145,9 @@ public class Mouse {
 
     public static void setGrabbed(boolean grab) {
         GLFW.glfwSetInputMode(
-                Display.getWindow(), GLFW.GLFW_CURSOR, grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
+                Display.getWindow(),
+                GLFW.GLFW_CURSOR,
+                grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
         grabbed = grab;
         if (!grab) {
             setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);

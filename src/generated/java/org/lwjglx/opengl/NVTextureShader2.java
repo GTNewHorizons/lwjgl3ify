@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVTextureShader2 {
+
     public static final int GL_DOT_PRODUCT_TEXTURE_3D_NV = (int) 34543;
     public static final int GL_DSDT8_MAG8_INTENSITY8_NV = (int) 34571;
     public static final int GL_DSDT8_MAG8_NV = (int) 34570;

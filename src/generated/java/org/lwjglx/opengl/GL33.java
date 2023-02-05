@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL33 {
+
     public static final int GL_ANY_SAMPLES_PASSED = (int) 35887;
     public static final int GL_INT_2_10_10_10_REV = (int) 36255;
     public static final int GL_MAX_DUAL_SOURCE_DRAW_BUFFERS = (int) 35068;
@@ -18,13 +19,13 @@ public class GL33 {
     public static final int GL_TIME_ELAPSED = (int) 35007;
     public static final int GL_VERTEX_ATTRIB_ARRAY_DIVISOR = (int) 35070;
 
-    public static void glBindFragDataLocationIndexed(
-            int program, int colorNumber, int index, java.lang.CharSequence name) {
+    public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
+            java.lang.CharSequence name) {
         org.lwjgl.opengl.GL33.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 
-    public static void glBindFragDataLocationIndexed(
-            int program, int colorNumber, int index, java.nio.ByteBuffer name) {
+    public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
+            java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL33.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 

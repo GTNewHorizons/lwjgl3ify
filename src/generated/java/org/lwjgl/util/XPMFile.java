@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public class XPMFile {
+
     public byte[] getBytes() {
         throw new UnsupportedOperationException();
     }

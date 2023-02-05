@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVPresentVideo {
+
     public static final int FIELDS_NV = (int) 36391;
     public static final int GL_CURRENT_TIME_NV = (int) 36392;
     public static final int GL_FRAME_NV = (int) 36390;
@@ -41,35 +42,13 @@ public class NVPresentVideo {
         throw new UnsupportedOperationException();
     }
 
-    public static void glPresentFrameDualFillNV(
-            int arg0,
-            long arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            int arg7,
-            int arg8,
-            int arg9,
-            int arg10,
-            int arg11,
-            int arg12) {
+    public static void glPresentFrameDualFillNV(int arg0, long arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8, int arg9, int arg10, int arg11, int arg12) {
         throw new UnsupportedOperationException();
     }
 
-    public static void glPresentFrameKeyedNV(
-            int arg0,
-            long arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            int arg7,
-            int arg8,
-            int arg9,
-            int arg10) {
+    public static void glPresentFrameKeyedNV(int arg0, long arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8, int arg9, int arg10) {
         throw new UnsupportedOperationException();
     }
 }

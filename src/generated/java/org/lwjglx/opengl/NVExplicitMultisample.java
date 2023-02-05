@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVExplicitMultisample {
+
     public static final int GL_INT_SAMPLER_RENDERBUFFER_NV = (int) 36439;
     public static final int GL_MAX_SAMPLE_MASK_WORDS_NV = (int) 36441;
     public static final int GL_SAMPLER_RENDERBUFFER_NV = (int) 36438;

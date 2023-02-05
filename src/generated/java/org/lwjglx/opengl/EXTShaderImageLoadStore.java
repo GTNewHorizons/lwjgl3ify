@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTShaderImageLoadStore {
+
     public static final int GL_ALL_BARRIER_BITS_EXT = (int) -1;
     public static final int GL_ATOMIC_COUNTER_BARRIER_BIT_EXT = (int) 4096;
     public static final int GL_BUFFER_UPDATE_BARRIER_BIT_EXT = (int) 512;
@@ -57,10 +58,10 @@ public class EXTShaderImageLoadStore {
     public static final int GL_UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY_EXT = (int) 36970;
     public static final int GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT_EXT = (int) 1;
 
-    public static void glBindImageTextureEXT(
-            int index, int texture, int level, boolean layered, int layer, int access, int format) {
-        org.lwjgl.opengl.EXTShaderImageLoadStore.glBindImageTextureEXT(
-                index, texture, level, layered, layer, access, format);
+    public static void glBindImageTextureEXT(int index, int texture, int level, boolean layered, int layer, int access,
+            int format) {
+        org.lwjgl.opengl.EXTShaderImageLoadStore
+                .glBindImageTextureEXT(index, texture, level, layered, layer, access, format);
     }
 
     public static void glMemoryBarrierEXT(int barriers) {

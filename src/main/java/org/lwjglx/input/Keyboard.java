@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
@@ -14,14 +15,12 @@ import org.lwjglx.opengl.Display;
 public class Keyboard {
 
     /**
-     * The special character meaning that no
-     * character was translated for the event.
+     * The special character meaning that no character was translated for the event.
      */
     public static final int CHAR_NONE = '\0';
 
     /**
-     * The special keycode meaning that only the
-     * translated character is valid.
+     * The special keycode meaning that only the translated character is valid.
      */
     public static final int KEY_NONE = 0x00;
 
@@ -110,26 +109,26 @@ public class Keyboard {
     public static final int KEY_DECIMAL = 0x53; /* . on numeric keypad */
     public static final int KEY_F11 = 0x57;
     public static final int KEY_F12 = 0x58;
-    public static final int KEY_F13 = 0x64; /*                     (NEC PC98) */
-    public static final int KEY_F14 = 0x65; /*                     (NEC PC98) */
-    public static final int KEY_F15 = 0x66; /*                     (NEC PC98) */
+    public static final int KEY_F13 = 0x64; /* (NEC PC98) */
+    public static final int KEY_F14 = 0x65; /* (NEC PC98) */
+    public static final int KEY_F15 = 0x66; /* (NEC PC98) */
     public static final int KEY_F16 = 0x67; /* Extended Function keys - (Mac) */
     public static final int KEY_F17 = 0x68;
     public static final int KEY_F18 = 0x69;
-    public static final int KEY_KANA = 0x70; /* (Japanese keyboard)            */
+    public static final int KEY_KANA = 0x70; /* (Japanese keyboard) */
     public static final int KEY_F19 = 0x71; /* Extended Function keys - (Mac) */
-    public static final int KEY_CONVERT = 0x79; /* (Japanese keyboard)            */
-    public static final int KEY_NOCONVERT = 0x7B; /* (Japanese keyboard)            */
-    public static final int KEY_YEN = 0x7D; /* (Japanese keyboard)            */
+    public static final int KEY_CONVERT = 0x79; /* (Japanese keyboard) */
+    public static final int KEY_NOCONVERT = 0x7B; /* (Japanese keyboard) */
+    public static final int KEY_YEN = 0x7D; /* (Japanese keyboard) */
     public static final int KEY_NUMPADEQUALS = 0x8D; /* = on numeric keypad (NEC PC98) */
-    public static final int KEY_CIRCUMFLEX = 0x90; /* (Japanese keyboard)            */
-    public static final int KEY_AT = 0x91; /*                     (NEC PC98) */
-    public static final int KEY_COLON = 0x92; /*                     (NEC PC98) */
-    public static final int KEY_UNDERLINE = 0x93; /*                     (NEC PC98) */
-    public static final int KEY_KANJI = 0x94; /* (Japanese keyboard)            */
-    public static final int KEY_STOP = 0x95; /*                     (NEC PC98) */
-    public static final int KEY_AX = 0x96; /*                     (Japan AX) */
-    public static final int KEY_UNLABELED = 0x97; /*                        (J3100) */
+    public static final int KEY_CIRCUMFLEX = 0x90; /* (Japanese keyboard) */
+    public static final int KEY_AT = 0x91; /* (NEC PC98) */
+    public static final int KEY_COLON = 0x92; /* (NEC PC98) */
+    public static final int KEY_UNDERLINE = 0x93; /* (NEC PC98) */
+    public static final int KEY_KANJI = 0x94; /* (Japanese keyboard) */
+    public static final int KEY_STOP = 0x95; /* (NEC PC98) */
+    public static final int KEY_AX = 0x96; /* (Japan AX) */
+    public static final int KEY_UNLABELED = 0x97; /* (J3100) */
     public static final int KEY_NUMPADENTER = 0x9C; /* Enter on numeric keypad */
     public static final int KEY_RCONTROL = 0x9D;
     public static final int KEY_SECTION = 0xA7; /* Section symbol (Mac) */
@@ -163,9 +162,11 @@ public class Keyboard {
     private static EventQueue queue = new EventQueue(128);
 
     private enum KeyState {
+
         PRESS(true),
         RELEASE(false),
         REPEAT(true);
+
         public final boolean isPressed;
 
         KeyState(boolean isPressed) {
@@ -196,8 +197,7 @@ public class Keyboard {
         int keyCounter = 0;
         try {
             for (Field field : fields) {
-                if (Modifier.isStatic(field.getModifiers())
-                        && Modifier.isPublic(field.getModifiers())
+                if (Modifier.isStatic(field.getModifiers()) && Modifier.isPublic(field.getModifiers())
                         && Modifier.isFinal(field.getModifiers())
                         && field.getType().equals(int.class)
                         && field.getName().startsWith("KEY_")
@@ -209,8 +209,7 @@ public class Keyboard {
                     keyCounter++;
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         keyCount = keyCounter;
         for (int i = 0; i < keyName.length; i++) {
             if (keyName[i] == null) {

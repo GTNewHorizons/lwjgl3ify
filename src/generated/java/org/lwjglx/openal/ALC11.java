@@ -1,6 +1,7 @@
 package org.lwjglx.openal;
 
 public class ALC11 {
+
     public static final int ALC_ALL_DEVICES_SPECIFIER = (int) 4115;
     public static final int ALC_CAPTURE_DEFAULT_DEVICE_SPECIFIER = (int) 785;
     public static final int ALC_CAPTURE_DEVICE_SPECIFIER = (int) 784;
@@ -16,8 +17,8 @@ public class ALC11 {
         return returnValue;
     }
 
-    public static org.lwjglx.openal.ALCdevice alcCaptureOpenDevice(
-            java.lang.String arg0, int arg1, int frequency, int format) {
+    public static org.lwjglx.openal.ALCdevice alcCaptureOpenDevice(java.lang.String arg0, int arg1, int frequency,
+            int format) {
 
         org.lwjglx.openal.ALCdevice returnValue = new org.lwjglx.openal.ALCdevice(
                 org.lwjgl.openal.ALC11.alcCaptureOpenDevice(arg0, arg1, frequency, format));

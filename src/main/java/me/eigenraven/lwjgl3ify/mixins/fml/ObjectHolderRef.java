@@ -1,20 +1,22 @@
 package me.eigenraven.lwjgl3ify.mixins.fml;
 
-import com.google.common.base.Throwables;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.registry.GameData;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
+
 import net.minecraft.init.Blocks;
+
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(
-        targets = {"cpw.mods.fml.common.registry.ObjectHolderRef"},
-        remap = false)
+import com.google.common.base.Throwables;
+
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.registry.GameData;
+
+@Mixin(targets = { "cpw.mods.fml.common.registry.ObjectHolderRef" }, remap = false)
 public class ObjectHolderRef {
 
     @Shadow(remap = false)
@@ -70,12 +72,11 @@ public class ObjectHolderRef {
         }
 
         if (thing == null) {
-            FMLLog.getLogger()
-                    .log(
-                            Level.DEBUG,
-                            "Unable to lookup {} for {}. This means the object wasn't registered. It's likely just mod options.",
-                            injectedObject,
-                            field);
+            FMLLog.getLogger().log(
+                    Level.DEBUG,
+                    "Unable to lookup {} for {}. This means the object wasn't registered. It's likely just mod options.",
+                    injectedObject,
+                    field);
             return;
         }
         try {

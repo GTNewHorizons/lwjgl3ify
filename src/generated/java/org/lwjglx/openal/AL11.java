@@ -1,6 +1,7 @@
 package org.lwjglx.openal;
 
 public class AL11 {
+
     public static final int AL_BYTE_OFFSET = (int) 4134;
     public static final int AL_EXPONENT_DISTANCE = (int) 53253;
     public static final int AL_EXPONENT_DISTANCE_CLAMPED = (int) 53254;

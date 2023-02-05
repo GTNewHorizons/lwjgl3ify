@@ -3,9 +3,12 @@ package me.eigenraven.lwjgl3ify.paulscode.sound.libraries;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.LinkedList;
+
 import javax.sound.sampled.AudioFormat;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.openal.AL10;
+
 import paulscode.sound.Channel;
 import paulscode.sound.FilenameURL;
 import paulscode.sound.SoundBuffer;
@@ -13,88 +16,58 @@ import paulscode.sound.SoundSystemConfig;
 import paulscode.sound.Source;
 
 /**
- * The SourceLWJGLOpenAL class provides an interface to the lwjgl binding of OpenAL.
- *<b><br><br>
- *    This software is based on or using the LWJGL Lightweight Java Gaming
- *    Library available from
- *    http://www.lwjgl.org/.
- *</b><br><br>
- *    LWJGL License:
- *<br><i>
- * Copyright (c) 2002-2008 Lightweight Java Game Library Project
- * All rights reserved.
- *<br>
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
+ * The SourceLWJGLOpenAL class provides an interface to the lwjgl binding of OpenAL. <b><br>
  * <br>
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *<br>
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *<br>
- * * Neither the name of 'Light Weight Java Game Library' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
+ * This software is based on or using the LWJGL Lightweight Java Gaming Library available from http://www.lwjgl.org/.
+ * </b><br>
  * <br>
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * <br><br><br></i>
- *<b><i>    SoundSystem LibraryLWJGLOpenAL License:</b></i><br><b><br>
- *<b>
- *    You are free to use this library for any purpose, commercial or otherwise.
- *    You may modify this library or source code, and distribute it any way you
- *    like, provided the following conditions are met:
- *<br>
- *    1) You must abide by the conditions of the aforementioned LWJGL License.
- *<br>
- *    2) You may not falsely claim to be the author of this library or any
- *    unmodified portion of it.
- *<br>
- *    3) You may not copyright this library or a modified version of it and then
- *    sue me for copyright infringement.
- *<br>
- *    4) If you modify the source code, you must clearly document the changes
- *    made before redistributing the modified source code, so other users know
- *    it is not the original code.
- *<br>
- *    5) You are not required to give me credit for this library in any derived
- *    work, but if you do, you must also mention my website:
- *    http://www.paulscode.com
- *<br>
- *    6) I the author will not be responsible for any damages (physical,
- *    financial, or otherwise) caused by the use if this library or any part
- *    of it.
- *<br>
- *    7) I the author do not guarantee, warrant, or make any representations,
- *    either expressed or implied, regarding the use of this library or any
- *    part of it.
- * <br><br>
- *    Author: Paul Lamb
+ * LWJGL License: <br>
+ * <i> Copyright (c) 2002-2008 Lightweight Java Game Library Project All rights reserved. <br>
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+ * following conditions are met: <br>
+ * * Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ * disclaimer. <br>
+ * * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided with the distribution. <br>
+ * * Neither the name of 'Light Weight Java Game Library' nor the names of its contributors may be used to endorse or
+ * promote products derived from this software without specific prior written permission. <br>
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. <br>
  * <br>
- *    http://www.paulscode.com
- * </b>
+ * <br>
+ * </i> <b><i> SoundSystem LibraryLWJGLOpenAL License:</b></i><br>
+ * <b><br>
+ * <b> You are free to use this library for any purpose, commercial or otherwise. You may modify this library or source
+ * code, and distribute it any way you like, provided the following conditions are met: <br>
+ * 1) You must abide by the conditions of the aforementioned LWJGL License. <br>
+ * 2) You may not falsely claim to be the author of this library or any unmodified portion of it. <br>
+ * 3) You may not copyright this library or a modified version of it and then sue me for copyright infringement. <br>
+ * 4) If you modify the source code, you must clearly document the changes made before redistributing the modified
+ * source code, so other users know it is not the original code. <br>
+ * 5) You are not required to give me credit for this library in any derived work, but if you do, you must also mention
+ * my website: http://www.paulscode.com <br>
+ * 6) I the author will not be responsible for any damages (physical, financial, or otherwise) caused by the use if this
+ * library or any part of it. <br>
+ * 7) I the author do not guarantee, warrant, or make any representations, either expressed or implied, regarding the
+ * use of this library or any part of it. <br>
+ * <br>
+ * Author: Paul Lamb <br>
+ * http://www.paulscode.com </b>
  */
 public class SourceLWJGLOpenAL extends Source {
+
     /**
      * The source's basic Channel type-cast to a ChannelLWJGLOpenAL.
      */
     private ChannelLWJGLOpenAL channelOpenAL = (ChannelLWJGLOpenAL) channel;
 
     /**
-     * OpenAL IntBuffer sound-buffer identifier for this source if it is a normal
-     * source.
+     * OpenAL IntBuffer sound-buffer identifier for this source if it is a normal source.
      */
     private IntBuffer myBuffer;
 
@@ -114,37 +87,26 @@ public class SourceLWJGLOpenAL extends Source {
     private FloatBuffer sourceVelocity;
 
     /**
-     * Constructor:  Creates a new source using the specified parameters.
+     * Constructor: Creates a new source using the specified parameters.
+     * 
      * @param listenerPosition FloatBuffer containing the listener's 3D coordinates.
-     * @param myBuffer OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
-     * @param priority Setting this to true will prevent other sounds from overriding this one.
-     * @param toStream Setting this to true will create a streaming source.
-     * @param toLoop Should this source loop, or play only once.
-     * @param sourcename A unique identifier for this source.  Two sources may not use the same sourcename.
-     * @param filenameURL Filename/URL of the sound file to play at this source.
-     * @param soundBuffer Buffer containing audio data, or null if not loaded yet.
-     * @param x X position for this source.
-     * @param y Y position for this source.
-     * @param z Z position for this source.
-     * @param attModel Attenuation model to use.
-     * @param distOrRoll Either the fading distance or rolloff factor, depending on the value of 'att'.
-     * @param temporary Whether or not to remove this source after it finishes playing.
+     * @param myBuffer         OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
+     * @param priority         Setting this to true will prevent other sounds from overriding this one.
+     * @param toStream         Setting this to true will create a streaming source.
+     * @param toLoop           Should this source loop, or play only once.
+     * @param sourcename       A unique identifier for this source. Two sources may not use the same sourcename.
+     * @param filenameURL      Filename/URL of the sound file to play at this source.
+     * @param soundBuffer      Buffer containing audio data, or null if not loaded yet.
+     * @param x                X position for this source.
+     * @param y                Y position for this source.
+     * @param z                Z position for this source.
+     * @param attModel         Attenuation model to use.
+     * @param distOrRoll       Either the fading distance or rolloff factor, depending on the value of 'att'.
+     * @param temporary        Whether or not to remove this source after it finishes playing.
      */
-    public SourceLWJGLOpenAL(
-            FloatBuffer listenerPosition,
-            IntBuffer myBuffer,
-            boolean priority,
-            boolean toStream,
-            boolean toLoop,
-            String sourcename,
-            FilenameURL filenameURL,
-            SoundBuffer soundBuffer,
-            float x,
-            float y,
-            float z,
-            int attModel,
-            float distOrRoll,
-            boolean temporary) {
+    public SourceLWJGLOpenAL(FloatBuffer listenerPosition, IntBuffer myBuffer, boolean priority, boolean toStream,
+            boolean toLoop, String sourcename, FilenameURL filenameURL, SoundBuffer soundBuffer, float x, float y,
+            float z, int attModel, float distOrRoll, boolean temporary) {
         super(
                 priority,
                 toStream,
@@ -167,11 +129,12 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * Constructor:  Creates a new source matching the specified source.
+     * Constructor: Creates a new source matching the specified source.
+     * 
      * @param listenerPosition FloatBuffer containing the listener's 3D coordinates.
-     * @param myBuffer OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
-     * @param old Source to copy information from.
-     * @param soundBuffer Buffer containing audio data, or null if not loaded yet.
+     * @param myBuffer         OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
+     * @param old              Source to copy information from.
+     * @param soundBuffer      Buffer containing audio data, or null if not loaded yet.
      */
     public SourceLWJGLOpenAL(FloatBuffer listenerPosition, IntBuffer myBuffer, Source old, SoundBuffer soundBuffer) {
         super(old, soundBuffer);
@@ -184,28 +147,20 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * Constructor:  Creates a new streaming source that will be directly fed with
-     * raw audio data.
+     * Constructor: Creates a new streaming source that will be directly fed with raw audio data.
+     * 
      * @param listenerPosition FloatBuffer containing the listener's 3D coordinates.
-     * @param audioFormat Format that the data will be in.
-     * @param priority Setting this to true will prevent other sounds from overriding this one.
-     * @param sourcename A unique identifier for this source.  Two sources may not use the same sourcename.
-     * @param x X position for this source.
-     * @param y Y position for this source.
-     * @param z Z position for this source.
-     * @param attModel Attenuation model to use.
-     * @param distOrRoll Either the fading distance or rolloff factor, depending on the value of 'att'.
+     * @param audioFormat      Format that the data will be in.
+     * @param priority         Setting this to true will prevent other sounds from overriding this one.
+     * @param sourcename       A unique identifier for this source. Two sources may not use the same sourcename.
+     * @param x                X position for this source.
+     * @param y                Y position for this source.
+     * @param z                Z position for this source.
+     * @param attModel         Attenuation model to use.
+     * @param distOrRoll       Either the fading distance or rolloff factor, depending on the value of 'att'.
      */
-    public SourceLWJGLOpenAL(
-            FloatBuffer listenerPosition,
-            AudioFormat audioFormat,
-            boolean priority,
-            String sourcename,
-            float x,
-            float y,
-            float z,
-            int attModel,
-            float distOrRoll) {
+    public SourceLWJGLOpenAL(FloatBuffer listenerPosition, AudioFormat audioFormat, boolean priority, String sourcename,
+            float x, float y, float z, int attModel, float distOrRoll) {
         super(audioFormat, priority, sourcename, x, y, z, attModel, distOrRoll);
         this.listenerPosition = listenerPosition;
         libraryType = LibraryLWJGLOpenAL.class;
@@ -223,38 +178,26 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * Changes the peripheral information about the source using the specified
-     * parameters.
+     * Changes the peripheral information about the source using the specified parameters.
+     * 
      * @param listenerPosition FloatBuffer containing the listener's 3D coordinates.
-     * @param myBuffer OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
-     * @param priority Setting this to true will prevent other sounds from overriding this one.
-     * @param toStream Setting this to true will create a streaming source.
-     * @param toLoop Should this source loop, or play only once.
-     * @param sourcename A unique identifier for this source.  Two sources may not use the same sourcename.
-     * @param filenameURL Filename/URL of the sound file to play at this source.
-     * @param soundBuffer Buffer containing audio data, or null if not loaded yet.
-     * @param x X position for this source.
-     * @param y Y position for this source.
-     * @param z Z position for this source.
-     * @param attModel Attenuation model to use.
-     * @param distOrRoll Either the fading distance or rolloff factor, depending on the value of 'att'.
-     * @param temporary Whether or not to remove this source after it finishes playing.
+     * @param myBuffer         OpenAL IntBuffer sound-buffer identifier to use for a new normal source.
+     * @param priority         Setting this to true will prevent other sounds from overriding this one.
+     * @param toStream         Setting this to true will create a streaming source.
+     * @param toLoop           Should this source loop, or play only once.
+     * @param sourcename       A unique identifier for this source. Two sources may not use the same sourcename.
+     * @param filenameURL      Filename/URL of the sound file to play at this source.
+     * @param soundBuffer      Buffer containing audio data, or null if not loaded yet.
+     * @param x                X position for this source.
+     * @param y                Y position for this source.
+     * @param z                Z position for this source.
+     * @param attModel         Attenuation model to use.
+     * @param distOrRoll       Either the fading distance or rolloff factor, depending on the value of 'att'.
+     * @param temporary        Whether or not to remove this source after it finishes playing.
      */
-    public void changeSource(
-            FloatBuffer listenerPosition,
-            IntBuffer myBuffer,
-            boolean priority,
-            boolean toStream,
-            boolean toLoop,
-            String sourcename,
-            FilenameURL filenameURL,
-            SoundBuffer soundBuffer,
-            float x,
-            float y,
-            float z,
-            int attModel,
-            float distOrRoll,
-            boolean temporary) {
+    public void changeSource(FloatBuffer listenerPosition, IntBuffer myBuffer, boolean priority, boolean toStream,
+            boolean toLoop, String sourcename, FilenameURL filenameURL, SoundBuffer soundBuffer, float x, float y,
+            float z, int attModel, float distOrRoll, boolean temporary) {
         super.changeSource(
                 priority,
                 toStream,
@@ -275,10 +218,10 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * Removes the next filename from the sound sequence queue and assigns it to
-     * this source.  This method has no effect on non-streaming sources.  This
-     * method is used internally by SoundSystem, and it is unlikely that the user
-     * will ever need to use it.
+     * Removes the next filename from the sound sequence queue and assigns it to this source. This method has no effect
+     * on non-streaming sources. This method is used internally by SoundSystem, and it is unlikely that the user will
+     * ever need to use it.
+     * 
      * @return True if there was something in the queue.
      */
     @Override
@@ -347,6 +290,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Moves the source to the specified position.
+     * 
      * @param x X coordinate to move to.
      * @param y Y coordinate to move to.
      * @param z Z coordinate to move to.
@@ -365,8 +309,7 @@ public class SourceLWJGLOpenAL extends Source {
         sourcePosition.put(2, z);
 
         // make sure we are assigned to a channel:
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             // move the source:
@@ -383,8 +326,7 @@ public class SourceLWJGLOpenAL extends Source {
         calculateDistance();
         calculateGain();
 
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             AL10.alSourcef(
@@ -400,8 +342,7 @@ public class SourceLWJGLOpenAL extends Source {
      * Checks the source's pitch.
      */
     private void checkPitch() {
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && LibraryLWJGLOpenAL.alPitchSupported()
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
@@ -412,6 +353,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Sets whether this source should loop or only play once.
+     * 
      * @param lp True or false.
      */
     @Override
@@ -419,8 +361,7 @@ public class SourceLWJGLOpenAL extends Source {
         super.setLooping(lp);
 
         // make sure we are assigned to a channel:
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             if (lp) AL10.alSourcei(channelOpenAL.ALSource.get(0), AL10.AL_LOOPING, AL10.AL_TRUE);
@@ -431,14 +372,14 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Sets this source's attenuation model.
+     * 
      * @param model Attenuation model to use.
      */
     @Override
     public void setAttenuation(int model) {
         super.setAttenuation(model);
         // make sure we are assigned to a channel:
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             // attenuation changed, so update the rolloff factor accordingly
@@ -450,16 +391,15 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * Sets this source's fade distance or rolloff factor, depending on the
-     * attenuation model.
+     * Sets this source's fade distance or rolloff factor, depending on the attenuation model.
+     * 
      * @param dr New value for fade distance or rolloff factor.
      */
     @Override
     public void setDistOrRoll(float dr) {
         super.setDistOrRoll(dr);
         // make sure we are assigned to a channel:
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             // if we are using rolloff attenuation, then dr is a rolloff factor:
@@ -472,6 +412,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Sets this source's velocity, for use in Doppler effect.
+     * 
      * @param x Velocity along world x-axis.
      * @param y Velocity along world y-axis.
      * @param z Velocity along world z-axis.
@@ -480,11 +421,10 @@ public class SourceLWJGLOpenAL extends Source {
     public void setVelocity(float x, float y, float z) {
         super.setVelocity(x, y, z);
 
-        sourceVelocity = BufferUtils.createFloatBuffer(3).put(new float[] {x, y, z});
+        sourceVelocity = BufferUtils.createFloatBuffer(3).put(new float[] { x, y, z });
         sourceVelocity.flip();
         // make sure we are assigned to a channel:
-        if (channel != null
-                && channel.attachedSource == this
+        if (channel != null && channel.attachedSource == this
                 && channelOpenAL != null
                 && channelOpenAL.ALSource != null) {
             AL10.alSourcefv(channelOpenAL.ALSource.get(0), AL10.AL_VELOCITY, sourceVelocity);
@@ -494,6 +434,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Manually sets this source's pitch.
+     * 
      * @param value A float value ( 0.5f - 2.0f ).
      */
     @Override
@@ -504,6 +445,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Plays the source on the specified channel.
+     * 
      * @param c Channel to play on.
      */
     @Override
@@ -618,6 +560,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Queues up the initial stream-buffers for the stream.
+     * 
      * @return False if the end of the stream was reached.
      */
     @Override
@@ -646,8 +589,8 @@ public class SourceLWJGLOpenAL extends Source {
      */
     private void resetALInformation() {
         // Create buffers for the source's position and velocity
-        sourcePosition = BufferUtils.createFloatBuffer(3).put(new float[] {position.x, position.y, position.z});
-        sourceVelocity = BufferUtils.createFloatBuffer(3).put(new float[] {velocity.x, velocity.y, velocity.z});
+        sourcePosition = BufferUtils.createFloatBuffer(3).put(new float[] { position.x, position.y, position.z });
+        sourceVelocity = BufferUtils.createFloatBuffer(3).put(new float[] { velocity.x, velocity.y, velocity.z });
 
         // flip the buffers, so they can be used:
         sourcePosition.flip();
@@ -670,8 +613,7 @@ public class SourceLWJGLOpenAL extends Source {
     }
 
     /**
-     * If using linear attenuation, calculates the gain for this source based on
-     * its distance from the listener.
+     * If using linear attenuation, calculates the gain for this source based on its distance from the listener.
      */
     private void calculateGain() {
         // If using linear attenuation, calculate the source's gain:
@@ -692,6 +634,7 @@ public class SourceLWJGLOpenAL extends Source {
 
     /**
      * Checks for OpenAL errors, and prints a message if there is an error.
+     * 
      * @return True if there was an error, False if not.
      */
     private boolean checkALError() {

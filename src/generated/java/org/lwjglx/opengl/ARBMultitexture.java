@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBMultitexture {
+
     public static final int GL_ACTIVE_TEXTURE_ARB = (int) 34016;
     public static final int GL_CLIENT_ACTIVE_TEXTURE_ARB = (int) 34017;
     public static final int GL_MAX_TEXTURE_UNITS_ARB = (int) 34018;

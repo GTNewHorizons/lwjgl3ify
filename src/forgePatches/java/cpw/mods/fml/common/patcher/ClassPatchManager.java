@@ -1,18 +1,5 @@
 package cpw.mods.fml.common.patcher;
 
-import LZMA.LzmaInputStream;
-import com.google.common.base.Joiner;
-import com.google.common.base.Throwables;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
-import com.google.common.collect.Maps;
-import com.google.common.hash.Hashing;
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-import com.google.common.io.Files;
-import cpw.mods.fml.relauncher.FMLRelaunchLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.repackage.com.nothome.delta.GDiffPatcher;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,15 +12,34 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
 import java.util.regex.Pattern;
+
 import net.minecraft.launchwrapper.LaunchClassLoader;
+
 import org.apache.commons.compress.harmony.unpack200.Pack200UnpackerAdapter;
 import org.apache.logging.log4j.Level;
 
+import LZMA.LzmaInputStream;
+
+import com.google.common.base.Joiner;
+import com.google.common.base.Throwables;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Maps;
+import com.google.common.hash.Hashing;
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
+import com.google.common.io.Files;
+
+import cpw.mods.fml.relauncher.FMLRelaunchLog;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.repackage.com.nothome.delta.GDiffPatcher;
+
 public class ClassPatchManager {
+
     public static final ClassPatchManager INSTANCE = new ClassPatchManager();
 
-    public static final boolean dumpPatched =
-            Boolean.parseBoolean(System.getProperty("fml.dumpPatchedClasses", "false"));
+    public static final boolean dumpPatched = Boolean
+            .parseBoolean(System.getProperty("fml.dumpPatchedClasses", "false"));
     public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fml.debugClassPatchManager", "false"));
 
     private GDiffPatcher patcher = new GDiffPatcher();
@@ -66,10 +72,12 @@ public class ClassPatchManager {
             return inputData;
         }
         boolean ignoredError = false;
-        if (DEBUG)
-            FMLRelaunchLog.fine(
-                    "Runtime patching class %s (input size %d), found %d patch%s",
-                    mappedName, (inputData == null ? 0 : inputData.length), list.size(), list.size() != 1 ? "es" : "");
+        if (DEBUG) FMLRelaunchLog.fine(
+                "Runtime patching class %s (input size %d), found %d patch%s",
+                mappedName,
+                (inputData == null ? 0 : inputData.length),
+                list.size(),
+                list.size() != 1 ? "es" : "");
         for (ClassPatch patch : list) {
             if (!patch.targetClassName.equals(mappedName) && !patch.sourceClassName.equals(name)) {
                 FMLRelaunchLog.warning("Binary patch found %s for wrong class %s", patch.targetClassName, mappedName);
@@ -85,7 +93,10 @@ public class ClassPatchManager {
                 if (patch.inputChecksum != inputChecksum) {
                     FMLRelaunchLog.severe(
                             "There is a binary discrepency between the expected input class %s (%s) and the actual class. Checksum on disk is %x, in patch %x. Things are probably about to go very wrong. Did you put something into the jar file?",
-                            mappedName, name, inputChecksum, patch.inputChecksum);
+                            mappedName,
+                            name,
+                            inputChecksum,
+                            patch.inputChecksum);
                     if (!Boolean.parseBoolean(System.getProperty("fml.ignorePatchDiscrepancies", "false"))) {
                         FMLRelaunchLog.severe(
                                 "The game is going to exit, because this is a critical error, and it is very improbable that the modded game will work, please obtain clean jar files.");
@@ -108,8 +119,8 @@ public class ClassPatchManager {
             }
         }
         if (!ignoredError && DEBUG) {
-            FMLRelaunchLog.fine(
-                    "Successfully applied runtime patches for %s (new size %d)", mappedName, inputData.length);
+            FMLRelaunchLog
+                    .fine("Successfully applied runtime patches for %s (new size %d)", mappedName, inputData.length);
         }
         if (dumpPatched) {
             try {
@@ -123,8 +134,8 @@ public class ClassPatchManager {
     }
 
     public void setup(Side side) {
-        Pattern binpatchMatcher = Pattern.compile(
-                String.format("binpatch/%s/.*.binpatch", side.toString().toLowerCase(Locale.ENGLISH)));
+        Pattern binpatchMatcher = Pattern
+                .compile(String.format("binpatch/%s/.*.binpatch", side.toString().toLowerCase(Locale.ENGLISH)));
         JarInputStream jis;
         try {
             InputStream binpatchesCompressed = getClass().getResourceAsStream("/binpatches.pack.lzma");
@@ -164,13 +175,10 @@ public class ClassPatchManager {
                 } else {
                     jis.closeEntry();
                 }
-            } catch (IOException e) {
-            }
+            } catch (IOException e) {}
         } while (true);
         FMLRelaunchLog.fine("Read %d binary patches", patches.size());
-        if (DEBUG)
-            FMLRelaunchLog.fine(
-                    "Patch list :\n\t%s", Joiner.on("\t\n").join(patches.asMap().entrySet()));
+        if (DEBUG) FMLRelaunchLog.fine("Patch list :\n\t%s", Joiner.on("\t\n").join(patches.asMap().entrySet()));
         patchedClasses.clear();
     }
 

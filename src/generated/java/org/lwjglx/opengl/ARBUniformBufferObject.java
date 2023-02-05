@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBUniformBufferObject {
+
     public static final int GL_ACTIVE_UNIFORM_BLOCKS = (int) 35382;
     public static final int GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH = (int) 35381;
     public static final int GL_INVALID_INDEX = (int) -1;
@@ -47,10 +48,10 @@ public class ARBUniformBufferObject {
         return org.lwjgl.opengl.ARBUniformBufferObject.glGetActiveUniformBlockName(program, uniformBlockIndex, bufSize);
     }
 
-    public static void glGetActiveUniformBlockName(
-            int program, int uniformBlockIndex, java.nio.IntBuffer length, java.nio.ByteBuffer uniformBlockName) {
-        org.lwjgl.opengl.ARBUniformBufferObject.glGetActiveUniformBlockName(
-                program, uniformBlockIndex, length, uniformBlockName);
+    public static void glGetActiveUniformBlockName(int program, int uniformBlockIndex, java.nio.IntBuffer length,
+            java.nio.ByteBuffer uniformBlockName) {
+        org.lwjgl.opengl.ARBUniformBufferObject
+                .glGetActiveUniformBlockName(program, uniformBlockIndex, length, uniformBlockName);
     }
 
     public static int glGetActiveUniformBlocki(int program, int uniformBlockIndex, int pname) {
@@ -61,8 +62,8 @@ public class ARBUniformBufferObject {
         return org.lwjgl.opengl.ARBUniformBufferObject.glGetActiveUniformName(program, uniformIndex, bufSize);
     }
 
-    public static void glGetActiveUniformName(
-            int program, int uniformIndex, java.nio.IntBuffer length, java.nio.ByteBuffer uniformName) {
+    public static void glGetActiveUniformName(int program, int uniformIndex, java.nio.IntBuffer length,
+            java.nio.ByteBuffer uniformName) {
         org.lwjgl.opengl.ARBUniformBufferObject.glGetActiveUniformName(program, uniformIndex, length, uniformName);
     }
 
@@ -78,8 +79,8 @@ public class ARBUniformBufferObject {
         return org.lwjgl.opengl.ARBUniformBufferObject.glGetUniformBlockIndex(program, uniformBlockName);
     }
 
-    public static void glGetUniformIndices(
-            int program, java.lang.CharSequence[] uniformNames, java.nio.IntBuffer uniformIndices) {
+    public static void glGetUniformIndices(int program, java.lang.CharSequence[] uniformNames,
+            java.nio.IntBuffer uniformIndices) {
         org.lwjgl.opengl.ARBUniformBufferObject.glGetUniformIndices(program, uniformNames, uniformIndices);
     }
 

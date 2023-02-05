@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util.glu;
 
@@ -54,27 +38,22 @@ public class PartialDisk extends Quadric {
     }
 
     /**
-     * renders a partial disk on the z=0 plane. A partial disk is similar to a
-     * full disk, except that only the subset of the disk from startAngle
-     * through startAngle + sweepAngle is included (where 0 degrees is along
-     * the +y axis, 90 degrees along the +x axis, 180 along the -y axis, and
-     * 270 along the -x axis).
+     * renders a partial disk on the z=0 plane. A partial disk is similar to a full disk, except that only the subset of
+     * the disk from startAngle through startAngle + sweepAngle is included (where 0 degrees is along the +y axis, 90
+     * degrees along the +x axis, 180 along the -y axis, and 270 along the -x axis).
      *
-     * The partial disk has a radius of outerRadius, and contains a concentric
-     * circular hole with a radius of innerRadius. If innerRadius is zero, then
-     * no hole is generated. The partial disk is subdivided around the z axis
-     * into slices (like pizza slices), and also about the z axis into rings
-     * (as specified by slices and loops, respectively).
+     * The partial disk has a radius of outerRadius, and contains a concentric circular hole with a radius of
+     * innerRadius. If innerRadius is zero, then no hole is generated. The partial disk is subdivided around the z axis
+     * into slices (like pizza slices), and also about the z axis into rings (as specified by slices and loops,
+     * respectively).
      *
-     * With respect to orientation, the +z side of the partial disk is
-     * considered to be outside (see gluQuadricOrientation). This means that if
-     * the orientation is set to GLU.GLU_OUTSIDE, then any normals generated point
-     * along the +z axis. Otherwise, they point along the -z axis.
+     * With respect to orientation, the +z side of the partial disk is considered to be outside (see
+     * gluQuadricOrientation). This means that if the orientation is set to GLU.GLU_OUTSIDE, then any normals generated
+     * point along the +z axis. Otherwise, they point along the -z axis.
      *
-     * If texturing is turned on (with gluQuadricTexture), texture coordinates
-     * are generated linearly such that where r=outerRadius, the value at (r, 0, 0)
-     * is (1, 0.5), at (0, r, 0) it is (0.5, 1), at (-r, 0, 0) it is (0, 0.5),
-     * and at (0, -r, 0) it is (0.5, 0).
+     * If texturing is turned on (with gluQuadricTexture), texture coordinates are generated linearly such that where
+     * r=outerRadius, the value at (r, 0, 0) is (1, 0.5), at (0, r, 0) it is (0.5, 1), at (-r, 0, 0) it is (0, 0.5), and
+     * at (0, -r, 0) it is (0.5, 0).
      */
     public void draw(float innerRadius, float outerRadius, int slices, int loops, float startAngle, float sweepAngle) {
 
@@ -309,8 +288,7 @@ public class PartialDisk extends Quadric {
                     if (innerRadius == outerRadius) break;
                 }
             }
-            default -> {
-            }
+            default -> {}
         }
     }
 }

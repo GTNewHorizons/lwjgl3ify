@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVBindlessTexture {
+
     public static long glGetImageHandleNV(int texture, int level, boolean layered, int layer, int format) {
         return org.lwjgl.opengl.NVBindlessTexture.glGetImageHandleNV(texture, level, layered, layer, format);
     }

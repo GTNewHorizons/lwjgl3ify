@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIEnvmapBumpmap {
+
     public static final int GL_BUMP_ENVMAP_ATI = (int) 34683;
     public static final int GL_BUMP_NUM_TEX_UNITS_ATI = (int) 34679;
     public static final int GL_BUMP_ROT_MATRIX_ATI = (int) 34677;

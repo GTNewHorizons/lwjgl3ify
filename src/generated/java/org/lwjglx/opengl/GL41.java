@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL41 {
+
     public static final int GL_ACTIVE_PROGRAM = (int) 33369;
     public static final int GL_ALL_SHADER_BITS = (int) -1;
     public static final int GL_FIXED = (int) 5132;
@@ -54,8 +55,8 @@ public class GL41 {
 
     public static int glCreateShaderProgram(int type, java.nio.ByteBuffer string) {
 
-        int returnValue = org.lwjgl.opengl.GL41.glCreateShaderProgramv(
-                type, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
+        int returnValue = org.lwjgl.opengl.GL41
+                .glCreateShaderProgramv(type, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
 
         return returnValue;
     }
@@ -96,8 +97,8 @@ public class GL41 {
         org.lwjgl.opengl.GL41.glGetFloati_v(target, index, data);
     }
 
-    public static void glGetProgramBinary(
-            int program, java.nio.IntBuffer length, java.nio.IntBuffer binaryFormat, java.nio.ByteBuffer binary) {
+    public static void glGetProgramBinary(int program, java.nio.IntBuffer length, java.nio.IntBuffer binaryFormat,
+            java.nio.ByteBuffer binary) {
         org.lwjgl.opengl.GL41.glGetProgramBinary(program, length, binaryFormat, binary);
     }
 
@@ -109,8 +110,8 @@ public class GL41 {
         return org.lwjgl.opengl.GL41.glGetProgramPipelineInfoLog(pipeline, bufSize);
     }
 
-    public static void glGetProgramPipelineInfoLog(
-            int pipeline, java.nio.IntBuffer length, java.nio.ByteBuffer infoLog) {
+    public static void glGetProgramPipelineInfoLog(int pipeline, java.nio.IntBuffer length,
+            java.nio.ByteBuffer infoLog) {
         org.lwjgl.opengl.GL41.glGetProgramPipelineInfoLog(pipeline, length, infoLog);
     }
 
@@ -118,8 +119,8 @@ public class GL41 {
         return org.lwjgl.opengl.GL41.glGetProgramPipelinei(pipeline, pname);
     }
 
-    public static void glGetShaderPrecisionFormat(
-            int shadertype, int precisiontype, java.nio.IntBuffer range, java.nio.IntBuffer precision) {
+    public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, java.nio.IntBuffer range,
+            java.nio.IntBuffer precision) {
         org.lwjgl.opengl.GL41.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
     }
 
@@ -267,93 +268,93 @@ public class GL41 {
         org.lwjgl.opengl.GL41.glProgramUniform4ui(program, location, v0, v1, v2, v3);
     }
 
-    public static void glProgramUniformMatrix2(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix2(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix2(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix2(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix2x3(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix2x3(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2x3dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix2x3(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix2x3(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2x3fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix2x4(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix2x4(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2x4dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix2x4(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix2x4(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix2x4fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix3(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix3(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3x2(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix3x2(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3x2dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3x2(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix3x2(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3x2fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3x4(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix3x4(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3x4dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix3x4(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix3x4(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix3x4fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix4(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix4(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4x2(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix4x2(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4x2dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4x2(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix4x2(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4x2fv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4x3(
-            int program, int location, boolean transpose, java.nio.DoubleBuffer value) {
+    public static void glProgramUniformMatrix4x3(int program, int location, boolean transpose,
+            java.nio.DoubleBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4x3dv(program, location, transpose, value);
     }
 
-    public static void glProgramUniformMatrix4x3(
-            int program, int location, boolean transpose, java.nio.FloatBuffer value) {
+    public static void glProgramUniformMatrix4x3(int program, int location, boolean transpose,
+            java.nio.FloatBuffer value) {
         org.lwjgl.opengl.GL41.glProgramUniformMatrix4x3fv(program, location, transpose, value);
     }
 

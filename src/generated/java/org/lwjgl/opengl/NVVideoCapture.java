@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVVideoCapture {
+
     public static final int GL_FAILURE_NV = (int) 36912;
     public static final int GL_FIELD_LOWER_NV = (int) 36899;
     public static final int GL_FIELD_UPPER_NV = (int) 36898;

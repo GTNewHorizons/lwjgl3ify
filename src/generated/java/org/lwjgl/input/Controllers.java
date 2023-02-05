@@ -1,6 +1,7 @@
 package org.lwjgl.input;
 
 public class Controllers {
+
     public static void clearEvents() {
         throw new UnsupportedOperationException();
     }

@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class AMDNameGenDelete {
+
     public static final int GL_DATA_BUFFER_AMD = (int) 37201;
     public static final int GL_PERFORMANCE_MONITOR_AMD = (int) 37202;
     public static final int GL_QUERY_OBJECT_AMD = (int) 37203;

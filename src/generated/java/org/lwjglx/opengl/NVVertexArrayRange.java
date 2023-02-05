@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVVertexArrayRange {
+
     public static final int GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV = (int) 34080;
     public static final int GL_VERTEX_ARRAY_RANGE_LENGTH_NV = (int) 34078;
     public static final int GL_VERTEX_ARRAY_RANGE_NV = (int) 34077;

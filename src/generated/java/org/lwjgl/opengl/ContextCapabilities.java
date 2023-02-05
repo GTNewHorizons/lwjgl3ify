@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ContextCapabilities {
+
     public final boolean GL_AMD_blend_minmax_factor = false;
     public final boolean GL_AMD_conservative_depth = false;
     public final boolean GL_AMD_debug_output = false;

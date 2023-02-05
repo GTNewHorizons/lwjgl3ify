@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL14 {
+
     public static final int GL_BLEND_COLOR = (int) 32773;
     public static final int GL_BLEND_DST_ALPHA = (int) 32970;
     public static final int GL_BLEND_DST_RGB = (int) 32968;
@@ -67,7 +68,9 @@ public class GL14 {
     public static void glFogCoordPointer(int stride, java.nio.DoubleBuffer data) {
 
         org.lwjgl.opengl.GL14.glFogCoordPointer(
-                org.lwjgl.opengl.GL11.GL_DOUBLE, stride, me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+                org.lwjgl.opengl.GL11.GL_DOUBLE,
+                stride,
+                me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
     }
 
     public static void glFogCoordPointer(int stride, java.nio.FloatBuffer data) {
@@ -126,7 +129,10 @@ public class GL14 {
     public static void glSecondaryColorPointer(int size, int stride, java.nio.DoubleBuffer data) {
 
         org.lwjgl.opengl.GL14.glSecondaryColorPointer(
-                size, org.lwjgl.opengl.GL11.GL_DOUBLE, stride, me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+                size,
+                org.lwjgl.opengl.GL11.GL_DOUBLE,
+                stride,
+                me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
     }
 
     public static void glSecondaryColorPointer(int size, int stride, java.nio.FloatBuffer data) {

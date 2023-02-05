@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class AMDDebugOutput {
+
     public static final int GL_DEBUG_CATEGORY_API_ERROR_AMD = (int) 37193;
     public static final int GL_DEBUG_CATEGORY_APPLICATION_AMD = (int) 37199;
     public static final int GL_DEBUG_CATEGORY_DEPRECATION_AMD = (int) 37195;
@@ -28,14 +29,9 @@ public class AMDDebugOutput {
         org.lwjgl.opengl.AMDDebugOutput.glDebugMessageInsertAMD(category, severity, id, buf);
     }
 
-    public static int glGetDebugMessageLogAMD(
-            int count,
-            java.nio.IntBuffer categories,
-            java.nio.IntBuffer severities,
-            java.nio.IntBuffer ids,
-            java.nio.IntBuffer lengths,
-            java.nio.ByteBuffer messageLog) {
-        return org.lwjgl.opengl.AMDDebugOutput.glGetDebugMessageLogAMD(
-                count, categories, severities, ids, lengths, messageLog);
+    public static int glGetDebugMessageLogAMD(int count, java.nio.IntBuffer categories, java.nio.IntBuffer severities,
+            java.nio.IntBuffer ids, java.nio.IntBuffer lengths, java.nio.ByteBuffer messageLog) {
+        return org.lwjgl.opengl.AMDDebugOutput
+                .glGetDebugMessageLogAMD(count, categories, severities, ids, lengths, messageLog);
     }
 }

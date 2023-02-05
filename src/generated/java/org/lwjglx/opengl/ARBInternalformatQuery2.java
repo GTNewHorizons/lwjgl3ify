@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBInternalformatQuery2 {
+
     public static final int GL_AUTO_GENERATE_MIPMAP = (int) 33429;
     public static final int GL_CAVEAT_SUPPORT = (int) 33464;
     public static final int GL_CLEAR_BUFFER = (int) 33460;

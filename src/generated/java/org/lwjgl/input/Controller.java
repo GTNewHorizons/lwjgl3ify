@@ -1,6 +1,7 @@
 package org.lwjgl.input;
 
 public interface Controller {
+
     public abstract int getAxisCount();
 
     public abstract java.lang.String getAxisName(int arg0);

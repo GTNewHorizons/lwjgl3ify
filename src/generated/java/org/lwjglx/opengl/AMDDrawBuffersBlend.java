@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class AMDDrawBuffersBlend {
+
     public static void glBlendEquationIndexedAMD(int buf, int mode) {
         org.lwjgl.opengl.AMDDrawBuffersBlend.glBlendEquationIndexedAMD(buf, mode);
     }

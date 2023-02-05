@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBComputeShader {
+
     public static final int GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_COMPUTE_SHADER = (int) 37101;
     public static final int GL_COMPUTE_SHADER = (int) 37305;
     public static final int GL_COMPUTE_SHADER_BIT = (int) 32;

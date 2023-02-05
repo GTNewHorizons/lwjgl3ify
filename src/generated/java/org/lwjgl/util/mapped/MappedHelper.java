@@ -1,6 +1,7 @@
 package org.lwjgl.util.mapped;
 
 public class MappedHelper {
+
     public static long aget(long arg0) {
         throw new UnsupportedOperationException();
     }
@@ -61,8 +62,8 @@ public class MappedHelper {
         throw new UnsupportedOperationException();
     }
 
-    public static void copy(
-            org.lwjgl.util.mapped.MappedObject arg0, org.lwjgl.util.mapped.MappedObject arg1, int arg2) {
+    public static void copy(org.lwjgl.util.mapped.MappedObject arg0, org.lwjgl.util.mapped.MappedObject arg1,
+            int arg2) {
         throw new UnsupportedOperationException();
     }
 
@@ -106,8 +107,8 @@ public class MappedHelper {
         throw new UnsupportedOperationException();
     }
 
-    public static org.lwjgl.util.mapped.MappedObject dup(
-            org.lwjgl.util.mapped.MappedObject arg0, org.lwjgl.util.mapped.MappedObject arg1) {
+    public static org.lwjgl.util.mapped.MappedObject dup(org.lwjgl.util.mapped.MappedObject arg0,
+            org.lwjgl.util.mapped.MappedObject arg1) {
         throw new UnsupportedOperationException();
     }
 
@@ -271,8 +272,8 @@ public class MappedHelper {
         throw new UnsupportedOperationException();
     }
 
-    public static org.lwjgl.util.mapped.MappedObject slice(
-            org.lwjgl.util.mapped.MappedObject arg0, org.lwjgl.util.mapped.MappedObject arg1) {
+    public static org.lwjgl.util.mapped.MappedObject slice(org.lwjgl.util.mapped.MappedObject arg0,
+            org.lwjgl.util.mapped.MappedObject arg1) {
         throw new UnsupportedOperationException();
     }
 

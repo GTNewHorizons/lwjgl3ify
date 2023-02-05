@@ -21,9 +21,10 @@ import static org.objectweb.asm.Type.BOOLEAN_TYPE;
 import static org.objectweb.asm.Type.VOID_TYPE;
 import static org.objectweb.asm.Type.getMethodDescriptor;
 
-import cpw.mods.fml.common.eventhandler.Event;
 import java.util.List;
+
 import net.minecraft.launchwrapper.IClassTransformer;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Type;
@@ -40,13 +41,15 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
+import cpw.mods.fml.common.eventhandler.Event;
+
 public class EventSubscriptionTransformer implements IClassTransformer {
+
     public EventSubscriptionTransformer() {}
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
-        if (bytes == null
-                || name.equals("cpw.mods.fml.common.eventhandler.Event")
+        if (bytes == null || name.equals("cpw.mods.fml.common.eventhandler.Event")
                 || name.startsWith("net.minecraft.")
                 || name.indexOf('.') == -1) {
             return bytes;
@@ -96,9 +99,9 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         String listDescM = Type.getMethodDescriptor(tList);
 
         for (MethodNode method : (List<MethodNode>) classNode.methods) {
-            if (method.name.equals("setup")
-                    && method.desc.equals(voidDesc)
-                    && (method.access & ACC_PROTECTED) == ACC_PROTECTED) hasSetup = true;
+            if (method.name.equals("setup") && method.desc.equals(voidDesc)
+                    && (method.access & ACC_PROTECTED) == ACC_PROTECTED)
+                hasSetup = true;
             if ((method.access & ACC_PUBLIC) == ACC_PUBLIC) {
                 if (method.name.equals("getListenerList") && method.desc.equals(listDescM)) hasGetListenerList = true;
                 if (method.name.equals("isCancelable") && method.desc.equals(boolDesc)) hasCancelable = true;
@@ -111,11 +114,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
             for (AnnotationNode node : classNode.visibleAnnotations) {
                 if (!hasResult
                         && node.desc.replace('$', '/').equals("Lcpw/mods/fml/common/eventhandler/Event/HasResult;")) {
-                    /* Add:
-                     *      public boolean hasResult()
-                     *      {
-                     *            return true;
-                     *      }
+                    /*
+                     * Add: public boolean hasResult() { return true; }
                      */
                     MethodNode method = new MethodNode(ACC_PUBLIC, "hasResult", boolDesc, null, null);
                     method.instructions.add(new InsnNode(ICONST_1));
@@ -123,11 +123,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
                     classNode.methods.add(method);
                     edited = true;
                 } else if (!hasCancelable && node.desc.equals("Lcpw/mods/fml/common/eventhandler/Cancelable;")) {
-                    /* Add:
-                     *      public boolean isCancelable()
-                     *      {
-                     *            return true;
-                     *      }
+                    /*
+                     * Add: public boolean isCancelable() { return true; }
                      */
                     MethodNode method = new MethodNode(ACC_PUBLIC, "isCancelable", boolDesc, null, null);
                     method.instructions.add(new InsnNode(ICONST_1));
@@ -139,9 +136,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         }
 
         if (hasSetup) {
-            if (!hasGetListenerList)
-                throw new RuntimeException(
-                        "Event class defines setup() but does not define getListenerList! " + classNode.name);
+            if (!hasGetListenerList) throw new RuntimeException(
+                    "Event class defines setup() but does not define getListenerList! " + classNode.name);
             else return edited;
         }
 
@@ -150,31 +146,21 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         // Add private static ListenerList LISTENER_LIST
         classNode.fields.add(new FieldNode(ACC_PRIVATE | ACC_STATIC, "LISTENER_LIST", listDesc, null, null));
 
-        /*Add:
-         *      public <init>()
-         *      {
-         *              super();
-         *      }
+        /*
+         * Add: public <init>() { super(); }
          */
         if (!hasDefaultCtr) {
             MethodNode method = new MethodNode(ACC_PUBLIC, "<init>", voidDesc, null, null);
             method.instructions.add(new VarInsnNode(ALOAD, 0));
-            method.instructions.add(
-                    new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "<init>", voidDesc, false));
+            method.instructions
+                    .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "<init>", voidDesc, false));
             method.instructions.add(new InsnNode(RETURN));
             classNode.methods.add(method);
         }
 
-        /*Add:
-         *      protected void setup()
-         *      {
-         *              super.setup();
-         *              if (LISTENER_LIST != NULL)
-         *              {
-         *                      return;
-         *              }
-         *              LISTENER_LIST = new ListenerList(super.getListenerList());
-         *      }
+        /*
+         * Add: protected void setup() { super.setup(); if (LISTENER_LIST != NULL) { return; } LISTENER_LIST = new
+         * ListenerList(super.getListenerList()); }
          */
         MethodNode method = new MethodNode(ACC_PROTECTED, "setup", voidDesc, null, null);
         method.instructions.add(new VarInsnNode(ALOAD, 0));
@@ -188,19 +174,21 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         method.instructions.add(new TypeInsnNode(NEW, tList.getInternalName()));
         method.instructions.add(new InsnNode(DUP));
         method.instructions.add(new VarInsnNode(ALOAD, 0));
+        method.instructions
+                .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "getListenerList", listDescM, false));
         method.instructions.add(
-                new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "getListenerList", listDescM, false));
-        method.instructions.add(new MethodInsnNode(
-                INVOKESPECIAL, tList.getInternalName(), "<init>", getMethodDescriptor(VOID_TYPE, tList), false));
+                new MethodInsnNode(
+                        INVOKESPECIAL,
+                        tList.getInternalName(),
+                        "<init>",
+                        getMethodDescriptor(VOID_TYPE, tList),
+                        false));
         method.instructions.add(new FieldInsnNode(PUTSTATIC, classNode.name, "LISTENER_LIST", listDesc));
         method.instructions.add(new InsnNode(RETURN));
         classNode.methods.add(method);
 
-        /*Add:
-         *      public ListenerList getListenerList()
-         *      {
-         *              return this.LISTENER_LIST;
-         *      }
+        /*
+         * Add: public ListenerList getListenerList() { return this.LISTENER_LIST; }
          */
         method = new MethodNode(ACC_PUBLIC, "getListenerList", listDescM, null, null);
         method.instructions.add(new FieldInsnNode(GETSTATIC, classNode.name, "LISTENER_LIST", listDesc));

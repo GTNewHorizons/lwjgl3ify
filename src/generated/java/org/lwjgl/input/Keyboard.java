@@ -1,6 +1,7 @@
 package org.lwjgl.input;
 
 public class Keyboard {
+
     public static final int CHAR_NONE = (int) 0;
     public static final int EVENT_SIZE = (int) 18;
     public static final int KEYBOARD_SIZE = (int) 256;

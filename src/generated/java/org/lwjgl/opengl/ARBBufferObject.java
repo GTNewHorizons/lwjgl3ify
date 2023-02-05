@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBBufferObject {
+
     public static final int GL_BUFFER_ACCESS_ARB = (int) 35003;
     public static final int GL_BUFFER_MAPPED_ARB = (int) 35004;
     public static final int GL_BUFFER_MAP_POINTER_ARB = (int) 35005;

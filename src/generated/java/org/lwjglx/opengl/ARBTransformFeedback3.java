@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTransformFeedback3 {
+
     public static final int GL_MAX_TRANSFORM_FEEDBACK_BUFFERS = (int) 36464;
     public static final int GL_MAX_VERTEX_STREAMS = (int) 36465;
 

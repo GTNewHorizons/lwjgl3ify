@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public interface ReadableColor {
+
     public static final org.lwjgl.util.ReadableColor BLACK = null;
     public static final org.lwjgl.util.ReadableColor BLUE = null;
     public static final org.lwjgl.util.ReadableColor CYAN = null;

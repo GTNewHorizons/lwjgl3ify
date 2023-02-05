@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVBlendEquationAdvanced {
+
     public static final int GL_BLEND_ADVANCED_COHERENT_NV = (int) 37509;
     public static final int GL_BLEND_OVERLAP_NV = (int) 37505;
     public static final int GL_BLEND_PREMULTIPLIED_SRC_NV = (int) 37504;

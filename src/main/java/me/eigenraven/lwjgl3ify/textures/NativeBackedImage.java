@@ -8,12 +8,14 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 
 public class NativeBackedImage extends BufferedImage implements AutoCloseable {
+
     private final int width;
     private final int height;
     private long pointer;
@@ -135,8 +137,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
             int sizeGuess = 4096;
             try {
                 sizeGuess = Math.max(4096, inputStream.available());
-            } catch (IOException ignored) {
-            }
+            } catch (IOException ignored) {}
 
             byteBuffer = MemoryUtil.memAlloc(sizeGuess * 2);
             ReadableByteChannel readableByteChannel = new FastByteChannel(inputStream);

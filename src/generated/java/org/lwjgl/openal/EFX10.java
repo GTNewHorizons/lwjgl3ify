@@ -1,6 +1,7 @@
 package org.lwjgl.openal;
 
 public class EFX10 {
+
     public static final int ALC_EFX_MAJOR_VERSION = (int) 131073;
     public static final int ALC_EFX_MINOR_VERSION = (int) 131074;
     public static final java.lang.String ALC_EXT_EFX_NAME = "ALC_EXT_EFX";

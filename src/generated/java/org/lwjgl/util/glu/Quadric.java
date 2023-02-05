@@ -1,6 +1,7 @@
 package org.lwjgl.util.glu;
 
 public class Quadric {
+
     public int getDrawStyle() {
         throw new UnsupportedOperationException();
     }

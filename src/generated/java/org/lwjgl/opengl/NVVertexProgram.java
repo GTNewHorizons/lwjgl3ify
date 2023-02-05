@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVVertexProgram extends org.lwjgl.opengl.NVProgram {
+
     public static final int GL_ATTRIB_ARRAY_POINTER_NV = (int) 34373;
     public static final int GL_ATTRIB_ARRAY_SIZE_NV = (int) 34339;
     public static final int GL_ATTRIB_ARRAY_STRIDE_NV = (int) 34340;

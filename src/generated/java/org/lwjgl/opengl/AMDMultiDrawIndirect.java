@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class AMDMultiDrawIndirect {
+
     public static void glMultiDrawArraysIndirectAMD(int arg0, long arg1, int arg2, int arg3) {
         throw new UnsupportedOperationException();
     }
@@ -17,8 +18,8 @@ public class AMDMultiDrawIndirect {
         throw new UnsupportedOperationException();
     }
 
-    public static void glMultiDrawElementsIndirectAMD(
-            int arg0, int arg1, java.nio.ByteBuffer arg2, int arg3, int arg4) {
+    public static void glMultiDrawElementsIndirectAMD(int arg0, int arg1, java.nio.ByteBuffer arg2, int arg3,
+            int arg4) {
         throw new UnsupportedOperationException();
     }
 

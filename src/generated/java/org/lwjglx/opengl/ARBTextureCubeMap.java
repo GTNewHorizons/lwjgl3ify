@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureCubeMap {
+
     public static final int GL_MAX_CUBE_MAP_TEXTURE_SIZE_ARB = (int) 34076;
     public static final int GL_NORMAL_MAP_ARB = (int) 34065;
     public static final int GL_PROXY_TEXTURE_CUBE_MAP_ARB = (int) 34075;

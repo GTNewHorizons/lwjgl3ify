@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBShadingLanguageInclude {
+
     public static final int GL_NAMED_STRING_LENGTH_ARB = (int) 36329;
     public static final int GL_NAMED_STRING_TYPE_ARB = (int) 36330;
     public static final int GL_SHADER_INCLUDE_ARB = (int) 36270;
@@ -17,8 +18,8 @@ public class ARBShadingLanguageInclude {
         return org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringARB(name, bufSize);
     }
 
-    public static void glGetNamedStringARB(
-            java.lang.CharSequence name, java.nio.IntBuffer stringlen, java.nio.ByteBuffer string) {
+    public static void glGetNamedStringARB(java.lang.CharSequence name, java.nio.IntBuffer stringlen,
+            java.nio.ByteBuffer string) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringARB(name, stringlen, string);
     }
 
@@ -26,8 +27,8 @@ public class ARBShadingLanguageInclude {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringivARB(name, pname, params);
     }
 
-    public static void glGetNamedStringARB(
-            java.nio.ByteBuffer name, java.nio.IntBuffer stringlen, java.nio.ByteBuffer string) {
+    public static void glGetNamedStringARB(java.nio.ByteBuffer name, java.nio.IntBuffer stringlen,
+            java.nio.ByteBuffer string) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringARB(name, stringlen, string);
     }
 

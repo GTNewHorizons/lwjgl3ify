@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class PixelFormat {
+
     public int getAccumulationAlpha() {
         throw new UnsupportedOperationException();
     }

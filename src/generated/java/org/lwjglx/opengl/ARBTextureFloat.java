@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureFloat {
+
     public static final int GL_ALPHA16F_ARB = (int) 34844;
     public static final int GL_ALPHA32F_ARB = (int) 34838;
     public static final int GL_INTENSITY16F_ARB = (int) 34845;

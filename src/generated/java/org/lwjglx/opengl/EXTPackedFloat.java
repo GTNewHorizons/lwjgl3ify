@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTPackedFloat {
+
     public static final int GLX_RGBA_UNSIGNED_FLOAT_BIT_EXT = (int) 8;
     public static final int GLX_RGBA_UNSIGNED_FLOAT_TYPE_EXT = (int) 8369;
     public static final int GL_R11F_G11F_B10F_EXT = (int) 35898;

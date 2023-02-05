@@ -1,3 +1,4 @@
 package org.lwjgl.opengl;
 
-public class AMDDebugOutputCallback extends org.lwjgl.PointerWrapperAbstract {}
+public class AMDDebugOutputCallback extends org.lwjgl.PointerWrapperAbstract {
+}

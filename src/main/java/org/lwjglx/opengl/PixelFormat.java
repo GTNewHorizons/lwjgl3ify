@@ -1,48 +1,29 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.opengl;
 
 /**
- * This class describes pixel format properties for an OpenGL context. Instances
- * of this class is used as arguments to Display.create(), Pbuffer.create() and
- * AWTGLCanvas, to indicate minimum required properties.
+ * This class describes pixel format properties for an OpenGL context. Instances of this class is used as arguments to
+ * Display.create(), Pbuffer.create() and AWTGLCanvas, to indicate minimum required properties.
  * <p/>
- * Instants of this class are immutable. An example of the expected way to set
- * the PixelFormat property values is the following:
- * <code>PixelFormat pf = new PixelFormat().withDepthBits(24).withSamples(4).withSRGB(true);</code>
+ * Instants of this class are immutable. An example of the expected way to set the PixelFormat property values is the
+ * following: <code>PixelFormat pf = new PixelFormat().withDepthBits(24).withSamples(4).withSRGB(true);</code>
  * <p/>
- * WARNING: Some pixel formats are known to cause troubles on certain buggy drivers.
- * Example: Under Windows, specifying samples != 0 will enable the ARB
- * pixel format selection path, which could trigger a crash.
+ * WARNING: Some pixel formats are known to cause troubles on certain buggy drivers. Example: Under Windows, specifying
+ * samples != 0 will enable the ARB pixel format selection path, which could trigger a crash.
  *
  * @author elias_naur@sourceforge.net
  * @version $Revision$
@@ -50,8 +31,7 @@ package org.lwjglx.opengl;
 public final class PixelFormat implements PixelFormatLWJGL {
 
     /**
-     * The number of bits per pixel, exluding alpha.
-     * This parameter is ignored in Display.create().
+     * The number of bits per pixel, exluding alpha. This parameter is ignored in Display.create().
      */
     private int bpp;
     /** The number of alpha bits. */
@@ -61,14 +41,12 @@ public final class PixelFormat implements PixelFormatLWJGL {
     /** The number of stencil bits */
     private int stencil;
     /**
-     * The number of samples to use in anti-aliasing.
-     * 0 means that anti-aliasing is disabled.
+     * The number of samples to use in anti-aliasing. 0 means that anti-aliasing is disabled.
      */
     private int samples;
     /**
-     * The number of COLOR_SAMPLES_NV to use for Coverage Sample Anti-aliasing (CSAA).
-     * When this number is greater than 0, the {@code samples} property will be treated
-     * as if it were the COVERAGE_SAMPLES_NV property.
+     * The number of COLOR_SAMPLES_NV to use for Coverage Sample Anti-aliasing (CSAA). When this number is greater than
+     * 0, the {@code samples} property will be treated as if it were the COVERAGE_SAMPLES_NV property.
      * <p/>
      * This property is currently a no-op for the MacOS implementation.
      */
@@ -84,19 +62,17 @@ public final class PixelFormat implements PixelFormatLWJGL {
     /** Whether this format specifies a floating point format */
     private boolean floating_point;
     /**
-     * Whether this format specifies a packed floating point format (32 bit unsigned - R11F_G11F_B10F)
-     * This property is currently a no-op for the MacOS implementation.
+     * Whether this format specifies a packed floating point format (32 bit unsigned - R11F_G11F_B10F) This property is
+     * currently a no-op for the MacOS implementation.
      */
     private boolean floating_point_packed;
     /**
-     * Whether this format specifies an sRGB format
-     * This property is currently a no-op for the MacOS implementation.
+     * Whether this format specifies an sRGB format This property is currently a no-op for the MacOS implementation.
      */
     private boolean sRGB;
 
     /**
-     * Default pixel format is minimum 8 bits depth, and no alpha
-     * nor stencil requirements.
+     * Default pixel format is minimum 8 bits depth, and no alpha nor stencil requirements.
      */
     public PixelFormat() {
         this(0, 8, 0);
@@ -114,30 +90,13 @@ public final class PixelFormat implements PixelFormatLWJGL {
         this(bpp, alpha, depth, stencil, samples, 0, 0, 0, false);
     }
 
-    public PixelFormat(
-            int bpp,
-            int alpha,
-            int depth,
-            int stencil,
-            int samples,
-            int num_aux_buffers,
-            int accum_bpp,
-            int accum_alpha,
-            boolean stereo) {
+    public PixelFormat(int bpp, int alpha, int depth, int stencil, int samples, int num_aux_buffers, int accum_bpp,
+            int accum_alpha, boolean stereo) {
         this(bpp, alpha, depth, stencil, samples, num_aux_buffers, accum_bpp, accum_alpha, stereo, false);
     }
 
-    public PixelFormat(
-            int bpp,
-            int alpha,
-            int depth,
-            int stencil,
-            int samples,
-            int num_aux_buffers,
-            int accum_bpp,
-            int accum_alpha,
-            boolean stereo,
-            boolean floating_point) {
+    public PixelFormat(int bpp, int alpha, int depth, int stencil, int samples, int num_aux_buffers, int accum_bpp,
+            int accum_alpha, boolean stereo, boolean floating_point) {
         this.bpp = bpp;
         this.alpha = alpha;
         this.depth = depth;
@@ -274,11 +233,11 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new color samples values.
-     * A value greater than 0 is valid only if the {@code samples} property is also greater than 0. Additionally, the
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new color samples values. A
+     * value greater than 0 is valid only if the {@code samples} property is also greater than 0. Additionally, the
      * color samples value needs to be lower than or equal to the {@code samples} property.
      *
-     * @param colorSamples    the new color samples value.
+     * @param colorSamples the new color samples value.
      *
      * @return the new PixelFormat
      */
@@ -287,17 +246,17 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new color samples
-     * and coverage samples values.
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new color samples and
+     * coverage samples values.
      *
-     * @param colorSamples    the new color samples value. This value must be lower than or equal to the coverage samples value.
+     * @param colorSamples    the new color samples value. This value must be lower than or equal to the coverage
+     *                        samples value.
      * @param coverageSamples the new coverage samples value.
      *
      * @return the new PixelFormat
      */
     public PixelFormat withCoverageSamples(final int colorSamples, final int coverageSamples) {
-        if (coverageSamples < 0
-                || colorSamples < 0
+        if (coverageSamples < 0 || colorSamples < 0
                 || (coverageSamples == 0 && 0 < colorSamples)
                 || coverageSamples < colorSamples)
             throw new IllegalArgumentException(
@@ -314,7 +273,8 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new auxiliary buffers value.
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new auxiliary buffers
+     * value.
      *
      * @param num_aux_buffers the new auxiliary buffers value.
      *
@@ -334,16 +294,16 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new bits per pixel in the accumulation buffer value.
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new bits per pixel in the
+     * accumulation buffer value.
      *
      * @param accum_bpp the new bits per pixel in the accumulation buffer value.
      *
      * @return the new PixelFormat
      */
     public PixelFormat withAccumulationBitsPerPixel(final int accum_bpp) {
-        if (accum_bpp < 0)
-            throw new IllegalArgumentException(
-                    "Invalid number of bits per pixel in the accumulation buffer specified: " + accum_bpp);
+        if (accum_bpp < 0) throw new IllegalArgumentException(
+                "Invalid number of bits per pixel in the accumulation buffer specified: " + accum_bpp);
 
         final PixelFormat pf = new PixelFormat(this);
         pf.accum_bpp = accum_bpp;
@@ -355,16 +315,16 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new alpha bits in the accumulation buffer value.
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new alpha bits in the
+     * accumulation buffer value.
      *
      * @param accum_alpha the new alpha bits in the accumulation buffer value.
      *
      * @return the new PixelFormat
      */
     public PixelFormat withAccumulationAlpha(final int accum_alpha) {
-        if (accum_alpha < 0)
-            throw new IllegalArgumentException(
-                    "Invalid number of alpha bits in the accumulation buffer specified: " + accum_alpha);
+        if (accum_alpha < 0) throw new IllegalArgumentException(
+                "Invalid number of alpha bits in the accumulation buffer specified: " + accum_alpha);
 
         final PixelFormat pf = new PixelFormat(this);
         pf.accum_alpha = accum_alpha;
@@ -408,8 +368,8 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     /**
-     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new packed floating point value.
-     * If floating_point_packed is true, floating_point will be reset to false.
+     * Returns a new PixelFormat object with the same properties as this PixelFormat and the new packed floating point
+     * value. If floating_point_packed is true, floating_point will be reset to false.
      *
      * @param floating_point_packed the new packed floating point value.
      *

@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.util.glu;
 
@@ -39,6 +23,7 @@ import static org.lwjglx.util.glu.GLU.*;
  *
  *
  * Created 23-dec-2003
+ * 
  * @author Erik Duijs
  */
 public class Sphere extends Quadric {
@@ -51,19 +36,15 @@ public class Sphere extends Quadric {
     }
 
     /**
-     * draws a sphere of the given	radius centered	around the origin.
-     * The sphere is subdivided around the z axis into slices and along the z axis
-     * into stacks (similar to lines of longitude and latitude).
+     * draws a sphere of the given radius centered around the origin. The sphere is subdivided around the z axis into
+     * slices and along the z axis into stacks (similar to lines of longitude and latitude).
      *
-     * If the orientation is set to GLU.OUTSIDE (with glu.quadricOrientation), then
-     * any normals generated point away from the center of the sphere. Otherwise,
-     * they point toward the center of the sphere.
+     * If the orientation is set to GLU.OUTSIDE (with glu.quadricOrientation), then any normals generated point away
+     * from the center of the sphere. Otherwise, they point toward the center of the sphere.
      *
-     * If texturing is turned on (with glu.quadricTexture), then texture
-     * coordinates are generated so that t ranges from 0.0 at z=-radius to 1.0 at
-     * z=radius (t increases linearly along longitudinal lines), and s ranges from
-     * 0.0 at the +y axis, to 0.25 at the +x axis, to 0.5 at the -y axis, to 0.75
-     * at the -x axis, and back to 1.0 at the +y axis.
+     * If texturing is turned on (with glu.quadricTexture), then texture coordinates are generated so that t ranges from
+     * 0.0 at z=-radius to 1.0 at z=radius (t increases linearly along longitudinal lines), and s ranges from 0.0 at the
+     * +y axis, to 0.25 at the +x axis, to 0.5 at the -y axis, to 0.75 at the -x axis, and back to 1.0 at the +y axis.
      */
     public void draw(float radius, int slices, int stacks) {
         // TODO

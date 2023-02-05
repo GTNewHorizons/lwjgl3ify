@@ -1,6 +1,7 @@
 package org.lwjgl.input;
 
 public class Mouse {
+
     public static final int EVENT_SIZE = (int) 22;
 
     public static void create() {

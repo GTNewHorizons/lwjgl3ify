@@ -1,7 +1,9 @@
 package me.eigenraven.lwjgl3ify.core;
 
 import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
+
 import net.minecraft.launchwrapper.IClassTransformer;
+
 import org.spongepowered.libraries.org.objectweb.asm.AnnotationVisitor;
 import org.spongepowered.libraries.org.objectweb.asm.ClassReader;
 import org.spongepowered.libraries.org.objectweb.asm.ClassVisitor;
@@ -11,6 +13,7 @@ import org.spongepowered.libraries.org.objectweb.asm.commons.ClassRemapper;
 import org.spongepowered.libraries.org.objectweb.asm.commons.Remapper;
 
 public class LwjglRedirectTransformer extends Remapper implements IClassTransformer {
+
     int remaps = 0, calls = 0;
 
     public static LwjglRedirectTransformer activeInstance = null;
@@ -34,6 +37,7 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
         ClassVisitor visitor = new ClassRemapper(writer, this) {
+
             @Override
             public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
                 if (desc.equals(Type.getDescriptor(Lwjgl3Aware.class))) {
@@ -55,13 +59,10 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         return writer.toByteArray();
     }
 
-    final String[] fromPrefixes = new String[] {
-        "org/lwjgl/", "paulscode/sound/libraries/", "javax/xml/bind/",
-    };
+    final String[] fromPrefixes = new String[] { "org/lwjgl/", "paulscode/sound/libraries/", "javax/xml/bind/", };
 
-    final String[] toPrefixes = new String[] {
-        "org/lwjglx/", "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/", "jakarta/xml/bind/",
-    };
+    final String[] toPrefixes = new String[] { "org/lwjglx/", "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/",
+            "jakarta/xml/bind/", };
 
     @Override
     public String map(String typeName) {
@@ -79,5 +80,6 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         return typeName;
     }
 
-    private static class Lwjgl3AwareException extends RuntimeException {}
+    private static class Lwjgl3AwareException extends RuntimeException {
+    }
 }

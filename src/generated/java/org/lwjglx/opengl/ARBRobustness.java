@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBRobustness {
+
     public static final int GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB = (int) 4;
     public static final int GL_GUILTY_CONTEXT_RESET_ARB = (int) 33363;
     public static final int GL_INNOCENT_CONTEXT_RESET_ARB = (int) 33364;
@@ -29,20 +30,20 @@ public class ARBRobustness {
         org.lwjgl.opengl.ARBRobustness.glGetnCompressedTexImageARB(target, lod, img);
     }
 
-    public static void glGetnConvolutionFilterARB(
-            int target, int format, int type, int image_bufSize, long image_buffer_offset) {
-        org.lwjgl.opengl.ARBRobustness.glGetnConvolutionFilterARB(
-                target, format, type, image_bufSize, image_buffer_offset);
+    public static void glGetnConvolutionFilterARB(int target, int format, int type, int image_bufSize,
+            long image_buffer_offset) {
+        org.lwjgl.opengl.ARBRobustness
+                .glGetnConvolutionFilterARB(target, format, type, image_bufSize, image_buffer_offset);
     }
 
     public static void glGetnConvolutionFilterARB(int target, int format, int type, java.nio.ByteBuffer image) {
         org.lwjgl.opengl.ARBRobustness.glGetnConvolutionFilterARB(target, format, type, image);
     }
 
-    public static void glGetnHistogramARB(
-            int target, boolean reset, int format, int type, int values_bufSize, long values_buffer_offset) {
-        org.lwjgl.opengl.ARBRobustness.glGetnHistogramARB(
-                target, reset, format, type, values_bufSize, values_buffer_offset);
+    public static void glGetnHistogramARB(int target, boolean reset, int format, int type, int values_bufSize,
+            long values_buffer_offset) {
+        org.lwjgl.opengl.ARBRobustness
+                .glGetnHistogramARB(target, reset, format, type, values_bufSize, values_buffer_offset);
     }
 
     public static void glGetnHistogramARB(int target, boolean reset, int format, int type, java.nio.ByteBuffer values) {
@@ -61,10 +62,10 @@ public class ARBRobustness {
         org.lwjgl.opengl.ARBRobustness.glGetnMapivARB(target, query, v);
     }
 
-    public static void glGetnMinmaxARB(
-            int target, boolean reset, int format, int type, int values_bufSize, long values_buffer_offset) {
-        org.lwjgl.opengl.ARBRobustness.glGetnMinmaxARB(
-                target, reset, format, type, values_bufSize, values_buffer_offset);
+    public static void glGetnMinmaxARB(int target, boolean reset, int format, int type, int values_bufSize,
+            long values_buffer_offset) {
+        org.lwjgl.opengl.ARBRobustness
+                .glGetnMinmaxARB(target, reset, format, type, values_bufSize, values_buffer_offset);
     }
 
     public static void glGetnMinmaxARB(int target, boolean reset, int format, int type, java.nio.ByteBuffer values) {
@@ -87,18 +88,13 @@ public class ARBRobustness {
         org.lwjgl.opengl.ARBRobustness.glGetnPolygonStippleARB(pattern);
     }
 
-    public static void glGetnSeparableFilterARB(
-            int target,
-            int format,
-            int type,
-            java.nio.ByteBuffer row,
-            java.nio.ByteBuffer column,
-            java.nio.ByteBuffer span) {
+    public static void glGetnSeparableFilterARB(int target, int format, int type, java.nio.ByteBuffer row,
+            java.nio.ByteBuffer column, java.nio.ByteBuffer span) {
         org.lwjgl.opengl.ARBRobustness.glGetnSeparableFilterARB(target, format, type, row, column, span);
     }
 
-    public static void glGetnTexImageARB(
-            int target, int level, int format, int type, int img_bufSize, long img_buffer_offset) {
+    public static void glGetnTexImageARB(int target, int level, int format, int type, int img_bufSize,
+            long img_buffer_offset) {
         org.lwjgl.opengl.ARBRobustness.glGetnTexImageARB(target, level, format, type, img_bufSize, img_buffer_offset);
     }
 
@@ -138,29 +134,29 @@ public class ARBRobustness {
         org.lwjgl.opengl.ARBRobustness.glGetnUniformuivARB(program, location, params);
     }
 
-    public static void glReadnPixelsARB(
-            int x, int y, int width, int height, int format, int type, int data_bufSize, long data_buffer_offset) {
-        org.lwjgl.opengl.ARBRobustness.glReadnPixelsARB(
-                x, y, width, height, format, type, data_bufSize, data_buffer_offset);
+    public static void glReadnPixelsARB(int x, int y, int width, int height, int format, int type, int data_bufSize,
+            long data_buffer_offset) {
+        org.lwjgl.opengl.ARBRobustness
+                .glReadnPixelsARB(x, y, width, height, format, type, data_bufSize, data_buffer_offset);
     }
 
-    public static void glReadnPixelsARB(
-            int x, int y, int width, int height, int format, int type, java.nio.ByteBuffer data) {
+    public static void glReadnPixelsARB(int x, int y, int width, int height, int format, int type,
+            java.nio.ByteBuffer data) {
         org.lwjgl.opengl.ARBRobustness.glReadnPixelsARB(x, y, width, height, format, type, data);
     }
 
-    public static void glReadnPixelsARB(
-            int x, int y, int width, int height, int format, int type, java.nio.FloatBuffer data) {
+    public static void glReadnPixelsARB(int x, int y, int width, int height, int format, int type,
+            java.nio.FloatBuffer data) {
         org.lwjgl.opengl.ARBRobustness.glReadnPixelsARB(x, y, width, height, format, type, data);
     }
 
-    public static void glReadnPixelsARB(
-            int x, int y, int width, int height, int format, int type, java.nio.IntBuffer data) {
+    public static void glReadnPixelsARB(int x, int y, int width, int height, int format, int type,
+            java.nio.IntBuffer data) {
         org.lwjgl.opengl.ARBRobustness.glReadnPixelsARB(x, y, width, height, format, type, data);
     }
 
-    public static void glReadnPixelsARB(
-            int x, int y, int width, int height, int format, int type, java.nio.ShortBuffer data) {
+    public static void glReadnPixelsARB(int x, int y, int width, int height, int format, int type,
+            java.nio.ShortBuffer data) {
         org.lwjgl.opengl.ARBRobustness.glReadnPixelsARB(x, y, width, height, format, type, data);
     }
 }

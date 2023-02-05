@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 import java.nio.ByteBuffer;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL15;

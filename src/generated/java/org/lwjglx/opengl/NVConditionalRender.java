@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVConditionalRender {
+
     public static final int GL_QUERY_BY_REGION_NO_WAIT_NV = (int) 36374;
     public static final int GL_QUERY_BY_REGION_WAIT_NV = (int) 36373;
     public static final int GL_QUERY_NO_WAIT_NV = (int) 36372;

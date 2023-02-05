@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTVertexAttrib64bit {
+
     public static final int GL_DOUBLE_MAT2_EXT = (int) 36678;
     public static final int GL_DOUBLE_MAT2x3_EXT = (int) 36681;
     public static final int GL_DOUBLE_MAT2x4_EXT = (int) 36682;
@@ -18,10 +19,10 @@ public class EXTVertexAttrib64bit {
         org.lwjgl.opengl.EXTVertexAttrib64bit.glGetVertexAttribLdvEXT(index, pname, params);
     }
 
-    public static void glVertexArrayVertexAttribLOffsetEXT(
-            int vaobj, int buffer, int index, int size, int type, int stride, long offset) {
-        org.lwjgl.opengl.EXTVertexAttrib64bit.glVertexArrayVertexAttribLOffsetEXT(
-                vaobj, buffer, index, size, type, stride, offset);
+    public static void glVertexArrayVertexAttribLOffsetEXT(int vaobj, int buffer, int index, int size, int type,
+            int stride, long offset) {
+        org.lwjgl.opengl.EXTVertexAttrib64bit
+                .glVertexArrayVertexAttribLOffsetEXT(vaobj, buffer, index, size, type, stride, offset);
     }
 
     public static void glVertexAttribL1EXT(int index, java.nio.DoubleBuffer v) {

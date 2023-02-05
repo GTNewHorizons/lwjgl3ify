@@ -6,7 +6,9 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+
 import me.eigenraven.lwjgl3ify.core.Config;
+
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCharCallback;
@@ -70,13 +72,14 @@ public class Display {
     }
 
     /**
-     * Create the OpenGL context with the given minimum parameters. If isFullscreen() is true or if windowed
-     * context are not supported on the platform, the display mode will be switched to the mode returned by
-     * getDisplayMode(), and a fullscreen context will be created. If isFullscreen() is false, a windowed context
-     * will be created with the dimensions given in the mode returned by getDisplayMode(). If a context can't be
-     * created with the given parameters, a LWJGLException will be thrown.
+     * Create the OpenGL context with the given minimum parameters. If isFullscreen() is true or if windowed context are
+     * not supported on the platform, the display mode will be switched to the mode returned by getDisplayMode(), and a
+     * fullscreen context will be created. If isFullscreen() is false, a windowed context will be created with the
+     * dimensions given in the mode returned by getDisplayMode(). If a context can't be created with the given
+     * parameters, a LWJGLException will be thrown.
      * <p/>
-     * <p>The window created will be set up in orthographic 2D projection, with 1:1 pixel ratio with GL coordinates.
+     * <p>
+     * The window created will be set up in orthographic 2D projection, with 1:1 pixel ratio with GL coordinates.
      *
      * @param pixel_format    Describes the minimum specifications the context must fulfill.
      * @param shared_drawable The Drawable to share context with. (optional, may be null)
@@ -141,6 +144,7 @@ public class Display {
         }
 
         Window.keyCallback = new GLFWKeyCallback() {
+
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 latestEventKey = key;
@@ -155,6 +159,7 @@ public class Display {
         };
 
         Window.charCallback = new GLFWCharCallback() {
+
             @Override
             public void invoke(long window, int codepoint) {
                 Keyboard.addCharEvent(latestEventKey, (char) codepoint);
@@ -162,6 +167,7 @@ public class Display {
         };
 
         Window.cursorPosCallback = new GLFWCursorPosCallback() {
+
             @Override
             public void invoke(long window, double xpos, double ypos) {
                 Mouse.addMoveEvent(xpos, ypos);
@@ -169,6 +175,7 @@ public class Display {
         };
 
         Window.mouseButtonCallback = new GLFWMouseButtonCallback() {
+
             @Override
             public void invoke(long window, int button, int action, int mods) {
                 Mouse.addButtonEvent(button, action == GLFW.GLFW_PRESS ? true : false);
@@ -176,6 +183,7 @@ public class Display {
         };
 
         Window.scrollCallback = new GLFWScrollCallback() {
+
             @Override
             public void invoke(long window, double xoffset, double yoffset) {
                 Mouse.addWheelEvent(yoffset);
@@ -183,6 +191,7 @@ public class Display {
         };
 
         Window.windowFocusCallback = new GLFWWindowFocusCallback() {
+
             @Override
             public void invoke(long window, boolean focused) {
                 displayFocused = focused;
@@ -190,6 +199,7 @@ public class Display {
         };
 
         Window.windowIconifyCallback = new GLFWWindowIconifyCallback() {
+
             @Override
             public void invoke(long window, boolean iconified) {
                 displayVisible = !iconified;
@@ -197,6 +207,7 @@ public class Display {
         };
 
         Window.windowSizeCallback = new GLFWWindowSizeCallback() {
+
             @Override
             public void invoke(long window, int width, int height) {
                 latestResized = true;
@@ -206,6 +217,7 @@ public class Display {
         };
 
         Window.windowPosCallback = new GLFWWindowPosCallback() {
+
             @Override
             public void invoke(long window, int xpos, int ypos) {
                 displayX = xpos;
@@ -214,6 +226,7 @@ public class Display {
         };
 
         Window.windowRefreshCallback = new GLFWWindowRefreshCallback() {
+
             @Override
             public void invoke(long window) {
                 displayDirty = true;
@@ -221,6 +234,7 @@ public class Display {
         };
 
         Window.framebufferSizeCallback = new GLFWFramebufferSizeCallback() {
+
             @Override
             public void invoke(long window, int width, int height) {
                 displayFramebufferWidth = width;
@@ -318,11 +332,9 @@ public class Display {
         Window.releaseCallbacks();
         glfwDestroyWindow(Window.handle);
 
-        /*try {
-        	glfwTerminate();
-        } catch (Throwable t) {
-        	t.printStackTrace();
-        }*/
+        /*
+         * try { glfwTerminate(); } catch (Throwable t) { t.printStackTrace(); }
+         */
         displayCreated = false;
     }
 
@@ -500,8 +512,7 @@ public class Display {
     }
 
     /**
-     * An accurate sync method that will attempt to run at a constant frame rate.
-     * It should be called once every frame.
+     * An accurate sync method that will attempt to run at a constant frame rate. It should be called once every frame.
      *
      * @param fps - the desired frame rate, in frames per second
      */
@@ -520,6 +531,7 @@ public class Display {
     }
 
     private static class Window {
+
         static long handle;
 
         static GLFWKeyCallback keyCallback;

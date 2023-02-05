@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class KHRTextureCompressionAstcLdr {
+
     public static final int GL_COMPRESSED_RGBA_ASTC_10x10_KHR = (int) 37819;
     public static final int GL_COMPRESSED_RGBA_ASTC_10x5_KHR = (int) 37816;
     public static final int GL_COMPRESSED_RGBA_ASTC_10x6_KHR = (int) 37817;

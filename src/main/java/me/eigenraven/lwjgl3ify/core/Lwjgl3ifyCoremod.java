@@ -1,23 +1,22 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import java.util.List;
 import java.util.Map;
+
 import me.eigenraven.lwjgl3ify.Tags;
+
 import net.minecraft.launchwrapper.LaunchClassLoader;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+
 @IFMLLoadingPlugin.MCVersion("1.7.10")
-@IFMLLoadingPlugin.TransformerExclusions({
-    "org.lwjglx",
-    "org.lwjgl",
-    "org.lwjgl.input",
-    "org.lwjglx.input",
-    "me.eigenraven.lwjgl3ify.core"
-})
+@IFMLLoadingPlugin.TransformerExclusions({ "org.lwjglx", "org.lwjgl", "org.lwjgl.input", "org.lwjglx.input",
+        "me.eigenraven.lwjgl3ify.core" })
 @IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
 public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
 
@@ -29,10 +28,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
             LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
             launchLoader.addClassLoaderExclusion("javax");
         } catch (ClassCastException e) {
-            LOGGER.warn(
-                    "Unsupported launch class loader type "
-                            + getClass().getClassLoader().getClass(),
-                    e);
+            LOGGER.warn("Unsupported launch class loader type " + getClass().getClassLoader().getClass(), e);
         }
         // Ensure javax.script.ScriptEngineManager gets loaded
         try {
@@ -51,9 +47,8 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
             tweakClasses.add(PostMixinTransformInjector.class.getName());
         }
 
-        return new String[] {
-            LwjglRedirectTransformer.class.getName(), UnfinalizeObjectHoldersTransformer.class.getName()
-        };
+        return new String[] { LwjglRedirectTransformer.class.getName(),
+                UnfinalizeObjectHoldersTransformer.class.getName() };
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBSamplerObjects {
+
     public static final int GL_SAMPLER_BINDING = (int) 35097;
 
     public static void glBindSampler(int unit, int sampler) {

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexType2_10_10_10_REV {
+
     public static final int GL_INT_2_10_10_10_REV = (int) 36255;
     public static final int GL_UNSIGNED_INT_2_10_10_10_REV = (int) 33640;
 

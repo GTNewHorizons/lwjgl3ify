@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVTextureShader3 {
+
     public static final int GL_DEPENDENT_HILO_TEXTURE_2D_NV = (int) 34904;
     public static final int GL_DEPENDENT_RGB_TEXTURE_3D_NV = (int) 34905;
     public static final int GL_DEPENDENT_RGB_TEXTURE_CUBE_MAP_NV = (int) 34906;

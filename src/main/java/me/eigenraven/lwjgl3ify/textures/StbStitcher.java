@@ -1,27 +1,30 @@
 package me.eigenraven.lwjgl3ify.textures;
 
-import cpw.mods.fml.common.ProgressManager;
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
+
 import net.minecraft.client.renderer.StitcherException;
 import net.minecraft.client.renderer.texture.Stitcher;
 import net.minecraft.util.MathHelper;
+
 import org.lwjgl.stb.STBRPContext;
 import org.lwjgl.stb.STBRPNode;
 import org.lwjgl.stb.STBRPRect;
 import org.lwjgl.stb.STBRectPack;
 
+import cpw.mods.fml.common.ProgressManager;
+
 @Lwjgl3Aware
 @SuppressWarnings("deprecation")
 public class StbStitcher {
+
     // Returns size
     public static int packRects(Stitcher.Holder[] holders) {
         ProgressManager.ProgressBar bar = ProgressManager.push("Stitch setup", (holders.length + 99) / 100);
         int holderSize = holders.length;
 
         // Allocate memory for the rectangles and the context
-        try (STBRPRect.Buffer rectBuf = STBRPRect.malloc(holderSize);
-                STBRPContext ctx = STBRPContext.malloc(); ) {
+        try (STBRPRect.Buffer rectBuf = STBRPRect.malloc(holderSize); STBRPContext ctx = STBRPContext.malloc();) {
 
             // Initialize the rectangles that we'll be using in the calculation
             // While that's happening, sum up the area needed to fit all of the images
@@ -60,8 +63,8 @@ public class StbStitcher {
                     if (!rect.was_packed()) {
                         throw new StitcherException(
                                 holder,
-                                "Could not fit " + holder.getAtlasSprite().getIconName() + " into " + size + "x" + size
-                                        + " atlas!");
+                                "Could not fit " + holder.getAtlasSprite()
+                                        .getIconName() + " into " + size + "x" + size + " atlas!");
                     }
 
                     // Initialize the sprite now with the position and size that we've calculated so far

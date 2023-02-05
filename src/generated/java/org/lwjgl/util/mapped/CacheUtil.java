@@ -1,6 +1,7 @@
 package org.lwjgl.util.mapped;
 
 public class CacheUtil {
+
     public static java.nio.ByteBuffer createByteBuffer(int arg0) {
         throw new UnsupportedOperationException();
     }

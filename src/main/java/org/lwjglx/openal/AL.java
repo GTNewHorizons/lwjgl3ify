@@ -1,6 +1,7 @@
 package org.lwjglx.openal;
 
 import java.nio.IntBuffer;
+
 import org.lwjgl.openal.ALC10;
 import org.lwjgl.openal.ALCCapabilities;
 import org.lwjglx.BufferUtils;

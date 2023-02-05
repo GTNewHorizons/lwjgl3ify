@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTFogCoord {
+
     public static final int GL_CURRENT_FOG_COORDINATE_EXT = (int) 33875;
     public static final int GL_FOG_COORDINATE_ARRAY_EXT = (int) 33879;
     public static final int GL_FOG_COORDINATE_ARRAY_POINTER_EXT = (int) 33878;

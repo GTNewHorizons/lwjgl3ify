@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBMultisample {
+
     public static final int GL_MULTISAMPLE_ARB = (int) 32925;
     public static final int GL_MULTISAMPLE_BIT_ARB = (int) 536870912;
     public static final int GL_SAMPLES_ARB = (int) 32937;

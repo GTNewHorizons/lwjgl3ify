@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class EXTDrawRangeElements {
+
     public static final int GL_MAX_ELEMENTS_INDICES_EXT = (int) 33001;
     public static final int GL_MAX_ELEMENTS_VERTICES_EXT = (int) 33000;
 

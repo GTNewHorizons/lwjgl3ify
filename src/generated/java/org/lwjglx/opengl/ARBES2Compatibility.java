@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBES2Compatibility {
+
     public static final int GL_FIXED = (int) 5132;
     public static final int GL_HIGH_FLOAT = (int) 36338;
     public static final int GL_HIGH_INT = (int) 36341;
@@ -25,8 +26,8 @@ public class ARBES2Compatibility {
         org.lwjgl.opengl.ARBES2Compatibility.glDepthRangef(n, f);
     }
 
-    public static void glGetShaderPrecisionFormat(
-            int shadertype, int precisiontype, java.nio.IntBuffer range, java.nio.IntBuffer precision) {
+    public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, java.nio.IntBuffer range,
+            java.nio.IntBuffer precision) {
         org.lwjgl.opengl.ARBES2Compatibility.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
     }
 

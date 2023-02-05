@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class APPLETextureRange {
+
     public static final int GL_STORAGE_CACHED_APPLE = (int) 34238;
     public static final int GL_STORAGE_PRIVATE_APPLE = (int) 34237;
     public static final int GL_STORAGE_SHARED_APPLE = (int) 34239;

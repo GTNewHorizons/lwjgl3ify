@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBFramebufferNoAttachments {
+
     public static final int GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLE_LOCATIONS = (int) 37652;
     public static final int GL_FRAMEBUFFER_DEFAULT_HEIGHT = (int) 37649;
     public static final int GL_FRAMEBUFFER_DEFAULT_LAYERS = (int) 37650;

@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public class Timer {
+
     public float getTime() {
         throw new UnsupportedOperationException();
     }

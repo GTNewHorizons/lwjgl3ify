@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIFragmentShader {
+
     public static final int GL_2X_BIT_ATI = (int) 1;
     public static final int GL_4X_BIT_ATI = (int) 2;
     public static final int GL_8X_BIT_ATI = (int) 4;
@@ -110,24 +111,13 @@ public class ATIFragmentShader {
         throw new UnsupportedOperationException();
     }
 
-    public static void glAlphaFragmentOp2ATI(
-            int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8) {
+    public static void glAlphaFragmentOp2ATI(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8) {
         throw new UnsupportedOperationException();
     }
 
-    public static void glAlphaFragmentOp3ATI(
-            int arg0,
-            int arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            int arg7,
-            int arg8,
-            int arg9,
-            int arg10,
-            int arg11) {
+    public static void glAlphaFragmentOp3ATI(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8, int arg9, int arg10, int arg11) {
         throw new UnsupportedOperationException();
     }
 
@@ -143,25 +133,13 @@ public class ATIFragmentShader {
         throw new UnsupportedOperationException();
     }
 
-    public static void glColorFragmentOp2ATI(
-            int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6, int arg7, int arg8, int arg9) {
+    public static void glColorFragmentOp2ATI(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8, int arg9) {
         throw new UnsupportedOperationException();
     }
 
-    public static void glColorFragmentOp3ATI(
-            int arg0,
-            int arg1,
-            int arg2,
-            int arg3,
-            int arg4,
-            int arg5,
-            int arg6,
-            int arg7,
-            int arg8,
-            int arg9,
-            int arg10,
-            int arg11,
-            int arg12) {
+    public static void glColorFragmentOp3ATI(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
+            int arg7, int arg8, int arg9, int arg10, int arg11, int arg12) {
         throw new UnsupportedOperationException();
     }
 

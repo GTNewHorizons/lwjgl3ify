@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBShaderImageLoadStore {
+
     public static final int GL_ALL_BARRIER_BITS = (int) -1;
     public static final int GL_ATOMIC_COUNTER_BARRIER_BIT = (int) 4096;
     public static final int GL_BUFFER_UPDATE_BARRIER_BIT = (int) 512;
@@ -66,10 +67,10 @@ public class ARBShaderImageLoadStore {
     public static final int GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT = (int) 1;
     public static final int IMAGE_FORMAT_COMPATIBILITY_BY_CLASS = (int) 37065;
 
-    public static void glBindImageTexture(
-            int unit, int texture, int level, boolean layered, int layer, int access, int format) {
-        org.lwjgl.opengl.ARBShaderImageLoadStore.glBindImageTexture(
-                unit, texture, level, layered, layer, access, format);
+    public static void glBindImageTexture(int unit, int texture, int level, boolean layered, int layer, int access,
+            int format) {
+        org.lwjgl.opengl.ARBShaderImageLoadStore
+                .glBindImageTexture(unit, texture, level, layered, layer, access, format);
     }
 
     public static void glMemoryBarrier(int barriers) {

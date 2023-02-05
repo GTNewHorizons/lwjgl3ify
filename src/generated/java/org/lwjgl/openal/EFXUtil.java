@@ -1,6 +1,7 @@
 package org.lwjgl.openal;
 
 public class EFXUtil {
+
     public static boolean isEffectSupported(int arg0) {
         throw new UnsupportedOperationException();
     }

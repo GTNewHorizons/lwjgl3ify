@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATISeparateStencil {
+
     public static final int GL_STENCIL_BACK_FAIL_ATI = (int) 34817;
     public static final int GL_STENCIL_BACK_FUNC_ATI = (int) 34816;
     public static final int GL_STENCIL_BACK_PASS_DEPTH_FAIL_ATI = (int) 34818;

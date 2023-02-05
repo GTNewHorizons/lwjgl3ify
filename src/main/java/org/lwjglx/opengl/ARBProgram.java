@@ -1,3 +1,4 @@
 package org.lwjglx.opengl;
 
-public class ARBProgram {}
+public class ARBProgram {
+}

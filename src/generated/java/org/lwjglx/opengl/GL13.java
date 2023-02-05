@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class GL13 {
+
     public static final int GL_ACTIVE_TEXTURE = (int) 34016;
     public static final int GL_ADD_SIGNED = (int) 34164;
     public static final int GL_CLAMP_TO_BORDER = (int) 33069;
@@ -106,116 +107,92 @@ public class GL13 {
         org.lwjgl.opengl.GL13.glClientActiveTexture(texture);
     }
 
-    public static void glCompressedTexImage1D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int border,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTexImage1D(int target, int level, int internalformat, int width, int border,
+            int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL13.glCompressedTexImage1D(
-                target, level, internalformat, width, border, data_imageSize, data_buffer_offset);
+                target,
+                level,
+                internalformat,
+                width,
+                border,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTexImage1D(
-            int target, int level, int internalformat, int width, int border, java.nio.ByteBuffer data) {
+    public static void glCompressedTexImage1D(int target, int level, int internalformat, int width, int border,
+            java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexImage1D(target, level, internalformat, width, border, data);
     }
 
-    public static void glCompressedTexImage2D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int border,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height,
+            int border, int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL13.glCompressedTexImage2D(
-                target, level, internalformat, width, height, border, data_imageSize, data_buffer_offset);
+                target,
+                level,
+                internalformat,
+                width,
+                height,
+                border,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTexImage2D(
-            int target, int level, int internalformat, int width, int height, int border, java.nio.ByteBuffer data) {
+    public static void glCompressedTexImage2D(int target, int level, int internalformat, int width, int height,
+            int border, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexImage2D(target, level, internalformat, width, height, border, data);
     }
 
-    public static void glCompressedTexImage3D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int depth,
-            int border,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTexImage3D(int target, int level, int internalformat, int width, int height,
+            int depth, int border, int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL13.glCompressedTexImage3D(
-                target, level, internalformat, width, height, depth, border, data_imageSize, data_buffer_offset);
+                target,
+                level,
+                internalformat,
+                width,
+                height,
+                depth,
+                border,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTexImage3D(
-            int target,
-            int level,
-            int internalformat,
-            int width,
-            int height,
-            int depth,
-            int border,
-            java.nio.ByteBuffer data) {
+    public static void glCompressedTexImage3D(int target, int level, int internalformat, int width, int height,
+            int depth, int border, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexImage3D(target, level, internalformat, width, height, depth, border, data);
     }
 
-    public static void glCompressedTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, int data_imageSize, long data_buffer_offset) {
-        org.lwjgl.opengl.GL13.glCompressedTexSubImage1D(
-                target, level, xoffset, width, format, data_imageSize, data_buffer_offset);
+    public static void glCompressedTexSubImage1D(int target, int level, int xoffset, int width, int format,
+            int data_imageSize, long data_buffer_offset) {
+        org.lwjgl.opengl.GL13
+                .glCompressedTexSubImage1D(target, level, xoffset, width, format, data_imageSize, data_buffer_offset);
     }
 
-    public static void glCompressedTexSubImage1D(
-            int target, int level, int xoffset, int width, int format, java.nio.ByteBuffer data) {
+    public static void glCompressedTexSubImage1D(int target, int level, int xoffset, int width, int format,
+            java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexSubImage1D(target, level, xoffset, width, format, data);
     }
 
-    public static void glCompressedTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL13.glCompressedTexSubImage2D(
-                target, level, xoffset, yoffset, width, height, format, data_imageSize, data_buffer_offset);
+                target,
+                level,
+                xoffset,
+                yoffset,
+                width,
+                height,
+                format,
+                data_imageSize,
+                data_buffer_offset);
     }
 
-    public static void glCompressedTexSubImage2D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int width,
-            int height,
-            int format,
-            java.nio.ByteBuffer data) {
+    public static void glCompressedTexSubImage2D(int target, int level, int xoffset, int yoffset, int width, int height,
+            int format, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, data);
     }
 
-    public static void glCompressedTexSubImage3D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            int data_imageSize,
-            long data_buffer_offset) {
+    public static void glCompressedTexSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, int format, int data_imageSize, long data_buffer_offset) {
         org.lwjgl.opengl.GL13.glCompressedTexSubImage3D(
                 target,
                 level,
@@ -230,19 +207,19 @@ public class GL13 {
                 data_buffer_offset);
     }
 
-    public static void glCompressedTexSubImage3D(
-            int target,
-            int level,
-            int xoffset,
-            int yoffset,
-            int zoffset,
-            int width,
-            int height,
-            int depth,
-            int format,
-            java.nio.ByteBuffer data) {
+    public static void glCompressedTexSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset,
+            int width, int height, int depth, int format, java.nio.ByteBuffer data) {
         org.lwjgl.opengl.GL13.glCompressedTexSubImage3D(
-                target, level, xoffset, yoffset, zoffset, width, height, depth, format, data);
+                target,
+                level,
+                xoffset,
+                yoffset,
+                zoffset,
+                width,
+                height,
+                depth,
+                format,
+                data);
     }
 
     public static void glGetCompressedTexImage(int target, int lod, long img_buffer_offset) {

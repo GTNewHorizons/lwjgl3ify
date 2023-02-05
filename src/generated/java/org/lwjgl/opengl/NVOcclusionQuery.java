@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVOcclusionQuery {
+
     public static final int GL_CURRENT_OCCLUSION_QUERY_ID_NV = (int) 34917;
     public static final int GL_OCCLUSION_TEST_HP = (int) 33125;
     public static final int GL_OCCLUSION_TEST_RESULT_HP = (int) 33126;

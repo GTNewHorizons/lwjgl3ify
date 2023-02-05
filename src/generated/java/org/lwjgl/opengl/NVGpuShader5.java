@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class NVGpuShader5 {
+
     public static final int GL_FLOAT16_NV = (int) 36856;
     public static final int GL_FLOAT16_VEC2_NV = (int) 36857;
     public static final int GL_FLOAT16_VEC3_NV = (int) 36858;

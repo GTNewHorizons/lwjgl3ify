@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBTextureEnvCombine {
+
     public static final int GL_ADD_SIGNED_ARB = (int) 34164;
     public static final int GL_COMBINE_ALPHA_ARB = (int) 34162;
     public static final int GL_COMBINE_ARB = (int) 34160;

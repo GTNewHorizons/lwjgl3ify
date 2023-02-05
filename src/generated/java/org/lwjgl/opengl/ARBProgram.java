@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ARBProgram {
+
     public static final int GL_CURRENT_MATRIX_ARB = (int) 34369;
     public static final int GL_CURRENT_MATRIX_STACK_DEPTH_ARB = (int) 34368;
     public static final int GL_MATRIX0_ARB = (int) 35008;
@@ -133,8 +134,8 @@ public class ARBProgram {
         throw new UnsupportedOperationException();
     }
 
-    public static void glProgramEnvParameter4dARB(
-            int arg0, int arg1, double arg2, double arg3, double arg4, double arg5) {
+    public static void glProgramEnvParameter4dARB(int arg0, int arg1, double arg2, double arg3, double arg4,
+            double arg5) {
         throw new UnsupportedOperationException();
     }
 
@@ -150,13 +151,13 @@ public class ARBProgram {
         throw new UnsupportedOperationException();
     }
 
-    public static void glProgramLocalParameter4dARB(
-            int arg0, int arg1, double arg2, double arg3, double arg4, double arg5) {
+    public static void glProgramLocalParameter4dARB(int arg0, int arg1, double arg2, double arg3, double arg4,
+            double arg5) {
         throw new UnsupportedOperationException();
     }
 
-    public static void glProgramLocalParameter4fARB(
-            int arg0, int arg1, float arg2, float arg3, float arg4, float arg5) {
+    public static void glProgramLocalParameter4fARB(int arg0, int arg1, float arg2, float arg3, float arg4,
+            float arg5) {
         throw new UnsupportedOperationException();
     }
 

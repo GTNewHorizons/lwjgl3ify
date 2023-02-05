@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVFence {
+
     public static final int GL_ALL_COMPLETED_NV = (int) 34034;
     public static final int GL_FENCE_CONDITION_NV = (int) 34036;
     public static final int GL_FENCE_STATUS_NV = (int) 34035;

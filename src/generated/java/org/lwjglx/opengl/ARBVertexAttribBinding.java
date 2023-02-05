@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexAttribBinding {
+
     public static final int GL_MAX_VERTEX_ATTRIB_BINDINGS = (int) 33498;
     public static final int GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET = (int) 33497;
     public static final int GL_VERTEX_ATTRIB_BINDING = (int) 33492;
@@ -17,10 +18,10 @@ public class ARBVertexAttribBinding {
         org.lwjgl.opengl.ARBVertexAttribBinding.glVertexAttribBinding(attribindex, bindingindex);
     }
 
-    public static void glVertexAttribFormat(
-            int attribindex, int size, int type, boolean normalized, int relativeoffset) {
-        org.lwjgl.opengl.ARBVertexAttribBinding.glVertexAttribFormat(
-                attribindex, size, type, normalized, relativeoffset);
+    public static void glVertexAttribFormat(int attribindex, int size, int type, boolean normalized,
+            int relativeoffset) {
+        org.lwjgl.opengl.ARBVertexAttribBinding
+                .glVertexAttribFormat(attribindex, size, type, normalized, relativeoffset);
     }
 
     public static void glVertexAttribIFormat(int attribindex, int size, int type, int relativeoffset) {

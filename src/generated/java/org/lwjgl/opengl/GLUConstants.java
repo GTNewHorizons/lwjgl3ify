@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public interface GLUConstants {
+
     public static final int GLU_EXTENSIONS = (int) 100801;
     public static final int GLU_FALSE = (int) 0;
     public static final int GLU_INCOMPATIBLE_GL_VERSION = (int) 100903;

@@ -1,33 +1,17 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /*
@@ -39,6 +23,7 @@ import static org.lwjgl.opengl.ARBTransposeMatrix.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.nio.FloatBuffer;
+
 import org.lwjgl.Version;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
@@ -51,9 +36,9 @@ import org.lwjglx.opengl.GLContext;
  * <p>
  * This is the OpenGL "standard" Gears demo, originally by Brian Paul
  * </p>
+ * 
  * @author Brian Matzon <brian@matzon.dk>
- * @version $Revision: 3418 $
- * $Id: Gears.java 3418 2010-09-28 21:11:35Z spasi $
+ * @version $Revision: 3418 $ $Id: Gears.java 3418 2010-09-28 21:11:35Z spasi $
  */
 public class Gears {
 
@@ -162,10 +147,10 @@ public class Gears {
         Display.create();
 
         // setup ogl
-        FloatBuffer pos = BufferUtils.createFloatBuffer(4).put(new float[] {5.0f, 5.0f, 10.0f, 0.0f});
-        FloatBuffer red = BufferUtils.createFloatBuffer(4).put(new float[] {0.8f, 0.1f, 0.0f, 1.0f});
-        FloatBuffer green = BufferUtils.createFloatBuffer(4).put(new float[] {0.0f, 0.8f, 0.2f, 1.0f});
-        FloatBuffer blue = BufferUtils.createFloatBuffer(4).put(new float[] {0.2f, 0.2f, 1.0f, 1.0f});
+        FloatBuffer pos = BufferUtils.createFloatBuffer(4).put(new float[] { 5.0f, 5.0f, 10.0f, 0.0f });
+        FloatBuffer red = BufferUtils.createFloatBuffer(4).put(new float[] { 0.8f, 0.1f, 0.0f, 1.0f });
+        FloatBuffer green = BufferUtils.createFloatBuffer(4).put(new float[] { 0.0f, 0.8f, 0.2f, 1.0f });
+        FloatBuffer blue = BufferUtils.createFloatBuffer(4).put(new float[] { 0.2f, 0.2f, 1.0f, 1.0f });
 
         pos.flip();
         red.flip();
@@ -213,8 +198,8 @@ public class Gears {
             glLoadIdentity();
         } else {
             // --- using extensions
-            final FloatBuffer identityTranspose =
-                    BufferUtils.createFloatBuffer(16).put(new float[] {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1});
+            final FloatBuffer identityTranspose = BufferUtils.createFloatBuffer(16)
+                    .put(new float[] { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 });
             identityTranspose.flip();
             glLoadTransposeMatrixfARB(identityTranspose);
         }
@@ -227,14 +212,14 @@ public class Gears {
     }
 
     /**
-     * Draw a gear wheel.  You'll probably want to call this function when
-     * building a display list since we do a lot of trig here.
+     * Draw a gear wheel. You'll probably want to call this function when building a display list since we do a lot of
+     * trig here.
      *
      * @param inner_radius radius of hole at center
      * @param outer_radius radius at center of teeth
-     * @param width width of gear
-     * @param teeth number of teeth
-     * @param tooth_depth depth of tooth
+     * @param width        width of gear
+     * @param teeth        number of teeth
+     * @param tooth_depth  depth of tooth
      */
     private void gear(float inner_radius, float outer_radius, float width, int teeth, float tooth_depth) {
         int i;
@@ -275,9 +260,13 @@ public class Gears {
             glVertex3f(r1 * (float) Math.cos(angle), r1 * (float) Math.sin(angle), width * 0.5f);
             glVertex3f(r2 * (float) Math.cos(angle + da), r2 * (float) Math.sin(angle + da), width * 0.5f);
             glVertex3f(
-                    r2 * (float) Math.cos(angle + 2.0f * da), r2 * (float) Math.sin(angle + 2.0f * da), width * 0.5f);
+                    r2 * (float) Math.cos(angle + 2.0f * da),
+                    r2 * (float) Math.sin(angle + 2.0f * da),
+                    width * 0.5f);
             glVertex3f(
-                    r1 * (float) Math.cos(angle + 3.0f * da), r1 * (float) Math.sin(angle + 3.0f * da), width * 0.5f);
+                    r1 * (float) Math.cos(angle + 3.0f * da),
+                    r1 * (float) Math.sin(angle + 3.0f * da),
+                    width * 0.5f);
         }
         glEnd();
 

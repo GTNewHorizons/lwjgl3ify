@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class DisplayMode {
+
     public boolean equals(java.lang.Object arg0) {
         throw new UnsupportedOperationException();
     }

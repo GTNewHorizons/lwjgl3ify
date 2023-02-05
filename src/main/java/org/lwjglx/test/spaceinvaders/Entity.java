@@ -1,48 +1,29 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.test.spaceinvaders;
 
 import java.awt.Rectangle;
 
 /**
- * An entity represents any element that appears in the game. The
- * entity is responsible for resolving collisions and movement
- * based on a set of properties defined either by subclass or externally.
+ * An entity represents any element that appears in the game. The entity is responsible for resolving collisions and
+ * movement based on a set of properties defined either by subclass or externally.
  *
- * Note that doubles are used for positions. This may seem strange
- * given that pixels locations are integers. However, using double means
- * that an entity can move a partial pixel. It doesn't of course mean that
- * they will be display half way through a pixel but allows us not lose
- * accuracy as we move.
+ * Note that doubles are used for positions. This may seem strange given that pixels locations are integers. However,
+ * using double means that an entity can move a partial pixel. It doesn't of course mean that they will be display half
+ * way through a pixel but allows us not lose accuracy as we move.
  *
  * @author Kevin Glass
  */
@@ -63,7 +44,7 @@ public abstract class Entity {
     /** The current speed of this entity vertically (pixels/sec) */
     protected float dy;
 
-    /** The rectangle used for this entity during collisions  resolution */
+    /** The rectangle used for this entity during collisions resolution */
     private Rectangle me = new Rectangle();
 
     /** The rectangle used for other entities during collision resolution */
@@ -73,8 +54,8 @@ public abstract class Entity {
      * Construct a entity based on a sprite image and a location.
      *
      * @param sprite The reference to the image to be displayed for this entity
-     * @param x The initial x location of this entity
-     * @param y The initial y location of this entity
+     * @param x      The initial x location of this entity
+     * @param y      The initial y location of this entity
      */
     protected Entity(Sprite sprite, int x, int y) {
         this.sprite = sprite;
@@ -83,8 +64,7 @@ public abstract class Entity {
     }
 
     /**
-     * Request that this entity move itself based on a certain ammount
-     * of time passing.
+     * Request that this entity move itself based on a certain ammount of time passing.
      *
      * @param delta The ammount of time that has passed in milliseconds
      */
@@ -138,8 +118,7 @@ public abstract class Entity {
     }
 
     /**
-     * Do the logic associated with this entity. This method
-     * will be called periodically based on game events
+     * Do the logic associated with this entity. This method will be called periodically based on game events
      */
     public void doLogic() {}
 

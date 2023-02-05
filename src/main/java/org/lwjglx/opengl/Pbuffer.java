@@ -1,37 +1,22 @@
 /*
- * Copyright (c) 2002-2008 LWJGL Project
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- *
- * * Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- *
- * * Neither the name of 'LWJGL' nor the names of
- *   its contributors may be used to endorse or promote products derived
- *   from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Copyright (c) 2002-2008 LWJGL Project All rights reserved. Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following conditions are met: * Redistributions of source code
+ * must retain the above copyright notice, this list of conditions and the following disclaimer. * Redistributions in
+ * binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution. * Neither the name of 'LWJGL' nor the names of
+ * its contributors may be used to endorse or promote products derived from this software without specific prior written
+ * permission. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.lwjglx.opengl;
 
 import java.nio.IntBuffer;
+
 import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
@@ -44,10 +29,10 @@ import org.lwjglx.Sys;
  * This class is thread-safe.
  *
  * @author elias_naur <elias_naur@users.sourceforge.net>
- * @version $Revision$
- * $Id$
+ * @version $Revision$ $Id$
  */
 public final class Pbuffer extends DrawableGL {
+
     /**
      * Indicates that Pbuffers can be created.
      */
@@ -150,16 +135,17 @@ public final class Pbuffer extends DrawableGL {
     /**
      * Create an instance of a Pbuffer with a unique OpenGL context. The buffer is single-buffered.
      * <p/>
-     * NOTE: The Pbuffer will have its own context that shares display lists and textures with <code>shared_context</code>,
-     * or, if <code>shared_context</code> is <code>null</code>, the Display context if it is created. The Pbuffer
-     * will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in the window context and vice versa.
+     * NOTE: The Pbuffer will have its own context that shares display lists and textures with
+     * <code>shared_context</code>, or, if <code>shared_context</code> is <code>null</code>, the Display context if it
+     * is created. The Pbuffer will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in
+     * the window context and vice versa.
      * <p/>
      *
-     * @param width         Pbuffer width
-     * @param height        Pbuffer height
-     * @param pixel_format  Minimum Pbuffer context properties
-     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the Pbuffer will share
-     * 						 with the Display context (if created).
+     * @param width           Pbuffer width
+     * @param height          Pbuffer height
+     * @param pixel_format    Minimum Pbuffer context properties
+     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the
+     *                        Pbuffer will share with the Display context (if created).
      */
     public Pbuffer(int width, int height, PixelFormat pixel_format, Drawable shared_drawable) throws LWJGLException {
         this(width, height, pixel_format, null, shared_drawable);
@@ -168,58 +154,53 @@ public final class Pbuffer extends DrawableGL {
     /**
      * Create an instance of a Pbuffer with a unique OpenGL context. The buffer is single-buffered.
      * <p/>
-     * NOTE: The Pbuffer will have its own context that shares display lists and textures with <code>shared_context</code>,
-     * or, if <code>shared_context</code> is <code>null</code>, the Display context if it is created. The Pbuffer
-     * will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in the window context and vice versa.
+     * NOTE: The Pbuffer will have its own context that shares display lists and textures with
+     * <code>shared_context</code>, or, if <code>shared_context</code> is <code>null</code>, the Display context if it
+     * is created. The Pbuffer will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in
+     * the window context and vice versa.
      * <p/>
-     * The renderTexture parameter defines the necessary state for enabling render-to-texture. When this parameter is null,
-     * render-to-texture is not available. Before using render-to-texture, the Pbuffer capabilities must be queried to ensure that
-     * it is supported. Currently only windows platform can support this feature, so it is recommended that EXT_framebuffer_object
-     * or similar is used if available, for maximum portability.
+     * The renderTexture parameter defines the necessary state for enabling render-to-texture. When this parameter is
+     * null, render-to-texture is not available. Before using render-to-texture, the Pbuffer capabilities must be
+     * queried to ensure that it is supported. Currently only windows platform can support this feature, so it is
+     * recommended that EXT_framebuffer_object or similar is used if available, for maximum portability.
      * <p/>
      *
-     * @param width         Pbuffer width
-     * @param height        Pbuffer height
-     * @param pixel_format  Minimum Pbuffer context properties
+     * @param width           Pbuffer width
+     * @param height          Pbuffer height
+     * @param pixel_format    Minimum Pbuffer context properties
      * @param renderTexture
-     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the Pbuffer will share
-     * 						 with the Display context (if created).
+     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the
+     *                        Pbuffer will share with the Display context (if created).
      */
-    public Pbuffer(
-            int width, int height, PixelFormat pixel_format, RenderTexture renderTexture, Drawable shared_drawable)
-            throws LWJGLException {
+    public Pbuffer(int width, int height, PixelFormat pixel_format, RenderTexture renderTexture,
+            Drawable shared_drawable) throws LWJGLException {
         this(width, height, pixel_format, renderTexture, shared_drawable, null);
     }
 
     /**
      * Create an instance of a Pbuffer with a unique OpenGL context. The buffer is single-buffered.
      * <p/>
-     * NOTE: The Pbuffer will have its own context that shares display lists and textures with <code>shared_context</code>,
-     * or, if <code>shared_context</code> is <code>null</code>, the Display context if it is created. The Pbuffer
-     * will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in the window context and vice versa.
+     * NOTE: The Pbuffer will have its own context that shares display lists and textures with
+     * <code>shared_context</code>, or, if <code>shared_context</code> is <code>null</code>, the Display context if it
+     * is created. The Pbuffer will have its own OpenGL state. Therefore, state changes to a pbuffer will not be seen in
+     * the window context and vice versa.
      * <p/>
-     * The renderTexture parameter defines the necessary state for enabling render-to-texture. When this parameter is null,
-     * render-to-texture is not available. Before using render-to-texture, the Pbuffer capabilities must be queried to ensure that
-     * it is supported. Currently only windows platform can support this feature, so it is recommended that EXT_framebuffer_object
-     * or similar is used if available, for maximum portability.
+     * The renderTexture parameter defines the necessary state for enabling render-to-texture. When this parameter is
+     * null, render-to-texture is not available. Before using render-to-texture, the Pbuffer capabilities must be
+     * queried to ensure that it is supported. Currently only windows platform can support this feature, so it is
+     * recommended that EXT_framebuffer_object or similar is used if available, for maximum portability.
      * <p/>
      *
-     * @param width         Pbuffer width
-     * @param height        Pbuffer height
-     * @param pixel_format  Minimum Pbuffer context properties
+     * @param width           Pbuffer width
+     * @param height          Pbuffer height
+     * @param pixel_format    Minimum Pbuffer context properties
      * @param renderTexture
-     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the Pbuffer will share
-     * 						 with the Display context (if created).
-     * @param attribs      The ContextAttribs to use when creating the context. (optional, may be null)
+     * @param shared_drawable If non-null the Pbuffer will share display lists and textures with it. Otherwise, the
+     *                        Pbuffer will share with the Display context (if created).
+     * @param attribs         The ContextAttribs to use when creating the context. (optional, may be null)
      */
-    public Pbuffer(
-            int width,
-            int height,
-            PixelFormat pixel_format,
-            RenderTexture renderTexture,
-            Drawable shared_drawable,
-            ContextAttribs attribs)
-            throws LWJGLException {
+    public Pbuffer(int width, int height, PixelFormat pixel_format, RenderTexture renderTexture,
+            Drawable shared_drawable, ContextAttribs attribs) throws LWJGLException {
         if (pixel_format == null) throw new NullPointerException("Pixel format must be non-null");
         this.width = width;
         this.height = height;
@@ -230,9 +211,8 @@ public final class Pbuffer extends DrawableGL {
         // this.context = new ContextGL(peer_info, attribs, (ContextGL)shared_context);
     }
 
-    private static PeerInfo createPbuffer(
-            int width, int height, PixelFormat pixel_format, ContextAttribs attribs, RenderTexture renderTexture)
-            throws LWJGLException {
+    private static PeerInfo createPbuffer(int width, int height, PixelFormat pixel_format, ContextAttribs attribs,
+            RenderTexture renderTexture) throws LWJGLException {
         if (renderTexture == null) {
             // Though null is a perfectly valid argument, Matrox Parhelia drivers expect
             // a 0 terminated list, or else they crash. Supplying NULL or 0, should
@@ -240,21 +220,19 @@ public final class Pbuffer extends DrawableGL {
             IntBuffer defaultAttribs = BufferUtils.createIntBuffer(1);
             return Display.getImplementation()
                     .createPbuffer(width, height, pixel_format, attribs, null, defaultAttribs);
-        } else
-            return Display.getImplementation()
-                    .createPbuffer(
-                            width,
-                            height,
-                            pixel_format,
-                            attribs,
-                            renderTexture.pixelFormatCaps,
-                            renderTexture.pBufferAttribs);
+        } else return Display.getImplementation().createPbuffer(
+                width,
+                height,
+                pixel_format,
+                attribs,
+                renderTexture.pixelFormatCaps,
+                renderTexture.pBufferAttribs);
     }
 
     /**
-     * Method to test for validity of the buffer. If this function returns true, the buffer contents is lost. The buffer can still
-     * be used, but the results are undefined. The application is expected to release the buffer if needed, destroy it and recreate
-     * a new buffer.
+     * Method to test for validity of the buffer. If this function returns true, the buffer contents is lost. The buffer
+     * can still be used, but the results are undefined. The application is expected to release the buffer if needed,
+     * destroy it and recreate a new buffer.
      *
      * @return true if the buffer is lost and destroyed, false if the buffer is valid.
      */
@@ -279,8 +257,8 @@ public final class Pbuffer extends DrawableGL {
     /**
      * Sets a render-to-texture attribute.
      * <p/>
-     * The attrib parameter can be one of MIPMAP_LEVEL and CUBE_MAP_FACE. When the attrib parameter is CUBE_MAP_FACE then the value
-     * parameter can be on of the following:
+     * The attrib parameter can be one of MIPMAP_LEVEL and CUBE_MAP_FACE. When the attrib parameter is CUBE_MAP_FACE
+     * then the value parameter can be on of the following:
      * <p/>
      * TEXTURE_CUBE_MAP_POSITIVE_X TEXTURE_CUBE_MAP_NEGATIVE_X TEXTURE_CUBE_MAP_POSITIVE_Y TEXTURE_CUBE_MAP_NEGATIVE_Y
      * TEXTURE_CUBE_MAP_POSITIVE_Z TEXTURE_CUBE_MAP_NEGATIVE_Z

@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class NVVertexBufferUnifiedMemory {
+
     public static final int GL_COLOR_ARRAY_ADDRESS_NV = (int) 36643;
     public static final int GL_COLOR_ARRAY_LENGTH_NV = (int) 36653;
     public static final int GL_EDGE_FLAG_ARRAY_ADDRESS_NV = (int) 36646;

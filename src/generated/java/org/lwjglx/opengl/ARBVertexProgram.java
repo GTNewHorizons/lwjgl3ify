@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBVertexProgram extends org.lwjglx.opengl.ARBProgram {
+
     public static final int GL_COLOR_SUM_ARB = (int) 33880;
     public static final int GL_CURRENT_VERTEX_ATTRIB_ARB = (int) 34342;
     public static final int GL_MAX_PROGRAM_ADDRESS_REGISTERS_ARB = (int) 34993;
@@ -78,9 +79,9 @@ public class ARBVertexProgram extends org.lwjglx.opengl.ARBProgram {
         org.lwjgl.opengl.ARBVertexProgram.glVertexAttrib4sARB(index, x, y, z, w);
     }
 
-    public static void glVertexAttribPointerARB(
-            int index, int size, int type, boolean normalized, int stride, long buffer_buffer_offset) {
-        org.lwjgl.opengl.ARBVertexProgram.glVertexAttribPointerARB(
-                index, size, type, normalized, stride, buffer_buffer_offset);
+    public static void glVertexAttribPointerARB(int index, int size, int type, boolean normalized, int stride,
+            long buffer_buffer_offset) {
+        org.lwjgl.opengl.ARBVertexProgram
+                .glVertexAttribPointerARB(index, size, type, normalized, stride, buffer_buffer_offset);
     }
 }

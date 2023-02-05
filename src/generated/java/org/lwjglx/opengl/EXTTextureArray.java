@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class EXTTextureArray {
+
     public static final int GL_COMPARE_REF_DEPTH_TO_TEXTURE_EXT = (int) 34894;
     public static final int GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER_EXT = (int) 36052;
     public static final int GL_MAX_ARRAY_TEXTURE_LAYERS_EXT = (int) 35071;

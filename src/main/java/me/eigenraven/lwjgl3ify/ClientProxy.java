@@ -1,17 +1,21 @@
 package me.eigenraven.lwjgl3ify;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ICrashCallable;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.lang.reflect.Field;
 import java.util.List;
+
 import me.eigenraven.lwjgl3ify.client.GLInfoCrashCallable;
 import me.eigenraven.lwjgl3ify.core.Config;
+
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ICrashCallable;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 public class ClientProxy extends CommonProxy {
+
     static final String javaVersion;
     static final String lwjglVersion = "LWJGL: " + org.lwjgl.Version.getVersion();
 
@@ -40,8 +44,8 @@ public class ClientProxy extends CommonProxy {
         try {
             final Field callablesField = FMLCommonHandler.class.getDeclaredField("crashCallables");
             callablesField.setAccessible(true);
-            List<ICrashCallable> crashCallables =
-                    (List<ICrashCallable>) callablesField.get(FMLCommonHandler.instance());
+            List<ICrashCallable> crashCallables = (List<ICrashCallable>) callablesField
+                    .get(FMLCommonHandler.instance());
             for (int i = 0; i < crashCallables.size(); i++) {
                 ICrashCallable original = crashCallables.get(i);
                 if ("GL info".equals(original.getLabel()) && !(original instanceof GLInfoCrashCallable)) {

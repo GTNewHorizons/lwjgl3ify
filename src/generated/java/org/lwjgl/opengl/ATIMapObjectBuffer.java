@@ -1,6 +1,7 @@
 package org.lwjgl.opengl;
 
 public class ATIMapObjectBuffer {
+
     public static java.nio.ByteBuffer glMapObjectBufferATI(int arg0, long arg1, java.nio.ByteBuffer arg2) {
         throw new UnsupportedOperationException();
     }

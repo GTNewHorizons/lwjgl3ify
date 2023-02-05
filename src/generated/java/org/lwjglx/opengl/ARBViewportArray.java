@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 public class ARBViewportArray {
+
     public static final int GL_FIRST_VERTEX_CONVENTION = (int) 36429;
     public static final int GL_LAST_VERTEX_CONVENTION = (int) 36430;
     public static final int GL_LAYER_PROVOKING_VERTEX = (int) 33374;

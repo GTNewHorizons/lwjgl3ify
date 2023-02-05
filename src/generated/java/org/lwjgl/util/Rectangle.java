@@ -1,6 +1,7 @@
 package org.lwjgl.util;
 
 public class Rectangle {
+
     public void add(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
@@ -133,8 +134,8 @@ public class Rectangle {
         throw new UnsupportedOperationException();
     }
 
-    public org.lwjgl.util.WritableRectangle union(
-            org.lwjgl.util.ReadableRectangle arg0, org.lwjgl.util.WritableRectangle arg1) {
+    public org.lwjgl.util.WritableRectangle union(org.lwjgl.util.ReadableRectangle arg0,
+            org.lwjgl.util.WritableRectangle arg1) {
         throw new UnsupportedOperationException();
     }
 
