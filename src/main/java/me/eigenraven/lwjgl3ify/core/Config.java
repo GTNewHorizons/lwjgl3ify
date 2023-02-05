@@ -39,6 +39,9 @@ public class Config {
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
 
+    public static boolean DEBUG_PRINT_KEY_EVENTS = false;
+    public static boolean DEBUG_PRINT_MOUSE_EVENTS = false;
+
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
@@ -58,6 +61,7 @@ public class Config {
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
     public static final String CATEGORY_CORE = "core";
+    public static final String CATEGORY_DEBUG = "debug";
     public static final String CATEGORY_WINDOW = "window";
     public static final String CATEGORY_INPUT = "input";
     public static final String CATEGORY_GLCONTEXT = "openglContext";
@@ -91,6 +95,17 @@ public class Config {
                                 "extensibleEnums",
                                 EXTENSIBLE_ENUMS.toArray(new String[0]),
                                 "Enums to make extensible at runtime").getStringList()));
+        DEBUG_PRINT_KEY_EVENTS = config.getBoolean(
+                "printKeyEvents",
+                CATEGORY_DEBUG,
+                DEBUG_PRINT_KEY_EVENTS,
+                "Print keyboard-related events to the log");
+        DEBUG_PRINT_MOUSE_EVENTS = config.getBoolean(
+                "printMouseEvents",
+                CATEGORY_DEBUG,
+                DEBUG_PRINT_MOUSE_EVENTS,
+                "Print mouse-related events to the log");
+
         SHOW_JAVA_VERSION = config
                 .getBoolean("showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
         SHOW_LWJGL_VERSION = config.getBoolean(

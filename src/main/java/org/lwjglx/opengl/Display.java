@@ -7,6 +7,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.core.Config;
 
 import org.lwjgl.glfw.*;
@@ -147,6 +148,16 @@ public class Display {
 
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
+                if (Config.DEBUG_PRINT_KEY_EVENTS) {
+                    Lwjgl3ify.LOG.info(
+                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} char:{}",
+                            window,
+                            key,
+                            scancode,
+                            action,
+                            mods,
+                            (key >= 32 && key < 127) ? ((char) key) : '?');
+                }
                 latestEventKey = key;
 
                 Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
@@ -162,6 +173,13 @@ public class Display {
 
             @Override
             public void invoke(long window, int codepoint) {
+                if (Config.DEBUG_PRINT_KEY_EVENTS) {
+                    Lwjgl3ify.LOG.info(
+                            "[DEBUG-KEY] char window:{} codepoint:{} char:{}",
+                            window,
+                            codepoint,
+                            (char) codepoint);
+                }
                 Keyboard.addCharEvent(latestEventKey, (char) codepoint);
             }
         };
@@ -170,6 +188,9 @@ public class Display {
 
             @Override
             public void invoke(long window, double xpos, double ypos) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] cursorPos window:{} xpos:{} ypos:{}", window, xpos, ypos);
+                }
                 Mouse.addMoveEvent(xpos, ypos);
             }
         };
@@ -178,6 +199,14 @@ public class Display {
 
             @Override
             public void invoke(long window, int button, int action, int mods) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info(
+                            "[DEBUG-MOUSE] button window:{} button:{} action:{} mods:{}",
+                            window,
+                            button,
+                            action,
+                            mods);
+                }
                 Mouse.addButtonEvent(button, action == GLFW.GLFW_PRESS ? true : false);
             }
         };
@@ -186,6 +215,9 @@ public class Display {
 
             @Override
             public void invoke(long window, double xoffset, double yoffset) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] wheel window:{} xoffset:{} yoffset:{}", window, xoffset, yoffset);
+                }
                 Mouse.addWheelEvent(yoffset);
             }
         };
@@ -194,6 +226,9 @@ public class Display {
 
             @Override
             public void invoke(long window, boolean focused) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] focus window:{} focus:{}", window, focused);
+                }
                 displayFocused = focused;
             }
         };
@@ -202,6 +237,9 @@ public class Display {
 
             @Override
             public void invoke(long window, boolean iconified) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] focus window:{} iconified:{}", window, iconified);
+                }
                 displayVisible = !iconified;
             }
         };
@@ -210,6 +248,9 @@ public class Display {
 
             @Override
             public void invoke(long window, int width, int height) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] window-resize window:{} w:{} h:{}", window, width, height);
+                }
                 latestResized = true;
                 latestWidth = width;
                 latestHeight = height;
@@ -237,6 +278,9 @@ public class Display {
 
             @Override
             public void invoke(long window, int width, int height) {
+                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-MOUSE] framebuffer-resize window:{} w:{} h:{}", window, width, height);
+                }
                 displayFramebufferWidth = width;
                 displayFramebufferHeight = height;
             }
