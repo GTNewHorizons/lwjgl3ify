@@ -520,20 +520,20 @@ dependencies {
         annotationProcessor('org.ow2.asm:asm-debug-all:5.0.3')
         annotationProcessor('com.google.guava:guava:24.1.1-jre')
         annotationProcessor('com.google.code.gson:gson:2.8.6')
-        annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.10:processor')
+        annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.12:processor')
         if (usesMixinDebug.toBoolean()) {
             runtimeOnlyNonPublishable('org.jetbrains:intellij-fernflower:1.2.1.16')
         }
     }
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
-        implementation('com.gtnewhorizon:gtnhmixins:2.1.10')
+        implementation('com.gtnewhorizon:gtnhmixins:2.1.12')
     }
 }
 
 pluginManager.withPlugin('org.jetbrains.kotlin.kapt') {
     if (usesMixins.toBoolean()) {
         dependencies {
-            kapt('com.gtnewhorizon:gtnhmixins:2.1.10:processor')
+            kapt('com.gtnewhorizon:gtnhmixins:2.1.12:processor')
         }
     }
 }
@@ -633,6 +633,7 @@ tasks.named("processResources", ProcessResources).configure {
 
     if (usesMixins.toBoolean()) {
         from refMap
+        dependsOn("compileJava", "compileScala")
     }
 }
 
