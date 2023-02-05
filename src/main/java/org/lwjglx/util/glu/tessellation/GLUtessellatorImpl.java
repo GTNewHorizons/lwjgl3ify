@@ -249,15 +249,12 @@ public class GLUtessellatorImpl implements GLUtessellator {
                 if (windingRule != value) break; /* not an integer */
 
                 switch (windingRule) {
-                    case GLU_TESS_WINDING_ODD:
-                    case GLU_TESS_WINDING_NONZERO:
-                    case GLU_TESS_WINDING_POSITIVE:
-                    case GLU_TESS_WINDING_NEGATIVE:
-                    case GLU_TESS_WINDING_ABS_GEQ_TWO:
+                    case GLU_TESS_WINDING_ODD, GLU_TESS_WINDING_NONZERO, GLU_TESS_WINDING_POSITIVE, GLU_TESS_WINDING_NEGATIVE, GLU_TESS_WINDING_ABS_GEQ_TWO -> {
                         this.windingRule = windingRule;
                         return;
-                    default:
-                        break;
+                    }
+                    default -> {
+                    }
                 }
 
             case GLU_TESS_BOUNDARY_ONLY:
@@ -274,27 +271,27 @@ public class GLUtessellatorImpl implements GLUtessellator {
     /* Returns tessellator property */
     public void gluGetTessProperty(int which, double[] value, int value_offset) {
         switch (which) {
-            case GLU_TESS_TOLERANCE:
+            case GLU_TESS_TOLERANCE -> {
                 /* tolerance should be in range [0..1] */
                 assert (0.0 <= relTolerance && relTolerance <= 1.0);
                 value[value_offset] = relTolerance;
-                break;
-            case GLU_TESS_WINDING_RULE:
+            }
+            case GLU_TESS_WINDING_RULE -> {
                 assert (windingRule == GLU_TESS_WINDING_ODD
-                        || windingRule == GLU_TESS_WINDING_NONZERO
-                        || windingRule == GLU_TESS_WINDING_POSITIVE
-                        || windingRule == GLU_TESS_WINDING_NEGATIVE
-                        || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
+                    || windingRule == GLU_TESS_WINDING_NONZERO
+                    || windingRule == GLU_TESS_WINDING_POSITIVE
+                    || windingRule == GLU_TESS_WINDING_NEGATIVE
+                    || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
                 value[value_offset] = windingRule;
-                break;
-            case GLU_TESS_BOUNDARY_ONLY:
+            }
+            case GLU_TESS_BOUNDARY_ONLY -> {
                 assert (boundaryOnly == true || boundaryOnly == false);
                 value[value_offset] = boundaryOnly ? 1 : 0;
-                break;
-            default:
+            }
+            default -> {
                 value[value_offset] = 0.0;
                 callErrorOrErrorData(GLU_INVALID_ENUM);
-                break;
+            }
         }
     } /* gluGetTessProperty() */
 
@@ -306,56 +303,69 @@ public class GLUtessellatorImpl implements GLUtessellator {
 
     public void gluTessCallback(int which, GLUtessellatorCallback aCallback) {
         switch (which) {
-            case GLU_TESS_BEGIN:
+            case GLU_TESS_BEGIN -> {
                 callBegin = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_BEGIN_DATA:
+            }
+            case GLU_TESS_BEGIN_DATA -> {
                 callBeginData = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_EDGE_FLAG:
+            }
+            case GLU_TESS_EDGE_FLAG -> {
                 callEdgeFlag = aCallback == null ? NULL_CB : aCallback;
                 /* If the client wants boundary edges to be flagged,
                  * we render everything as separate triangles (no strips or fans).
                  */
                 flagBoundary = aCallback != null;
                 return;
-            case GLU_TESS_EDGE_FLAG_DATA:
+            }
+            case GLU_TESS_EDGE_FLAG_DATA -> {
                 callEdgeFlagData = callBegin = aCallback == null ? NULL_CB : aCallback;
                 /* If the client wants boundary edges to be flagged,
                  * we render everything as separate triangles (no strips or fans).
                  */
                 flagBoundary = (aCallback != null);
                 return;
-            case GLU_TESS_VERTEX:
+            }
+            case GLU_TESS_VERTEX -> {
                 callVertex = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_VERTEX_DATA:
+            }
+            case GLU_TESS_VERTEX_DATA -> {
                 callVertexData = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_END:
+            }
+            case GLU_TESS_END -> {
                 callEnd = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_END_DATA:
+            }
+            case GLU_TESS_END_DATA -> {
                 callEndData = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_ERROR:
+            }
+            case GLU_TESS_ERROR -> {
                 callError = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_ERROR_DATA:
+            }
+            case GLU_TESS_ERROR_DATA -> {
                 callErrorData = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_COMBINE:
+            }
+            case GLU_TESS_COMBINE -> {
                 callCombine = aCallback == null ? NULL_CB : aCallback;
                 return;
-            case GLU_TESS_COMBINE_DATA:
+            }
+            case GLU_TESS_COMBINE_DATA -> {
                 callCombineData = aCallback == null ? NULL_CB : aCallback;
                 return;
-                //            case GLU_TESS_MESH:
-                //                callMesh = aCallback == null ? NULL_CB : aCallback;
-                //                return;
-            default:
+            }
+            //            case GLU_TESS_MESH:
+            //                callMesh = aCallback == null ? NULL_CB : aCallback;
+            //                return;
+            default -> {
                 callErrorOrErrorData(GLU_INVALID_ENUM);
                 return;
+            }
         }
     }
 

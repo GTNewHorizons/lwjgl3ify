@@ -547,17 +547,12 @@ public class Game {
      * @return
      */
     private boolean hasInput(int direction) {
-        switch (direction) {
-            case Keyboard.KEY_LEFT:
-                return Keyboard.isKeyDown(Keyboard.KEY_LEFT) || mouseX < 0;
-
-            case Keyboard.KEY_RIGHT:
-                return Keyboard.isKeyDown(Keyboard.KEY_RIGHT) || mouseX > 0;
-
-            case Keyboard.KEY_SPACE:
-                return Keyboard.isKeyDown(Keyboard.KEY_SPACE) || Mouse.isButtonDown(0);
-        }
-        return false;
+        return switch (direction) {
+            case Keyboard.KEY_LEFT -> Keyboard.isKeyDown(Keyboard.KEY_LEFT) || mouseX < 0;
+            case Keyboard.KEY_RIGHT -> Keyboard.isKeyDown(Keyboard.KEY_RIGHT) || mouseX > 0;
+            case Keyboard.KEY_SPACE -> Keyboard.isKeyDown(Keyboard.KEY_SPACE) || Mouse.isButtonDown(0);
+            default -> false;
+        };
     }
 
     /**

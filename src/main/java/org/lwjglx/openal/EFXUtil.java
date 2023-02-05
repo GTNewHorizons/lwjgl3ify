@@ -133,16 +133,11 @@ public final class EFXUtil {
             int genError;
             int testObject = 0;
             try {
-                switch (objectType) { // Create object based on type
-                    case EFFECT:
-                        testObject = alGenEffects();
-                        break;
-                    case FILTER:
-                        testObject = alGenFilters();
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Invalid objectType: " + objectType);
-                }
+                testObject = switch (objectType) { // Create object based on type
+                    case EFFECT -> alGenEffects();
+                    case FILTER -> alGenFilters();
+                    default -> throw new IllegalArgumentException("Invalid objectType: " + objectType);
+                };
                 genError = alGetError();
             } catch (OpenALException debugBuildException) {
                 // Hack because OpenALException hides the original error code (short of parsing the
@@ -160,14 +155,9 @@ public final class EFXUtil {
                 int setError;
                 try {
                     switch (objectType) { // Set based on object type
-                        case EFFECT:
-                            alEffecti(testObject, AL_EFFECT_TYPE, typeValue);
-                            break;
-                        case FILTER:
-                            alFilteri(testObject, AL_FILTER_TYPE, typeValue);
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Invalid objectType: " + objectType);
+                        case EFFECT -> alEffecti(testObject, AL_EFFECT_TYPE, typeValue);
+                        case FILTER -> alFilteri(testObject, AL_FILTER_TYPE, typeValue);
+                        default -> throw new IllegalArgumentException("Invalid objectType: " + objectType);
                     }
                     setError = alGetError();
                 } catch (OpenALException debugBuildException) {
@@ -183,14 +173,9 @@ public final class EFXUtil {
                 // Cleanup
                 try {
                     switch (objectType) { // Set based on object type
-                        case EFFECT:
-                            alDeleteEffects(testObject);
-                            break;
-                        case FILTER:
-                            alDeleteFilters(testObject);
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Invalid objectType: " + objectType);
+                        case EFFECT -> alDeleteEffects(testObject);
+                        case FILTER -> alDeleteFilters(testObject);
+                        default -> throw new IllegalArgumentException("Invalid objectType: " + objectType);
                     }
                 } catch (OpenALException debugBuildException) {
                     // Don't care about cleanup errors.

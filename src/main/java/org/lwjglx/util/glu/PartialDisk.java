@@ -142,7 +142,7 @@ public class PartialDisk extends Quadric {
         }
 
         switch (super.drawStyle) {
-            case GLU_FILL:
+            case GLU_FILL -> {
                 if (innerRadius == .0f) {
                     finish = loops - 1;
                     /* Triangle strip for inner polygons */
@@ -209,8 +209,8 @@ public class PartialDisk extends Quadric {
                     }
                     glEnd();
                 }
-                break;
-            case GLU_POINT:
+            }
+            case GLU_POINT -> {
                 glBegin(GL_POINTS);
                 for (i = 0; i < slices2; i++) {
                     sintemp = sinCache[i];
@@ -227,8 +227,8 @@ public class PartialDisk extends Quadric {
                     }
                 }
                 glEnd();
-                break;
-            case GLU_LINE:
+            }
+            case GLU_LINE -> {
                 if (innerRadius == outerRadius) {
                     glBegin(GL_LINE_STRIP);
 
@@ -273,8 +273,8 @@ public class PartialDisk extends Quadric {
                     }
                     glEnd();
                 }
-                break;
-            case GLU_SILHOUETTE:
+            }
+            case GLU_SILHOUETTE -> {
                 if (sweepAngle < 360.0f) {
                     for (i = 0; i <= slices; i += slices) {
                         sintemp = sinCache[i];
@@ -308,9 +308,9 @@ public class PartialDisk extends Quadric {
                     glEnd();
                     if (innerRadius == outerRadius) break;
                 }
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
     }
 }

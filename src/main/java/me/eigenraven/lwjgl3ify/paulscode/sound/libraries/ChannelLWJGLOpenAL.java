@@ -406,20 +406,12 @@ public class ChannelLWJGLOpenAL extends Channel {
 
         float bytesPerFrame = 1f;
         switch (ALformat) {
-            case AL10.AL_FORMAT_MONO8:
-                bytesPerFrame = 1f;
-                break;
-            case AL10.AL_FORMAT_MONO16:
-                bytesPerFrame = 2f;
-                break;
-            case AL10.AL_FORMAT_STEREO8:
-                bytesPerFrame = 2f;
-                break;
-            case AL10.AL_FORMAT_STEREO16:
-                bytesPerFrame = 4f;
-                break;
-            default:
-                break;
+            case AL10.AL_FORMAT_MONO8 -> bytesPerFrame = 1f;
+            case AL10.AL_FORMAT_MONO16 -> bytesPerFrame = 2f;
+            case AL10.AL_FORMAT_STEREO8 -> bytesPerFrame = 2f;
+            case AL10.AL_FORMAT_STEREO16 -> bytesPerFrame = 4f;
+            default -> {
+            }
         }
 
         offset = (((float) offset / bytesPerFrame) / (float) sampleRate) * 1000;
@@ -553,26 +545,33 @@ public class ChannelLWJGLOpenAL extends Channel {
      */
     private boolean checkALError() {
         switch (AL10.alGetError()) {
-            case AL10.AL_NO_ERROR:
+            case AL10.AL_NO_ERROR -> {
                 return false;
-            case AL10.AL_INVALID_NAME:
+            }
+            case AL10.AL_INVALID_NAME -> {
                 errorMessage("Invalid name parameter.");
                 return true;
-            case AL10.AL_INVALID_ENUM:
+            }
+            case AL10.AL_INVALID_ENUM -> {
                 errorMessage("Invalid parameter.");
                 return true;
-            case AL10.AL_INVALID_VALUE:
+            }
+            case AL10.AL_INVALID_VALUE -> {
                 errorMessage("Invalid enumerated parameter value.");
                 return true;
-            case AL10.AL_INVALID_OPERATION:
+            }
+            case AL10.AL_INVALID_OPERATION -> {
                 errorMessage("Illegal call.");
                 return true;
-            case AL10.AL_OUT_OF_MEMORY:
+            }
+            case AL10.AL_OUT_OF_MEMORY -> {
                 errorMessage("Unable to allocate memory.");
                 return true;
-            default:
+            }
+            default -> {
                 errorMessage("An unrecognized error occurred.");
                 return true;
+            }
         }
     }
 }

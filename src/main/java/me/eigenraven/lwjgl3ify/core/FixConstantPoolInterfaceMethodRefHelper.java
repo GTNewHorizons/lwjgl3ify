@@ -41,7 +41,7 @@ public class FixConstantPoolInterfaceMethodRefHelper {
     private boolean validateInstruction(String internalClassName, AbstractInsnNode rawInsn) {
         AtomicBoolean changed = new AtomicBoolean(false);
         switch (rawInsn.getType()) {
-            case AbstractInsnNode.INVOKE_DYNAMIC_INSN:
+            case AbstractInsnNode.INVOKE_DYNAMIC_INSN -> {
                 final InvokeDynamicInsnNode insn = (InvokeDynamicInsnNode) rawInsn;
                 insn.bsm = fixHandle(internalClassName, insn.bsm, changed);
                 if (insn.bsmArgs != null) {
@@ -52,10 +52,10 @@ public class FixConstantPoolInterfaceMethodRefHelper {
                         }
                     }
                 }
-                break;
-            default:
-                // no-op
-                break;
+            }
+            default -> {
+            }
+            // no-op
         }
         return changed.get();
     }

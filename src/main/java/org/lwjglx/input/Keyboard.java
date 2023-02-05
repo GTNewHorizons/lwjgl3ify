@@ -227,21 +227,15 @@ public class Keyboard {
     public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
         final KeyState state;
         switch (action) {
-            case GLFW.GLFW_PRESS:
-                state = KeyState.PRESS;
-                break;
-            case GLFW.GLFW_RELEASE:
-                state = KeyState.RELEASE;
-                break;
-            case GLFW.GLFW_REPEAT:
+            case GLFW.GLFW_PRESS -> state = KeyState.PRESS;
+            case GLFW.GLFW_RELEASE -> state = KeyState.RELEASE;
+            case GLFW.GLFW_REPEAT -> {
                 state = KeyState.REPEAT;
                 if (!doRepeatEvents) {
                     return;
                 }
-                break;
-            default:
-                state = KeyState.RELEASE;
-                break;
+            }
+            default -> state = KeyState.RELEASE;
         }
         keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
         keyEventStates[queue.getNextPos()] = state;
