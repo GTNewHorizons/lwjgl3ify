@@ -76,7 +76,7 @@ public final class Display {
             }
         }
 
-        ArrayList<DisplayMode> matches = new ArrayList<DisplayMode>(modes.length);
+        ArrayList<DisplayMode> matches = new ArrayList<>(modes.length);
 
         for (int i = 0; i < modes.length; i++) {
             assert modes[i] != null : "" + i + " " + modes.length;

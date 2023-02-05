@@ -82,10 +82,10 @@ public class Game {
     private TextureLoader textureLoader;
 
     /** The list of all the entities that exist in our game */
-    private ArrayList<Entity> entities = new ArrayList<Entity>();
+    private ArrayList<Entity> entities = new ArrayList<>();
 
     /** The list of entities that need to be removed from the game this loop */
-    private ArrayList<Entity> removeList = new ArrayList<Entity>();
+    private ArrayList<Entity> removeList = new ArrayList<>();
 
     /** The entity representing the player */
     private ShipEntity ship;

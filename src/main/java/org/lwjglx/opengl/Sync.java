@@ -110,12 +110,10 @@ class Sync {
             // over 10ms making in unusable. However it can be forced to
             // be a bit more accurate by running a separate sleeping daemon
             // thread.
-            Thread timerAccuracyThread = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Thread.sleep(Long.MAX_VALUE);
-                    } catch (Exception e) {
-                    }
+            Thread timerAccuracyThread = new Thread(() -> {
+                try {
+                    Thread.sleep(Long.MAX_VALUE);
+                } catch (Exception e) {
                 }
             });
 
@@ -159,8 +157,8 @@ class Sync {
 
         public long avg() {
             long sum = 0;
-            for (int i = 0; i < this.slots.length; i++) {
-                sum += this.slots[i];
+            for (long slot : this.slots) {
+                sum += slot;
             }
             return sum / this.slots.length;
         }

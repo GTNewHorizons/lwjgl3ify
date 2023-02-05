@@ -69,7 +69,7 @@ import org.lwjglx.BufferUtils;
  */
 public class TextureLoader {
     /** The table of textures that have been loaded in this loader */
-    private HashMap<String, Texture> table = new HashMap<String, Texture>();
+    private HashMap<String, Texture> table = new HashMap<>();
 
     /** The colour model including alpha for the GL image */
     private ColorModel glAlphaColorModel;
@@ -238,10 +238,10 @@ public class TextureLoader {
         // for a texture
         if (bufferedImage.getColorModel().hasAlpha()) {
             raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth, texHeight, 4, null);
-            texImage = new BufferedImage(glAlphaColorModel, raster, false, new Hashtable());
+            texImage = new BufferedImage(glAlphaColorModel, raster, false, new Hashtable<>());
         } else {
             raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth, texHeight, 3, null);
-            texImage = new BufferedImage(glColorModel, raster, false, new Hashtable());
+            texImage = new BufferedImage(glColorModel, raster, false, new Hashtable<>());
         }
 
         // copy the source image into the produced image

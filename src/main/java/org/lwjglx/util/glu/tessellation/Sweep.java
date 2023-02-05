@@ -1146,11 +1146,8 @@ class Sweep {
  * This order is maintained in a dynamic dictionary.
  */ {
         /* __gl_dictListNewDict */
-        tess.dict = Dict.dictNewDict(tess, new Dict.DictLeq() {
-            public boolean leq(Object frame, Object key1, Object key2) {
-                return EdgeLeq(tess, (ActiveRegion) key1, (ActiveRegion) key2);
-            }
-        });
+        tess.dict =
+                Dict.dictNewDict(tess, (frame, key1, key2) -> EdgeLeq(tess, (ActiveRegion) key1, (ActiveRegion) key2));
         if (tess.dict == null) throw new RuntimeException();
 
         AddSentinel(tess, -SENTINEL_COORD);
@@ -1224,11 +1221,7 @@ class Sweep {
         GLUvertex v, vHead;
 
         /* __gl_pqSortNewPriorityQ */
-        pq = tess.pq = PriorityQ.pqNewPriorityQ(new PriorityQ.Leq() {
-            public boolean leq(Object key1, Object key2) {
-                return Geom.VertLeq(((GLUvertex) key1), (GLUvertex) key2);
-            }
-        });
+        pq = tess.pq = PriorityQ.pqNewPriorityQ((key1, key2) -> Geom.VertLeq(((GLUvertex) key1), (GLUvertex) key2));
         if (pq == null) return false;
 
         vHead = tess.mesh.vHead;

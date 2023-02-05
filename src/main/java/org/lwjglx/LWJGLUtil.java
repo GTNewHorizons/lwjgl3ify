@@ -52,6 +52,7 @@ import org.lwjgl.system.Platform;
  * @version $Revision: 3608 $
  * $Id: LWJGLUtil.java 3608 2011-08-10 16:05:46Z spasi $
  */
+@SuppressWarnings("rawtypes")
 public class LWJGLUtil {
     public static final int PLATFORM_LINUX = 1;
     public static final int PLATFORM_MACOSX = 2;
@@ -345,7 +346,7 @@ public class LWJGLUtil {
      */
     public static String[] getLibraryPaths(String libname, String[] platform_lib_names, ClassLoader classloader) {
         // need to pass path of possible locations of library to native side
-        List<String> possible_paths = new ArrayList<String>();
+        List<String> possible_paths = new ArrayList<>();
 
         String classloader_path = getPathFromClassLoader(libname, classloader);
         if (classloader_path != null) {
@@ -412,13 +413,11 @@ public class LWJGLUtil {
             while (c != null) {
                 final Class<?> clazz = c;
                 try {
-                    return AccessController.doPrivileged(new PrivilegedExceptionAction<String>() {
-                        public String run() throws Exception {
-                            Method findLibrary = clazz.getDeclaredMethod("findLibrary", String.class);
-                            findLibrary.setAccessible(true);
-                            String path = (String) findLibrary.invoke(classloader, libname);
-                            return path;
-                        }
+                    return AccessController.doPrivileged((PrivilegedExceptionAction<String>) () -> {
+                        Method findLibrary = clazz.getDeclaredMethod("findLibrary", String.class);
+                        findLibrary.setAccessible(true);
+                        String path = (String) findLibrary.invoke(classloader, libname);
+                        return path;
                     });
                 } catch (PrivilegedActionException e) {
                     log("Failed to locate findLibrary method: " + e.getCause());
@@ -529,7 +528,7 @@ public class LWJGLUtil {
      */
     public static Map<Integer, String> getClassTokens(
             final TokenFilter filter, Map<Integer, String> target, final Iterable<Class> tokenClasses) {
-        if (target == null) target = new HashMap<Integer, String>();
+        if (target == null) target = new HashMap<>();
 
         final int TOKEN_MODIFIERS = Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL;
 

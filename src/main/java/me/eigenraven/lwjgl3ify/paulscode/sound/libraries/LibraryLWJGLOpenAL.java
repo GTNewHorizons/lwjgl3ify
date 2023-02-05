@@ -140,7 +140,7 @@ public class LibraryLWJGLOpenAL extends Library {
      */
     public LibraryLWJGLOpenAL() throws SoundSystemException {
         super();
-        ALBufferMap = new HashMap<String, IntBuffer>();
+        ALBufferMap = new HashMap<>();
         reverseByteOrder = true;
     }
 
@@ -299,12 +299,12 @@ public class LibraryLWJGLOpenAL extends Library {
     public boolean loadSound(FilenameURL filenameURL) {
         // Make sure the buffer map exists:
         if (bufferMap == null) {
-            bufferMap = new HashMap<String, SoundBuffer>();
+            bufferMap = new HashMap<>();
             importantMessage("Buffer Map was null in method 'loadSound'");
         }
         // Make sure the OpenAL buffer map exists:
         if (ALBufferMap == null) {
-            ALBufferMap = new HashMap<String, IntBuffer>();
+            ALBufferMap = new HashMap<>();
             importantMessage("Open AL Buffer Map was null in method" + "'loadSound'");
         }
 
@@ -396,12 +396,12 @@ public class LibraryLWJGLOpenAL extends Library {
     public boolean loadSound(SoundBuffer buffer, String identifier) {
         // Make sure the buffer map exists:
         if (bufferMap == null) {
-            bufferMap = new HashMap<String, SoundBuffer>();
+            bufferMap = new HashMap<>();
             importantMessage("Buffer Map was null in method 'loadSound'");
         }
         // Make sure the OpenAL buffer map exists:
         if (ALBufferMap == null) {
-            ALBufferMap = new HashMap<String, IntBuffer>();
+            ALBufferMap = new HashMap<>();
             importantMessage("Open AL Buffer Map was null in method" + "'loadSound'");
         }
 
@@ -711,12 +711,12 @@ public class LibraryLWJGLOpenAL extends Library {
 
         // Make sure the buffer map exists:
         if (bufferMap == null) {
-            bufferMap = new HashMap<String, SoundBuffer>();
+            bufferMap = new HashMap<>();
             importantMessage("Buffer Map was null in method 'copySources'");
         }
         // Make sure the OpenAL buffer map exists:
         if (ALBufferMap == null) {
-            ALBufferMap = new HashMap<String, IntBuffer>();
+            ALBufferMap = new HashMap<>();
             importantMessage("Open AL Buffer Map was null in method" + "'copySources'");
         }
 

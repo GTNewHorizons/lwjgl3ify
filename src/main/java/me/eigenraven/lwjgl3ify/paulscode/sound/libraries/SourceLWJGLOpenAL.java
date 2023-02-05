@@ -625,7 +625,7 @@ public class SourceLWJGLOpenAL extends Source {
         if (codec == null) return false;
 
         codec.initialize(filenameURL.getURL());
-        LinkedList<byte[]> preLoadBuffers = new LinkedList<byte[]>();
+        LinkedList<byte[]> preLoadBuffers = new LinkedList<>();
         for (int i = 0; i < SoundSystemConfig.getNumberStreamingBuffers(); i++) {
             soundBuffer = codec.read();
 

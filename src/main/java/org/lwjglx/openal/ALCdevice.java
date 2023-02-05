@@ -56,7 +56,7 @@ public final class ALCdevice {
     private boolean valid;
 
     /** List of contexts belonging to the device */
-    private final HashMap<Long, ALCcontext> contexts = new HashMap<Long, ALCcontext>();
+    private final HashMap<Long, ALCcontext> contexts = new HashMap<>();
 
     /**
      * Creates a new instance of ALCdevice

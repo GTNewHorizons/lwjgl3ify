@@ -125,7 +125,7 @@ public class XPMFile {
     private void readImage(InputStream is) {
         try {
             LineNumberReader reader = new LineNumberReader(new InputStreamReader(is));
-            HashMap<String, Integer> colors = new HashMap<String, Integer>();
+            HashMap<String, Integer> colors = new HashMap<>();
 
             format = parseFormat(nextLineOfInterest(reader));
 
