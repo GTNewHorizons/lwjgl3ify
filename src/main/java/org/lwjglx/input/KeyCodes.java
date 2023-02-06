@@ -9,6 +9,7 @@ public class KeyCodes {
             return glfwKeyCode;
         }
         return switch (glfwKeyCode) {
+            case GLFW.GLFW_KEY_UNKNOWN -> Keyboard.KEY_UNLABELED; // arbitrary mapping to fix text input here
             case GLFW.GLFW_KEY_ESCAPE -> Keyboard.KEY_ESCAPE;
             case GLFW.GLFW_KEY_BACKSPACE -> Keyboard.KEY_BACK;
             case GLFW.GLFW_KEY_TAB -> Keyboard.KEY_TAB;
@@ -113,7 +114,9 @@ public class KeyCodes {
             case GLFW.GLFW_KEY_GRAVE_ACCENT -> Keyboard.KEY_GRAVE;
             case GLFW.GLFW_KEY_CAPS_LOCK -> Keyboard.KEY_CAPITAL;
             case GLFW.GLFW_KEY_SCROLL_LOCK -> Keyboard.KEY_SCROLL;
-            case GLFW.GLFW_KEY_WORLD_1 -> Keyboard.KEY_CIRCUMFLEX; // TODO not sure if correct
+            case GLFW.GLFW_KEY_WORLD_1 -> Keyboard.KEY_CIRCUMFLEX; // "World" keys could be anything depending on
+                                                                   // keyboard layout, pick something arbitrary
+            case GLFW.GLFW_KEY_WORLD_2 -> Keyboard.KEY_YEN;
             case GLFW.GLFW_KEY_PAUSE -> Keyboard.KEY_PAUSE;
             case GLFW.GLFW_KEY_MINUS -> Keyboard.KEY_MINUS;
             case GLFW.GLFW_KEY_EQUAL -> Keyboard.KEY_EQUALS;
@@ -153,6 +156,7 @@ public class KeyCodes {
         }
         return switch (lwjglKeyCode) {
             case Keyboard.KEY_NONE -> 0;
+            case Keyboard.KEY_UNLABELED -> GLFW.GLFW_KEY_UNKNOWN; // arbitrary mapping to fix text input here
             case Keyboard.KEY_ESCAPE -> GLFW.GLFW_KEY_ESCAPE;
             case Keyboard.KEY_BACK -> GLFW.GLFW_KEY_BACKSPACE;
             case Keyboard.KEY_TAB -> GLFW.GLFW_KEY_TAB;
@@ -258,7 +262,9 @@ public class KeyCodes {
             case Keyboard.KEY_CAPITAL -> GLFW.GLFW_KEY_CAPS_LOCK;
             case Keyboard.KEY_SCROLL -> GLFW.GLFW_KEY_SCROLL_LOCK;
             case Keyboard.KEY_PAUSE -> GLFW.GLFW_KEY_PAUSE;
-            case Keyboard.KEY_CIRCUMFLEX -> GLFW.GLFW_KEY_WORLD_1; // TODO not sure if correct
+            case Keyboard.KEY_CIRCUMFLEX -> GLFW.GLFW_KEY_WORLD_1; // "World" keys could be anything depending on
+                                                                   // keyboard layout, pick something arbitrary
+            case Keyboard.KEY_YEN -> GLFW.GLFW_KEY_WORLD_2;
 
             case Keyboard.KEY_MINUS -> GLFW.GLFW_KEY_MINUS;
             case Keyboard.KEY_EQUALS -> GLFW.GLFW_KEY_EQUAL;
