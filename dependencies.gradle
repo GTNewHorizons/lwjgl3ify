@@ -3,7 +3,7 @@ minecraft {
     lwjglVersion.set("3.3.1")
 }
 
-def addGtForTesting = true
+def addGtForTesting = false
 def addReikaModsForTesting = false
 
 dependencies {
@@ -28,8 +28,8 @@ dependencies {
     annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.12:processor')
     implementation('com.gtnewhorizon:gtnhmixins:2.1.12')
 
-    runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.27-GTNH:dev')
     if (addGtForTesting) {
+        runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.27-GTNH:dev')
         runtimeOnly('com.github.GTNewHorizons:GT5-Unofficial:5.09.41.265:dev')
         runtimeOnly("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-153-GTNH:dev")
         runtimeOnly("com.github.GTNewHorizons:Chisel:2.10.16-GTNH:dev")
