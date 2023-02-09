@@ -103,8 +103,8 @@ afterEvaluate {
         artifact mmcInstanceFilesZip
     }
 
-    def lwjgl2Zips = configurations.named("lwjglMcCompileClasspath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}
-    def lwjgl3Zips = configurations.named("lwjglModClasspath").get().resolve().findAll {!it.name.contains("natives")}
+    def lwjgl2Zips = configurations.named("lwjgl2Classpath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}
+    def lwjgl3Zips = configurations.named("lwjgl3Classpath").get().resolve().findAll {!it.name.contains("natives")}
     def lwjgl2Args = lwjgl2Zips.collect {"--2:" + it}
     def lwjgl3Args = lwjgl3Zips.collect {"--3:" + it}
     def allArgs = lwjgl2Args + lwjgl3Args + ["--M:" + tasks.jar.archiveFile.get().asFile.path]
