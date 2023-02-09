@@ -52,7 +52,7 @@ dependencies {
         reobfJarConfiguration('curse.maven:chromaticraft-235590:3574503')
     }
     // Just enough calculation
-    reobfJarConfiguration('curse.maven:jec-242223:4192990')
+    // reobfJarConfiguration('curse.maven:jec-242223:4192990')
 }
 
 minecraft {
