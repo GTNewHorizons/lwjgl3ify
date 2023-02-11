@@ -319,6 +319,12 @@ public class Display {
         if (startFullscreen) {
             setFullscreen(true);
         }
+
+        int[] x = new int[1], y = new int[1];
+        GLFW.glfwGetWindowSize(Window.handle, x, y);
+        Window.windowSizeCallback.invoke(Window.handle, x[0], y[0]);
+        GLFW.glfwGetFramebufferSize(Window.handle, x, y);
+        Window.framebufferSizeCallback.invoke(Window.handle, x[0], y[0]);
     }
 
     public static boolean isCreated() {
