@@ -9,7 +9,6 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.system.Platform;
 import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
@@ -36,7 +35,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        if (Platform.get() == Platform.MACOSX) {
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
             // AWT event loop deadlocks the main thread with Lwjgl3
             System.setProperty("java.awt.headless", "true");
         }
