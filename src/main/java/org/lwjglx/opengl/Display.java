@@ -139,6 +139,9 @@ public class Display {
         glfwWindowHintString(GLFW_X11_CLASS_NAME, Config.X11_CLASS_NAME);
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
 
+        glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
+                                                                   // on MacOS
+
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");
