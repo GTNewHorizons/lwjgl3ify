@@ -5,8 +5,9 @@
     "version": "${version}",
     "order": 3,
     "+jvmArgs": [
-        "-Djava.security.manager=allow",
         "--illegal-access=warn",
+        "-Djava.security.manager=allow",
+        "-Dfile.encoding=UTF-8",
         "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
         "--add-opens", "java.base/java.net=ALL-UNNAMED",
         "--add-opens", "java.base/java.nio=ALL-UNNAMED",

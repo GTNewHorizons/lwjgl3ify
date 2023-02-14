@@ -1,5 +1,6 @@
 package me.eigenraven.lwjgl3ify.core;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -9,9 +10,12 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.system.Configuration;
+import org.lwjgl.system.Platform;
 import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
@@ -35,9 +39,16 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-            // AWT event loop deadlocks the main thread with Lwjgl3
-            System.setProperty("java.awt.headless", "true");
+        if (FMLLaunchHandler.side().isClient()) {
+            clientMacOsFix();
+        }
+    }
+
+    private void clientMacOsFix() {
+        if (Platform.get() == Platform.MACOSX) {
+            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
+            Configuration.GLFW_CHECK_THREAD0.set(false);
+            Toolkit.getDefaultToolkit(); // Initialize AWT before GLFW
         }
     }
 

@@ -18,7 +18,7 @@ public abstract class MixinStitcher {
 
     @Shadow
     @Final
-    private Set setStitchHolders = new HashSet(256);
+    private Set setStitchHolders;
 
     @Shadow
     private int currentWidth;
