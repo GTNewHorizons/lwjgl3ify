@@ -625,8 +625,13 @@ public class GL11 {
         org.lwjgl.opengl.GL11.glColor3f(red, green, blue);
     }
 
+    private static final int UNSIGNED_BYTE_TO_INT_RATIO = Integer.MAX_VALUE / 255;
+
     public static void glColor3ub(byte red, byte green, byte blue) {
-        org.lwjgl.opengl.GL11.glColor3ub(red, green, blue);
+        org.lwjgl.opengl.GL11.glColor3i(
+                (red & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO,
+                (green & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO,
+                (blue & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO);
     }
 
     public static void glColor4b(byte red, byte green, byte blue, byte alpha) {
