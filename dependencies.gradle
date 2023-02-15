@@ -1,6 +1,7 @@
 
 minecraft {
     mainLwjglVersion = 3
+    lwjgl3Version = "3.3.2-SNAPSHOT"
 }
 
 def addGtForTesting = false
