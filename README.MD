@@ -4,15 +4,16 @@ Brings LWJGL3 and modern Java versions to Minecraft 1.7.10.
 
 # Usage
 
+Lwjgl3ify depends on GTNHMixins (<https://github.com/GTNewHorizons/GTNHmixins>), use at least version 2.1.10.
+Hodgepodge (<https://github.com/GTNewHorizons/Hodgepodge>) is strongly recommended, it has many Java 9+ compatibility patches for ARR mods (Biomes'o'Plenty, Witchery, JourneyMap, and more) which we could not directly fix in the GTNH forks.
+
 ## Client
 To install in PrismLauncher or MultiMC:
 
 Copy the contents of `lwjgl3ify-VERSION-multimc.zip` to `instances/My Modpack/`. `mmc-pack.json` needs to be overwritten.
-Reload the launcher, and it should show up modified versions of Forge, Minecraft and LWJGL in the instance window.
+Reload the launcher, and it should show up modified versions of Forge, Minecraft and LWJGL3 in the instance window.
 Put the mod jar (`lwjgl3ify-VERSION.jar`) in `mods/` in your instance's minecraft folder, it will get loaded as a coremod.
 The forgePatches jar will get automatically downloaded by the launcher.
-
-Lwjgl3ify also depends on GTNHMixins (<https://github.com/GTNewHorizons/GTNHmixins>), use at least version 2.1.10.
 
 Change the instance java version to 11, 17 or 19 (these are the currently supported versions).
 
@@ -21,34 +22,21 @@ For MultiMC, you need to manually put in extra java arguments, prismlauncher can
 --illegal-access=warn
 -Djava.security.manager=allow
 -Dfile.encoding=UTF-8
---add-opens
-java.base/jdk.internal.loader=ALL-UNNAMED
---add-opens
-java.base/java.net=ALL-UNNAMED
---add-opens
-java.base/java.nio=ALL-UNNAMED
---add-opens
-java.base/java.io=ALL-UNNAMED
---add-opens
-java.base/java.lang=ALL-UNNAMED
---add-opens
-java.base/java.lang.reflect=ALL-UNNAMED
---add-opens
-java.base/java.text=ALL-UNNAMED
---add-opens
-java.base/java.util=ALL-UNNAMED
---add-opens
-java.base/jdk.internal.reflect=ALL-UNNAMED
---add-opens
-java.base/sun.nio.ch=ALL-UNNAMED
---add-opens
-java.desktop/sun.awt.image=ALL-UNNAMED
+--add-opens java.base/jdk.internal.loader=ALL-UNNAMED
+--add-opens java.base/java.net=ALL-UNNAMED
+--add-opens java.base/java.nio=ALL-UNNAMED
+--add-opens java.base/java.io=ALL-UNNAMED
+--add-opens java.base/java.lang=ALL-UNNAMED
+--add-opens java.base/java.lang.reflect=ALL-UNNAMED
+--add-opens java.base/java.text=ALL-UNNAMED
+--add-opens java.base/java.util=ALL-UNNAMED
+--add-opens java.base/jdk.internal.reflect=ALL-UNNAMED
+--add-opens java.base/sun.nio.ch=ALL-UNNAMED
+--add-opens java.desktop/sun.awt.image=ALL-UNNAMED
 --add-modules jdk.dynalink
---add-opens
-jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED
+--add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED
 --add-modules java.sql.rowset
---add-opens
-java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
+--add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 ```
 
 If you want to tweak your default window size, OpenGL context properties or other more advanced settings, check out the config file in `config/lwjgl3ify.cfg` after the first startup.
@@ -69,15 +57,17 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
 
  - A modified launcher profile (templates are in `prism-libraries`) to modify the library list loaded into the java classpath - to install LWJGL3, ASM 9.4, new Apache Commons and our forgePatches jar.
  - A custom server launcher jar with the modified `Class-Path` META-INF manifest entry (integrated into our forgePatches jar)
- - An updated launchwrapper with a java 9+-compatible classpath discovery mechanism at <https://github.com/GTNewHorizons/LegacyLauncher>
+ - An updated launchwrapper with a java 9+-compatible classpath discovery mechanism at <https://github.com/GTNewHorizons/LegacyLauncher>. This might be replaced in the future with a java instrumentation agent to transform those classes at runtime instead due to unclear licensing.
+ - A lot of add-opens flags for the JVM to allow reflection into JVM internals. Unfortunately a lot of libraries and mods depend on this to work, even weird ones like `java.text` or `nio` internals in case of Netty.
  - A partially auto-generated compatibility shim redirecting lwjgl2 api calls into the matching lwjgl3 calls (in `src/main/java/org/lwjglx`, `src/generated/java/org/lwjglx`), the generator is in `src/util/java`
  - Dummy `org/lwjgl/*` classes matching the classes removed from lwjgl3 (e.g. Display) for mods that rely on finding them under that location in the classpath - e.g. for mixin metadata
+ - Replacement GL vendor information provider for crash reports, the old one caused JVM crashes if it was used from a thread without a valid OpenGL context
  - Asm transformers:
    - Asm transformer renaming any access to org/lwjgl to org/lwjglx after all other transformations have been done to the class - in `LwjglRedirectTransformer.java`
    - `javax/xml/bind` -> `jakarta/xml/bind/` asm transformer and a shaded version of jakarta.xml.bind, because that API was removed from JRE 11
    - Extensible enum transformer (copied under the lgpl license from Forge for minecraft 1.19.3) to replace a lot of the EnumHelper usages
    - Object holders unfinalizer, to remove the need for overwriting `static final` fields in Forge.
-   - `FixConstantPoolInterfaceMethodRefHelper` is a transformer to fix a javac 8 bug which generated wrong entries in the constant pool if lambda functions were declared as fields in interfaces
+   - `FixConstantPoolInterfaceMethodRefHelper` is a transformer to fix a javac 8/asm 5.0 reobfuscator bug which generated wrong entries in the constant pool if method handles to interface methods were used
  - Mixins:
    - Object holder modifications to no longer write to `static final` fields
    - JarDiscoverer change to ignore `module-info.class` and `META-INF/versions/*` classes because it's not Java 9-aware
@@ -90,6 +80,9 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
    - CoreModManager: work around the fact that the system classloader is no longer a URLClassLoader
    - FMLSecurityManager: fix some array index out of bounds exceptions, it is also deprecated in java 17 and will need to be replaced once a new API is available
    - EnumHelper: replace all the enumhelper apis with new variants using the extensible enum transformer and unsafe hacks.
+ - Additional performance-enhancing mixins making use of LWJGL3 features:
+   - STB_image-based image loader, much faster than Image4J
+   - STB_rectpack-based texture sticher, it's nearly instant with tens of thousands of textures, compared to the vanilla code which takes many seconds to stitch that many textures into an atlas
 
 ## Fixing mods
 
@@ -170,10 +163,10 @@ For developing locally, modify the `patches/me.eigenraven.lwjgl3ify.forgepatches
     "order": 3,
     "libraries": [
         {
-            "name": "com.gtnewhorizons:lwjgl3ify:1.1.3:forgePatches",
+            "name": "com.gtnewhorizons:lwjgl3ify:1.1.27:forgePatches",
             "MMC-hint": "local"
         }
     ]
 }
 ```
-Thanks to `MMC-hint` you can now put the locally built forgePatches jar into `instances/My Modpack/libraries/lwjgl3ify-1.1.3-forgePatches.jar`.
+Thanks to `MMC-hint` you can now put the locally built forgePatches jar into `instances/My Modpack/libraries/lwjgl3ify-1.1.27-forgePatches.jar`.
