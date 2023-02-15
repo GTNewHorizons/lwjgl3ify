@@ -36,16 +36,7 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
-        ClassVisitor visitor = new ClassRemapper(writer, this) {
-
-            @Override
-            public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
-                if (desc.equals(Type.getDescriptor(Lwjgl3Aware.class))) {
-                    throw new Lwjgl3AwareException();
-                }
-                return super.visitAnnotation(desc, visible);
-            }
-        };
+        ClassVisitor visitor = new EscapingClassRemapper(writer);
 
         try {
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
@@ -80,6 +71,21 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         return typeName;
     }
 
-    private static class Lwjgl3AwareException extends RuntimeException {
+    public static class Lwjgl3AwareException extends RuntimeException {
+    }
+
+    public class EscapingClassRemapper extends ClassRemapper {
+
+        public EscapingClassRemapper(ClassWriter writer) {
+            super(writer, LwjglRedirectTransformer.this);
+        }
+
+        @Override
+        public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+            if (desc.equals(Type.getDescriptor(Lwjgl3Aware.class))) {
+                throw new Lwjgl3AwareException();
+            }
+            return super.visitAnnotation(desc, visible);
+        }
     }
 }
