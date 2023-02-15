@@ -1,8 +1,10 @@
 package me.eigenraven.lwjgl3ify.core;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import me.eigenraven.lwjgl3ify.Tags;
 
@@ -15,13 +17,15 @@ import org.lwjgl.system.Platform;
 import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
+import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
+
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions({ "org.lwjglx", "org.lwjgl", "org.lwjgl.input", "org.lwjglx.input" })
 @IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
-public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
+public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
 
@@ -81,5 +85,47 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin {
     @Override
     public String getAccessTransformerClass() {
         return null;
+    }
+
+    @Override
+    public String getMixinConfig() {
+        return "mixins.lwjgl3ify.early.json";
+    }
+
+    @Override
+    public List<String> getMixins(Set<String> loadedCoreMods) {
+
+        final boolean hasFastcraft = loadedCoreMods.contains("fastcraft.Tweaker");
+        final boolean hasOptifine = loadedCoreMods.contains("optifine.OptiFineForgeTweaker");
+        List<String> mixins = new ArrayList<>(8);
+        // FML Java 9+ compatibility patches
+        mixins.add("fml.ItemStackHolderRef");
+        mixins.add("fml.JarDiscoverer");
+        mixins.add("fml.ObjectHolderRef");
+        mixins.add("fml.ObjectHolderRegistry");
+        if (FMLLaunchHandler.side().isClient()) {
+            // STB replacements for vanilla functions
+            if (Config.MIXIN_STBI_TEXTURE_LOADING) {
+                LOGGER.info("Enabling STB texture loading mixin");
+                mixins.add("game.MixinTextureAtlasSprite");
+                mixins.add("game.MixinTextureMap");
+            } else {
+                LOGGER.info("Disabling STB texture loading mixin");
+            }
+
+            final boolean fcBugTriggered = hasFastcraft && !hasOptifine;
+            if (fcBugTriggered && !Config.MIXIN_STBI_IGNORE_FASTCRAFT) {
+                LOGGER.error(
+                        "Not using STB stiching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or add OptiFine to enable these performance-improving patches.");
+            } else {
+                if (Config.MIXIN_STBI_TEXTURE_STICHING) {
+                    LOGGER.info("Enabling STB texture stitching mixin");
+                    mixins.add("game.MixinStitcher");
+                } else {
+                    LOGGER.info("Disabling STB texture stitching mixin");
+                }
+            }
+        }
+        return mixins;
     }
 }

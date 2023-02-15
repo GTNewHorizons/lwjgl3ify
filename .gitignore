@@ -26,7 +26,6 @@ whitelist.json
 *.iml
 *.ipr
 *.iws
-src/main/resources/mixins.*.json
 *.bat
 *.DS_Store
 !gradlew.bat

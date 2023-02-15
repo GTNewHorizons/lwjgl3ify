@@ -39,6 +39,10 @@ public class Config {
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
 
+    public static boolean MIXIN_STBI_TEXTURE_LOADING = true;
+    public static boolean MIXIN_STBI_TEXTURE_STICHING = true;
+    public static boolean MIXIN_STBI_IGNORE_FASTCRAFT = false;
+
     public static boolean DEBUG_PRINT_KEY_EVENTS = false;
     public static boolean DEBUG_PRINT_MOUSE_EVENTS = false;
 
@@ -60,6 +64,7 @@ public class Config {
 
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
+    public static final String CATEGORY_MIXIN = "mixin";
     public static final String CATEGORY_CORE = "core";
     public static final String CATEGORY_DEBUG = "debug";
     public static final String CATEGORY_WINDOW = "window";
@@ -95,6 +100,23 @@ public class Config {
                                 "extensibleEnums",
                                 EXTENSIBLE_ENUMS.toArray(new String[0]),
                                 "Enums to make extensible at runtime").getStringList()));
+
+        MIXIN_STBI_TEXTURE_LOADING = config.getBoolean(
+                "stbiTextureLoading",
+                CATEGORY_MIXIN,
+                MIXIN_STBI_TEXTURE_LOADING,
+                "Use the faster stb_image-based texture loader");
+        MIXIN_STBI_TEXTURE_STICHING = config.getBoolean(
+                "stbiTextureStiching",
+                CATEGORY_MIXIN,
+                MIXIN_STBI_TEXTURE_STICHING,
+                "Use the much faster stb_rectpack-based texture stitcher");
+        MIXIN_STBI_IGNORE_FASTCRAFT = config.getBoolean(
+                "stbiIgnoreFastcraft",
+                CATEGORY_MIXIN,
+                MIXIN_STBI_IGNORE_FASTCRAFT,
+                "Force-enable the STB mixins even if FastCraft is present, may lead to a rapidly flashing screen and other visual artifacts");
+
         DEBUG_PRINT_KEY_EVENTS = config.getBoolean(
                 "printKeyEvents",
                 CATEGORY_DEBUG,
