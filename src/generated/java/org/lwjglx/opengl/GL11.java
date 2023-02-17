@@ -647,7 +647,11 @@ public class GL11 {
     }
 
     public static void glColor4ub(byte red, byte green, byte blue, byte alpha) {
-        org.lwjgl.opengl.GL11.glColor4ub(red, green, blue, alpha);
+        org.lwjgl.opengl.GL11.glColor4i(
+                (red & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO,
+                (green & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO,
+                (blue & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO,
+                (alpha & 0xff) * UNSIGNED_BYTE_TO_INT_RATIO);
     }
 
     public static void glColorMask(boolean red, boolean green, boolean blue, boolean alpha) {
