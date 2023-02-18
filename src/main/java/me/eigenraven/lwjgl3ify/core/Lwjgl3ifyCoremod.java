@@ -33,7 +33,16 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         Config.loadConfig();
         try {
             LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
+            // Packages that used to be in rt.jar
+            launchLoader.addClassLoaderExclusion("com.sun");
+            launchLoader.addClassLoaderExclusion("com.oracle");
             launchLoader.addClassLoaderExclusion("javax");
+            launchLoader.addClassLoaderExclusion("jdk");
+            launchLoader.addClassLoaderExclusion("org.ietf.jgss");
+            launchLoader.addClassLoaderExclusion("org.jcp.xml.dsig.internal");
+            launchLoader.addClassLoaderExclusion("org.omg");
+            launchLoader.addClassLoaderExclusion("org.w3c.dom");
+            launchLoader.addClassLoaderExclusion("org.xml.sax");
         } catch (ClassCastException e) {
             LOGGER.warn("Unsupported launch class loader type " + getClass().getClassLoader().getClass(), e);
         }
