@@ -114,6 +114,7 @@ public class ClassPatchManager {
                     inputData = patcher.patch(inputData, patch.patch);
                 } catch (IOException e) {
                     FMLRelaunchLog.log(Level.ERROR, e, "Encountered problem runtime patching class %s", name);
+                    e.printStackTrace();
                     continue;
                 }
             }
@@ -127,6 +128,7 @@ public class ClassPatchManager {
                 Files.write(inputData, new File(tempDir, mappedName));
             } catch (IOException e) {
                 FMLRelaunchLog.log(Level.ERROR, e, "Failed to write %s to %s", mappedName, tempDir.getAbsolutePath());
+                e.printStackTrace();
             }
         }
         patchedClasses.put(name, inputData);
@@ -156,6 +158,7 @@ public class ClassPatchManager {
             jis = new JarInputStream(new ByteArrayInputStream(jarBytes.toByteArray()));
         } catch (Exception e) {
             FMLRelaunchLog.log(Level.ERROR, e, "Error occurred reading binary patches. Expect severe problems!");
+            e.printStackTrace();
             throw Throwables.propagate(e);
         }
 
@@ -189,6 +192,7 @@ public class ClassPatchManager {
             input = ByteStreams.newDataInput(ByteStreams.toByteArray(jis));
         } catch (IOException e) {
             FMLRelaunchLog.log(Level.WARN, e, "Unable to read binpatch file %s - ignoring", patchEntry.getName());
+            e.printStackTrace();
             return null;
         }
         String name = input.readUTF();

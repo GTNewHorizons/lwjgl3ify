@@ -1,4 +1,4 @@
-//version: 1676031737
+//version: 1676679815
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -677,7 +677,7 @@ dependencies {
         java17Dependencies("com.github.GTNewHorizons:lwjgl3ify:${lwjgl3ifyVersion}")
     }
     if (modId != 'hodgepodge') {
-        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.0.31')
+        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.0.35')
     }
 
     java17PatchDependencies('net.minecraft:launchwrapper:1.15') {transitive = false}

@@ -173,6 +173,7 @@ public class CoreModManager {
                     Level.ERROR,
                     e,
                     "The patch transformer failed to load! This is critical, loading cannot continue!");
+            e.printStackTrace();
             throw Throwables.propagate(e);
         }
 
@@ -300,6 +301,7 @@ public class CoreModManager {
                 mfAttributes = jar.getManifest().getMainAttributes();
             } catch (IOException ioe) {
                 FMLRelaunchLog.log(Level.ERROR, ioe, "Unable to read the jar file %s - ignoring", coreMod.getName());
+                ioe.printStackTrace();
                 continue;
             } finally {
                 if (jar != null) {
@@ -363,6 +365,7 @@ public class CoreModManager {
                 }
             } catch (MalformedURLException e) {
                 FMLRelaunchLog.log(Level.ERROR, e, "Unable to convert file into a URL. weird");
+                e.printStackTrace();
                 continue;
             }
             loadCoreMod(classLoader, fmlCorePlugin, coreMod);
@@ -416,6 +419,7 @@ public class CoreModManager {
                     e,
                     "There was a problem trying to load the mod dir tweaker %s",
                     coreMod.getAbsolutePath());
+            e.printStackTrace();
         }
     }
 
@@ -526,6 +530,7 @@ public class CoreModManager {
                     "Coremod %s: The plugin %s is not an implementor of IFMLLoadingPlugin",
                     coreModName,
                     coreModClass);
+            cce.printStackTrace();
         } catch (InstantiationException ie) {
             FMLRelaunchLog.log(
                     Level.ERROR,
@@ -533,6 +538,7 @@ public class CoreModManager {
                     "Coremod %s: The plugin class %s was not instantiable",
                     coreModName,
                     coreModClass);
+            ie.printStackTrace();
         } catch (IllegalAccessException iae) {
             FMLRelaunchLog.log(
                     Level.ERROR,
@@ -540,6 +546,7 @@ public class CoreModManager {
                     "Coremod %s: The plugin class %s was not accessible",
                     coreModName,
                     coreModClass);
+            iae.printStackTrace();
         }
         return null;
     }
@@ -571,6 +578,7 @@ public class CoreModManager {
             FMLRelaunchLog.fine("Sorted coremod list %s", loadPlugins);
         } catch (Exception e) {
             FMLLog.log(Level.ERROR, e, "There was a problem performing the coremod sort");
+            e.printStackTrace();
             throw Throwables.propagate(e);
         }
     }
