@@ -6,7 +6,6 @@ import java.io.InputStream;
 
 import me.eigenraven.lwjgl3ify.textures.NativeBackedImage;
 
-import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.TextureMap;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(TextureMap.class)
-public abstract class MixinTextureMap extends AbstractTexture {
+public abstract class MixinTextureMap {
 
     @Redirect(
             method = "loadTextureAtlas",
