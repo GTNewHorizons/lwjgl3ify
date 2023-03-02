@@ -27,9 +27,6 @@ dependencies {
     shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")
     shadowImplementation("org.mozilla:rhino-engine:1.7.14")
 
-    annotationProcessor('com.gtnewhorizon:gtnhmixins:2.1.12:processor')
-    implementation('com.gtnewhorizon:gtnhmixins:2.1.12')
-
     if (addGtForTesting) {
         runtimeOnly('com.github.GTNewHorizons:NotEnoughItems:2.3.27-GTNH:dev')
         runtimeOnly('com.github.GTNewHorizons:GT5-Unofficial:5.09.41.265:dev')
