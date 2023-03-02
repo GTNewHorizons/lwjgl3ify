@@ -22,6 +22,8 @@ java.base/jdk.internal.reflect=ALL-UNNAMED
 --add-opens
 java.base/sun.nio.ch=ALL-UNNAMED
 --add-opens
+jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming
+--add-opens
 java.desktop/sun.awt.image=ALL-UNNAMED
 --add-modules jdk.dynalink
 --add-opens
