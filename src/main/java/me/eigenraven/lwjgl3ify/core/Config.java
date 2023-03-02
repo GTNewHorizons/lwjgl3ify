@@ -36,7 +36,7 @@ public class Config {
             "net.minecraft.client.audio.MusicTicker$MusicType", "org.bukkit.Material",
             "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
             // Non-GTNH Mods Compat
-            "net.minecraft.event.HoverEvent$Action", //Needed for lotr compat
+            "net.minecraft.event.HoverEvent$Action", // Needed for lotr compat
     };
 
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
