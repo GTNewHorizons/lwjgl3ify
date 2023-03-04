@@ -25,6 +25,9 @@ public class Mouse {
     private static int lastX = 0;
     private static int lastY = 0;
 
+    private static int lastEventX = 0;
+    private static int lastEventY = 0;
+
     private static int latestX = 0;
     private static int latestY = 0;
 
@@ -56,8 +59,10 @@ public class Mouse {
             lastY = latestY;
         }
 
-        lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
-        lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
+        lastxEvents[queue.getNextPos()] = lastEventX;
+        lastyEvents[queue.getNextPos()] = lastEventY;
+        lastEventX = latestX;
+        lastEventY = latestY;
 
         xEvents[queue.getNextPos()] = latestX;
         yEvents[queue.getNextPos()] = latestY;
@@ -73,8 +78,10 @@ public class Mouse {
     }
 
     public static void addButtonEvent(int button, boolean pressed) {
-        lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
-        lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
+        lastxEvents[queue.getNextPos()] = lastEventX;
+        lastyEvents[queue.getNextPos()] = lastEventY;
+        lastEventX = latestX;
+        lastEventY = latestY;
 
         xEvents[queue.getNextPos()] = latestX;
         yEvents[queue.getNextPos()] = latestY;
@@ -104,8 +111,10 @@ public class Mouse {
         totalScrollAmount += dwheel;
         final int newWheel = (int) fractionalWheelPosition;
         if (newWheel != lastWheel) {
-            lastxEvents[queue.getNextPos()] = xEvents[queue.getNextPos()];
-            lastyEvents[queue.getNextPos()] = yEvents[queue.getNextPos()];
+            lastxEvents[queue.getNextPos()] = lastEventX;
+            lastyEvents[queue.getNextPos()] = lastEventY;
+            lastEventX = latestX;
+            lastEventY = latestY;
 
             xEvents[queue.getNextPos()] = latestX;
             yEvents[queue.getNextPos()] = latestY;
