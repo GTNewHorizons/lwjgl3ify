@@ -2,8 +2,8 @@
     "formatVersion": 1,
     "libraries": [
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-glfw-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-glfw-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -14,8 +14,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-glfw-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-glfw-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -32,8 +32,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-glfw-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-glfw-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -44,8 +44,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-glfw-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-glfw-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -56,8 +56,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-glfw-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-glfw-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -68,12 +68,12 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-glfw:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-glfw/3.3.2-SNAPSHOT/lwjgl-glfw-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-glfw:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -84,8 +84,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -102,8 +102,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -114,8 +114,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -126,8 +126,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -138,12 +138,12 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-jemalloc:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-jemalloc/3.3.2-SNAPSHOT/lwjgl-jemalloc-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-jemalloc:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -154,8 +154,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -172,8 +172,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -184,8 +184,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -196,8 +196,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -208,8 +208,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-openal-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-openal-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -220,8 +220,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-openal-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-openal-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -238,8 +238,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-openal-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-openal-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -250,8 +250,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-openal-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-openal-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -262,8 +262,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-openal-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-openal-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -274,12 +274,12 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-openal:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-openal/3.3.2-SNAPSHOT/lwjgl-openal-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-openal:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-opengl-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-opengl-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -290,8 +290,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-opengl-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-opengl-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -308,8 +308,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-opengl-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-opengl-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -320,8 +320,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-opengl-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-opengl-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -332,8 +332,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-opengl-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-opengl-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -344,12 +344,12 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-opengl:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-opengl/3.3.2-SNAPSHOT/lwjgl-opengl-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-opengl:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-stb-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-stb-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -360,8 +360,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-stb-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-stb-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -378,8 +378,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-stb-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-stb-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -390,8 +390,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-stb-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-stb-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -402,8 +402,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-stb-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-stb-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -414,12 +414,12 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-stb:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-stb/3.3.2-SNAPSHOT/lwjgl-stb-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-stb:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8-natives-linux.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd-natives-linux:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10-natives-linux.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd-natives-linux:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -430,8 +430,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8-natives-macos-arm64.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd-natives-macos-arm64:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10-natives-macos-arm64.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd-natives-macos-arm64:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -448,8 +448,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8-natives-macos.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd-natives-macos:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10-natives-macos.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd-natives-macos:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -460,8 +460,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8-natives-windows-x86.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd-natives-windows-x86:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10-natives-windows-x86.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd-natives-windows-x86:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -472,8 +472,8 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8-natives-windows.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd-natives-windows:3.3.2-SNAPSHOT",
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10-natives-windows.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd-natives-windows:3.3.2-SNAPSHOT-10",
             "rules": [
                 {
                     "action": "allow",
@@ -484,18 +484,18 @@
             ]
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl-tinyfd:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl-tinyfd/3.3.2-SNAPSHOT/lwjgl-tinyfd-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl-tinyfd:3.3.2-SNAPSHOT-10"
         },
         {
-            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20221218.004659-8.jar",
-            "name": "org.lwjgl:lwjgl:3.3.2-SNAPSHOT"
+            "MMC-absoluteUrl": "https://oss.sonatype.org/content/repositories/snapshots/org/lwjgl/lwjgl/3.3.2-SNAPSHOT/lwjgl-3.3.2-20230304.162250-10.jar",
+            "name": "org.lwjgl:lwjgl:3.3.2-SNAPSHOT-10"
         }
     ],
     "name": "LWJGL 3",
     "releaseTime": "2022-11-29T14:28:08+00:00",
     "type": "release",
     "uid": "org.lwjgl3",
-    "version": "3.3.2-SNAPSHOT-3.3.2-20221218.004659-8",
+    "version": "3.3.2-SNAPSHOT-3.3.2-20230304.162250-10",
     "volatile": true
 }
