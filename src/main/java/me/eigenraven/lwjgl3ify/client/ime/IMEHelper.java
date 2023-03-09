@@ -1,19 +1,23 @@
 package me.eigenraven.lwjgl3ify.client.ime;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import org.lwjglx.input.Keyboard;
-
 import java.awt.event.KeyEvent;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+
+import org.lwjglx.input.Keyboard;
 
 public class IMEHelper {
 
-    public static ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayHeight, Minecraft.getMinecraft().displayHeight);
+    public static ScaledResolution scaledResolution = new ScaledResolution(
+            Minecraft.getMinecraft(),
+            Minecraft.getMinecraft().displayHeight,
+            Minecraft.getMinecraft().displayHeight);
 
     public static int getFactor() {
         return scaledResolution.getScaleFactor();
     }
+
     public static void keepWrapperFocused() {
         if (IMEWrapperTextField.instance.isVisible()) {
             IMEWrapperTextField.instance.setVisible(false);
@@ -32,13 +36,14 @@ public class IMEHelper {
     }
 
     public static boolean isAnyWrapperVisible() {
-        return IMEWrapperBook.instance.isVisible() || IMEWrapperSign.instance.isVisible() || IMEWrapperTextField.instance.isVisible();
+        return IMEWrapperBook.instance.isVisible() || IMEWrapperSign.instance.isVisible()
+                || IMEWrapperTextField.instance.isVisible();
     }
 
     /*
      * Copied from https://www.jpct.net/forum2/index.php?topic=749.0
      */
-    public static int translateFromAWT( int aCode ) {
+    public static int translateFromAWT(int aCode) {
         return switch (aCode) {
             case KeyEvent.VK_ESCAPE -> Keyboard.KEY_ESCAPE;
             case KeyEvent.VK_1 -> Keyboard.KEY_1;
@@ -152,7 +157,8 @@ public class IMEHelper {
             default -> Keyboard.KEY_NONE;
         };
     }
-    public static int translateToAWT( int aCode ) {
+
+    public static int translateToAWT(int aCode) {
         return switch (aCode) {
             case Keyboard.KEY_ESCAPE -> KeyEvent.VK_ESCAPE;
             case Keyboard.KEY_1 -> KeyEvent.VK_1;

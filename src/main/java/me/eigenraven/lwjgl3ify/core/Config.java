@@ -104,10 +104,10 @@ public class Config {
                                 EXTENSIBLE_ENUMS.toArray(new String[0]),
                                 "Enums to make extensible at runtime").getStringList()));
         IME_WRAPPER = config.getBoolean(
-            "imeWrapper",
-            CATEGORY_MIXIN,
-            IME_WRAPPER,
-            "Enable IME Wrapper as glfw issue's temporary workaround");
+                "imeWrapper",
+                CATEGORY_MIXIN,
+                IME_WRAPPER,
+                "Enable IME Wrapper as glfw issue's temporary workaround");
         MIXIN_STBI_TEXTURE_LOADING = config.getBoolean(
                 "stbiTextureLoading",
                 CATEGORY_MIXIN,
