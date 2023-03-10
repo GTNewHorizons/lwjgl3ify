@@ -1,4 +1,4 @@
-//version: 1677938302
+//version: 1678003329
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -73,7 +73,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.7.2' apply false
     id 'com.modrinth.minotaur' version '2.+' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.2.2'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.2.3'
 }
 boolean settingsupdated = verifySettingsGradle()
 settingsupdated = verifyGitAttributes() || settingsupdated
@@ -153,7 +153,7 @@ java {
         } else {
             languageVersion.set(projectJavaVersion)
         }
-        vendor.set(JvmVendorSpec.ADOPTIUM)
+        vendor.set(JvmVendorSpec.AZUL)
     }
     if (!noPublishedSources) {
         withSourcesJar()
@@ -222,7 +222,7 @@ if (enableModernJavaSyntax.toBoolean()) {
 
         javaCompiler.set(javaToolchains.compilerFor {
             languageVersion.set(JavaLanguageVersion.of(17))
-            vendor.set(JvmVendorSpec.ADOPTIUM)
+            vendor.set(JvmVendorSpec.AZUL)
         })
     }
 }

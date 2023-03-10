@@ -295,7 +295,13 @@ public class Keyboard {
     }
 
     public static char getEventCharacter() {
-        return keyEventChars[getEventKey()];
+        final int eventKey = getEventKey();
+        // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
+        return switch (eventKey) {
+            case KEY_ESCAPE -> '\0';
+            case KEY_BACK -> '\b';
+            default -> keyEventChars[eventKey];
+        };
     }
 
     public static boolean getEventKeyState() {
