@@ -46,22 +46,24 @@ public class Mouse {
     private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
 
     private static boolean clipPostionToDisplay = true;
-    private static boolean ignoreNextDelta = false;
-    private static boolean ignoreNextMove = false;
+    private static int ignoreNextDelta = 0;
+    private static int ignoreNextMove = 0;
 
     public static void addMoveEvent(double mouseX, double mouseY) {
-        if (ignoreNextMove) {
-            ignoreNextMove = false;
+        if (ignoreNextMove > 0) {
+            ignoreNextMove--;
             return;
         }
         latestX = (int) mouseX;
         latestY = Display.getHeight() - (int) mouseY;
-        if (ignoreNextDelta) {
-            ignoreNextDelta = false;
+        if (ignoreNextDelta > 0) {
+            ignoreNextDelta--;
             x = latestX;
             y = latestY;
             lastX = latestX;
             lastY = latestY;
+            lastEventX = latestX;
+            lastEventY = latestY;
         }
 
         lastxEvents[queue.getNextPos()] = lastEventX;
@@ -158,6 +160,9 @@ public class Mouse {
     }
 
     public static void setGrabbed(boolean grab) {
+        if (grabbed == grab) {
+            return;
+        }
         GLFW.glfwSetInputMode(
                 Display.getWindow(),
                 GLFW.GLFW_CURSOR,
@@ -165,9 +170,10 @@ public class Mouse {
         grabbed = grab;
         if (!grab) {
             setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);
+        } else {
+            ignoreNextMove++;
         }
-        ignoreNextMove = true;
-        ignoreNextDelta = true;
+        ignoreNextDelta++;
     }
 
     public static boolean isGrabbed() {
@@ -223,11 +229,11 @@ public class Mouse {
     }
 
     public static int getDX() {
-        return x - lastX;
+        return (ignoreNextDelta > 0) ? 0 : (x - lastX);
     }
 
     public static int getDY() {
-        return y - lastY;
+        return (ignoreNextDelta > 0) ? 0 : (y - lastY);
     }
 
     public static int getDWheel() {
@@ -248,7 +254,6 @@ public class Mouse {
         }
         GLFW.glfwSetCursorPos(Display.getWindow(), new_x, new_y);
         addMoveEvent(new_x, new_y);
-        ignoreNextMove = true;
     }
 
     public static Cursor setNativeCursor(Cursor cursor) throws LWJGLException {
