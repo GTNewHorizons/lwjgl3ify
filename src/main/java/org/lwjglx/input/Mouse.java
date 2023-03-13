@@ -47,8 +47,13 @@ public class Mouse {
 
     private static boolean clipPostionToDisplay = true;
     private static boolean ignoreNextDelta = false;
+    private static boolean ignoreNextMove = false;
 
     public static void addMoveEvent(double mouseX, double mouseY) {
+        if (ignoreNextMove) {
+            ignoreNextMove = false;
+            return;
+        }
         latestX = (int) mouseX;
         latestY = Display.getHeight() - (int) mouseY;
         if (ignoreNextDelta) {
@@ -241,6 +246,8 @@ public class Mouse {
             return;
         }
         GLFW.glfwSetCursorPos(Display.getWindow(), new_x, new_y);
+        addMoveEvent(new_x, new_y);
+        ignoreNextMove = true;
     }
 
     public static Cursor setNativeCursor(Cursor cursor) throws LWJGLException {
