@@ -166,6 +166,7 @@ public class Mouse {
         if (!grab) {
             setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);
         }
+        ignoreNextMove = true;
         ignoreNextDelta = true;
     }
 
