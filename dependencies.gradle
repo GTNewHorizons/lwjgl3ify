@@ -19,6 +19,7 @@ dependencies {
     patchedMinecraft('org.ow2.asm:asm-util:9.4')
     patchedMinecraft('org.ow2.asm:asm-deprecated:7.1')
     patchedMinecraft("org.apache.commons:commons-lang3:3.12.0")
+    patchedMinecraft('com.ibm.icu:icu4j:72.1')
 
     // Allow using Unsafe with newer javac versions
     patchedMinecraft('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')
@@ -60,4 +61,5 @@ minecraft {
 
 configurations.patchedMinecraft {
     exclude group: 'org.ow2.asm', module: 'asm-debug-all'
+    exclude group: 'com.ibm.icu', module: 'icu4j-core-mojang'
 }

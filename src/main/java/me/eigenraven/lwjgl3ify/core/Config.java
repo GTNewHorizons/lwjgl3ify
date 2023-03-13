@@ -41,7 +41,7 @@ public class Config {
 
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
-
+    public static boolean IME_WRAPPER = false;
     public static boolean MIXIN_STBI_TEXTURE_LOADING = true;
     public static boolean MIXIN_STBI_TEXTURE_STICHING = true;
     public static boolean MIXIN_STBI_IGNORE_FASTCRAFT = false;
@@ -103,7 +103,11 @@ public class Config {
                                 "extensibleEnums",
                                 EXTENSIBLE_ENUMS.toArray(new String[0]),
                                 "Enums to make extensible at runtime").getStringList()));
-
+        IME_WRAPPER = config.getBoolean(
+                "imeWrapper",
+                CATEGORY_MIXIN,
+                IME_WRAPPER,
+                "Enable IME Wrapper as glfw issue's temporary workaround");
         MIXIN_STBI_TEXTURE_LOADING = config.getBoolean(
                 "stbiTextureLoading",
                 CATEGORY_MIXIN,
