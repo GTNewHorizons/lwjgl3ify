@@ -221,7 +221,7 @@ public class Keyboard {
             keyMap.put(keyName[i], i);
         }
         for (int key = 32; key < 128; key++) {
-            keyEventChars[KeyCodes.toLwjglKey(key)] = (char) key;
+            keyEventChars[KeyCodes.glfwToLwjgl(key)] = (char) key;
         }
         keyEventChars[KEY_NONE] = '\0';
     }
@@ -239,7 +239,7 @@ public class Keyboard {
             }
             default -> state = KeyState.RELEASE;
         }
-        keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
+        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
         keyEventStates[queue.getNextPos()] = state;
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
@@ -247,7 +247,7 @@ public class Keyboard {
     }
 
     public static void addKeyEvent(int key, boolean pressed) {
-        keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
+        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
         keyEventStates[queue.getNextPos()] = pressed ? KeyState.PRESS : KeyState.RELEASE;
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
@@ -255,7 +255,7 @@ public class Keyboard {
     }
 
     public static void addCharEvent(int key, char c) {
-        int index = KeyCodes.toLwjglKey(key);
+        int index = KeyCodes.glfwToLwjgl(key);
         keyEventChars[index] = c;
     }
 
@@ -266,7 +266,7 @@ public class Keyboard {
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
-        return GLFW.glfwGetKey(Display.getWindow(), KeyCodes.toGlfwKey(key)) == GLFW.GLFW_PRESS;
+        return GLFW.glfwGetKey(Display.getWindow(), KeyCodes.lwjglToGlfw(key)) == GLFW.GLFW_PRESS;
     }
 
     public static void poll() {

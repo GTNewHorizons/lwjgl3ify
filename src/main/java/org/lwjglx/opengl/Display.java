@@ -1,6 +1,5 @@
 package org.lwjglx.opengl;
 
-import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -162,7 +161,7 @@ public class Display {
                             scancode,
                             action,
                             mods,
-                            KeyEvent.getKeyText(KeyCodes.translateToAWT(KeyCodes.toLwjglKey(key))),
+                            KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
                 latestEventKey = key;

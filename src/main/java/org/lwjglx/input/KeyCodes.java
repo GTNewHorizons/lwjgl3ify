@@ -6,7 +6,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class KeyCodes {
 
-    public static int toLwjglKey(int glfwKeyCode) {
+    public static int glfwToLwjgl(int glfwKeyCode) {
         if (glfwKeyCode > GLFW.GLFW_KEY_LAST) {
             return glfwKeyCode;
         }
@@ -152,7 +152,7 @@ public class KeyCodes {
         };
     }
 
-    public static int toGlfwKey(int lwjglKeyCode) {
+    public static int lwjglToGlfw(int lwjglKeyCode) {
         if (lwjglKeyCode > GLFW.GLFW_KEY_LAST) {
             return lwjglKeyCode;
         }
@@ -302,8 +302,8 @@ public class KeyCodes {
         };
     }
 
-    public static int translateFromAWT(int aCode) {
-        return switch (aCode) {
+    public static int awtToLwjgl(int awtCode) {
+        return switch (awtCode) {
             case KeyEvent.VK_ESCAPE -> Keyboard.KEY_ESCAPE;
             case KeyEvent.VK_1 -> Keyboard.KEY_1;
             case KeyEvent.VK_2 -> Keyboard.KEY_2;
@@ -417,8 +417,8 @@ public class KeyCodes {
         };
     }
 
-    public static int translateToAWT(int aCode) {
-        return switch (aCode) {
+    public static int lwjglToAwt(int lwjglCode) {
+        return switch (lwjglCode) {
             case Keyboard.KEY_ESCAPE -> KeyEvent.VK_ESCAPE;
             case Keyboard.KEY_1 -> KeyEvent.VK_1;
             case Keyboard.KEY_2 -> KeyEvent.VK_2;
