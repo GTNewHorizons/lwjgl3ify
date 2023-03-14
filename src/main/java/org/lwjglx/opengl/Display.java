@@ -169,7 +169,8 @@ public class Display {
                 if (key == GLFW_KEY_F12 && action == 0) {
                     imeOn = !imeOn;
                 }
-                if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_LWIN)) {
+                if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
+                        || Keyboard.isKeyDown(Keyboard.KEY_LWIN)) {
                     if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
                         imeOn = !imeOn;
                         return;
@@ -179,7 +180,7 @@ public class Display {
                     if (key > 256) {
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
                     } else {
-                        //Keyboard.addQueue();
+                        // Keyboard.addQueue();
 
                     }
                 } else {

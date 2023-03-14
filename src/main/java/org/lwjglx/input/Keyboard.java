@@ -163,6 +163,7 @@ public class Keyboard {
 
     private static EventQueue queue = new EventQueue(128);
     private static Queue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
+
     private enum KeyState {
 
         PRESS(true),

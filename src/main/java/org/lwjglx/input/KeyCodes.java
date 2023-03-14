@@ -1,8 +1,8 @@
 package org.lwjglx.input;
 
-import org.lwjgl.glfw.GLFW;
-
 import java.awt.event.KeyEvent;
+
+import org.lwjgl.glfw.GLFW;
 
 public class KeyCodes {
 
@@ -302,7 +302,7 @@ public class KeyCodes {
         };
     }
 
-    public static int translateFromAWT( int aCode ) {
+    public static int translateFromAWT(int aCode) {
         return switch (aCode) {
             case KeyEvent.VK_ESCAPE -> Keyboard.KEY_ESCAPE;
             case KeyEvent.VK_1 -> Keyboard.KEY_1;
@@ -416,7 +416,8 @@ public class KeyCodes {
             default -> Keyboard.KEY_NONE;
         };
     }
-    public static int translateToAWT( int aCode ) {
+
+    public static int translateToAWT(int aCode) {
         return switch (aCode) {
             case Keyboard.KEY_ESCAPE -> KeyEvent.VK_ESCAPE;
             case Keyboard.KEY_1 -> KeyEvent.VK_1;
