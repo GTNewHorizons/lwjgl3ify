@@ -7,8 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-
-import com.github.wohaopa.InputFix;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiScreen.class)
 public abstract class MixinGuiScreen {
@@ -22,11 +21,11 @@ public abstract class MixinGuiScreen {
     @Shadow
     public void handleKeyboardInput() {}
 
-    @Inject(method = "handleInput", at = @At("HEAD"))
-    private void injectHandleInput() {
+    @Inject(method = "handleInput()V", at = @At("HEAD"))
+    private void injectHandleInput(CallbackInfo ci) {
         if (Keyboard.isCreated()) {
-            while (InputFix.hasNextChar()) {
-                this.keyTyped(InputFix.nextChar(), 0);
+            while (Keyboard.InputFix_hasNextChar()) {
+                this.keyTyped(Keyboard.InputFix_nextChar(), 0);
             }
         }
     }
