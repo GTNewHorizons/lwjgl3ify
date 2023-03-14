@@ -5,6 +5,8 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -160,6 +162,7 @@ public class Keyboard {
     public static final int keyCount;
 
     private static EventQueue queue = new EventQueue(128);
+    private static BlockingQueue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
 
     private enum KeyState {
 
@@ -218,7 +221,7 @@ public class Keyboard {
             keyMap.put(keyName[i], i);
         }
         for (int key = 32; key < 128; key++) {
-            keyEventChars[KeyCodes.toLwjglKey(key)] = (char) key;
+            keyEventChars[KeyCodes.glfwToLwjgl(key)] = (char) key;
         }
         keyEventChars[KEY_NONE] = '\0';
     }
@@ -236,7 +239,7 @@ public class Keyboard {
             }
             default -> state = KeyState.RELEASE;
         }
-        keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
+        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
         keyEventStates[queue.getNextPos()] = state;
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
@@ -244,7 +247,7 @@ public class Keyboard {
     }
 
     public static void addKeyEvent(int key, boolean pressed) {
-        keyEvents[queue.getNextPos()] = KeyCodes.toLwjglKey(key);
+        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
         keyEventStates[queue.getNextPos()] = pressed ? KeyState.PRESS : KeyState.RELEASE;
         nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
 
@@ -252,14 +255,18 @@ public class Keyboard {
     }
 
     public static void addCharEvent(int key, char c) {
-        int index = KeyCodes.toLwjglKey(key);
+        int index = KeyCodes.glfwToLwjgl(key);
         keyEventChars[index] = c;
+    }
+
+    public static void addIMECharEvent(char c) {
+        imeCharQueue.offer(c);
     }
 
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
-        return GLFW.glfwGetKey(Display.getWindow(), KeyCodes.toGlfwKey(key)) == GLFW.GLFW_PRESS;
+        return GLFW.glfwGetKey(Display.getWindow(), KeyCodes.lwjglToGlfw(key)) == GLFW.GLFW_PRESS;
     }
 
     public static void poll() {
@@ -295,6 +302,9 @@ public class Keyboard {
     }
 
     public static char getEventCharacter() {
+        if (!imeCharQueue.isEmpty() && Display.imeOn) {
+            return imeCharQueue.remove();
+        }
         final int eventKey = getEventKey();
         // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
         return switch (eventKey) {
@@ -305,7 +315,7 @@ public class Keyboard {
     }
 
     public static boolean getEventKeyState() {
-        return keyEventStates[queue.getCurrentPos()].isPressed;
+        return keyEventStates[queue.getCurrentPos()].isPressed || (!imeCharQueue.isEmpty() && Display.imeOn);
     }
 
     public static long getEventNanoseconds() {

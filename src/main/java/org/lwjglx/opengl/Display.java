@@ -1,9 +1,9 @@
 package org.lwjglx.opengl;
 
-import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.awt.event.KeyEvent;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -25,6 +25,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
+import org.lwjglx.input.KeyCodes;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
 
@@ -56,6 +57,7 @@ public class Display {
     private static boolean latestResized = false;
     private static int latestWidth = 0;
     private static int latestHeight = 0;
+    public static boolean imeOn = false;
     private static ByteBuffer[] savedIcons;
 
     static {
@@ -153,17 +155,38 @@ public class Display {
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} char:{}",
+                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} char:{}",
                             window,
                             key,
                             scancode,
                             action,
                             mods,
+                            KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
                 latestEventKey = key;
-
-                Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                if (Config.IME_ENABLED) {
+                    if (Config.IME_F12_TOGGLE && key == GLFW_KEY_F12 && action == 0) {
+                        imeOn = !imeOn;
+                    }
+                    if (Config.IME_SYS_TOGGLE
+                            && (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
+                                    || Keyboard.isKeyDown(Keyboard.KEY_LWIN))) {
+                        if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
+                            imeOn = !imeOn;
+                            return;
+                        }
+                    }
+                    if (imeOn) {
+                        if (key > 256) {
+                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                        }
+                    } else {
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                    }
+                } else {
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                }
                 // Ctrl should generate ASCII modifier keys (0x01-0x1F), glfw does not give use char events for this
                 if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
                     int codepoint = key & 0x1F;
@@ -183,7 +206,14 @@ public class Display {
                             codepoint,
                             (char) codepoint);
                 }
-                Keyboard.addCharEvent(latestEventKey, (char) codepoint);
+                if (imeOn) {
+                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, true);
+                    Keyboard.addIMECharEvent((char) codepoint);
+                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, false);
+
+                } else {
+                    Keyboard.addCharEvent(latestEventKey, (char) codepoint);
+                }
             }
         };
 
