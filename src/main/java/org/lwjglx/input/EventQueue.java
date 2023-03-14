@@ -6,7 +6,7 @@ package org.lwjglx.input;
  */
 class EventQueue {
 
-    private int maxEvents = 32;
+    private final int maxEvents;
     private int eventCount = 0;
     private int readEventPos = 0;
     private int writeEventPos = 1;
@@ -42,7 +42,7 @@ class EventQueue {
 
     /**
      * Increment the event queue
-     * 
+     *
      * @return - true if there is an event available
      */
     synchronized boolean next() {
@@ -65,6 +65,10 @@ class EventQueue {
 
     int getCurrentPos() {
         return readEventPos;
+    }
+
+    int getLastWrittenPos() {
+        return (writeEventPos + maxEvents - 1) % maxEvents;
     }
 
     int getNextPos() {

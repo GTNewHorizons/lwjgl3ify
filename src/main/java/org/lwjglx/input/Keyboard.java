@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import me.eigenraven.lwjgl3ify.core.Config;
+
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
@@ -180,6 +182,7 @@ public class Keyboard {
     private static boolean doRepeatEvents = true;
 
     private static int[] keyEvents = new int[queue.getMaxEvents()];
+    private static char[] keySpecificChars = new char[queue.getMaxEvents()];
     private static KeyState[] keyEventStates = new KeyState[queue.getMaxEvents()];
 
     static {
@@ -239,24 +242,48 @@ public class Keyboard {
             }
             default -> state = KeyState.RELEASE;
         }
-        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
-        keyEventStates[queue.getNextPos()] = state;
-        nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+        final int nextPos = queue.getNextPos();
+        keyEvents[nextPos] = KeyCodes.glfwToLwjgl(key);
+        keyEventStates[nextPos] = state;
+        nanoTimeEvents[nextPos] = Sys.getNanoTime();
+        keySpecificChars[nextPos] = '\0';
 
         queue.add();
     }
 
     public static void addKeyEvent(int key, boolean pressed) {
-        keyEvents[queue.getNextPos()] = KeyCodes.glfwToLwjgl(key);
-        keyEventStates[queue.getNextPos()] = pressed ? KeyState.PRESS : KeyState.RELEASE;
-        nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+        final int nextPos = queue.getNextPos();
+        keyEvents[nextPos] = KeyCodes.glfwToLwjgl(key);
+        keyEventStates[nextPos] = pressed ? KeyState.PRESS : KeyState.RELEASE;
+        nanoTimeEvents[nextPos] = Sys.getNanoTime();
+        keySpecificChars[nextPos] = '\0';
 
         queue.add();
     }
 
+    private static void duplicateKeyEvent() {
+        final int nextPos = queue.getNextPos();
+        final int prevPos = queue.getLastWrittenPos();
+        keyEvents[nextPos] = keyEvents[prevPos];
+        keyEventStates[nextPos] = keyEventStates[prevPos];
+        nanoTimeEvents[nextPos] = nanoTimeEvents[prevPos];
+        keySpecificChars[nextPos] = keySpecificChars[prevPos];
+        queue.add();
+    }
+
     public static void addCharEvent(int key, char c) {
+        final int nextPos = queue.getNextPos();
+        final int prevPos = queue.getLastWrittenPos();
         int index = KeyCodes.glfwToLwjgl(key);
         keyEventChars[index] = c;
+        if (Config.MBE_ENABLED) {
+            if (keySpecificChars[prevPos] == '\0') {
+                keySpecificChars[prevPos] = c;
+            } else {
+                duplicateKeyEvent();
+                keySpecificChars[nextPos] = c;
+            }
+        }
     }
 
     public static void addIMECharEvent(char c) {
@@ -306,11 +333,12 @@ public class Keyboard {
             return imeCharQueue.remove();
         }
         final int eventKey = getEventKey();
+        final char eventSpecificChar = keySpecificChars[queue.getCurrentPos()];
         // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
         return switch (eventKey) {
             case KEY_ESCAPE -> '\0';
             case KEY_BACK -> '\b';
-            default -> keyEventChars[eventKey];
+            default -> (eventSpecificChar != '\0') ? eventSpecificChar : keyEventChars[eventKey];
         };
     }
 
