@@ -2,15 +2,15 @@ package org.lwjglx.input;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
+
+import com.github.wohaopa.InputFix;
 
 public class Keyboard {
 
@@ -252,8 +252,12 @@ public class Keyboard {
     }
 
     public static void addCharEvent(int key, char c) {
-        int index = KeyCodes.toLwjglKey(key);
-        keyEventChars[index] = c;
+        if (Character.isDefined(c)) {
+            InputFix.addChar(c);
+        } else {
+            int index = KeyCodes.toLwjglKey(key);
+            keyEventChars[index] = c;
+        }
     }
 
     public static void create() throws LWJGLException {}
@@ -267,6 +271,7 @@ public class Keyboard {
     }
 
     public static void enableRepeatEvents(boolean enable) {
+        InputFix.enableRepeatEvents(enable);
         doRepeatEvents = enable;
     }
 
@@ -297,6 +302,7 @@ public class Keyboard {
     public static char getEventCharacter() {
         final int eventKey = getEventKey();
         // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
+        if (Character.isDefined(keyEventChars[eventKey])) return '\0';
         return switch (eventKey) {
             case KEY_ESCAPE -> '\0';
             case KEY_BACK -> '\b';

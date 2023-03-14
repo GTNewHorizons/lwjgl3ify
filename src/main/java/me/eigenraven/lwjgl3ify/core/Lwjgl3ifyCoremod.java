@@ -114,6 +114,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         mixins.add("fml.ObjectHolderRegistry");
         if (FMLLaunchHandler.side().isClient()) {
             // STB replacements for vanilla functions
+            mixins.add("game.MixinGuiScreen");
             if (Config.MIXIN_STBI_TEXTURE_LOADING) {
                 LOGGER.info("Enabling STB texture loading mixin");
                 mixins.add("game.MixinTextureAtlasSprite");
