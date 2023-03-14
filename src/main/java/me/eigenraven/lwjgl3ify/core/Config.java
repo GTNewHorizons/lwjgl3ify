@@ -49,6 +49,7 @@ public class Config {
     public static boolean DEBUG_PRINT_KEY_EVENTS = false;
     public static boolean DEBUG_PRINT_MOUSE_EVENTS = false;
 
+    public static boolean MBE_ENABLED = true;
     public static boolean IME_ENABLED = false;
     public static boolean IME_F12_TOGGLE = false;
     public static boolean IME_SYS_TOGGLE = false;
@@ -136,6 +137,8 @@ public class Config {
                 DEBUG_PRINT_MOUSE_EVENTS,
                 "Print mouse-related events to the log");
 
+        MBE_ENABLED = config
+                .getBoolean("handleMultibyteInput", CATEGORY_CORE, MBE_ENABLED, "Enables multibyte character input.");
         IME_ENABLED = config.getBoolean("enabled", CATEGORY_IME, IME_ENABLED, "Enables IME support for CJK input.");
         IME_F12_TOGGLE = config
                 .getBoolean("f12Toggle", CATEGORY_IME, IME_F12_TOGGLE, "Enables switching IME mode by pressing F12.");
