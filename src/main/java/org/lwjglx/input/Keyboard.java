@@ -5,6 +5,8 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -160,7 +162,7 @@ public class Keyboard {
     public static final int keyCount;
 
     private static EventQueue queue = new EventQueue(128);
-
+    private static Queue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
     private enum KeyState {
 
         PRESS(true),
@@ -256,6 +258,10 @@ public class Keyboard {
         keyEventChars[index] = c;
     }
 
+    public static void addIMECharEvent(char c) {
+        imeCharQueue.add(c);
+    }
+
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
@@ -287,6 +293,7 @@ public class Keyboard {
     }
 
     public static boolean next() {
+
         return queue.next();
     }
 
@@ -295,6 +302,9 @@ public class Keyboard {
     }
 
     public static char getEventCharacter() {
+        if (!imeCharQueue.isEmpty() && Display.imeOn) {
+            return imeCharQueue.remove();
+        }
         final int eventKey = getEventKey();
         // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
         return switch (eventKey) {
@@ -305,7 +315,7 @@ public class Keyboard {
     }
 
     public static boolean getEventKeyState() {
-        return keyEventStates[queue.getCurrentPos()].isPressed;
+        return keyEventStates[queue.getCurrentPos()].isPressed || (!imeCharQueue.isEmpty() && Display.imeOn);
     }
 
     public static long getEventNanoseconds() {
