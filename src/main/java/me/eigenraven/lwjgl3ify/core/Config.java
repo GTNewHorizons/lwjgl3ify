@@ -59,6 +59,8 @@ public class Config {
     public static boolean OPENGL_DOUBLEBUFFER = true;
     public static boolean OPENGL_CONTEXT_NO_ERROR = false;
 
+    public static boolean INPUTFIX_ENABLED = false;
+
     public static boolean INPUT_INVERT_WHEEL = false;
     public static double INPUT_SCROLL_SPEED = 1.0;
 
@@ -71,6 +73,7 @@ public class Config {
     public static final String CATEGORY_CORE = "core";
     public static final String CATEGORY_DEBUG = "debug";
     public static final String CATEGORY_WINDOW = "window";
+    public static final String CATEGORY_INPUTFIX = "inputfix";
     public static final String CATEGORY_INPUT = "input";
     public static final String CATEGORY_GLCONTEXT = "openglContext";
 
@@ -159,6 +162,9 @@ public class Config {
                 CATEGORY_WINDOW,
                 COCOA_FRAME_NAME,
                 "OSX-only - identifier used to save and restore the window position and size");
+
+        INPUTFIX_ENABLED = config
+                .getBoolean("enabled", CATEGORY_INPUTFIX, INPUTFIX_ENABLED, "Fix multi-byte character input issues");
 
         INPUT_INVERT_WHEEL = config
                 .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");

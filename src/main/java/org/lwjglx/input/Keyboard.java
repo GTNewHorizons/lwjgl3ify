@@ -2,9 +2,9 @@ package org.lwjglx.input;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import me.eigenraven.lwjgl3ify.core.Config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -191,6 +191,32 @@ public class Keyboard {
     private static final String[] keyName = new String[Short.MAX_VALUE];
     private static final Map<String, Integer> keyMap = new HashMap<>(Short.MAX_VALUE);
 
+    // InputFix start
+    private static final int InputFix_MAX = 256;
+    private static final char[] InputFix_chars = new char[InputFix_MAX];
+    private static int InputFix_head = 0;
+    private static int InputFix_back = 0;
+    private static int InputFix_count = 0;
+
+    public static boolean InputFix_hasNextChar() {
+        return InputFix_count > 0;
+    }
+
+    public static char InputFix_nextChar() {
+        char c = InputFix_chars[InputFix_head++];
+        InputFix_count--;
+        if (InputFix_head >= InputFix_MAX) InputFix_head = 0;
+        return c;
+    }
+
+    public static void InputFix_addChar(char c) {
+        if (!doRepeatEvents) return;
+        InputFix_chars[InputFix_back++] = c;
+        if (InputFix_back >= InputFix_MAX) InputFix_back = 0;
+        InputFix_count++;
+    }
+    // InputFix end
+
     static {
         // Use reflection to find out key names
         Field[] fields = Keyboard.class.getFields();
@@ -252,8 +278,12 @@ public class Keyboard {
     }
 
     public static void addCharEvent(int key, char c) {
-        int index = KeyCodes.toLwjglKey(key);
-        keyEventChars[index] = c;
+        if (Config.INPUTFIX_ENABLED && Character.isDefined(c)) {
+            InputFix_addChar(c);
+        } else {
+            int index = KeyCodes.toLwjglKey(key);
+            keyEventChars[index] = c;
+        }
     }
 
     public static void create() throws LWJGLException {}
@@ -297,6 +327,7 @@ public class Keyboard {
     public static char getEventCharacter() {
         final int eventKey = getEventKey();
         // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
+        if (Config.INPUTFIX_ENABLED && Character.isDefined(keyEventChars[eventKey])) return '\0'; // InputFix proxy
         return switch (eventKey) {
             case KEY_ESCAPE -> '\0';
             case KEY_BACK -> '\b';
