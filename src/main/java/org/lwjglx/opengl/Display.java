@@ -4,8 +4,6 @@ import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -60,19 +58,7 @@ public class Display {
     private static int latestHeight = 0;
     private static ByteBuffer[] savedIcons;
 
-    // InputFix start
-    private static Method writeCharMethod;
-
     static {
-
-        try {
-            Class<?> clazz;
-            clazz = Class.forName("lain.mods.inputfix.CharQuene");
-            writeCharMethod = clazz.getMethod("writeChar", char.class);
-        } catch (ClassNotFoundException | NoSuchMethodException e) {}
-
-        // InputFix end
-
         Sys.initialize(); // init using dummy sys method
 
         long monitor = glfwGetPrimaryMonitor();
@@ -98,6 +84,7 @@ public class Display {
      *
      * @param pixel_format    Describes the minimum specifications the context must fulfill.
      * @param shared_drawable The Drawable to share context with. (optional, may be null)
+     *
      * @throws org.lwjglx.LWJGLException
      */
     public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
@@ -153,7 +140,7 @@ public class Display {
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
 
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
-        // on MacOS
+                                                                   // on MacOS
 
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
         if (Window.handle == 0L) {
@@ -197,14 +184,6 @@ public class Display {
                             (char) codepoint);
                 }
                 Keyboard.addCharEvent(latestEventKey, (char) codepoint);
-
-                // InputFix start
-                if (writeCharMethod != null && codepoint > 256) {
-                    try {
-                        writeCharMethod.invoke(null, (char) codepoint);
-                    } catch (IllegalAccessException | InvocationTargetException e) {}
-                }
-                // InputFix end
             }
         };
 
