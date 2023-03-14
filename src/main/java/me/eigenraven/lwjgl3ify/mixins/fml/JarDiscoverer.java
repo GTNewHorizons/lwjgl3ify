@@ -21,7 +21,8 @@ public class JarDiscoverer {
             return null;
         }
         if (name.contains("module-info.class") || name.startsWith("META-INF/versions/")
-                || name.contains("org/openjdk/nashorn")) {
+                || name.contains("org/openjdk/nashorn")
+                || name.contains("jakarta/servlet/")) {
             // Triggers the continue in the loop
             return "__MACOSX_ignoreme";
         }
