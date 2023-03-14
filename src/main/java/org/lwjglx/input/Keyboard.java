@@ -5,8 +5,8 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -162,7 +162,7 @@ public class Keyboard {
     public static final int keyCount;
 
     private static EventQueue queue = new EventQueue(128);
-    private static Queue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
+    private static BlockingQueue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
 
     private enum KeyState {
 
@@ -260,7 +260,7 @@ public class Keyboard {
     }
 
     public static void addIMECharEvent(char c) {
-        imeCharQueue.add(c);
+        imeCharQueue.offer(c);
     }
 
     public static void create() throws LWJGLException {}
@@ -294,7 +294,6 @@ public class Keyboard {
     }
 
     public static boolean next() {
-
         return queue.next();
     }
 
