@@ -165,22 +165,24 @@ public class Display {
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
                 latestEventKey = key;
-                if (key == GLFW_KEY_F12 && action == 0) {
-                    imeOn = !imeOn;
-                }
-                if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
-                        || Keyboard.isKeyDown(Keyboard.KEY_LWIN)) {
-                    if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
+                if (Config.IME_ENABLED) {
+                    if (Config.IME_F12_TOGGLE && key == GLFW_KEY_F12 && action == 0) {
                         imeOn = !imeOn;
-                        return;
                     }
-                }
-                if (imeOn) {
-                    if (key > 256) {
-                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                    if (Config.IME_SYS_TOGGLE
+                            && (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
+                                    || Keyboard.isKeyDown(Keyboard.KEY_LWIN))) {
+                        if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
+                            imeOn = !imeOn;
+                            return;
+                        }
+                    }
+                    if (imeOn) {
+                        if (key > 256) {
+                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                        }
                     } else {
-                        // Keyboard.addQueue();
-
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
                     }
                 } else {
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
