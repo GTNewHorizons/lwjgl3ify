@@ -164,7 +164,11 @@ public class Display {
                             KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
-                Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
+                if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1F));
+                } else  {
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
+                }
             }
         };
 

@@ -209,7 +209,7 @@ public class Keyboard {
         eventQueue.add(new KeyEvent(0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
     }
 
-    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
+    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods, char c) {
         final KeyState state;
         switch (action) {
             case GLFW.GLFW_PRESS -> state = KeyState.PRESS;
@@ -223,7 +223,7 @@ public class Keyboard {
             default -> state = KeyState.RELEASE;
         }
         try {
-            eventQueue.add(new KeyEvent(KeyCodes.glfwToLwjgl(key), '\0', state, Sys.getNanoTime()));
+            eventQueue.add(new KeyEvent(KeyCodes.glfwToLwjgl(key), c, state, Sys.getNanoTime()));
         } catch (IllegalStateException ignored) {}
     }
 
