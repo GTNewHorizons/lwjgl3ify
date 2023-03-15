@@ -166,7 +166,7 @@ public class Display {
                 }
                 if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1F));
-                } else  {
+                } else {
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                 }
             }
