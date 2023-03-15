@@ -2,10 +2,13 @@ package org.lwjglx.input;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+import me.eigenraven.lwjgl3ify.core.Config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -160,7 +163,10 @@ public class Keyboard {
 
     public static final int keyCount;
 
-    public enum KeyState {
+    private static EventQueue queue = new EventQueue(128);
+    private static BlockingQueue<Character> imeCharQueue = new ArrayBlockingQueue<>(128);
+
+    private enum KeyState {
 
         PRESS(true),
         RELEASE(false),
@@ -175,8 +181,19 @@ public class Keyboard {
 
     private static boolean doRepeatEvents = true;
 
+    private static int[] keyEvents = new int[queue.getMaxEvents()];
+    private static char[] keySpecificChars = new char[queue.getMaxEvents()];
+    private static KeyState[] keyEventStates = new KeyState[queue.getMaxEvents()];
+
+    static {
+        Arrays.fill(keyEventStates, KeyState.RELEASE);
+    }
+
+    private static long[] nanoTimeEvents = new long[queue.getMaxEvents()];
+    private static char[] keyEventChars = new char[Short.MAX_VALUE];
+
     public static final int KEYBOARD_SIZE = Short.MAX_VALUE;
-    public static Queue<KeyEvent> eventQueue = new ArrayBlockingQueue<>(256);
+
     private static final String[] keyName = new String[Short.MAX_VALUE];
     private static final Map<String, Integer> keyMap = new HashMap<>(Short.MAX_VALUE);
 
@@ -206,10 +223,13 @@ public class Keyboard {
             }
             keyMap.put(keyName[i], i);
         }
-        eventQueue.add(new KeyEvent(0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
+        for (int key = 32; key < 128; key++) {
+            keyEventChars[KeyCodes.glfwToLwjgl(key)] = (char) key;
+        }
+        keyEventChars[KEY_NONE] = '\0';
     }
 
-    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods, char c) {
+    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods) {
         final KeyState state;
         switch (action) {
             case GLFW.GLFW_PRESS -> state = KeyState.PRESS;
@@ -222,21 +242,52 @@ public class Keyboard {
             }
             default -> state = KeyState.RELEASE;
         }
-        try {
-            eventQueue.add(new KeyEvent(KeyCodes.glfwToLwjgl(key), c, state, Sys.getNanoTime()));
-        } catch (IllegalStateException ignored) {}
+        final int nextPos = queue.getNextPos();
+        keyEvents[nextPos] = KeyCodes.glfwToLwjgl(key);
+        keyEventStates[nextPos] = state;
+        nanoTimeEvents[nextPos] = Sys.getNanoTime();
+        keySpecificChars[nextPos] = '\0';
+
+        queue.add();
     }
 
     public static void addKeyEvent(int key, boolean pressed) {
-        try {
-            eventQueue.add(new KeyEvent(key, '\0', pressed ? KeyState.PRESS : KeyState.RELEASE, Sys.getNanoTime()));
-        } catch (IllegalStateException ignored) {}
+        final int nextPos = queue.getNextPos();
+        keyEvents[nextPos] = KeyCodes.glfwToLwjgl(key);
+        keyEventStates[nextPos] = pressed ? KeyState.PRESS : KeyState.RELEASE;
+        nanoTimeEvents[nextPos] = Sys.getNanoTime();
+        keySpecificChars[nextPos] = '\0';
+
+        queue.add();
+    }
+
+    private static void duplicateKeyEvent() {
+        final int nextPos = queue.getNextPos();
+        final int prevPos = queue.getLastWrittenPos();
+        keyEvents[nextPos] = keyEvents[prevPos];
+        keyEventStates[nextPos] = keyEventStates[prevPos];
+        nanoTimeEvents[nextPos] = nanoTimeEvents[prevPos];
+        keySpecificChars[nextPos] = keySpecificChars[prevPos];
+        queue.add();
     }
 
     public static void addCharEvent(int key, char c) {
-        try {
-            eventQueue.add(new KeyEvent(KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
-        } catch (IllegalStateException ignored) {}
+        final int nextPos = queue.getNextPos();
+        final int prevPos = queue.getLastWrittenPos();
+        int index = KeyCodes.glfwToLwjgl(key);
+        keyEventChars[index] = c;
+        if (Config.MBE_ENABLED) {
+            if (keySpecificChars[prevPos] == '\0') {
+                keySpecificChars[prevPos] = c;
+            } else {
+                duplicateKeyEvent();
+                keySpecificChars[nextPos] = c;
+            }
+        }
+    }
+
+    public static void addIMECharEvent(char c) {
+        imeCharQueue.offer(c);
     }
 
     public static void create() throws LWJGLException {}
@@ -262,36 +313,41 @@ public class Keyboard {
     }
 
     public static int getNumKeyboardEvents() {
-        return eventQueue.size();
+        return queue.getEventCount();
     }
 
     public static boolean isRepeatEvent() {
-        return eventQueue.peek().state == KeyState.REPEAT;
+        return keyEventStates[queue.getCurrentPos()] == KeyState.REPEAT;
     }
 
     public static boolean next() {
-        boolean next = eventQueue.size() > 1;
-        if (next) {
-            eventQueue.remove();
-        }
-        return next;
+        return queue.next();
     }
 
     public static int getEventKey() {
-        return eventQueue.peek().key;
+        return keyEvents[queue.getCurrentPos()];
     }
 
     public static char getEventCharacter() {
-        return eventQueue.peek().aChar;
-
+        if (!imeCharQueue.isEmpty() && Display.imeOn) {
+            return imeCharQueue.remove();
+        }
+        final int eventKey = getEventKey();
+        final char eventSpecificChar = keySpecificChars[queue.getCurrentPos()];
+        // On some systems it seems esc and backspace can generate broken chars sometimes, make sure they always work
+        return switch (eventKey) {
+            case KEY_ESCAPE -> '\0';
+            case KEY_BACK -> '\b';
+            default -> (eventSpecificChar != '\0') ? eventSpecificChar : keyEventChars[eventKey];
+        };
     }
 
     public static boolean getEventKeyState() {
-        return eventQueue.peek().state == KeyState.PRESS;
+        return keyEventStates[queue.getCurrentPos()].isPressed || (!imeCharQueue.isEmpty() && Display.imeOn);
     }
 
     public static long getEventNanoseconds() {
-        return eventQueue.peek().nano;
+        return nanoTimeEvents[queue.getCurrentPos()];
     }
 
     public static String getKeyName(int key) {
@@ -317,19 +373,4 @@ public class Keyboard {
     }
 
     public static void destroy() {}
-
-    public static class KeyEvent {
-
-        public int key;
-        public char aChar;
-        public KeyState state;
-        public long nano;
-
-        public KeyEvent(int key, char aChar, KeyState state, long nano) {
-            this.key = key;
-            this.aChar = aChar;
-            this.state = state;
-            this.nano = nano;
-        }
-    }
 }
