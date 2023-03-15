@@ -49,11 +49,6 @@ public class Config {
     public static boolean DEBUG_PRINT_KEY_EVENTS = false;
     public static boolean DEBUG_PRINT_MOUSE_EVENTS = false;
 
-    public static boolean MBE_ENABLED = true;
-    public static boolean IME_ENABLED = false;
-    public static boolean IME_F12_TOGGLE = false;
-    public static boolean IME_SYS_TOGGLE = false;
-
     public static boolean SHOW_JAVA_VERSION = true;
     public static boolean SHOW_LWJGL_VERSION = true;
 
@@ -136,17 +131,6 @@ public class Config {
                 CATEGORY_DEBUG,
                 DEBUG_PRINT_MOUSE_EVENTS,
                 "Print mouse-related events to the log");
-
-        MBE_ENABLED = config
-                .getBoolean("handleMultibyteInput", CATEGORY_CORE, MBE_ENABLED, "Enables multibyte character input.");
-        IME_ENABLED = config.getBoolean("enabled", CATEGORY_IME, IME_ENABLED, "Enables IME support for CJK input.");
-        IME_F12_TOGGLE = config
-                .getBoolean("f12Toggle", CATEGORY_IME, IME_F12_TOGGLE, "Enables switching IME mode by pressing F12.");
-        IME_SYS_TOGGLE = config.getBoolean(
-                "sysToggle",
-                CATEGORY_IME,
-                IME_SYS_TOGGLE,
-                "Enables switching IME mode by pressing Ctrl/LWin + Shift/Space");
 
         SHOW_JAVA_VERSION = config
                 .getBoolean("showJavaVersion", CATEGORY_CORE, SHOW_JAVA_VERSION, "Show java version in the debug hud");
