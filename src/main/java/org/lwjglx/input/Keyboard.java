@@ -222,16 +222,21 @@ public class Keyboard {
             }
             default -> state = KeyState.RELEASE;
         }
-        eventQueue.add(new KeyEvent(KeyCodes.glfwToLwjgl(key), '\0', state, Sys.getNanoTime()));
+        try {
+            eventQueue.add(new KeyEvent(KeyCodes.glfwToLwjgl(key), '\0', state, Sys.getNanoTime()));
+        } catch (IllegalStateException ignored) {}
     }
 
     public static void addKeyEvent(int key, boolean pressed) {
-        eventQueue.add(new KeyEvent(key, '\0', pressed ? KeyState.PRESS : KeyState.RELEASE, Sys.getNanoTime()));
+        try {
+            eventQueue.add(new KeyEvent(key, '\0', pressed ? KeyState.PRESS : KeyState.RELEASE, Sys.getNanoTime()));
+        } catch (IllegalStateException ignored) {}
     }
 
     public static void addCharEvent(int key, char c) {
-        eventQueue.add(new KeyEvent(KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
-
+        try {
+            eventQueue.add(new KeyEvent(KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
+        } catch (IllegalStateException ignored) {}
     }
 
     public static void create() throws LWJGLException {}
@@ -273,11 +278,11 @@ public class Keyboard {
     }
 
     public static int getEventKey() {
-        return eventQueue.peek().code;
+        return eventQueue.peek().key;
     }
 
     public static char getEventCharacter() {
-        return eventQueue.peek().c;
+        return eventQueue.peek().aChar;
 
     }
 
@@ -315,14 +320,14 @@ public class Keyboard {
 
     public static class KeyEvent {
 
-        public int code;
-        public char c;
+        public int key;
+        public char aChar;
         public KeyState state;
         public long nano;
 
-        public KeyEvent(int code, char c, KeyState state, long nano) {
-            this.code = code;
-            this.c = c;
+        public KeyEvent(int key, char aChar, KeyState state, long nano) {
+            this.key = key;
+            this.aChar = aChar;
             this.state = state;
             this.nano = nano;
         }
