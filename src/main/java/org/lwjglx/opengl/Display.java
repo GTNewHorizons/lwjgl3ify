@@ -164,33 +164,10 @@ public class Display {
                             KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
-                latestEventKey = key;
-                if (Config.IME_ENABLED) {
-                    if (Config.IME_F12_TOGGLE && key == GLFW_KEY_F12 && action == 0) {
-                        imeOn = !imeOn;
-                    }
-                    if (Config.IME_SYS_TOGGLE
-                            && (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
-                                    || Keyboard.isKeyDown(Keyboard.KEY_LWIN))) {
-                        if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
-                            imeOn = !imeOn;
-                            return;
-                        }
-                    }
-                    if (imeOn) {
-                        if (key > 256) {
-                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                        }
-                    } else {
-                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                    }
-                } else {
-                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                }
-                // Ctrl should generate ASCII modifier keys (0x01-0x1F), glfw does not give use char events for this
                 if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
-                    int codepoint = key & 0x1F;
-                    Keyboard.addCharEvent(key, (char) codepoint);
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1F));
+                } else {
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                 }
             }
         };
@@ -206,14 +183,7 @@ public class Display {
                             codepoint,
                             (char) codepoint);
                 }
-                if (imeOn) {
-                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, true);
-                    Keyboard.addIMECharEvent((char) codepoint);
-                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, false);
-
-                } else {
-                    Keyboard.addCharEvent(latestEventKey, (char) codepoint);
-                }
+                Keyboard.addCharEvent(0, (char) codepoint);
             }
         };
 
