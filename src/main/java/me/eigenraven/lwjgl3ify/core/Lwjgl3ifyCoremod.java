@@ -43,6 +43,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
             launchLoader.addClassLoaderExclusion("org.omg");
             launchLoader.addClassLoaderExclusion("org.w3c.dom");
             launchLoader.addClassLoaderExclusion("org.xml.sax");
+            launchLoader.addClassLoaderExclusion("org.hotswap.agent");
         } catch (ClassCastException e) {
             LOGGER.warn("Unsupported launch class loader type " + getClass().getClassLoader().getClass(), e);
         }
