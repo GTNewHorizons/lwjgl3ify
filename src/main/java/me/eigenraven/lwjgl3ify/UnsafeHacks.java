@@ -15,7 +15,7 @@ import java.util.Optional;
 @SuppressWarnings({ "restriction", "sunapi" })
 public class UnsafeHacks {
 
-    private static final sun.misc.Unsafe UNSAFE;
+    public static final sun.misc.Unsafe UNSAFE;
 
     static {
         try {

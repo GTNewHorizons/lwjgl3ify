@@ -4,11 +4,14 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.core.Config;
+import me.eigenraven.lwjgl3ify.ime.IImeNativeInterface;
+import me.eigenraven.lwjgl3ify.ime.ImeNativeInterface;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
@@ -60,6 +63,7 @@ public class Display {
     private static boolean cancelNextChar = false;
     private static Keyboard.KeyEvent ingredientKeyEvent;
     private static ByteBuffer[] savedIcons;
+    private static IImeNativeInterface imeNative = null;
 
     static {
         Sys.initialize(); // init using dummy sys method
@@ -154,16 +158,18 @@ public class Display {
 
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
+                boolean imeOn = imeNative.isCompositionEnabled();
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{}",
+                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{} ime-on:{}",
                             window,
                             key,
                             scancode,
                             action,
                             mods,
                             KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
-                            (key >= 32 && key < 127) ? ((char) key) : '?');
+                            (key >= 32 && key < 127) ? ((char) key) : '?',
+                            imeOn);
                 }
                 cancelNextChar = false;
                 if (key > GLFW_KEY_SPACE && key <= GLFW_KEY_GRAVE_ACCENT) { // Handle keys have a char. Exclude space to
@@ -355,6 +361,8 @@ public class Display {
         Window.windowSizeCallback.invoke(Window.handle, x[0], y[0]);
         GLFW.glfwGetFramebufferSize(Window.handle, x, y);
         Window.framebufferSizeCallback.invoke(Window.handle, x[0], y[0]);
+
+        imeNative = ImeNativeInterface.make();
     }
 
     public static boolean isCreated() {
@@ -412,8 +420,15 @@ public class Display {
     }
 
     public static void destroy() {
+        try {
+            imeNative.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        imeNative = null;
         Window.releaseCallbacks();
         glfwDestroyWindow(Window.handle);
+        Window.handle = 0;
 
         /*
          * try { glfwTerminate(); } catch (Throwable t) { t.printStackTrace(); }
