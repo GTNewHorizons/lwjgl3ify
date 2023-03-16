@@ -1,17 +1,24 @@
 import org.gradle.jvm.toolchain.internal.DefaultToolchainSpec
 
+def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
+newJavaToolchainSpec.vendor.set(JvmVendorSpec.AZUL)
+newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
+
 SourceSet forgePatchesSet
+SourceSet hotswapSet
 
 sourceSets {
     create("util") {
-        java {
-        }
+        java {}
     }
     forgePatchesSet = create("forgePatches") {
         java {
             compileClasspath += mcpTasks.patchedMcSources.output
             compileClasspath += mcpTasks.patchedConfiguration
         }
+    }
+    hotswapSet = create("hotswap") {
+        java {}
     }
     named("main").configure {
         java {
@@ -20,6 +27,24 @@ sourceSets {
             runtimeClasspath = forgePatchesSet.output + runtimeClasspath
         }
     }
+}
+
+tasks.named("shadowJar", Jar) {
+    from(hotswapSet.output)
+}
+
+tasks.named("compileHotswapJava", JavaCompile).configure {
+    javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.named("compileHotswapScala").configure {
+    enabled = false
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
@@ -31,6 +56,9 @@ dependencies {
     utilImplementation("com.google.guava:guava:31.1-jre")
 
     forgePatchesImplementation("org.apache.commons:commons-compress:1.21")
+
+    hotswapCompileOnly("org.hotswapagent:hotswap-agent-core:1.4.1")
+    hotswapCompileOnly("net.minecraft:launchwrapper:1.15")
 }
 
 def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
@@ -113,9 +141,6 @@ afterEvaluate {
     }
 }
 
-def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
-newJavaToolchainSpec.vendor.set(JvmVendorSpec.ADOPTIUM)
-newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
 def newJavaLauncher = javaToolchains.launcherFor(newJavaToolchainSpec)
 
 minecraft.extraRunJvmArguments.addAll(
