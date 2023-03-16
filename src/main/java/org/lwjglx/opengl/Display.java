@@ -57,7 +57,8 @@ public class Display {
     private static boolean latestResized = false;
     private static int latestWidth = 0;
     private static int latestHeight = 0;
-    public static boolean imeOn = false;
+    private static boolean cancelNextChar = false;
+    private static Keyboard.KeyEvent ingredientKeyEvent;
     private static ByteBuffer[] savedIcons;
 
     static {
@@ -164,9 +165,23 @@ public class Display {
                             KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
-                if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
-                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1F));
-                } else {
+                cancelNextChar = false;
+                if (key > GLFW_KEY_SPACE && key <= GLFW_KEY_GRAVE_ACCENT) { // Handle keys have a char. Exclude space to
+                                                                            // avoid extra input when switching IME
+                    if ((GLFW_MOD_CONTROL & mods) != 0) { // Handle ctrl + x/c/v.
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
+                        cancelNextChar = true; // Cancel char event from ctrl key since its already handled here
+                    } else if (action > 0) { // Delay press and repeat key event to actual char input. There is ALWAYS a
+                                             // char after them
+                        ingredientKeyEvent = new Keyboard.KeyEvent(
+                                KeyCodes.glfwToLwjgl(key),
+                                '\0',
+                                action > 1 ? Keyboard.KeyState.REPEAT : Keyboard.KeyState.PRESS,
+                                Sys.getNanoTime());
+                    } else { // Release event
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
+                    }
+                } else { // Other key with no char associated
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                 }
             }
@@ -183,7 +198,15 @@ public class Display {
                             codepoint,
                             (char) codepoint);
                 }
-                Keyboard.addCharEvent(0, (char) codepoint);
+                if (cancelNextChar) { // Char event being cancelled
+                    cancelNextChar = false;
+                } else if (ingredientKeyEvent != null) {
+                    ingredientKeyEvent.aChar = (char) codepoint; // Send char with ASCII key event here
+                    Keyboard.eventQueue.add(ingredientKeyEvent);
+                    ingredientKeyEvent = null;
+                } else {
+                    Keyboard.addCharEvent(0, (char) codepoint); // Non-ASCII chars
+                }
             }
         };
 

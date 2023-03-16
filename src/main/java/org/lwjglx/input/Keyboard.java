@@ -287,7 +287,7 @@ public class Keyboard {
     }
 
     public static boolean getEventKeyState() {
-        return eventQueue.peek().state == KeyState.PRESS;
+        return eventQueue.peek().state.isPressed;
     }
 
     public static long getEventNanoseconds() {
