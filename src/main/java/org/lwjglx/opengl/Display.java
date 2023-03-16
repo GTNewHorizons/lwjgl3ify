@@ -186,6 +186,7 @@ public class Display {
                         case GLFW_KEY_ENTER -> 0x0D;
                         case GLFW_KEY_ESCAPE -> 0x1B;
                         case GLFW_KEY_TAB -> 0x09;
+                        case GLFW_KEY_BACKSPACE -> 0x08;
                         default -> '\0';
                     };
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, mappedChar);
