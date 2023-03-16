@@ -57,7 +57,8 @@ public class Display {
     private static boolean latestResized = false;
     private static int latestWidth = 0;
     private static int latestHeight = 0;
-    public static boolean imeOn = false;
+    private static boolean cancelNextChar = false;
+    private static Keyboard.KeyEvent ingredientKeyEvent;
     private static ByteBuffer[] savedIcons;
 
     static {
@@ -155,7 +156,7 @@ public class Display {
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} char:{}",
+                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{}",
                             window,
                             key,
                             scancode,
@@ -164,33 +165,30 @@ public class Display {
                             KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                             (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
-                latestEventKey = key;
-                if (Config.IME_ENABLED) {
-                    if (Config.IME_F12_TOGGLE && key == GLFW_KEY_F12 && action == 0) {
-                        imeOn = !imeOn;
+                cancelNextChar = false;
+                if (key > GLFW_KEY_SPACE && key <= GLFW_KEY_GRAVE_ACCENT) { // Handle keys have a char. Exclude space to
+                                                                            // avoid extra input when switching IME
+                    if ((GLFW_MOD_CONTROL & mods) != 0) { // Handle ctrl + x/c/v.
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
+                        cancelNextChar = true; // Cancel char event from ctrl key since its already handled here
+                    } else if (action > 0) { // Delay press and repeat key event to actual char input. There is ALWAYS a
+                                             // char after them
+                        ingredientKeyEvent = new Keyboard.KeyEvent(
+                                KeyCodes.glfwToLwjgl(key),
+                                '\0',
+                                action > 1 ? Keyboard.KeyState.REPEAT : Keyboard.KeyState.PRESS,
+                                Sys.getNanoTime());
+                    } else { // Release event
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                     }
-                    if (Config.IME_SYS_TOGGLE
-                            && (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)
-                                    || Keyboard.isKeyDown(Keyboard.KEY_LWIN))) {
-                        if (key == GLFW_KEY_SPACE || key == GLFW_KEY_LEFT_SHIFT || key == GLFW_KEY_RIGHT_SHIFT) {
-                            imeOn = !imeOn;
-                            return;
-                        }
-                    }
-                    if (imeOn) {
-                        if (key > 256) {
-                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                        }
-                    } else {
-                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                    }
-                } else {
-                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods);
-                }
-                // Ctrl should generate ASCII modifier keys (0x01-0x1F), glfw does not give use char events for this
-                if ((mods & GLFW_MOD_CONTROL) != 0 && key >= GLFW_KEY_A && key <= GLFW_KEY_Z) {
-                    int codepoint = key & 0x1F;
-                    Keyboard.addCharEvent(key, (char) codepoint);
+                } else { // Other key with no char event associated
+                    char mappedChar = switch (key) {
+                        case GLFW_KEY_ENTER -> 0x0D;
+                        case GLFW_KEY_ESCAPE -> 0x1B;
+                        case GLFW_KEY_TAB -> 0x09;
+                        default -> '\0';
+                    };
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, mappedChar);
                 }
             }
         };
@@ -206,13 +204,14 @@ public class Display {
                             codepoint,
                             (char) codepoint);
                 }
-                if (imeOn) {
-                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, true);
-                    Keyboard.addIMECharEvent((char) codepoint);
-                    Keyboard.addKeyEvent(GLFW_KEY_UNKNOWN, false);
-
+                if (cancelNextChar) { // Char event being cancelled
+                    cancelNextChar = false;
+                } else if (ingredientKeyEvent != null) {
+                    ingredientKeyEvent.aChar = (char) codepoint; // Send char with ASCII key event here
+                    Keyboard.eventQueue.add(ingredientKeyEvent);
+                    ingredientKeyEvent = null;
                 } else {
-                    Keyboard.addCharEvent(latestEventKey, (char) codepoint);
+                    Keyboard.addCharEvent(0, (char) codepoint); // Non-ASCII chars
                 }
             }
         };
