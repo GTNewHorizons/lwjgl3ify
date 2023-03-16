@@ -156,7 +156,7 @@ public class Display {
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} char:{}",
+                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{}",
                             window,
                             key,
                             scancode,
@@ -181,8 +181,14 @@ public class Display {
                     } else { // Release event
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                     }
-                } else { // Other key with no char associated
-                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
+                } else { // Other key with no char event associated
+                    char mappedChar = switch (key) {
+                        case GLFW_KEY_ENTER -> 0x0D;
+                        case GLFW_KEY_ESCAPE -> 0x1B;
+                        case GLFW_KEY_TAB -> 0x09;
+                        default -> '\0';
+                    };
+                    Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, mappedChar);
                 }
             }
         };
