@@ -4,13 +4,13 @@ import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 
-import org.spongepowered.libraries.org.objectweb.asm.AnnotationVisitor;
-import org.spongepowered.libraries.org.objectweb.asm.ClassReader;
-import org.spongepowered.libraries.org.objectweb.asm.ClassVisitor;
-import org.spongepowered.libraries.org.objectweb.asm.ClassWriter;
-import org.spongepowered.libraries.org.objectweb.asm.Type;
-import org.spongepowered.libraries.org.objectweb.asm.commons.ClassRemapper;
-import org.spongepowered.libraries.org.objectweb.asm.commons.Remapper;
+import org.spongepowered.asm.lib.AnnotationVisitor;
+import org.spongepowered.asm.lib.ClassReader;
+import org.spongepowered.asm.lib.ClassVisitor;
+import org.spongepowered.asm.lib.ClassWriter;
+import org.spongepowered.asm.lib.Type;
+import org.spongepowered.asm.lib.commons.ClassRemapper;
+import org.spongepowered.asm.lib.commons.Remapper;
 
 public class LwjglRedirectTransformer extends Remapper implements IClassTransformer {
 
