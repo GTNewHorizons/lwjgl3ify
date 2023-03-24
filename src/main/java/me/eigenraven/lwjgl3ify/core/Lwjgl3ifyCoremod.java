@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.system.Configuration;
 import org.lwjgl.system.Platform;
+import org.lwjglx.Sys;
 import org.spongepowered.asm.launch.GlobalProperties;
 import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
@@ -44,6 +45,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
             launchLoader.addClassLoaderExclusion("org.w3c.dom");
             launchLoader.addClassLoaderExclusion("org.xml.sax");
             launchLoader.addClassLoaderExclusion("org.hotswap.agent");
+            launchLoader.addClassLoaderExclusion("org.lwjglx.debug");
         } catch (ClassCastException e) {
             LOGGER.warn("Unsupported launch class loader type " + getClass().getClassLoader().getClass(), e);
         }
@@ -55,6 +57,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         }
         if (FMLLaunchHandler.side().isClient()) {
             clientMacOsFix();
+            Sys.initialize();
         }
     }
 
