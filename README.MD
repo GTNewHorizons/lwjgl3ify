@@ -15,7 +15,7 @@ Reload the launcher, and it should show up modified versions of Forge, Minecraft
 Put the mod jar (`lwjgl3ify-VERSION.jar`) in `mods/` in your instance's minecraft folder, it will get loaded as a coremod.
 The forgePatches jar will get automatically downloaded by the launcher.
 
-Change the instance java version to 17.0.6 (or newer) or 19.0.2 (or newer), these are the currently supported versions.
+Change the instance java version to 17.0.6 (or newer), 19.0.2 (or newer) or 20 (or newer), these are the currently supported versions.
 You can also use Java 11 if you remove the `-Djava.security.manager=allow` argument from `patches/me.eigenraven.lwjgl3ify.forgepatches.json`.
 
 For MultiMC, you need to manually put in extra java arguments, prismlauncher can load them from the patches json files automatically:
