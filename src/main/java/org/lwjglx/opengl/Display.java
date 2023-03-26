@@ -179,6 +179,9 @@ public class Display {
                                 action > 1 ? Keyboard.KeyState.REPEAT : Keyboard.KeyState.PRESS,
                                 Sys.getNanoTime());
                     } else { // Release event
+                        if (ingredientKeyEvent != null && ingredientKeyEvent.key == KeyCodes.glfwToLwjgl(key)) {
+                            ingredientKeyEvent.queueOutOfOrderRelease = true;
+                        }
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                     }
                 } else { // Other key with no char event associated
@@ -209,7 +212,12 @@ public class Display {
                     cancelNextChar = false;
                 } else if (ingredientKeyEvent != null) {
                     ingredientKeyEvent.aChar = (char) codepoint; // Send char with ASCII key event here
-                    Keyboard.eventQueue.add(ingredientKeyEvent);
+                    Keyboard.addRawKeyEvent(ingredientKeyEvent);
+                    if (ingredientKeyEvent.queueOutOfOrderRelease) {
+                        ingredientKeyEvent = ingredientKeyEvent.copy();
+                        ingredientKeyEvent.state = Keyboard.KeyState.RELEASE;
+                        Keyboard.addRawKeyEvent(ingredientKeyEvent);
+                    }
                     ingredientKeyEvent = null;
                 } else {
                     Keyboard.addCharEvent(0, (char) codepoint); // Non-ASCII chars

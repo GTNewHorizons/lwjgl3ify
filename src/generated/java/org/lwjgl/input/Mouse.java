@@ -97,7 +97,7 @@ public class Mouse {
     }
 
     public static boolean isGrabbed() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.isGrabbed();
     }
 
     public static boolean isInsideWindow() {
@@ -121,7 +121,7 @@ public class Mouse {
     }
 
     public static void setGrabbed(boolean arg0) {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.setGrabbed(arg0);
     }
 
     public static org.lwjgl.input.Cursor setNativeCursor(org.lwjgl.input.Cursor arg0) {
