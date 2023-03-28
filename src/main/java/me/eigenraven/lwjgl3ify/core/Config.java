@@ -37,7 +37,16 @@ public class Config {
             "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
             // Non-GTNH Mods Compat
             "net.minecraft.event.HoverEvent$Action", // Needed for lotr compat
-    };
+            // Reika's mods
+            "net.minecraft.client.audio.SoundCategory",
+            "Reika.RotaryCraft.TileEntities.Processing.TileEntityFuelConverter$Conversions",
+            "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Fertility",
+            "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Speeds",
+            "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Flowering",
+            "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Territory",
+            "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Life",
+            "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Fertility",
+            "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life", };
 
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
