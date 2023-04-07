@@ -159,6 +159,7 @@ minecraft.extraRunJvmArguments.addAll(
     "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
     "--add-opens", "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
     "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED",
+    "--add-opens", "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
     "--add-modules", "jdk.dynalink",
     "--add-opens", "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
     "--add-modules", "java.sql.rowset",
