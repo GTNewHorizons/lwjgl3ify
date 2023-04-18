@@ -2,7 +2,7 @@
     "components": [
         {
             "cachedName": "LWJGL 3",
-            "cachedVersion": "3.3.2-SNAPSHOT-3.3.2-20230304.162250-10",
+            "cachedVersion": "3.3.2",
             "cachedVolatile": true,
             "dependencyOnly": true,
             "uid": "org.lwjgl3",
@@ -22,7 +22,7 @@
             "version": "1.7.10"
         },
         {
-            "cachedName": "Forge-J9-Patches",
+            "cachedName": "Forge-lwjgl3ify-Patches",
             "cachedVersion": "${version}",
             "uid": "me.eigenraven.lwjgl3ify.forgepatches"
         },

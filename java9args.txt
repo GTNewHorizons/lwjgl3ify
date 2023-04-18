@@ -25,6 +25,8 @@ java.base/sun.nio.ch=ALL-UNNAMED
 jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming
 --add-opens
 java.desktop/sun.awt.image=ALL-UNNAMED
+--add-opens
+java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED
 --add-modules jdk.dynalink
 --add-opens
 jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED
