@@ -22,7 +22,7 @@
             "version": "1.7.10"
         },
         {
-            "cachedName": "Forge-J9-Patches",
+            "cachedName": "Forge-lwjgl3ify-Patches",
             "cachedVersion": "${version}",
             "uid": "me.eigenraven.lwjgl3ify.forgepatches"
         },
