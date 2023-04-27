@@ -25,7 +25,7 @@ public class Lwjgl3ifyHotswapPlugin {
         final ClassLoader ctxLoader = curThread.getContextClassLoader();
         try {
             if (classLoader.getClass().getName().equals("net.minecraft.launchwrapper.LaunchClassLoader")) {
-                LOGGER.info("Retransforming {}", className);
+                LOGGER.debug("Retransforming {}", className);
                 PluginManager.getInstance().initClassLoader(classLoader, protectionDomain);
                 final Class<?> helper = Class
                         .forName("me.eigenraven.lwjgl3ify.hotswap.TransformHelper", true, classLoader);
