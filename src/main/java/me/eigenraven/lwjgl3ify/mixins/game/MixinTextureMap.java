@@ -4,13 +4,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import me.eigenraven.lwjgl3ify.textures.NativeBackedImage;
-
 import net.minecraft.client.renderer.texture.TextureMap;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+import me.eigenraven.lwjgl3ify.textures.NativeBackedImage;
 
 @Mixin(TextureMap.class)
 public abstract class MixinTextureMap {

@@ -6,9 +6,6 @@ package me.eigenraven.lwjgl3ify.core;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import me.eigenraven.lwjgl3ify.IExtensibleEnum;
-import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
-
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Label;
@@ -19,6 +16,9 @@ import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
+
+import me.eigenraven.lwjgl3ify.IExtensibleEnum;
+import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
 
 public class ExtensibleEnumTransformerHelper {
 

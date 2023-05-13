@@ -3,8 +3,6 @@ package me.eigenraven.lwjgl3ify.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
-
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.objectweb.asm.ClassReader;
@@ -14,6 +12,8 @@ import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
+
+import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
 
 public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
 

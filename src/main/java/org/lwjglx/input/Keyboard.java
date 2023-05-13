@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import me.eigenraven.lwjgl3ify.Lwjgl3ify;
-import me.eigenraven.lwjgl3ify.core.Config;
-
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
+
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Keyboard {
 

@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import me.eigenraven.lwjgl3ify.Tags;
-
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
+
+import me.eigenraven.lwjgl3ify.Tags;
 
 public class Config {
 

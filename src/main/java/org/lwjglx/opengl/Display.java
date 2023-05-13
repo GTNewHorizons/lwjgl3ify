@@ -7,9 +7,6 @@ import java.awt.event.KeyEvent;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import me.eigenraven.lwjgl3ify.Lwjgl3ify;
-import me.eigenraven.lwjgl3ify.core.Config;
-
 import org.lwjgl.glfw.*;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCharCallback;
@@ -28,6 +25,9 @@ import org.lwjglx.Sys;
 import org.lwjglx.input.KeyCodes;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
+
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Display {
 
