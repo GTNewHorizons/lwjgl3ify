@@ -1,7 +1,5 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
-
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.spongepowered.asm.lib.AnnotationVisitor;
@@ -11,6 +9,8 @@ import org.spongepowered.asm.lib.ClassWriter;
 import org.spongepowered.asm.lib.Type;
 import org.spongepowered.asm.lib.commons.ClassRemapper;
 import org.spongepowered.asm.lib.commons.Remapper;
+
+import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 
 public class LwjglRedirectTransformer extends Remapper implements IClassTransformer {
 

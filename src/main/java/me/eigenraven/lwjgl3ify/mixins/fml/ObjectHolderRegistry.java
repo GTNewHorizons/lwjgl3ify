@@ -3,11 +3,11 @@ package me.eigenraven.lwjgl3ify.mixins.fml;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
 
 @Mixin(value = { cpw.mods.fml.common.registry.ObjectHolderRegistry.class }, remap = false)
 public abstract class ObjectHolderRegistry {

@@ -2,14 +2,14 @@ package me.eigenraven.lwjgl3ify.core;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import me.eigenraven.lwjgl3ify.Lwjgl3ify;
-
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InvokeDynamicInsnNode;
 import org.objectweb.asm.tree.MethodNode;
+
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 
 /**
  * Fixes a compilation bug of the java 8 compiler leading to the following exception at runtime:

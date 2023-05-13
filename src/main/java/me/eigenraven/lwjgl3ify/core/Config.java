@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import me.eigenraven.lwjgl3ify.Tags;
-
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
+
+import me.eigenraven.lwjgl3ify.Tags;
 
 public class Config {
 
@@ -36,7 +36,8 @@ public class Config {
             "net.minecraft.client.audio.MusicTicker$MusicType", "org.bukkit.Material",
             "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
             // Non-GTNH Mods Compat
-            "net.minecraft.event.HoverEvent$Action", // Needed for lotr compat
+            // The Lord of the Rings Mod: Legacy
+            "net.minecraft.event.HoverEvent$Action",
             // Reika's mods
             "net.minecraft.client.audio.SoundCategory",
             "Reika.RotaryCraft.TileEntities.Processing.TileEntityFuelConverter$Conversions",
@@ -46,7 +47,11 @@ public class Config {
             "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Territory",
             "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Life",
             "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Fertility",
-            "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life", };
+            "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life",
+            // Et Futurum Requiem
+            "net.minecraft.world.WorldSettings$GameType",
+            //
+    };
 
     private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;

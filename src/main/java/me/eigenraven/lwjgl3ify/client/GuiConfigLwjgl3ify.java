@@ -1,8 +1,5 @@
 package me.eigenraven.lwjgl3ify.client;
 
-import me.eigenraven.lwjgl3ify.Tags;
-import me.eigenraven.lwjgl3ify.core.Config;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -14,7 +11,10 @@ import net.minecraftforge.common.config.ConfigElement;
 import org.lwjglx.input.Mouse;
 
 import com.google.common.collect.Lists;
+
 import cpw.mods.fml.client.config.GuiConfig;
+import me.eigenraven.lwjgl3ify.Tags;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 @SuppressWarnings("unused")
 public class GuiConfigLwjgl3ify extends GuiConfig {

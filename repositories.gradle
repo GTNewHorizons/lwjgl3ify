@@ -5,5 +5,4 @@ repositories {
         name 'sonatype'
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
     }
-    mavenCentral()
 }

@@ -1,8 +1,5 @@
 package me.eigenraven.lwjgl3ify;
 
-import me.eigenraven.lwjgl3ify.api.ConfigUtils;
-import me.eigenraven.lwjgl3ify.core.Config;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,6 +7,8 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import me.eigenraven.lwjgl3ify.api.ConfigUtils;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 @Mod(
         modid = "lwjgl3ify",

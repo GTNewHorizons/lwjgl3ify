@@ -1,8 +1,5 @@
 package me.eigenraven.lwjgl3ify.textures;
 
-import me.eigenraven.lwjgl3ify.Lwjgl3ify;
-import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
-
 import net.minecraft.client.renderer.StitcherException;
 import net.minecraft.client.renderer.texture.Stitcher;
 import net.minecraft.util.MathHelper;
@@ -14,6 +11,8 @@ import org.lwjgl.stb.STBRPRect;
 import org.lwjgl.stb.STBRectPack;
 
 import cpw.mods.fml.common.ProgressManager;
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 
 @Lwjgl3Aware
 @SuppressWarnings("deprecation")

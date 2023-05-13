@@ -3,14 +3,14 @@ package org.lwjglx.input;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import me.eigenraven.lwjgl3ify.core.Config;
-
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
+
+import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Mouse {
 

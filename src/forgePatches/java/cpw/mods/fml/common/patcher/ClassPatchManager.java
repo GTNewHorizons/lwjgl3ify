@@ -18,8 +18,6 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.compress.harmony.unpack200.Pack200UnpackerAdapter;
 import org.apache.logging.log4j.Level;
 
-import LZMA.LzmaInputStream;
-
 import com.google.common.base.Joiner;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ArrayListMultimap;
@@ -30,6 +28,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 
+import LZMA.LzmaInputStream;
 import cpw.mods.fml.relauncher.FMLRelaunchLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.repackage.com.nothome.delta.GDiffPatcher;
