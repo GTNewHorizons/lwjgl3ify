@@ -1,4 +1,4 @@
-//version: 1683705740
+//version: 1684218858
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -69,7 +69,7 @@ plugins {
     id 'com.diffplug.spotless' version '6.13.0' apply false // 6.13.0 is the last jvm8 supporting version
     id 'com.modrinth.minotaur' version '2.+' apply false
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.3.11'
+    id 'com.gtnewhorizons.retrofuturagradle' version '1.3.14'
 }
 
 print("You might want to check out './gradlew :faq' if your build fails.\n")
@@ -730,7 +730,7 @@ dependencies {
         java17Dependencies("com.github.GTNewHorizons:lwjgl3ify:${lwjgl3ifyVersion}")
     }
     if (modId != 'hodgepodge') {
-        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.2.8')
+        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.2.13')
     }
 
     java17PatchDependencies('net.minecraft:launchwrapper:1.15') {transitive = false}
