@@ -50,11 +50,9 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         return writer.toByteArray();
     }
 
-    final String[] fromPrefixes = new String[] { "org/lwjgl/", "paulscode/sound/libraries/", "javax/xml/bind/",
-            "javax/servlet/" };
+    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/" };
 
-    final String[] toPrefixes = new String[] { "org/lwjglx/", "me/eigenraven/lwjgl3ify/paulscode/sound/libraries/",
-            "jakarta/xml/bind/", "jakarta/servlet/" };
+    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/" };
 
     @Override
     public String map(String typeName) {
