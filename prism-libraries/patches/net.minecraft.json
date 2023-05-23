@@ -9,9 +9,9 @@
     "compatibleJavaMajors": [
         11,
         17,
-        18,
         19,
-        20
+        20,
+        21
     ],
     "formatVersion": 1,
     "libraries": [
@@ -340,6 +340,76 @@
                     }
                 }
             ]
+        },
+        {
+            "downloads": {
+                "classifiers": {
+                    "natives-linux": {
+                        "sha1": "7ff832a6eb9ab6a767f1ade2b548092d0fa64795",
+                        "size": 10362,
+                        "url": "https://libraries.minecraft.net/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-linux.jar"
+                    },
+                    "natives-linux-arm32": {
+                        "sha1": "f3c455b71c5146acb5f8a9513247fc06db182fd5",
+                        "size": 4521,
+                        "url": "https://github.com/theofficialgman/lwjgl3-binaries-arm32/raw/lwjgl-2.9.4/jinput-platform-2.0.5-natives-linux.jar"
+                    },
+                    "natives-linux-arm64": {
+                        "sha1": "42b388ccb7c63cec4e9f24f4dddef33325f8b212",
+                        "size": 10932,
+                        "url": "https://github.com/theofficialgman/lwjgl3-binaries-arm64/raw/lwjgl-2.9.4/jinput-platform-2.0.5-natives-linux.jar"
+                    },
+                    "natives-osx": {
+                        "sha1": "53f9c919f34d2ca9de8c51fc4e1e8282029a9232",
+                        "size": 12186,
+                        "url": "https://libraries.minecraft.net/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-osx.jar"
+                    },
+                    "natives-osx-arm64": {
+                        "sha1": "5189eb40db3087fb11ca063b68fa4f4c20b199dd",
+                        "size": 10031,
+                        "url": "https://github.com/r58Playz/jinput-m1/raw/main/plugins/OSX/bin/jinput-platform-2.0.5.jar"
+                    },
+                    "natives-windows": {
+                        "sha1": "385ee093e01f587f30ee1c8a2ee7d408fd732e16",
+                        "size": 155179,
+                        "url": "https://libraries.minecraft.net/net/java/jinput/jinput-platform/2.0.5/jinput-platform-2.0.5-natives-windows.jar"
+                    }
+                }
+            },
+            "extract": {
+                "exclude": [
+                    "META-INF/"
+                ]
+            },
+            "name": "net.java.jinput:jinput-platform:2.0.5",
+            "natives": {
+                "linux": "natives-linux",
+                "linux-arm32": "natives-linux-arm32",
+                "linux-arm64": "natives-linux-arm64",
+                "osx": "natives-osx",
+                "osx-arm64": "natives-osx-arm64",
+                "windows": "natives-windows"
+            }
+        },
+        {
+            "downloads": {
+                "artifact": {
+                    "sha1": "39c7796b469a600f72380316f6b1f11db6c2c7c4",
+                    "size": 208338,
+                    "url": "https://libraries.minecraft.net/net/java/jinput/jinput/2.0.5/jinput-2.0.5.jar"
+                }
+            },
+            "name": "net.java.jinput:jinput:2.0.5"
+        },
+        {
+            "downloads": {
+                "artifact": {
+                    "sha1": "e12fe1fda814bd348c1579329c86943d2cd3c6a6",
+                    "size": 7508,
+                    "url": "https://libraries.minecraft.net/net/java/jutils/jutils/1.0.0/jutils-1.0.0.jar"
+                }
+            },
+            "name": "net.java.jutils:jutils:1.0.0"
         }
     ],
     "mainClass": "net.minecraft.client.main.Main",
