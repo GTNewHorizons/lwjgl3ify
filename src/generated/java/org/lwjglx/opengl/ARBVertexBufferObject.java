@@ -1,6 +1,6 @@
 package org.lwjglx.opengl;
 
-public class ARBVertexBufferObject extends org.lwjglx.opengl.ARBBufferObject {
+public class ARBVertexBufferObject extends org.lwjgl.opengl.ARBBufferObject {
 
     public static final int GL_ARRAY_BUFFER_ARB = (int) 34962;
     public static final int GL_ARRAY_BUFFER_BINDING_ARB = (int) 34964;

@@ -1,6 +1,6 @@
 package org.lwjglx.opengl;
 
-public class ARBFragmentProgram extends org.lwjglx.opengl.ARBProgram {
+public class ARBFragmentProgram extends org.lwjgl.opengl.ARBProgram {
 
     public static final int GL_FRAGMENT_PROGRAM_ARB = (int) 34820;
     public static final int GL_MAX_PROGRAM_ALU_INSTRUCTIONS_ARB = (int) 34827;

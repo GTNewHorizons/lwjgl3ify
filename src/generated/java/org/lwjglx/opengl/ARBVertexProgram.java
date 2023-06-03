@@ -1,6 +1,6 @@
 package org.lwjglx.opengl;
 
-public class ARBVertexProgram extends org.lwjglx.opengl.ARBProgram {
+public class ARBVertexProgram extends org.lwjgl.opengl.ARBProgram {
 
     public static final int GL_COLOR_SUM_ARB = (int) 33880;
     public static final int GL_CURRENT_VERTEX_ATTRIB_ARB = (int) 34342;

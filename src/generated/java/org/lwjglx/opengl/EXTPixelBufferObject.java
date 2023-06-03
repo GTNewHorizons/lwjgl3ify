@@ -1,6 +1,6 @@
 package org.lwjglx.opengl;
 
-public class EXTPixelBufferObject extends org.lwjglx.opengl.ARBBufferObject {
+public class EXTPixelBufferObject extends org.lwjgl.opengl.ARBBufferObject {
 
     public static final int GL_PIXEL_PACK_BUFFER_BINDING_EXT = (int) 35053;
     public static final int GL_PIXEL_PACK_BUFFER_EXT = (int) 35051;

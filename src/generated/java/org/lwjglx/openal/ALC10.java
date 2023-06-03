@@ -32,14 +32,15 @@ public class ALC10 {
     public static org.lwjglx.openal.ALCcontext alcCreateContext(org.lwjglx.openal.ALCdevice arg0,
             java.nio.IntBuffer arg1) {
 
-        org.lwjglx.openal.ALCcontext returnValue = org.lwjgl.openal.ALC10.alcCreateContext(arg0.device, arg1);
+        org.lwjglx.openal.ALCcontext returnValue = new ALCcontext(
+                org.lwjgl.openal.ALC10.alcCreateContext(arg0.device, arg1));
 
         return returnValue;
     }
 
     public static org.lwjglx.openal.ALCcontext alcGetCurrentContext() {
 
-        org.lwjglx.openal.ALCcontext returnValue = org.lwjgl.openal.ALC10.alcGetCurrentContext();
+        org.lwjglx.openal.ALCcontext returnValue = new ALCcontext(org.lwjgl.openal.ALC10.alcGetCurrentContext());
 
         return returnValue;
     }
