@@ -6,6 +6,7 @@ package org.lwjglx.openal;
 import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.EXTEfx.*;
 
+import org.lwjgl.openal.AL10;
 import org.lwjgl.openal.ALC;
 
 /**
@@ -31,7 +32,7 @@ public final class EFXUtil {
      *
      * @return True if AL_EXT_EFX is supported, false if not.
      *
-     * @throws org.lwjgl.openal.OpenALException If OpenAL has not been created yet.
+     * @throws org.lwjglx.openal.OpenALException If OpenAL has not been created yet.
      */
     public static boolean isEfxSupported() {
         return ALC.getCapabilities().ALC_EXT_EFX;
@@ -45,9 +46,9 @@ public final class EFXUtil {
      *
      * @return True if it is supported, false if not.
      *
-     * @throws org.lwjgl.openal.OpenALException If the request fails due to an AL_OUT_OF_MEMORY error or OpenAL has not
-     *                                          been created yet.
-     * @throws IllegalArgumentException         effectType is not a valid effect type.
+     * @throws org.lwjglx.openal.OpenALException If the request fails due to an AL_OUT_OF_MEMORY error or OpenAL has not
+     *                                           been created yet.
+     * @throws IllegalArgumentException          effectType is not a valid effect type.
      */
     public static boolean isEffectSupported(int effectType) {
         // Make sure type is a real effect.
@@ -82,9 +83,9 @@ public final class EFXUtil {
      *
      * @return True if it is supported, false if not.
      *
-     * @throws org.lwjgl.openal.OpenALException If the request fails due to an AL_OUT_OF_MEMORY error or OpenAL has not
-     *                                          been created yet.
-     * @throws IllegalArgumentException         filterType is not a valid filter type.
+     * @throws org.lwjglx.openal.OpenALException If the request fails due to an AL_OUT_OF_MEMORY error or OpenAL has not
+     *                                           been created yet.
+     * @throws IllegalArgumentException          filterType is not a valid filter type.
      */
     public static boolean isFilterSupported(int filterType) {
         // Make sure type is a real filter.

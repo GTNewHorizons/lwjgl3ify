@@ -17,6 +17,7 @@ package org.lwjglx.openal;
 
 import java.nio.IntBuffer;
 
+import org.lwjgl.openal.ALC10;
 import org.lwjglx.BufferUtils;
 
 /**
@@ -60,7 +61,7 @@ public final class ALCcontext {
 
     /**
      * Creates an attribute list in a ByteBuffer
-     * 
+     *
      * @param contextFrequency    Frequency to add
      * @param contextRefresh      Refresh rate to add
      * @param contextSynchronized Whether to synchronize the context

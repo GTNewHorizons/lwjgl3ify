@@ -15,7 +15,7 @@ public class Controllers {
         // no-op
     }
 
-    public static org.lwjgl.input.Controller getController(int arg0) {
+    public static Controller getController(int arg0) {
         // no-op
         return null;
     }
@@ -40,7 +40,7 @@ public class Controllers {
         return 1;
     }
 
-    public static org.lwjgl.input.Controller getEventSource() {
+    public static Controller getEventSource() {
         // no-op
         return null;
     }

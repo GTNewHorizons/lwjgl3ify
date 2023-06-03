@@ -15,6 +15,9 @@
  */
 package org.lwjglx.openal;
 
+import org.lwjgl.openal.AL10;
+import org.lwjgl.openal.ALC10;
+
 /**
  * Simple utility class for checking AL/ALC errors
  *
@@ -29,12 +32,12 @@ public final class Util {
 
     /**
      * Checks for any ALC errors and throws an unchecked exception on errors
-     * 
+     *
      * @param device Device for which to check ALC errors
      */
     public static void checkALCError(ALCdevice device) {
-        int err = ALC10.alcGetError(device);
-        if (err != ALC10.ALC_NO_ERROR) throw new OpenALException(ALC10.alcGetString(AL.getDevice(), err));
+        int err = ALC10.alcGetError(device.device);
+        if (err != ALC10.ALC_NO_ERROR) throw new OpenALException(ALC10.alcGetString(AL.getDevice().device, err));
     }
 
     /**
@@ -47,7 +50,7 @@ public final class Util {
 
     /**
      * Checks for a valid device
-     * 
+     *
      * @param device ALCdevice to check the validity of
      */
     public static void checkALCValidDevice(ALCdevice device) {
@@ -58,7 +61,7 @@ public final class Util {
 
     /**
      * Checks for a valid context
-     * 
+     *
      * @param context ALCcontext to check the validity of
      */
     public static void checkALCValidContext(ALCcontext context) {
