@@ -3,6 +3,7 @@ package org.lwjglx.opengl;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -491,6 +492,9 @@ public class Display {
 
     public static void setTitle(String title) {
         windowTitle = title;
+        if (isCreated()) {
+            glfwSetWindowTitle(getWindow(), title);
+        }
     }
 
     public static boolean isCloseRequested() {
@@ -600,6 +604,32 @@ public class Display {
             return GL11.glGetString(GL11.GL_VERSION);
         }
         return "Unknown";
+    }
+
+    public static String getTitle() {
+        return windowTitle;
+    }
+
+    public static Canvas getParent() {
+        return null;
+    }
+
+    public static float getPixelScaleFactor() {
+        if (!isCreated()) {
+            return 1.0f;
+        }
+        float[] xScale = new float[1];
+        float[] yScale = new float[1];
+        glfwGetWindowContentScale(getWindow(), xScale, yScale);
+        return Math.max(xScale[0], yScale[0]);
+    }
+
+    public static void setSwapInterval(int value) {
+        glfwSwapInterval(value);
+    }
+
+    public static void setDisplayConfiguration(float gamma, float brightness, float contrast) {
+        // ignore
     }
 
     /**
