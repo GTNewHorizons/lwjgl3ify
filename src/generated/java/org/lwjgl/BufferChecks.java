@@ -105,4 +105,5 @@ public class BufferChecks {
     public static void checkNullTerminated(org.lwjgl.PointerBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

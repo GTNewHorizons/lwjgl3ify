@@ -128,4 +128,5 @@ public class ARBSeparateShaderObjects {
     public static void glValidateProgramPipeline(int pipeline) {
         org.lwjgl.opengl.ARBSeparateShaderObjects.glValidateProgramPipeline(pipeline);
     }
+
 }

@@ -668,11 +668,13 @@ public class GL11 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+
     }
 
     public static void glColorPointer(int size, int stride, java.nio.FloatBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glColorPointer(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pointer);
+
     }
 
     public static void glColorPointer(int size, boolean unsigned, int stride, java.nio.ByteBuffer pointer) {
@@ -682,6 +684,7 @@ public class GL11 {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(pointer));
+
     }
 
     public static void glCopyPixels(int x, int y, int width, int height, int type) {
@@ -758,6 +761,7 @@ public class GL11 {
     public static void glDrawElements(int mode, int count, int type, java.nio.ByteBuffer indices) {
 
         org.lwjgl.opengl.GL11.glDrawElements(mode, count, type, org.lwjglx.MemoryUtil.getAddress(indices));
+
     }
 
     public static void glDrawElements(int mode, java.nio.ByteBuffer indices) {
@@ -1297,6 +1301,7 @@ public class GL11 {
     public static void glNormalPointer(int stride, java.nio.ByteBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glNormalPointer(org.lwjgl.opengl.GL11.GL_BYTE, stride, pointer);
+
     }
 
     public static void glNormalPointer(int stride, java.nio.DoubleBuffer pointer) {
@@ -1305,16 +1310,19 @@ public class GL11 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+
     }
 
     public static void glNormalPointer(int stride, java.nio.FloatBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glNormalPointer(org.lwjgl.opengl.GL11.GL_FLOAT, stride, pointer);
+
     }
 
     public static void glNormalPointer(int stride, java.nio.IntBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glNormalPointer(org.lwjgl.opengl.GL11.GL_INT, stride, pointer);
+
     }
 
     public static void glOrtho(double left, double right, double bottom, double top, double zNear, double zFar) {
@@ -1479,6 +1487,7 @@ public class GL11 {
             java.nio.DoubleBuffer pixels) {
 
         org.lwjgl.opengl.GL11.glReadPixels(x, y, width, height, format, type, org.lwjglx.MemoryUtil.getAddress(pixels));
+
     }
 
     public static void glReadPixels(int x, int y, int width, int height, int format, int type,
@@ -1599,21 +1608,25 @@ public class GL11 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+
     }
 
     public static void glTexCoordPointer(int size, int stride, java.nio.FloatBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glTexCoordPointer(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pointer);
+
     }
 
     public static void glTexCoordPointer(int size, int stride, java.nio.IntBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glTexCoordPointer(size, org.lwjgl.opengl.GL11.GL_INT, stride, pointer);
+
     }
 
     public static void glTexCoordPointer(int size, int stride, java.nio.ShortBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glTexCoordPointer(size, org.lwjgl.opengl.GL11.GL_SHORT, stride, pointer);
+
     }
 
     public static void glTexEnv(int target, int pname, java.nio.FloatBuffer params) {
@@ -1854,24 +1867,29 @@ public class GL11 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+
     }
 
     public static void glVertexPointer(int size, int stride, java.nio.FloatBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glVertexPointer(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pointer);
+
     }
 
     public static void glVertexPointer(int size, int stride, java.nio.IntBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glVertexPointer(size, org.lwjgl.opengl.GL11.GL_INT, stride, pointer);
+
     }
 
     public static void glVertexPointer(int size, int stride, java.nio.ShortBuffer pointer) {
 
         org.lwjgl.opengl.GL11.glVertexPointer(size, org.lwjgl.opengl.GL11.GL_SHORT, stride, pointer);
+
     }
 
     public static void glViewport(int x, int y, int width, int height) {
         org.lwjgl.opengl.GL11.glViewport(x, y, width, height);
     }
+
 }

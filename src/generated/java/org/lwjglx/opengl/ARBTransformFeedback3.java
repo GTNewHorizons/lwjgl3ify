@@ -20,4 +20,5 @@ public class ARBTransformFeedback3 {
     public static int glGetQueryIndexedi(int target, int index, int pname) {
         return org.lwjgl.opengl.ARBTransformFeedback3.glGetQueryIndexedi(target, index, pname);
     }
+
 }

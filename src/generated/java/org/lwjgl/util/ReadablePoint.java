@@ -7,4 +7,5 @@ public interface ReadablePoint {
     public abstract int getX();
 
     public abstract int getY();
+
 }

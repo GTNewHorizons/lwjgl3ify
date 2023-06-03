@@ -168,4 +168,5 @@ public class ARBProgram {
     public static void glProgramStringARB(int arg0, int arg1, java.nio.ByteBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

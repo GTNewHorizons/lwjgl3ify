@@ -24,4 +24,5 @@ public class APPLEObjectPurgeable {
     public static int glObjectUnpurgeableAPPLE(int arg0, int arg1, int arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

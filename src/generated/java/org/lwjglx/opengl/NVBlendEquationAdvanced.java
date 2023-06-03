@@ -56,4 +56,5 @@ public class NVBlendEquationAdvanced {
     public static void glBlendParameteriNV(int pname, int value) {
         org.lwjgl.opengl.NVBlendEquationAdvanced.glBlendParameteriNV(pname, value);
     }
+
 }

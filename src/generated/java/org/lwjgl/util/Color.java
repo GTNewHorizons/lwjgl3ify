@@ -153,4 +153,5 @@ public class Color {
     public void writeRGBA(java.nio.ByteBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

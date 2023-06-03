@@ -35,4 +35,5 @@ public class ARBVertexAttribBinding {
     public static void glVertexBindingDivisor(int bindingindex, int divisor) {
         org.lwjgl.opengl.ARBVertexAttribBinding.glVertexBindingDivisor(bindingindex, divisor);
     }
+
 }

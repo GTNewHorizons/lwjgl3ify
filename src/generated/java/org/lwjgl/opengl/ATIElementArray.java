@@ -25,4 +25,5 @@ public class ATIElementArray {
     public static void glElementPointerATI(java.nio.ShortBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

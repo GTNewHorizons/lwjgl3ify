@@ -26,4 +26,5 @@ public interface GLUtessellatorCallback {
     public abstract void vertex(java.lang.Object arg0);
 
     public abstract void vertexData(java.lang.Object arg0, java.lang.Object arg1);
+
 }

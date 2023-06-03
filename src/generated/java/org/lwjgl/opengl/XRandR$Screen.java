@@ -12,4 +12,5 @@ public class XRandR$Screen {
     public java.lang.String toString() {
         throw new UnsupportedOperationException();
     }
+
 }

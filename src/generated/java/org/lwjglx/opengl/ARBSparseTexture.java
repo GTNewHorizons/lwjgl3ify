@@ -19,4 +19,5 @@ public class ARBSparseTexture {
         org.lwjgl.opengl.ARBSparseTexture
                 .glTexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
     }
+
 }

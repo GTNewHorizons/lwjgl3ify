@@ -87,4 +87,5 @@ public class ARBUniformBufferObject {
     public static void glUniformBlockBinding(int program, int uniformBlockIndex, int uniformBlockBinding) {
         org.lwjgl.opengl.ARBUniformBufferObject.glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
     }
+
 }

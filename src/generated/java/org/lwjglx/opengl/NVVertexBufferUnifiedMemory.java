@@ -72,4 +72,5 @@ public class NVVertexBufferUnifiedMemory {
     public static void glVertexFormatNV(int size, int type, int stride) {
         org.lwjgl.opengl.NVVertexBufferUnifiedMemory.glVertexFormatNV(size, type, stride);
     }
+
 }

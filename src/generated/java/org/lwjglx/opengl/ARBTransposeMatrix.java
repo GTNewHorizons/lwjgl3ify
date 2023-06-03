@@ -14,4 +14,5 @@ public class ARBTransposeMatrix {
     public static void glMultTransposeMatrixARB(java.nio.FloatBuffer pfMtx) {
         org.lwjgl.opengl.ARBTransposeMatrix.glMultTransposeMatrixfARB(pfMtx);
     }
+
 }

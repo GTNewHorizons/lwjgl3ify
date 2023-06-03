@@ -80,11 +80,13 @@ public class ARBVertexBlend {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pPointer));
+
     }
 
     public static void glWeightPointerARB(int size, int stride, java.nio.FloatBuffer pPointer) {
 
         org.lwjgl.opengl.ARBVertexBlend.glWeightPointerARB(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pPointer);
+
     }
 
     public static void glWeightPointerARB(int size, boolean unsigned, int stride, java.nio.ByteBuffer pPointer) {
@@ -94,6 +96,7 @@ public class ARBVertexBlend {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(pPointer));
+
     }
 
     public static void glWeightPointerARB(int size, boolean unsigned, int stride, java.nio.IntBuffer pPointer) {
@@ -103,6 +106,7 @@ public class ARBVertexBlend {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_INT : org.lwjgl.opengl.GL11.GL_INT),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(pPointer));
+
     }
 
     public static void glWeightPointerARB(int size, boolean unsigned, int stride, java.nio.ShortBuffer pPointer) {
@@ -112,6 +116,7 @@ public class ARBVertexBlend {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_SHORT : org.lwjgl.opengl.GL11.GL_SHORT),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(pPointer));
+
     }
 
     public static void glWeightuARB(java.nio.ByteBuffer pWeights) {
@@ -125,4 +130,5 @@ public class ARBVertexBlend {
     public static void glWeightuARB(java.nio.ShortBuffer pWeights) {
         org.lwjgl.opengl.ARBVertexBlend.glWeightusvARB(pWeights);
     }
+
 }

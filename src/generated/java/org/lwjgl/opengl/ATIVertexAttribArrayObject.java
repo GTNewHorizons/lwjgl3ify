@@ -14,4 +14,5 @@ public class ATIVertexAttribArrayObject {
             int arg6) {
         throw new UnsupportedOperationException();
     }
+
 }

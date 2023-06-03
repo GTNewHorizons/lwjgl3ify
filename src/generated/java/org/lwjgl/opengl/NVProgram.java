@@ -72,4 +72,5 @@ public class NVProgram {
     public static void glRequestResidentProgramsNV(java.nio.IntBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

@@ -17,4 +17,5 @@ public class ARBMapBufferRange {
             java.nio.ByteBuffer old_buffer) {
         return org.lwjgl.opengl.ARBMapBufferRange.glMapBufferRange(target, offset, length, access, old_buffer);
     }
+
 }

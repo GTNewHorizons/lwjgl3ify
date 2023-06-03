@@ -23,4 +23,5 @@ public class AMDSparseTexture {
         org.lwjgl.opengl.AMDSparseTexture
                 .glTextureStorageSparseAMD(texture, target, internalFormat, width, height, depth, layers, flags);
     }
+
 }

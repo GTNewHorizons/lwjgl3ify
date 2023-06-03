@@ -23,4 +23,5 @@ public class ARBDrawInstanced {
     public static void glDrawElementsInstancedARB(int mode, java.nio.ShortBuffer indices, int primcount) {
         org.lwjgl.opengl.ARBDrawInstanced.glDrawElementsInstancedARB(mode, indices, primcount);
     }
+
 }

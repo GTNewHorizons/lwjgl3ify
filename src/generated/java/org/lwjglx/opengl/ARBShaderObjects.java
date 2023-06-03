@@ -130,6 +130,7 @@ public class ARBShaderObjects {
 
         org.lwjgl.opengl.ARBShaderObjects
                 .glShaderSourceARB(shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
+
     }
 
     public static void glShaderSourceARB(int shader, java.lang.CharSequence[] strings) {
@@ -219,4 +220,5 @@ public class ARBShaderObjects {
     public static void glValidateProgramARB(int programObj) {
         org.lwjgl.opengl.ARBShaderObjects.glValidateProgramARB(programObj);
     }
+
 }

@@ -57,4 +57,5 @@ public class ARBBufferStorage {
     public static void glNamedBufferStorageEXT(int buffer, java.nio.ShortBuffer data, int flags) {
         org.lwjgl.opengl.ARBBufferStorage.glNamedBufferStorageEXT(buffer, data, flags);
     }
+
 }

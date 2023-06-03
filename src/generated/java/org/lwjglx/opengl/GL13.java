@@ -233,11 +233,13 @@ public class GL13 {
     public static void glGetCompressedTexImage(int target, int lod, java.nio.IntBuffer img) {
 
         org.lwjgl.opengl.GL13.glGetCompressedTexImage(target, lod, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glGetCompressedTexImage(int target, int lod, java.nio.ShortBuffer img) {
 
         org.lwjgl.opengl.GL13.glGetCompressedTexImage(target, lod, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glLoadTransposeMatrix(java.nio.DoubleBuffer m) {
@@ -291,4 +293,5 @@ public class GL13 {
     public static void glSampleCoverage(float value, boolean invert) {
         org.lwjgl.opengl.GL13.glSampleCoverage(value, invert);
     }
+
 }

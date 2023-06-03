@@ -68,4 +68,5 @@ public class LWJGLUtil {
     public static java.lang.String toHexString(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

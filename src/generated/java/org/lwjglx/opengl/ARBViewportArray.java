@@ -23,4 +23,5 @@ public class ARBViewportArray {
     public static void glViewportIndexedf(int index, float x, float y, float w, float h) {
         org.lwjgl.opengl.ARBViewportArray.glViewportIndexedf(index, x, y, w, h);
     }
+
 }

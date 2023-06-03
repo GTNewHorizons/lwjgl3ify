@@ -92,4 +92,5 @@ public class ATIVertexStreams {
     public static void glVertexStream4sATI(int arg0, short arg1, short arg2, short arg3, short arg4) {
         throw new UnsupportedOperationException();
     }
+
 }

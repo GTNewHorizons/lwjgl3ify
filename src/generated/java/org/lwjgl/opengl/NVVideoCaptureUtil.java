@@ -21,4 +21,5 @@ public class NVVideoCaptureUtil {
     public static boolean glReleaseVideoCaptureDeviceNV(long arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

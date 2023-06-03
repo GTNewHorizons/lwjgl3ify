@@ -30,4 +30,5 @@ public class EXTFogCoord {
     public static void glFogCoordfEXT(float arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

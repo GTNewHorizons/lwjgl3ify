@@ -13,4 +13,5 @@ public class NVPointSprite {
     public static void glPointParameteriNV(int pname, int param) {
         org.lwjgl.opengl.NVPointSprite.glPointParameteriNV(pname, param);
     }
+
 }

@@ -705,4 +705,5 @@ public class ARBDirectStateAccess {
     public static void glVertexArrayVertexBuffer(int vaobj, int bindingindex, int buffer, long offset, int stride) {
         org.lwjgl.opengl.ARBDirectStateAccess.glVertexArrayVertexBuffer(vaobj, bindingindex, buffer, offset, stride);
     }
+
 }

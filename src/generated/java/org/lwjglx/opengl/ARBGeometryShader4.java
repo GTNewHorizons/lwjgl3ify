@@ -38,4 +38,5 @@ public class ARBGeometryShader4 {
     public static void glProgramParameteriARB(int program, int pname, int value) {
         org.lwjgl.opengl.ARBGeometryShader4.glProgramParameteriARB(program, pname, value);
     }
+
 }

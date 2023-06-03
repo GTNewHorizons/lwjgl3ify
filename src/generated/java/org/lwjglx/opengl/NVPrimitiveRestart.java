@@ -12,4 +12,5 @@ public class NVPrimitiveRestart {
     public static void glPrimitiveRestartNV() {
         org.lwjgl.opengl.NVPrimitiveRestart.glPrimitiveRestartNV();
     }
+
 }

@@ -9,4 +9,5 @@ public class LWJGLEnvironmentPlugin extends net.java.games.input.ControllerEnvir
     public boolean isSupported() {
         throw new UnsupportedOperationException();
     }
+
 }

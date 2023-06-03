@@ -169,4 +169,5 @@ public class MemoryUtil {
     public static long getAddressSafe(org.lwjgl.PointerBuffer arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

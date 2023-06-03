@@ -6,4 +6,5 @@ public class NVDrawTexture {
             float s0, float t0, float s1, float t1) {
         org.lwjgl.opengl.NVDrawTexture.glDrawTextureNV(texture, sampler, x0, y0, x1, y1, z, s0, t0, s1, t1);
     }
+
 }

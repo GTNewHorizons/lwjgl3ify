@@ -402,4 +402,5 @@ public class NVPathRendering {
     public static void glWeightPathsNV(int resultPath, java.nio.IntBuffer paths, java.nio.FloatBuffer weights) {
         org.lwjgl.opengl.NVPathRendering.glWeightPathsNV(resultPath, paths, weights);
     }
+
 }

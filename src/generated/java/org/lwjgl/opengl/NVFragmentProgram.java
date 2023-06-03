@@ -25,4 +25,5 @@ public class NVFragmentProgram extends org.lwjgl.opengl.NVProgram {
             float arg4, float arg5) {
         throw new UnsupportedOperationException();
     }
+
 }

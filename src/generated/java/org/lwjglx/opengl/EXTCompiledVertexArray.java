@@ -12,4 +12,5 @@ public class EXTCompiledVertexArray {
     public static void glUnlockArraysEXT() {
         org.lwjgl.opengl.EXTCompiledVertexArray.glUnlockArraysEXT();
     }
+
 }

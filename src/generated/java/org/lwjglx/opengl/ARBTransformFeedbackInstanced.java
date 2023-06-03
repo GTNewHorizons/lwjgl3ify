@@ -10,4 +10,5 @@ public class ARBTransformFeedbackInstanced {
         org.lwjgl.opengl.ARBTransformFeedbackInstanced
                 .glDrawTransformFeedbackStreamInstanced(mode, id, stream, primcount);
     }
+
 }

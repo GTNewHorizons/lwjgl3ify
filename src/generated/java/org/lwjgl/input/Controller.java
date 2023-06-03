@@ -69,4 +69,5 @@ public interface Controller {
     public abstract void setYAxisDeadZone(float arg0);
 
     public abstract void setZAxisDeadZone(float arg0);
+
 }

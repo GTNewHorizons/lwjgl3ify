@@ -14,4 +14,5 @@ public class ATITextureFloat {
     public static final int GL_RGBA_FLOAT32_ATI = (int) 34836;
     public static final int GL_RGB_FLOAT16_ATI = (int) 34843;
     public static final int GL_RGB_FLOAT32_ATI = (int) 34837;
+
 }

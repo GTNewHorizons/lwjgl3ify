@@ -97,4 +97,5 @@ public class NVVideoCapture {
     public static void glVideoCaptureStreamParameterNV(int arg0, int arg1, int arg2, java.nio.IntBuffer arg3) {
         throw new UnsupportedOperationException();
     }
+
 }

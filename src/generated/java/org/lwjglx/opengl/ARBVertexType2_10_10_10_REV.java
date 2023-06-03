@@ -80,4 +80,5 @@ public class ARBVertexType2_10_10_10_REV {
     public static void glVertexP4ui(int type, int value) {
         org.lwjgl.opengl.ARBVertexType2_10_10_10_REV.glVertexP4ui(type, value);
     }
+
 }

@@ -11,4 +11,5 @@ public interface Drawable {
     public abstract void releaseContext();
 
     public abstract void setCLSharingProperties(org.lwjgl.PointerBuffer arg0);
+
 }

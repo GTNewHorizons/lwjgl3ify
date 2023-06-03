@@ -42,4 +42,5 @@ public interface ReadableColor {
     public abstract void writeRGB(java.nio.ByteBuffer arg0);
 
     public abstract void writeRGBA(java.nio.ByteBuffer arg0);
+
 }

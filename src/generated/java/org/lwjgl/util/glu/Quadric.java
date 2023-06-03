@@ -33,4 +33,5 @@ public class Quadric {
     public void setTextureFlag(boolean arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

@@ -89,4 +89,5 @@ public class EXTTextureInteger {
     public static void glTexParameterIuiEXT(int target, int pname, int param) {
         org.lwjgl.opengl.EXTTextureInteger.glTexParameterIuiEXT(target, pname, param);
     }
+
 }

@@ -33,4 +33,5 @@ public class EXTDrawBuffers2 {
     public static boolean glIsEnabledIndexedEXT(int target, int index) {
         return org.lwjgl.opengl.EXTDrawBuffers2.glIsEnabledIndexedEXT(target, index);
     }
+
 }

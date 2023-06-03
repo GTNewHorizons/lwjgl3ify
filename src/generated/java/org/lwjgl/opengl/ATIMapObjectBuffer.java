@@ -13,4 +13,5 @@ public class ATIMapObjectBuffer {
     public static void glUnmapObjectBufferATI(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

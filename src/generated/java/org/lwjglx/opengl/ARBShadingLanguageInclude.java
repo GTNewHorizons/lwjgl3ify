@@ -55,4 +55,5 @@ public class ARBShadingLanguageInclude {
     public static void glNamedStringARB(int type, java.nio.ByteBuffer name, java.nio.ByteBuffer string) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glNamedStringARB(type, name, string);
     }
+
 }

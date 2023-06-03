@@ -76,4 +76,5 @@ public class ARBShaderImageLoadStore {
     public static void glMemoryBarrier(int barriers) {
         org.lwjgl.opengl.ARBShaderImageLoadStore.glMemoryBarrier(barriers);
     }
+
 }

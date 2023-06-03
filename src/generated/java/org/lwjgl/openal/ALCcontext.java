@@ -9,4 +9,5 @@ public class ALCcontext {
     public boolean isValid() {
         throw new UnsupportedOperationException();
     }
+
 }

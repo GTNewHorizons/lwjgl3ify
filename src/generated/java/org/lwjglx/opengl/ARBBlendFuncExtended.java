@@ -25,4 +25,5 @@ public class ARBBlendFuncExtended {
     public static int glGetFragDataIndex(int program, java.nio.ByteBuffer name) {
         return org.lwjgl.opengl.ARBBlendFuncExtended.glGetFragDataIndex(program, name);
     }
+
 }

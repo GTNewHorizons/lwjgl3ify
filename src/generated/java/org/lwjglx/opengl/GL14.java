@@ -71,11 +71,13 @@ public class GL14 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+
     }
 
     public static void glFogCoordPointer(int stride, java.nio.FloatBuffer data) {
 
         org.lwjgl.opengl.GL14.glFogCoordPointer(org.lwjgl.opengl.GL11.GL_FLOAT, stride, data);
+
     }
 
     public static void glFogCoordd(double coord) {
@@ -133,11 +135,13 @@ public class GL14 {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+
     }
 
     public static void glSecondaryColorPointer(int size, int stride, java.nio.FloatBuffer data) {
 
         org.lwjgl.opengl.GL14.glSecondaryColorPointer(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, data);
+
     }
 
     public static void glSecondaryColorPointer(int size, boolean unsigned, int stride, java.nio.ByteBuffer data) {
@@ -147,6 +151,7 @@ public class GL14 {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(data));
+
     }
 
     public static void glWindowPos2d(double x, double y) {
@@ -172,4 +177,5 @@ public class GL14 {
     public static void glWindowPos3i(int x, int y, int z) {
         org.lwjgl.opengl.GL14.glWindowPos3i(x, y, z);
     }
+
 }

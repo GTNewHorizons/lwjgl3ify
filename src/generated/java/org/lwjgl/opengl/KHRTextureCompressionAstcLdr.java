@@ -30,4 +30,5 @@ public class KHRTextureCompressionAstcLdr {
     public static final int GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR = (int) 37845;
     public static final int GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR = (int) 37846;
     public static final int GL_COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR = (int) 37847;
+
 }

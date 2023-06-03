@@ -39,4 +39,5 @@ public interface WritableColor {
     public abstract void setRed(byte arg0);
 
     public abstract void setRed(int arg0);
+
 }

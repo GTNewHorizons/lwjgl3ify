@@ -53,4 +53,5 @@ public class NVBindlessTexture {
     public static void glUniformHandleui64NV(int location, long value) {
         org.lwjgl.opengl.NVBindlessTexture.glUniformHandleui64NV(location, value);
     }
+
 }

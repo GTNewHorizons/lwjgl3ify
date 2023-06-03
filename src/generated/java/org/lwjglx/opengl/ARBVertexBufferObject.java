@@ -16,4 +16,5 @@ public class ARBVertexBufferObject extends org.lwjglx.opengl.ARBBufferObject {
     public static final int GL_VERTEX_ARRAY_BUFFER_BINDING_ARB = (int) 34966;
     public static final int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB = (int) 34975;
     public static final int GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB = (int) 34974;
+
 }

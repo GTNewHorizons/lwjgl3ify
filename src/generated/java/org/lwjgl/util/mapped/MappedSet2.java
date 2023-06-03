@@ -7,4 +7,5 @@ public class MappedSet2 {
     public void next() {
         throw new UnsupportedOperationException();
     }
+
 }

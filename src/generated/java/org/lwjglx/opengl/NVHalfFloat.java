@@ -103,4 +103,5 @@ public class NVHalfFloat {
     public static void glVertexWeighthNV(short weight) {
         org.lwjgl.opengl.NVHalfFloat.glVertexWeighthNV(weight);
     }
+
 }

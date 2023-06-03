@@ -656,4 +656,5 @@ public class GL30 {
     public static void glVertexAttribIPointer(int index, int size, int type, int stride, java.nio.ShortBuffer buffer) {
         org.lwjgl.opengl.GL30.glVertexAttribIPointer(index, size, type, stride, buffer);
     }
+
 }

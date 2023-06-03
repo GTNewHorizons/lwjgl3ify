@@ -33,4 +33,5 @@ public class DisplayMode {
     public java.lang.String toString() {
         throw new UnsupportedOperationException();
     }
+
 }

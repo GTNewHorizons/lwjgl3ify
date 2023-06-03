@@ -14,4 +14,5 @@ public class EXTPointParameters {
     public static void glPointParameterfEXT(int pname, float param) {
         org.lwjgl.opengl.EXTPointParameters.glPointParameterfEXT(pname, param);
     }
+
 }

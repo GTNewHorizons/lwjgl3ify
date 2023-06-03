@@ -135,4 +135,5 @@ public class ARBBufferObject {
     public static boolean glUnmapBufferARB(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

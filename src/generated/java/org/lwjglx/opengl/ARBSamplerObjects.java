@@ -51,4 +51,5 @@ public class ARBSamplerObjects {
     public static void glSamplerParameteri(int sampler, int pname, int param) {
         org.lwjgl.opengl.ARBSamplerObjects.glSamplerParameteri(sampler, pname, param);
     }
+
 }

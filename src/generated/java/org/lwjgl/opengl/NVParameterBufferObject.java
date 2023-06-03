@@ -19,4 +19,5 @@ public class NVParameterBufferObject {
     public static void glProgramBufferParametersNV(int arg0, int arg1, int arg2, java.nio.FloatBuffer arg3) {
         throw new UnsupportedOperationException();
     }
+
 }

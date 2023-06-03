@@ -50,4 +50,5 @@ public class GLUtessellatorCallbackAdapter {
     public void vertexData(java.lang.Object arg0, java.lang.Object arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

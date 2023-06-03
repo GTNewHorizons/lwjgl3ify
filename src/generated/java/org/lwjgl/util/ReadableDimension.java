@@ -7,4 +7,5 @@ public interface ReadableDimension {
     public abstract void getSize(org.lwjgl.util.WritableDimension arg0);
 
     public abstract int getWidth();
+
 }

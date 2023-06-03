@@ -67,4 +67,5 @@ public class EXTShaderImageLoadStore {
     public static void glMemoryBarrierEXT(int barriers) {
         org.lwjgl.opengl.EXTShaderImageLoadStore.glMemoryBarrierEXT(barriers);
     }
+
 }

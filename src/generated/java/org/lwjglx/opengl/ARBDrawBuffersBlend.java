@@ -17,4 +17,5 @@ public class ARBDrawBuffersBlend {
     public static void glBlendFunciARB(int buf, int src, int dst) {
         org.lwjgl.opengl.ARBDrawBuffersBlend.glBlendFunciARB(buf, src, dst);
     }
+
 }

@@ -38,4 +38,5 @@ public class EXTGeometryShader4 {
     public static void glProgramParameteriEXT(int program, int pname, int value) {
         org.lwjgl.opengl.EXTGeometryShader4.glProgramParameteriEXT(program, pname, value);
     }
+
 }

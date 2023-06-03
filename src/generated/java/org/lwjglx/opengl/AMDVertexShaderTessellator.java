@@ -17,4 +17,5 @@ public class AMDVertexShaderTessellator {
     public static void glTessellationModeAMD(int mode) {
         org.lwjgl.opengl.AMDVertexShaderTessellator.glTessellationModeAMD(mode);
     }
+
 }

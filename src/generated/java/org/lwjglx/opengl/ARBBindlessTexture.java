@@ -67,4 +67,5 @@ public class ARBBindlessTexture {
     public static void glVertexAttribL1ui64ARB(int index, long x) {
         org.lwjgl.opengl.ARBBindlessTexture.glVertexAttribL1ui64ARB(index, x);
     }
+
 }

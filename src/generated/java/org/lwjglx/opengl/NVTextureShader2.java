@@ -30,4 +30,5 @@ public class NVTextureShader2 {
     public static final int GL_SIGNED_RGB_UNSIGNED_ALPHA_NV = (int) 34572;
     public static final int GL_UNSIGNED_INT_8_8_S8_S8_REV_NV = (int) 34523;
     public static final int GL_UNSIGNED_INT_S8_S8_8_8_NV = (int) 34522;
+
 }

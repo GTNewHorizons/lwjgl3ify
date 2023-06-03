@@ -42,4 +42,5 @@ public class NVTransformFeedback2 {
     public static void glResumeTransformFeedbackNV() {
         org.lwjgl.opengl.NVTransformFeedback2.glResumeTransformFeedbackNV();
     }
+
 }

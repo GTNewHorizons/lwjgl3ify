@@ -11,4 +11,5 @@ public class MipMap extends org.lwjgl.util.glu.Util {
             int arg6, int arg7, java.nio.ByteBuffer arg8) {
         throw new UnsupportedOperationException();
     }
+
 }

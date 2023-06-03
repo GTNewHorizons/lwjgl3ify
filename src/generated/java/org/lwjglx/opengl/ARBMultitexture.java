@@ -109,4 +109,5 @@ public class ARBMultitexture {
     public static void glMultiTexCoord4sARB(int target, short s, short t, short r, short q) {
         org.lwjgl.opengl.ARBMultitexture.glMultiTexCoord4sARB(target, s, t, r, q);
     }
+
 }

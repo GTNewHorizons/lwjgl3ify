@@ -7,4 +7,5 @@ public class EXTTextureSwizzle {
     public static final int GL_TEXTURE_SWIZZLE_G_EXT = (int) 36419;
     public static final int GL_TEXTURE_SWIZZLE_RGBA_EXT = (int) 36422;
     public static final int GL_TEXTURE_SWIZZLE_R_EXT = (int) 36418;
+
 }

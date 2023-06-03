@@ -8,4 +8,5 @@ public class EXTPackedFloat {
     public static final int GL_RGBA_SIGNED_COMPONENTS_EXT = (int) 35900;
     public static final int GL_UNSIGNED_INT_10F_11F_11F_REV_EXT = (int) 35899;
     public static final int WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT = (int) 8360;
+
 }

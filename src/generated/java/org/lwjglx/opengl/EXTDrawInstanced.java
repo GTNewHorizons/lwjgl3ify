@@ -23,4 +23,5 @@ public class EXTDrawInstanced {
     public static void glDrawElementsInstancedEXT(int mode, java.nio.ShortBuffer indices, int primcount) {
         org.lwjgl.opengl.EXTDrawInstanced.glDrawElementsInstancedEXT(mode, indices, primcount);
     }
+
 }

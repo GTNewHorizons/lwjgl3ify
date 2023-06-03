@@ -17,4 +17,5 @@ public class NVFramebufferMultisampleCoverage {
                 width,
                 height);
     }
+
 }

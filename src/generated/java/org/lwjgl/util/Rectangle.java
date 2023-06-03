@@ -142,4 +142,5 @@ public class Rectangle {
     public void untranslate(org.lwjgl.util.ReadablePoint arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

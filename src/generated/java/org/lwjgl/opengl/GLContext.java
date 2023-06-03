@@ -21,4 +21,5 @@ public class GLContext {
     public static void useContext(java.lang.Object arg0, boolean arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

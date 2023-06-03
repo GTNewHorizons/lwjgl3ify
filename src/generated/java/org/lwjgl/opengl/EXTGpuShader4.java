@@ -186,4 +186,5 @@ public class EXTGpuShader4 {
     public static void glVertexAttribIPointerEXT(int arg0, int arg1, int arg2, int arg3, java.nio.ShortBuffer arg4) {
         throw new UnsupportedOperationException();
     }
+
 }

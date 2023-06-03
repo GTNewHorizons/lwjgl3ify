@@ -9,4 +9,5 @@ public class Registry extends org.lwjgl.util.glu.Util {
     public static java.lang.String gluGetString(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

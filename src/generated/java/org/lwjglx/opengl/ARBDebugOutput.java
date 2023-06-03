@@ -44,4 +44,5 @@ public class ARBDebugOutput {
         return org.lwjgl.opengl.ARBDebugOutput
                 .glGetDebugMessageLogARB(count, sources, types, ids, severities, lengths, messageLog);
     }
+
 }

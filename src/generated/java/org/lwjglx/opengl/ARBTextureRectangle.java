@@ -8,4 +8,5 @@ public class ARBTextureRectangle {
     public static final int GL_SAMPLER_2D_RECT_SHADOW_ARB = (int) 35684;
     public static final int GL_TEXTURE_BINDING_RECTANGLE_ARB = (int) 34038;
     public static final int GL_TEXTURE_RECTANGLE_ARB = (int) 34037;
+
 }

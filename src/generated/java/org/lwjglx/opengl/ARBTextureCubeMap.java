@@ -14,4 +14,5 @@ public class ARBTextureCubeMap {
     public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB = (int) 34069;
     public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB = (int) 34071;
     public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB = (int) 34073;
+
 }

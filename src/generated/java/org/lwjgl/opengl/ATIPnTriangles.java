@@ -19,4 +19,5 @@ public class ATIPnTriangles {
     public static void glPNTrianglesiATI(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

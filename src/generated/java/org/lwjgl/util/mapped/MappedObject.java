@@ -74,4 +74,5 @@ public abstract class MappedObject {
     public final org.lwjgl.util.mapped.MappedObject slice() {
         throw new UnsupportedOperationException();
     }
+
 }

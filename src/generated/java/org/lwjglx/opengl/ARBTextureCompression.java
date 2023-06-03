@@ -129,4 +129,5 @@ public class ARBTextureCompression {
     public static void glGetCompressedTexImageARB(int target, int lod, java.nio.ByteBuffer pImg) {
         org.lwjgl.opengl.ARBTextureCompression.glGetCompressedTexImageARB(target, lod, pImg);
     }
+
 }

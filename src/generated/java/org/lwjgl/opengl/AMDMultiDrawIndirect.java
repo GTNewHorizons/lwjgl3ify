@@ -26,4 +26,5 @@ public class AMDMultiDrawIndirect {
     public static void glMultiDrawElementsIndirectAMD(int arg0, int arg1, java.nio.IntBuffer arg2, int arg3, int arg4) {
         throw new UnsupportedOperationException();
     }
+
 }

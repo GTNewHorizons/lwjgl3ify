@@ -166,4 +166,5 @@ public class ATIFragmentShader {
     public static void glSetFragmentShaderConstantATI(int arg0, java.nio.FloatBuffer arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

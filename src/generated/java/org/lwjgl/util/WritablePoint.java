@@ -9,4 +9,5 @@ public interface WritablePoint {
     public abstract void setX(int arg0);
 
     public abstract void setY(int arg0);
+
 }

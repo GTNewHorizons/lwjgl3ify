@@ -86,4 +86,5 @@ public class EXTPalettedTexture {
     public static void glGetColorTableParameterEXT(int arg0, int arg1, java.nio.IntBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

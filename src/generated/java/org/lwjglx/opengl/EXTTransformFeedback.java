@@ -53,4 +53,5 @@ public class EXTTransformFeedback {
     public static void glTransformFeedbackVaryingsEXT(int program, java.lang.CharSequence[] varyings, int bufferMode) {
         org.lwjgl.opengl.EXTTransformFeedback.glTransformFeedbackVaryingsEXT(program, varyings, bufferMode);
     }
+
 }

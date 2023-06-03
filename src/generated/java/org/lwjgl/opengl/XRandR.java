@@ -25,4 +25,5 @@ public class XRandR {
     public static void setConfiguration(boolean arg0, org.lwjgl.opengl.XRandR$Screen[] arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

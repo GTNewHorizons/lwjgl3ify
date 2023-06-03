@@ -26,4 +26,5 @@ public class ATIEnvmapBumpmap {
     public static void glTexBumpParameterATI(int arg0, java.nio.IntBuffer arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

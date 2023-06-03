@@ -154,4 +154,5 @@ public class ARBGpuShaderFp64 {
     public static void glUniformMatrix4x3(int arg0, boolean arg1, java.nio.DoubleBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

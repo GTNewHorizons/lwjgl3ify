@@ -24,4 +24,5 @@ public class ARBTextureRg {
     public static final int GL_RG8UI = (int) 33336;
     public static final int GL_RG = (int) 33319;
     public static final int GL_RG_INTEGER = (int) 33320;
+
 }

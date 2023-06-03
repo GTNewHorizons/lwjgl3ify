@@ -34,4 +34,5 @@ public class AMDDebugOutput {
         return org.lwjgl.opengl.AMDDebugOutput
                 .glGetDebugMessageLogAMD(count, categories, severities, ids, lengths, messageLog);
     }
+
 }

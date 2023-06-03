@@ -18,4 +18,5 @@ public class EXTTextureSRGB {
     public static final int GL_SRGB8_EXT = (int) 35905;
     public static final int GL_SRGB_ALPHA_EXT = (int) 35906;
     public static final int GL_SRGB_EXT = (int) 35904;
+
 }

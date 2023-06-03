@@ -17,4 +17,5 @@ public class AMDDrawBuffersBlend {
     public static void glBlendFuncSeparateIndexedAMD(int buf, int srcRGB, int dstRGB, int srcAlpha, int dstAlpha) {
         org.lwjgl.opengl.AMDDrawBuffersBlend.glBlendFuncSeparateIndexedAMD(buf, srcRGB, dstRGB, srcAlpha, dstAlpha);
     }
+
 }

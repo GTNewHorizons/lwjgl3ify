@@ -11,4 +11,5 @@ public class EXTBlendFuncSeparate {
         org.lwjgl.opengl.EXTBlendFuncSeparate
                 .glBlendFuncSeparateEXT(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
     }
+
 }

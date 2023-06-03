@@ -11,4 +11,5 @@ public class EXTFramebufferMultisample {
         org.lwjgl.opengl.EXTFramebufferMultisample
                 .glRenderbufferStorageMultisampleEXT(target, samples, internalformat, width, height);
     }
+
 }

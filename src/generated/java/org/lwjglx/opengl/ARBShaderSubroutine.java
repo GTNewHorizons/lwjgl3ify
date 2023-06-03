@@ -59,4 +59,5 @@ public class ARBShaderSubroutine {
     public static int glGetUniformSubroutineui(int shadertype, int location) {
         return org.lwjgl.opengl.ARBShaderSubroutine.glGetUniformSubroutineui(shadertype, location);
     }
+
 }

@@ -9,4 +9,5 @@ public class ARBTextureCubeMapArray {
     public static final int GL_TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB = (int) 36874;
     public static final int GL_TEXTURE_CUBE_MAP_ARRAY_ARB = (int) 36873;
     public static final int GL_UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB = (int) 36879;
+
 }

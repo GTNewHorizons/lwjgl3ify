@@ -131,4 +131,5 @@ public class NVRegisterCombiners {
     public static int glGetFinalCombinerInputParameteriNV(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

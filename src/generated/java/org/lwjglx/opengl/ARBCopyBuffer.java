@@ -9,4 +9,5 @@ public class ARBCopyBuffer {
             long size) {
         org.lwjgl.opengl.ARBCopyBuffer.glCopyBufferSubData(readTarget, writeTarget, readOffset, writeOffset, size);
     }
+
 }

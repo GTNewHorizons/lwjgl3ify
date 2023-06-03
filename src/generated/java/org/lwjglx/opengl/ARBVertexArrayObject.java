@@ -27,4 +27,5 @@ public class ARBVertexArrayObject {
     public static boolean glIsVertexArray(int array) {
         return org.lwjgl.opengl.ARBVertexArrayObject.glIsVertexArray(array);
     }
+
 }

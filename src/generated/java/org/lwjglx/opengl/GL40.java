@@ -326,4 +326,5 @@ public class GL40 {
     public static void glUniformSubroutinesu(int shadertype, java.nio.IntBuffer indices) {
         org.lwjgl.opengl.GL40.glUniformSubroutinesuiv(shadertype, indices);
     }
+
 }

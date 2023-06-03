@@ -6,4 +6,5 @@ public class NVGpuProgram5 {
     public static final int GL_MAX_FRAGMENT_INTERPOLATION_OFFSET_NV = (int) 36444;
     public static final int GL_MAX_GEOMETRY_PROGRAM_INVOCATIONS_NV = (int) 36442;
     public static final int GL_MIN_FRAGMENT_INTERPOLATION_OFFSET_NV = (int) 36443;
+
 }

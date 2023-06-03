@@ -65,6 +65,7 @@ public class GL44 {
 
         org.lwjgl.opengl.GL44.glClearTexImage(texture, level, format, type, wrappedArg4);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg4);
+
     }
 
     public static void glClearTexImage(int texture, int level, int format, int type, java.nio.ShortBuffer data) {
@@ -152,6 +153,7 @@ public class GL44 {
                 type,
                 wrappedArg10);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg10);
+
     }
 
     public static void glClearTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
@@ -169,4 +171,5 @@ public class GL44 {
                 type,
                 data);
     }
+
 }

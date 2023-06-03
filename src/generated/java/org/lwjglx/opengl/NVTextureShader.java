@@ -75,4 +75,5 @@ public class NVTextureShader {
     public static final int GL_UNSIGNED_INT_S8_S8_8_8_NV = (int) 34522;
     public static final int GL_VIBRANCE_BIAS_NV = (int) 34585;
     public static final int GL_VIBRANCE_SCALE_NV = (int) 34579;
+
 }

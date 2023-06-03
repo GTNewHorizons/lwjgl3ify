@@ -15,4 +15,5 @@ public class ARBES3Compatibility {
     public static final int GL_COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2 = (int) 37495;
     public static final int GL_MAX_ELEMENT_INDEX = (int) 36203;
     public static final int GL_PRIMITIVE_RESTART_FIXED_INDEX = (int) 36201;
+
 }

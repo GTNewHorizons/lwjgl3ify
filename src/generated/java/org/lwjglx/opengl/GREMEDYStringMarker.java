@@ -9,4 +9,5 @@ public class GREMEDYStringMarker {
     public static void glStringMarkerGREMEDY(java.nio.ByteBuffer string) {
         org.lwjgl.opengl.GREMEDYStringMarker.glStringMarkerGREMEDY(string);
     }
+
 }

@@ -18,4 +18,5 @@ public class NVDepthBufferFloat {
     public static void glDepthRangedNV(double n, double f) {
         org.lwjgl.opengl.NVDepthBufferFloat.glDepthRangedNV(n, f);
     }
+
 }

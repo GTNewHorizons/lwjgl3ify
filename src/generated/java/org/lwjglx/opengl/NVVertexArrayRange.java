@@ -21,6 +21,7 @@ public class NVVertexArrayRange {
 
         org.lwjgl.opengl.NVVertexArrayRange.glVertexArrayRangeNV(wrappedArg0);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(pPointer, wrappedArg0);
+
     }
 
     public static void glVertexArrayRangeNV(java.nio.FloatBuffer pPointer) {
@@ -28,6 +29,7 @@ public class NVVertexArrayRange {
 
         org.lwjgl.opengl.NVVertexArrayRange.glVertexArrayRangeNV(wrappedArg0);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(pPointer, wrappedArg0);
+
     }
 
     public static void glVertexArrayRangeNV(java.nio.IntBuffer pPointer) {
@@ -35,6 +37,7 @@ public class NVVertexArrayRange {
 
         org.lwjgl.opengl.NVVertexArrayRange.glVertexArrayRangeNV(wrappedArg0);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(pPointer, wrappedArg0);
+
     }
 
     public static void glVertexArrayRangeNV(java.nio.ShortBuffer pPointer) {
@@ -42,5 +45,7 @@ public class NVVertexArrayRange {
 
         org.lwjgl.opengl.NVVertexArrayRange.glVertexArrayRangeNV(wrappedArg0);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(pPointer, wrappedArg0);
+
     }
+
 }

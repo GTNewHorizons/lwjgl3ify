@@ -17,4 +17,5 @@ public class MappedSet {
             org.lwjgl.util.mapped.MappedObject arg3) {
         throw new UnsupportedOperationException();
     }
+
 }

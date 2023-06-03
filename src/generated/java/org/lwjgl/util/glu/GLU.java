@@ -14,7 +14,7 @@ public class GLU {
     public static final int GLU_ERROR = (int) 100103;
     public static final int GLU_EXTENSIONS = (int) 100801;
     public static final int GLU_EXTERIOR = (int) 100123;
-    public static final boolean GLU_FALSE = false;
+    public static final boolean GLU_FALSE = (boolean) 0;
     public static final int GLU_FILL = (int) 100012;
     public static final int GLU_FLAT = (int) 100001;
     public static final int GLU_INCOMPATIBLE_GL_VERSION = (int) 100903;
@@ -110,7 +110,7 @@ public class GLU {
     public static final int GLU_TESS_WINDING_ODD = (int) 100130;
     public static final int GLU_TESS_WINDING_POSITIVE = (int) 100132;
     public static final int GLU_TESS_WINDING_RULE = (int) 100140;
-    public static final boolean GLU_TRUE = true;
+    public static final boolean GLU_TRUE = (boolean) 1;
     public static final int GLU_UNKNOWN = (int) 100124;
     public static final int GLU_U_STEP = (int) 100206;
     public static final int GLU_VERSION = (int) 100800;
@@ -170,4 +170,5 @@ public class GLU {
             java.nio.FloatBuffer arg4, java.nio.IntBuffer arg5, java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
+
 }

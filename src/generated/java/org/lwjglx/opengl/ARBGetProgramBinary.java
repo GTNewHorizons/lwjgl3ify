@@ -19,4 +19,5 @@ public class ARBGetProgramBinary {
     public static void glProgramParameteri(int program, int pname, int value) {
         org.lwjgl.opengl.ARBGetProgramBinary.glProgramParameteri(program, pname, value);
     }
+
 }

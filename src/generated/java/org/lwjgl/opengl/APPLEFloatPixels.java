@@ -16,4 +16,5 @@ public class APPLEFloatPixels {
     public static final int GL_RGBA_FLOAT32_APPLE = (int) 34836;
     public static final int GL_RGB_FLOAT16_APPLE = (int) 34843;
     public static final int GL_RGB_FLOAT32_APPLE = (int) 34837;
+
 }

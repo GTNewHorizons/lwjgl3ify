@@ -28,4 +28,5 @@ public class ARBInvalidateSubdata {
         org.lwjgl.opengl.ARBInvalidateSubdata
                 .glInvalidateTexSubImage(texture, level, xoffset, yoffset, zoffset, width, height, depth);
     }
+
 }

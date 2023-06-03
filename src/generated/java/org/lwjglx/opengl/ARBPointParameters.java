@@ -14,4 +14,5 @@ public class ARBPointParameters {
     public static void glPointParameterfARB(int pname, float param) {
         org.lwjgl.opengl.ARBPointParameters.glPointParameterfARB(pname, param);
     }
+
 }

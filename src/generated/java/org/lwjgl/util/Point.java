@@ -53,4 +53,5 @@ public class Point {
     public void untranslate(org.lwjgl.util.ReadablePoint arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

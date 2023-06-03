@@ -7,4 +7,5 @@ public class ARBFragmentShader {
     public static final int GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB = (int) 35657;
     public static final int GL_MAX_TEXTURE_COORDS_ARB = (int) 34929;
     public static final int GL_MAX_TEXTURE_IMAGE_UNITS_ARB = (int) 34930;
+
 }

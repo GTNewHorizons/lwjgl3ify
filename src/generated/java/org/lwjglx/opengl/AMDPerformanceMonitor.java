@@ -67,10 +67,12 @@ public class AMDPerformanceMonitor {
 
         org.lwjgl.opengl.AMDPerformanceMonitor
                 .glSelectPerfMonitorCountersAMD(monitor, enable, group, new int[] { counter });
+
     }
 
     public static void glSelectPerfMonitorCountersAMD(int monitor, boolean enable, int group,
             java.nio.IntBuffer counterList) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glSelectPerfMonitorCountersAMD(monitor, enable, group, counterList);
     }
+
 }

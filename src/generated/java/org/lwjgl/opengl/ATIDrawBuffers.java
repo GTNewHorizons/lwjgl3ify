@@ -27,4 +27,5 @@ public class ATIDrawBuffers {
     public static void glDrawBuffersATI(java.nio.IntBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

@@ -7,4 +7,5 @@ public class NVXGpuMemoryInfo {
     public static final int GL_GPU_MEMORY_INFO_EVICTED_MEMORY_NVX = (int) 36939;
     public static final int GL_GPU_MEMORY_INFO_EVICTION_COUNT_NVX = (int) 36938;
     public static final int GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX = (int) 36936;
+
 }

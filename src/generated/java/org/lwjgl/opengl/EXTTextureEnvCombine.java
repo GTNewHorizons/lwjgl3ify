@@ -23,4 +23,5 @@ public class EXTTextureEnvCombine {
     public static final int GL_SOURCE1_RGB_EXT = (int) 34177;
     public static final int GL_SOURCE2_ALPHA_EXT = (int) 34186;
     public static final int GL_SOURCE2_RGB_EXT = (int) 34178;
+
 }

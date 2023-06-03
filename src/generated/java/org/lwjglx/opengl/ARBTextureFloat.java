@@ -22,4 +22,5 @@ public class ARBTextureFloat {
     public static final int GL_TEXTURE_LUMINANCE_TYPE_ARB = (int) 35860;
     public static final int GL_TEXTURE_RED_TYPE_ARB = (int) 35856;
     public static final int GL_UNSIGNED_NORMALIZED_ARB = (int) 35863;
+
 }

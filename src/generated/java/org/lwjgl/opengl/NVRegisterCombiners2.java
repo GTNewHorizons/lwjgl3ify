@@ -11,4 +11,5 @@ public class NVRegisterCombiners2 {
     public static void glGetCombinerStageParameterNV(int arg0, int arg1, java.nio.FloatBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

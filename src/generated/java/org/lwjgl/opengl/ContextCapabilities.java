@@ -380,4 +380,5 @@ public class ContextCapabilities {
     public final boolean OpenGL43 = false;
     public final boolean OpenGL44 = false;
     public final boolean OpenGL45 = false;
+
 }

@@ -27,4 +27,5 @@ public class ARBFramebufferNoAttachments {
     public static void glNamedFramebufferParameteriEXT(int framebuffer, int pname, int param) {
         org.lwjgl.opengl.ARBFramebufferNoAttachments.glNamedFramebufferParameteriEXT(framebuffer, pname, param);
     }
+
 }

@@ -1,6 +1,6 @@
 package org.lwjgl.opengl;
 
-public class Pbuffer extends org.lwjglx.opengl.DrawableGL {
+public class Pbuffer extends org.lwjgl.opengl.DrawableGL {
 
     public static final int BACK_LEFT_BUFFER = (int) 8325;
     public static final int BACK_RIGHT_BUFFER = (int) 8326;
@@ -47,4 +47,5 @@ public class Pbuffer extends org.lwjglx.opengl.DrawableGL {
     public void setAttrib(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

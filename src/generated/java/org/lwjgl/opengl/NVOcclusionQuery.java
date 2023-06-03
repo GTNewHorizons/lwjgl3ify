@@ -52,4 +52,5 @@ public class NVOcclusionQuery {
     public static boolean glIsOcclusionQueryNV(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

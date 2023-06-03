@@ -455,12 +455,14 @@ public class EXTDirectStateAccess {
 
         org.lwjgl.opengl.EXTDirectStateAccess
                 .glGetCompressedMultiTexImageEXT(texunit, target, level, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glGetCompressedMultiTexImageEXT(int texunit, int target, int level, java.nio.ShortBuffer img) {
 
         org.lwjgl.opengl.EXTDirectStateAccess
                 .glGetCompressedMultiTexImageEXT(texunit, target, level, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glGetCompressedTextureImageEXT(int texture, int target, int level, long img_buffer_offset) {
@@ -475,12 +477,14 @@ public class EXTDirectStateAccess {
 
         org.lwjgl.opengl.EXTDirectStateAccess
                 .glGetCompressedTextureImageEXT(texture, target, level, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glGetCompressedTextureImageEXT(int texture, int target, int level, java.nio.ShortBuffer img) {
 
         org.lwjgl.opengl.EXTDirectStateAccess
                 .glGetCompressedTextureImageEXT(texture, target, level, org.lwjglx.MemoryUtil.getAddress(img));
+
     }
 
     public static void glGetDoubleEXT(int pname, int index, java.nio.DoubleBuffer params) {
@@ -888,12 +892,14 @@ public class EXTDirectStateAccess {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pointer));
+
     }
 
     public static void glMultiTexCoordPointerEXT(int texunit, int size, int stride, java.nio.FloatBuffer pointer) {
 
         org.lwjgl.opengl.EXTDirectStateAccess
                 .glMultiTexCoordPointerEXT(texunit, size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pointer);
+
     }
 
     public static void glMultiTexEnvEXT(int texunit, int target, int pname, java.nio.FloatBuffer params) {
@@ -1177,6 +1183,7 @@ public class EXTDirectStateAccess {
     public static void glMultiTexParameterIEXT(int texunit, int target, int pname, int param) {
 
         org.lwjgl.opengl.EXTDirectStateAccess.glMultiTexParameterIivEXT(texunit, target, pname, new int[] { param });
+
     }
 
     public static void glMultiTexParameterIEXT(int texunit, int target, int pname, java.nio.IntBuffer params) {
@@ -1186,6 +1193,7 @@ public class EXTDirectStateAccess {
     public static void glMultiTexParameterIuEXT(int texunit, int target, int pname, int param) {
 
         org.lwjgl.opengl.EXTDirectStateAccess.glMultiTexParameterIuivEXT(texunit, target, pname, new int[] { param });
+
     }
 
     public static void glMultiTexParameterIuEXT(int texunit, int target, int pname, java.nio.IntBuffer params) {
@@ -1948,6 +1956,7 @@ public class EXTDirectStateAccess {
     public static void glTextureParameterIEXT(int texture, int target, int pname, int param) {
 
         org.lwjgl.opengl.EXTDirectStateAccess.glTextureParameterIivEXT(texture, target, pname, new int[] { param });
+
     }
 
     public static void glTextureParameterIEXT(int texture, int target, int pname, java.nio.IntBuffer params) {
@@ -1957,6 +1966,7 @@ public class EXTDirectStateAccess {
     public static void glTextureParameterIuEXT(int texture, int target, int pname, int param) {
 
         org.lwjgl.opengl.EXTDirectStateAccess.glTextureParameterIuivEXT(texture, target, pname, new int[] { param });
+
     }
 
     public static void glTextureParameterIuEXT(int texture, int target, int pname, java.nio.IntBuffer params) {
@@ -2215,4 +2225,5 @@ public class EXTDirectStateAccess {
             long offset) {
         org.lwjgl.opengl.EXTDirectStateAccess.glVertexArrayVertexOffsetEXT(vaobj, buffer, size, type, stride, offset);
     }
+
 }

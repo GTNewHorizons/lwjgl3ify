@@ -41,4 +41,5 @@ public class NVFence {
     public static boolean glTestFenceNV(int fence) {
         return org.lwjgl.opengl.NVFence.glTestFenceNV(fence);
     }
+
 }

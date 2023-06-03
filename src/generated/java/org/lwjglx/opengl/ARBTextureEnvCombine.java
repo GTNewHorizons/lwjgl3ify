@@ -24,4 +24,5 @@ public class ARBTextureEnvCombine {
     public static final int GL_SOURCE2_ALPHA_ARB = (int) 34186;
     public static final int GL_SOURCE2_RGB_ARB = (int) 34178;
     public static final int GL_SUBTRACT_ARB = (int) 34023;
+
 }

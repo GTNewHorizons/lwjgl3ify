@@ -25,4 +25,5 @@ public abstract class PointerWrapperAbstract {
     public java.lang.String toString() {
         throw new UnsupportedOperationException();
     }
+
 }

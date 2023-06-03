@@ -85,4 +85,5 @@ public class NVTransformFeedback {
     public static void glTransformFeedbackVaryingsNV(int program, java.nio.IntBuffer locations, int bufferMode) {
         org.lwjgl.opengl.NVTransformFeedback.glTransformFeedbackVaryingsNV(program, locations, bufferMode);
     }
+
 }

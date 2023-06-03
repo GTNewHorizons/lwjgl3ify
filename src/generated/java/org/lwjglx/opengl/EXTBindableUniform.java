@@ -20,4 +20,5 @@ public class EXTBindableUniform {
     public static void glUniformBufferEXT(int program, int location, int buffer) {
         org.lwjgl.opengl.EXTBindableUniform.glUniformBufferEXT(program, location, buffer);
     }
+
 }

@@ -10,4 +10,5 @@ public interface GLUConstants {
     public static final int GLU_OUT_OF_MEMORY = (int) 100902;
     public static final int GLU_TRUE = (int) 1;
     public static final int GLU_VERSION = (int) 100800;
+
 }

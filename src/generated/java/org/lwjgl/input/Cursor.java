@@ -21,4 +21,5 @@ public class Cursor {
     public static int getMinCursorSize() {
         throw new UnsupportedOperationException();
     }
+
 }

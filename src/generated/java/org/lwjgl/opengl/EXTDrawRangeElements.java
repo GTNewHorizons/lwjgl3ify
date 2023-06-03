@@ -20,4 +20,5 @@ public class EXTDrawRangeElements {
     public static void glDrawRangeElementsEXT(int arg0, int arg1, int arg2, java.nio.ShortBuffer arg3) {
         throw new UnsupportedOperationException();
     }
+
 }

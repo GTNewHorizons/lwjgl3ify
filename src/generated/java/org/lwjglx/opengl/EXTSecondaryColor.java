@@ -37,12 +37,14 @@ public class EXTSecondaryColor {
                 org.lwjgl.opengl.GL11.GL_DOUBLE,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(pPointer));
+
     }
 
     public static void glSecondaryColorPointerEXT(int size, int stride, java.nio.FloatBuffer pPointer) {
 
         org.lwjgl.opengl.EXTSecondaryColor
                 .glSecondaryColorPointerEXT(size, org.lwjgl.opengl.GL11.GL_FLOAT, stride, pPointer);
+
     }
 
     public static void glSecondaryColorPointerEXT(int size, boolean unsigned, int stride,
@@ -53,5 +55,7 @@ public class EXTSecondaryColor {
                 (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(pPointer));
+
     }
+
 }

@@ -14,4 +14,5 @@ public class INTELMapTexture {
     public static void glUnmapTexture2DINTEL(int texture, int level) {
         org.lwjgl.opengl.INTELMapTexture.glUnmapTexture2DINTEL(texture, level);
     }
+
 }

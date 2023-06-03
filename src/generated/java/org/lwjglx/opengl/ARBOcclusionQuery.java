@@ -59,4 +59,5 @@ public class ARBOcclusionQuery {
     public static boolean glIsQueryARB(int id) {
         return org.lwjgl.opengl.ARBOcclusionQuery.glIsQueryARB(id);
     }
+
 }

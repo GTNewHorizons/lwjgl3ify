@@ -28,4 +28,5 @@ public class ARBDrawIndirect {
     public static void glDrawElementsIndirect(int mode, int type, java.nio.IntBuffer indirect) {
         org.lwjgl.opengl.ARBDrawIndirect.glDrawElementsIndirect(mode, type, indirect);
     }
+
 }

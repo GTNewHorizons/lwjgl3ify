@@ -9,4 +9,5 @@ public interface WritableDimension {
     public abstract void setSize(org.lwjgl.util.ReadableDimension arg0);
 
     public abstract void setWidth(int arg0);
+
 }

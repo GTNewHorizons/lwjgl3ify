@@ -60,6 +60,7 @@ public class AL11 {
 
         org.lwjgl.openal.AL11.alGetListeneriv(pname, wrappedArg1.asIntBuffer());
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(intdata, wrappedArg1);
+
     }
 
     public static void alListener3i(int pname, int v1, int v2, int v3) {
@@ -77,4 +78,5 @@ public class AL11 {
     public static void alSpeedOfSound(float value) {
         org.lwjgl.openal.AL11.alSpeedOfSound(value);
     }
+
 }

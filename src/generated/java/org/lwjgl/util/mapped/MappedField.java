@@ -5,4 +5,5 @@ public interface MappedField {
     public abstract long byteLength();
 
     public abstract long byteOffset();
+
 }

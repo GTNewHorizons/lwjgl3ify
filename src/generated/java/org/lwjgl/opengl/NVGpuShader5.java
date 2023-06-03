@@ -167,4 +167,5 @@ public class NVGpuShader5 {
     public static void glUniform4ui64NV(int arg0, long arg1, long arg2, long arg3, long arg4) {
         throw new UnsupportedOperationException();
     }
+
 }

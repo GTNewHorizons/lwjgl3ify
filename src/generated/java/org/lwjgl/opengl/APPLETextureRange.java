@@ -16,4 +16,5 @@ public class APPLETextureRange {
     public static void glTextureRangeAPPLE(int arg0, java.nio.ByteBuffer arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

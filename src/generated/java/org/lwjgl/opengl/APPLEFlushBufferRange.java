@@ -12,4 +12,5 @@ public class APPLEFlushBufferRange {
     public static void glFlushMappedBufferRangeAPPLE(int arg0, long arg1, long arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

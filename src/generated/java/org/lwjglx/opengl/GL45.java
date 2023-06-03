@@ -146,6 +146,7 @@ public class GL45 {
                 format,
                 imageSize,
                 org.lwjglx.MemoryUtil.getAddress(data));
+
     }
 
     public static void glCopyNamedBufferSubData(int readBuffer, int writeBuffer, long readOffset, long writeOffset,
@@ -1061,4 +1062,5 @@ public class GL45 {
     public static void glVertexArrayVertexBuffer(int vaobj, int bindingindex, int buffer, long offset, int stride) {
         org.lwjgl.opengl.GL45.glVertexArrayVertexBuffer(vaobj, bindingindex, buffer, offset, stride);
     }
+
 }

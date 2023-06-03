@@ -23,4 +23,5 @@ public class ARBShaderStorageBufferObject {
         org.lwjgl.opengl.ARBShaderStorageBufferObject
                 .glShaderStorageBlockBinding(program, storageBlockIndex, storageBlockBinding);
     }
+
 }

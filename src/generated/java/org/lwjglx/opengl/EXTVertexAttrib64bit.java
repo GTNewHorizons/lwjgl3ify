@@ -60,4 +60,5 @@ public class EXTVertexAttrib64bit {
     public static void glVertexAttribLPointerEXT(int index, int size, int stride, java.nio.DoubleBuffer pointer) {
         org.lwjgl.opengl.EXTVertexAttrib64bit.glVertexAttribLPointerEXT(index, size, stride, pointer);
     }
+
 }

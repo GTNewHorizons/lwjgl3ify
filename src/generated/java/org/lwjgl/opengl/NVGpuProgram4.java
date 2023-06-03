@@ -72,4 +72,5 @@ public class NVGpuProgram4 {
     public static void glProgramLocalParametersI4uNV(int arg0, int arg1, java.nio.IntBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }

@@ -23,4 +23,5 @@ public class APPLEVertexArrayRange {
     public static void glVertexArrayRangeAPPLE(java.nio.ByteBuffer arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

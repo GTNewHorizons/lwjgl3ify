@@ -9,4 +9,5 @@ public class ALCdevice {
     public boolean isValid() {
         throw new UnsupportedOperationException();
     }
+
 }

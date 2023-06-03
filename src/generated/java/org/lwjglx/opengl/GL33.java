@@ -292,4 +292,5 @@ public class GL33 {
     public static void glVertexP4ui(int type, int value) {
         org.lwjgl.opengl.GL33.glVertexP4ui(type, value);
     }
+
 }

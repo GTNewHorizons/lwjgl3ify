@@ -17,4 +17,5 @@ public class ARBComputeVariableGroupSize {
                 group_size_y,
                 group_size_z);
     }
+
 }

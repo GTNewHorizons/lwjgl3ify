@@ -27,4 +27,5 @@ public class EXTVertexWeighting {
     public static void glVertexWeightfEXT(float arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

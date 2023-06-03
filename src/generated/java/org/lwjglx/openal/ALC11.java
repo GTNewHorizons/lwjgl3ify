@@ -29,15 +29,19 @@ public class ALC11 {
     public static void alcCaptureSamples(org.lwjglx.openal.ALCdevice device, java.nio.ByteBuffer buffer, int samples) {
 
         org.lwjgl.openal.ALC11.alcCaptureSamples(device.device, buffer, samples);
+
     }
 
     public static void alcCaptureStart(org.lwjglx.openal.ALCdevice device) {
 
         org.lwjgl.openal.ALC11.alcCaptureStart(device.device);
+
     }
 
     public static void alcCaptureStop(org.lwjglx.openal.ALCdevice device) {
 
         org.lwjgl.openal.ALC11.alcCaptureStop(device.device);
+
     }
+
 }

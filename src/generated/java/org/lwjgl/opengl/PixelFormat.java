@@ -101,4 +101,5 @@ public class PixelFormat {
     public org.lwjgl.opengl.PixelFormat withStereo(boolean arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

@@ -13,4 +13,5 @@ public class NVPresentVideoUtil {
     public static boolean glQueryContextNV(int arg0, java.nio.IntBuffer arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

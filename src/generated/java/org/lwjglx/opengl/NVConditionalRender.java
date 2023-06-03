@@ -14,4 +14,5 @@ public class NVConditionalRender {
     public static void glEndConditionalRenderNV() {
         org.lwjgl.opengl.NVConditionalRender.glEndConditionalRenderNV();
     }
+
 }

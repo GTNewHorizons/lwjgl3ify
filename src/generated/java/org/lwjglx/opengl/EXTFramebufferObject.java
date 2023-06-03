@@ -151,4 +151,5 @@ public class EXTFramebufferObject {
     public static void glRenderbufferStorageEXT(int target, int internalformat, int width, int height) {
         org.lwjgl.opengl.EXTFramebufferObject.glRenderbufferStorageEXT(target, internalformat, width, height);
     }
+
 }

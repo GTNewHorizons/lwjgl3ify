@@ -16,4 +16,5 @@ public class ARBTimerQuery {
     public static void glQueryCounter(int id, int target) {
         org.lwjgl.opengl.ARBTimerQuery.glQueryCounter(id, target);
     }
+
 }

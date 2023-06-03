@@ -7,4 +7,5 @@ public class ARBDepthTexture {
     public static final int GL_DEPTH_COMPONENT32_ARB = (int) 33191;
     public static final int GL_DEPTH_TEXTURE_MODE_ARB = (int) 34891;
     public static final int GL_TEXTURE_DEPTH_SIZE_ARB = (int) 34890;
+
 }

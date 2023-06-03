@@ -253,6 +253,7 @@ public class GL20 {
     public static void glShaderSource(int shader, java.nio.ByteBuffer string) {
 
         org.lwjgl.opengl.GL20.glShaderSource(shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
+
     }
 
     public static void glShaderSource(int shader, java.lang.CharSequence[] strings) {
@@ -427,6 +428,7 @@ public class GL20 {
                 normalized,
                 stride,
                 me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(buffer));
+
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean normalized, int stride,
@@ -434,6 +436,7 @@ public class GL20 {
 
         org.lwjgl.opengl.GL20
                 .glVertexAttribPointer(index, size, org.lwjgl.opengl.GL11.GL_FLOAT, normalized, stride, buffer);
+
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
@@ -446,6 +449,7 @@ public class GL20 {
                 normalized,
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(buffer));
+
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
@@ -458,6 +462,7 @@ public class GL20 {
                 normalized,
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(buffer));
+
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
@@ -470,5 +475,7 @@ public class GL20 {
                 normalized,
                 stride,
                 org.lwjglx.MemoryUtil.getAddress(buffer));
+
     }
+
 }

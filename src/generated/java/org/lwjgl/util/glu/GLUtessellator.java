@@ -27,4 +27,5 @@ public interface GLUtessellator {
     public abstract void gluTessProperty(int arg0, double arg1);
 
     public abstract void gluTessVertex(double[] arg0, int arg1, java.lang.Object arg2);
+
 }

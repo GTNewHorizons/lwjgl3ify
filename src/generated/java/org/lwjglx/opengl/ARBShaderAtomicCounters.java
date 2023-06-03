@@ -31,4 +31,5 @@ public class ARBShaderAtomicCounters {
     public static final int GL_MAX_VERTEX_ATOMIC_COUNTER_BUFFERS = (int) 37580;
     public static final int GL_UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX = (int) 37594;
     public static final int GL_UNSIGNED_INT_ATOMIC_COUNTER = (int) 37595;
+
 }

@@ -63,4 +63,5 @@ public class ARBVertexAttrib64bit {
     public static void glVertexAttribLPointer(int arg0, int arg1, int arg2, java.nio.DoubleBuffer arg3) {
         throw new UnsupportedOperationException();
     }
+
 }

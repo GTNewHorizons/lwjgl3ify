@@ -2,15 +2,65 @@ package org.lwjglx.openal;
 
 public class AL10 {
 
-    public static final int AL_NO_ERROR = org.lwjgl.openal.AL10.AL_NO_ERROR;
-    public static final int AL_BUFFER = org.lwjgl.openal.AL10.AL_BUFFER;
-    public static final int AL_SOURCE_STATE = org.lwjgl.openal.AL10.AL_SOURCE_STATE;
-    public static final int AL_PLAYING = org.lwjgl.openal.AL10.AL_PLAYING;
-    public static final int AL_LOOPING = org.lwjgl.openal.AL10.AL_LOOPING;
-    public static final int AL_TRUE = org.lwjgl.openal.AL10.AL_TRUE;
-    public static final int AL_REFERENCE_DISTANCE = org.lwjgl.openal.AL10.AL_REFERENCE_DISTANCE;
-    public static final int AL_ROLLOFF_FACTOR = org.lwjgl.openal.AL10.AL_ROLLOFF_FACTOR;
-    public static final int AL_POSITION = org.lwjgl.openal.AL10.AL_POSITION;
+    public static final int AL_BITS = (int) 8194;
+    public static final int AL_BUFFER = (int) 4105;
+    public static final int AL_BUFFERS_PROCESSED = (int) 4118;
+    public static final int AL_BUFFERS_QUEUED = (int) 4117;
+    public static final int AL_CHANNELS = (int) 8195;
+    public static final int AL_CHANNEL_MASK = (int) 12288;
+    public static final int AL_CONE_INNER_ANGLE = (int) 4097;
+    public static final int AL_CONE_OUTER_ANGLE = (int) 4098;
+    public static final int AL_CONE_OUTER_GAIN = (int) 4130;
+    public static final int AL_DATA = (int) 8197;
+    public static final int AL_DIRECTION = (int) 4101;
+    public static final int AL_DISTANCE_MODEL = (int) 53248;
+    public static final int AL_DOPPLER_FACTOR = (int) 49152;
+    public static final int AL_DOPPLER_VELOCITY = (int) 49153;
+    public static final int AL_EXTENSIONS = (int) 45060;
+    public static final int AL_FALSE = (int) 0;
+    public static final int AL_FORMAT_MONO16 = (int) 4353;
+    public static final int AL_FORMAT_MONO8 = (int) 4352;
+    public static final int AL_FORMAT_STEREO16 = (int) 4355;
+    public static final int AL_FORMAT_STEREO8 = (int) 4354;
+    public static final int AL_FORMAT_VORBIS_EXT = (int) 65539;
+    public static final int AL_FREQUENCY = (int) 8193;
+    public static final int AL_GAIN = (int) 4106;
+    public static final int AL_INITIAL = (int) 4113;
+    public static final int AL_INVALID = (int) -1;
+    public static final int AL_INVALID_ENUM = (int) 40962;
+    public static final int AL_INVALID_NAME = (int) 40961;
+    public static final int AL_INVALID_OPERATION = (int) 40964;
+    public static final int AL_INVALID_VALUE = (int) 40963;
+    public static final int AL_INVERSE_DISTANCE = (int) 53249;
+    public static final int AL_INVERSE_DISTANCE_CLAMPED = (int) 53250;
+    public static final int AL_LOOPING = (int) 4103;
+    public static final int AL_MAX_DISTANCE = (int) 4131;
+    public static final int AL_MAX_GAIN = (int) 4110;
+    public static final int AL_MIN_GAIN = (int) 4109;
+    public static final int AL_NONE = (int) 0;
+    public static final int AL_NO_ERROR = (int) 0;
+    public static final int AL_ORIENTATION = (int) 4111;
+    public static final int AL_OUT_OF_MEMORY = (int) 40965;
+    public static final int AL_PAUSED = (int) 4115;
+    public static final int AL_PENDING = (int) 8209;
+    public static final int AL_PITCH = (int) 4099;
+    public static final int AL_PLAYING = (int) 4114;
+    public static final int AL_POSITION = (int) 4100;
+    public static final int AL_PROCESSED = (int) 8210;
+    public static final int AL_REFERENCE_DISTANCE = (int) 4128;
+    public static final int AL_RENDERER = (int) 45059;
+    public static final int AL_ROLLOFF_FACTOR = (int) 4129;
+    public static final int AL_SIZE = (int) 8196;
+    public static final int AL_SOURCE_ABSOLUTE = (int) 513;
+    public static final int AL_SOURCE_RELATIVE = (int) 514;
+    public static final int AL_SOURCE_STATE = (int) 4112;
+    public static final int AL_SOURCE_TYPE = (int) 4135;
+    public static final int AL_STOPPED = (int) 4116;
+    public static final int AL_TRUE = (int) 1;
+    public static final int AL_UNUSED = (int) 8208;
+    public static final int AL_VELOCITY = (int) 4102;
+    public static final int AL_VENDOR = (int) 45057;
+    public static final int AL_VERSION = (int) 45058;
 
     public static void alBufferData(int buffer, int format, java.nio.ByteBuffer data, int freq) {
         org.lwjgl.openal.AL10.alBufferData(buffer, format, data, freq);
@@ -249,4 +299,5 @@ public class AL10 {
     public static void alSourcei(int source, int pname, int value) {
         org.lwjgl.openal.AL10.alSourcei(source, pname, value);
     }
+
 }

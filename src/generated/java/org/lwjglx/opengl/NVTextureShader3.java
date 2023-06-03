@@ -19,4 +19,5 @@ public class NVTextureShader3 {
     public static final int GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_NV = (int) 34898;
     public static final int GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_SCALE_NV = (int) 34899;
     public static final int GL_SIGNED_HILO8_NV = (int) 34911;
+
 }

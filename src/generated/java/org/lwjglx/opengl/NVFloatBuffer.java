@@ -17,4 +17,5 @@ public class NVFloatBuffer {
     public static final int GL_FLOAT_RG_NV = (int) 34945;
     public static final int GL_FLOAT_R_NV = (int) 34944;
     public static final int GL_TEXTURE_FLOAT_COMPONENTS_NV = (int) 34956;
+
 }

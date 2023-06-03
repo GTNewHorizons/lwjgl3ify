@@ -9,4 +9,5 @@ public interface MappedType {
     public abstract boolean cacheLinePadding();
 
     public abstract int padding();
+
 }

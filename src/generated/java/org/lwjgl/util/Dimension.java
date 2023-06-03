@@ -41,4 +41,5 @@ public class Dimension {
     public java.lang.String toString() {
         throw new UnsupportedOperationException();
     }
+
 }

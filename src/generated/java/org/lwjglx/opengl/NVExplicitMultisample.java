@@ -24,4 +24,5 @@ public class NVExplicitMultisample {
     public static void glTexRenderbufferNV(int target, int renderbuffer) {
         org.lwjgl.opengl.NVExplicitMultisample.glTexRenderbufferNV(target, renderbuffer);
     }
+
 }

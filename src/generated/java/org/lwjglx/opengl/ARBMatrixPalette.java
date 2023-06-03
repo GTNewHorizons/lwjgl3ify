@@ -44,4 +44,5 @@ public class ARBMatrixPalette {
     public static void glMatrixIndexuARB(java.nio.ShortBuffer pIndices) {
         org.lwjgl.opengl.ARBMatrixPalette.glMatrixIndexusvARB(pIndices);
     }
+
 }

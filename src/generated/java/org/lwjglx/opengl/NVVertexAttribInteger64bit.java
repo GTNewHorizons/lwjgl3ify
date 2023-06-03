@@ -80,4 +80,5 @@ public class NVVertexAttribInteger64bit {
     public static void glVertexAttribLFormatNV(int index, int size, int type, int stride) {
         org.lwjgl.opengl.NVVertexAttribInteger64bit.glVertexAttribLFormatNV(index, size, type, stride);
     }
+
 }

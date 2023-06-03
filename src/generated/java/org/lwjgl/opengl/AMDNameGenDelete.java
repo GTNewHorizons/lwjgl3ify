@@ -27,4 +27,5 @@ public class AMDNameGenDelete {
     public static boolean glIsNameAMD(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

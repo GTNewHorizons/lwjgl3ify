@@ -44,4 +44,5 @@ public class APPLEFence {
     public static boolean glTestObjectAPPLE(int arg0, int arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

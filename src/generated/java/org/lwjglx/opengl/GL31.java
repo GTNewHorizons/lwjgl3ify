@@ -152,4 +152,5 @@ public class GL31 {
     public static void glUniformBlockBinding(int program, int uniformBlockIndex, int uniformBlockBinding) {
         org.lwjgl.opengl.GL31.glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
     }
+
 }

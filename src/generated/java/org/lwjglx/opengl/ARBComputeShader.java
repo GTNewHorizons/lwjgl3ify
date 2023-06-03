@@ -28,4 +28,5 @@ public class ARBComputeShader {
     public static void glDispatchComputeIndirect(long indirect) {
         org.lwjgl.opengl.ARBComputeShader.glDispatchComputeIndirect(indirect);
     }
+
 }

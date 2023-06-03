@@ -27,4 +27,5 @@ public class APPLEVertexArrayObject {
     public static boolean glIsVertexArrayAPPLE(int arg0) {
         throw new UnsupportedOperationException();
     }
+
 }

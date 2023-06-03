@@ -17,4 +17,5 @@ public class ARBFragmentProgram extends org.lwjglx.opengl.ARBProgram {
     public static final int GL_PROGRAM_NATIVE_TEX_INSTRUCTIONS_ARB = (int) 34825;
     public static final int GL_PROGRAM_TEX_INDIRECTIONS_ARB = (int) 34823;
     public static final int GL_PROGRAM_TEX_INSTRUCTIONS_ARB = (int) 34822;
+
 }

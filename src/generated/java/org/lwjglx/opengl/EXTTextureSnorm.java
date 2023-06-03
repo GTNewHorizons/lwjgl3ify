@@ -27,4 +27,5 @@ public class EXTTextureSnorm {
     public static final int GL_RGB_SNORM = (int) 36754;
     public static final int GL_RG_SNORM = (int) 36753;
     public static final int GL_SIGNED_NORMALIZED = (int) 36764;
+
 }

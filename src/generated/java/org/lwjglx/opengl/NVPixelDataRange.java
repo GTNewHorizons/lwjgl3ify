@@ -22,6 +22,7 @@ public class NVPixelDataRange {
 
         org.lwjgl.opengl.NVPixelDataRange.glPixelDataRangeNV(target, wrappedArg1);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg1);
+
     }
 
     public static void glPixelDataRangeNV(int target, java.nio.FloatBuffer data) {
@@ -29,6 +30,7 @@ public class NVPixelDataRange {
 
         org.lwjgl.opengl.NVPixelDataRange.glPixelDataRangeNV(target, wrappedArg1);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg1);
+
     }
 
     public static void glPixelDataRangeNV(int target, java.nio.IntBuffer data) {
@@ -36,6 +38,7 @@ public class NVPixelDataRange {
 
         org.lwjgl.opengl.NVPixelDataRange.glPixelDataRangeNV(target, wrappedArg1);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg1);
+
     }
 
     public static void glPixelDataRangeNV(int target, java.nio.ShortBuffer data) {
@@ -43,5 +46,7 @@ public class NVPixelDataRange {
 
         org.lwjgl.opengl.NVPixelDataRange.glPixelDataRangeNV(target, wrappedArg1);
         me.eigenraven.lwjgl3ify.BufferCasts.updateBuffer(data, wrappedArg1);
+
     }
+
 }

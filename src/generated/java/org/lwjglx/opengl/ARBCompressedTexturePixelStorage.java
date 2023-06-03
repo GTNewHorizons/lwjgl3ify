@@ -10,4 +10,5 @@ public class ARBCompressedTexturePixelStorage {
     public static final int GL_UNPACK_COMPRESSED_BLOCK_HEIGHT = (int) 37160;
     public static final int GL_UNPACK_COMPRESSED_BLOCK_SIZE = (int) 37162;
     public static final int GL_UNPACK_COMPRESSED_BLOCK_WIDTH = (int) 37159;
+
 }

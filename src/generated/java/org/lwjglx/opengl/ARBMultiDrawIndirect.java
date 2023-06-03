@@ -30,4 +30,5 @@ public class ARBMultiDrawIndirect {
             int stride) {
         org.lwjgl.opengl.ARBMultiDrawIndirect.glMultiDrawElementsIndirect(mode, type, indirect, primcount, stride);
     }
+
 }

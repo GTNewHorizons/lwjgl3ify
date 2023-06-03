@@ -23,4 +23,5 @@ public class ARBClearBufferObject {
         org.lwjgl.opengl.ARBClearBufferObject
                 .glClearNamedBufferSubDataEXT(buffer, internalformat, offset, size, format, type, data);
     }
+
 }

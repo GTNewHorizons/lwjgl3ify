@@ -33,4 +33,5 @@ public class ARBWindowPos {
     public static void glWindowPos3sARB(short x, short y, short z) {
         org.lwjgl.opengl.ARBWindowPos.glWindowPos3sARB(x, y, z);
     }
+
 }

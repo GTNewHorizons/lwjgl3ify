@@ -42,4 +42,5 @@ public class ARBTransformFeedback2 {
     public static void glResumeTransformFeedback() {
         org.lwjgl.opengl.ARBTransformFeedback2.glResumeTransformFeedback();
     }
+
 }

@@ -256,4 +256,5 @@ public class NVVertexProgram extends org.lwjgl.opengl.NVProgram {
     public static void glVertexAttribs4NV(int arg0, java.nio.ShortBuffer arg1) {
         throw new UnsupportedOperationException();
     }
+
 }

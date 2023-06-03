@@ -91,4 +91,5 @@ public class ARBProgramInterfaceQuery {
         org.lwjgl.opengl.ARBProgramInterfaceQuery
                 .glGetProgramResourceName(program, programInterface, index, length, name);
     }
+
 }

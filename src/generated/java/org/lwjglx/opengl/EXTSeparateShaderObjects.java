@@ -19,4 +19,5 @@ public class EXTSeparateShaderObjects {
     public static void glUseShaderProgramEXT(int type, int program) {
         org.lwjgl.opengl.EXTSeparateShaderObjects.glUseShaderProgramEXT(type, program);
     }
+
 }

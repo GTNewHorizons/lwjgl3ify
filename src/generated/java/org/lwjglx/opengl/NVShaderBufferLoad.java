@@ -69,4 +69,5 @@ public class NVShaderBufferLoad {
     public static void glUniformui64NV(int location, long value) {
         org.lwjgl.opengl.NVShaderBufferLoad.glUniformui64NV(location, value);
     }
+
 }

@@ -44,4 +44,5 @@ public interface InputImplementation {
     public abstract void setCursorPosition(int arg0, int arg1);
 
     public abstract void setNativeCursor(java.lang.Object arg0);
+
 }

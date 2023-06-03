@@ -38,4 +38,5 @@ public class ARBES2Compatibility {
     public static void glShaderBinary(java.nio.IntBuffer shaders, int binaryformat, java.nio.ByteBuffer binary) {
         org.lwjgl.opengl.ARBES2Compatibility.glShaderBinary(shaders, binaryformat, binary);
     }
+
 }

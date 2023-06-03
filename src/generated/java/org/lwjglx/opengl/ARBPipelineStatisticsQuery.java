@@ -13,4 +13,5 @@ public class ARBPipelineStatisticsQuery {
     public static final int GL_TESS_EVALUATION_SHADER_INVOCATIONS_ARB = (int) 33522;
     public static final int GL_VERTEX_SHADER_INVOCATIONS_ARB = (int) 33520;
     public static final int GL_VERTICES_SUBMITTED_ARB = (int) 33518;
+
 }

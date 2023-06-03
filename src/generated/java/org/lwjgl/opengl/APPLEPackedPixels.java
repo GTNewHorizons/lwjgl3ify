@@ -14,4 +14,5 @@ public class APPLEPackedPixels {
     public static final int GL_UNSIGNED_SHORT_5_5_5_1 = (int) 32820;
     public static final int GL_UNSIGNED_SHORT_5_6_5 = (int) 33635;
     public static final int GL_UNSIGNED_SHORT_5_6_5_REV = (int) 33636;
+
 }

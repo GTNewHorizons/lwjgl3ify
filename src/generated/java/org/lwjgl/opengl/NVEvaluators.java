@@ -64,4 +64,5 @@ public class NVEvaluators {
     public static void glMapParameterNV(int arg0, int arg1, java.nio.IntBuffer arg2) {
         throw new UnsupportedOperationException();
     }
+
 }
