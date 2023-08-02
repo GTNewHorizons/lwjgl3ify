@@ -22,9 +22,6 @@ public class Mouse {
 
     private static boolean grabbed = false;
 
-    private static int lastX = 0;
-    private static int lastY = 0;
-
     private static int lastEventX = 0;
     private static int lastEventY = 0;
 
@@ -33,6 +30,8 @@ public class Mouse {
 
     private static int x = 0;
     private static int y = 0;
+
+    private static int dx = 0, dy = 0, dwheel = 0;
 
     private static EventQueue queue = new EventQueue(128);
 
@@ -54,16 +53,18 @@ public class Mouse {
             ignoreNextMove--;
             return;
         }
+        dx += (int) mouseX - latestX;
+        dy += Display.getHeight() - (int) mouseY - latestY;
         latestX = (int) mouseX;
         latestY = Display.getHeight() - (int) mouseY;
         if (ignoreNextDelta > 0) {
             ignoreNextDelta--;
             x = latestX;
             y = latestY;
-            lastX = latestX;
-            lastY = latestY;
             lastEventX = latestX;
             lastEventY = latestY;
+            dx = 0;
+            dy = 0;
         }
 
         lastxEvents[queue.getNextPos()] = lastEventX;
@@ -107,21 +108,22 @@ public class Mouse {
     // Used for our config screen for ease of access
     public static double totalScrollAmount = 0.0;
 
-    public static void addWheelEvent(double dwheel) {
+    public static void addWheelEvent(double delta) {
         if (Config.INPUT_INVERT_WHEEL) {
-            dwheel = -dwheel;
+            delta = -delta;
         }
-        dwheel *= Config.INPUT_SCROLL_SPEED;
+        delta *= Config.INPUT_SCROLL_SPEED;
 
         final int lastWheel = (int) fractionalWheelPosition;
-        fractionalWheelPosition += dwheel;
-        totalScrollAmount += dwheel;
+        fractionalWheelPosition += delta;
+        totalScrollAmount += delta;
         final int newWheel = (int) fractionalWheelPosition;
         if (newWheel != lastWheel) {
             lastxEvents[queue.getNextPos()] = lastEventX;
             lastyEvents[queue.getNextPos()] = lastEventY;
             lastEventX = latestX;
             lastEventY = latestY;
+            dwheel += newWheel - lastWheel;
 
             xEvents[queue.getNextPos()] = latestX;
             yEvents[queue.getNextPos()] = latestY;
@@ -139,8 +141,6 @@ public class Mouse {
     }
 
     public static void poll() {
-        lastX = x;
-        lastY = y;
 
         if (!grabbed && clipPostionToDisplay) {
             if (latestX < 0) latestX = 0;
@@ -169,11 +169,32 @@ public class Mouse {
                 grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
         grabbed = grab;
         if (!grab) {
+            // The old cursor position is sent instead of the new one in the events following mouse ungrab.
+            ignoreNextMove += 2;
             setCursorPosition(Display.getWidth() / 2, Display.getHeight() / 2);
+            // Movement events are not properly sent when toggling mouse grab mode.
+            // Trick the game into getting the correct mouse position if no new events appear.
+            latestX = Display.getWidth() / 2;
+            latestY = Display.getHeight() / 2;
+            lastEventX = latestX;
+            lastEventY = latestY;
+            x = latestX;
+            y = latestY;
+
+            xEvents[queue.getNextPos()] = latestX;
+            yEvents[queue.getNextPos()] = latestY;
+            lastxEvents[queue.getNextPos()] = latestX;
+            lastyEvents[queue.getNextPos()] = latestY;
+            wheelEvents[queue.getNextPos()] = 0;
+            buttonEvents[queue.getNextPos()] = -1;
+            buttonEventStates[queue.getNextPos()] = false;
+            nanoTimeEvents[queue.getNextPos()] = Sys.getNanoTime();
+            queue.add();
         } else {
-            ignoreNextMove++;
+            ignoreNextDelta++; // Prevent camera rapidly rotating when closing GUIs.
+            dx = 0;
+            dy = 0;
         }
-        ignoreNextDelta++;
     }
 
     public static boolean isGrabbed() {
@@ -229,15 +250,21 @@ public class Mouse {
     }
 
     public static int getDX() {
-        return (ignoreNextDelta > 0) ? 0 : (x - lastX);
+        int value = dx;
+        dx = 0;
+        return value;
     }
 
     public static int getDY() {
-        return (ignoreNextDelta > 0) ? 0 : (y - lastY);
+        int value = dy;
+        dy = 0;
+        return value;
     }
 
     public static int getDWheel() {
-        return getEventDWheel();
+        int value = dwheel;
+        dwheel = 0;
+        return value;
     }
 
     public static int getButtonCount() {
