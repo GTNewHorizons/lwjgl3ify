@@ -45,6 +45,27 @@ public class ALC10 {
         return returnValue;
     }
 
+    public static void alcDestroyContext(org.lwjglx.openal.ALCcontext ctx) {
+        org.lwjgl.openal.ALC10.alcDestroyContext(ctx.context);
+    }
+
+    public static org.lwjglx.openal.ALCdevice alcGetContextsDevice(org.lwjglx.openal.ALCcontext ctx) {
+        final long devId = org.lwjgl.openal.ALC10.alcGetContextsDevice(ctx.context);
+        return new ALCdevice(devId);
+    }
+
+    public static int alcMakeContextCurrent(org.lwjglx.openal.ALCcontext ctx) {
+        return org.lwjgl.openal.ALC10.alcMakeContextCurrent(ctx.context) ? ALC_TRUE : ALC_FALSE;
+    }
+
+    public static void alcProcessContext(org.lwjglx.openal.ALCcontext ctx) {
+        org.lwjgl.openal.ALC10.alcProcessContext(ctx.context);
+    }
+
+    public static void alcSuspendContext(org.lwjglx.openal.ALCcontext ctx) {
+        org.lwjgl.openal.ALC10.alcSuspendContext(ctx.context);
+    }
+
     public static int alcGetEnumValue(org.lwjglx.openal.ALCdevice device, java.lang.String enumName) {
 
         int returnValue = org.lwjgl.openal.ALC10.alcGetEnumValue(device.device, enumName);
