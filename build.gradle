@@ -1,4 +1,4 @@
-//version: 1690907958
+//version: 1692122114
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -562,9 +562,6 @@ repositories {
     maven {
         name 'Overmind forge repo mirror'
         url 'https://gregtech.overminddl1.com/'
-        mavenContent {
-            excludeGroup("net.minecraftforge") // missing the `universal` artefact
-        }
     }
     maven {
         name = "GTNH Maven"
@@ -1152,7 +1149,10 @@ tasks.named("processIdeaSettings").configure {
 
 tasks.named("ideVirtualMainClasses").configure {
     // Make IntelliJ "Build project" build the mod jars
-    dependsOn("jar", "reobfJar", "spotlessCheck")
+    dependsOn("jar", "reobfJar")
+    if (!disableSpotless) {
+        dependsOn("spotlessCheck")
+    }
 }
 
 // workaround variable hiding in pom processing

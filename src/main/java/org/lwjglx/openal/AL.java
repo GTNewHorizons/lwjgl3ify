@@ -20,16 +20,26 @@ public class AL {
     }
 
     public static void create() throws LWJGLException {
+        create(null, 44100, 60, false);
+    }
+
+    public static void create(String deviceArguments, int contextFrequency, int contextRefresh,
+            boolean contextSynchronized) {
+        create(deviceArguments, contextFrequency, contextRefresh, contextSynchronized, true);
+    }
+
+    public static void create(String deviceArguments, int contextFrequency, int contextRefresh,
+            boolean contextSynchronized, boolean openDevice) {
         IntBuffer attribs = BufferUtils.createIntBuffer(16);
 
         attribs.put(org.lwjgl.openal.ALC10.ALC_FREQUENCY);
-        attribs.put(44100);
+        attribs.put(contextFrequency);
 
         attribs.put(org.lwjgl.openal.ALC10.ALC_REFRESH);
-        attribs.put(60);
+        attribs.put(contextRefresh);
 
         attribs.put(org.lwjgl.openal.ALC10.ALC_SYNC);
-        attribs.put(org.lwjgl.openal.ALC10.ALC_FALSE);
+        attribs.put(contextSynchronized ? org.lwjgl.openal.ALC10.ALC_TRUE : org.lwjgl.openal.ALC10.ALC_FALSE);
 
         attribs.put(0);
         attribs.flip();
@@ -60,6 +70,10 @@ public class AL {
         alcContext = null;
         alcDevice = null;
         created = false;
+    }
+
+    public static org.lwjglx.openal.ALCcontext getContext() {
+        return alcContext;
     }
 
     public static ALCdevice getDevice() {
