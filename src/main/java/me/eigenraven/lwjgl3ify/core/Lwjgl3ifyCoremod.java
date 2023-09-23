@@ -1,6 +1,6 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import java.awt.*;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
