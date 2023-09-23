@@ -71,8 +71,8 @@ repositories {
 }
 
 dependencies {
-    utilImplementation("org.ow2.asm:asm:9.4")
-    utilImplementation("org.ow2.asm:asm-tree:9.4")
+    utilImplementation("org.ow2.asm:asm:9.5")
+    utilImplementation("org.ow2.asm:asm-tree:9.5")
     utilImplementation("org.apache.commons:commons-lang3:3.12.0")
     utilImplementation("commons-io:commons-io:2.11.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
@@ -95,11 +95,11 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
     manifest {
         def libraryList = [
             "libraries/net/minecraft/launchwrapper/1.15/launchwrapper-1.15.jar",
-            "libraries/org/ow2/asm/asm/9.4/asm-9.4.jar",
-            "libraries/org/ow2/asm/asm-commons/9.4/asm-commons-9.4.jar",
-            "libraries/org/ow2/asm/asm-tree/9.4/asm-tree-9.4.jar",
-            "libraries/org/ow2/asm/asm-analysis/9.4/asm-analysis-9.4.jar",
-            "libraries/org/ow2/asm/asm-util/9.4/asm-util-9.4.jar",
+            "libraries/org/ow2/asm/asm/9.5/asm-9.5.jar",
+            "libraries/org/ow2/asm/asm-commons/9.5/asm-commons-9.5.jar",
+            "libraries/org/ow2/asm/asm-tree/9.5/asm-tree-9.5.jar",
+            "libraries/org/ow2/asm/asm-analysis/9.5/asm-analysis-9.5.jar",
+            "libraries/org/ow2/asm/asm-util/9.5/asm-util-9.5.jar",
             "libraries/org/ow2/asm/asm-deprecated/7.1/asm-deprecated-7.1.jar",
             "libraries/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.jar",
             "libraries/com/typesafe/config/1.2.1/config-1.2.1.jar",
