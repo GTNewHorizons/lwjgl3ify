@@ -15,7 +15,13 @@
  */
 package org.lwjglx;
 
-import java.nio.*;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.LongBuffer;
+import java.nio.ShortBuffer;
 
 /**
  * <p>
@@ -24,7 +30,7 @@ import java.nio.*;
  *
  * Internal class, don't use.
  * </p>
- * 
+ *
  * @author cix_foo <cix_foo@users.sourceforge.net>
  * @author elias_naur <elias_naur@users.sourceforge.net>
  * @version $Revision$ $Id$

@@ -1,12 +1,12 @@
 package cpw.mods.fml.relauncher;
 
-import java.awt.*;
+import java.awt.GraphicsEnvironment;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.security.Permission;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 /**
  * A custom security manager stopping certain events from happening unexpectedly.
