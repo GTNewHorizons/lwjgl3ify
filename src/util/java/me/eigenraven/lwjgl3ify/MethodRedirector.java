@@ -28,7 +28,8 @@ public abstract class MethodRedirector {
             access = access + " static";
         }
         this.access = access;
-        this.javaClassName = matcher.oldClassNode.getValue().className.replace('/', '.').replace(".lwjglx.", ".lwjgl.");
+        this.javaClassName = matcher.oldClassNode.getValue().className.replace('/', '.')
+            .replace(".lwjglx.", ".lwjgl.");
         final int lastDot = javaClassName.lastIndexOf('.');
         this.packageName = javaClassName.substring(0, lastDot);
         this.className = javaClassName.substring(lastDot + 1);
@@ -36,15 +37,17 @@ public abstract class MethodRedirector {
 
     public void outputRedirector(final PrintWriter writer) {
         final String[] argDefs = Streams
-                .zip(Arrays.stream(matcher.argTypes), Arrays.stream(matcher.argNames), ((t, n) -> t + " " + n))
-                .toArray(String[]::new);
+            .zip(Arrays.stream(matcher.argTypes), Arrays.stream(matcher.argNames), ((t, n) -> t + " " + n))
+            .toArray(String[]::new);
         final String argDef = StringUtils.join(argDefs, ", ");
         writer.printf(
-                "    %s %s %s(%s) {%n",
-                access,
-                matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx."),
-                matcher.oldMethod.name,
-                argDef);
+            "    %s %s %s(%s) {%n",
+            access,
+            matcher.methodType.getReturnType()
+                .getClassName()
+                .replace(".lwjgl.", ".lwjglx."),
+            matcher.oldMethod.name,
+            argDef);
         this.writeBody(writer);
         writer.printf("    }%n%n");
     }
@@ -64,11 +67,12 @@ public abstract class MethodRedirector {
         protected void writeBody(PrintWriter writer) {
             final String argCall = StringUtils.join(matcher.argNames, ", ");
             writer.printf(
-                    "        %s%s.%s(%s);%n",
-                    matcher.methodType.getReturnType().equals(Type.VOID_TYPE) ? "" : "return ",
-                    this.javaClassName,
-                    newMethod.name,
-                    argCall);
+                "        %s%s.%s(%s);%n",
+                matcher.methodType.getReturnType()
+                    .equals(Type.VOID_TYPE) ? "" : "return ",
+                this.javaClassName,
+                newMethod.name,
+                argCall);
         }
     }
 
@@ -78,7 +82,7 @@ public abstract class MethodRedirector {
         public final String[] argumentReplacements;
 
         public TransformingRedirector(MethodMatcher matcher, MethodNode newMethod, String preCode, String postCode,
-                String[] argumentReplacements) {
+            String[] argumentReplacements) {
             super(matcher, newMethod);
             this.preCode = preCode;
             this.postCode = postCode;
@@ -88,7 +92,7 @@ public abstract class MethodRedirector {
         @Override
         protected void writeBody(PrintWriter writer) {
             final String[] transformedArgNames = Arrays
-                    .copyOf(matcher.argNames, Math.max(matcher.argNames.length, argumentReplacements.length));
+                .copyOf(matcher.argNames, Math.max(matcher.argNames.length, argumentReplacements.length));
             for (int i = 0; i < transformedArgNames.length; i++) {
                 if (i < argumentReplacements.length && argumentReplacements[i] != null) {
                     transformedArgNames[i] = argumentReplacements[i];
@@ -98,10 +102,13 @@ public abstract class MethodRedirector {
             if (preCode != null) {
                 writer.println(preCode);
             }
-            if (matcher.methodType.getReturnType().equals(Type.VOID_TYPE)) {
+            if (matcher.methodType.getReturnType()
+                .equals(Type.VOID_TYPE)) {
                 writer.printf("        %s.%s(%s);%n", this.javaClassName, newMethod.name, argCall);
             } else {
-                final String retType = matcher.methodType.getReturnType().getClassName().replace(".lwjgl.", ".lwjglx.");
+                final String retType = matcher.methodType.getReturnType()
+                    .getClassName()
+                    .replace(".lwjgl.", ".lwjglx.");
                 String preRet = "", postRet = "";
                 if (retType.endsWith("ALCdevice")) {
                     preRet = "new org.lwjglx.openal.ALCdevice(";
@@ -112,18 +119,19 @@ public abstract class MethodRedirector {
                     postRet = ")";
                 }
                 writer.printf(
-                        "        %s returnValue = %s%s.%s(%s)%s;%n",
-                        retType,
-                        preRet,
-                        this.javaClassName,
-                        newMethod.name,
-                        argCall,
-                        postRet);
+                    "        %s returnValue = %s%s.%s(%s)%s;%n",
+                    retType,
+                    preRet,
+                    this.javaClassName,
+                    newMethod.name,
+                    argCall,
+                    postRet);
             }
             if (postCode != null) {
                 writer.println(postCode);
             }
-            if (!matcher.methodType.getReturnType().equals(Type.VOID_TYPE)) {
+            if (!matcher.methodType.getReturnType()
+                .equals(Type.VOID_TYPE)) {
                 writer.println("        return returnValue;");
             }
         }

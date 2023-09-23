@@ -54,25 +54,29 @@ public class ObjectHolderRef {
     public void apply() {
         if (fieldSetter == null) {
             try {
-                fieldSetter = MethodHandles.lookup().unreflectSetter(this.field);
+                fieldSetter = MethodHandles.lookup()
+                    .unreflectSetter(this.field);
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
         Object thing;
         if (isBlock) {
-            thing = GameData.getBlockRegistry().getObject(injectedObject);
+            thing = GameData.getBlockRegistry()
+                .getObject(injectedObject);
             if (thing == Blocks.air) {
                 thing = null;
             }
         } else if (isItem) {
-            thing = GameData.getItemRegistry().getObject(injectedObject);
+            thing = GameData.getItemRegistry()
+                .getObject(injectedObject);
         } else {
             thing = null;
         }
 
         if (thing == null) {
-            FMLLog.getLogger().log(
+            FMLLog.getLogger()
+                .log(
                     Level.DEBUG,
                     "Unable to lookup {} for {}. This means the object wasn't registered. It's likely just mod options.",
                     injectedObject,

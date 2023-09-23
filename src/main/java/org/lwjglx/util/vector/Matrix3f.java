@@ -317,9 +317,27 @@ public class Matrix3f extends Matrix implements Serializable {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(m00).append(' ').append(m10).append(' ').append(m20).append(' ').append('\n');
-        buf.append(m01).append(' ').append(m11).append(' ').append(m21).append(' ').append('\n');
-        buf.append(m02).append(' ').append(m12).append(' ').append(m22).append(' ').append('\n');
+        buf.append(m00)
+            .append(' ')
+            .append(m10)
+            .append(' ')
+            .append(m20)
+            .append(' ')
+            .append('\n');
+        buf.append(m01)
+            .append(' ')
+            .append(m11)
+            .append(' ')
+            .append(m21)
+            .append(' ')
+            .append('\n');
+        buf.append(m02)
+            .append(' ')
+            .append(m12)
+            .append(' ')
+            .append(m22)
+            .append(' ')
+            .append('\n');
         return buf.toString();
     }
 

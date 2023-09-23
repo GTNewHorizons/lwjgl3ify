@@ -31,21 +31,20 @@ public class EnumHelper {
     // Some enums are decompiled with extra arguments, so lets check for that
     @SuppressWarnings("rawtypes")
     private static Class[][] commonTypes = { { EnumAction.class },
-            { ArmorMaterial.class, int.class, int[].class, int.class },
-            { EnumArt.class, String.class, int.class, int.class, int.class, int.class },
-            { EnumCreatureAttribute.class },
-            { EnumCreatureType.class, Class.class, int.class, Material.class, boolean.class, boolean.class },
-            { Door.class }, { EnumEnchantmentType.class }, { EnumEntitySize.class }, { Sensitivity.class },
-            { MovingObjectType.class }, { EnumSkyBlock.class, int.class }, { EnumStatus.class },
-            { ToolMaterial.class, int.class, int.class, float.class, float.class, int.class },
-            { EnumRarity.class, EnumChatFormatting.class, String.class } };
+        { ArmorMaterial.class, int.class, int[].class, int.class },
+        { EnumArt.class, String.class, int.class, int.class, int.class, int.class }, { EnumCreatureAttribute.class },
+        { EnumCreatureType.class, Class.class, int.class, Material.class, boolean.class, boolean.class },
+        { Door.class }, { EnumEnchantmentType.class }, { EnumEntitySize.class }, { Sensitivity.class },
+        { MovingObjectType.class }, { EnumSkyBlock.class, int.class }, { EnumStatus.class },
+        { ToolMaterial.class, int.class, int.class, float.class, float.class, int.class },
+        { EnumRarity.class, EnumChatFormatting.class, String.class } };
 
     public static EnumAction addAction(String name) {
         return addEnum(EnumAction.class, name);
     }
 
     public static ArmorMaterial addArmorMaterial(String name, int durability, int[] reductionAmounts,
-            int enchantability) {
+        int enchantability) {
         return addEnum(ArmorMaterial.class, name, durability, reductionAmounts, enchantability);
     }
 
@@ -59,7 +58,7 @@ public class EnumHelper {
 
     @SuppressWarnings("rawtypes")
     public static EnumCreatureType addCreatureType(String name, Class typeClass, int maxNumber, Material material,
-            boolean peaceful, boolean animal) {
+        boolean peaceful, boolean animal) {
         return addEnum(EnumCreatureType.class, name, typeClass, maxNumber, material, peaceful, animal);
     }
 
@@ -92,7 +91,7 @@ public class EnumHelper {
     }
 
     public static ToolMaterial addToolMaterial(String name, int harvestLevel, int maxUses, float efficiency,
-            float damage, int enchantability) {
+        float damage, int enchantability) {
         return addEnum(ToolMaterial.class, name, harvestLevel, maxUses, efficiency, damage, enchantability);
     }
 
@@ -114,7 +113,7 @@ public class EnumHelper {
 
     @SuppressWarnings("rawtypes")
     public static <T extends Enum<?>> T addEnum(Class[][] map, Class<T> enumType, String enumName,
-            Object... paramValues) {
+        Object... paramValues) {
         for (Class[] lookup : map) {
             if (lookup[0] == enumType) {
                 Class<?>[] paramTypes = new Class<?>[lookup.length - 1];
@@ -129,10 +128,10 @@ public class EnumHelper {
 
     @SuppressWarnings("unchecked")
     public static <T extends Enum<?>> T addEnum(Class<T> enumType, String enumName, Class<?>[] paramTypes,
-            Object[] paramValues) {
+        Object[] paramValues) {
         if (!extensibleEnumIface.isAssignableFrom(enumType)) {
             throw new RuntimeException(
-                    "Enum " + enumType.getName() + " was not made extensible, add it to lwjgl3ify configs.");
+                "Enum " + enumType.getName() + " was not made extensible, add it to lwjgl3ify configs.");
         }
 
         try {
@@ -157,7 +156,8 @@ public class EnumHelper {
             extensibleEnumIface = Class.forName("me.eigenraven.lwjgl3ify.IExtensibleEnum");
             Class<?> unsafeHacks = Class.forName("me.eigenraven.lwjgl3ify.UnsafeHacks");
             Method setFieldM = unsafeHacks.getMethod("setField", Field.class, Object.class, Object.class);
-            setFieldHandle = MethodHandles.publicLookup().unreflect(setFieldM);
+            setFieldHandle = MethodHandles.publicLookup()
+                .unreflect(setFieldM);
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }

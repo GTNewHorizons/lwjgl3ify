@@ -29,15 +29,17 @@ public class ConfigUtils {
     public ConfigUtils(Logger logger) {
         try {
             configClass = Class.forName("me.eigenraven.lwjgl3ify.core.Config");
-            modVersion = (String) configClass.getField("LWJGL3IFY_VERSION").get(null);
+            modVersion = (String) configClass.getField("LWJGL3IFY_VERSION")
+                .get(null);
 
-            final MethodHandles.Lookup lookup = MethodHandles.publicLookup().in(configClass);
+            final MethodHandles.Lookup lookup = MethodHandles.publicLookup()
+                .in(configClass);
             getExtensibleEnumsHandle = lookup
-                    .findStatic(configClass, "getExtensibleEnums", MethodType.methodType(Set.class));
+                .findStatic(configClass, "getExtensibleEnums", MethodType.methodType(Set.class));
             addExtensibleEnumHandle = lookup
-                    .findStatic(configClass, "addExtensibleEnum", MethodType.methodType(void.class, String.class));
+                .findStatic(configClass, "addExtensibleEnum", MethodType.methodType(void.class, String.class));
             isConfigLoadedHandle = lookup
-                    .findStatic(configClass, "isConfigLoaded", MethodType.methodType(boolean.class));
+                .findStatic(configClass, "isConfigLoaded", MethodType.methodType(boolean.class));
         } catch (ReflectiveOperationException e) {
             configClass = null;
             if (logger != null) {

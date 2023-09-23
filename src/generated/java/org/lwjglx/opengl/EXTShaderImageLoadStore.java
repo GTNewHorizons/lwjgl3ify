@@ -59,9 +59,9 @@ public class EXTShaderImageLoadStore {
     public static final int GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT_EXT = (int) 1;
 
     public static void glBindImageTextureEXT(int index, int texture, int level, boolean layered, int layer, int access,
-            int format) {
+        int format) {
         org.lwjgl.opengl.EXTShaderImageLoadStore
-                .glBindImageTextureEXT(index, texture, level, layered, layer, access, format);
+            .glBindImageTextureEXT(index, texture, level, layered, layer, access, format);
     }
 
     public static void glMemoryBarrierEXT(int barriers) {

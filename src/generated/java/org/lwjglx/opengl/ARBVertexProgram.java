@@ -80,9 +80,9 @@ public class ARBVertexProgram extends org.lwjgl.opengl.ARBProgram {
     }
 
     public static void glVertexAttribPointerARB(int index, int size, int type, boolean normalized, int stride,
-            long buffer_buffer_offset) {
+        long buffer_buffer_offset) {
         org.lwjgl.opengl.ARBVertexProgram
-                .glVertexAttribPointerARB(index, size, type, normalized, stride, buffer_buffer_offset);
+            .glVertexAttribPointerARB(index, size, type, normalized, stride, buffer_buffer_offset);
     }
 
 }

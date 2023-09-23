@@ -47,10 +47,38 @@ public class Matrix4f extends Matrix implements Serializable {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(m00).append(' ').append(m10).append(' ').append(m20).append(' ').append(m30).append('\n');
-        buf.append(m01).append(' ').append(m11).append(' ').append(m21).append(' ').append(m31).append('\n');
-        buf.append(m02).append(' ').append(m12).append(' ').append(m22).append(' ').append(m32).append('\n');
-        buf.append(m03).append(' ').append(m13).append(' ').append(m23).append(' ').append(m33).append('\n');
+        buf.append(m00)
+            .append(' ')
+            .append(m10)
+            .append(' ')
+            .append(m20)
+            .append(' ')
+            .append(m30)
+            .append('\n');
+        buf.append(m01)
+            .append(' ')
+            .append(m11)
+            .append(' ')
+            .append(m21)
+            .append(' ')
+            .append(m31)
+            .append('\n');
+        buf.append(m02)
+            .append(' ')
+            .append(m12)
+            .append(' ')
+            .append(m22)
+            .append(' ')
+            .append(m32)
+            .append('\n');
+        buf.append(m03)
+            .append(' ')
+            .append(m13)
+            .append(' ')
+            .append(m23)
+            .append(' ')
+            .append(m33)
+            .append('\n');
         return buf.toString();
     }
 
@@ -687,17 +715,17 @@ public class Matrix4f extends Matrix implements Serializable {
      */
     public float determinant() {
         float f = m00 * ((m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32) - m13 * m22 * m31
-                - m11 * m23 * m32
-                - m12 * m21 * m33);
+            - m11 * m23 * m32
+            - m12 * m21 * m33);
         f -= m01 * ((m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32) - m13 * m22 * m30
-                - m10 * m23 * m32
-                - m12 * m20 * m33);
+            - m10 * m23 * m32
+            - m12 * m20 * m33);
         f += m02 * ((m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31) - m13 * m21 * m30
-                - m10 * m23 * m31
-                - m11 * m20 * m33);
+            - m10 * m23 * m31
+            - m11 * m20 * m33);
         f -= m03 * ((m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31) - m12 * m21 * m30
-                - m10 * m22 * m31
-                - m11 * m20 * m32);
+            - m10 * m22 * m31
+            - m11 * m20 * m32);
         return f;
     }
 
@@ -707,7 +735,7 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return result
      */
     private static float determinant3x3(float t00, float t01, float t02, float t10, float t11, float t12, float t20,
-            float t21, float t22) {
+        float t21, float t22) {
         return t00 * (t11 * t22 - t12 * t21) + t01 * (t12 * t20 - t10 * t22) + t02 * (t10 * t21 - t11 * t20);
     }
 
@@ -740,94 +768,94 @@ public class Matrix4f extends Matrix implements Serializable {
             // first row
             float t00 = determinant3x3(src.m11, src.m12, src.m13, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
             float t01 = -determinant3x3(
-                    src.m10,
-                    src.m12,
-                    src.m13,
-                    src.m20,
-                    src.m22,
-                    src.m23,
-                    src.m30,
-                    src.m32,
-                    src.m33);
+                src.m10,
+                src.m12,
+                src.m13,
+                src.m20,
+                src.m22,
+                src.m23,
+                src.m30,
+                src.m32,
+                src.m33);
             float t02 = determinant3x3(src.m10, src.m11, src.m13, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
             float t03 = -determinant3x3(
-                    src.m10,
-                    src.m11,
-                    src.m12,
-                    src.m20,
-                    src.m21,
-                    src.m22,
-                    src.m30,
-                    src.m31,
-                    src.m32);
+                src.m10,
+                src.m11,
+                src.m12,
+                src.m20,
+                src.m21,
+                src.m22,
+                src.m30,
+                src.m31,
+                src.m32);
             // second row
             float t10 = -determinant3x3(
-                    src.m01,
-                    src.m02,
-                    src.m03,
-                    src.m21,
-                    src.m22,
-                    src.m23,
-                    src.m31,
-                    src.m32,
-                    src.m33);
+                src.m01,
+                src.m02,
+                src.m03,
+                src.m21,
+                src.m22,
+                src.m23,
+                src.m31,
+                src.m32,
+                src.m33);
             float t11 = determinant3x3(src.m00, src.m02, src.m03, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
             float t12 = -determinant3x3(
-                    src.m00,
-                    src.m01,
-                    src.m03,
-                    src.m20,
-                    src.m21,
-                    src.m23,
-                    src.m30,
-                    src.m31,
-                    src.m33);
+                src.m00,
+                src.m01,
+                src.m03,
+                src.m20,
+                src.m21,
+                src.m23,
+                src.m30,
+                src.m31,
+                src.m33);
             float t13 = determinant3x3(src.m00, src.m01, src.m02, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
             // third row
             float t20 = determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m31, src.m32, src.m33);
             float t21 = -determinant3x3(
-                    src.m00,
-                    src.m02,
-                    src.m03,
-                    src.m10,
-                    src.m12,
-                    src.m13,
-                    src.m30,
-                    src.m32,
-                    src.m33);
+                src.m00,
+                src.m02,
+                src.m03,
+                src.m10,
+                src.m12,
+                src.m13,
+                src.m30,
+                src.m32,
+                src.m33);
             float t22 = determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m30, src.m31, src.m33);
             float t23 = -determinant3x3(
-                    src.m00,
-                    src.m01,
-                    src.m02,
-                    src.m10,
-                    src.m11,
-                    src.m12,
-                    src.m30,
-                    src.m31,
-                    src.m32);
+                src.m00,
+                src.m01,
+                src.m02,
+                src.m10,
+                src.m11,
+                src.m12,
+                src.m30,
+                src.m31,
+                src.m32);
             // fourth row
             float t30 = -determinant3x3(
-                    src.m01,
-                    src.m02,
-                    src.m03,
-                    src.m11,
-                    src.m12,
-                    src.m13,
-                    src.m21,
-                    src.m22,
-                    src.m23);
+                src.m01,
+                src.m02,
+                src.m03,
+                src.m11,
+                src.m12,
+                src.m13,
+                src.m21,
+                src.m22,
+                src.m23);
             float t31 = determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m20, src.m22, src.m23);
             float t32 = -determinant3x3(
-                    src.m00,
-                    src.m01,
-                    src.m03,
-                    src.m10,
-                    src.m11,
-                    src.m13,
-                    src.m20,
-                    src.m21,
-                    src.m23);
+                src.m00,
+                src.m01,
+                src.m03,
+                src.m10,
+                src.m11,
+                src.m13,
+                src.m20,
+                src.m21,
+                src.m23);
             float t33 = determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m20, src.m21, src.m22);
 
             // transpose and divide by the determinant

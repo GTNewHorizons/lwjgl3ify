@@ -20,9 +20,9 @@ public class EXTVertexAttrib64bit {
     }
 
     public static void glVertexArrayVertexAttribLOffsetEXT(int vaobj, int buffer, int index, int size, int type,
-            int stride, long offset) {
+        int stride, long offset) {
         org.lwjgl.opengl.EXTVertexAttrib64bit
-                .glVertexArrayVertexAttribLOffsetEXT(vaobj, buffer, index, size, type, stride, offset);
+            .glVertexArrayVertexAttribLOffsetEXT(vaobj, buffer, index, size, type, stride, offset);
     }
 
     public static void glVertexAttribL1EXT(int index, java.nio.DoubleBuffer v) {

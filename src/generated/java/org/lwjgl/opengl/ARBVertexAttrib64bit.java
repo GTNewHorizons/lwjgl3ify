@@ -20,7 +20,7 @@ public class ARBVertexAttrib64bit {
     }
 
     public static void glVertexArrayVertexAttribLOffsetEXT(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5,
-            long arg6) {
+        long arg6) {
         throw new UnsupportedOperationException();
     }
 

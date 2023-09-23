@@ -84,7 +84,8 @@ public class UnsafeHacks {
     // Make sure we don't crash if any future versions change field names
     private static Optional<Field> findField(Class<?> clazz, String name) {
         for (Field f : clazz.getDeclaredFields()) {
-            if (f.getName().equals(name)) {
+            if (f.getName()
+                .equals(name)) {
                 return Optional.of(f);
             }
         }

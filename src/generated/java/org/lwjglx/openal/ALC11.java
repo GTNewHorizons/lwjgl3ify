@@ -18,10 +18,10 @@ public class ALC11 {
     }
 
     public static org.lwjglx.openal.ALCdevice alcCaptureOpenDevice(java.lang.String arg0, int arg1, int frequency,
-            int format) {
+        int format) {
 
         org.lwjglx.openal.ALCdevice returnValue = new org.lwjglx.openal.ALCdevice(
-                org.lwjgl.openal.ALC11.alcCaptureOpenDevice(arg0, arg1, frequency, format));
+            org.lwjgl.openal.ALC11.alcCaptureOpenDevice(arg0, arg1, frequency, format));
 
         return returnValue;
     }

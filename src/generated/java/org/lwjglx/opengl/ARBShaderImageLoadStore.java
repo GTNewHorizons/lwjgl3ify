@@ -68,9 +68,9 @@ public class ARBShaderImageLoadStore {
     public static final int IMAGE_FORMAT_COMPATIBILITY_BY_CLASS = (int) 37065;
 
     public static void glBindImageTexture(int unit, int texture, int level, boolean layered, int layer, int access,
-            int format) {
+        int format) {
         org.lwjgl.opengl.ARBShaderImageLoadStore
-                .glBindImageTexture(unit, texture, level, layered, layer, access, format);
+            .glBindImageTexture(unit, texture, level, layered, layer, access, format);
     }
 
     public static void glMemoryBarrier(int barriers) {

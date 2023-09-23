@@ -62,7 +62,7 @@ public class ARBShaderObjects {
     }
 
     public static void glGetActiveUniformARB(int programObj, int index, java.nio.IntBuffer length,
-            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBShaderObjects.glGetActiveUniformARB(programObj, index, length, size, type, name);
     }
 
@@ -129,7 +129,7 @@ public class ARBShaderObjects {
     public static void glShaderSourceARB(int shader, java.nio.ByteBuffer string) {
 
         org.lwjgl.opengl.ARBShaderObjects
-                .glShaderSourceARB(shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
+            .glShaderSourceARB(shader, me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq(string));
 
     }
 

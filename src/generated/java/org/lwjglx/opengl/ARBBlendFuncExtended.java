@@ -9,12 +9,12 @@ public class ARBBlendFuncExtended {
     public static final int GL_SRC1_COLOR = (int) 35065;
 
     public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
-            java.lang.CharSequence name) {
+        java.lang.CharSequence name) {
         org.lwjgl.opengl.ARBBlendFuncExtended.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 
     public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
-            java.nio.ByteBuffer name) {
+        java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBBlendFuncExtended.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 

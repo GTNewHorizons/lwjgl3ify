@@ -33,7 +33,7 @@ import org.lwjglx.BufferUtils;
 public class Project extends Util {
 
     private static final float[] IDENTITY_MATRIX = new float[] { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f };
+        0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f };
 
     private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);
     private static final FloatBuffer finalMatrix = BufferUtils.createFloatBuffer(16);
@@ -65,8 +65,8 @@ public class Project extends Util {
     private static void __gluMultMatrixVecf(FloatBuffer m, float[] in, float[] out) {
         for (int i = 0; i < 4; i++) {
             out[i] = in[0] * m.get(m.position() + 0 * 4 + i) + in[1] * m.get(m.position() + 1 * 4 + i)
-                    + in[2] * m.get(m.position() + 2 * 4 + i)
-                    + in[3] * m.get(m.position() + 3 * 4 + i);
+                + in[2] * m.get(m.position() + 2 * 4 + i)
+                + in[3] * m.get(m.position() + 3 * 4 + i);
         }
     }
 
@@ -155,11 +155,11 @@ public class Project extends Util {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 r.put(
-                        r.position() + i * 4 + j,
-                        a.get(a.position() + i * 4 + 0) * b.get(b.position() + 0 * 4 + j)
-                                + a.get(a.position() + i * 4 + 1) * b.get(b.position() + 1 * 4 + j)
-                                + a.get(a.position() + i * 4 + 2) * b.get(b.position() + 2 * 4 + j)
-                                + a.get(a.position() + i * 4 + 3) * b.get(b.position() + 3 * 4 + j));
+                    r.position() + i * 4 + j,
+                    a.get(a.position() + i * 4 + 0) * b.get(b.position() + 0 * 4 + j)
+                        + a.get(a.position() + i * 4 + 1) * b.get(b.position() + 1 * 4 + j)
+                        + a.get(a.position() + i * 4 + 2) * b.get(b.position() + 2 * 4 + j)
+                        + a.get(a.position() + i * 4 + 3) * b.get(b.position() + 3 * 4 + j));
             }
         }
     }
@@ -211,7 +211,7 @@ public class Project extends Util {
      * @param upz
      */
     public static void gluLookAt(float eyex, float eyey, float eyez, float centerx, float centery, float centerz,
-            float upx, float upy, float upz) {
+        float upx, float upy, float upz) {
         float[] forward = Project.forward;
         float[] side = Project.side;
         float[] up = Project.up;
@@ -262,7 +262,7 @@ public class Project extends Util {
      * @param win_pos
      */
     public static boolean gluProject(float objx, float objy, float objz, FloatBuffer modelMatrix,
-            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer win_pos) {
+        FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer win_pos) {
 
         float[] in = Project.in;
         float[] out = Project.out;
@@ -304,7 +304,7 @@ public class Project extends Util {
      * @param obj_pos
      */
     public static boolean gluUnProject(float winx, float winy, float winz, FloatBuffer modelMatrix,
-            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer obj_pos) {
+        FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer obj_pos) {
         float[] in = Project.in;
         float[] out = Project.out;
 
@@ -355,9 +355,9 @@ public class Project extends Util {
 
         /* Translate and scale the picked region to the entire window */
         glTranslatef(
-                (viewport.get(viewport.position() + 2) - 2 * (x - viewport.get(viewport.position() + 0))) / deltaX,
-                (viewport.get(viewport.position() + 3) - 2 * (y - viewport.get(viewport.position() + 1))) / deltaY,
-                0);
+            (viewport.get(viewport.position() + 2) - 2 * (x - viewport.get(viewport.position() + 0))) / deltaX,
+            (viewport.get(viewport.position() + 3) - 2 * (y - viewport.get(viewport.position() + 1))) / deltaY,
+            0);
         glScalef(viewport.get(viewport.position() + 2) / deltaX, viewport.get(viewport.position() + 3) / deltaY, 1.0f);
     }
 }

@@ -330,10 +330,10 @@ public class Quaternion extends Vector implements ReadableVector4f {
     public static Quaternion mul(Quaternion left, Quaternion right, Quaternion dest) {
         if (dest == null) dest = new Quaternion();
         dest.set(
-                left.x * right.w + left.w * right.x + left.y * right.z - left.z * right.y,
-                left.y * right.w + left.w * right.y + left.z * right.x - left.x * right.z,
-                left.z * right.w + left.w * right.z + left.x * right.y - left.y * right.x,
-                left.w * right.w - left.x * right.x - left.y * right.y - left.z * right.z);
+            left.x * right.w + left.w * right.x + left.y * right.z - left.z * right.y,
+            left.y * right.w + left.w * right.y + left.z * right.x - left.x * right.z,
+            left.z * right.w + left.w * right.z + left.x * right.y - left.y * right.x,
+            left.w * right.w - left.x * right.x - left.y * right.y - left.z * right.z);
         return dest;
     }
 
@@ -352,10 +352,10 @@ public class Quaternion extends Vector implements ReadableVector4f {
         // store on stack once for aliasing-safty
         if (dest == null) dest = new Quaternion();
         dest.set(
-                (left.x * right.w - left.w * right.x - left.y * right.z + left.z * right.y) * n,
-                (left.y * right.w - left.w * right.y - left.z * right.x + left.x * right.z) * n,
-                (left.z * right.w - left.w * right.z - left.x * right.y + left.y * right.x) * n,
-                (left.w * right.w + left.x * right.x + left.y * right.y + left.z * right.z) * n);
+            (left.x * right.w - left.w * right.x - left.y * right.z + left.z * right.y) * n,
+            (left.y * right.w - left.w * right.y - left.z * right.x + left.x * right.z) * n,
+            (left.z * right.w - left.w * right.z - left.x * right.y + left.y * right.x) * n,
+            (left.w * right.w + left.x * right.x + left.y * right.y + left.z * right.z) * n);
 
         return dest;
     }
@@ -423,7 +423,7 @@ public class Quaternion extends Vector implements ReadableVector4f {
      * Private method to perform the matrix-to-quaternion conversion
      */
     private Quaternion setFromMat(float m00, float m01, float m02, float m10, float m11, float m12, float m20,
-            float m21, float m22) {
+        float m21, float m22) {
 
         float s;
         float tr = m00 + m11 + m22;

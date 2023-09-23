@@ -91,12 +91,12 @@ public final class PixelFormat implements PixelFormatLWJGL {
     }
 
     public PixelFormat(int bpp, int alpha, int depth, int stencil, int samples, int num_aux_buffers, int accum_bpp,
-            int accum_alpha, boolean stereo) {
+        int accum_alpha, boolean stereo) {
         this(bpp, alpha, depth, stencil, samples, num_aux_buffers, accum_bpp, accum_alpha, stereo, false);
     }
 
     public PixelFormat(int bpp, int alpha, int depth, int stencil, int samples, int num_aux_buffers, int accum_bpp,
-            int accum_alpha, boolean stereo, boolean floating_point) {
+        int accum_alpha, boolean stereo, boolean floating_point) {
         this.bpp = bpp;
         this.alpha = alpha;
         this.depth = depth;
@@ -257,10 +257,10 @@ public final class PixelFormat implements PixelFormatLWJGL {
      */
     public PixelFormat withCoverageSamples(final int colorSamples, final int coverageSamples) {
         if (coverageSamples < 0 || colorSamples < 0
-                || (coverageSamples == 0 && 0 < colorSamples)
-                || coverageSamples < colorSamples)
+            || (coverageSamples == 0 && 0 < colorSamples)
+            || coverageSamples < colorSamples)
             throw new IllegalArgumentException(
-                    "Invalid number of coverage samples specified: " + coverageSamples + " - " + colorSamples);
+                "Invalid number of coverage samples specified: " + coverageSamples + " - " + colorSamples);
 
         final PixelFormat pf = new PixelFormat(this);
         pf.samples = coverageSamples;
@@ -303,7 +303,7 @@ public final class PixelFormat implements PixelFormatLWJGL {
      */
     public PixelFormat withAccumulationBitsPerPixel(final int accum_bpp) {
         if (accum_bpp < 0) throw new IllegalArgumentException(
-                "Invalid number of bits per pixel in the accumulation buffer specified: " + accum_bpp);
+            "Invalid number of bits per pixel in the accumulation buffer specified: " + accum_bpp);
 
         final PixelFormat pf = new PixelFormat(this);
         pf.accum_bpp = accum_bpp;
@@ -324,7 +324,7 @@ public final class PixelFormat implements PixelFormatLWJGL {
      */
     public PixelFormat withAccumulationAlpha(final int accum_alpha) {
         if (accum_alpha < 0) throw new IllegalArgumentException(
-                "Invalid number of alpha bits in the accumulation buffer specified: " + accum_alpha);
+            "Invalid number of alpha bits in the accumulation buffer specified: " + accum_alpha);
 
         final PixelFormat pf = new PixelFormat(this);
         pf.accum_alpha = accum_alpha;

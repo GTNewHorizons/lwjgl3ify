@@ -44,7 +44,7 @@ public class ClientProxy extends CommonProxy {
             final Field callablesField = FMLCommonHandler.class.getDeclaredField("crashCallables");
             callablesField.setAccessible(true);
             List<ICrashCallable> crashCallables = (List<ICrashCallable>) callablesField
-                    .get(FMLCommonHandler.instance());
+                .get(FMLCommonHandler.instance());
             for (int i = 0; i < crashCallables.size(); i++) {
                 ICrashCallable original = crashCallables.get(i);
                 if ("GL info".equals(original.getLabel()) && !(original instanceof GLInfoCrashCallable)) {
@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy {
     @SuppressWarnings("unused") // event handler
     public void onRenderGameOverlayTextEvent(RenderGameOverlayEvent.Text event) {
         if (Minecraft.getMinecraft().gameSettings.showDebugInfo
-                && event.type == RenderGameOverlayEvent.ElementType.TEXT) {
+            && event.type == RenderGameOverlayEvent.ElementType.TEXT) {
             if (Config.SHOW_LWJGL_VERSION) {
                 event.right.add(Math.min(3, event.right.size()), lwjglVersion);
             }

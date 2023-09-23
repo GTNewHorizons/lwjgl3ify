@@ -15,7 +15,7 @@ public class ARBInvalidateSubdata {
     }
 
     public static void glInvalidateSubFramebuffer(int target, java.nio.IntBuffer attachments, int x, int y, int width,
-            int height) {
+        int height) {
         org.lwjgl.opengl.ARBInvalidateSubdata.glInvalidateSubFramebuffer(target, attachments, x, y, width, height);
     }
 
@@ -24,9 +24,9 @@ public class ARBInvalidateSubdata {
     }
 
     public static void glInvalidateTexSubImage(int texture, int level, int xoffset, int yoffset, int zoffset, int width,
-            int height, int depth) {
+        int height, int depth) {
         org.lwjgl.opengl.ARBInvalidateSubdata
-                .glInvalidateTexSubImage(texture, level, xoffset, yoffset, zoffset, width, height, depth);
+            .glInvalidateTexSubImage(texture, level, xoffset, yoffset, zoffset, width, height, depth);
     }
 
 }

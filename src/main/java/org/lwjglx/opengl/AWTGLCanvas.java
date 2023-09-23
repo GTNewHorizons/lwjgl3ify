@@ -65,7 +65,7 @@ public class AWTGLCanvas extends Canvas implements Drawable, ComponentListener, 
     public AWTGLCanvas(GraphicsDevice device, PixelFormat pixel_format, Drawable drawable) throws LWJGLException {}
 
     public AWTGLCanvas(GraphicsDevice device, PixelFormat pixel_format, Drawable drawable, ContextAttribs attribs)
-            throws LWJGLException {}
+        throws LWJGLException {}
 
     public void addNotify() {}
 

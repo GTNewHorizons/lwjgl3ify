@@ -42,7 +42,7 @@ public class KHRDebug {
     public static final int GL_SHADER = (int) 33505;
 
     public static void glDebugMessageControl(int source, int type, int severity, java.nio.IntBuffer ids,
-            boolean enabled) {
+        boolean enabled) {
         org.lwjgl.opengl.KHRDebug.glDebugMessageControl(source, type, severity, ids, enabled);
     }
 
@@ -55,10 +55,10 @@ public class KHRDebug {
     }
 
     public static int glGetDebugMessageLog(int count, java.nio.IntBuffer sources, java.nio.IntBuffer types,
-            java.nio.IntBuffer ids, java.nio.IntBuffer severities, java.nio.IntBuffer lengths,
-            java.nio.ByteBuffer messageLog) {
+        java.nio.IntBuffer ids, java.nio.IntBuffer severities, java.nio.IntBuffer lengths,
+        java.nio.ByteBuffer messageLog) {
         return org.lwjgl.opengl.KHRDebug
-                .glGetDebugMessageLog(count, sources, types, ids, severities, lengths, messageLog);
+            .glGetDebugMessageLog(count, sources, types, ids, severities, lengths, messageLog);
     }
 
     public static java.lang.String glGetObjectLabel(int identifier, int name, int bufSize) {
@@ -66,7 +66,7 @@ public class KHRDebug {
     }
 
     public static void glGetObjectLabel(int identifier, int name, java.nio.IntBuffer length,
-            java.nio.ByteBuffer label) {
+        java.nio.ByteBuffer label) {
         org.lwjgl.opengl.KHRDebug.glGetObjectLabel(identifier, name, length, label);
     }
 

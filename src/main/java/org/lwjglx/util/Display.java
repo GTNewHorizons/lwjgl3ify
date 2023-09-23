@@ -48,7 +48,7 @@ public final class Display {
      * @return an array of matching display modes
      */
     public static DisplayMode[] getAvailableDisplayModes(int minWidth, int minHeight, int maxWidth, int maxHeight,
-            int minBPP, int maxBPP, int minFreq, int maxFreq) throws LWJGLException {
+        int minBPP, int maxBPP, int minFreq, int maxFreq) throws LWJGLException {
         // First get the available display modes
         DisplayMode[] modes = org.lwjglx.opengl.Display.getAvailableDisplayModes();
 
@@ -147,10 +147,10 @@ public final class Display {
                     int idx = param[i].indexOf('=');
                     if (idx > 0) {
                         accessors[i] = new FieldAccessor(
-                                param[i].substring(0, idx),
-                                0,
-                                Integer.parseInt(param[i].substring(idx + 1, param[i].length())),
-                                true);
+                            param[i].substring(0, idx),
+                            0,
+                            Integer.parseInt(param[i].substring(idx + 1, param[i].length())),
+                            true);
                     } else if (param[i].charAt(0) == '-') {
                         accessors[i] = new FieldAccessor(param[i].substring(1), -1, 0, false);
                     } else {

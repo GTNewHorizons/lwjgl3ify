@@ -38,7 +38,7 @@ public class ClassPatchManager {
     public static final ClassPatchManager INSTANCE = new ClassPatchManager();
 
     public static final boolean dumpPatched = Boolean
-            .parseBoolean(System.getProperty("fml.dumpPatchedClasses", "false"));
+        .parseBoolean(System.getProperty("fml.dumpPatchedClasses", "false"));
     public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fml.debugClassPatchManager", "false"));
 
     private GDiffPatcher patcher = new GDiffPatcher();
@@ -72,11 +72,11 @@ public class ClassPatchManager {
         }
         boolean ignoredError = false;
         if (DEBUG) FMLRelaunchLog.fine(
-                "Runtime patching class %s (input size %d), found %d patch%s",
-                mappedName,
-                (inputData == null ? 0 : inputData.length),
-                list.size(),
-                list.size() != 1 ? "es" : "");
+            "Runtime patching class %s (input size %d), found %d patch%s",
+            mappedName,
+            (inputData == null ? 0 : inputData.length),
+            list.size(),
+            list.size() != 1 ? "es" : "");
         for (ClassPatch patch : list) {
             if (!patch.targetClassName.equals(mappedName) && !patch.sourceClassName.equals(name)) {
                 FMLRelaunchLog.warning("Binary patch found %s for wrong class %s", patch.targetClassName, mappedName);
@@ -85,24 +85,26 @@ public class ClassPatchManager {
                 inputData = new byte[0];
             } else if (!patch.existsAtTarget) {
                 FMLRelaunchLog.warning(
-                        "Patcher expecting empty class data file for %s, but received non-empty",
-                        patch.targetClassName);
+                    "Patcher expecting empty class data file for %s, but received non-empty",
+                    patch.targetClassName);
             } else {
-                int inputChecksum = Hashing.adler32().hashBytes(inputData).asInt();
+                int inputChecksum = Hashing.adler32()
+                    .hashBytes(inputData)
+                    .asInt();
                 if (patch.inputChecksum != inputChecksum) {
                     FMLRelaunchLog.severe(
-                            "There is a binary discrepency between the expected input class %s (%s) and the actual class. Checksum on disk is %x, in patch %x. Things are probably about to go very wrong. Did you put something into the jar file?",
-                            mappedName,
-                            name,
-                            inputChecksum,
-                            patch.inputChecksum);
+                        "There is a binary discrepency between the expected input class %s (%s) and the actual class. Checksum on disk is %x, in patch %x. Things are probably about to go very wrong. Did you put something into the jar file?",
+                        mappedName,
+                        name,
+                        inputChecksum,
+                        patch.inputChecksum);
                     if (!Boolean.parseBoolean(System.getProperty("fml.ignorePatchDiscrepancies", "false"))) {
                         FMLRelaunchLog.severe(
-                                "The game is going to exit, because this is a critical error, and it is very improbable that the modded game will work, please obtain clean jar files.");
+                            "The game is going to exit, because this is a critical error, and it is very improbable that the modded game will work, please obtain clean jar files.");
                         System.exit(1);
                     } else {
                         FMLRelaunchLog.severe(
-                                "FML is going to ignore this error, note that the patch will not be applied, and there is likely to be a malfunctioning behaviour, including not running at all");
+                            "FML is going to ignore this error, note that the patch will not be applied, and there is likely to be a malfunctioning behaviour, including not running at all");
                         ignoredError = true;
                         continue;
                     }
@@ -120,7 +122,7 @@ public class ClassPatchManager {
         }
         if (!ignoredError && DEBUG) {
             FMLRelaunchLog
-                    .fine("Successfully applied runtime patches for %s (new size %d)", mappedName, inputData.length);
+                .fine("Successfully applied runtime patches for %s (new size %d)", mappedName, inputData.length);
         }
         if (dumpPatched) {
             try {
@@ -135,15 +137,18 @@ public class ClassPatchManager {
     }
 
     public void setup(Side side) {
-        Pattern binpatchMatcher = Pattern
-                .compile(String.format("binpatch/%s/.*.binpatch", side.toString().toLowerCase(Locale.ENGLISH)));
+        Pattern binpatchMatcher = Pattern.compile(
+            String.format(
+                "binpatch/%s/.*.binpatch",
+                side.toString()
+                    .toLowerCase(Locale.ENGLISH)));
         JarInputStream jis;
         try {
             InputStream binpatchesCompressed = getClass().getResourceAsStream("/binpatches.pack.lzma");
             if (binpatchesCompressed == null) {
                 FMLRelaunchLog.log(
-                        Level.ERROR,
-                        "The binary patch set is missing. Either you are in a development environment, or things are not going to work!");
+                    Level.ERROR,
+                    "The binary patch set is missing. Either you are in a development environment, or things are not going to work!");
                 return;
             }
             LzmaInputStream binpatchesDecompressedLzma = new LzmaInputStream(binpatchesCompressed);
@@ -169,7 +174,8 @@ public class ClassPatchManager {
                 if (entry == null) {
                     break;
                 }
-                if (binpatchMatcher.matcher(entry.getName()).matches()) {
+                if (binpatchMatcher.matcher(entry.getName())
+                    .matches()) {
                     ClassPatch cp = readPatch(entry, jis);
                     if (cp != null) {
                         patches.put(cp.sourceClassName, cp);
@@ -180,7 +186,12 @@ public class ClassPatchManager {
             } catch (IOException e) {}
         } while (true);
         FMLRelaunchLog.fine("Read %d binary patches", patches.size());
-        if (DEBUG) FMLRelaunchLog.fine("Patch list :\n\t%s", Joiner.on("\t\n").join(patches.asMap().entrySet()));
+        if (DEBUG) FMLRelaunchLog.fine(
+            "Patch list :\n\t%s",
+            Joiner.on("\t\n")
+                .join(
+                    patches.asMap()
+                        .entrySet()));
         patchedClasses.clear();
     }
 

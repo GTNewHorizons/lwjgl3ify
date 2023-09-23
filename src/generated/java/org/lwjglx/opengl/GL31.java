@@ -67,7 +67,7 @@ public class GL31 {
     public static final int GL_UNIFORM_TYPE = (int) 35383;
 
     public static void glCopyBufferSubData(int readtarget, int writetarget, long readoffset, long writeoffset,
-            long size) {
+        long size) {
         org.lwjgl.opengl.GL31.glCopyBufferSubData(readtarget, writetarget, readoffset, writeoffset, size);
     }
 
@@ -76,7 +76,7 @@ public class GL31 {
     }
 
     public static void glDrawElementsInstanced(int mode, int indices_count, int type, long indices_buffer_offset,
-            int primcount) {
+        int primcount) {
         org.lwjgl.opengl.GL31.glDrawElementsInstanced(mode, indices_count, type, indices_buffer_offset, primcount);
     }
 
@@ -93,7 +93,7 @@ public class GL31 {
     }
 
     public static void glGetActiveUniformBlock(int program, int uniformBlockIndex, int pname,
-            java.nio.IntBuffer params) {
+        java.nio.IntBuffer params) {
         org.lwjgl.opengl.GL31.glGetActiveUniformBlockiv(program, uniformBlockIndex, pname, params);
     }
 
@@ -102,7 +102,7 @@ public class GL31 {
     }
 
     public static void glGetActiveUniformBlockName(int program, int uniformBlockIndex, java.nio.IntBuffer length,
-            java.nio.ByteBuffer uniformBlockName) {
+        java.nio.ByteBuffer uniformBlockName) {
         org.lwjgl.opengl.GL31.glGetActiveUniformBlockName(program, uniformBlockIndex, length, uniformBlockName);
     }
 
@@ -115,12 +115,12 @@ public class GL31 {
     }
 
     public static void glGetActiveUniformName(int program, int uniformIndex, java.nio.IntBuffer length,
-            java.nio.ByteBuffer uniformName) {
+        java.nio.ByteBuffer uniformName) {
         org.lwjgl.opengl.GL31.glGetActiveUniformName(program, uniformIndex, length, uniformName);
     }
 
     public static void glGetActiveUniforms(int program, java.nio.IntBuffer uniformIndices, int pname,
-            java.nio.IntBuffer params) {
+        java.nio.IntBuffer params) {
         org.lwjgl.opengl.GL31.glGetActiveUniformsiv(program, uniformIndices, pname, params);
     }
 
@@ -137,7 +137,7 @@ public class GL31 {
     }
 
     public static void glGetUniformIndices(int program, java.lang.CharSequence[] uniformNames,
-            java.nio.IntBuffer uniformIndices) {
+        java.nio.IntBuffer uniformIndices) {
         org.lwjgl.opengl.GL31.glGetUniformIndices(program, uniformNames, uniformIndices);
     }
 

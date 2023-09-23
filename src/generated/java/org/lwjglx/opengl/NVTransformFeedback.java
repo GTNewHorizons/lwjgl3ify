@@ -58,7 +58,7 @@ public class NVTransformFeedback {
     }
 
     public static void glGetActiveVaryingNV(int program, int index, java.nio.IntBuffer length, java.nio.IntBuffer size,
-            java.nio.IntBuffer type, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.NVTransformFeedback.glGetActiveVaryingNV(program, index, length, size, type, name);
     }
 

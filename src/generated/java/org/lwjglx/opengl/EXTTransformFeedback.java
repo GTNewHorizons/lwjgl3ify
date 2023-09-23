@@ -39,15 +39,15 @@ public class EXTTransformFeedback {
     }
 
     public static java.lang.String glGetTransformFeedbackVaryingEXT(int program, int index, int bufSize,
-            java.nio.IntBuffer size, java.nio.IntBuffer type) {
+        java.nio.IntBuffer size, java.nio.IntBuffer type) {
         return org.lwjgl.opengl.EXTTransformFeedback
-                .glGetTransformFeedbackVaryingEXT(program, index, bufSize, size, type);
+            .glGetTransformFeedbackVaryingEXT(program, index, bufSize, size, type);
     }
 
     public static void glGetTransformFeedbackVaryingEXT(int program, int index, java.nio.IntBuffer length,
-            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.EXTTransformFeedback
-                .glGetTransformFeedbackVaryingEXT(program, index, length, size, type, name);
+            .glGetTransformFeedbackVaryingEXT(program, index, length, size, type, name);
     }
 
     public static void glTransformFeedbackVaryingsEXT(int program, java.lang.CharSequence[] varyings, int bufferMode) {

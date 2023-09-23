@@ -16,11 +16,13 @@ public class TransformHelper {
 
     public static byte[] transform(LaunchClassLoader loader, String name, byte[] classBytes) throws Exception {
         if (classLoaderExceptionsField == null) {
-            classLoaderExceptionsField = loader.getClass().getDeclaredField("classLoaderExceptions");
+            classLoaderExceptionsField = loader.getClass()
+                .getDeclaredField("classLoaderExceptions");
             classLoaderExceptionsField.setAccessible(true);
         }
         if (xformerExceptionsField == null) {
-            xformerExceptionsField = loader.getClass().getDeclaredField("transformerExceptions");
+            xformerExceptionsField = loader.getClass()
+                .getDeclaredField("transformerExceptions");
             xformerExceptionsField.setAccessible(true);
         }
         Set<String> loaderExceptions = (Set<String>) classLoaderExceptionsField.get(loader);

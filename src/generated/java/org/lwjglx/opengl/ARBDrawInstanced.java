@@ -7,9 +7,9 @@ public class ARBDrawInstanced {
     }
 
     public static void glDrawElementsInstancedARB(int mode, int indices_count, int type, long indices_buffer_offset,
-            int primcount) {
+        int primcount) {
         org.lwjgl.opengl.ARBDrawInstanced
-                .glDrawElementsInstancedARB(mode, indices_count, type, indices_buffer_offset, primcount);
+            .glDrawElementsInstancedARB(mode, indices_count, type, indices_buffer_offset, primcount);
     }
 
     public static void glDrawElementsInstancedARB(int mode, java.nio.ByteBuffer indices, int primcount) {

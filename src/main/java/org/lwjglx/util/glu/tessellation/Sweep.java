@@ -89,14 +89,14 @@ class Sweep {
     }
 
     static boolean EdgeLeq(GLUtessellatorImpl tess, ActiveRegion reg1,
-            ActiveRegion reg2) /*
-                                * Both edges must be directed from right to left (this is the canonical direction for
-                                * the upper edge of each region). The strategy is to evaluate a "t" value for each edge
-                                * at the current sweep line position, given by tess.event. The calculations are designed
-                                * to be very stable, but of course they are not perfect. Special case: if both edge
-                                * destinations are at the sweep event, we sort the edges by slope (they would otherwise
-                                * compare equally).
-                                */ {
+        ActiveRegion reg2) /*
+                            * Both edges must be directed from right to left (this is the canonical direction for
+                            * the upper edge of each region). The strategy is to evaluate a "t" value for each edge
+                            * at the current sweep line position, given by tess.event. The calculations are designed
+                            * to be very stable, but of course they are not perfect. Special case: if both edge
+                            * destinations are at the sweep event, we sort the edges by slope (they would otherwise
+                            * compare equally).
+                            */ {
         GLUvertex event = tess.event;
         GLUhalfEdge e1, e2;
         double t1, t2;
@@ -139,9 +139,9 @@ class Sweep {
     }
 
     static boolean FixUpperEdge(ActiveRegion reg,
-            GLUhalfEdge newEdge) /*
-                                  * Replace an upper edge which needs fixing (see ConnectRightVertex).
-                                  */ {
+        GLUhalfEdge newEdge) /*
+                              * Replace an upper edge which needs fixing (see ConnectRightVertex).
+                              */ {
         assert (reg.fixUpperEdge);
         if (!Mesh.__gl_meshDelete(reg.eUp)) return false;
         reg.fixUpperEdge = false;
@@ -183,11 +183,11 @@ class Sweep {
     }
 
     static ActiveRegion AddRegionBelow(GLUtessellatorImpl tess, ActiveRegion regAbove,
-            GLUhalfEdge eNewUp) /*
-                                 * Add a new active region to the sweep line, *somewhere* below "regAbove" (according to
-                                 * where the new edge belongs in the sweep-line dictionary). The upper edge of the new
-                                 * region will be "eNewUp". Winding number and "inside" flag are not updated.
-                                 */ {
+        GLUhalfEdge eNewUp) /*
+                             * Add a new active region to the sweep line, *somewhere* below "regAbove" (according to
+                             * where the new edge belongs in the sweep-line dictionary). The upper edge of the new
+                             * region will be "eNewUp". Winding number and "inside" flag are not updated.
+                             */ {
         ActiveRegion regNew = new ActiveRegion();
         // if (regNew == null) throw new RuntimeException();
 
@@ -233,12 +233,12 @@ class Sweep {
     }
 
     static void FinishRegion(GLUtessellatorImpl tess,
-            ActiveRegion reg) /*
-                               * Delete a region from the sweep line. This happens when the upper and lower chains of a
-                               * region meet (at a vertex on the sweep line). The "inside" flag is copied to the
-                               * appropriate mesh face (we could not do this before -- since the structure of the mesh
-                               * is always changing, this face may not have even existed until now).
-                               */ {
+        ActiveRegion reg) /*
+                           * Delete a region from the sweep line. This happens when the upper and lower chains of a
+                           * region meet (at a vertex on the sweep line). The "inside" flag is copied to the
+                           * appropriate mesh face (we could not do this before -- since the structure of the mesh
+                           * is always changing, this face may not have even existed until now).
+                           */ {
         GLUhalfEdge e = reg.eUp;
         GLUface f = e.Lface;
 
@@ -248,16 +248,16 @@ class Sweep {
     }
 
     static GLUhalfEdge FinishLeftRegions(GLUtessellatorImpl tess, ActiveRegion regFirst,
-            ActiveRegion regLast) /*
-                                   * We are given a vertex with one or more left-going edges. All affected edges should
-                                   * be in the edge dictionary. Starting at regFirst.eUp, we walk down deleting all
-                                   * regions where both edges have the same origin vOrg. At the same time we copy the
-                                   * "inside" flag from the active region to the face, since at this point each face
-                                   * will belong to at most one region (this was not necessarily true until this point
-                                   * in the sweep). The walk stops at the region above regLast; if regLast is null we
-                                   * walk as far as possible. At the same time we relink the mesh if necessary, so that
-                                   * the ordering of edges around vOrg is the same as in the dictionary.
-                                   */ {
+        ActiveRegion regLast) /*
+                               * We are given a vertex with one or more left-going edges. All affected edges should
+                               * be in the edge dictionary. Starting at regFirst.eUp, we walk down deleting all
+                               * regions where both edges have the same origin vOrg. At the same time we copy the
+                               * "inside" flag from the active region to the face, since at this point each face
+                               * will belong to at most one region (this was not necessarily true until this point
+                               * in the sweep). The walk stops at the region above regLast; if regLast is null we
+                               * walk as far as possible. At the same time we relink the mesh if necessary, so that
+                               * the ordering of edges around vOrg is the same as in the dictionary.
+                               */ {
         ActiveRegion reg, regPrev;
         GLUhalfEdge e, ePrev;
 
@@ -299,7 +299,7 @@ class Sweep {
     }
 
     static void AddRightEdges(GLUtessellatorImpl tess, ActiveRegion regUp, GLUhalfEdge eFirst, GLUhalfEdge eLast,
-            GLUhalfEdge eTopLeft, boolean cleanUp)
+        GLUhalfEdge eTopLeft, boolean cleanUp)
     /*
      * Purpose: insert right-going edges into the edge dictionary, and update winding numbers and mesh connectivity
      * appropriately. All right-going edges share a common origin vOrg. Edges are inserted CCW starting at eFirst; the
@@ -391,10 +391,10 @@ class Sweep {
     }
 
     static void SpliceMergeVertices(GLUtessellatorImpl tess, GLUhalfEdge e1,
-            GLUhalfEdge e2) /*
-                             * Two vertices with idential coordinates are combined into one. e1.Org is kept, while
-                             * e2.Org is discarded.
-                             */ {
+        GLUhalfEdge e2) /*
+                         * Two vertices with idential coordinates are combined into one. e1.Org is kept, while
+                         * e2.Org is discarded.
+                         */ {
         Object[] data = new Object[4];
         float[] weights = new float[] { 0.5f, 0.5f, 0.0f, 0.0f };
 
@@ -405,12 +405,12 @@ class Sweep {
     }
 
     static void VertexWeights(GLUvertex isect, GLUvertex org, GLUvertex dst,
-            float[] weights) /*
-                              * Find some weights which describe how the intersection vertex is a linear combination of
-                              * "org" and "dest". Each of the two edges which generated "isect" is allocated 50% of the
-                              * weight; each edge splits the weight between its org and dst according to the relative
-                              * distance to "isect".
-                              */ {
+        float[] weights) /*
+                          * Find some weights which describe how the intersection vertex is a linear combination of
+                          * "org" and "dest". Each of the two edges which generated "isect" is allocated 50% of the
+                          * weight; each edge splits the weight between its org and dst according to the relative
+                          * distance to "isect".
+                          */ {
         double t1 = Geom.VertL1dist(org, isect);
         double t2 = Geom.VertL1dist(dst, isect);
 
@@ -422,7 +422,7 @@ class Sweep {
     }
 
     static void GetIntersectData(GLUtessellatorImpl tess, GLUvertex isect, GLUvertex orgUp, GLUvertex dstUp,
-            GLUvertex orgLo, GLUvertex dstLo)
+        GLUvertex orgLo, GLUvertex dstLo)
     /*
      * We've computed a new intersection point, now we need a "data" pointer from the user so that we can refer to this
      * new vertex in the rendering callbacks.
@@ -447,24 +447,24 @@ class Sweep {
     }
 
     static boolean CheckForRightSplice(GLUtessellatorImpl tess,
-            ActiveRegion regUp) /*
-                                 * Check the upper and lower edge of "regUp", to make sure that the eUp.Org is above
-                                 * eLo, or eLo.Org is below eUp (depending on which origin is leftmost). The main
-                                 * purpose is to splice right-going edges with the same dest vertex and nearly identical
-                                 * slopes (ie. we can't distinguish the slopes numerically). However the splicing can
-                                 * also help us to recover from numerical errors. For example, suppose at one point we
-                                 * checked eUp and eLo, and decided that eUp.Org is barely above eLo. Then later, we
-                                 * split eLo into two edges (eg. from a splice operation like this one). This can change
-                                 * the result of our test so that now eUp.Org is incident to eLo, or barely below it. We
-                                 * must correct this condition to maintain the dictionary invariants. One possibility is
-                                 * to check these edges for intersection again (ie. CheckForIntersect). This is what we
-                                 * do if possible. However CheckForIntersect requires that tess.event lies between eUp
-                                 * and eLo, so that it has something to fall back on when the intersection calculation
-                                 * gives us an unusable answer. So, for those cases where we can't check for
-                                 * intersection, this routine fixes the problem by just splicing the offending vertex
-                                 * into the other edge. This is a guaranteed solution, no matter how degenerate things
-                                 * get. Basically this is a combinatorial solution to a numerical problem.
-                                 */ {
+        ActiveRegion regUp) /*
+                             * Check the upper and lower edge of "regUp", to make sure that the eUp.Org is above
+                             * eLo, or eLo.Org is below eUp (depending on which origin is leftmost). The main
+                             * purpose is to splice right-going edges with the same dest vertex and nearly identical
+                             * slopes (ie. we can't distinguish the slopes numerically). However the splicing can
+                             * also help us to recover from numerical errors. For example, suppose at one point we
+                             * checked eUp and eLo, and decided that eUp.Org is barely above eLo. Then later, we
+                             * split eLo into two edges (eg. from a splice operation like this one). This can change
+                             * the result of our test so that now eUp.Org is incident to eLo, or barely below it. We
+                             * must correct this condition to maintain the dictionary invariants. One possibility is
+                             * to check these edges for intersection again (ie. CheckForIntersect). This is what we
+                             * do if possible. However CheckForIntersect requires that tess.event lies between eUp
+                             * and eLo, so that it has something to fall back on when the intersection calculation
+                             * gives us an unusable answer. So, for those cases where we can't check for
+                             * intersection, this routine fixes the problem by just splicing the offending vertex
+                             * into the other edge. This is a guaranteed solution, no matter how degenerate things
+                             * get. Basically this is a combinatorial solution to a numerical problem.
+                             */ {
         ActiveRegion regLo = RegionBelow(regUp);
         GLUhalfEdge eUp = regUp.eUp;
         GLUhalfEdge eLo = regLo.eUp;
@@ -496,19 +496,19 @@ class Sweep {
     }
 
     static boolean CheckForLeftSplice(GLUtessellatorImpl tess,
-            ActiveRegion regUp) /*
-                                 * Check the upper and lower edge of "regUp", to make sure that the eUp.Sym.Org is above
-                                 * eLo, or eLo.Sym.Org is below eUp (depending on which destination is rightmost).
-                                 * Theoretically, this should always be true. However, splitting an edge into two pieces
-                                 * can change the results of previous tests. For example, suppose at one point we
-                                 * checked eUp and eLo, and decided that eUp.Sym.Org is barely above eLo. Then later, we
-                                 * split eLo into two edges (eg. from a splice operation like this one). This can change
-                                 * the result of the test so that now eUp.Sym.Org is incident to eLo, or barely below
-                                 * it. We must correct this condition to maintain the dictionary invariants (otherwise
-                                 * new edges might get inserted in the wrong place in the dictionary, and bad stuff will
-                                 * happen). We fix the problem by just splicing the offending vertex into the other
-                                 * edge.
-                                 */ {
+        ActiveRegion regUp) /*
+                             * Check the upper and lower edge of "regUp", to make sure that the eUp.Sym.Org is above
+                             * eLo, or eLo.Sym.Org is below eUp (depending on which destination is rightmost).
+                             * Theoretically, this should always be true. However, splitting an edge into two pieces
+                             * can change the results of previous tests. For example, suppose at one point we
+                             * checked eUp and eLo, and decided that eUp.Sym.Org is barely above eLo. Then later, we
+                             * split eLo into two edges (eg. from a splice operation like this one). This can change
+                             * the result of the test so that now eUp.Sym.Org is incident to eLo, or barely below
+                             * it. We must correct this condition to maintain the dictionary invariants (otherwise
+                             * new edges might get inserted in the wrong place in the dictionary, and bad stuff will
+                             * happen). We fix the problem by just splicing the offending vertex into the other
+                             * edge.
+                             */ {
         ActiveRegion regLo = RegionBelow(regUp);
         GLUhalfEdge eUp = regUp.eUp;
         GLUhalfEdge eLo = regLo.eUp;
@@ -539,13 +539,13 @@ class Sweep {
     }
 
     static boolean CheckForIntersect(GLUtessellatorImpl tess,
-            ActiveRegion regUp) /*
-                                 * Check the upper and lower edges of the given region to see if they intersect. If so,
-                                 * create the intersection and add it to the data structures. Returns true if adding the
-                                 * new intersection resulted in a recursive call to AddRightEdges(); in this case all
-                                 * "dirty" regions have been checked for intersections, and possibly regUp has been
-                                 * deleted.
-                                 */ {
+        ActiveRegion regUp) /*
+                             * Check the upper and lower edges of the given region to see if they intersect. If so,
+                             * create the intersection and add it to the data structures. Returns true if adding the
+                             * new intersection resulted in a recursive call to AddRightEdges(); in this case all
+                             * "dirty" regions have been checked for intersections, and possibly regUp has been
+                             * deleted.
+                             */ {
         ActiveRegion regLo = RegionBelow(regUp);
         GLUhalfEdge eUp = regUp.eUp;
         GLUhalfEdge eLo = regLo.eUp;
@@ -613,7 +613,7 @@ class Sweep {
         }
 
         if ((!Geom.VertEq(dstUp, tess.event) && Geom.EdgeSign(dstUp, tess.event, isect) >= 0)
-                || (!Geom.VertEq(dstLo, tess.event) && Geom.EdgeSign(dstLo, tess.event, isect) <= 0)) {
+            || (!Geom.VertEq(dstLo, tess.event) && Geom.EdgeSign(dstLo, tess.event, isect) <= 0)) {
             /*
              * Very unusual -- the new upper or lower edge would pass on the wrong side of the sweep event, or through
              * it. This can happen due to very small numerical errors in the intersection calculation.
@@ -685,12 +685,12 @@ class Sweep {
     }
 
     static void WalkDirtyRegions(GLUtessellatorImpl tess,
-            ActiveRegion regUp) /*
-                                 * When the upper or lower edge of any region changes, the region is marked "dirty".
-                                 * This routine walks through all the dirty regions and makes sure that the dictionary
-                                 * invariants are satisfied (see the comments at the beginning of this file). Of course
-                                 * new dirty regions can be created as we make changes to restore the invariants.
-                                 */ {
+        ActiveRegion regUp) /*
+                             * When the upper or lower edge of any region changes, the region is marked "dirty".
+                             * This routine walks through all the dirty regions and makes sure that the dictionary
+                             * invariants are satisfied (see the comments at the beginning of this file). Of course
+                             * new dirty regions can be created as we make changes to restore the invariants.
+                             */ {
         ActiveRegion regLo = RegionBelow(regUp);
         GLUhalfEdge eUp, eLo;
 
@@ -735,8 +735,8 @@ class Sweep {
             }
             if (eUp.Org != eLo.Org) {
                 if (eUp.Sym.Org != eLo.Sym.Org && !regUp.fixUpperEdge
-                        && !regLo.fixUpperEdge
-                        && (eUp.Sym.Org == tess.event || eLo.Sym.Org == tess.event)) {
+                    && !regLo.fixUpperEdge
+                    && (eUp.Sym.Org == tess.event || eLo.Sym.Org == tess.event)) {
                     /*
                      * When all else fails in CheckForIntersect(), it uses tess.event as the intersection location. To
                      * make this possible, it requires that tess.event lie between the upper and lower edges, and also
@@ -767,31 +767,31 @@ class Sweep {
     }
 
     static void ConnectRightVertex(GLUtessellatorImpl tess, ActiveRegion regUp,
-            GLUhalfEdge eBottomLeft) /*
-                                      * Purpose: connect a "right" vertex vEvent (one where all edges go left) to the
-                                      * unprocessed portion of the mesh. Since there are no right-going edges, two
-                                      * regions (one above vEvent and one below) are being merged into one. "regUp" is
-                                      * the upper of these two regions. There are two reasons for doing this (adding a
-                                      * right-going edge): - if the two regions being merged are "inside", we must add
-                                      * an edge to keep them separated (the combined region would not be monotone). - in
-                                      * any case, we must leave some record of vEvent in the dictionary, so that we can
-                                      * merge vEvent with features that we have not seen yet. For example, maybe there
-                                      * is a vertical edge which passes just to the right of vEvent; we would like to
-                                      * splice vEvent into this edge. However, we don't want to connect vEvent to just
-                                      * any vertex. We don''t want the new edge to cross any other edges; otherwise we
-                                      * will create intersection vertices even when the input data had no
-                                      * self-intersections. (This is a bad thing; if the user's input data has no
-                                      * intersections, we don't want to generate any false intersections ourselves.) Our
-                                      * eventual goal is to connect vEvent to the leftmost unprocessed vertex of the
-                                      * combined region (the union of regUp and regLo). But because of unseen vertices
-                                      * with all right-going edges, and also new vertices which may be created by edge
-                                      * intersections, we don''t know where that leftmost unprocessed vertex is. In the
-                                      * meantime, we connect vEvent to the closest vertex of either chain, and mark the
-                                      * region as "fixUpperEdge". This flag says to delete and reconnect this edge to
-                                      * the next processed vertex on the boundary of the combined region. Quite possibly
-                                      * the vertex we connected to will turn out to be the closest one, in which case we
-                                      * won''t need to make any changes.
-                                      */ {
+        GLUhalfEdge eBottomLeft) /*
+                                  * Purpose: connect a "right" vertex vEvent (one where all edges go left) to the
+                                  * unprocessed portion of the mesh. Since there are no right-going edges, two
+                                  * regions (one above vEvent and one below) are being merged into one. "regUp" is
+                                  * the upper of these two regions. There are two reasons for doing this (adding a
+                                  * right-going edge): - if the two regions being merged are "inside", we must add
+                                  * an edge to keep them separated (the combined region would not be monotone). - in
+                                  * any case, we must leave some record of vEvent in the dictionary, so that we can
+                                  * merge vEvent with features that we have not seen yet. For example, maybe there
+                                  * is a vertical edge which passes just to the right of vEvent; we would like to
+                                  * splice vEvent into this edge. However, we don't want to connect vEvent to just
+                                  * any vertex. We don''t want the new edge to cross any other edges; otherwise we
+                                  * will create intersection vertices even when the input data had no
+                                  * self-intersections. (This is a bad thing; if the user's input data has no
+                                  * intersections, we don't want to generate any false intersections ourselves.) Our
+                                  * eventual goal is to connect vEvent to the leftmost unprocessed vertex of the
+                                  * combined region (the union of regUp and regLo). But because of unseen vertices
+                                  * with all right-going edges, and also new vertices which may be created by edge
+                                  * intersections, we don''t know where that leftmost unprocessed vertex is. In the
+                                  * meantime, we connect vEvent to the closest vertex of either chain, and mark the
+                                  * region as "fixUpperEdge". This flag says to delete and reconnect this edge to
+                                  * the next processed vertex on the boundary of the combined region. Quite possibly
+                                  * the vertex we connected to will turn out to be the closest one, in which case we
+                                  * won''t need to make any changes.
+                                  */ {
         GLUhalfEdge eNew;
         GLUhalfEdge eTopLeft = eBottomLeft.Onext;
         ActiveRegion regLo = RegionBelow(regUp);
@@ -854,10 +854,10 @@ class Sweep {
     private static final boolean TOLERANCE_NONZERO = false;
 
     static void ConnectLeftDegenerate(GLUtessellatorImpl tess, ActiveRegion regUp,
-            GLUvertex vEvent) /*
-                               * The event vertex lies exacty on an already-processed edge or vertex. Adding the new
-                               * vertex involves splicing it into the already-processed part of the mesh.
-                               */ {
+        GLUvertex vEvent) /*
+                           * The event vertex lies exacty on an already-processed edge or vertex. Adding the new
+                           * vertex involves splicing it into the already-processed part of the mesh.
+                           */ {
         GLUhalfEdge e, eTopLeft, eTopRight, eLast;
         ActiveRegion reg;
 
@@ -912,16 +912,16 @@ class Sweep {
     }
 
     static void ConnectLeftVertex(GLUtessellatorImpl tess,
-            GLUvertex vEvent) /*
-                               * Purpose: connect a "left" vertex (one where both edges go right) to the processed
-                               * portion of the mesh. Let R be the active region containing vEvent, and let U and L be
-                               * the upper and lower edge chains of R. There are two possibilities: - the normal case:
-                               * split R into two regions, by connecting vEvent to the rightmost vertex of U or L lying
-                               * to the left of the sweep line - the degenerate case: if vEvent is close enough to U or
-                               * L, we merge vEvent into that edge chain. The subcases are: - merging with the rightmost
-                               * vertex of U or L - merging with the active edge of U or L - merging with an
-                               * already-processed portion of U or L
-                               */ {
+        GLUvertex vEvent) /*
+                           * Purpose: connect a "left" vertex (one where both edges go right) to the processed
+                           * portion of the mesh. Let R be the active region containing vEvent, and let U and L be
+                           * the upper and lower edge chains of R. There are two possibilities: - the normal case:
+                           * split R into two regions, by connecting vEvent to the rightmost vertex of U or L lying
+                           * to the left of the sweep line - the degenerate case: if vEvent is close enough to U or
+                           * L, we merge vEvent into that edge chain. The subcases are: - merging with the rightmost
+                           * vertex of U or L - merging with the active edge of U or L - merging with an
+                           * already-processed portion of U or L
+                           */ {
         ActiveRegion regUp, regLo, reg;
         GLUhalfEdge eUp, eLo, eNew;
         ActiveRegion tmp = new ActiveRegion();
@@ -975,10 +975,10 @@ class Sweep {
     }
 
     static void SweepEvent(GLUtessellatorImpl tess,
-            GLUvertex vEvent) /*
-                               * Does everything necessary when the sweep line crosses a vertex. Updates the mesh and
-                               * the edge dictionary.
-                               */ {
+        GLUvertex vEvent) /*
+                           * Does everything necessary when the sweep line crosses a vertex. Updates the mesh and
+                           * the edge dictionary.
+                           */ {
         ActiveRegion regUp, reg;
         GLUhalfEdge e, eTopLeft, eBottomLeft;
 
@@ -1059,13 +1059,13 @@ class Sweep {
     }
 
     static void InitEdgeDict(
-            final GLUtessellatorImpl tess) /*
-                                            * We maintain an ordering of edge intersections with the sweep line. This
-                                            * order is maintained in a dynamic dictionary.
-                                            */ {
+        final GLUtessellatorImpl tess) /*
+                                        * We maintain an ordering of edge intersections with the sweep line. This
+                                        * order is maintained in a dynamic dictionary.
+                                        */ {
         /* __gl_dictListNewDict */
         tess.dict = Dict
-                .dictNewDict(tess, (frame, key1, key2) -> EdgeLeq(tess, (ActiveRegion) key1, (ActiveRegion) key2));
+            .dictNewDict(tess, (frame, key1, key2) -> EdgeLeq(tess, (ActiveRegion) key1, (ActiveRegion) key2));
         if (tess.dict == null) throw new RuntimeException();
 
         AddSentinel(tess, -SENTINEL_COORD);
@@ -1095,9 +1095,9 @@ class Sweep {
     }
 
     static void RemoveDegenerateEdges(
-            GLUtessellatorImpl tess) /*
-                                      * Remove zero-length edges, and contours with fewer than 3 vertices.
-                                      */ {
+        GLUtessellatorImpl tess) /*
+                                  * Remove zero-length edges, and contours with fewer than 3 vertices.
+                                  */ {
         GLUhalfEdge e, eNext, eLnext;
         GLUhalfEdge eHead = tess.mesh.eHead;
 
@@ -1132,10 +1132,10 @@ class Sweep {
     }
 
     static boolean InitPriorityQ(
-            GLUtessellatorImpl tess) /*
-                                      * Insert all vertices into the priority queue which determines the order in which
-                                      * vertices cross the sweep line.
-                                      */ {
+        GLUtessellatorImpl tess) /*
+                                  * Insert all vertices into the priority queue which determines the order in which
+                                  * vertices cross the sweep line.
+                                  */ {
         PriorityQ pq;
         GLUvertex v, vHead;
 
@@ -1163,16 +1163,16 @@ class Sweep {
     }
 
     static boolean RemoveDegenerateFaces(
-            GLUmesh mesh) /*
-                           * Delete any degenerate faces with only two edges. WalkDirtyRegions() will catch almost all
-                           * of these, but it won't catch degenerate faces produced by splice operations on
-                           * already-processed edges. The two places this can happen are in FinishLeftRegions(), when we
-                           * splice in a "temporary" edge produced by ConnectRightVertex(), and in CheckForLeftSplice(),
-                           * where we splice already-processed edges to ensure that our dictionary invariants are not
-                           * violated by numerical errors. In both these cases it is *very* dangerous to delete the
-                           * offending edge at the time, since one of the routines further up the stack will sometimes
-                           * be keeping a pointer to that edge.
-                           */ {
+        GLUmesh mesh) /*
+                       * Delete any degenerate faces with only two edges. WalkDirtyRegions() will catch almost all
+                       * of these, but it won't catch degenerate faces produced by splice operations on
+                       * already-processed edges. The two places this can happen are in FinishLeftRegions(), when we
+                       * splice in a "temporary" edge produced by ConnectRightVertex(), and in CheckForLeftSplice(),
+                       * where we splice already-processed edges to ensure that our dictionary invariants are not
+                       * violated by numerical errors. In both these cases it is *very* dangerous to delete the
+                       * offending edge at the time, since one of the routines further up the stack will sometimes
+                       * be keeping a pointer to that edge.
+                       */ {
         GLUface f, fNext;
         GLUhalfEdge e;
 
@@ -1192,12 +1192,12 @@ class Sweep {
     }
 
     public static boolean __gl_computeInterior(
-            GLUtessellatorImpl tess) /*
-                                      * __gl_computeInterior( tess ) computes the planar arrangement specified by the
-                                      * given contours, and further subdivides this arrangement into regions. Each
-                                      * region is marked "inside" if it belongs to the polygon, according to the rule
-                                      * given by tess.windingRule. Each interior region is guaranteed be monotone.
-                                      */ {
+        GLUtessellatorImpl tess) /*
+                                  * __gl_computeInterior( tess ) computes the planar arrangement specified by the
+                                  * given contours, and further subdivides this arrangement into regions. Each
+                                  * region is marked "inside" if it belongs to the polygon, according to the rule
+                                  * given by tess.windingRule. Each interior region is guaranteed be monotone.
+                                  */ {
         GLUvertex v, vNext;
 
         tess.fatalError = false;

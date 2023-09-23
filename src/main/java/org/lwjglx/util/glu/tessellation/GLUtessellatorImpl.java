@@ -239,9 +239,9 @@ public class GLUtessellatorImpl implements GLUtessellator {
             }
             case GLU_TESS_WINDING_RULE -> {
                 assert (windingRule == GLU_TESS_WINDING_ODD || windingRule == GLU_TESS_WINDING_NONZERO
-                        || windingRule == GLU_TESS_WINDING_POSITIVE
-                        || windingRule == GLU_TESS_WINDING_NEGATIVE
-                        || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
+                    || windingRule == GLU_TESS_WINDING_POSITIVE
+                    || windingRule == GLU_TESS_WINDING_NEGATIVE
+                    || windingRule == GLU_TESS_WINDING_ABS_GEQ_TWO);
                 value[value_offset] = windingRule;
             }
             case GLU_TESS_BOUNDARY_ONLY -> {
@@ -530,12 +530,12 @@ public class GLUtessellatorImpl implements GLUtessellator {
                 Mesh.__gl_meshCheckMesh(mesh);
 
                 if (callBegin != NULL_CB || callEnd != NULL_CB
-                        || callVertex != NULL_CB
-                        || callEdgeFlag != NULL_CB
-                        || callBeginData != NULL_CB
-                        || callEndData != NULL_CB
-                        || callVertexData != NULL_CB
-                        || callEdgeFlagData != NULL_CB) {
+                    || callVertex != NULL_CB
+                    || callEdgeFlag != NULL_CB
+                    || callBeginData != NULL_CB
+                    || callEndData != NULL_CB
+                    || callVertexData != NULL_CB
+                    || callEdgeFlagData != NULL_CB) {
                     if (boundaryOnly) {
                         Render.__gl_renderBoundary(this, mesh); /* output boundary contours */
                     } else {

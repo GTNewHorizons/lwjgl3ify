@@ -13,15 +13,15 @@ public class AMDSparseTexture {
     public static final int GL_VIRTUAL_PAGE_SIZE_Z_AMD = (int) 37271;
 
     public static void glTexStorageSparseAMD(int target, int internalFormat, int width, int height, int depth,
-            int layers, int flags) {
+        int layers, int flags) {
         org.lwjgl.opengl.AMDSparseTexture
-                .glTexStorageSparseAMD(target, internalFormat, width, height, depth, layers, flags);
+            .glTexStorageSparseAMD(target, internalFormat, width, height, depth, layers, flags);
     }
 
     public static void glTextureStorageSparseAMD(int texture, int target, int internalFormat, int width, int height,
-            int depth, int layers, int flags) {
+        int depth, int layers, int flags) {
         org.lwjgl.opengl.AMDSparseTexture
-                .glTextureStorageSparseAMD(texture, target, internalFormat, width, height, depth, layers, flags);
+            .glTextureStorageSparseAMD(texture, target, internalFormat, width, height, depth, layers, flags);
     }
 
 }

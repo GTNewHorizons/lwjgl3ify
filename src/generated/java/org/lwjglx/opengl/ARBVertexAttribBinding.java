@@ -19,9 +19,9 @@ public class ARBVertexAttribBinding {
     }
 
     public static void glVertexAttribFormat(int attribindex, int size, int type, boolean normalized,
-            int relativeoffset) {
+        int relativeoffset) {
         org.lwjgl.opengl.ARBVertexAttribBinding
-                .glVertexAttribFormat(attribindex, size, type, normalized, relativeoffset);
+            .glVertexAttribFormat(attribindex, size, type, normalized, relativeoffset);
     }
 
     public static void glVertexAttribIFormat(int attribindex, int size, int type, int relativeoffset) {

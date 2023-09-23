@@ -63,7 +63,7 @@ public class MappedHelper {
     }
 
     public static void copy(org.lwjgl.util.mapped.MappedObject arg0, org.lwjgl.util.mapped.MappedObject arg1,
-            int arg2) {
+        int arg2) {
         throw new UnsupportedOperationException();
     }
 
@@ -108,7 +108,7 @@ public class MappedHelper {
     }
 
     public static org.lwjgl.util.mapped.MappedObject dup(org.lwjgl.util.mapped.MappedObject arg0,
-            org.lwjgl.util.mapped.MappedObject arg1) {
+        org.lwjgl.util.mapped.MappedObject arg1) {
         throw new UnsupportedOperationException();
     }
 
@@ -273,7 +273,7 @@ public class MappedHelper {
     }
 
     public static org.lwjgl.util.mapped.MappedObject slice(org.lwjgl.util.mapped.MappedObject arg0,
-            org.lwjgl.util.mapped.MappedObject arg1) {
+        org.lwjgl.util.mapped.MappedObject arg1) {
         throw new UnsupportedOperationException();
     }
 

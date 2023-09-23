@@ -16,11 +16,11 @@ import me.eigenraven.lwjgl3ify.textures.NativeBackedImage;
 public abstract class MixinTextureMap {
 
     @Redirect(
-            method = "loadTextureAtlas",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljavax/imageio/ImageIO;read(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;",
-                    remap = false))
+        method = "loadTextureAtlas",
+        at = @At(
+            value = "INVOKE",
+            target = "Ljavax/imageio/ImageIO;read(Ljava/io/InputStream;)Ljava/awt/image/BufferedImage;",
+            remap = false))
     private BufferedImage redirectImageRead(InputStream stream) {
         try {
             return NativeBackedImage.make(stream);

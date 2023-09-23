@@ -20,12 +20,12 @@ public class GL33 {
     public static final int GL_VERTEX_ATTRIB_ARRAY_DIVISOR = (int) 35070;
 
     public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
-            java.lang.CharSequence name) {
+        java.lang.CharSequence name) {
         org.lwjgl.opengl.GL33.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 
     public static void glBindFragDataLocationIndexed(int program, int colorNumber, int index,
-            java.nio.ByteBuffer name) {
+        java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL33.glBindFragDataLocationIndexed(program, colorNumber, index, name);
     }
 

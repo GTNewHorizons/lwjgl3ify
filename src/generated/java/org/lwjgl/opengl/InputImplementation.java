@@ -3,7 +3,7 @@ package org.lwjgl.opengl;
 public interface InputImplementation {
 
     public abstract java.lang.Object createCursor(int arg0, int arg1, int arg2, int arg3, int arg4,
-            java.nio.IntBuffer arg5, java.nio.IntBuffer arg6);
+        java.nio.IntBuffer arg5, java.nio.IntBuffer arg6);
 
     public abstract void createKeyboard();
 

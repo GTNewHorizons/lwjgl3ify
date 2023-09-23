@@ -696,10 +696,10 @@ class Mesh {
             assert (e.Onext.Sym.Lnext == e);
         }
         assert (e.Sym.next == ePrev.Sym && e.Sym == mesh.eHeadSym
-                && e.Sym.Sym == e
-                && e.Org == null
-                && e.Sym.Org == null
-                && e.Lface == null
-                && e.Sym.Lface == null);
+            && e.Sym.Sym == e
+            && e.Org == null
+            && e.Sym.Org == null
+            && e.Lface == null
+            && e.Sym.Lface == null);
     }
 }

@@ -294,8 +294,16 @@ public class Matrix2f extends Matrix implements Serializable {
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        buf.append(m00).append(' ').append(m10).append(' ').append('\n');
-        buf.append(m01).append(' ').append(m11).append(' ').append('\n');
+        buf.append(m00)
+            .append(' ')
+            .append(m10)
+            .append(' ')
+            .append('\n');
+        buf.append(m01)
+            .append(' ')
+            .append(m11)
+            .append(' ')
+            .append('\n');
         return buf.toString();
     }
 

@@ -24,12 +24,12 @@ public class AL {
     }
 
     public static void create(String deviceArguments, int contextFrequency, int contextRefresh,
-            boolean contextSynchronized) {
+        boolean contextSynchronized) {
         create(deviceArguments, contextFrequency, contextRefresh, contextSynchronized, true);
     }
 
     public static void create(String deviceArguments, int contextFrequency, int contextRefresh,
-            boolean contextSynchronized, boolean openDevice) {
+        boolean contextSynchronized, boolean openDevice) {
         IntBuffer attribs = BufferUtils.createIntBuffer(16);
 
         attribs.put(org.lwjgl.openal.ALC10.ALC_FREQUENCY);

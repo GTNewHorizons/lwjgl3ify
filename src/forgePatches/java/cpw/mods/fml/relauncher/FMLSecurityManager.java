@@ -28,13 +28,13 @@ public class FMLSecurityManager extends SecurityManager {
                     final Class<?> cRuntimeVersion = Class.forName("java.lang.Runtime$Version");
                     final MethodHandles.Lookup lookup = MethodHandles.publicLookup();
                     final MethodHandle mRuntimeVersion = lookup
-                            .findStatic(cRuntime, "version", MethodType.methodType(cRuntimeVersion));
+                        .findStatic(cRuntime, "version", MethodType.methodType(cRuntimeVersion));
                     final MethodHandle mVersionParse = lookup
-                            .findStatic(cRuntimeVersion, "parse", MethodType.methodType(cRuntimeVersion, String.class));
+                        .findStatic(cRuntimeVersion, "parse", MethodType.methodType(cRuntimeVersion, String.class));
                     final MethodHandle mVersionCompareTo = lookup.findVirtual(
-                            cRuntimeVersion,
-                            "compareToIgnoreOptional",
-                            MethodType.methodType(int.class, cRuntimeVersion));
+                        cRuntimeVersion,
+                        "compareToIgnoreOptional",
+                        MethodType.methodType(int.class, cRuntimeVersion));
                     final Object runtimeVersion = mRuntimeVersion.invoke();
                     final Object ver17_0_6 = mVersionParse.invoke("17.0.6");
                     final int cmpResult = (int) mVersionCompareTo.invoke(runtimeVersion, ver17_0_6);
@@ -46,11 +46,11 @@ public class FMLSecurityManager extends SecurityManager {
                             System.err.println("=================================================================");
                         } else {
                             JOptionPane.showMessageDialog(
-                                    null,
-                                    "Upgrade your Java 17 install to Java 17.0.6 for lwjgl3ify to work\nYour java version is: "
-                                            + runtimeVersion,
-                                    "Java version requirement not met",
-                                    JOptionPane.ERROR_MESSAGE);
+                                null,
+                                "Upgrade your Java 17 install to Java 17.0.6 for lwjgl3ify to work\nYour java version is: "
+                                    + runtimeVersion,
+                                "Java version requirement not met",
+                                JOptionPane.ERROR_MESSAGE);
                         }
                         System.exit(1);
                     }
@@ -70,10 +70,10 @@ public class FMLSecurityManager extends SecurityManager {
             String callingParent = classContexts.length > 5 ? classContexts[5].getName() : "none"; // PATCHED
             // FML is allowed to call system exit and the Minecraft applet (from the quit button)
             if (!(callingClass.startsWith("cpw.mods.fml.")
-                    || ("net.minecraft.client.Minecraft".equals(callingClass)
-                            && "net.minecraft.client.Minecraft".equals(callingParent))
-                    || ("net.minecraft.server.dedicated.DedicatedServer".equals(callingClass)
-                            && "net.minecraft.server.MinecraftServer".equals(callingParent)))) {
+                || ("net.minecraft.client.Minecraft".equals(callingClass)
+                    && "net.minecraft.client.Minecraft".equals(callingParent))
+                || ("net.minecraft.server.dedicated.DedicatedServer".equals(callingClass)
+                    && "net.minecraft.server.MinecraftServer".equals(callingParent)))) {
                 throw new ExitTrappedException();
             }
         } else if ("setSecurityManager".equals(permName)) {

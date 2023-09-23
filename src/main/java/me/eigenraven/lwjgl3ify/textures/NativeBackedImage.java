@@ -92,7 +92,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
     private void checkBounds(int x, int z) {
         if (x < 0 || x >= this.width || z < 0 || z >= this.height) {
             throw new IllegalStateException(
-                    "Out of bounds: " + x + ", " + z + " (width: " + this.width + ", height: " + this.height + ")");
+                "Out of bounds: " + x + ", " + z + " (width: " + this.width + ", height: " + this.height + ")");
         }
     }
 

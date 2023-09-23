@@ -106,7 +106,7 @@ public interface InputImplementation {
 
     /** Native cursor handles */
     Object createCursor(int width, int height, int xHotspot, int yHotspot, int numImages, IntBuffer images,
-            IntBuffer delays) throws LWJGLException;
+        IntBuffer delays) throws LWJGLException;
 
     void destroyCursor(Object cursor_handle);
 

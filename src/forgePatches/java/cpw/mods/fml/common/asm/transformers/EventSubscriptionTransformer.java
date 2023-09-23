@@ -50,8 +50,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
         if (bytes == null || name.equals("cpw.mods.fml.common.eventhandler.Event")
-                || name.startsWith("net.minecraft.")
-                || name.indexOf('.') == -1) {
+            || name.startsWith("net.minecraft.")
+            || name.indexOf('.') == -1) {
             return bytes;
         }
         ClassReader cr = new ClassReader(bytes);
@@ -78,7 +78,9 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         // Yes, this recursively loads classes until we get this base class. THIS IS NOT A ISSUE. Coremods should handle
         // re-entry just fine.
         // If they do not this a COREMOD issue NOT a Forge/LaunchWrapper issue.
-        Class<?> parent = this.getClass().getClassLoader().loadClass(classNode.superName.replace('/', '.'));
+        Class<?> parent = this.getClass()
+            .getClassLoader()
+            .loadClass(classNode.superName.replace('/', '.'));
         if (!Event.class.isAssignableFrom(parent)) {
             return false;
         }
@@ -100,8 +102,7 @@ public class EventSubscriptionTransformer implements IClassTransformer {
 
         for (MethodNode method : (List<MethodNode>) classNode.methods) {
             if (method.name.equals("setup") && method.desc.equals(voidDesc)
-                    && (method.access & ACC_PROTECTED) == ACC_PROTECTED)
-                hasSetup = true;
+                && (method.access & ACC_PROTECTED) == ACC_PROTECTED) hasSetup = true;
             if ((method.access & ACC_PUBLIC) == ACC_PUBLIC) {
                 if (method.name.equals("getListenerList") && method.desc.equals(listDescM)) hasGetListenerList = true;
                 if (method.name.equals("isCancelable") && method.desc.equals(boolDesc)) hasCancelable = true;
@@ -112,8 +113,8 @@ public class EventSubscriptionTransformer implements IClassTransformer {
 
         if (classNode.visibleAnnotations != null) {
             for (AnnotationNode node : classNode.visibleAnnotations) {
-                if (!hasResult
-                        && node.desc.replace('$', '/').equals("Lcpw/mods/fml/common/eventhandler/Event/HasResult;")) {
+                if (!hasResult && node.desc.replace('$', '/')
+                    .equals("Lcpw/mods/fml/common/eventhandler/Event/HasResult;")) {
                     /*
                      * Add: public boolean hasResult() { return true; }
                      */
@@ -137,7 +138,7 @@ public class EventSubscriptionTransformer implements IClassTransformer {
 
         if (hasSetup) {
             if (!hasGetListenerList) throw new RuntimeException(
-                    "Event class defines setup() but does not define getListenerList! " + classNode.name);
+                "Event class defines setup() but does not define getListenerList! " + classNode.name);
             else return edited;
         }
 
@@ -153,7 +154,7 @@ public class EventSubscriptionTransformer implements IClassTransformer {
             MethodNode method = new MethodNode(ACC_PUBLIC, "<init>", voidDesc, null, null);
             method.instructions.add(new VarInsnNode(ALOAD, 0));
             method.instructions
-                    .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "<init>", voidDesc, false));
+                .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "<init>", voidDesc, false));
             method.instructions.add(new InsnNode(RETURN));
             classNode.methods.add(method);
         }
@@ -175,14 +176,14 @@ public class EventSubscriptionTransformer implements IClassTransformer {
         method.instructions.add(new InsnNode(DUP));
         method.instructions.add(new VarInsnNode(ALOAD, 0));
         method.instructions
-                .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "getListenerList", listDescM, false));
+            .add(new MethodInsnNode(INVOKESPECIAL, tSuper.getInternalName(), "getListenerList", listDescM, false));
         method.instructions.add(
-                new MethodInsnNode(
-                        INVOKESPECIAL,
-                        tList.getInternalName(),
-                        "<init>",
-                        getMethodDescriptor(VOID_TYPE, tList),
-                        false));
+            new MethodInsnNode(
+                INVOKESPECIAL,
+                tList.getInternalName(),
+                "<init>",
+                getMethodDescriptor(VOID_TYPE, tList),
+                false));
         method.instructions.add(new FieldInsnNode(PUTSTATIC, classNode.name, "LISTENER_LIST", listDesc));
         method.instructions.add(new InsnNode(RETURN));
         classNode.methods.add(method);

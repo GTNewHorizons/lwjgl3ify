@@ -36,9 +36,11 @@ public class TracingPrintStream extends PrintStream {
     }
 
     private String getPrefix() {
-        StackTraceElement[] elems = Thread.currentThread().getStackTrace();
+        StackTraceElement[] elems = Thread.currentThread()
+            .getStackTrace();
         StackTraceElement elem = elems[BASE_DEPTH]; // The caller is always at BASE_DEPTH, including this call.
-        if (elem.getClassName().startsWith("kotlin.io.")) {
+        if (elem.getClassName()
+            .startsWith("kotlin.io.")) {
             elem = elems[BASE_DEPTH + 2]; // Kotlins IoPackage masks origins 2 deeper in the stack.
         }
         return "[" + elem.getClassName() + ":" + elem.getMethodName() + ":" + elem.getLineNumber() + "]: ";

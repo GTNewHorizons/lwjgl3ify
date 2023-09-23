@@ -68,9 +68,9 @@ public class GL14 {
     public static void glFogCoordPointer(int stride, java.nio.DoubleBuffer data) {
 
         org.lwjgl.opengl.GL14.glFogCoordPointer(
-                org.lwjgl.opengl.GL11.GL_DOUBLE,
-                stride,
-                me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+            org.lwjgl.opengl.GL11.GL_DOUBLE,
+            stride,
+            me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
 
     }
 
@@ -131,10 +131,10 @@ public class GL14 {
     public static void glSecondaryColorPointer(int size, int stride, java.nio.DoubleBuffer data) {
 
         org.lwjgl.opengl.GL14.glSecondaryColorPointer(
-                size,
-                org.lwjgl.opengl.GL11.GL_DOUBLE,
-                stride,
-                me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
+            size,
+            org.lwjgl.opengl.GL11.GL_DOUBLE,
+            stride,
+            me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer(data));
 
     }
 
@@ -147,10 +147,10 @@ public class GL14 {
     public static void glSecondaryColorPointer(int size, boolean unsigned, int stride, java.nio.ByteBuffer data) {
 
         org.lwjgl.opengl.GL14.glSecondaryColorPointer(
-                size,
-                (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
-                stride,
-                org.lwjglx.MemoryUtil.getAddress(data));
+            size,
+            (unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE),
+            stride,
+            org.lwjglx.MemoryUtil.getAddress(data));
 
     }
 

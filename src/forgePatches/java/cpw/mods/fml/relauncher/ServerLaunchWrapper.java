@@ -22,8 +22,8 @@ public class ServerLaunchWrapper {
             Class.forName("org.objectweb.asm.Type", true, getClass().getClassLoader());
         } catch (Exception e) {
             System.err.printf(
-                    "We appear to be missing one or more essential library files.\n"
-                            + "You will need to add them to your server before FML and Forge will run successfully.");
+                "We appear to be missing one or more essential library files.\n"
+                    + "You will need to add them to your server before FML and Forge will run successfully.");
             e.printStackTrace(System.err);
             System.exit(1);
         }

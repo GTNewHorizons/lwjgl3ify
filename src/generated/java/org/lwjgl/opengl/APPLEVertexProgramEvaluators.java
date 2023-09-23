@@ -26,22 +26,22 @@ public class APPLEVertexProgramEvaluators {
     }
 
     public static void glMapVertexAttrib1dAPPLE(int arg0, int arg1, double arg2, double arg3, int arg4, int arg5,
-            java.nio.DoubleBuffer arg6) {
+        java.nio.DoubleBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
     public static void glMapVertexAttrib1fAPPLE(int arg0, int arg1, float arg2, float arg3, int arg4, int arg5,
-            java.nio.FloatBuffer arg6) {
+        java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
     public static void glMapVertexAttrib2dAPPLE(int arg0, int arg1, double arg2, double arg3, int arg4, int arg5,
-            double arg6, double arg7, int arg8, int arg9, java.nio.DoubleBuffer arg10) {
+        double arg6, double arg7, int arg8, int arg9, java.nio.DoubleBuffer arg10) {
         throw new UnsupportedOperationException();
     }
 
     public static void glMapVertexAttrib2fAPPLE(int arg0, int arg1, float arg2, float arg3, int arg4, int arg5,
-            float arg6, float arg7, int arg8, int arg9, java.nio.FloatBuffer arg10) {
+        float arg6, float arg7, int arg8, int arg9, java.nio.FloatBuffer arg10) {
         throw new UnsupportedOperationException();
     }
 

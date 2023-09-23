@@ -71,25 +71,25 @@ public class ARBProgramInterfaceQuery {
     }
 
     public static int glGetProgramResourceLocationIndex(int program, int programInterface,
-            java.lang.CharSequence name) {
+        java.lang.CharSequence name) {
         return org.lwjgl.opengl.ARBProgramInterfaceQuery
-                .glGetProgramResourceLocationIndex(program, programInterface, name);
+            .glGetProgramResourceLocationIndex(program, programInterface, name);
     }
 
     public static int glGetProgramResourceLocationIndex(int program, int programInterface, java.nio.ByteBuffer name) {
         return org.lwjgl.opengl.ARBProgramInterfaceQuery
-                .glGetProgramResourceLocationIndex(program, programInterface, name);
+            .glGetProgramResourceLocationIndex(program, programInterface, name);
     }
 
     public static java.lang.String glGetProgramResourceName(int program, int programInterface, int index, int bufSize) {
         return org.lwjgl.opengl.ARBProgramInterfaceQuery
-                .glGetProgramResourceName(program, programInterface, index, bufSize);
+            .glGetProgramResourceName(program, programInterface, index, bufSize);
     }
 
     public static void glGetProgramResourceName(int program, int programInterface, int index, java.nio.IntBuffer length,
-            java.nio.ByteBuffer name) {
+        java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBProgramInterfaceQuery
-                .glGetProgramResourceName(program, programInterface, index, length, name);
+            .glGetProgramResourceName(program, programInterface, index, length, name);
     }
 
 }

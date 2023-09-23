@@ -40,7 +40,7 @@ public class NVEvaluators {
     }
 
     public static void glGetMapControlPointsNV(int arg0, int arg1, int arg2, int arg3, int arg4, boolean arg5,
-            java.nio.FloatBuffer arg6) {
+        java.nio.FloatBuffer arg6) {
         throw new UnsupportedOperationException();
     }
 
@@ -53,7 +53,7 @@ public class NVEvaluators {
     }
 
     public static void glMapControlPointsNV(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
-            boolean arg7, java.nio.FloatBuffer arg8) {
+        boolean arg7, java.nio.FloatBuffer arg8) {
         throw new UnsupportedOperationException();
     }
 

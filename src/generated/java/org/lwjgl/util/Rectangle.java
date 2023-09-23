@@ -135,7 +135,7 @@ public class Rectangle {
     }
 
     public org.lwjgl.util.WritableRectangle union(org.lwjgl.util.ReadableRectangle arg0,
-            org.lwjgl.util.WritableRectangle arg1) {
+        org.lwjgl.util.WritableRectangle arg1) {
         throw new UnsupportedOperationException();
     }
 

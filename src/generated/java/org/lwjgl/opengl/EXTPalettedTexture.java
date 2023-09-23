@@ -23,7 +23,7 @@ public class EXTPalettedTexture {
     }
 
     public static void glColorSubTableEXT(int arg0, int arg1, int arg2, int arg3, int arg4,
-            java.nio.DoubleBuffer arg5) {
+        java.nio.DoubleBuffer arg5) {
         throw new UnsupportedOperationException();
     }
 

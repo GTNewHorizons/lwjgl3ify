@@ -164,9 +164,9 @@ public class Mouse {
             return;
         }
         GLFW.glfwSetInputMode(
-                Display.getWindow(),
-                GLFW.GLFW_CURSOR,
-                grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
+            Display.getWindow(),
+            GLFW.GLFW_CURSOR,
+            grab ? GLFW.GLFW_CURSOR_DISABLED : GLFW.GLFW_CURSOR_NORMAL);
         grabbed = grab;
         if (!grab) {
             // The old cursor position is sent instead of the new one in the events following mouse ungrab.

@@ -15,7 +15,7 @@ public class MixinTextureAtlasSprite {
 
     @Inject(method = "loadSprite", at = @At("TAIL"))
     void cleanupAfterLoadSprite(BufferedImage[] frames, AnimationMetadataSection aniData, boolean anisotropicFiltering,
-            CallbackInfo info) {
+        CallbackInfo info) {
         for (BufferedImage img : frames) {
             // Close any NativeBackedImage instances
             if (img instanceof AutoCloseable) {

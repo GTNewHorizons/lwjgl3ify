@@ -173,7 +173,7 @@ public final class Pbuffer extends DrawableGL {
      *                        Pbuffer will share with the Display context (if created).
      */
     public Pbuffer(int width, int height, PixelFormat pixel_format, RenderTexture renderTexture,
-            Drawable shared_drawable) throws LWJGLException {
+        Drawable shared_drawable) throws LWJGLException {
         this(width, height, pixel_format, renderTexture, shared_drawable, null);
     }
 
@@ -200,7 +200,7 @@ public final class Pbuffer extends DrawableGL {
      * @param attribs         The ContextAttribs to use when creating the context. (optional, may be null)
      */
     public Pbuffer(int width, int height, PixelFormat pixel_format, RenderTexture renderTexture,
-            Drawable shared_drawable, ContextAttribs attribs) throws LWJGLException {
+        Drawable shared_drawable, ContextAttribs attribs) throws LWJGLException {
         if (pixel_format == null) throw new NullPointerException("Pixel format must be non-null");
         this.width = width;
         this.height = height;
@@ -212,15 +212,16 @@ public final class Pbuffer extends DrawableGL {
     }
 
     private static PeerInfo createPbuffer(int width, int height, PixelFormat pixel_format, ContextAttribs attribs,
-            RenderTexture renderTexture) throws LWJGLException {
+        RenderTexture renderTexture) throws LWJGLException {
         if (renderTexture == null) {
             // Though null is a perfectly valid argument, Matrox Parhelia drivers expect
             // a 0 terminated list, or else they crash. Supplying NULL or 0, should
             // cause the drivers to use default settings
             IntBuffer defaultAttribs = BufferUtils.createIntBuffer(1);
             return Display.getImplementation()
-                    .createPbuffer(width, height, pixel_format, attribs, null, defaultAttribs);
-        } else return Display.getImplementation().createPbuffer(
+                .createPbuffer(width, height, pixel_format, attribs, null, defaultAttribs);
+        } else return Display.getImplementation()
+            .createPbuffer(
                 width,
                 height,
                 pixel_format,
@@ -238,7 +239,8 @@ public final class Pbuffer extends DrawableGL {
      */
     public synchronized boolean isBufferLost() {
         checkDestroyed();
-        return Display.getImplementation().isBufferLost(peer_info);
+        return Display.getImplementation()
+            .isBufferLost(peer_info);
     }
 
     /**
@@ -247,7 +249,8 @@ public final class Pbuffer extends DrawableGL {
      * @return a bitmask of Pbuffer capabilities.
      */
     public static int getCapabilities() {
-        return Display.getImplementation().getPbufferCapabilities();
+        return Display.getImplementation()
+            .getPbufferCapabilities();
     }
 
     // -----------------------------------------------------------------------------------------
@@ -268,7 +271,8 @@ public final class Pbuffer extends DrawableGL {
      */
     public synchronized void setAttrib(int attrib, int value) {
         checkDestroyed();
-        Display.getImplementation().setPbufferAttrib(peer_info, attrib, value);
+        Display.getImplementation()
+            .setPbufferAttrib(peer_info, attrib, value);
     }
 
     /**
@@ -280,7 +284,8 @@ public final class Pbuffer extends DrawableGL {
      */
     public synchronized void bindTexImage(int buffer) {
         checkDestroyed();
-        Display.getImplementation().bindTexImageToPbuffer(peer_info, buffer);
+        Display.getImplementation()
+            .bindTexImageToPbuffer(peer_info, buffer);
     }
 
     /**
@@ -290,7 +295,8 @@ public final class Pbuffer extends DrawableGL {
      */
     public synchronized void releaseTexImage(int buffer) {
         checkDestroyed();
-        Display.getImplementation().releaseTexImageFromPbuffer(peer_info, buffer);
+        Display.getImplementation()
+            .releaseTexImageFromPbuffer(peer_info, buffer);
     }
 
     /**

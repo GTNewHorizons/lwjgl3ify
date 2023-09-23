@@ -25,7 +25,8 @@ public class MethodMatcher {
     public final String[] argNames;
 
     public static String[] getArgumentNames(MethodNode method) {
-        Type[] asmTypes = Type.getMethodType(method.desc).getArgumentTypes();
+        Type[] asmTypes = Type.getMethodType(method.desc)
+            .getArgumentTypes();
         String[] argNames = new String[asmTypes.length];
         for (int i = 0; i < argNames.length; i++) {
             if (method.localVariables != null && method.localVariables.size() > i) {
@@ -42,7 +43,7 @@ public class MethodMatcher {
     }
 
     public MethodMatcher(JarApiSet oldApi, JarApiSet newApi, Map.Entry<String, JarApiSet.ClassApi> oldClassNode,
-            Map.Entry<String, JarApiSet.ClassApi> newClassNode, Map.Entry<String, MethodNode> oldMethodNode) {
+        Map.Entry<String, JarApiSet.ClassApi> newClassNode, Map.Entry<String, MethodNode> oldMethodNode) {
         this.oldApi = oldApi;
         this.newApi = newApi;
         this.oldClassNode = oldClassNode;
@@ -51,7 +52,9 @@ public class MethodMatcher {
         this.oldMethod = oldMethodNode.getValue();
         this.methodType = Type.getMethodType(oldMethod.desc);
         Type[] asmTypes = methodType.getArgumentTypes();
-        this.argTypes = Arrays.stream(asmTypes).map(Type::getClassName).toArray(String[]::new);
+        this.argTypes = Arrays.stream(asmTypes)
+            .map(Type::getClassName)
+            .toArray(String[]::new);
         this.argNames = getArgumentNames(oldMethod);
     }
 
@@ -88,12 +91,15 @@ public class MethodMatcher {
                 }
             }
         }
-        final String bufferArg = Arrays.stream(argTypes).filter(a -> a.contains("Buffer")).findFirst().orElse(null);
+        final String bufferArg = Arrays.stream(argTypes)
+            .filter(a -> a.contains("Buffer"))
+            .findFirst()
+            .orElse(null);
         final int bufferArgIdx = ArrayUtils.indexOf(argTypes, bufferArg);
         // Check if adding a type is enough
         if (nativeCallName != null) {
             final String descWithType = (nativeCallName.substring(1) + ":(I" + oldMethod.desc.substring(1))
-                    .replace("DoubleBuffer", "ByteBuffer");
+                .replace("DoubleBuffer", "ByteBuffer");
             final MethodNode withTypeMatch = newClassNode.getValue().methods.get(descWithType);
             if (withTypeMatch != null) {
                 final String[] newArgNames = getArgumentNames(withTypeMatch);
@@ -120,8 +126,8 @@ public class MethodMatcher {
                         case "java.nio.DoubleBuffer":
                             glType = "org.lwjgl.opengl.GL11.GL_DOUBLE";
                             changedArgs[bufferArgIdx] = "me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer("
-                                    + changedArgs[bufferArgIdx]
-                                    + ")";
+                                + changedArgs[bufferArgIdx]
+                                + ")";
                             break;
                         default:
                             throw new IllegalStateException(bufferArg);
@@ -138,8 +144,9 @@ public class MethodMatcher {
             final Map.Entry<String, MethodNode> fuzzyMatch = newClassNode.getValue().methods.ceilingEntry(newKey);
             if (fuzzyMatch.getValue().name.equals(nativeCallName.substring(1))) {
                 final Type newType = Type.getMethodType(fuzzyMatch.getValue().desc);
-                final String[] newArgTypes = Arrays.stream(newType.getArgumentTypes()).map(Type::getClassName)
-                        .toArray(String[]::new);
+                final String[] newArgTypes = Arrays.stream(newType.getArgumentTypes())
+                    .map(Type::getClassName)
+                    .toArray(String[]::new);
                 boolean success = true;
                 if (newArgTypes.length == argTypes.length) {
                     final StringBuilder preCode = new StringBuilder();
@@ -154,14 +161,16 @@ public class MethodMatcher {
                         if (paramAnnotations != null && paramAnnotations.length > i && !paramAnnotations[i].isEmpty()) {
                             for (AnnotationNode annotation : paramAnnotations[i]) {
                                 if (annotation.desc.equals("Lorg/lwjgl/system/NativeType;")) {
-                                    newNativeType = annotation.values.get(1).toString().trim();
+                                    newNativeType = annotation.values.get(1)
+                                        .toString()
+                                        .trim();
                                 }
                             }
                         }
                         if (!oldArgType.equals(newArgType)) {
                             if (newArgType.startsWith("java.nio.") && newArgType.endsWith("Buffer")
-                                    && oldArgType.startsWith("java.nio.")
-                                    && oldArgType.endsWith("Buffer")) {
+                                && oldArgType.startsWith("java.nio.")
+                                && oldArgType.endsWith("Buffer")) {
                                 final String oldBufferType = StringUtils.removeStart(oldArgType, "java.nio.");
                                 final String newBufferType = StringUtils.removeStart(newArgType, "java.nio.");
                                 preCode.append("        final java.nio.ByteBuffer wrappedArg");
@@ -184,80 +193,74 @@ public class MethodMatcher {
                                 argTypes[i] = "org.lwjglx.openal.ALCdevice";
                                 changedArgs[i] = argNames[i] + ".device";
                             } else if (newArgType.equals("java.lang.CharSequence")
-                                    && oldArgType.equals("java.lang.String")) {
-                                        // no-op
-                                    } else
-                                if ((newArgType.equals("java.nio.IntBuffer") || newArgType.equals("int[]"))
-                                        && oldArgType.equals("int")) {
-                                            changedArgs[i] = "new int[]{" + argNames[i] + "}";
-                                        } else
-                                    if ((newArgType.equals("java.nio.LongBuffer") || newArgType.equals("long[]"))
-                                            && oldArgType.equals("long")) {
-                                                changedArgs[i] = "new long[]{" + argNames[i] + "}";
-                                            } else
-                                        if (newArgType.equals("long") && newNativeType.endsWith("*")
-                                                && oldArgType.startsWith("java.nio.")
-                                                && oldArgType.endsWith("Buffer")) {
-                                                    changedArgs[i] = "org.lwjglx.MemoryUtil.getAddress(" + argNames[i]
-                                                            + ")";
-                                                } else
-                                            if (newArgType.equals("java.lang.CharSequence")
-                                                    && oldArgType.equals("java.nio.ByteBuffer")) {
-                                                        changedArgs[i] = "me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq("
-                                                                + argNames[i]
-                                                                + ")";
-                                                    } else
-                                                if (newArgType.equals("int") && oldArgType.equals("boolean")
-                                                        && argNames[i].equals("unsigned")
-                                                        && newArgNames[i].equals("type")) {
-                                                            final String newArg;
-                                                            switch (bufferArg) {
-                                                                case "java.nio.ByteBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE)";
-                                                                    break;
-                                                                case "java.nio.ShortBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_SHORT : org.lwjgl.opengl.GL11.GL_SHORT)";
-                                                                    break;
-                                                                case "java.nio.IntBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_INT : org.lwjgl.opengl.GL11.GL_INT)";
-                                                                    break;
-                                                                case "java.nio.LongBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_LONG : org.lwjgl.opengl.GL11.GL_LONG)";
-                                                                    break;
-                                                                case "java.nio.FloatBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_FLOAT : org.lwjgl.opengl.GL11.GL_FLOAT)";
-                                                                    break;
-                                                                case "java.nio.DoubleBuffer":
-                                                                    newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_DOUBLE : org.lwjgl.opengl.GL11.GL_DOUBLE)";
-                                                                    changedArgs[bufferArgIdx] = "me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer("
-                                                                            + changedArgs[bufferArgIdx]
-                                                                            + ")";
-                                                                    break;
-                                                                default:
-                                                                    throw new IllegalStateException(bufferArg);
-                                                            }
-                                                            changedArgs[i] = newArg;
-                                                        } else {
-                                                            success = false;
-                                                            System.out.println(
-                                                                    new UnsupportedOperationException(
-                                                                            oldArgType + " -> "
-                                                                                    + newArgType
-                                                                                    + " in "
-                                                                                    + oldClassNode.getKey()
-                                                                                    + " : "
-                                                                                    + oldMethodNode.getKey())
-                                                                                            .toString());
+                                && oldArgType.equals("java.lang.String")) {
+                                    // no-op
+                                } else if ((newArgType.equals("java.nio.IntBuffer") || newArgType.equals("int[]"))
+                                    && oldArgType.equals("int")) {
+                                        changedArgs[i] = "new int[]{" + argNames[i] + "}";
+                                    } else if ((newArgType.equals("java.nio.LongBuffer") || newArgType.equals("long[]"))
+                                        && oldArgType.equals("long")) {
+                                            changedArgs[i] = "new long[]{" + argNames[i] + "}";
+                                        } else if (newArgType.equals("long") && newNativeType.endsWith("*")
+                                            && oldArgType.startsWith("java.nio.")
+                                            && oldArgType.endsWith("Buffer")) {
+                                                changedArgs[i] = "org.lwjglx.MemoryUtil.getAddress(" + argNames[i]
+                                                    + ")";
+                                            } else if (newArgType.equals("java.lang.CharSequence")
+                                                && oldArgType.equals("java.nio.ByteBuffer")) {
+                                                    changedArgs[i] = "me.eigenraven.lwjgl3ify.BufferCasts.bufferToCharSeq("
+                                                        + argNames[i]
+                                                        + ")";
+                                                } else if (newArgType.equals("int") && oldArgType.equals("boolean")
+                                                    && argNames[i].equals("unsigned")
+                                                    && newArgNames[i].equals("type")) {
+                                                        final String newArg;
+                                                        switch (bufferArg) {
+                                                            case "java.nio.ByteBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE : org.lwjgl.opengl.GL11.GL_BYTE)";
+                                                                break;
+                                                            case "java.nio.ShortBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_SHORT : org.lwjgl.opengl.GL11.GL_SHORT)";
+                                                                break;
+                                                            case "java.nio.IntBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_INT : org.lwjgl.opengl.GL11.GL_INT)";
+                                                                break;
+                                                            case "java.nio.LongBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_LONG : org.lwjgl.opengl.GL11.GL_LONG)";
+                                                                break;
+                                                            case "java.nio.FloatBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_FLOAT : org.lwjgl.opengl.GL11.GL_FLOAT)";
+                                                                break;
+                                                            case "java.nio.DoubleBuffer":
+                                                                newArg = "(unsigned ? org.lwjgl.opengl.GL11.GL_UNSIGNED_DOUBLE : org.lwjgl.opengl.GL11.GL_DOUBLE)";
+                                                                changedArgs[bufferArgIdx] = "me.eigenraven.lwjgl3ify.BufferCasts.toByteBuffer("
+                                                                    + changedArgs[bufferArgIdx]
+                                                                    + ")";
+                                                                break;
+                                                            default:
+                                                                throw new IllegalStateException(bufferArg);
                                                         }
+                                                        changedArgs[i] = newArg;
+                                                    } else {
+                                                        success = false;
+                                                        System.out.println(
+                                                            new UnsupportedOperationException(
+                                                                oldArgType + " -> "
+                                                                    + newArgType
+                                                                    + " in "
+                                                                    + oldClassNode.getKey()
+                                                                    + " : "
+                                                                    + oldMethodNode.getKey()).toString());
+                                                    }
                         }
                     }
                     if (success) {
                         return new MethodRedirector.TransformingRedirector(
-                                this,
-                                fuzzyMatch.getValue(),
-                                preCode.toString(),
-                                postCode.toString(),
-                                changedArgs);
+                            this,
+                            fuzzyMatch.getValue(),
+                            preCode.toString(),
+                            postCode.toString(),
+                            changedArgs);
                     }
                 }
             }
@@ -270,7 +273,7 @@ public class MethodMatcher {
                 throw new IllegalStateException();
             }
             return new MethodMatcher(oldApi, newApi, oldClassNode, newApi.classes.floorEntry(superName), oldMethodNode)
-                    .findMatch();
+                .findMatch();
         }
         return null;
     }

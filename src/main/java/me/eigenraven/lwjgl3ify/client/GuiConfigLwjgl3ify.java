@@ -21,16 +21,16 @@ public class GuiConfigLwjgl3ify extends GuiConfig {
 
     public GuiConfigLwjgl3ify(GuiScreen parent) {
         super(
-                parent,
-                Lists.newArrayList(
-                        new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_WINDOW)),
-                        new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_INPUT)),
-                        new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_GLCONTEXT))),
-                Tags.MODID,
-                "config",
-                false,
-                false,
-                "LWJGL3ify");
+            parent,
+            Lists.newArrayList(
+                new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_WINDOW)),
+                new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_INPUT)),
+                new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_GLCONTEXT))),
+            Tags.MODID,
+            "config",
+            false,
+            false,
+            "LWJGL3ify");
     }
 
     @Override
@@ -50,7 +50,9 @@ public class GuiConfigLwjgl3ify extends GuiConfig {
         Block wool = Blocks.wool;
         // Draw scroll test widget
         int ypos = 32 + (int) (16.0 * Mouse.totalScrollAmount);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft()
+            .getTextureManager()
+            .bindTexture(TextureMap.locationBlocksTexture);
         for (int i = 0; i < 8; i++) {
             while (ypos > height - 64) {
                 ypos -= (height - 64);

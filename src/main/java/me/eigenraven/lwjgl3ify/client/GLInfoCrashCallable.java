@@ -29,13 +29,14 @@ public class GLInfoCrashCallable implements ICrashCallable {
         }
         if (hasGlContext) {
             return "' Vendor: '" + glGetString(GL_VENDOR)
-                    + "' Version: '"
-                    + glGetString(GL_VERSION)
-                    + "' Renderer: '"
-                    + glGetString(GL_RENDERER)
-                    + "'";
+                + "' Version: '"
+                + glGetString(GL_VERSION)
+                + "' Renderer: '"
+                + glGetString(GL_RENDERER)
+                + "'";
         } else {
-            return "No OpenGL context present in the calling thread: " + Thread.currentThread().getName();
+            return "No OpenGL context present in the calling thread: " + Thread.currentThread()
+                .getName();
         }
     }
 }

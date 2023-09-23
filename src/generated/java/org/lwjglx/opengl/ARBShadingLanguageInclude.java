@@ -19,7 +19,7 @@ public class ARBShadingLanguageInclude {
     }
 
     public static void glGetNamedStringARB(java.lang.CharSequence name, java.nio.IntBuffer stringlen,
-            java.nio.ByteBuffer string) {
+        java.nio.ByteBuffer string) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringARB(name, stringlen, string);
     }
 
@@ -28,7 +28,7 @@ public class ARBShadingLanguageInclude {
     }
 
     public static void glGetNamedStringARB(java.nio.ByteBuffer name, java.nio.IntBuffer stringlen,
-            java.nio.ByteBuffer string) {
+        java.nio.ByteBuffer string) {
         org.lwjgl.opengl.ARBShadingLanguageInclude.glGetNamedStringARB(name, stringlen, string);
     }
 

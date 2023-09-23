@@ -86,9 +86,9 @@ public class ARBFramebufferObject {
     }
 
     public static void glBlitFramebuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1,
-            int dstY1, int mask, int filter) {
+        int dstY1, int mask, int filter) {
         org.lwjgl.opengl.ARBFramebufferObject
-                .glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+            .glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
     }
 
     public static int glCheckFramebufferStatus(int target) {
@@ -113,7 +113,7 @@ public class ARBFramebufferObject {
 
     public static void glFramebufferRenderbuffer(int target, int attachment, int renderbuffertarget, int renderbuffer) {
         org.lwjgl.opengl.ARBFramebufferObject
-                .glFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
+            .glFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
     }
 
     public static void glFramebufferTexture1D(int target, int attachment, int textarget, int texture, int level) {
@@ -125,9 +125,9 @@ public class ARBFramebufferObject {
     }
 
     public static void glFramebufferTexture3D(int target, int attachment, int textarget, int texture, int level,
-            int layer) {
+        int layer) {
         org.lwjgl.opengl.ARBFramebufferObject
-                .glFramebufferTexture3D(target, attachment, textarget, texture, level, layer);
+            .glFramebufferTexture3D(target, attachment, textarget, texture, level, layer);
     }
 
     public static void glFramebufferTextureLayer(int target, int attachment, int texture, int level, int layer) {
@@ -175,9 +175,9 @@ public class ARBFramebufferObject {
     }
 
     public static void glRenderbufferStorageMultisample(int target, int samples, int internalformat, int width,
-            int height) {
+        int height) {
         org.lwjgl.opengl.ARBFramebufferObject
-                .glRenderbufferStorageMultisample(target, samples, internalformat, width, height);
+            .glRenderbufferStorageMultisample(target, samples, internalformat, width, height);
     }
 
 }

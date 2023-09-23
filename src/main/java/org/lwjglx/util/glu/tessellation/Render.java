@@ -386,13 +386,13 @@ class Render {
     private static final int SIGN_INCONSISTENT = 2;
 
     static int ComputeNormal(GLUtessellatorImpl tess, double[] norm,
-            boolean check) /*
-                            * If check==false, we compute the polygon normal and place it in norm[]. If check==true, we
-                            * check that each triangle in the fan from v0 has a consistent orientation with respect to
-                            * norm[]. If triangles are consistently oriented CCW, return 1; if CW, return -1; if all
-                            * triangles are degenerate return 0; otherwise (no consistent orientation) return
-                            * SIGN_INCONSISTENT.
-                            */ {
+        boolean check) /*
+                        * If check==false, we compute the polygon normal and place it in norm[]. If check==true, we
+                        * check that each triangle in the fan from v0 has a consistent orientation with respect to
+                        * norm[]. If triangles are consistently oriented CCW, return 1; if CW, return -1; if all
+                        * triangles are degenerate return 0; otherwise (no consistent orientation) return
+                        * SIGN_INCONSISTENT.
+                        */ {
         CachedVertex[] v = tess.cache;
         // CachedVertex vn = v0 + tess.cacheCount;
         int vn = tess.cacheCount;
@@ -516,7 +516,7 @@ class Render {
             }
 
             tess.callBeginOrBeginData(
-                    tess.boundaryOnly ? GL_LINE_LOOP : (tess.cacheCount > 3) ? GL_TRIANGLE_FAN : GL_TRIANGLES);
+                tess.boundaryOnly ? GL_LINE_LOOP : (tess.cacheCount > 3) ? GL_TRIANGLE_FAN : GL_TRIANGLES);
 
             tess.callVertexOrVertexData(v[0].data);
             if (sign > 0) {

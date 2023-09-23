@@ -8,7 +8,7 @@ public class ARBTransformFeedbackInstanced {
 
     public static void glDrawTransformFeedbackStreamInstanced(int mode, int id, int stream, int primcount) {
         org.lwjgl.opengl.ARBTransformFeedbackInstanced
-                .glDrawTransformFeedbackStreamInstanced(mode, id, stream, primcount);
+            .glDrawTransformFeedbackStreamInstanced(mode, id, stream, primcount);
     }
 
 }

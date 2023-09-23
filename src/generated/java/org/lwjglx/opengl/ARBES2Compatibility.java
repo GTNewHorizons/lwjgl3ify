@@ -27,7 +27,7 @@ public class ARBES2Compatibility {
     }
 
     public static void glGetShaderPrecisionFormat(int shadertype, int precisiontype, java.nio.IntBuffer range,
-            java.nio.IntBuffer precision) {
+        java.nio.IntBuffer precision) {
         org.lwjgl.opengl.ARBES2Compatibility.glGetShaderPrecisionFormat(shadertype, precisiontype, range, precision);
     }
 

@@ -13,10 +13,10 @@ import me.eigenraven.lwjgl3ify.WasFinalObjectHolder;
 public abstract class ObjectHolderRegistry {
 
     @Redirect(
-            method = { "cpw.mods.fml.common.registry.ObjectHolderRegistry.scanClassForFields" },
-            at = @At(value = "INVOKE", target = "Ljava/lang/reflect/Field;getModifiers()I"),
-            remap = false,
-            require = 1)
+        method = { "cpw.mods.fml.common.registry.ObjectHolderRegistry.scanClassForFields" },
+        at = @At(value = "INVOKE", target = "Ljava/lang/reflect/Field;getModifiers()I"),
+        remap = false,
+        require = 1)
     public int getFieldModifiersProxy(Field f) {
         int mods = f.getModifiers();
         if (f.isAnnotationPresent(WasFinalObjectHolder.class)) {

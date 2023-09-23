@@ -15,9 +15,9 @@ public class ARBSparseTexture {
     public static final int GL_VIRTUAL_PAGE_SIZE_Z_ARB = (int) 37271;
 
     public static void glTexPageCommitmentARB(int target, int level, int xoffset, int yoffset, int zoffset, int width,
-            int height, int depth, boolean commit) {
+        int height, int depth, boolean commit) {
         org.lwjgl.opengl.ARBSparseTexture
-                .glTexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
+            .glTexPageCommitmentARB(target, level, xoffset, yoffset, zoffset, width, height, depth, commit);
     }
 
 }

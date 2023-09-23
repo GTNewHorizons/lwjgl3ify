@@ -55,7 +55,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             boolean transformClass = false;
             boolean workDone = false;
             if (transformedName.equals("net.minecraft.init.Blocks")
-                    || transformedName.equals("net.minecraft.init.Items")) {
+                || transformedName.equals("net.minecraft.init.Items")) {
                 transformClass = true;
             }
             transformClass |= isHolder(node.visibleAnnotations);
@@ -74,7 +74,7 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                         if (field.visibleAnnotations == null) {
                             field.visibleAnnotations = new ArrayList<>(1);
                             field.visibleAnnotations
-                                    .add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
+                                .add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
                         }
                         field.access = field.access & (~Opcodes.ACC_FINAL);
                     }
@@ -85,7 +85,8 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                 Lwjgl3ifyCoremod.LOGGER.info("Unfinalized {} Holder fields in {}", fieldsModified, transformedName);
             }
 
-            if (Config.getExtensibleEnums().contains(transformedName)) {
+            if (Config.getExtensibleEnums()
+                .contains(transformedName)) {
                 if (node.interfaces == null) {
                     node.interfaces = new ArrayList<>(1);
                 }
@@ -103,10 +104,8 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
 
             if (ifaceMethodRefsTransformed) {
                 workDone = true;
-                Lwjgl3ifyCoremod.LOGGER.warn(
-                        "Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}",
-                        name,
-                        transformedName);
+                Lwjgl3ifyCoremod.LOGGER
+                    .warn("Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}", name, transformedName);
             }
 
             if (workDone) {

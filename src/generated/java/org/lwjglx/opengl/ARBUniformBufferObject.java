@@ -49,9 +49,9 @@ public class ARBUniformBufferObject {
     }
 
     public static void glGetActiveUniformBlockName(int program, int uniformBlockIndex, java.nio.IntBuffer length,
-            java.nio.ByteBuffer uniformBlockName) {
+        java.nio.ByteBuffer uniformBlockName) {
         org.lwjgl.opengl.ARBUniformBufferObject
-                .glGetActiveUniformBlockName(program, uniformBlockIndex, length, uniformBlockName);
+            .glGetActiveUniformBlockName(program, uniformBlockIndex, length, uniformBlockName);
     }
 
     public static int glGetActiveUniformBlocki(int program, int uniformBlockIndex, int pname) {
@@ -63,7 +63,7 @@ public class ARBUniformBufferObject {
     }
 
     public static void glGetActiveUniformName(int program, int uniformIndex, java.nio.IntBuffer length,
-            java.nio.ByteBuffer uniformName) {
+        java.nio.ByteBuffer uniformName) {
         org.lwjgl.opengl.ARBUniformBufferObject.glGetActiveUniformName(program, uniformIndex, length, uniformName);
     }
 
@@ -80,7 +80,7 @@ public class ARBUniformBufferObject {
     }
 
     public static void glGetUniformIndices(int program, java.lang.CharSequence[] uniformNames,
-            java.nio.IntBuffer uniformIndices) {
+        java.nio.IntBuffer uniformIndices) {
         org.lwjgl.opengl.ARBUniformBufferObject.glGetUniformIndices(program, uniformNames, uniformIndices);
     }
 

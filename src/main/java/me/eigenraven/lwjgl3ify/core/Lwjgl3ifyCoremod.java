@@ -46,7 +46,10 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
             launchLoader.addClassLoaderExclusion("org.hotswap.agent");
             launchLoader.addClassLoaderExclusion("org.lwjglx.debug");
         } catch (ClassCastException e) {
-            LOGGER.warn("Unsupported launch class loader type " + getClass().getClassLoader().getClass(), e);
+            LOGGER.warn(
+                "Unsupported launch class loader type " + getClass().getClassLoader()
+                    .getClass(),
+                e);
         }
         // Ensure javax.script.ScriptEngineManager gets loaded
         try {
@@ -54,7 +57,8 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        if (FMLLaunchHandler.side().isClient()) {
+        if (FMLLaunchHandler.side()
+            .isClient()) {
             clientMacOsFix();
             Sys.initialize();
         }
@@ -78,7 +82,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         }
 
         return new String[] { LwjglRedirectTransformer.class.getName(),
-                UnfinalizeObjectHoldersTransformer.class.getName() };
+            UnfinalizeObjectHoldersTransformer.class.getName() };
     }
 
     @Override
@@ -115,7 +119,8 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         mixins.add("fml.JarDiscoverer");
         mixins.add("fml.ObjectHolderRef");
         mixins.add("fml.ObjectHolderRegistry");
-        if (FMLLaunchHandler.side().isClient()) {
+        if (FMLLaunchHandler.side()
+            .isClient()) {
             // STB replacements for vanilla functions
             if (Config.MIXIN_STBI_TEXTURE_LOADING) {
                 LOGGER.info("Enabling STB texture loading mixin");
@@ -128,7 +133,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
             final boolean fcBugTriggered = hasFastcraft && !hasOptifine;
             if (fcBugTriggered && !Config.MIXIN_STBI_IGNORE_FASTCRAFT) {
                 LOGGER.error(
-                        "Not using STB stiching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or add OptiFine to enable these performance-improving patches.");
+                    "Not using STB stiching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or add OptiFine to enable these performance-improving patches.");
             } else {
                 if (Config.MIXIN_STBI_TEXTURE_STICHING) {
                     LOGGER.info("Enabling STB texture stitching mixin");

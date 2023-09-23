@@ -33,14 +33,17 @@ public class StbStitcher {
             for (int j = 0; j < holderSize; ++j) {
                 Stitcher.Holder holder = holders[j];
                 if ((j % 100) == 0 && bar.getStep() < bar.getSteps()) {
-                    bar.step(holder.getAtlasSprite().getIconName());
+                    bar.step(
+                        holder.getAtlasSprite()
+                            .getIconName());
                 }
 
                 int width = holder.getWidth();
                 int height = holder.getHeight();
 
                 // The ID here is just the array index, for easy lookup later
-                rectBuf.get(j).set(j, width, height, 0, 0, false);
+                rectBuf.get(j)
+                    .set(j, width, height, 0, 0, false);
 
                 sqSize += width * height;
                 maxW = Math.max(maxW, width);
@@ -78,15 +81,16 @@ public class StbStitcher {
                         // Ensure that everything is properly packed!
                         if (!rect.was_packed()) {
                             throw new StitcherException(
-                                    holder,
-                                    "Could not fit " + holder.getAtlasSprite()
-                                            .getIconName() + " into " + atlasWidth + "x" + atlasHeight + " atlas!");
+                                holder,
+                                "Could not fit " + holder.getAtlasSprite()
+                                    .getIconName() + " into " + atlasWidth + "x" + atlasHeight + " atlas!");
                         }
 
                         // Initialize the sprite now with the position and size that we've calculated so far
 
                         // texture should not be rotated, so use false
-                        holder.getAtlasSprite().initSprite(atlasWidth, atlasHeight, rect.x(), rect.y(), false);
+                        holder.getAtlasSprite()
+                            .initSprite(atlasWidth, atlasHeight, rect.x(), rect.y(), false);
                     }
 
                     // Safeguard in case our calculation was off
@@ -101,7 +105,7 @@ public class StbStitcher {
                 }
             }
             throw new IllegalStateException(
-                    "Could not fit all sprites into an atlas of size " + atlasWidth + "x" + atlasHeight);
+                "Could not fit all sprites into an atlas of size " + atlasWidth + "x" + atlasHeight);
         }
     }
 }

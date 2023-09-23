@@ -122,7 +122,7 @@ interface DisplayImplementation extends InputImplementation {
      * Method to create a Pbuffer
      */
     PeerInfo createPbuffer(int width, int height, PixelFormat pixel_format, ContextAttribs attribs,
-            IntBuffer pixelFormatCaps, IntBuffer pBufferAttribs) throws LWJGLException;
+        IntBuffer pixelFormatCaps, IntBuffer pBufferAttribs) throws LWJGLException;
 
     void setPbufferAttrib(PeerInfo handle, int attrib, int value);
 

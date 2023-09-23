@@ -156,9 +156,9 @@ public class XPMFile {
         StringTokenizer st = new StringTokenizer(format);
 
         return new int[] { Integer.parseInt(st.nextToken()), /* width */
-                Integer.parseInt(st.nextToken()), /* height */
-                Integer.parseInt(st.nextToken()), /* colors */
-                Integer.parseInt(st.nextToken()) /* chars per pixel */
+            Integer.parseInt(st.nextToken()), /* height */
+            Integer.parseInt(st.nextToken()), /* colors */
+            Integer.parseInt(st.nextToken()) /* chars per pixel */
         };
     }
 
@@ -201,8 +201,8 @@ public class XPMFile {
         // each iteration equals one pixel
         for (int i = 0; i < format[WIDTH]; i++) {
             String key = line.substring(
-                    i * format[CHARACTERS_PER_PIXEL],
-                    (i * format[CHARACTERS_PER_PIXEL] + format[CHARACTERS_PER_PIXEL]));
+                i * format[CHARACTERS_PER_PIXEL],
+                (i * format[CHARACTERS_PER_PIXEL] + format[CHARACTERS_PER_PIXEL]));
             int color = colors.get(key);
             bytes[offset + (i * 4)] = (byte) ((color & 0x00ff0000) >> 16);
             bytes[offset + ((i * 4) + 1)] = (byte) ((color & 0x0000ff00) >> 8);

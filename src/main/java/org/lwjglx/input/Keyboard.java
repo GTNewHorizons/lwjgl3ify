@@ -191,13 +191,17 @@ public class Keyboard {
         try {
             for (Field field : fields) {
                 if (Modifier.isStatic(field.getModifiers()) && Modifier.isPublic(field.getModifiers())
-                        && Modifier.isFinal(field.getModifiers())
-                        && field.getType().equals(int.class)
-                        && field.getName().startsWith("KEY_")
-                        && !field.getName().endsWith("WIN")) {
+                    && Modifier.isFinal(field.getModifiers())
+                    && field.getType()
+                        .equals(int.class)
+                    && field.getName()
+                        .startsWith("KEY_")
+                    && !field.getName()
+                        .endsWith("WIN")) {
                     /* Don't use deprecated names */
                     int key = field.getInt(null);
-                    String name = field.getName().substring(4);
+                    String name = field.getName()
+                        .substring(4);
                     keyName[key] = name;
                     keyCounter++;
                 }
@@ -219,12 +223,12 @@ public class Keyboard {
         }
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
             Lwjgl3ify.LOG.info(
-                    "[DEBUG-KEY-QUEUE] queued key event key:{} action:{} state:{} charname:{} naive-char:{}",
-                    event.key,
-                    event.state,
-                    event.state,
-                    java.awt.event.KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(event.key))),
-                    (event.key >= 32 && event.key < 127) ? ((char) event.key) : '?');
+                "[DEBUG-KEY-QUEUE] queued key event key:{} action:{} state:{} charname:{} naive-char:{}",
+                event.key,
+                event.state,
+                event.state,
+                java.awt.event.KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(event.key))),
+                (event.key >= 32 && event.key < 127) ? ((char) event.key) : '?');
         }
         try {
             eventQueue.add(event);

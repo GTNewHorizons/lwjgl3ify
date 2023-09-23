@@ -35,7 +35,7 @@ public class AMDPerformanceMonitor {
     }
 
     public static void glGetPerfMonitorCounterDataAMD(int monitor, int pname, java.nio.IntBuffer data,
-            java.nio.IntBuffer bytesWritten) {
+        java.nio.IntBuffer bytesWritten) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glGetPerfMonitorCounterDataAMD(monitor, pname, data, bytesWritten);
     }
 
@@ -44,18 +44,18 @@ public class AMDPerformanceMonitor {
     }
 
     public static void glGetPerfMonitorCounterStringAMD(int group, int counter, java.nio.IntBuffer length,
-            java.nio.ByteBuffer counterString) {
+        java.nio.ByteBuffer counterString) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glGetPerfMonitorCounterStringAMD(group, counter, length, counterString);
     }
 
     public static void glGetPerfMonitorCountersAMD(int group, java.nio.IntBuffer numCounters,
-            java.nio.IntBuffer maxActiveCounters, java.nio.IntBuffer counters) {
+        java.nio.IntBuffer maxActiveCounters, java.nio.IntBuffer counters) {
         org.lwjgl.opengl.AMDPerformanceMonitor
-                .glGetPerfMonitorCountersAMD(group, numCounters, maxActiveCounters, counters);
+            .glGetPerfMonitorCountersAMD(group, numCounters, maxActiveCounters, counters);
     }
 
     public static void glGetPerfMonitorGroupStringAMD(int group, java.nio.IntBuffer length,
-            java.nio.ByteBuffer groupString) {
+        java.nio.ByteBuffer groupString) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glGetPerfMonitorGroupStringAMD(group, length, groupString);
     }
 
@@ -66,12 +66,12 @@ public class AMDPerformanceMonitor {
     public static void glSelectPerfMonitorCountersAMD(int monitor, boolean enable, int group, int counter) {
 
         org.lwjgl.opengl.AMDPerformanceMonitor
-                .glSelectPerfMonitorCountersAMD(monitor, enable, group, new int[] { counter });
+            .glSelectPerfMonitorCountersAMD(monitor, enable, group, new int[] { counter });
 
     }
 
     public static void glSelectPerfMonitorCountersAMD(int monitor, boolean enable, int group,
-            java.nio.IntBuffer counterList) {
+        java.nio.IntBuffer counterList) {
         org.lwjgl.opengl.AMDPerformanceMonitor.glSelectPerfMonitorCountersAMD(monitor, enable, group, counterList);
     }
 

@@ -17,18 +17,18 @@ public class ARBShaderSubroutine {
     }
 
     public static void glGetActiveSubroutineName(int program, int shadertype, int index, java.nio.IntBuffer length,
-            java.nio.ByteBuffer name) {
+        java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineName(program, shadertype, index, length, name);
     }
 
     public static java.lang.String glGetActiveSubroutineUniformName(int program, int shadertype, int index,
-            int bufsize) {
+        int bufsize) {
         return org.lwjgl.opengl.ARBShaderSubroutine
-                .glGetActiveSubroutineUniformName(program, shadertype, index, bufsize);
+            .glGetActiveSubroutineUniformName(program, shadertype, index, bufsize);
     }
 
     public static void glGetActiveSubroutineUniformName(int program, int shadertype, int index,
-            java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer length, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.ARBShaderSubroutine.glGetActiveSubroutineUniformName(program, shadertype, index, length, name);
     }
 

@@ -8,7 +8,7 @@ public class ARBGetProgramBinary {
     public static final int GL_PROGRAM_BINARY_RETRIEVABLE_HINT = (int) 33367;
 
     public static void glGetProgramBinary(int program, java.nio.IntBuffer length, java.nio.IntBuffer binaryFormat,
-            java.nio.ByteBuffer binary) {
+        java.nio.ByteBuffer binary) {
         org.lwjgl.opengl.ARBGetProgramBinary.glGetProgramBinary(program, length, binaryFormat, binary);
     }
 

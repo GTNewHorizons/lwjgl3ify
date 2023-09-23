@@ -231,7 +231,7 @@ public class GLU {
      * @param upz
      */
     public static void gluLookAt(float eyex, float eyey, float eyez, float centerx, float centery, float centerz,
-            float upx, float upy, float upz) {
+        float upx, float upy, float upz) {
 
         Project.gluLookAt(eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz);
     }
@@ -274,7 +274,7 @@ public class GLU {
      * @param win_pos
      */
     public static boolean gluProject(float objx, float objy, float objz, FloatBuffer modelMatrix,
-            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer win_pos) {
+        FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer win_pos) {
         return Project.gluProject(objx, objy, objz, modelMatrix, projMatrix, viewport, win_pos);
     }
 
@@ -290,7 +290,7 @@ public class GLU {
      * @param obj_pos
      */
     public static boolean gluUnProject(float winx, float winy, float winz, FloatBuffer modelMatrix,
-            FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer obj_pos) {
+        FloatBuffer projMatrix, IntBuffer viewport, FloatBuffer obj_pos) {
         return Project.gluUnProject(winx, winy, winz, modelMatrix, projMatrix, viewport, obj_pos);
     }
 
@@ -342,7 +342,7 @@ public class GLU {
      * @return int
      */
     public static int gluBuild2DMipmaps(int target, int components, int width, int height, int format, int type,
-            ByteBuffer data) {
+        ByteBuffer data) {
 
         return MipMap.gluBuild2DMipmaps(target, components, width, height, format, type, data);
     }
@@ -362,7 +362,7 @@ public class GLU {
      * @return int
      */
     public static int gluScaleImage(int format, int widthIn, int heightIn, int typeIn, ByteBuffer dataIn, int widthOut,
-            int heightOut, int typeOut, ByteBuffer dataOut) {
+        int heightOut, int typeOut, ByteBuffer dataOut) {
 
         return MipMap.gluScaleImage(format, widthIn, heightIn, typeIn, dataIn, widthOut, heightOut, typeOut, dataOut);
     }

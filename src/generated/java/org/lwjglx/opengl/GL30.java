@@ -279,7 +279,7 @@ public class GL30 {
     }
 
     public static void glBlitFramebuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1,
-            int dstY1, int mask, int filter) {
+        int dstY1, int mask, int filter) {
         org.lwjgl.opengl.GL30.glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
     }
 
@@ -368,7 +368,7 @@ public class GL30 {
     }
 
     public static void glFramebufferTexture3D(int target, int attachment, int textarget, int texture, int level,
-            int zoffset) {
+        int zoffset) {
         org.lwjgl.opengl.GL30.glFramebufferTexture3D(target, attachment, textarget, texture, level, zoffset);
     }
 
@@ -417,7 +417,7 @@ public class GL30 {
     }
 
     public static void glGetFramebufferAttachmentParameter(int target, int attachment, int pname,
-            java.nio.IntBuffer params) {
+        java.nio.IntBuffer params) {
         org.lwjgl.opengl.GL30.glGetFramebufferAttachmentParameteriv(target, attachment, pname, params);
     }
 
@@ -458,12 +458,12 @@ public class GL30 {
     }
 
     public static java.lang.String glGetTransformFeedbackVarying(int program, int index, int bufSize,
-            java.nio.IntBuffer size, java.nio.IntBuffer type) {
+        java.nio.IntBuffer size, java.nio.IntBuffer type) {
         return org.lwjgl.opengl.GL30.glGetTransformFeedbackVarying(program, index, bufSize, size, type);
     }
 
     public static void glGetTransformFeedbackVarying(int program, int index, java.nio.IntBuffer length,
-            java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer size, java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL30.glGetTransformFeedbackVarying(program, index, length, size, type, name);
     }
 
@@ -496,7 +496,7 @@ public class GL30 {
     }
 
     public static java.nio.ByteBuffer glMapBufferRange(int target, long offset, long length, int access,
-            java.nio.ByteBuffer old_buffer) {
+        java.nio.ByteBuffer old_buffer) {
         return org.lwjgl.opengl.GL30.glMapBufferRange(target, offset, length, access, old_buffer);
     }
 
@@ -505,7 +505,7 @@ public class GL30 {
     }
 
     public static void glRenderbufferStorageMultisample(int target, int samples, int internalformat, int width,
-            int height) {
+        int height) {
         org.lwjgl.opengl.GL30.glRenderbufferStorageMultisample(target, samples, internalformat, width, height);
     }
 

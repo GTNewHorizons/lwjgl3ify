@@ -161,14 +161,14 @@ public class Display {
             public void invoke(long window, int key, int scancode, int action, int mods) {
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{}",
-                            window,
-                            key,
-                            scancode,
-                            action,
-                            mods,
-                            KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
-                            (key >= 32 && key < 127) ? ((char) key) : '?');
+                        "[DEBUG-KEY] key window:{} key:{} scancode:{} action:{} mods:{} charname:{} naive-char:{}",
+                        window,
+                        key,
+                        scancode,
+                        action,
+                        mods,
+                        KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
+                        (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
                 cancelNextChar = false;
                 if (key > GLFW_KEY_SPACE && key <= GLFW_KEY_GRAVE_ACCENT) { // Handle keys have a char. Exclude space to
@@ -185,10 +185,10 @@ public class Display {
                     } else if (action > 0) { // Delay press and repeat key event to actual char input. There is ALWAYS a
                                              // char after them
                         ingredientKeyEvent = new Keyboard.KeyEvent(
-                                KeyCodes.glfwToLwjgl(key),
-                                '\0',
-                                action > 1 ? Keyboard.KeyState.REPEAT : Keyboard.KeyState.PRESS,
-                                Sys.getNanoTime());
+                            KeyCodes.glfwToLwjgl(key),
+                            '\0',
+                            action > 1 ? Keyboard.KeyState.REPEAT : Keyboard.KeyState.PRESS,
+                            Sys.getNanoTime());
                     } else { // Release event
                         if (ingredientKeyEvent != null && ingredientKeyEvent.key == KeyCodes.glfwToLwjgl(key)) {
                             ingredientKeyEvent.queueOutOfOrderRelease = true;
@@ -213,11 +213,8 @@ public class Display {
             @Override
             public void invoke(long window, int codepoint) {
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
-                    Lwjgl3ify.LOG.info(
-                            "[DEBUG-KEY] char window:{} codepoint:{} char:{}",
-                            window,
-                            codepoint,
-                            (char) codepoint);
+                    Lwjgl3ify.LOG
+                        .info("[DEBUG-KEY] char window:{} codepoint:{} char:{}", window, codepoint, (char) codepoint);
                 }
                 if (cancelNextChar) { // Char event being cancelled
                     cancelNextChar = false;
@@ -253,11 +250,11 @@ public class Display {
             public void invoke(long window, int button, int action, int mods) {
                 if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                            "[DEBUG-MOUSE] button window:{} button:{} action:{} mods:{}",
-                            window,
-                            button,
-                            action,
-                            mods);
+                        "[DEBUG-MOUSE] button window:{} button:{} action:{} mods:{}",
+                        window,
+                        button,
+                        action,
+                        mods);
                 }
                 Mouse.addButtonEvent(button, action == GLFW.GLFW_PRESS ? true : false);
             }
@@ -534,7 +531,10 @@ public class Display {
             if (dimension * dimension * 4 != nativeBuffers[icon].limit()) {
                 throw new IllegalStateException();
             }
-            glfwImages.put(icon, GLFWImage.create().set(dimension, dimension, nativeBuffers[icon]));
+            glfwImages.put(
+                icon,
+                GLFWImage.create()
+                    .set(dimension, dimension, nativeBuffers[icon]));
         }
         GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
         glfwImages.free();

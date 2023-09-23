@@ -11,9 +11,9 @@ public class ARBTextureBufferRange {
     }
 
     public static void glTextureBufferRangeEXT(int texture, int target, int internalformat, int buffer, long offset,
-            long size) {
+        long size) {
         org.lwjgl.opengl.ARBTextureBufferRange
-                .glTextureBufferRangeEXT(texture, target, internalformat, buffer, offset, size);
+            .glTextureBufferRangeEXT(texture, target, internalformat, buffer, offset, size);
     }
 
 }

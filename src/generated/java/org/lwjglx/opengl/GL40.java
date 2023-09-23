@@ -164,22 +164,22 @@ public class GL40 {
     }
 
     public static void glGetActiveSubroutineName(int program, int shadertype, int index, java.nio.IntBuffer length,
-            java.nio.ByteBuffer name) {
+        java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineName(program, shadertype, index, length, name);
     }
 
     public static void glGetActiveSubroutineUniform(int program, int shadertype, int index, int pname,
-            java.nio.IntBuffer values) {
+        java.nio.IntBuffer values) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformiv(program, shadertype, index, pname, values);
     }
 
     public static java.lang.String glGetActiveSubroutineUniformName(int program, int shadertype, int index,
-            int bufsize) {
+        int bufsize) {
         return org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformName(program, shadertype, index, bufsize);
     }
 
     public static void glGetActiveSubroutineUniformName(int program, int shadertype, int index,
-            java.nio.IntBuffer length, java.nio.ByteBuffer name) {
+        java.nio.IntBuffer length, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL40.glGetActiveSubroutineUniformName(program, shadertype, index, length, name);
     }
 

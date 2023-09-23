@@ -135,7 +135,7 @@ public class ARBProgram {
     }
 
     public static void glProgramEnvParameter4dARB(int arg0, int arg1, double arg2, double arg3, double arg4,
-            double arg5) {
+        double arg5) {
         throw new UnsupportedOperationException();
     }
 
@@ -152,12 +152,12 @@ public class ARBProgram {
     }
 
     public static void glProgramLocalParameter4dARB(int arg0, int arg1, double arg2, double arg3, double arg4,
-            double arg5) {
+        double arg5) {
         throw new UnsupportedOperationException();
     }
 
     public static void glProgramLocalParameter4fARB(int arg0, int arg1, float arg2, float arg3, float arg4,
-            float arg5) {
+        float arg5) {
         throw new UnsupportedOperationException();
     }
 

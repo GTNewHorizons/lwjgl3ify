@@ -68,6 +68,9 @@ public abstract class PointerWrapperAbstract implements PointerWrapper {
     }
 
     public String toString() {
-        return getClass().getSimpleName() + " pointer (0x" + Long.toHexString(pointer).toUpperCase() + ")";
+        return getClass().getSimpleName() + " pointer (0x"
+            + Long.toHexString(pointer)
+                .toUpperCase()
+            + ")";
     }
 }

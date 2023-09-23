@@ -61,7 +61,7 @@ public class Cursor {
      * @throws LWJGLException if the cursor could not be created for any reason
      */
     public Cursor(int width, int height, int xHotspot, int yHotspot, int numImages, IntBuffer images, IntBuffer delays)
-            throws LWJGLException {
+        throws LWJGLException {
         // TODO
         cursors = null;
     }
@@ -104,7 +104,7 @@ public class Cursor {
      * Creates the actual cursor, using a platform specific class
      */
     private static CursorElement[] createCursors(int width, int height, int xHotspot, int yHotspot, int numImages,
-            IntBuffer images, IntBuffer delays) throws LWJGLException {
+        IntBuffer images, IntBuffer delays) throws LWJGLException {
         // TODO
         return null;
     }

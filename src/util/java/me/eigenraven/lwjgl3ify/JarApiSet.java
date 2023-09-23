@@ -28,14 +28,15 @@ public class JarApiSet {
             throw new UnsupportedOperationException("Input does not exist: " + jarFile);
         }
         try (FileInputStream fis = FileUtils.openInputStream(jarFile);
-                BufferedInputStream bis = new BufferedInputStream(fis);
-                JarInputStream jis = new JarInputStream(bis)) {
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            JarInputStream jis = new JarInputStream(bis)) {
             JarEntry entry;
             while ((entry = jis.getNextJarEntry()) != null) {
                 if (entry.isDirectory()) {
                     continue;
                 }
-                if (entry.getName().endsWith(".class")) {
+                if (entry.getName()
+                    .endsWith(".class")) {
                     byte[] classBytes = IOUtils.toByteArray(CloseShieldInputStream.wrap(jis));
                     addClassBytes(classBytes);
                 }
@@ -92,17 +93,19 @@ public class JarApiSet {
         public String dump() {
             StringBuilder builder = new StringBuilder(1024);
             builder.append("## METHODS\n");
-            methods.keySet().forEach(key -> {
-                builder.append(' ');
-                builder.append(key);
-                builder.append('\n');
-            });
+            methods.keySet()
+                .forEach(key -> {
+                    builder.append(' ');
+                    builder.append(key);
+                    builder.append('\n');
+                });
             builder.append("## FIELDS\n");
-            fields.keySet().forEach(key -> {
-                builder.append(' ');
-                builder.append(key);
-                builder.append('\n');
-            });
+            fields.keySet()
+                .forEach(key -> {
+                    builder.append(' ');
+                    builder.append(key);
+                    builder.append('\n');
+                });
             return builder.toString();
         }
     }
@@ -113,7 +116,9 @@ public class JarApiSet {
             builder.append("##### ");
             builder.append(entry.getKey());
             builder.append('\n');
-            builder.append(entry.getValue().dump());
+            builder.append(
+                entry.getValue()
+                    .dump());
             builder.append('\n');
         }
         return builder.toString();

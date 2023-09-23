@@ -26,7 +26,7 @@ public class ARBDebugOutput {
     public static final int GL_MAX_DEBUG_MESSAGE_LENGTH_ARB = (int) 37187;
 
     public static void glDebugMessageControlARB(int source, int type, int severity, java.nio.IntBuffer ids,
-            boolean enabled) {
+        boolean enabled) {
         org.lwjgl.opengl.ARBDebugOutput.glDebugMessageControlARB(source, type, severity, ids, enabled);
     }
 
@@ -39,10 +39,10 @@ public class ARBDebugOutput {
     }
 
     public static int glGetDebugMessageLogARB(int count, java.nio.IntBuffer sources, java.nio.IntBuffer types,
-            java.nio.IntBuffer ids, java.nio.IntBuffer severities, java.nio.IntBuffer lengths,
-            java.nio.ByteBuffer messageLog) {
+        java.nio.IntBuffer ids, java.nio.IntBuffer severities, java.nio.IntBuffer lengths,
+        java.nio.ByteBuffer messageLog) {
         return org.lwjgl.opengl.ARBDebugOutput
-                .glGetDebugMessageLogARB(count, sources, types, ids, severities, lengths, messageLog);
+            .glGetDebugMessageLogARB(count, sources, types, ids, severities, lengths, messageLog);
     }
 
 }

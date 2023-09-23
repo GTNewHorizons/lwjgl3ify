@@ -97,7 +97,10 @@ public class WaveData {
      * @return WaveData containing data, or null if a failure occured
      */
     public static WaveData create(String path) {
-        return create(Thread.currentThread().getContextClassLoader().getResource(path));
+        return create(
+            Thread.currentThread()
+                .getContextClassLoader()
+                .getResource(path));
     }
 
     /**
@@ -191,9 +194,11 @@ public class WaveData {
         try {
             int available = ais.available();
             if (available <= 0) {
-                available = ais.getFormat().getChannels() * (int) ais.getFrameLength()
-                        * ais.getFormat().getSampleSizeInBits()
-                        / 8;
+                available = ais.getFormat()
+                    .getChannels() * (int) ais.getFrameLength()
+                    * ais.getFormat()
+                        .getSampleSizeInBits()
+                    / 8;
             }
             byte[] buf = new byte[ais.available()];
             int read = 0, total = 0;
@@ -201,9 +206,9 @@ public class WaveData {
                 total += read;
             }
             buffer = convertAudioBytes(
-                    buf,
-                    audioformat.getSampleSizeInBits() == 16,
-                    audioformat.isBigEndian() ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
+                buf,
+                audioformat.getSampleSizeInBits() == 16,
+                audioformat.isBigEndian() ? ByteOrder.BIG_ENDIAN : ByteOrder.LITTLE_ENDIAN);
         } catch (IOException ioe) {
             return null;
         }

@@ -14,22 +14,22 @@ public class LWJGLUtil {
     public static final java.lang.String PLATFORM_WINDOWS_NAME = "windows";
 
     public static java.util.Map getClassTokens(org.lwjgl.LWJGLUtil$TokenFilter arg0, java.util.Map arg1,
-            java.lang.Iterable arg2) {
+        java.lang.Iterable arg2) {
         throw new UnsupportedOperationException();
     }
 
     public static java.util.Map getClassTokens(org.lwjgl.LWJGLUtil$TokenFilter arg0, java.util.Map arg1,
-            java.lang.Class[] arg2) {
+        java.lang.Class[] arg2) {
         throw new UnsupportedOperationException();
     }
 
     public static java.lang.String[] getLibraryPaths(java.lang.String arg0, java.lang.String arg1,
-            java.lang.ClassLoader arg2) {
+        java.lang.ClassLoader arg2) {
         throw new UnsupportedOperationException();
     }
 
     public static java.lang.String[] getLibraryPaths(java.lang.String arg0, java.lang.String[] arg1,
-            java.lang.ClassLoader arg2) {
+        java.lang.ClassLoader arg2) {
         throw new UnsupportedOperationException();
     }
 

@@ -138,7 +138,8 @@ public final class EFXUtil {
             } catch (OpenALException debugBuildException) {
                 // Hack because OpenALException hides the original error code (short of parsing the
                 // error message String which would break if it gets changed).
-                if (debugBuildException.getMessage().contains("AL_OUT_OF_MEMORY")) {
+                if (debugBuildException.getMessage()
+                    .contains("AL_OUT_OF_MEMORY")) {
                     genError = AL_OUT_OF_MEMORY;
                 } else {
                     genError = AL_INVALID_OPERATION;

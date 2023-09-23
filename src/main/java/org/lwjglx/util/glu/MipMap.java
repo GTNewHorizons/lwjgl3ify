@@ -46,7 +46,7 @@ public class MipMap extends Util {
      * @return int
      */
     public static int gluBuild2DMipmaps(final int target, final int components, final int width, final int height,
-            final int format, final int type, final ByteBuffer data) {
+        final int format, final int type, final ByteBuffer data) {
         if (width < 1 || height < 1) return GLU_INVALID_VALUE;
 
         final int bpp = bytesPerPixel(format, type);
@@ -127,7 +127,7 @@ public class MipMap extends Util {
      * @return int
      */
     public static int gluScaleImage(int format, int widthIn, int heightIn, int typein, ByteBuffer dataIn, int widthOut,
-            int heightOut, int typeOut, ByteBuffer dataOut) {
+        int heightOut, int typeOut, ByteBuffer dataOut) {
 
         final int components = compPerPix(format);
         final int alphaIdx = formatAlphaIndex(format);
@@ -144,31 +144,31 @@ public class MipMap extends Util {
         switch (typein) {
             case GL_UNSIGNED_BYTE -> {
                 if (!stbir_resize_uint8_srgb(
-                        dataIn,
-                        widthIn,
-                        heightIn,
-                        strideIn,
-                        dataOut,
-                        widthOut,
-                        heightOut,
-                        strideOut,
-                        components,
-                        alphaIdx,
-                        0)) {
+                    dataIn,
+                    widthIn,
+                    heightIn,
+                    strideIn,
+                    dataOut,
+                    widthOut,
+                    heightOut,
+                    strideOut,
+                    components,
+                    alphaIdx,
+                    0)) {
                     throw new RuntimeException("Couldn't resize image with stbir");
                 }
             }
             case GL_FLOAT -> {
                 if (!stbir_resize_float(
-                        dataIn.asFloatBuffer(),
-                        widthIn,
-                        heightIn,
-                        strideIn * 4,
-                        dataOut.asFloatBuffer(),
-                        widthOut,
-                        heightOut,
-                        strideOut * 4,
-                        components)) {
+                    dataIn.asFloatBuffer(),
+                    widthIn,
+                    heightIn,
+                    strideIn * 4,
+                    dataOut.asFloatBuffer(),
+                    widthOut,
+                    heightOut,
+                    strideOut * 4,
+                    components)) {
                     throw new RuntimeException("Couldn't resize image with stbir");
                 }
             }

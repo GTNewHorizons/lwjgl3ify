@@ -134,9 +134,9 @@ public class NVPathRendering {
     }
 
     public static void glCoverFillPathInstancedNV(int pathNameType, java.nio.ByteBuffer paths, int pathBase,
-            int coverMode, int transformType, java.nio.FloatBuffer transformValues) {
+        int coverMode, int transformType, java.nio.FloatBuffer transformValues) {
         org.lwjgl.opengl.NVPathRendering
-                .glCoverFillPathInstancedNV(pathNameType, paths, pathBase, coverMode, transformType, transformValues);
+            .glCoverFillPathInstancedNV(pathNameType, paths, pathBase, coverMode, transformType, transformValues);
     }
 
     public static void glCoverFillPathNV(int path, int coverMode) {
@@ -144,9 +144,9 @@ public class NVPathRendering {
     }
 
     public static void glCoverStrokePathInstancedNV(int pathNameType, java.nio.ByteBuffer paths, int pathBase,
-            int coverMode, int transformType, java.nio.FloatBuffer transformValues) {
+        int coverMode, int transformType, java.nio.FloatBuffer transformValues) {
         org.lwjgl.opengl.NVPathRendering
-                .glCoverStrokePathInstancedNV(pathNameType, paths, pathBase, coverMode, transformType, transformValues);
+            .glCoverStrokePathInstancedNV(pathNameType, paths, pathBase, coverMode, transformType, transformValues);
     }
 
     public static void glCoverStrokePathNV(int name, int coverMode) {
@@ -194,15 +194,15 @@ public class NVPathRendering {
     }
 
     public static void glGetPathMetricRangeNV(int metricQueryMask, int fistPathName, int numPaths, int stride,
-            java.nio.FloatBuffer metrics) {
+        java.nio.FloatBuffer metrics) {
         org.lwjgl.opengl.NVPathRendering
-                .glGetPathMetricRangeNV(metricQueryMask, fistPathName, numPaths, stride, metrics);
+            .glGetPathMetricRangeNV(metricQueryMask, fistPathName, numPaths, stride, metrics);
     }
 
     public static void glGetPathMetricsNV(int metricQueryMask, int pathNameType, java.nio.ByteBuffer paths,
-            int pathBase, int stride, java.nio.FloatBuffer metrics) {
+        int pathBase, int stride, java.nio.FloatBuffer metrics) {
         org.lwjgl.opengl.NVPathRendering
-                .glGetPathMetricsNV(metricQueryMask, pathNameType, paths, pathBase, stride, metrics);
+            .glGetPathMetricsNV(metricQueryMask, pathNameType, paths, pathBase, stride, metrics);
     }
 
     public static void glGetPathParameterNV(int name, int param, java.nio.IntBuffer value) {
@@ -222,16 +222,16 @@ public class NVPathRendering {
     }
 
     public static void glGetPathSpacingNV(int pathListMode, int pathNameType, java.nio.ByteBuffer paths, int pathBase,
-            float advanceScale, float kerningScale, int transformType, java.nio.FloatBuffer returnedSpacing) {
+        float advanceScale, float kerningScale, int transformType, java.nio.FloatBuffer returnedSpacing) {
         org.lwjgl.opengl.NVPathRendering.glGetPathSpacingNV(
-                pathListMode,
-                pathNameType,
-                paths,
-                pathBase,
-                advanceScale,
-                kerningScale,
-                transformType,
-                returnedSpacing);
+            pathListMode,
+            pathNameType,
+            paths,
+            pathBase,
+            advanceScale,
+            kerningScale,
+            transformType,
+            returnedSpacing);
     }
 
     public static void glGetPathTexGenNV(int texCoordSet, int pname, java.nio.FloatBuffer value) {
@@ -271,7 +271,7 @@ public class NVPathRendering {
     }
 
     public static void glPathCommandsNV(int path, java.nio.ByteBuffer commands, int coordType,
-            java.nio.ByteBuffer coords) {
+        java.nio.ByteBuffer coords) {
         org.lwjgl.opengl.NVPathRendering.glPathCommandsNV(path, commands, coordType, coords);
     }
 
@@ -292,33 +292,32 @@ public class NVPathRendering {
     }
 
     public static void glPathGlyphRangeNV(int firstPathName, int fontTarget, java.nio.ByteBuffer fontName,
-            int fontStyle, int firstGlyph, int numGlyphs, int handleMissingGlyphs, int pathParameterTemplate,
-            float emScale) {
+        int fontStyle, int firstGlyph, int numGlyphs, int handleMissingGlyphs, int pathParameterTemplate,
+        float emScale) {
         org.lwjgl.opengl.NVPathRendering.glPathGlyphRangeNV(
-                firstPathName,
-                fontTarget,
-                fontName,
-                fontStyle,
-                firstGlyph,
-                numGlyphs,
-                handleMissingGlyphs,
-                pathParameterTemplate,
-                emScale);
+            firstPathName,
+            fontTarget,
+            fontName,
+            fontStyle,
+            firstGlyph,
+            numGlyphs,
+            handleMissingGlyphs,
+            pathParameterTemplate,
+            emScale);
     }
 
     public static void glPathGlyphsNV(int firstPathName, int fontTarget, java.nio.ByteBuffer fontName, int fontStyle,
-            int type, java.nio.ByteBuffer charcodes, int handleMissingGlyphs, int pathParameterTemplate,
-            float emScale) {
+        int type, java.nio.ByteBuffer charcodes, int handleMissingGlyphs, int pathParameterTemplate, float emScale) {
         org.lwjgl.opengl.NVPathRendering.glPathGlyphsNV(
-                firstPathName,
-                fontTarget,
-                fontName,
-                fontStyle,
-                type,
-                charcodes,
-                handleMissingGlyphs,
-                pathParameterTemplate,
-                emScale);
+            firstPathName,
+            fontTarget,
+            fontName,
+            fontStyle,
+            type,
+            charcodes,
+            handleMissingGlyphs,
+            pathParameterTemplate,
+            emScale);
     }
 
     public static void glPathParameterNV(int path, int pname, java.nio.FloatBuffer value) {
@@ -346,9 +345,9 @@ public class NVPathRendering {
     }
 
     public static void glPathSubCommandsNV(int path, int commandStart, int commandsToDelete,
-            java.nio.ByteBuffer commands, int coordType, java.nio.ByteBuffer coords) {
+        java.nio.ByteBuffer commands, int coordType, java.nio.ByteBuffer coords) {
         org.lwjgl.opengl.NVPathRendering
-                .glPathSubCommandsNV(path, commandStart, commandsToDelete, commands, coordType, coords);
+            .glPathSubCommandsNV(path, commandStart, commandsToDelete, commands, coordType, coords);
     }
 
     public static void glPathSubCoordsNV(int path, int coordStart, int coordType, java.nio.ByteBuffer coords) {
@@ -356,22 +355,21 @@ public class NVPathRendering {
     }
 
     public static boolean glPointAlongPathNV(int path, int startSegment, int numSegments, float distance,
-            java.nio.FloatBuffer x, java.nio.FloatBuffer y, java.nio.FloatBuffer tangentX,
-            java.nio.FloatBuffer tangentY) {
+        java.nio.FloatBuffer x, java.nio.FloatBuffer y, java.nio.FloatBuffer tangentX, java.nio.FloatBuffer tangentY) {
         return org.lwjgl.opengl.NVPathRendering
-                .glPointAlongPathNV(path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
+            .glPointAlongPathNV(path, startSegment, numSegments, distance, x, y, tangentX, tangentY);
     }
 
     public static void glStencilFillPathInstancedNV(int pathNameType, java.nio.ByteBuffer paths, int pathBase,
-            int fillMode, int mask, int transformType, java.nio.FloatBuffer transformValues) {
+        int fillMode, int mask, int transformType, java.nio.FloatBuffer transformValues) {
         org.lwjgl.opengl.NVPathRendering.glStencilFillPathInstancedNV(
-                pathNameType,
-                paths,
-                pathBase,
-                fillMode,
-                mask,
-                transformType,
-                transformValues);
+            pathNameType,
+            paths,
+            pathBase,
+            fillMode,
+            mask,
+            transformType,
+            transformValues);
     }
 
     public static void glStencilFillPathNV(int path, int fillMode, int mask) {
@@ -379,15 +377,15 @@ public class NVPathRendering {
     }
 
     public static void glStencilStrokePathInstancedNV(int pathNameType, java.nio.ByteBuffer paths, int pathBase,
-            int reference, int mask, int transformType, java.nio.FloatBuffer transformValues) {
+        int reference, int mask, int transformType, java.nio.FloatBuffer transformValues) {
         org.lwjgl.opengl.NVPathRendering.glStencilStrokePathInstancedNV(
-                pathNameType,
-                paths,
-                pathBase,
-                reference,
-                mask,
-                transformType,
-                transformValues);
+            pathNameType,
+            paths,
+            pathBase,
+            reference,
+            mask,
+            transformType,
+            transformValues);
     }
 
     public static void glStencilStrokePathNV(int path, int reference, int mask) {
@@ -395,7 +393,7 @@ public class NVPathRendering {
     }
 
     public static void glTransformPathNV(int resultPath, int srcPath, int transformType,
-            java.nio.FloatBuffer transformValues) {
+        java.nio.FloatBuffer transformValues) {
         org.lwjgl.opengl.NVPathRendering.glTransformPathNV(resultPath, srcPath, transformType, transformValues);
     }
 

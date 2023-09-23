@@ -172,13 +172,13 @@ public final class RenderTexture {
      * @param mipmaps     - How many mipmap levels to allocate on the P-buffer.
      */
     public RenderTexture(boolean useRGB, boolean useRGBA, boolean useDepth, boolean isRectangle, int target,
-            int mipmaps) {
+        int mipmaps) {
         if (useRGB && useRGBA) throw new IllegalArgumentException("A RenderTexture can't be both RGB and RGBA.");
 
         if (mipmaps < 0) throw new IllegalArgumentException("The mipmap levels can't be negative.");
 
         if (isRectangle && target != RENDER_TEXTURE_RECTANGLE) throw new IllegalArgumentException(
-                "When the RenderTexture is rectangle the target must be RENDER_TEXTURE_RECTANGLE.");
+            "When the RenderTexture is rectangle the target must be RENDER_TEXTURE_RECTANGLE.");
 
         pixelFormatCaps = BufferUtils.createIntBuffer(4);
         pBufferAttribs = BufferUtils.createIntBuffer(8);

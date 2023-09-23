@@ -21,15 +21,15 @@ public class ARBTextureStorage {
     }
 
     public static void glTextureStorage2DEXT(int texture, int target, int levels, int internalformat, int width,
-            int height) {
+        int height) {
         org.lwjgl.opengl.ARBTextureStorage
-                .glTextureStorage2DEXT(texture, target, levels, internalformat, width, height);
+            .glTextureStorage2DEXT(texture, target, levels, internalformat, width, height);
     }
 
     public static void glTextureStorage3DEXT(int texture, int target, int levels, int internalformat, int width,
-            int height, int depth) {
+        int height, int depth) {
         org.lwjgl.opengl.ARBTextureStorage
-                .glTextureStorage3DEXT(texture, target, levels, internalformat, width, height, depth);
+            .glTextureStorage3DEXT(texture, target, levels, internalformat, width, height, depth);
     }
 
 }

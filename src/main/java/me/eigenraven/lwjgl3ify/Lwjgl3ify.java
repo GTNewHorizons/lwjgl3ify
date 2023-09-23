@@ -19,12 +19,12 @@ import me.eigenraven.lwjgl3ify.api.ConfigUtils;
 import me.eigenraven.lwjgl3ify.core.Config;
 
 @Mod(
-        modid = "lwjgl3ify",
-        name = "Lwjgl3ify",
-        version = Tags.VERSION,
-        acceptedMinecraftVersions = "[1.7.10]",
-        acceptableRemoteVersions = "*",
-        guiFactory = "me.eigenraven.lwjgl3ify.client.GuiFactory")
+    modid = "lwjgl3ify",
+    name = "Lwjgl3ify",
+    version = Tags.VERSION,
+    acceptedMinecraftVersions = "[1.7.10]",
+    acceptableRemoteVersions = "*",
+    guiFactory = "me.eigenraven.lwjgl3ify.client.GuiFactory")
 public class Lwjgl3ify {
 
     public static Logger LOG = LogManager.getLogger(Tags.MODID);
@@ -58,8 +58,10 @@ public class Lwjgl3ify {
         PROXY.registerF3Handler();
         final LaunchClassLoader loader = Launch.classLoader;
         try {
-            final Field clExclusionsF = loader.getClass().getDeclaredField("classLoaderExceptions");
-            final Field tfExclusionsF = loader.getClass().getDeclaredField("transformerExceptions");
+            final Field clExclusionsF = loader.getClass()
+                .getDeclaredField("classLoaderExceptions");
+            final Field tfExclusionsF = loader.getClass()
+                .getDeclaredField("transformerExceptions");
             clExclusionsF.setAccessible(true);
             tfExclusionsF.setAccessible(true);
             @SuppressWarnings("unchecked")

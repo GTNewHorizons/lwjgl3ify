@@ -7,9 +7,9 @@ public class EXTDrawInstanced {
     }
 
     public static void glDrawElementsInstancedEXT(int mode, int indices_count, int type, long indices_buffer_offset,
-            int primcount) {
+        int primcount) {
         org.lwjgl.opengl.EXTDrawInstanced
-                .glDrawElementsInstancedEXT(mode, indices_count, type, indices_buffer_offset, primcount);
+            .glDrawElementsInstancedEXT(mode, indices_count, type, indices_buffer_offset, primcount);
     }
 
     public static void glDrawElementsInstancedEXT(int mode, java.nio.ByteBuffer indices, int primcount) {

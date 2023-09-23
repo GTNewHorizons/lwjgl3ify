@@ -30,10 +30,10 @@ public class ALC10 {
     }
 
     public static org.lwjglx.openal.ALCcontext alcCreateContext(org.lwjglx.openal.ALCdevice arg0,
-            java.nio.IntBuffer arg1) {
+        java.nio.IntBuffer arg1) {
 
         org.lwjglx.openal.ALCcontext returnValue = new ALCcontext(
-                org.lwjgl.openal.ALC10.alcCreateContext(arg0.device, arg1));
+            org.lwjgl.openal.ALC10.alcCreateContext(arg0.device, arg1));
 
         return returnValue;
     }
@@ -103,7 +103,7 @@ public class ALC10 {
     public static org.lwjglx.openal.ALCdevice alcOpenDevice(java.lang.String arg0) {
 
         org.lwjglx.openal.ALCdevice returnValue = new org.lwjglx.openal.ALCdevice(
-                org.lwjgl.openal.ALC10.alcOpenDevice(arg0));
+            org.lwjgl.openal.ALC10.alcOpenDevice(arg0));
 
         return returnValue;
     }

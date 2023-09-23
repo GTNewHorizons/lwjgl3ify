@@ -23,7 +23,7 @@ import com.google.common.collect.Streams;
 public class ComparisonTool {
 
     final String[] EXCLUDES = new String[] { "AWTGLCanvas", "FastIntMap", "FastIntMap$Entry",
-            "FastIntMap$EntryIterator", "MappedObjectClassLoader" };
+        "FastIntMap$EntryIterator", "MappedObjectClassLoader" };
 
     public static void main(String[] args) {
         new ComparisonTool().run(args);
@@ -46,9 +46,12 @@ public class ComparisonTool {
         final JarApiSet gl2 = new JarApiSet();
         final JarApiSet gl3 = new JarApiSet();
         final JarApiSet mod = new JarApiSet();
-        gl2Jars.stream().forEach(path -> gl2.addJar(new File(path)));
-        gl3Jars.stream().forEach(path -> gl3.addJar(new File(path)));
-        modJars.stream().forEach(path -> mod.addJar(new File(path)));
+        gl2Jars.stream()
+            .forEach(path -> gl2.addJar(new File(path)));
+        gl3Jars.stream()
+            .forEach(path -> gl3.addJar(new File(path)));
+        modJars.stream()
+            .forEach(path -> mod.addJar(new File(path)));
         try {
             FileUtils.writeStringToFile(new File("run/gl2dump.txt"), gl2.dump(), StandardCharsets.UTF_8);
             FileUtils.writeStringToFile(new File("run/gl3dump.txt"), gl3.dump(), StandardCharsets.UTF_8);
@@ -64,7 +67,7 @@ public class ComparisonTool {
             final JarApiSet.ClassApi gl3Class = gl3.classes.get(gl2Entry.getKey());
             final JarApiSet.ClassApi modClass = mod.classes.get(gl2Entry.getKey());
             if (gl2Class.className.contains("CL") || gl2Class.className.contains("opencl")
-                    || gl2Class.className.contains("opengles")) {
+                || gl2Class.className.contains("opengles")) {
                 continue;
             }
             if (modClass != null) {
@@ -77,7 +80,8 @@ public class ComparisonTool {
             }
 
             final boolean existsInGl3 = (gl3Class != null);
-            if (Arrays.stream(EXCLUDES).anyMatch(gl2Class.className::endsWith)) {
+            if (Arrays.stream(EXCLUDES)
+                .anyMatch(gl2Class.className::endsWith)) {
                 continue;
             }
 
@@ -85,13 +89,12 @@ public class ComparisonTool {
             final PrintWriter proxyClassP = new PrintWriter(proxyClass);
             final String javaName = gl2Class.className.replace('/', '.');
             final String transformedClassName = existsInGl3 ? gl2Class.className.replace("/lwjgl/", "/lwjglx/")
-                    : gl2Class.className;
+                : gl2Class.className;
             final File javaFile = new File(outputRoot, transformedClassName + ".java");
             final int lastDot = javaName.lastIndexOf('.');
             final String packageName = javaName.substring(0, lastDot);
-            final String transformedPackageName = existsInGl3
-                    ? javaName.substring(0, lastDot).replace(".lwjgl.", ".lwjglx.")
-                    : javaName.substring(0, lastDot);
+            final String transformedPackageName = existsInGl3 ? javaName.substring(0, lastDot)
+                .replace(".lwjgl.", ".lwjglx.") : javaName.substring(0, lastDot);
             final String className = javaName.substring(lastDot + 1);
             String classType = "class";
             if ((gl2Class.asmNode.access & Opcodes.ACC_INTERFACE) != 0) {
@@ -101,13 +104,9 @@ public class ComparisonTool {
             }
             final String superName = gl2Class.asmNode.superName.replace('/', '.');
             final String extendSpec = (superName == null || "java.lang.Object".equals(superName)) ? ""
-                    : " extends " + (existsInGl3 ? superName.replace(".lwjgl.", ".lwjglx.") : superName);
-            proxyClassP.printf(
-                    "package %s;%n%npublic %s %s%s {%n",
-                    transformedPackageName,
-                    classType,
-                    className,
-                    extendSpec);
+                : " extends " + (existsInGl3 ? superName.replace(".lwjgl.", ".lwjglx.") : superName);
+            proxyClassP
+                .printf("package %s;%n%npublic %s %s%s {%n", transformedPackageName, classType, className, extendSpec);
 
             for (FieldNode gl2Field : gl2Class.fields.values()) {
                 if (gl2Field.name.contains("<")) {
@@ -128,9 +127,11 @@ public class ComparisonTool {
                     protKws += " final";
                 }
                 String initializer;
-                final String fieldType = Type.getType(gl2Field.desc).getClassName();
+                final String fieldType = Type.getType(gl2Field.desc)
+                    .getClassName();
                 if (gl2Field.value == null) {
-                    switch (Type.getType(gl2Field.desc).getClassName()) {
+                    switch (Type.getType(gl2Field.desc)
+                        .getClassName()) {
                         case "boolean":
                             initializer = " = false";
                             break;
@@ -160,11 +161,11 @@ public class ComparisonTool {
                     }
                 }
                 proxyClassP.printf(
-                        "        public%s %s %s%s;%n",
-                        protKws,
-                        existsInGl3 ? fieldType.replace("org.lwjgl.", "org.lwjglx.") : fieldType,
-                        gl2Field.name,
-                        initializer);
+                    "        public%s %s %s%s;%n",
+                    protKws,
+                    existsInGl3 ? fieldType.replace("org.lwjgl.", "org.lwjglx.") : fieldType,
+                    gl2Field.name,
+                    initializer);
             }
 
             if (!existsInGl3) {
@@ -194,17 +195,20 @@ public class ComparisonTool {
                         body = ";";
                     }
                     final Type mType = Type.getMethodType(gl2Method.desc);
-                    final String retType = mType.getReturnType().getClassName();
-                    final String[] argTypes = Arrays.stream(mType.getArgumentTypes()).map(Type::getClassName)
-                            .toArray(String[]::new);
-                    final String[] argNames = IntStream.range(0, argTypes.length).mapToObj(i -> "arg" + i)
-                            .toArray(String[]::new);
+                    final String retType = mType.getReturnType()
+                        .getClassName();
+                    final String[] argTypes = Arrays.stream(mType.getArgumentTypes())
+                        .map(Type::getClassName)
+                        .toArray(String[]::new);
+                    final String[] argNames = IntStream.range(0, argTypes.length)
+                        .mapToObj(i -> "arg" + i)
+                        .toArray(String[]::new);
                     final String argDefs = StringUtils.join(
-                            Streams.zip(Arrays.stream(argTypes), Arrays.stream(argNames), (t, n) -> t + " " + n)
-                                    .toArray(String[]::new),
-                            ", ");
+                        Streams.zip(Arrays.stream(argTypes), Arrays.stream(argNames), (t, n) -> t + " " + n)
+                            .toArray(String[]::new),
+                        ", ");
                     proxyClassP
-                            .printf("        public%s %s %s(%s)%s%n", protKws, retType, gl2Method.name, argDefs, body);
+                        .printf("        public%s %s %s(%s)%s%n", protKws, retType, gl2Method.name, argDefs, body);
                 }
 
                 proxyClassP.printf("%n}%n");
@@ -221,7 +225,8 @@ public class ComparisonTool {
                 continue;
             }
             final Map.Entry<String, JarApiSet.ClassApi> gl3Entry = gl3.classes.floorEntry(gl2Entry.getKey());
-            if (!gl3Entry.getKey().equals(gl2Entry.getKey())) {
+            if (!gl3Entry.getKey()
+                .equals(gl2Entry.getKey())) {
                 throw new IllegalStateException();
             }
             System.out.println(gl2Entry.getKey());

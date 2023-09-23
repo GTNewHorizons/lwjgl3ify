@@ -203,10 +203,10 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
      */
     public boolean equals(Object o) {
         return (o != null) && (o instanceof ReadableColor)
-                && (((ReadableColor) o).getRed() == this.getRed())
-                && (((ReadableColor) o).getGreen() == this.getGreen())
-                && (((ReadableColor) o).getBlue() == this.getBlue())
-                && (((ReadableColor) o).getAlpha() == this.getAlpha());
+            && (((ReadableColor) o).getRed() == this.getRed())
+            && (((ReadableColor) o).getGreen() == this.getGreen())
+            && (((ReadableColor) o).getBlue() == this.getBlue())
+            && (((ReadableColor) o).getAlpha() == this.getAlpha());
     }
 
     /**

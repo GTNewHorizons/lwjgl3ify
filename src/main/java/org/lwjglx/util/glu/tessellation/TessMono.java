@@ -82,7 +82,7 @@ class TessMono {
                  * progress even when some triangles are CW, given that the upper and lower chains are truly monotone.
                  */
                 while (lo.Lnext != up
-                        && (Geom.EdgeGoesLeft(lo.Lnext) || Geom.EdgeSign(lo.Org, lo.Sym.Org, lo.Lnext.Sym.Org) <= 0)) {
+                    && (Geom.EdgeGoesLeft(lo.Lnext) || Geom.EdgeSign(lo.Org, lo.Sym.Org, lo.Lnext.Sym.Org) <= 0)) {
                     GLUhalfEdge tempHalfEdge = Mesh.__gl_meshConnect(lo.Lnext, lo);
                     if (tempHalfEdge == null) return false;
                     lo = tempHalfEdge.Sym;
@@ -90,8 +90,8 @@ class TessMono {
                 lo = lo.Onext.Sym;
             } else {
                 /* lo.Org is on the left. We can make CCW triangles from up.Sym.Org. */
-                while (lo.Lnext != up && (Geom.EdgeGoesRight(up.Onext.Sym)
-                        || Geom.EdgeSign(up.Sym.Org, up.Org, up.Onext.Sym.Org) >= 0)) {
+                while (lo.Lnext != up
+                    && (Geom.EdgeGoesRight(up.Onext.Sym) || Geom.EdgeSign(up.Sym.Org, up.Org, up.Onext.Sym.Org) >= 0)) {
                     GLUhalfEdge tempHalfEdge = Mesh.__gl_meshConnect(up, up.Onext.Sym);
                     if (tempHalfEdge == null) return false;
                     up = tempHalfEdge.Sym;

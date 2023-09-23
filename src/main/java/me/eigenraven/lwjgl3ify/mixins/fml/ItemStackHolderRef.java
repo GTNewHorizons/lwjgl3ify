@@ -41,7 +41,8 @@ public class ItemStackHolderRef {
     private static void makeWritable(Field f) {
         try {
             f.setAccessible(true);
-            fieldSetter = MethodHandles.lookup().unreflectSetter(f);
+            fieldSetter = MethodHandles.lookup()
+                .unreflectSetter(f);
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -57,20 +58,23 @@ public class ItemStackHolderRef {
         try {
             is = GameRegistry.makeItemStack(itemName, meta, 1, serializednbt);
         } catch (RuntimeException e) {
-            FMLLog.getLogger().log(
+            FMLLog.getLogger()
+                .log(
                     Level.ERROR,
                     "Caught exception processing itemstack {},{},{} in annotation at {}.{}",
                     itemName,
                     meta,
                     serializednbt,
-                    field.getClass().getName(),
+                    field.getClass()
+                        .getName(),
                     field.getName());
             throw e;
         }
         try {
             fieldSetter.invoke(is);
         } catch (Throwable e) {
-            FMLLog.getLogger().log(
+            FMLLog.getLogger()
+                .log(
                     Level.WARN,
                     "Unable to set {} with value {},{},{}",
                     this.field,

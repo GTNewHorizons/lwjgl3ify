@@ -17,12 +17,12 @@ public class NVFragmentProgram extends org.lwjgl.opengl.NVProgram {
     }
 
     public static void glProgramNamedParameter4dNV(int arg0, java.nio.ByteBuffer arg1, double arg2, double arg3,
-            double arg4, double arg5) {
+        double arg4, double arg5) {
         throw new UnsupportedOperationException();
     }
 
     public static void glProgramNamedParameter4fNV(int arg0, java.nio.ByteBuffer arg1, float arg2, float arg3,
-            float arg4, float arg5) {
+        float arg4, float arg5) {
         throw new UnsupportedOperationException();
     }
 

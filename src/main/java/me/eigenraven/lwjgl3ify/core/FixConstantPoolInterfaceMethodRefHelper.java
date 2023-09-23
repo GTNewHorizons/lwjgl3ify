@@ -23,7 +23,9 @@ import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 public class FixConstantPoolInterfaceMethodRefHelper {
 
     public boolean transform(ClassNode node) {
-        if (System.getProperty("java.specification.version", "1.8").trim().startsWith("1.8")) {
+        if (System.getProperty("java.specification.version", "1.8")
+            .trim()
+            .startsWith("1.8")) {
             return false;
         }
         final boolean iAmAnInterface = ((node.access & Opcodes.ACC_INTERFACE) != 0);
@@ -64,10 +66,13 @@ public class FixConstantPoolInterfaceMethodRefHelper {
 
     private Handle fixHandle(String internalClassName, boolean iAmAnInterface, Handle handle, AtomicBoolean changed) {
         if (!handle.isInterface()) {
-            final boolean fixSelfReference = handle.getOwner().equals(internalClassName) && iAmAnInterface;
+            final boolean fixSelfReference = handle.getOwner()
+                .equals(internalClassName) && iAmAnInterface;
             boolean fixJavaReference = false;
-            if (!fixSelfReference && handle.getOwner().startsWith("java/")) {
-                final String regularName = handle.getOwner().replace('/', '.');
+            if (!fixSelfReference && handle.getOwner()
+                .startsWith("java/")) {
+                final String regularName = handle.getOwner()
+                    .replace('/', '.');
                 try {
                     final Class<?> javaClass = Class.forName(regularName);
                     if (javaClass.isInterface()) {

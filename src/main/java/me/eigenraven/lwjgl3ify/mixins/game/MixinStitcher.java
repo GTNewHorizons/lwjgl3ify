@@ -37,7 +37,7 @@ public abstract class MixinStitcher {
     @Overwrite
     public void doStitch() {
         Stitcher.Holder[] aholder = (Stitcher.Holder[]) this.setStitchHolders
-                .toArray(new Stitcher.Holder[this.setStitchHolders.size()]);
+            .toArray(new Stitcher.Holder[this.setStitchHolders.size()]);
         Arrays.sort(aholder);
 
         Pair<Integer, Integer> size = StbStitcher.packRects(aholder);

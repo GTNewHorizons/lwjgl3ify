@@ -41,7 +41,7 @@ public class ARBSeparateShaderObjects {
     }
 
     public static void glGetProgramPipelineInfoLog(int pipeline, java.nio.IntBuffer length,
-            java.nio.ByteBuffer infoLog) {
+        java.nio.ByteBuffer infoLog) {
         org.lwjgl.opengl.ARBSeparateShaderObjects.glGetProgramPipelineInfoLog(pipeline, length, infoLog);
     }
 

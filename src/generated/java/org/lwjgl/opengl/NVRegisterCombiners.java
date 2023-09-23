@@ -59,7 +59,7 @@ public class NVRegisterCombiners {
     }
 
     public static void glCombinerOutputNV(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5, int arg6,
-            boolean arg7, boolean arg8, boolean arg9) {
+        boolean arg7, boolean arg8, boolean arg9) {
         throw new UnsupportedOperationException();
     }
 
@@ -84,7 +84,7 @@ public class NVRegisterCombiners {
     }
 
     public static void glGetCombinerInputParameterNV(int arg0, int arg1, int arg2, int arg3,
-            java.nio.FloatBuffer arg4) {
+        java.nio.FloatBuffer arg4) {
         throw new UnsupportedOperationException();
     }
 

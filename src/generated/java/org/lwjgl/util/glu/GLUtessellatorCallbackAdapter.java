@@ -15,7 +15,7 @@ public class GLUtessellatorCallbackAdapter {
     }
 
     public void combineData(double[] arg0, java.lang.Object[] arg1, float[] arg2, java.lang.Object[] arg3,
-            java.lang.Object arg4) {
+        java.lang.Object arg4) {
         throw new UnsupportedOperationException();
     }
 

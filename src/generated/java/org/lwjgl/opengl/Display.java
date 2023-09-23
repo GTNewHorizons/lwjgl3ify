@@ -19,7 +19,7 @@ public class Display {
     }
 
     public static void create(org.lwjgl.opengl.PixelFormat arg0, org.lwjgl.opengl.Drawable arg1,
-            org.lwjgl.opengl.ContextAttribs arg2) {
+        org.lwjgl.opengl.ContextAttribs arg2) {
         throw new UnsupportedOperationException();
     }
 

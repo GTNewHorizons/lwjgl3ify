@@ -30,9 +30,9 @@ public class AMDDebugOutput {
     }
 
     public static int glGetDebugMessageLogAMD(int count, java.nio.IntBuffer categories, java.nio.IntBuffer severities,
-            java.nio.IntBuffer ids, java.nio.IntBuffer lengths, java.nio.ByteBuffer messageLog) {
+        java.nio.IntBuffer ids, java.nio.IntBuffer lengths, java.nio.ByteBuffer messageLog) {
         return org.lwjgl.opengl.AMDDebugOutput
-                .glGetDebugMessageLogAMD(count, categories, severities, ids, lengths, messageLog);
+            .glGetDebugMessageLogAMD(count, categories, severities, ids, lengths, messageLog);
     }
 
 }

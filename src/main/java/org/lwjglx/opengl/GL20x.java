@@ -13,19 +13,19 @@ import org.lwjgl.system.MemoryUtil;
 public class GL20x {
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
-            ByteBuffer buffer) {
+        ByteBuffer buffer) {
         int type = unsigned ? GL11.GL_UNSIGNED_BYTE : GL11.GL_BYTE;
         GL20.glVertexAttribPointer(index, size, type, normalized, stride, buffer);
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
-            ShortBuffer buffer) {
+        ShortBuffer buffer) {
         int type = unsigned ? GL11.GL_UNSIGNED_SHORT : GL11.GL_SHORT;
         GL20.nglVertexAttribPointer(index, size, type, normalized, stride, MemoryUtil.memAddress(buffer));
     }
 
     public static void glVertexAttribPointer(int index, int size, boolean unsigned, boolean normalized, int stride,
-            IntBuffer buffer) {
+        IntBuffer buffer) {
         int type = unsigned ? GL11.GL_UNSIGNED_INT : GL11.GL_INT;
         GL20.nglVertexAttribPointer(index, size, type, normalized, stride, MemoryUtil.memAddress(buffer));
     }
