@@ -1,0 +1,4 @@
+
+// Regular runClient/runServer tasks run in Java 17 in this project.
+tasks.named("runClient17") { enabled = false }
+tasks.named("runServer17") { enabled = false }
