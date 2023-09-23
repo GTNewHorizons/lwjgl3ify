@@ -11,16 +11,18 @@ def asmVersion = '9.5'
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
-    vanilla_minecraft('net.minecraft:launchwrapper:1.15') { transitive = false }
-    patchedMinecraft('net.minecraft:launchwrapper:1.15') { transitive = false }
+    vanilla_minecraft('net.minecraft:launchwrapper:1.17.3') { transitive = false }
+    forgePatchesEmbedded('net.minecraft:launchwrapper:1.17.3') { transitive = false }
 
-    patchedMinecraft("org.ow2.asm:asm:${asmVersion}")
-    patchedMinecraft("org.ow2.asm:asm-commons:${asmVersion}")
-    patchedMinecraft("org.ow2.asm:asm-tree:${asmVersion}")
-    patchedMinecraft("org.ow2.asm:asm-analysis:${asmVersion}")
-    patchedMinecraft("org.ow2.asm:asm-util:${asmVersion}")
-    patchedMinecraft('org.ow2.asm:asm-deprecated:7.1')
-    patchedMinecraft("org.apache.commons:commons-lang3:3.12.0")
+    forgePatchesEmbedded("org.ow2.asm:asm:${asmVersion}")
+    forgePatchesEmbedded("org.ow2.asm:asm-commons:${asmVersion}")
+    forgePatchesEmbedded("org.ow2.asm:asm-tree:${asmVersion}")
+    forgePatchesEmbedded("org.ow2.asm:asm-analysis:${asmVersion}")
+    forgePatchesEmbedded("org.ow2.asm:asm-util:${asmVersion}")
+    forgePatchesEmbedded('org.ow2.asm:asm-deprecated:7.1')
+    forgePatchesEmbedded("org.apache.commons:commons-lang3:3.12.0")
+
+    forgePatchesEmbedded("org.apache.commons:commons-compress:1.21")
 
     // Allow using Unsafe with newer javac versions
     compileOnly('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')

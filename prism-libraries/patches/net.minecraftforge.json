@@ -9,69 +9,6 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "net.minecraft:launchwrapper:1.15",
-            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "path": "org/ow2/asm/asm/9.5/asm-9.5.jar",
-                    "sha1": "dc6ea1875f4d64fbc85e1691c95b96a3d8569c90",
-                    "size": 121863,
-                    "url": "https://maven.minecraftforge.net/org/ow2/asm/asm/9.5/asm-9.5.jar"
-                }
-            },
-            "name": "org.ow2.asm:asm:9.5"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "path": "org/ow2/asm/asm-commons/9.5/asm-commons-9.5.jar",
-                    "sha1": "19ab5b5800a3910d30d3a3e64fdb00fd0cb42de0",
-                    "size": 72209,
-                    "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-commons/9.5/asm-commons-9.5.jar"
-                }
-            },
-            "name": "org.ow2.asm:asm-commons:9.5"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "path": "org/ow2/asm/asm-tree/9.5/asm-tree-9.5.jar",
-                    "sha1": "fd33c8b6373abaa675be407082fdfda35021254a",
-                    "size": 51944,
-                    "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-tree/9.5/asm-tree-9.5.jar"
-                }
-            },
-            "name": "org.ow2.asm:asm-tree:9.5"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "path": "org/ow2/asm/asm-util/9.5/asm-util-9.5.jar",
-                    "sha1": "64b5a1fc8c1b15ed2efd6a063e976bc8d3dc5ffe",
-                    "size": 91076,
-                    "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-util/9.5/asm-util-9.5.jar"
-                }
-            },
-            "name": "org.ow2.asm:asm-util:9.5"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "path": "org/ow2/asm/asm-analysis/9.5/asm-analysis-9.5.jar",
-                    "sha1": "490bacc77de7cbc0be1a30bb3471072d705be4a4",
-                    "size": 33978,
-                    "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-analysis/9.5/asm-analysis-9.5.jar"
-                }
-            },
-            "name": "org.ow2.asm:asm-analysis:9.5"
-        },
-        {
-            "name": "org.ow2.asm:asm-deprecated:7.1",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
             "name": "com.typesafe.akka:akka-actor_2.11:2.3.3",
             "url": "https://maven.minecraftforge.net/"
         },
@@ -120,9 +57,6 @@
         },
         {
             "name": "com.google.guava:guava:17.0"
-        },
-        {
-            "name": "org.apache.commons:commons-lang3:3.12.0"
         }
     ],
     "mainClass": "net.minecraft.launchwrapper.Launch",
