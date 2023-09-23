@@ -188,16 +188,6 @@
         {
             "downloads": {
                 "artifact": {
-                    "sha1": "905075e6c80f206bbe6cf1e809d2caa69f420c76",
-                    "size": 315805,
-                    "url": "https://libraries.minecraft.net/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"
-                }
-            },
-            "name": "org.apache.commons:commons-lang3:3.1"
-        },
-        {
-            "downloads": {
-                "artifact": {
                     "sha1": "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
                     "size": 185140,
                     "url": "https://libraries.minecraft.net/commons-io/commons-io/2.4/commons-io-2.4.jar"

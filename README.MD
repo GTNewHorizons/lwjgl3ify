@@ -4,10 +4,15 @@ Brings LWJGL3 and modern Java versions to Minecraft 1.7.10.
 
 # Usage
 
-Lwjgl3ify depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.5 with the GTNHMixins module.
-Hodgepodge (<https://github.com/GTNewHorizons/Hodgepodge>) is strongly recommended, it has many Java 9+ compatibility patches for ARR mods (Biomes'o'Plenty, Witchery, JourneyMap, and more) which we could not directly fix in the GTNH forks.
+Lwjgl3ify depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7 with the GTNHMixins module.
+Hodgepodge (<https://github.com/GTNewHorizons/Hodgepodge>) is strongly recommended, it has many Java 17+ compatibility patches for ARR mods (Biomes'o'Plenty, Witchery, JourneyMap, and more) which we could not directly fix in the GTNH forks.
 
 ## Client
+
+### Non-GTNH 1.7.10 instance setup
+
+**If you are using a GregTech New Horizons pre-packaged Java 17+ instance, skip to the next section!**
+
 To install in PrismLauncher or MultiMC:
 
 Copy the contents of `lwjgl3ify-VERSION-multimc.zip` to `instances/My Modpack/`. `mmc-pack.json` needs to be overwritten.
@@ -15,21 +20,24 @@ Reload the launcher, and it should show up modified versions of Forge, Minecraft
 Put the mod jar (`lwjgl3ify-VERSION.jar`) in `mods/` in your instance's minecraft folder, it will get loaded as a coremod.
 The forgePatches jar will get automatically downloaded by the launcher.
 
-Change the instance java version to 17.0.6 (or newer), 19.0.2 (or newer) or 20 (or newer), these are the currently supported versions.
+Change the instance java version to 17.0.6, 19.0.2, 20 or 21 (or newer), these are the currently supported versions.
 You can also use Java 11 if you remove the `-Djava.security.manager=allow` argument from `patches/me.eigenraven.lwjgl3ify.forgepatches.json`.
 
+### MultiMC setup (GTNH and non-GTNH)
 For MultiMC, you need to manually put in extra java arguments, prismlauncher can load them from the patches json files automatically:
 ```
 --illegal-access=warn -Djava.security.manager=allow -Dfile.encoding=UTF-8 --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming --add-opens java.desktop/sun.awt.image=ALL-UNNAMED --add-modules jdk.dynalink --add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED --add-modules java.sql.rowset --add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 ```
 
+### Tweaking configs
 If you want to tweak your default window size, OpenGL context properties or other more advanced settings, check out the config file in `config/lwjgl3ify.cfg` after the first startup.
 
 ## Server
-Install the mod jar in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
-Lwjgl3ify also depends on GTNHMixins (<https://github.com/GTNewHorizons/GTNHmixins>), use at least version 2.1.10.
+First, install a working 1.7.10 Forge server, from a modpack zip or using forge's installer.
+Then, install the mod jar (and unimixins, hodgepodge and gtnhlib as needed) in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
+**Thermos/Crucible/Hybrid servers are not supported!**.
+Lwjgl3ify also depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7.
 Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
-You will also need to install updated libraries in the `libraries` folder, the easiest way it to copy them over from your client launcher.
 You can now launch the server with a command like the following, assuming the first java executable on your PATH is java 11/17/19:
 ```
 java -Xmx6G -Xms6G @java9args.txt nogui
@@ -59,6 +67,7 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
  - `UnsafeHacks` class from modern forge, modified to work in more usecases, for replacing some `static final` writes where it was not feasible/easy to remove final.
  - Forge patches, which are modified classes from Forge that cannot be transformed because they are loaded too early - so we load a `forgePatches` jar before Forge in the classpath to replace them:
    - EventSubscriptionTransformer: the format of subclass annotation descriptors has slightly changed in Java 17, this makes the annotation discovery compatible with both
+   - TerminalTransformer: modify to accept classfiles newer than what asm5 supported
    - ClassPatchManager: switches the Pack200 implementation to an Apache Commons Compress one because it was removed from newer JDKs
    - TracingPrintStream: commons-compress closes System.out, this blocks this from happening
    - CoreModManager: work around the fact that the system classloader is no longer a URLClassLoader
@@ -137,20 +146,16 @@ This can lead to inconsistent states, where some methods might see the old value
 
 ### Development
 
-For developing locally, modify the `patches/me.eigenraven.lwjgl3ify.forgepatches.json` file with the following content:
+First, do `./gradlew build` and use the zip in `./build/distributions/lwjgl3ify-VERSION-multimc.zip` to install lwjgl3ify into a 1.7.10 forge instance in Prism.
+
+Then, for developing locally, in the `patches/me.eigenraven.lwjgl3ify.forgepatches.json` file replace:
 ```json
-{
-    "formatVersion": 1,
-    "name": "Forge-J9-Patches",
-    "uid": "me.eigenraven.lwjgl3ify.forgepatches",
-    "version": "1",
-    "order": 3,
-    "libraries": [
-        {
-            "name": "com.gtnewhorizons:lwjgl3ify:1.2.1:forgePatches",
-            "MMC-hint": "local"
-        }
-    ]
-}
+"url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
 ```
-Thanks to `MMC-hint` you can now put the locally built forgePatches jar into `instances/My Modpack/libraries/lwjgl3ify-1.2.1-forgePatches.jar`.
+with:
+```json
+"MMC-hint": "local"
+```
+Inside the libraries array.
+
+Thanks to `MMC-hint` you can now put the locally built forgePatches jar into `instances/My Modpack/libraries/lwjgl3ify-VERSION-forgePatches.jar`.

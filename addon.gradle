@@ -52,6 +52,15 @@ sourceSets {
     }
 }
 
+configurations {
+    def forgePatchesEmbedded = create("forgePatchesEmbedded") {
+        canBeConsumed = false
+        canBeResolved = true
+    }
+    forgePatchesImplementation.extendsFrom(forgePatchesEmbedded)
+    patchedMinecraft.extendsFrom(forgePatchesEmbedded)
+}
+
 tasks.named("shadowJar", Jar) {
     from(hotswapSet.output)
 }
@@ -71,14 +80,12 @@ repositories {
 }
 
 dependencies {
-    utilImplementation("org.ow2.asm:asm:9.4")
-    utilImplementation("org.ow2.asm:asm-tree:9.4")
+    utilImplementation("org.ow2.asm:asm:9.5")
+    utilImplementation("org.ow2.asm:asm-tree:9.5")
     utilImplementation("org.apache.commons:commons-lang3:3.12.0")
     utilImplementation("commons-io:commons-io:2.11.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
     utilImplementation("com.google.guava:guava:31.1-jre")
-
-    forgePatchesImplementation("org.apache.commons:commons-compress:1.21")
 
     hotswapCompileOnly("org.hotswapagent:hotswap-agent-core:1.4.1")
     hotswapCompileOnly("net.minecraft:launchwrapper:1.15")
@@ -86,21 +93,18 @@ dependencies {
 
 def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
     from(forgePatchesSet.output)
-    def resolvable = configurations.detachedConfiguration(dependencies.create("org.apache.commons:commons-compress:1.21"))
     // Bootleg shadow jar
-    resolvable.resolve().each {dep ->
-        from(zipTree(dep))
+    configurations.forgePatchesEmbedded.resolve().each {dep ->
+        from(zipTree(dep)) {
+            filesMatching("META-INF/*") { fcd ->
+                fcd.name = "${dep.name}-${fcd.name}"
+            }
+        }
     }
+    exclude("module-info.class")
     archiveClassifier.set("forgePatches")
     manifest {
         def libraryList = [
-            "libraries/net/minecraft/launchwrapper/1.15/launchwrapper-1.15.jar",
-            "libraries/org/ow2/asm/asm/9.4/asm-9.4.jar",
-            "libraries/org/ow2/asm/asm-commons/9.4/asm-commons-9.4.jar",
-            "libraries/org/ow2/asm/asm-tree/9.4/asm-tree-9.4.jar",
-            "libraries/org/ow2/asm/asm-analysis/9.4/asm-analysis-9.4.jar",
-            "libraries/org/ow2/asm/asm-util/9.4/asm-util-9.4.jar",
-            "libraries/org/ow2/asm/asm-deprecated/7.1/asm-deprecated-7.1.jar",
             "libraries/com/typesafe/akka/akka-actor_2.11/2.3.3/akka-actor_2.11-2.3.3.jar",
             "libraries/com/typesafe/config/1.2.1/config-1.2.1.jar",
             "libraries/org/scala-lang/scala-actors-migration_2.11/1.1.0/scala-actors-migration_2.11-1.1.0.jar",
@@ -115,7 +119,6 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
             "libraries/lzma/lzma/0.0.1/lzma-0.0.1.jar",
             "libraries/net/sf/jopt-simple/jopt-simple/4.5/jopt-simple-4.5.jar",
             "libraries/com/google/guava/guava/17.0/guava-17.0.jar",
-            "libraries/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar",
             "forge-1.7.10-10.13.4.1614-1.7.10-universal.jar",
             "minecraft_server.1.7.10.jar"
         ]

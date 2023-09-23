@@ -9,34 +9,6 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "net.minecraft:launchwrapper:1.15",
-            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
-        },
-        {
-            "name": "org.ow2.asm:asm:9.4",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "org.ow2.asm:asm-commons:9.4",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "org.ow2.asm:asm-tree:9.4",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "org.ow2.asm:asm-analysis:9.4",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "org.ow2.asm:asm-util:9.4",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
-            "name": "org.ow2.asm:asm-deprecated:7.1",
-            "url": "https://maven.minecraftforge.net/"
-        },
-        {
             "name": "com.typesafe.akka:akka-actor_2.11:2.3.3",
             "url": "https://maven.minecraftforge.net/"
         },
@@ -85,9 +57,6 @@
         },
         {
             "name": "com.google.guava:guava:17.0"
-        },
-        {
-            "name": "org.apache.commons:commons-lang3:3.12.0"
         }
     ],
     "mainClass": "net.minecraft.launchwrapper.Launch",
