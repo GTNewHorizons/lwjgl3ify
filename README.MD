@@ -59,6 +59,7 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
  - `UnsafeHacks` class from modern forge, modified to work in more usecases, for replacing some `static final` writes where it was not feasible/easy to remove final.
  - Forge patches, which are modified classes from Forge that cannot be transformed because they are loaded too early - so we load a `forgePatches` jar before Forge in the classpath to replace them:
    - EventSubscriptionTransformer: the format of subclass annotation descriptors has slightly changed in Java 17, this makes the annotation discovery compatible with both
+   - TerminalTransformer: modify to accept classfiles newer than what asm5 supported
    - ClassPatchManager: switches the Pack200 implementation to an Apache Commons Compress one because it was removed from newer JDKs
    - TracingPrintStream: commons-compress closes System.out, this blocks this from happening
    - CoreModManager: work around the fact that the system classloader is no longer a URLClassLoader

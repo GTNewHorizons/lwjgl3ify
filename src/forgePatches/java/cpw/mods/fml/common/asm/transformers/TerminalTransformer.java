@@ -32,7 +32,8 @@ public class TerminalTransformer implements IClassTransformer {
         private static final String callbackOwner = org.objectweb.asm.Type.getInternalName(ExitVisitor.class);
 
         private ExitVisitor(ClassVisitor cv) {
-            super(Opcodes.ASM5, cv);
+            // LWJGL3ify patch: ASM5->ASM9
+            super(Opcodes.ASM9, cv);
         }
 
         @Override
@@ -51,7 +52,8 @@ public class TerminalTransformer implements IClassTransformer {
                 || clsName.startsWith("com/jcraft/jogg/")
                 || clsName.startsWith("scala/sys/"));
 
-            return new MethodVisitor(Opcodes.ASM5, super.visitMethod(mAccess, mName, mDesc, mSignature, mExceptions)) {
+            // LWJGL3ify patch: ASM5->ASM9
+            return new MethodVisitor(Opcodes.ASM9, super.visitMethod(mAccess, mName, mDesc, mSignature, mExceptions)) {
 
                 @Override
                 public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean isIntf) {
