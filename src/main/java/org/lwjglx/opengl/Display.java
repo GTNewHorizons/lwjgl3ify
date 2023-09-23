@@ -179,7 +179,7 @@ public class Display {
                             // MacOS doesn't send a char event for Cmd+KEY presses, but other platforms do.
                             cancelNextChar = true;
                         }
-                    } else if ((GLFW_MOD_CONTROL & mods) != 0 && (GLFW_MOD_ALT & mods) == 0) { // Handle ctrl + x/c/v.
+                    } else if ((GLFW_MOD_CONTROL & mods) != 0) { // Handle ctrl + x/c/v.
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
                         cancelNextChar = true; // Cancel char event from ctrl key since its already handled here
                     } else if (action > 0) { // Delay press and repeat key event to actual char input. There is ALWAYS a
