@@ -21,6 +21,7 @@ import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.glfw.GLFWWindowRefreshCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.system.Platform;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
 import org.lwjglx.input.KeyCodes;
@@ -171,6 +172,10 @@ public class Display {
                                                                             // avoid extra input when switching IME
                     if ((GLFW_MOD_SUPER & mods) != 0) {
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) key);
+                        if (Platform.get() != Platform.MACOSX) {
+                            // MacOS doesn't send a char event for Cmd+KEY presses, but other platforms do.
+                            cancelNextChar = true;
+                        }
                     } else if ((GLFW_MOD_CONTROL & mods) != 0 && (GLFW_MOD_ALT & mods) == 0) { // Handle ctrl + x/c/v.
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
                         cancelNextChar = true; // Cancel char event from ctrl key since its already handled here
