@@ -117,6 +117,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         // FML Java 9+ compatibility patches
         mixins.add("fml.ItemStackHolderRef");
         mixins.add("fml.JarDiscoverer");
+        mixins.add("fml.ModVisitorAsmVersion");
         mixins.add("fml.ObjectHolderRef");
         mixins.add("fml.ObjectHolderRegistry");
         if (FMLLaunchHandler.side()
