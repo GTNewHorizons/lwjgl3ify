@@ -505,7 +505,9 @@ public class Display {
     }
 
     public static boolean isCloseRequested() {
-        return glfwWindowShouldClose(Window.handle);
+        final boolean saved = glfwWindowShouldClose(Window.handle);
+        glfwSetWindowShouldClose(Window.handle, false);
+        return saved;
     }
 
     public static boolean isDirty() {

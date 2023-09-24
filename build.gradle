@@ -1,4 +1,4 @@
-//version: 1695409603
+//version: 1695474595
 /*
  DO NOT CHANGE THIS FILE!
  Also, you may replace this file at any time if there is an update available.
@@ -793,23 +793,14 @@ ext.java17PatchDependenciesCfg = configurations.create("java17PatchDependencies"
 }
 
 dependencies {
-    def lwjgl3ifyVersion = '1.4.0'
-    def asmVersion = '9.4'
+    def lwjgl3ifyVersion = '1.5.0'
     if (modId != 'lwjgl3ify') {
         java17Dependencies("com.github.GTNewHorizons:lwjgl3ify:${lwjgl3ifyVersion}")
     }
     if (modId != 'hodgepodge') {
-        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.2.26')
+        java17Dependencies('com.github.GTNewHorizons:Hodgepodge:2.3.5')
     }
 
-    java17PatchDependencies('net.minecraft:launchwrapper:1.17.2') {transitive = false}
-    java17PatchDependencies("org.ow2.asm:asm:${asmVersion}")
-    java17PatchDependencies("org.ow2.asm:asm-commons:${asmVersion}")
-    java17PatchDependencies("org.ow2.asm:asm-tree:${asmVersion}")
-    java17PatchDependencies("org.ow2.asm:asm-analysis:${asmVersion}")
-    java17PatchDependencies("org.ow2.asm:asm-util:${asmVersion}")
-    java17PatchDependencies('org.ow2.asm:asm-deprecated:7.1')
-    java17PatchDependencies("org.apache.commons:commons-lang3:3.12.0")
     java17PatchDependencies("com.github.GTNewHorizons:lwjgl3ify:${lwjgl3ifyVersion}:forgePatches") {transitive = false}
 }
 
