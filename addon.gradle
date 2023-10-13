@@ -102,6 +102,7 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
         }
     }
     exclude("module-info.class")
+    exclude("log4j2.xml")
     archiveClassifier.set("forgePatches")
     manifest {
         def libraryList = [
