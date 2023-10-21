@@ -520,4 +520,10 @@ public class GL43 {
         org.lwjgl.opengl.GL43.glVertexBindingDivisor(bindingindex, divisor);
     }
 
+    public static void glDebugMessageCallback(org.lwjglx.PointerWrapperAbstract callback) {
+        // Hax
+        if (callback != null) org.lwjgl.opengl.GLUtil.setupDebugMessageCallback();
+        else org.lwjgl.opengl.GL43.glDebugMessageCallback(null, 0L);
+    }
+
 }

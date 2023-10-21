@@ -54,6 +54,14 @@ public class KHRDebug {
         org.lwjgl.opengl.KHRDebug.glDebugMessageInsert(source, type, id, severity, buf);
     }
 
+    public static void glDebugMessageCallback(org.lwjglx.PointerWrapperAbstract callback) {
+        org.lwjglx.opengl.GL43.glDebugMessageCallback(callback);
+    }
+
+    public static void glDebugMessageCallback(org.lwjglx.opengl.KHRDebugCallback callback) {
+        org.lwjglx.opengl.GL43.glDebugMessageCallback(callback);
+    }
+
     public static int glGetDebugMessageLog(int count, java.nio.IntBuffer sources, java.nio.IntBuffer types,
         java.nio.IntBuffer ids, java.nio.IntBuffer severities, java.nio.IntBuffer lengths,
         java.nio.ByteBuffer messageLog) {

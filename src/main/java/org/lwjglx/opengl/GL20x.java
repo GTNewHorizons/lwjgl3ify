@@ -39,10 +39,9 @@ public class GL20x {
     }
 
     public static String glGetActiveUniform(int program, int index, int maxLength, IntBuffer sizeType) {
-        // TODO if correct
         IntBuffer type = BufferUtils.createIntBuffer(1);
         String s = GL20.glGetActiveUniform(program, index, maxLength, sizeType, type);
-        sizeType.put(type.get(0));
+        sizeType.put(1, type.get(0));
         return s;
     }
 
