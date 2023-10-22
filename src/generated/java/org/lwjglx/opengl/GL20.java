@@ -155,7 +155,10 @@ public class GL20 {
     }
 
     public static String glGetActiveUniform(int program, int index, int maxLength, java.nio.IntBuffer sizeType) {
-        return org.lwjglx.opengl.GL20x.glGetActiveUniform(program, index, maxLength, sizeType);
+        java.nio.IntBuffer type = org.lwjgl.BufferUtils.createIntBuffer(1);
+        String s = org.lwjgl.opengl.GL20.glGetActiveUniform(program, index, maxLength, sizeType, type);
+        sizeType.put(1, type.get(0));
+        return s;
     }
 
     public static void glGetAttachedShaders(int program, java.nio.IntBuffer count, java.nio.IntBuffer shaders) {
