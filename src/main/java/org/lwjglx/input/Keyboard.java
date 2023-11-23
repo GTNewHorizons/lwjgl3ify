@@ -258,10 +258,10 @@ public class Keyboard {
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
-        final int keyCode = KeyCodes.lwjglToGlfw(key);
-        if (keyCode == KEY_NONE || keyCode == GLFW_KEY_UNKNOWN) {
+        if (key == KEY_NONE) {
             return false;
         }
+        final int keyCode = KeyCodes.lwjglToGlfw(key);
         return GLFW.glfwGetKey(Display.getWindow(), keyCode) == GLFW.GLFW_PRESS;
     }
 
