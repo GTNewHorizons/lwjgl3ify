@@ -1,7 +1,5 @@
 package org.lwjglx.input;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_UNKNOWN;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
