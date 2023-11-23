@@ -38,14 +38,6 @@ public class GL20x {
         return s;
     }
 
-    public static String glGetActiveUniform(int program, int index, int maxLength, IntBuffer sizeType) {
-        // TODO if correct
-        IntBuffer type = BufferUtils.createIntBuffer(1);
-        String s = GL20.glGetActiveUniform(program, index, maxLength, sizeType, type);
-        sizeType.put(type.get(0));
-        return s;
-    }
-
     public static void glShaderSource(int shader, java.nio.ByteBuffer string) {
         PointerBuffer strings = BufferUtils.createPointerBuffer(1);
         IntBuffer lengths = BufferUtils.createIntBuffer(1);

@@ -1,5 +1,7 @@
 package org.lwjglx.opengl;
 
+import org.lwjgl.system.MemoryUtil;
+
 public class GL20 {
 
     public static final int GL_ACTIVE_ATTRIBUTES = (int) 35721;
@@ -152,6 +154,15 @@ public class GL20 {
     public static void glGetActiveUniform(int program, int index, java.nio.IntBuffer length, java.nio.IntBuffer size,
         java.nio.IntBuffer type, java.nio.ByteBuffer name) {
         org.lwjgl.opengl.GL20.glGetActiveUniform(program, index, length, size, type, name);
+    }
+
+    public static String glGetActiveUniform(int program, int index, int maxLength, java.nio.IntBuffer sizeType) {
+        return org.lwjgl.opengl.GL20.glGetActiveUniform(
+            program,
+            index,
+            maxLength,
+            MemoryUtil.memSlice(sizeType, 0, 1),
+            MemoryUtil.memSlice(sizeType, 1, 1));
     }
 
     public static void glGetAttachedShaders(int program, java.nio.IntBuffer count, java.nio.IntBuffer shaders) {

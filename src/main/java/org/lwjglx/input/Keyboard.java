@@ -1,6 +1,5 @@
 package org.lwjglx.input;
 
-import java.awt.event.KeyEvent;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -257,7 +256,11 @@ public class Keyboard {
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
-        return GLFW.glfwGetKey(Display.getWindow(), KeyCodes.lwjglToGlfw(key)) == GLFW.GLFW_PRESS;
+        if (key == KEY_NONE) {
+            return false;
+        }
+        final int keyCode = KeyCodes.lwjglToGlfw(key);
+        return GLFW.glfwGetKey(Display.getWindow(), keyCode) == GLFW.GLFW_PRESS;
     }
 
     public static void poll() {

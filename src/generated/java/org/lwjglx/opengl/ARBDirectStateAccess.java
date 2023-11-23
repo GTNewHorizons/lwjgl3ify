@@ -454,6 +454,10 @@ public class ARBDirectStateAccess {
         org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameteri(texture, pname, param);
     }
 
+    public static void glTextureParameter(int texture, int pname, java.nio.IntBuffer params) {
+        org.lwjgl.opengl.ARBDirectStateAccess.glTextureParameteriv(texture, pname, params);
+    }
+
     public static void glTextureStorage1D(int texture, int levels, int internalformat, int width) {
         org.lwjgl.opengl.ARBDirectStateAccess.glTextureStorage1D(texture, levels, internalformat, width);
     }

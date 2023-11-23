@@ -16,7 +16,13 @@ import org.lwjglx.opengl.Display;
 public class Sys {
 
     static {
-        if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
+        try {
+            Class<?> debug = Class.forName("org.lwjglx.debug.org.lwjgl.glfw.GLFW");
+            debug.getMethod("glfwInit")
+                .invoke((Object) null);
+        } catch (Throwable ignored) {
+            if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
+        }
     }
 
     public static void initialize() {}

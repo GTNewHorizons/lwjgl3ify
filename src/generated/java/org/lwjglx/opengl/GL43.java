@@ -1,5 +1,7 @@
 package org.lwjglx.opengl;
 
+import org.lwjgl.opengl.GLDebugMessageCallback;
+
 public class GL43 {
 
     public static final int GL_ACTIVE_RESOURCES = (int) 37621;
@@ -518,6 +520,22 @@ public class GL43 {
 
     public static void glVertexBindingDivisor(int bindingindex, int divisor) {
         org.lwjgl.opengl.GL43.glVertexBindingDivisor(bindingindex, divisor);
+    }
+
+    // Callbacks have to be kept alive, a GC collection could falsely collect them.
+    private static ThreadLocal<GLDebugMessageCallback> glDebugMessageCallbackStorage = new ThreadLocal<>();
+
+    public static void glDebugMessageCallback(org.lwjglx.opengl.KHRDebugCallback callback) {
+        if (callback == null) {
+            org.lwjgl.opengl.GL43.glDebugMessageCallback(null, 0L);
+            return;
+        }
+        GLDebugMessageCallback cb = glDebugMessageCallbackStorage.get();
+        if (cb == null) {
+            cb = GLDebugMessageCallback.create(callback);
+            glDebugMessageCallbackStorage.set(cb);
+        }
+        org.lwjgl.opengl.GL43.glDebugMessageCallback(cb, 0L);
     }
 
 }
