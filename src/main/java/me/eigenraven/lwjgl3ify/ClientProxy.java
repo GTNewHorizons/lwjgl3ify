@@ -10,6 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ICrashCallable;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import me.eigenraven.lwjgl3ify.client.GLDebugLog;
 import me.eigenraven.lwjgl3ify.client.GLInfoCrashCallable;
 import me.eigenraven.lwjgl3ify.core.Config;
 
@@ -30,6 +31,9 @@ public class ClientProxy extends CommonProxy {
     public void runCompatHooks() {
         super.runCompatHooks();
         replaceOpenGLCrashHandler();
+        if (Config.DEBUG_REGISTER_OPENGL_LOGGER) {
+            GLDebugLog.setupDebugMessageCallback();
+        }
     }
 
     @Override

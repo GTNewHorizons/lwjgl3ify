@@ -1,6 +1,9 @@
 package org.lwjglx.opengl;
 
-public class KHRDebugCallback extends org.lwjglx.PointerWrapperAbstract {
+import org.lwjgl.opengl.GLDebugMessageCallback;
+import org.lwjgl.opengl.GLDebugMessageCallbackI;
+
+public class KHRDebugCallback extends org.lwjglx.PointerWrapperAbstract implements GLDebugMessageCallbackI {
 
     /** Severity levels. */
     private static final int GL_DEBUG_SEVERITY_HIGH = 0x9146, GL_DEBUG_SEVERITY_MEDIUM = 0x9147,
@@ -102,6 +105,19 @@ public class KHRDebugCallback extends org.lwjglx.PointerWrapperAbstract {
 
     Handler getHandler() {
         return handler;
+    }
+
+    @Override
+    public void invoke(int source, int type, int id, int severity, int length, long message, long userParam) {
+        if (this.handler == null) {
+            return;
+        }
+        this.handler.handleMessage(source, type, id, severity, GLDebugMessageCallback.getMessage(length, message));
+    }
+
+    @Override
+    public long address() {
+        return GLDebugMessageCallbackI.super.address();
     }
 
     /** Implementations of this interface can be used to receive ARB_debug_output notifications. */
