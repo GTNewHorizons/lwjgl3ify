@@ -1,5 +1,7 @@
 package org.lwjglx.input;
 
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_UNKNOWN;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -260,7 +262,7 @@ public class Keyboard {
             return false;
         }
         final int keyCode = KeyCodes.lwjglToGlfw(key);
-        return GLFW.glfwGetKey(Display.getWindow(), keyCode) == GLFW.GLFW_PRESS;
+        return keyCode != GLFW_KEY_UNKNOWN && GLFW.glfwGetKey(Display.getWindow(), keyCode) == GLFW.GLFW_PRESS;
     }
 
     public static void poll() {
