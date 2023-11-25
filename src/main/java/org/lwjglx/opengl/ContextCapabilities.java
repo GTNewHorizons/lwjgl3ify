@@ -91,6 +91,7 @@ public class ContextCapabilities {
     public boolean GL_ARB_depth_buffer_float;
     public boolean GL_ARB_depth_clamp;
     public boolean GL_ARB_depth_texture;
+    public boolean GL_ARB_direct_state_access;
     public boolean GL_ARB_draw_buffers;
     public boolean GL_ARB_draw_buffers_blend;
     public boolean GL_ARB_draw_elements_base_vertex;
