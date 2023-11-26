@@ -271,7 +271,7 @@ public class Display {
                 if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
                     Lwjgl3ify.LOG.info("[DEBUG-MOUSE] wheel window:{} xoffset:{} yoffset:{}", window, xoffset, yoffset);
                 }
-                Mouse.addWheelEvent(yoffset == 0 ? xoffset : yoffset);
+                Mouse.addWheelEvent(yoffset == 0 ? (Config.INPUT_INVERT_X_WHEEL ? -xoffset : xoffset) : yoffset);
             }
         };
 
