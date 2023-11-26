@@ -183,8 +183,11 @@ public class Config {
 
         INPUT_INVERT_WHEEL = config
             .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
-        INPUT_INVERT_X_WHEEL = config
-            .getBoolean("invertHorizontalScroll", CATEGORY_INPUT, INPUT_INVERT_X_WHEEL, "Invert horizontal scrolling direction (respects invertScrollWheel)");
+        INPUT_INVERT_X_WHEEL = config.getBoolean(
+            "invertHorizontalScroll",
+            CATEGORY_INPUT,
+            INPUT_INVERT_X_WHEEL,
+            "Invert horizontal scrolling direction (respects invertScrollWheel)");
         INPUT_SCROLL_SPEED = (double) config.getFloat(
             "scrollSpeedMultiplier",
             CATEGORY_INPUT,
