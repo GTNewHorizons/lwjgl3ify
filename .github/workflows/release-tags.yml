@@ -55,7 +55,7 @@ jobs:
             -f tag_name="${RELEASE_VERSION}" \
             --jq ".body" > "${CHANGELOG_FILE}"
           cat "${CHANGELOG_FILE}"
-          gh release create "${RELEASE_VERSION}" -F "${CHANGELOG_FILE}" ./build/libs/*.jar ./build/distributions/*.zip
+          gh release create "${RELEASE_VERSION}" -F "${CHANGELOG_FILE}" ./build/libs/*.jar ./build/libs/*.json ./build/distributions/*.zip
         shell: bash
         continue-on-error: true
         env:
