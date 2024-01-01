@@ -1,3 +1,4 @@
+import org.apache.tools.ant.filters.ReplaceTokens
 import org.gradle.jvm.toolchain.internal.DefaultToolchainSpec
 
 def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
@@ -140,9 +141,19 @@ def mmcInstanceFilesZip = tasks.register("mmcInstanceFiles", Zip) {
     }
 }
 
+def versionJsonFile = tasks.register("versionJson", Copy) {
+    dependsOn("reobfJar")
+    from 'launcher-metadata/version.json'
+    into 'build/libs'
+    filter(ReplaceTokens, tokens: [version: project.version,
+        jvmArgs: extraJavaArgs.collect { '"' + it + '"' }.join(", "),
+        time: new Date().format("yyyy-MM-dd'T'HH:mm:ssXXX")])
+}
+
 tasks.named("assemble").configure {
     dependsOn(forgePatchesSet.jarTaskName)
     dependsOn(mmcInstanceFilesZip)
+    dependsOn(versionJsonFile)
 }
 
 tasks.register("runComparisonTool", JavaExec) {
@@ -157,6 +168,9 @@ afterEvaluate {
     publishing.publications.named("maven", MavenPublication) {
         artifact forgePatchesJar
         artifact mmcInstanceFilesZip
+        artifact("build/libs/version.json") {
+            builtBy versionJson
+        }
     }
 
     def lwjgl2Zips = configurations.named("lwjgl2Classpath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}

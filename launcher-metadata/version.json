@@ -85,46 +85,7 @@
                 ],
                 "value": "-Xss1M"
             },
-            "-Djava.library.path=${natives_directory}",
-            "-cp",
-            "${classpath}",
-            "--illegal-access=warn",
-            "-Djava.security.manager=allow",
-            "-Dfile.encoding=UTF-8",
-            "--add-opens",
-            "java.base/jdk.internal.loader=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.net=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.nio=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.io=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.lang=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.lang.reflect=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.text=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/java.util=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/jdk.internal.reflect=ALL-UNNAMED",
-            "--add-opens",
-            "java.base/sun.nio.ch=ALL-UNNAMED",
-            "--add-opens",
-            "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
-            "--add-opens",
-            "java.desktop/sun.awt.image=ALL-UNNAMED",
-            "--add-opens",
-            "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
-            "--add-modules",
-            "jdk.dynalink",
-            "--add-opens",
-            "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
-            "--add-modules",
-            "java.sql.rowset",
-            "--add-opens",
-            "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED"
+            "-Djava.library.path=${natives_directory}", "-cp", "${classpath}", @jvmArgs@
         ]
     },
     "assetIndex": {
@@ -1702,8 +1663,8 @@
             ]
         },
         {
-            "name": "com.github.GTNewHorizons:lwjgl3ify:1.5.6:forgePatches",
-            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
+            "name": "com.github.GTNewHorizons:lwjgl3ify:@version@:forgePatches",
+            "url": "https://nexus.gtnewhorizons.com/repository/public/"
         },
         {
             "name": "net.minecraftforge:forge:1.7.10-10.13.4.1614-1.7.10:universal",
@@ -1774,7 +1735,7 @@
     },
     "mainClass": "net.minecraft.launchwrapper.Launch",
     "minimumLauncherVersion": 21,
-    "releaseTime": "2023-11-29T22:06:00+01:00",
-    "time": "2023-11-29T22:06:00+01:00",
+    "releaseTime": "@time@",
+    "time": "@time@",
     "type": "release"
 }
