@@ -150,7 +150,7 @@ First, do `./gradlew build` and use the zip in `./build/distributions/lwjgl3ify-
 
 Then, for developing locally, in the `patches/me.eigenraven.lwjgl3ify.forgepatches.json` file replace:
 ```json
-"url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
+"url": "https://nexus.gtnewhorizons.com/repository/public/"
 ```
 with:
 ```json
