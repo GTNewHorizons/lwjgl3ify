@@ -10,7 +10,7 @@
     "libraries": [
         {
             "name": "com.github.GTNewHorizons:lwjgl3ify:${version}:forgePatches",
-            "url": "http://jenkins.usrv.eu:8081/nexus/content/groups/public/"
+            "url": "https://nexus.gtnewhorizons.com/repository/public/"
         }
     ]
 }
