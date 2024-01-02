@@ -58,6 +58,10 @@ configurations {
         canBeConsumed = false
         canBeResolved = true
     }
+    def versionJsonElements = create("versionJsonElements") {
+        canBeConsumed = false
+        canBeResolved = false
+    }
     forgePatchesImplementation.extendsFrom(forgePatchesEmbedded)
     patchedMinecraft.extendsFrom(forgePatchesEmbedded)
 }
@@ -141,13 +145,30 @@ def mmcInstanceFilesZip = tasks.register("mmcInstanceFiles", Zip) {
     }
 }
 
-def versionJsonFile = tasks.register("versionJson", Copy) {
+def versionJsonPath = layout.buildDirectory.file('libs/version.json').get().asFile
+
+def versionJsonFile = tasks.register("versionJson") {
     dependsOn("reobfJar")
-    from 'launcher-metadata/version.json'
-    into 'build/libs'
-    filter(ReplaceTokens, tokens: [version: project.version,
-        jvmArgs: extraJavaArgs.collect { '"' + it + '"' }.join(", "),
-        time: new Date().format("yyyy-MM-dd'T'HH:mm:ssXXX")])
+    it.inputs.file('launcher-metadata/version.json')
+    it.inputs.property('version', project.version)
+    it.inputs.property('jvmArgs', extraJavaArgs)
+    it.outputs.file(versionJsonPath)
+    doLast {
+        versionJsonPath.parentFile.mkdirs()
+        copy {
+            from 'launcher-metadata/version.json'
+            into versionJsonPath.parentFile
+            filter(ReplaceTokens, tokens: [version: project.version,
+                                           jvmArgs: extraJavaArgs.collect { '"' + it + '"' }.join(", "),
+                                           time   : new Date().format("yyyy-MM-dd'T'HH:mm:ssXXX")])
+        }
+    }
+}
+
+def versionJsonArtifact = artifacts.add('versionJsonElements', versionJsonPath) {
+    type 'json'
+    classifier 'version'
+    builtBy versionJsonFile
 }
 
 tasks.named("assemble").configure {
@@ -168,9 +189,7 @@ afterEvaluate {
     publishing.publications.named("maven", MavenPublication) {
         artifact forgePatchesJar
         artifact mmcInstanceFilesZip
-        artifact("build/libs/version.json") {
-            builtBy versionJson
-        }
+        artifact versionJsonArtifact
     }
 
     def lwjgl2Zips = configurations.named("lwjgl2Classpath").get().resolve().findAll {!it.name.contains("natives") && !it.path.contains("net.java.j")}
