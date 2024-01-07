@@ -41,7 +41,7 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
             return basicClass;
         }
         for (String prefix : excludedPackages) {
-            if (transformedName.startsWith(prefix.replace('/', '.'))) {
+            if (transformedName.startsWith(prefix)) {
                 return basicClass;
             }
         }
