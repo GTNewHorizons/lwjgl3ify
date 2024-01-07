@@ -11,8 +11,8 @@ def asmVersion = '9.5'
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
-    vanilla_minecraft('net.minecraft:launchwrapper:1.17.3') { transitive = false }
-    forgePatchesEmbedded('net.minecraft:launchwrapper:1.17.3') { transitive = false }
+    vanilla_minecraft('net.minecraft:launchwrapper:1.17.4') { transitive = false }
+    forgePatchesEmbedded('net.minecraft:launchwrapper:1.17.4') { transitive = false }
 
     forgePatchesEmbedded("org.ow2.asm:asm:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-commons:${asmVersion}")
