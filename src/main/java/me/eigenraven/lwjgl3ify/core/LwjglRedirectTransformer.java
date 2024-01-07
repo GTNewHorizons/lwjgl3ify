@@ -1,5 +1,8 @@
 package me.eigenraven.lwjgl3ify.core;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.spongepowered.asm.lib.AnnotationVisitor;
@@ -21,6 +24,9 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
     public LwjglRedirectTransformer() {
         // Only use the last constructed transformer
         activeInstance = this;
+        excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
+            .map(s -> s.replace('/', '.'))
+            .toArray(String[]::new);
     }
 
     @Override
@@ -31,8 +37,13 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
         if (basicClass == null) {
             return null;
         }
-        if (name.contains("lwjgl3ify")) {
+        if (transformedName.contains("lwjgl3ify")) {
             return basicClass;
+        }
+        for (String prefix : excludedPackages) {
+            if (transformedName.startsWith(prefix.replace('/', '.'))) {
+                return basicClass;
+            }
         }
         ClassReader reader = new ClassReader(basicClass);
         ClassWriter writer = new ClassWriter(0);
@@ -51,6 +62,7 @@ public class LwjglRedirectTransformer extends Remapper implements IClassTransfor
     }
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/" };
+    final String[] excludedPackages;
 
     final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/" };
 
