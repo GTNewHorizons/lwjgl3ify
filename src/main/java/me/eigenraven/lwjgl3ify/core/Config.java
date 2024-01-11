@@ -77,6 +77,8 @@ public class Config {
     public static boolean INPUT_INVERT_WHEEL = false;
     public static boolean INPUT_INVERT_X_WHEEL = false;
     public static double INPUT_SCROLL_SPEED = 1.0;
+    public static boolean INPUT_CTRL_ALT_TEXT = false;
+    public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
 
     public static String X11_CLASS_NAME = "minecraft";
     public static String COCOA_FRAME_NAME = "minecraft";
@@ -195,6 +197,16 @@ public class Config {
             +0.05f,
             +20.0f,
             "Scrolling speed multiplier");
+        INPUT_CTRL_ALT_TEXT = config.getBoolean(
+            "ctrlAltText",
+            CATEGORY_INPUT,
+            INPUT_CTRL_ALT_TEXT,
+            "Allow text character input when Ctrl+Left Alt are pressed (disables special escape code handling for this combination of keys)");
+        INPUT_ALTGR_ESCAPE_CODES = config.getBoolean(
+            "altGrEscapeCodes",
+            CATEGORY_INPUT,
+            INPUT_ALTGR_ESCAPE_CODES,
+            "Allows AltGr use in Ctrl+key special key combinations (disables text character input handling when AltGr is pressed)");
 
         OPENGL_DEBUG_CONTEXT = config.getBoolean(
             "debugContext",
