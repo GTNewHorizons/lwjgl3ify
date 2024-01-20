@@ -3,8 +3,6 @@ package me.eigenraven.lwjgl3ify;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
-import org.lwjglx.input.Keyboard;
-
 public class CommonProxy {
 
     public void registerF3Handler() {}
