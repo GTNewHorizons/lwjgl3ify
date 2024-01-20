@@ -165,6 +165,8 @@ public class Keyboard {
 
     public static final int keyCount;
 
+    private static final Map<String, Integer> reverseKeyMap = new ConcurrentHashMap<>();
+
     public enum KeyState {
 
         PRESS(true),
@@ -203,6 +205,7 @@ public class Keyboard {
                     String name = field.getName()
                         .substring(4);
                     unlocalizedKeyNameMiniLut[key] = name;
+                    reverseKeyMap.put(name, key);
                     keyCounter++;
                 }
             }
@@ -214,6 +217,13 @@ public class Keyboard {
             }
         }
         eventQueue.add(new KeyEvent(0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
+    }
+
+    /** Populates the key name->index lookup table with the current keyboard layout based names. */
+    public static void populateKeyLookupTables() {
+        for (int key = 0; key <= 255; key++) {
+            getKeyName(key);
+        }
     }
 
     public static void addRawKeyEvent(KeyEvent event) {
@@ -311,8 +321,6 @@ public class Keyboard {
     public static long getEventNanoseconds() {
         return eventQueue.peek().nano;
     }
-
-    private static final Map<String, Integer> reverseKeyMap = new ConcurrentHashMap<>();
 
     public static String getKeyName(int key) {
         if (key == KEY_NONE) {

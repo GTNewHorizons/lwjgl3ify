@@ -27,12 +27,12 @@ import me.eigenraven.lwjgl3ify.core.Config;
     guiFactory = "me.eigenraven.lwjgl3ify.client.GuiFactory")
 public class Lwjgl3ify {
 
-    public static Logger LOG = LogManager.getLogger(Tags.MODID);
+    public static Logger LOG = LogManager.getLogger("lwjgl3ify");
 
     @Mod.Instance
     public static Lwjgl3ify INSTANCE;
 
-    @SidedProxy(clientSide = Tags.GROUPNAME + ".ClientProxy", serverSide = Tags.GROUPNAME + ".CommonProxy")
+    @SidedProxy(clientSide = "me.eigenraven.lwjgl3ify.ClientProxy", serverSide = "me.eigenraven.lwjgl3ify.CommonProxy")
     public static CommonProxy PROXY;
 
     @Mod.EventHandler

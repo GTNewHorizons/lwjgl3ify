@@ -13,7 +13,6 @@ import org.lwjglx.input.Mouse;
 import com.google.common.collect.Lists;
 
 import cpw.mods.fml.client.config.GuiConfig;
-import me.eigenraven.lwjgl3ify.Tags;
 import me.eigenraven.lwjgl3ify.core.Config;
 
 @SuppressWarnings("unused")
@@ -26,7 +25,7 @@ public class GuiConfigLwjgl3ify extends GuiConfig {
                 new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_WINDOW)),
                 new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_INPUT)),
                 new ConfigElement<>(Config.config.getCategory(Config.CATEGORY_GLCONTEXT))),
-            Tags.MODID,
+            "lwjgl3ify",
             "config",
             false,
             false,
