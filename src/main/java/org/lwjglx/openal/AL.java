@@ -41,6 +41,9 @@ public class AL {
         attribs.put(org.lwjgl.openal.ALC10.ALC_SYNC);
         attribs.put(contextSynchronized ? org.lwjgl.openal.ALC10.ALC_TRUE : org.lwjgl.openal.ALC10.ALC_FALSE);
 
+        attribs.put(org.lwjgl.openal.EXTEfx.ALC_MAX_AUXILIARY_SENDS);
+        attribs.put(4);
+
         attribs.put(0);
         attribs.flip();
 
