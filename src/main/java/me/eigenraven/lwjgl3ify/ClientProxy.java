@@ -7,6 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import org.lwjglx.input.Keyboard;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ICrashCallable;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -34,6 +36,8 @@ public class ClientProxy extends CommonProxy {
         if (Config.DEBUG_REGISTER_OPENGL_LOGGER) {
             GLDebugLog.setupDebugMessageCallback();
         }
+        // Populate keyboard-layout-dependent key lookup tables
+        Keyboard.populateKeyLookupTables();
     }
 
     @Override
