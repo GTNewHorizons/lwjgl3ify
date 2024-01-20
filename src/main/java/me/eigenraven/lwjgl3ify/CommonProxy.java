@@ -23,7 +23,5 @@ public class CommonProxy {
         } catch (ReflectiveOperationException e) {
             // ignore - cofh not present
         }
-        // Populate keyboard-layout-dependent key lookup tables
-        Keyboard.populateKeyLookupTables();
     }
 }

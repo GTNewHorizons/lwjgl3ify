@@ -13,6 +13,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import me.eigenraven.lwjgl3ify.client.GLDebugLog;
 import me.eigenraven.lwjgl3ify.client.GLInfoCrashCallable;
 import me.eigenraven.lwjgl3ify.core.Config;
+import org.lwjglx.input.Keyboard;
 
 public class ClientProxy extends CommonProxy {
 
@@ -34,6 +35,8 @@ public class ClientProxy extends CommonProxy {
         if (Config.DEBUG_REGISTER_OPENGL_LOGGER) {
             GLDebugLog.setupDebugMessageCallback();
         }
+        // Populate keyboard-layout-dependent key lookup tables
+        Keyboard.populateKeyLookupTables();
     }
 
     @Override
