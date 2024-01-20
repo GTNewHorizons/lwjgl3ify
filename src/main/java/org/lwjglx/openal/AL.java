@@ -68,8 +68,12 @@ public class AL {
     }
 
     public static void destroy() {
-        org.lwjgl.openal.ALC10.alcDestroyContext(alcContext.context);
-        org.lwjgl.openal.ALC10.alcCloseDevice(alcDevice.device);
+        if (alcContext != null) {
+            org.lwjgl.openal.ALC10.alcDestroyContext(alcContext.context);
+        }
+        if (alcDevice != null) {
+            org.lwjgl.openal.ALC10.alcCloseDevice(alcDevice.device);
+        }
         alcContext = null;
         alcDevice = null;
         created = false;
