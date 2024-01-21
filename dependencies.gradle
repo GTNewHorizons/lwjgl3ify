@@ -8,7 +8,7 @@ def addGtForTesting = false
 def addReikaModsForTesting = false
 
 def asmVersion = '9.6'
-def rfbVersion = '0.1.0-22-gdc2eac2.dirty'
+def rfbVersion = '0.2.0'
 
 configurations.configureEach {
     resolutionStrategy.dependencySubstitution {

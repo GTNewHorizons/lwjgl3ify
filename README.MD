@@ -26,7 +26,7 @@ You can also use Java 11 if you remove the `-Djava.security.manager=allow` argum
 ### MultiMC setup (GTNH and non-GTNH)
 For MultiMC, you need to manually put in extra java arguments, prismlauncher can load them from the patches json files automatically:
 ```
---illegal-access=warn -Djava.security.manager=allow -Dfile.encoding=UTF-8 --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming --add-opens java.desktop/sun.awt.image=ALL-UNNAMED --add-modules jdk.dynalink --add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED --add-modules java.sql.rowset --add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
+-Dfile.encoding=UTF-8 -Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader -Djava.security.manager=allow --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming --add-opens java.desktop/sun.awt.image=ALL-UNNAMED --add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED --add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 ```
 
 ### Tweaking configs
@@ -47,9 +47,9 @@ java -Xmx6G -Xms6G @java9args.txt nogui
 
 There are a few components to enabling modern java and lwjgl usage on old minecraft versions, lwjgl3ify implements these for 1.7.10 specifically:
 
- - A modified launcher profile (templates are in `prism-libraries`) to modify the library list loaded into the java classpath - to install LWJGL3, ASM 9.4, new Apache Commons and our forgePatches jar.
+ - A modified launcher profile (templates are in `prism-libraries`) to modify the library list loaded into the java classpath - to install LWJGL3, and our forgePatches jar that includes libraries such as ASM 9 or new Apache Commons.
  - A custom server launcher jar with the modified `Class-Path` META-INF manifest entry (integrated into our forgePatches jar)
- - An updated launchwrapper with a java 9+-compatible classpath discovery mechanism at <https://github.com/GTNewHorizons/LegacyLauncher>. This might be replaced in the future with a java instrumentation agent to transform those classes at runtime instead due to unclear licensing.
+ - A FOSS replacement for launchwrapper with a java 9+-compatible classpath discovery mechanism and wider-reaching transformer capabilities at <https://github.com/GTNewHorizons/RetroFuturaBootstrap>.
  - A lot of add-opens flags for the JVM to allow reflection into JVM internals. Unfortunately a lot of libraries and mods depend on this to work, even weird ones like `java.text` or `nio` internals in case of Netty.
  - A partially auto-generated compatibility shim redirecting lwjgl2 api calls into the matching lwjgl3 calls (in `src/main/java/org/lwjglx`, `src/generated/java/org/lwjglx`), the generator is in `src/util/java`
  - Dummy `org/lwjgl/*` classes matching the classes removed from lwjgl3 (e.g. Display) for mods that rely on finding them under that location in the classpath - e.g. for mixin metadata
@@ -81,7 +81,9 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
 
 This mod is not enough to make modpacks work in Java 9+, mods had to be updated. Here's a potentially incomplete list of breaking changes that needed code changes in mods, or mixins to fix non-open-source mods:
 
-#### System class loader is no longer a URLClassLoader
+#### (NOT IN lwjgl3ify) System class loader is no longer a URLClassLoader
+
+Lwjgl3ify replaces the system classloader with its own URLClassLoader-derived class that supports addURL and getURLs via public method calls that are compatible with the old reflection access for them.
 
 To get the classpath, simply split `System.getProperty("java.class.path")` by `File.pathSeparator`.
 

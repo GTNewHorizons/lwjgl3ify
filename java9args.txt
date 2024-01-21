@@ -1,6 +1,6 @@
---illegal-access=warn
--Djava.security.manager=allow
 -Dfile.encoding=UTF-8
+-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader
+-Djava.security.manager=allow
 --add-opens
 java.base/jdk.internal.loader=ALL-UNNAMED
 --add-opens
