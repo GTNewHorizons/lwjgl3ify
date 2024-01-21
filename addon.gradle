@@ -6,9 +6,9 @@ newJavaToolchainSpec.vendor.set(JvmVendorSpec.AZUL)
 newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
 
 def extraJavaArgs = [
-    "--illegal-access=warn",
-     "-Djava.security.manager=allow",
      "-Dfile.encoding=UTF-8",
+     "-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader",
+     "-Djava.security.manager=allow",
      "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
      "--add-opens", "java.base/java.net=ALL-UNNAMED",
      "--add-opens", "java.base/java.nio=ALL-UNNAMED",
@@ -22,9 +22,7 @@ def extraJavaArgs = [
      "--add-opens", "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
      "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED",
      "--add-opens", "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
-     "--add-modules", "jdk.dynalink",
      "--add-opens", "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
-     "--add-modules", "java.sql.rowset",
      "--add-opens", "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED",
 ]
 
@@ -84,16 +82,10 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    utilImplementation("org.ow2.asm:asm:9.5")
-    utilImplementation("org.ow2.asm:asm-tree:9.5")
-    utilImplementation("org.apache.commons:commons-lang3:3.12.0")
-    utilImplementation("commons-io:commons-io:2.11.0")
-    utilImplementation("commons-collections:commons-collections:3.2.2")
-    utilImplementation("com.google.guava:guava:31.1-jre")
-
-    hotswapCompileOnly("org.hotswapagent:hotswap-agent-core:1.4.1")
-    hotswapCompileOnly("net.minecraft:launchwrapper:1.15")
+tasks.named("createMcLauncherFiles").configure {
+    // Override main class
+    replacementTokens.put("@@BOUNCERCLIENT@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
+    replacementTokens.put("@@BOUNCERSERVER@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
 }
 
 def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
@@ -202,9 +194,21 @@ afterEvaluate {
     }
 }
 
-def newJavaLauncher = javaToolchains.launcherFor(newJavaToolchainSpec)
+def veryNewJavaToolchainSpec = new DefaultToolchainSpec(objects)
+veryNewJavaToolchainSpec.vendor.set(JvmVendorSpec.AZUL)
+veryNewJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(21))
+
+def newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
 
 minecraft.extraRunJvmArguments.addAll(extraJavaArgs)
+
+for (jarTask in ["jar", "shadowJar", "forgePatchesJar"]) {
+    tasks.named(jarTask, Jar).configure {
+        manifest {
+            attributes 'Multi-Release': true
+        }
+    }
+}
 
 for (runTask in ["runClient", "runServer"]) {
     tasks.named(runTask, JavaExec).configure {
@@ -218,6 +222,10 @@ for (runTask in ["runObfClient", "runObfServer"]) {
         classpath = files(forgePatchesJar) + classpath
         javaLauncher.set(newJavaLauncher)
     }
+}
+
+tasks.named("runObfClient", JavaExec) {
+    mainClass.set("com.gtnewhorizons.retrofuturabootstrap.Main")
 }
 
 tasks.named("runObfServer", JavaExec) {
