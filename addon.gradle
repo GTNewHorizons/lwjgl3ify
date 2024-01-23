@@ -177,6 +177,13 @@ tasks.register("runComparisonTool", JavaExec) {
     maxHeapSize = "2G"
 }
 
+tasks.named("processResources", ProcessResources) {
+    inputs.property("version", project.version.toString())
+    filesMatching("META-INF/rfb-plugin/*") {
+        expand "version": project.version.toString()
+    }
+}
+
 afterEvaluate {
     publishing.publications.named("maven", MavenPublication) {
         artifact forgePatchesJar

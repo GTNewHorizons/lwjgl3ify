@@ -19,7 +19,6 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
 
     // Keep ClassNode-operating transformers together for efficiency (don't read/write the class multiple times)
     final ExtensibleEnumTransformerHelper enumTransformer = new ExtensibleEnumTransformerHelper();
-    final FixConstantPoolInterfaceMethodRefHelper cpiMethodRefTransformer = new FixConstantPoolInterfaceMethodRefHelper();
 
     private static boolean isHolder(List<AnnotationNode> annotations) {
         if (annotations == null) {
@@ -59,9 +58,6 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
                 transformClass = true;
             }
             transformClass |= isHolder(node.visibleAnnotations);
-            if (transformedName.equals("team.chisel.init.ChiselBlocks")) {
-                Lwjgl3ifyCoremod.LOGGER.info("chiselblocks");
-            }
             int fieldsModified = 0;
             for (FieldNode field : node.fields) {
                 boolean transform = transformClass;
@@ -98,14 +94,6 @@ public class UnfinalizeObjectHoldersTransformer implements IClassTransformer {
             if (enumsTransformed) {
                 workDone = true;
                 Lwjgl3ifyCoremod.LOGGER.info("Dynamicized enum {}={}", name, transformedName);
-            }
-
-            final boolean ifaceMethodRefsTransformed = cpiMethodRefTransformer.transform(node);
-
-            if (ifaceMethodRefsTransformed) {
-                workDone = true;
-                Lwjgl3ifyCoremod.LOGGER
-                    .warn("Fixed missing CONSTANT_InterfaceMethodRef miscompilation in {}={}", name, transformedName);
             }
 
             if (workDone) {

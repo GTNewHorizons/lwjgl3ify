@@ -16,8 +16,6 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.system.Configuration;
 import org.lwjgl.system.Platform;
 import org.lwjglx.Sys;
-import org.spongepowered.asm.launch.GlobalProperties;
-import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
@@ -65,15 +63,8 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public String[] getASMTransformerClass() {
-        LOGGER.info("Registering lwjgl3ify redirect transformer");
-
-        List<String> tweakClasses = GlobalProperties.get(MixinServiceLaunchWrapper.BLACKBOARD_KEY_TWEAKCLASSES);
-        if (tweakClasses != null) {
-            tweakClasses.add(PostMixinTransformInjector.class.getName());
-        }
-
-        return new String[] { LwjglRedirectTransformer.class.getName(),
-            UnfinalizeObjectHoldersTransformer.class.getName() };
+        LOGGER.info("Registering lwjgl3ify transformers");
+        return new String[] { UnfinalizeObjectHoldersTransformer.class.getName() };
     }
 
     @Override

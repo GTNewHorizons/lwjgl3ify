@@ -208,12 +208,12 @@
         {
             "downloads": {
                 "artifact": {
-                    "sha1": "a60a5e993c98c864010053cb901b7eab25306568",
-                    "size": 190432,
-                    "url": "https://libraries.minecraft.net/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+                    "sha1": "b3add478d4382b78ea20b1671390a858002feb6c",
+                    "size": 283367,
+                    "url": "https://libraries.minecraft.net/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
                 }
             },
-            "name": "com.google.code.gson:gson:2.2.4"
+            "name": "com.google.code.gson:gson:2.10.1"
         },
         {
             "downloads": {

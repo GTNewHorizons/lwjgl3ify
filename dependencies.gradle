@@ -8,7 +8,9 @@ def addGtForTesting = false
 def addReikaModsForTesting = false
 
 def asmVersion = '9.6'
-def rfbVersion = '0.2.0'
+def rfbVersion = '0.2.3'
+// 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
+def gsonVersion = '2.10.1'
 
 configurations.configureEach {
     resolutionStrategy.dependencySubstitution {
@@ -20,6 +22,8 @@ dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
     vanilla_minecraft("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
     forgePatchesEmbedded("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
+    vanilla_minecraft("com.google.code.gson:gson:${gsonVersion}")
+    patchedMinecraft("com.google.code.gson:gson:${gsonVersion}")
 
     utilImplementation("org.ow2.asm:asm:${asmVersion}")
     utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
@@ -41,8 +45,11 @@ dependencies {
 
     forgePatchesEmbedded("org.apache.commons:commons-compress:1.21")
 
+    compileOnly("org.jetbrains:annotations:24.1.0")
+
     // Allow using Unsafe with newer javac versions
     compileOnly('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')
+    api("com.google.code.gson:gson:${gsonVersion}")
 
     shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
     shadowImplementation("jakarta.servlet:jakarta.servlet-api:6.0.0")

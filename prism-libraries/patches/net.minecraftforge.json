@@ -59,7 +59,7 @@
             "name": "com.google.guava:guava:17.0"
         }
     ],
-    "mainClass": "net.minecraft.launchwrapper.Launch",
+    "mainClass": "com.gtnewhorizons.retrofuturabootstrap.Main",
     "name": "Forge-LWJGL3",
     "order": 5,
     "releaseTime": "2015-12-10T00:05:37-05:00",
