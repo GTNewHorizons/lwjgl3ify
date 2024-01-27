@@ -128,8 +128,12 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
 }
 
 def mmcInstanceFilesZip = tasks.register("mmcInstanceFiles", Zip) {
+    dependsOn(forgePatchesJar)
     archiveClassifier.set("multimc")
     from(new File(projectDir, "prism-libraries/"))
+    from(forgePatchesJar) {
+        into("libraries/")
+    }
     exclude("forgepatches-for-dev-work.json", "META-INF", "META-INF/**")
     filesMatching(["mmc-pack.json", "patches/me.eigenraven.lwjgl3ify.forgepatches.json"]) {
         expand "version": project.version,

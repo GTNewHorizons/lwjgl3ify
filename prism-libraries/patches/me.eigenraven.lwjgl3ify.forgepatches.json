@@ -10,7 +10,7 @@
     "libraries": [
         {
             "name": "com.github.GTNewHorizons:lwjgl3ify:${version}:forgePatches",
-            "url": "https://nexus.gtnewhorizons.com/repository/public/"
+            "MMC-hint": "local"
         }
     ]
 }
