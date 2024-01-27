@@ -8,7 +8,7 @@ def addGtForTesting = false
 def addReikaModsForTesting = false
 
 def asmVersion = '9.6'
-def rfbVersion = '0.2.4'
+def rfbVersion = '0.3.0'
 // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
 def gsonVersion = '2.10.1'
 
