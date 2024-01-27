@@ -1,59 +1,16 @@
 package me.eigenraven.lwjgl3ify.core;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 
 import me.eigenraven.lwjgl3ify.Tags;
+import me.eigenraven.lwjgl3ify.rfb.EarlyConfig;
 
 public class Config {
 
-    public static final String[] DEFAULT_EXTENSIBLE_ENUMS = new String[] {
-        // From EnumHelper
-        "net.minecraft.item.EnumAction", "net.minecraft.item.ItemArmor$ArmorMaterial",
-        "net.minecraft.entity.item.EntityPainting$EnumArt", "net.minecraft.entity.EnumCreatureAttribute",
-        "net.minecraft.entity.EnumCreatureType",
-        "net.minecraft.world.gen.structure.StructureStrongholdPieces$Stronghold$Door",
-        "net.minecraft.enchantment.EnumEnchantmentType", "net.minecraft.entity.Entity$EnumEntitySize",
-        "net.minecraft.block.BlockPressurePlate$Sensitivity",
-        "net.minecraft.util.MovingObjectPosition$MovingObjectType", "net.minecraft.world.EnumSkyBlock",
-        "net.minecraft.entity.player.EntityPlayer$EnumStatus", "net.minecraft.item.Item$ToolMaterial",
-        "net.minecraft.item.EnumRarity",
-        //
-        "net.minecraftforge.event.terraingen.PopulateChunkEvent$Populate$EventType",
-        "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
-        "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
-        "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
-        // From GTNH crashes
-        "vswe.stevesfactory.Localization", "vswe.stevesfactory.blocks.ClusterMethodRegistration",
-        "vswe.stevesfactory.blocks.ConnectionBlockType", "vswe.stevesfactory.components.ComponentType",
-        "vswe.stevesfactory.components.ConnectionSet", "vswe.stevesfactory.components.ConnectionOption",
-        "ic2.core.init.InternalName", "gregtech.api.enums.Element", "gregtech.api.enums.OrePrefixes",
-        "net.minecraft.client.audio.MusicTicker$MusicType", "org.bukkit.Material",
-        "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
-        // Non-GTNH Mods Compat
-        // The Lord of the Rings Mod: Legacy
-        "net.minecraft.event.HoverEvent$Action",
-        // Reika's mods
-        "net.minecraft.client.audio.SoundCategory",
-        "Reika.RotaryCraft.TileEntities.Processing.TileEntityFuelConverter$Conversions",
-        "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Fertility",
-        "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Speeds",
-        "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Flowering",
-        "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Territory",
-        "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Life",
-        "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Fertility",
-        "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life",
-        // Et Futurum Requiem
-        "net.minecraft.world.WorldSettings$GameType",
-        //
-    };
-
-    private static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
     private static boolean configLoaded = false;
 
     public static boolean MIXIN_STBI_TEXTURE_LOADING = true;
@@ -95,7 +52,7 @@ public class Config {
 
     public static Configuration config = null;
 
-    static void loadConfig() {
+    public static void loadConfig() {
         if (configLoaded) {
             return;
         }
@@ -115,16 +72,6 @@ public class Config {
     }
 
     public static void reloadConfigObject() {
-        EXTENSIBLE_ENUMS.addAll(
-            Arrays.asList(
-                config
-                    .get(
-                        CATEGORY_CORE,
-                        "extensibleEnums",
-                        EXTENSIBLE_ENUMS.toArray(new String[0]),
-                        "Enums to make extensible at runtime")
-                    .getStringList()));
-
         MIXIN_STBI_TEXTURE_LOADING = config.getBoolean(
             "stbiTextureLoading",
             CATEGORY_MIXIN,
@@ -231,11 +178,11 @@ public class Config {
     }
 
     public static Set<String> getExtensibleEnums() {
-        return EXTENSIBLE_ENUMS;
+        return EarlyConfig.EXTENSIBLE_ENUMS;
     }
 
     public static void addExtensibleEnum(String className) {
-        EXTENSIBLE_ENUMS.add(className);
+        EarlyConfig.EXTENSIBLE_ENUMS.add(className);
     }
 
     public static boolean isConfigLoaded() {

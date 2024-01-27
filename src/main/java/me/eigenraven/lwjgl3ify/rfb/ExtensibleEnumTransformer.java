@@ -1,13 +1,16 @@
-/*
- * Copyright (c) Forge Development LLC and contributors SPDX-License-Identifier: LGPL-2.1-only
- */
-package me.eigenraven.lwjgl3ify.core;
+package me.eigenraven.lwjgl3ify.rfb;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.intellij.lang.annotations.Pattern;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
@@ -17,34 +20,63 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 import org.objectweb.asm.tree.MethodNode;
 
+import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
+import com.gtnewhorizons.retrofuturabootstrap.api.ExtensibleClassLoader;
+import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
+
 import me.eigenraven.lwjgl3ify.IExtensibleEnum;
 import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
 
-public class ExtensibleEnumTransformerHelper {
+public class ExtensibleEnumTransformer implements RfbClassTransformer {
 
-    private final Logger LOGGER = Lwjgl3ifyCoremod.LOGGER;
+    private final Logger LOGGER = LogManager.getLogger("lwjgl3ify");
     private final Type STRING = Type.getType(String.class);
     private final Type ENUM = Type.getType(Enum.class);
     public final Type MARKER_IFACE = Type.getType(IExtensibleEnum.class);
     public final Type MARKER_ANNOTATION = Type.getType(MakeEnumExtensible.class);
     private final Type ARRAY_UTILS = Type.getType("Lorg/apache/commons/lang3/ArrayUtils;"); // Don't directly reference
-                                                                                            // this to prevent class
-                                                                                            // loading.
+    // this to prevent class
+    // loading.
     private final String ADD_DESC = Type
         .getMethodDescriptor(Type.getType(Object[].class), Type.getType(Object[].class), Type.getType(Object.class));
     private final Type UNSAFE_HACKS = Type.getType("Lme/eigenraven/lwjgl3ify/UnsafeHacks;"); // Again, not direct
-                                                                                             // reference to prevent
-                                                                                             // class loading.
+    // reference to prevent
+    // class loading.
     private final String CLEAN_DESC = Type.getMethodDescriptor(Type.VOID_TYPE, Type.getType(Class.class));
     private final String NAME_DESC = Type.getMethodDescriptor(STRING);
     private final String EQUALS_DESC = Type.getMethodDescriptor(Type.BOOLEAN_TYPE, STRING);
     public static final String CREATE_METHOD_NAME = "dynamicCreate";
 
-    /**
-     * @return Were changes made?
-     */
-    public boolean processClassWithFlags(final ClassNode classNode, final Type classType) {
-        if ((classNode.access & Opcodes.ACC_ENUM) == 0) return false;
+    @Pattern("[a-z0-9-]+")
+    @Override
+    public @NotNull String id() {
+        return "extensible-enum";
+    }
+
+    @Override
+    public boolean shouldTransformClass(@NotNull ExtensibleClassLoader extensibleClassLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
+        @NotNull ClassNodeHandle classNodeHandle) {
+        return classNodeHandle.getFastAccessor() != null && classNodeHandle.getFastAccessor()
+            .isEnum();
+    }
+
+    @Override
+    public void transformClass(@NotNull ExtensibleClassLoader extensibleClassLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
+        @NotNull ClassNodeHandle classNodeHandle) {
+        final Type classType = Type.getObjectType(className.replace('.', '/'));
+        final ClassNode classNode = classNodeHandle.getNode();
+        if (classNode == null) {
+            return;
+        }
+
+        if (EarlyConfig.EXTENSIBLE_ENUMS.contains(className)) {
+            if (classNode.interfaces == null) {
+                classNode.interfaces = new ArrayList<>(1);
+            }
+            classNode.interfaces.add(MARKER_IFACE.getInternalName());
+        }
 
         Type array = Type.getType("[" + classType.getDescriptor());
         final int flags = Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL | Opcodes.ACC_SYNTHETIC;
@@ -65,8 +97,11 @@ public class ExtensibleEnumTransformerHelper {
             }
         }
         if (!process) {
-            return false;
+            return;
         }
+
+        classNodeHandle.computeMaxs();
+        classNodeHandle.computeFrames();
 
         List<MethodNode> constructors = classNode.methods.stream()
             .filter(m -> m.name.equals("<init>"))
@@ -271,6 +306,5 @@ public class ExtensibleEnumTransformerHelper {
                 ins.areturn(classType);
             }
         });
-        return true;
     }
 }

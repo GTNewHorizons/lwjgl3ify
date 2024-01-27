@@ -63,8 +63,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public String[] getASMTransformerClass() {
-        LOGGER.info("Registering lwjgl3ify transformers");
-        return new String[] { UnfinalizeObjectHoldersTransformer.class.getName() };
+        return new String[0];
     }
 
     @Override
