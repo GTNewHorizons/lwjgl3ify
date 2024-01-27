@@ -14,7 +14,7 @@ jobs:
     env:
       VERSION: ${{ github.ref_name }}
       RELEASE_VERSION: ${{ github.ref_name }}
-      SNAPSHOT: ${{ endsWith(github.ref_name, '-snapshot') || contains(github.event.head_commit.message, '[snapshot]') }}
+      SNAPSHOT: ${{ contains(github.ref_name, 'snapshot') || contains(github.event.head_commit.message, '[snapshot]') }}
       MAVEN_PUBLISHING_URL: ${{ vars.MAVEN_PUBLISHING_URL || 'https://nexus.gtnewhorizons.com/repository/releases/' }}
     steps:
       - name: Checkout mod repo
