@@ -18,7 +18,7 @@ public class ServerLaunchWrapper {
     private void run(String[] args) {
         Class<?> launchwrapper = null;
         try {
-            launchwrapper = Class.forName("net.minecraft.launchwrapper.Launch", true, getClass().getClassLoader());
+            launchwrapper = Class.forName("com.gtnewhorizons.retrofuturabootstrap.Main", true, getClass().getClassLoader());
             Class.forName("org.objectweb.asm.Type", true, getClass().getClassLoader());
         } catch (Exception e) {
             System.err.printf(
