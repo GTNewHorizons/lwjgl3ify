@@ -95,6 +95,7 @@ public class EarlyConfig {
 
         final String jsonCfg = gson.toJson(cfg);
         try {
+            Files.createDirectories(earlyConfigPath.getParent());
             Files.write(earlyConfigPath, jsonCfg.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);
