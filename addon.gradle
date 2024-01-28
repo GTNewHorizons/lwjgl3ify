@@ -5,26 +5,32 @@ def newJavaToolchainSpec = new DefaultToolchainSpec(objects)
 newJavaToolchainSpec.vendor.set(JvmVendorSpec.AZUL)
 newJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(17))
 
+def addOpens = [
+    "java.base/jdk.internal.loader=ALL-UNNAMED",
+    "java.base/java.net=ALL-UNNAMED",
+    "java.base/java.nio=ALL-UNNAMED",
+    "java.base/java.io=ALL-UNNAMED",
+    "java.base/java.lang=ALL-UNNAMED",
+    "java.base/java.lang.reflect=ALL-UNNAMED",
+    "java.base/java.text=ALL-UNNAMED",
+    "java.base/java.util=ALL-UNNAMED",
+    "java.base/jdk.internal.reflect=ALL-UNNAMED",
+    "java.base/sun.nio.ch=ALL-UNNAMED",
+    "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
+    "java.desktop/sun.awt.image=ALL-UNNAMED",
+    "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
+    "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
+    "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED",
+]
+
 def extraJavaArgs = [
      "-Dfile.encoding=UTF-8",
      "-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader",
      "-Djava.security.manager=allow",
-     "--add-opens", "java.base/jdk.internal.loader=ALL-UNNAMED",
-     "--add-opens", "java.base/java.net=ALL-UNNAMED",
-     "--add-opens", "java.base/java.nio=ALL-UNNAMED",
-     "--add-opens", "java.base/java.io=ALL-UNNAMED",
-     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-     "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
-     "--add-opens", "java.base/java.text=ALL-UNNAMED",
-     "--add-opens", "java.base/java.util=ALL-UNNAMED",
-     "--add-opens", "java.base/jdk.internal.reflect=ALL-UNNAMED",
-     "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
-     "--add-opens", "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
-     "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED",
-     "--add-opens", "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
-     "--add-opens", "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
-     "--add-opens", "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED",
 ]
+for (openSpec in addOpens) {
+    extraJavaArgs += ["--add-opens", openSpec]
+}
 
 SourceSet forgePatchesSet
 SourceSet hotswapSet
@@ -122,7 +128,7 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
         ]
         attributes(
             "Class-Path": libraryList.join(" "),
-            "Main-Class": "cpw.mods.fml.relauncher.ServerLaunchWrapper"
+            "Main-Class": "me.eigenraven.lwjgl3ify.rfb.entry.ServerMain"
         )
     }
 }

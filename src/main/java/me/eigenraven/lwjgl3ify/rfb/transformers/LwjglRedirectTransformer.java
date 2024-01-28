@@ -1,9 +1,11 @@
-package me.eigenraven.lwjgl3ify.rfb;
+package me.eigenraven.lwjgl3ify.rfb.transformers;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.jar.Manifest;
 import java.util.stream.Stream;
 
+import org.intellij.lang.annotations.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.AnnotationVisitor;
@@ -13,6 +15,7 @@ import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.tree.ClassNode;
 
+import com.gtnewhorizons.retrofuturabootstrap.api.ClassHeaderMetadata;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
 import com.gtnewhorizons.retrofuturabootstrap.api.ExtensibleClassLoader;
 import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
@@ -28,6 +31,9 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
             .map(s -> s.replace('/', '.'))
             .toArray(String[]::new);
+        quickScans = Arrays.stream(fromPrefixes)
+            .map(s -> s.getBytes(StandardCharsets.UTF_8))
+            .toArray(byte[][]::new);
     }
 
     @Override
@@ -35,6 +41,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         return new String[] { "*", "mixin:mixin" };
     }
 
+    @Pattern("[a-z0-9-]+")
     @Override
     public @NotNull String id() {
         return "redirect";
@@ -49,7 +56,22 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     public boolean shouldTransformClass(@NotNull ExtensibleClassLoader classLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle nodeHandle) {
-        return true;
+        if (!nodeHandle.isPresent()) {
+            return false;
+        }
+        if (!nodeHandle.isOriginal()) {
+            return true;
+        }
+        final byte[] original = nodeHandle.getOriginalBytes();
+        if (original == null) {
+            return false;
+        }
+        for (final byte[] pattern : quickScans) {
+            if (ClassHeaderMetadata.hasSubstring(original, pattern)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -77,6 +99,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/" };
     final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/" };
+    final byte[][] quickScans;
     final String[] excludedPackages;
 
     @Override

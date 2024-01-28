@@ -1,10 +1,11 @@
-package me.eigenraven.lwjgl3ify.rfb;
+package me.eigenraven.lwjgl3ify.rfb.transformers;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.Manifest;
 
+import org.intellij.lang.annotations.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
@@ -25,6 +26,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
 
     final byte[] QUICKSCAN_BYTES = "cpw/mods/fml/common/registry/GameRegistry".getBytes(StandardCharsets.UTF_8);
 
+    @Pattern("[a-z0-9-]+")
     @Override
     public @NotNull String id() {
         return "unfinalize-object-holders";

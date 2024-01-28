@@ -7,6 +7,10 @@ import com.gtnewhorizons.retrofuturabootstrap.api.PluginContext;
 import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
 import com.gtnewhorizons.retrofuturabootstrap.api.RfbPlugin;
 
+import me.eigenraven.lwjgl3ify.rfb.transformers.ExtensibleEnumTransformer;
+import me.eigenraven.lwjgl3ify.rfb.transformers.LwjglRedirectTransformer;
+import me.eigenraven.lwjgl3ify.rfb.transformers.UnfinalizeObjectHoldersTransformer;
+
 public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
 
     @Override

@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify.rfb;
+package me.eigenraven.lwjgl3ify.rfb.transformers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
 
 import me.eigenraven.lwjgl3ify.IExtensibleEnum;
 import me.eigenraven.lwjgl3ify.api.MakeEnumExtensible;
+import me.eigenraven.lwjgl3ify.rfb.EarlyConfig;
 
 public class ExtensibleEnumTransformer implements RfbClassTransformer {
 

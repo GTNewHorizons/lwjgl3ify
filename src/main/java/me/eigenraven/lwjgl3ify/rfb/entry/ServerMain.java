@@ -1,19 +1,18 @@
-package cpw.mods.fml.relauncher;
+package me.eigenraven.lwjgl3ify.rfb.entry;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ServerLaunchWrapper {
+/**
+ * The replacement for ServerLaunchWrapper as the main class when starting the server.
+ */
+public class ServerMain {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
-        new ServerLaunchWrapper().run(args);
+        new ServerMain().run(args);
     }
 
-    private ServerLaunchWrapper() {
-
-    }
+    private ServerMain() {}
 
     private void run(String[] args) {
         Class<?> launchwrapper = null;
@@ -22,7 +21,7 @@ public class ServerLaunchWrapper {
                 .forName("com.gtnewhorizons.retrofuturabootstrap.Main", true, getClass().getClassLoader());
             Class.forName("org.objectweb.asm.Type", true, getClass().getClassLoader());
         } catch (Exception e) {
-            System.err.printf(
+            System.err.print(
                 "We appear to be missing one or more essential library files.\n"
                     + "You will need to add them to your server before FML and Forge will run successfully.");
             e.printStackTrace(System.err);
@@ -37,10 +36,13 @@ public class ServerLaunchWrapper {
             System.arraycopy(args, 0, allArgs, 2, args.length);
             main.invoke(null, (Object) allArgs);
         } catch (Exception e) {
-            System.err.printf("A problem occurred running the Server launcher.");
+            Throwable cause = e;
+            if (e instanceof InvocationTargetException) {
+                cause = e.getCause();
+            }
+            System.err.print("A problem occurred running the Server launcher.");
             e.printStackTrace(System.err);
             System.exit(1);
         }
     }
-
 }
