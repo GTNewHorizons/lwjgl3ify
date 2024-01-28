@@ -43,7 +43,7 @@ dependencies {
     forgePatchesEmbedded('org.ow2.asm:asm-deprecated:7.1')
     forgePatchesEmbedded("org.apache.commons:commons-lang3:3.12.0")
 
-    forgePatchesEmbedded("org.apache.commons:commons-compress:1.21")
+    forgePatchesEmbedded("org.apache.commons:commons-compress:1.25.0")
 
     compileOnly("org.jetbrains:annotations:24.1.0")
 
