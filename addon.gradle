@@ -32,6 +32,10 @@ for (openSpec in addOpens) {
     extraJavaArgs += ["--add-opens", openSpec]
 }
 
+minecraft {
+    injectedTags.put "RECOMMENDED_JAVA_ARGS", extraJavaArgs.join("\t")
+}
+
 SourceSet forgePatchesSet
 SourceSet hotswapSet
 
@@ -105,6 +109,7 @@ def forgePatchesJar = tasks.register(forgePatchesSet.jarTaskName, Jar) {
         }
     }
     exclude("module-info.class")
+    exclude("META-INF/versions/9/module-info.class")
     exclude("log4j2.xml")
     archiveClassifier.set("forgePatches")
     manifest {
@@ -217,8 +222,6 @@ veryNewJavaToolchainSpec.languageVersion.set(JavaLanguageVersion.of(21))
 
 def newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
 
-minecraft.extraRunJvmArguments.addAll(extraJavaArgs)
-
 for (jarTask in ["jar", "shadowJar", "forgePatchesJar"]) {
     tasks.named(jarTask, Jar).configure {
         manifest {
@@ -230,6 +233,7 @@ for (jarTask in ["jar", "shadowJar", "forgePatchesJar"]) {
 for (runTask in ["runClient", "runServer"]) {
     tasks.named(runTask, JavaExec).configure {
         classpath = forgePatchesSet.output + classpath
+        extraJvmArgs = extraJavaArgs
         javaLauncher.set(newJavaLauncher)
     }
 }
@@ -237,7 +241,46 @@ for (runTask in ["runClient", "runServer"]) {
 for (runTask in ["runObfClient", "runObfServer"]) {
     tasks.named(runTask, JavaExec).configure {
         classpath = files(forgePatchesJar) + classpath
+        extraJvmArgs = extraJavaArgs
         javaLauncher.set(newJavaLauncher)
+    }
+}
+
+def CLIENT = Class.forName("com.gtnewhorizons.retrofuturagradle.util.Distribution", true, tasks.runClient.class.classLoader).getField("CLIENT").get(null)
+
+def originalLaunchWrapperPath = project.layout.buildDirectory.file("launchwrapper-1.12.jar").get().asFile
+
+def runWithRelauncher = tasks.register("runClientWithRelauncher", tasks.runClient.class, CLIENT, gradle)
+runWithRelauncher.configure {
+    setup(project)
+    group = "lwjgl3ify"
+    description = "Runs the deobfuscated client while triggering the relauncher"
+    dependsOn(
+        sourceSets.mcLauncher.classesTaskName,
+        tasks.downloadVanillaAssets,
+        tasks.packagePatchedMc,
+        "jar")
+
+    username = minecraft.getUsername()
+    userUUID = minecraft.getUserUUID()
+    lwjglVersion = 2
+
+    systemProperty "gradlestart.bouncerClient", "net.minecraft.launchwrapper.Launch"
+
+    classpath(tasks.packageMcLauncher)
+    classpath(tasks.packagePatchedMc)
+    classpath(originalLaunchWrapperPath)
+    classpath(configurations.patchedMinecraft)
+    classpath(tasks.jar)
+    classpath(configurations.runtimeClasspath)
+    mainClass = "GradleStart"
+
+    doFirst {
+        download.run {
+            src 'https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar'
+            dest originalLaunchWrapperPath
+            overwrite false
+        }
     }
 }
 

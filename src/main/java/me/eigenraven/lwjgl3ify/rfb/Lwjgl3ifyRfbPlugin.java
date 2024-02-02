@@ -1,5 +1,7 @@
 package me.eigenraven.lwjgl3ify.rfb;
 
+import net.minecraft.launchwrapper.Launch;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,6 +17,7 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
 
     @Override
     public void onConstruction(PluginContext ctx) {
+        Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
         EarlyConfig.load();
     }
 

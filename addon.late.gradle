@@ -2,3 +2,11 @@
 // Regular runClient/runServer tasks run in Java 17 in this project.
 tasks.named("runClient17") { enabled = false }
 tasks.named("runServer17") { enabled = false }
+
+tasks.named("jar", Jar) {
+    manifest.attributes.put("TweakClass", "me.eigenraven.lwjgl3ify.relauncher.Lwjgl3ifyRelauncherTweaker")
+}
+
+tasks.named("shadowJar", Jar) {
+    manifest.attributes.put("TweakClass", "me.eigenraven.lwjgl3ify.relauncher.Lwjgl3ifyRelauncherTweaker")
+}

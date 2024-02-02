@@ -1,6 +1,5 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import java.awt.Toolkit;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,9 +12,6 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.system.Configuration;
-import org.lwjgl.system.Platform;
-import org.lwjglx.Sys;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
@@ -40,25 +36,10 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
                     .getClass(),
                 e);
         }
-        // Ensure javax.script.ScriptEngineManager gets loaded
-        try {
-            Class.forName("javax.script.ScriptEngineManager");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        if (Launch.blackboard.get("lwjgl3ify:rfb-booted") != Boolean.TRUE) {
+            return;
         }
-        if (FMLLaunchHandler.side()
-            .isClient()) {
-            clientMacOsFix();
-            Sys.initialize();
-        }
-    }
-
-    private void clientMacOsFix() {
-        if (Platform.get() == Platform.MACOSX) {
-            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
-            Configuration.GLFW_CHECK_THREAD0.set(false);
-            Toolkit.getDefaultToolkit(); // Initialize AWT before GLFW
-        }
+        LateInit.lateConstruct();
     }
 
     @Override
