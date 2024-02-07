@@ -4,6 +4,8 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.minecraft.block.BlockPressurePlate.Sensitivity;
 import net.minecraft.block.material.Material;
@@ -25,6 +27,8 @@ import net.minecraft.world.gen.structure.StructureStrongholdPieces.Stronghold.Do
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.base.Throwables;
+
+import cpw.mods.fml.common.FMLLog;
 
 public class EnumHelper {
 
@@ -126,6 +130,8 @@ public class EnumHelper {
         return null;
     }
 
+    private static final Map<Class<? extends Enum<?>>, Map<String, Enum<?>>> enumConstants = new HashMap<>();
+
     @SuppressWarnings("unchecked")
     public static <T extends Enum<?>> T addEnum(Class<T> enumType, String enumName, Class<?>[] paramTypes,
         Object[] paramValues) {
@@ -134,17 +140,34 @@ public class EnumHelper {
                 "Enum " + enumType.getName() + " was not made extensible, add it to lwjgl3ify configs.");
         }
 
-        try {
-            paramTypes = ArrayUtils.add(paramTypes, 0, String.class);
-            paramValues = ArrayUtils.add(paramValues, 0, enumName);
+        synchronized (enumConstants) {
+            Map<String, Enum<?>> enumMap = enumConstants.computeIfAbsent(enumType, k -> new HashMap<>());
+            if (enumMap.containsKey(enumName.toUpperCase())) {
+                // Inside the addEnum method
+                int suffix = 1;
+                String newName;
+                do {
+                    newName = enumName + "$" + suffix;
+                    suffix++;
+                } while (enumMap.containsKey(newName.toUpperCase()));
 
-            final Method creatorHandle = enumType.getMethod("dynamicCreate", paramTypes);
-            T newValue = (T) creatorHandle.invoke(null, paramValues);
+                // Log Enum Name Change
+                FMLLog.info(String.format("Duplicate Enum found for %s mapping to %s", enumName, newName));
+                enumName = newName;
+            }
+            try {
+                paramTypes = ArrayUtils.add(paramTypes, 0, String.class);
+                paramValues = ArrayUtils.add(paramValues, 0, enumName);
 
-            return newValue;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage(), e);
+                final Method creatorHandle = enumType.getMethod("dynamicCreate", paramTypes);
+                T newValue = (T) creatorHandle.invoke(null, paramValues);
+
+                // Add Enum Name / Class to Map
+                enumMap.put(enumName.toUpperCase(), newValue);
+                return newValue;
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to add enum constant: " + enumName, e);
+            }
         }
     }
 
