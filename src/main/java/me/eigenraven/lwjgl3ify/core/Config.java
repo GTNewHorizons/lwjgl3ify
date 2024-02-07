@@ -74,6 +74,8 @@ public class Config {
     public static boolean OPENGL_DOUBLEBUFFER = true;
     public static boolean OPENGL_CONTEXT_NO_ERROR = false;
 
+    public static boolean OPENAL_ENABLE_HRTF = false;
+
     public static boolean INPUT_INVERT_WHEEL = false;
     public static boolean INPUT_INVERT_X_WHEEL = false;
     public static double INPUT_SCROLL_SPEED = 1.0;
@@ -91,7 +93,8 @@ public class Config {
     public static final String CATEGORY_DEBUG = "debug";
     public static final String CATEGORY_WINDOW = "window";
     public static final String CATEGORY_INPUT = "input";
-    public static final String CATEGORY_GLCONTEXT = "openglContext";
+    public static final String CATEGORY_GLCONTEXT = "openglcontext";
+    public static final String CATEGORY_OPENALCONTEXT = "openalcontext";
 
     public static Configuration config = null;
 
@@ -228,6 +231,9 @@ public class Config {
             CATEGORY_GLCONTEXT,
             OPENGL_CONTEXT_NO_ERROR,
             "Enable GL_KHR_no_error to use faster driver code, but which can cause memory corruption in case of OpenGL errors");
+
+        OPENAL_ENABLE_HRTF = config
+            .getBoolean("enableHRTF", CATEGORY_OPENALCONTEXT, OPENAL_ENABLE_HRTF, "Enable HRTF sound support");
     }
 
     public static Set<String> getExtensibleEnums() {
