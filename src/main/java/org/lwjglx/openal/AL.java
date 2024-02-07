@@ -1,7 +1,5 @@
 package org.lwjglx.openal;
 
-import static me.eigenraven.lwjgl3ify.core.Config.OPENAL_ENABLE_HRTF;
-
 import java.nio.IntBuffer;
 
 import org.lwjgl.openal.ALC10;
@@ -9,6 +7,8 @@ import org.lwjgl.openal.ALCCapabilities;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
+
+import me.eigenraven.lwjgl3ify.core.Config;
 
 public class AL {
 
@@ -45,7 +45,7 @@ public class AL {
 
         /////////////////////////////////////////////
         // HRTF
-        if (!OPENAL_ENABLE_HRTF) {
+        if (!Config.OPENAL_ENABLE_HRTF) {
             attribs.put(org.lwjgl.openal.SOFTHRTF.ALC_HRTF_SOFT);
             attribs.put(org.lwjgl.openal.ALC10.ALC_FALSE);
 
