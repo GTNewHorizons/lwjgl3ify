@@ -76,10 +76,6 @@ tasks.named("compileHotswapJava", JavaCompile).configure {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-tasks.named("compileHotswapScala").configure {
-    enabled = false
-}
-
 repositories {
     mavenCentral()
 }
