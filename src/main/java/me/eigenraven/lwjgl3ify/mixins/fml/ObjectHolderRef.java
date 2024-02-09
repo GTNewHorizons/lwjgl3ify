@@ -5,6 +5,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.RegistryNamespaced;
 
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -61,15 +62,16 @@ public class ObjectHolderRef {
             }
         }
         Object thing;
+        RegistryNamespaced registry;
         if (isBlock) {
-            thing = GameData.getBlockRegistry()
-                .getObject(injectedObject);
+            registry = GameData.getBlockRegistry();
+            thing = registry.getObject(injectedObject);
             if (thing == Blocks.air) {
                 thing = null;
             }
         } else if (isItem) {
-            thing = GameData.getItemRegistry()
-                .getObject(injectedObject);
+            registry = GameData.getItemRegistry();
+            thing = registry.getObject(injectedObject);
         } else {
             thing = null;
         }
