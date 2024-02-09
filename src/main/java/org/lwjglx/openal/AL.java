@@ -8,6 +8,8 @@ import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 
+import me.eigenraven.lwjgl3ify.core.Config;
+
 public class AL {
 
     static ALCdevice alcDevice;
@@ -41,6 +43,17 @@ public class AL {
         attribs.put(org.lwjgl.openal.ALC10.ALC_SYNC);
         attribs.put(contextSynchronized ? org.lwjgl.openal.ALC10.ALC_TRUE : org.lwjgl.openal.ALC10.ALC_FALSE);
 
+        /////////////////////////////////////////////
+        // HRTF
+        if (!Config.OPENAL_ENABLE_HRTF) {
+            attribs.put(org.lwjgl.openal.SOFTHRTF.ALC_HRTF_SOFT);
+            attribs.put(org.lwjgl.openal.ALC10.ALC_FALSE);
+
+            attribs.put(org.lwjgl.openal.SOFTHRTF.ALC_HRTF_ID_SOFT);
+            attribs.put(0);
+        }
+        /////////////////////////////////////////////
+
         attribs.put(org.lwjgl.openal.EXTEfx.ALC_MAX_AUXILIARY_SENDS);
         attribs.put(4);
 
@@ -52,14 +65,12 @@ public class AL {
         long deviceHandle = org.lwjgl.openal.ALC10.alcOpenDevice(defaultDevice);
 
         alcDevice = new ALCdevice(deviceHandle);
-
         final ALCCapabilities deviceCaps = org.lwjgl.openal.ALC.createCapabilities(deviceHandle);
 
         long contextHandle = org.lwjgl.openal.ALC10.alcCreateContext(AL.getDevice().device, attribs);
         alcContext = new ALCcontext(contextHandle);
         org.lwjgl.openal.ALC10.alcMakeContextCurrent(contextHandle);
         org.lwjgl.openal.AL.createCapabilities(deviceCaps);
-
         created = true;
     }
 
