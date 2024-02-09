@@ -78,6 +78,10 @@ tasks.named("shadowJar", Jar) {
     from(hotswapSet.output)
 }
 
+tasks.named("compileForgePatchesJava", JavaCompile).configure {
+    dependsOn("packagePatchedMc", "packageMcLauncher")
+}
+
 tasks.named("compileHotswapJava", JavaCompile).configure {
     javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
     sourceCompatibility = JavaVersion.VERSION_17
