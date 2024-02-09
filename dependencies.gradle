@@ -1,11 +1,11 @@
 
 minecraft {
     mainLwjglVersion = 3
-    lwjgl3Version = "3.3.2"
+    lwjgl3Version = "3.3.3"
 }
 
-def addGtForTesting = false
-def addReikaModsForTesting = false
+def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false"))
+def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false"))
 
 def asmVersion = '9.6'
 def rfbVersion = '0.3.6'

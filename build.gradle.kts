@@ -65,7 +65,7 @@ sourceSets {
     }
     main {
         java {
-            srcDirs += project.file("src/generated/java")
+            srcDir("src/generated/java")
             compileClasspath = forgePatchesSet.output + compileClasspath
             runtimeClasspath = forgePatchesSet.output + runtimeClasspath
         }
@@ -227,22 +227,20 @@ tasks.processResources {
     }
 }
 
-afterEvaluate {
-    publishing.publications.named<MavenPublication>("maven") {
-        artifact(forgePatchesJar)
-        artifact(mmcInstanceFilesZip)
-        artifact(versionJsonArtifact)
-    }
+publishing.publications.named<MavenPublication>("maven") {
+    artifact(forgePatchesJar)
+    artifact(mmcInstanceFilesZip)
+    artifact(versionJsonArtifact)
+}
 
-    val lwjgl2Zips = configurations.named("lwjgl2Classpath").get().resolve()
+runComparisonTool.configure {
+    val lwjgl2Zips = configurations.lwjgl2Classpath.get().resolve()
         .filter { !it.name.contains("natives") && !it.path.contains("net.java.j") }
-    val lwjgl3Zips = configurations.named("lwjgl3Classpath").get().resolve().filter { !it.name.contains("natives") }
+    val lwjgl3Zips = configurations.lwjgl3Classpath.get().resolve().filter { !it.name.contains("natives") }
     val lwjgl2Args = lwjgl2Zips.map { "--2:" + it }
     val lwjgl3Args = lwjgl3Zips.map { "--3:" + it }
-    runComparisonTool.configure {
-        val allArgs = lwjgl2Args + lwjgl3Args + listOf("--M:" + tasks.jar.get().archiveFile.get().asFile.path)
-        args(allArgs)
-    }
+    val allArgs = lwjgl2Args + lwjgl3Args + listOf("--M:" + tasks.jar.get().archiveFile.get().asFile.path)
+    args(allArgs)
 }
 
 val veryNewJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
