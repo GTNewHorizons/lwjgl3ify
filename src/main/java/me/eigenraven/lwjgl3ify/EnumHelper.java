@@ -1,4 +1,4 @@
-package net.minecraftforge.common.util;
+package me.eigenraven.lwjgl3ify;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -30,6 +30,7 @@ import com.google.common.base.Throwables;
 
 import cpw.mods.fml.common.FMLLog;
 
+@SuppressWarnings("unused") // used from asm
 public class EnumHelper {
 
     // Some enums are decompiled with extra arguments, so lets check for that
@@ -173,6 +174,21 @@ public class EnumHelper {
 
     private static final Class<?> extensibleEnumIface;
     private static final MethodHandle setFieldHandle;
+
+    public static void setup() {}
+
+    public static Object getConstructorAccessor(Class<?> enumClass, Class<?>[] additionalParameterTypes) {
+        return null;
+    }
+
+    public static <T extends Enum<?>> T makeEnum(Class<T> enumClass, String value, int ordinal,
+        Class<?>[] additionalTypes, Object[] additionalValues) {
+        return null;
+    }
+
+    public static void blankField(Class<?> enumClass, String fieldName) {}
+
+    public static void cleanEnumCache(Class<?> enumClass) {}
 
     static {
         try {

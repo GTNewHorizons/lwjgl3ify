@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.jar.Manifest;
 import java.util.stream.Stream;
 
+import net.minecraft.launchwrapper.LaunchClassLoader;
+
 import org.intellij.lang.annotations.Pattern;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -53,6 +55,13 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     }
 
     @Override
+    public void onRegistration(@NotNull ExtensibleClassLoader classLoader) {
+        if (classLoader instanceof LaunchClassLoader lcl) {
+            lcl.addClassLoaderExclusion("me.eigenraven.lwjgl3ify.pack200.");
+        }
+    }
+
+    @Override
     public boolean shouldTransformClass(@NotNull ExtensibleClassLoader classLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle nodeHandle) {
@@ -97,8 +106,10 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         nodeHandle.setNode(outputNode);
     }
 
-    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/" };
-    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/" };
+    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/",
+        "java/util/jar/Pack200" };
+    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/",
+        "me/eigenraven/lwjgl3ify/pack200/Pack200" };
     final byte[][] quickScans;
     final String[] excludedPackages;
 

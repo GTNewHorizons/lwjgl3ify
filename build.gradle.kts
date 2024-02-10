@@ -47,18 +47,11 @@ minecraft {
     injectedTags.put("RECOMMENDED_JAVA_ARGS", extraJavaArgs.joinToString("\t"))
 }
 
-lateinit var forgePatchesSet: SourceSet
 lateinit var hotswapSet: SourceSet
 
 sourceSets {
     create("util") {
         java {}
-    }
-    forgePatchesSet = create("forgePatches") {
-        java {
-            compileClasspath += mcpTasks.patchedMcSources.output
-            compileClasspath += mcpTasks.patchedConfiguration
-        }
     }
     hotswapSet = create("hotswap") {
         java {}
@@ -66,8 +59,6 @@ sourceSets {
     main {
         java {
             srcDir("src/generated/java")
-            compileClasspath = forgePatchesSet.output + compileClasspath
-            runtimeClasspath = forgePatchesSet.output + runtimeClasspath
         }
     }
 }
@@ -84,16 +75,11 @@ configurations {
         isCanBeConsumed = false
         isCanBeResolved = false
     }
-    named("forgePatchesImplementation") { extendsFrom(forgePatchesEmbedded) }
     patchedMinecraft { extendsFrom(forgePatchesEmbedded) }
 }
 
 tasks.shadowJar {
     from(hotswapSet.output)
-}
-
-tasks.named<JavaCompile>("compileForgePatchesJava").configure {
-    dependsOn("packagePatchedMc", "packageMcLauncher")
 }
 
 tasks.named<JavaCompile>("compileHotswapJava").configure {
@@ -108,10 +94,9 @@ tasks.createMcLauncherFiles {
     replacementTokens.put("@@BOUNCERSERVER@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
 }
 
-val forgePatchesJar = tasks.register<Jar>(forgePatchesSet.jarTaskName) {
+val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     group = taskGroup
     description = "Packages the forgePatches jar"
-    from(forgePatchesSet.output)
     // Bootleg shadow jar
     forgePatchesEmbedded.resolve().forEach { dep ->
         from(zipTree(dep)) {
@@ -205,7 +190,7 @@ val versionJsonArtifact = artifacts.add("versionJsonElements", versionJsonPath) 
 }
 
 tasks.named("assemble").configure {
-    dependsOn(forgePatchesSet.jarTaskName)
+    dependsOn(forgePatchesJar)
     dependsOn(mmcInstanceFilesZip)
     dependsOn(versionJsonFile)
 }
@@ -260,7 +245,7 @@ for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
 
 for (runTask in listOf(tasks.runClient, tasks.runServer)) {
     runTask.configure {
-        classpath = forgePatchesSet.output + classpath
+        classpath = files(forgePatchesJar) + classpath
         extraJvmArgs = extraJavaArgs
         javaLauncher.set(newJavaLauncher)
     }
