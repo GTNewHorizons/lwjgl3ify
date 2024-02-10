@@ -1,20 +1,33 @@
 package me.eigenraven.lwjgl3ify.relauncher;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +43,7 @@ public class Downloader {
     private final AtomicInteger remainingTasks = new AtomicInteger(0);
     private final List<Path> jarPaths = new ArrayList<>();
     private final List<DownloadTask> tasks = new ArrayList<>();
+    private final ConcurrentLinkedDeque<Throwable> taskExceptions = new ConcurrentLinkedDeque<>();
 
     public Downloader(@NotNull Path mavenCachePath) {
         this.mavenCachePath = Objects.requireNonNull(mavenCachePath);
@@ -100,6 +114,65 @@ public class Downloader {
                     tasks.add(new DownloadTask(url, null, path));
                 }
             }
+        } catch (Exception e) {
+            throw Throwables.propagate(e);
+        }
+    }
+
+    public void runDownloads() {
+        final Path cacheLockPath = mavenCachePath.resolve("cache.lock");
+        if (!Files.exists(cacheLockPath)) {
+            try {
+                Files.createFile(cacheLockPath);
+            } catch (FileAlreadyExistsException e) {
+                // ignored
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        try (final FileChannel cacheChannel = FileChannel.open(cacheLockPath, StandardOpenOption.WRITE)) {
+            FileLock cacheLock = cacheChannel.tryLock(); // released by closing the channel
+            if (cacheLock == null) {
+                Relauncher.logger.warn("Another process is already holding a lock on {}, waiting", cacheLockPath);
+                cacheLock = cacheChannel.lock();
+            }
+
+            final ExecutorService executor = Executors.newFixedThreadPool(4, r -> {
+                final Thread t = new Thread(r);
+                t.setName("Lwjgl3ify downloader");
+                t.setDaemon(true);
+                return t;
+            });
+            try {
+                remainingTasks.addAndGet(tasks.size());
+                for (final DownloadTask task : tasks) {
+                    executor.submit(() -> {
+                        try {
+                            task.download();
+                        } catch (Throwable e) {
+                            taskExceptions.add(e);
+                        }
+                        remainingTasks.decrementAndGet();
+                    });
+                }
+                tasks.clear();
+                executor.shutdown();
+                executor.awaitTermination(7, TimeUnit.DAYS);
+                if (!taskExceptions.isEmpty()) {
+                    Relauncher.logger.error("Exceptions happened during download task execution:");
+                    Throwable last = null;
+                    while (!taskExceptions.isEmpty()) {
+                        last = taskExceptions.removeFirst();
+                        Relauncher.logger.error("Download exception", last);
+                    }
+                    if (last != null) {
+                        throw Throwables.propagate(last);
+                    }
+                }
+            } finally {
+                executor.shutdownNow();
+            }
+
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -214,6 +287,35 @@ public class Downloader {
 
         public Path targetLocation() {
             return targetLocation;
+        }
+
+        public void download() throws IOException {
+            final Path targetDir = targetLocation.getParent();
+
+            Files.createDirectories(targetDir);
+            Files.deleteIfExists(targetLocation);
+
+            byte[] data = null;
+            Relauncher.logger.info("Downloading {} from {}", targetLocation, sourceUrl);
+            for (int retries = 0; retries < 5; retries++) {
+                try {
+                    data = IOUtils.toByteArray(sourceUrl);
+                    if (checksum != null) {
+                        final byte[] dataSum = DigestUtils.sha1(data);
+                        if (!Arrays.equals(dataSum, checksum)) {
+                            throw new RuntimeException("Checksum mismatch for " + targetLocation);
+                        }
+                    }
+                } catch (Exception e) {
+                    if (retries != 4) {
+                        continue;
+                    } else {
+                        throw e;
+                    }
+                }
+            }
+            Objects.requireNonNull(data);
+            Files.write(targetLocation, data);
         }
 
         @Override

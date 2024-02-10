@@ -99,6 +99,9 @@ public class Relauncher {
         final int dlTasks = downloader.remainingTasks();
         if (dlTasks > 0) {
             logger.info("We need to download {} libraries into the cache at {}", dlTasks, mavenDownloadPath);
+            downloader.runDownloads();
+        } else {
+            logger.info("All libraries found in the cache at {}", mavenDownloadPath);
         }
     }
 
@@ -177,6 +180,8 @@ public class Relauncher {
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
         logger.info("Starting relaunched process using args {}", bootstrapCmd);
+        FMLCommonHandler.instance()
+            .exitJava(0, false);
         final Process p = pb.inheritIO()
             .start();
         while (p.isAlive()) {
