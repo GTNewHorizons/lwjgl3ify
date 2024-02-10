@@ -149,15 +149,4 @@ This can lead to inconsistent states, where some methods might see the old value
 ### Development
 
 First, do `./gradlew build` and use the zip in `./build/distributions/lwjgl3ify-VERSION-multimc.zip` to install lwjgl3ify into a 1.7.10 forge instance in Prism.
-
-Then, for developing locally, in the `patches/me.eigenraven.lwjgl3ify.forgepatches.json` file replace:
-```json
-"url": "https://nexus.gtnewhorizons.com/repository/public/"
-```
-with:
-```json
-"MMC-hint": "local"
-```
-Inside the libraries array.
-
-Thanks to `MMC-hint` you can now put the locally built forgePatches jar into `instances/My Modpack/libraries/lwjgl3ify-VERSION-forgePatches.jar`.
+Install the mod jar from `./build/libs/` as usual.

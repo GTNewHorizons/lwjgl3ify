@@ -1715,10 +1715,12 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "lzma:lzma:0.0.1"
+            "name": "lzma:lzma:0.0.1",
+            "url": "https://libraries.minecraft.net/"
         },
         {
-            "name": "com.google.guava:guava:17.0"
+            "name": "com.google.guava:guava:17.0",
+            "url": "https://libraries.minecraft.net/"
         }
     ],
     "logging": {
@@ -1733,7 +1735,7 @@
             "type": "log4j2-xml"
         }
     },
-    "mainClass": "net.minecraft.launchwrapper.Launch",
+    "mainClass": "com.gtnewhorizons.retrofuturabootstrap.Main",
     "minimumLauncherVersion": 21,
     "releaseTime": "@time@",
     "time": "@time@",

@@ -93,6 +93,13 @@ public class Relauncher {
             }
         }
         this.mavenDownloadPath = mavenDownloadPath;
+
+        final Downloader downloader = new Downloader(mavenDownloadPath);
+        downloader.loadTasks();
+        final int dlTasks = downloader.remainingTasks();
+        if (dlTasks > 0) {
+            logger.info("We need to download {} libraries into the cache at {}", dlTasks, mavenDownloadPath);
+        }
     }
 
     // TODO: Unhardcode

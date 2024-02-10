@@ -137,6 +137,21 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     }
 }
 
+val bundleJar = tasks.register<Jar>("bundleJar") {
+    group = taskGroup
+    description = "Bundle jar for distribution on mod hosting platforms"
+    dependsOn(tasks.shadowJar, forgePatchesJar, versionJsonFile)
+    archiveClassifier.set("bundle")
+    manifest.from(tasks.shadowJar.get().manifest)
+    from(zipTree(tasks.shadowJar.flatMap { it.archiveFile }))
+    from(forgePatchesJar) {
+        rename { "me/eigenraven/lwjgl3ify/relauncher/forgePatches.jar" }
+    }
+    from(versionJsonFile) {
+        rename { "me/eigenraven/lwjgl3ify/relauncher/version.json" }
+    }
+}
+
 val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
     group = taskGroup
     description = "Packages the MultiMC patches"
@@ -193,6 +208,7 @@ tasks.named("assemble").configure {
     dependsOn(forgePatchesJar)
     dependsOn(mmcInstanceFilesZip)
     dependsOn(versionJsonFile)
+    dependsOn(bundleJar)
 }
 
 val runComparisonTool = tasks.register<JavaExec>("runComparisonTool") {
@@ -216,6 +232,7 @@ publishing.publications.named<MavenPublication>("maven") {
     artifact(forgePatchesJar)
     artifact(mmcInstanceFilesZip)
     artifact(versionJsonArtifact)
+    artifact(bundleJar)
 }
 
 runComparisonTool.configure {
@@ -235,7 +252,7 @@ val veryNewJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
 
 val newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
 
-for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
+for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar", "bundleJar")) {
     tasks.named<Jar>(jarTask).configure {
         manifest {
             attributes("Multi-Release" to true)
@@ -283,7 +300,7 @@ runWithRelauncher.configure {
     classpath(tasks.packagePatchedMc)
     classpath(originalLaunchWrapperPath)
     classpath(configurations.patchedMinecraft)
-    classpath(tasks.jar)
+    classpath(bundleJar)
     classpath(configurations.runtimeClasspath)
     mainClass = "GradleStart"
 
