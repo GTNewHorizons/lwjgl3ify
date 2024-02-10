@@ -21,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.fakelwjgl3ify.SafeRuntimeExit;
 import me.eigenraven.lwjgl3ify.Tags;
 
 public class Relauncher {
@@ -33,6 +34,10 @@ public class Relauncher {
     final Path mavenDownloadPath;
     final String[] args;
     final String gameVersion;
+
+    private void runtimeExit(int exitCode) {
+        SafeRuntimeExit.exitRuntime(exitCode);
+    }
 
     public Relauncher(String[] args, String gameVersion) {
         this.args = args;
@@ -180,8 +185,7 @@ public class Relauncher {
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
         logger.info("Starting relaunched process using args {}", bootstrapCmd);
-        FMLCommonHandler.instance()
-            .exitJava(0, false);
+        runtimeExit(0);
         final Process p = pb.inheritIO()
             .start();
         while (p.isAlive()) {
@@ -192,7 +196,6 @@ public class Relauncher {
                 continue;
             }
         }
-        FMLCommonHandler.instance()
-            .exitJava(p.exitValue(), false);
+        runtimeExit(p.exitValue());
     }
 }

@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -112,6 +113,14 @@ public class Downloader {
                     final URL url = new URL(mURL);
                     jarPaths.add(path);
                     tasks.add(new DownloadTask(url, null, path));
+                }
+            }
+
+            for (Iterator<DownloadTask> it = tasks.iterator(); it.hasNext();) {
+                final DownloadTask task = it.next();
+                if (Files.exists(task.targetLocation)) {
+                    // already downloaded, skip
+                    it.remove();
                 }
             }
         } catch (Exception e) {
