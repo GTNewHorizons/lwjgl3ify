@@ -15,10 +15,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -46,6 +49,7 @@ public class Downloader {
     private final List<Path> nativePaths = new ArrayList<>();
     private final List<DownloadTask> tasks = new ArrayList<>();
     private final ConcurrentLinkedDeque<Throwable> taskExceptions = new ConcurrentLinkedDeque<>();
+    public final Set<String> busyDownloads = Collections.newSetFromMap(new ConcurrentHashMap<>(8));
 
     public Downloader(@NotNull Path mavenCachePath) {
         this.mavenCachePath = Objects.requireNonNull(mavenCachePath);
@@ -191,11 +195,16 @@ public class Downloader {
                 remainingTasks.addAndGet(tasks.size());
                 for (final DownloadTask task : tasks) {
                     executor.submit(() -> {
+                        final String name = task.targetLocation()
+                            .getFileName()
+                            .toString();
+                        busyDownloads.add(name);
                         try {
                             task.download();
                         } catch (Throwable e) {
                             taskExceptions.add(e);
                         }
+                        busyDownloads.remove(name);
                         remainingTasks.decrementAndGet();
                     });
                 }

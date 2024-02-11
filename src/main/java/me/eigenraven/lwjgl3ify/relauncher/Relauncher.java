@@ -39,8 +39,9 @@ public class Relauncher {
     final String[] args;
     final String gameVersion;
     final Downloader downloader;
+    final RelauncherGui gui;
 
-    private void runtimeExit(int exitCode) {
+    public void runtimeExit(int exitCode) {
         SafeRuntimeExit.exitRuntime(exitCode);
     }
 
@@ -104,12 +105,14 @@ public class Relauncher {
         }
         this.mavenDownloadPath = mavenDownloadPath;
 
+        this.gui = new RelauncherGui(this);
+
         downloader = new Downloader(mavenDownloadPath);
         downloader.loadTasks();
         final int dlTasks = downloader.remainingTasks();
         if (dlTasks > 0) {
             logger.info("We need to download {} libraries into the cache at {}", dlTasks, mavenDownloadPath);
-            downloader.runDownloads();
+            gui.downloadWithGui(downloader);
         } else {
             logger.info("All libraries found in the cache at {}", mavenDownloadPath);
         }
