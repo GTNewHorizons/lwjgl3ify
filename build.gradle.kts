@@ -78,10 +78,6 @@ configurations {
     patchedMinecraft { extendsFrom(forgePatchesEmbedded) }
 }
 
-tasks.shadowJar {
-    from(hotswapSet.output)
-}
-
 tasks.named<JavaCompile>("compileHotswapJava").configure {
     javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
     sourceCompatibility = JavaVersion.VERSION_17.majorVersion
@@ -97,6 +93,8 @@ tasks.createMcLauncherFiles {
 val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     group = taskGroup
     description = "Packages the forgePatches jar"
+    isReproducibleFileOrder = true
+    isPreserveFileTimestamps = false
     // Bootleg shadow jar
     forgePatchesEmbedded.resolve().forEach { dep ->
         from(zipTree(dep)) {
@@ -137,21 +135,6 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     }
 }
 
-val bundleJar = tasks.register<Jar>("bundleJar") {
-    group = taskGroup
-    description = "Bundle jar for distribution on mod hosting platforms"
-    dependsOn(tasks.shadowJar, forgePatchesJar, versionJsonFile)
-    archiveClassifier.set("bundle")
-    manifest.from(tasks.shadowJar.get().manifest)
-    from(zipTree(tasks.shadowJar.flatMap { it.archiveFile }))
-    from(forgePatchesJar) {
-        rename { "me/eigenraven/lwjgl3ify/relauncher/forgePatches.jar" }
-    }
-    from(versionJsonFile) {
-        rename { "me/eigenraven/lwjgl3ify/relauncher/version.json" }
-    }
-}
-
 val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
     group = taskGroup
     description = "Packages the MultiMC patches"
@@ -177,7 +160,6 @@ val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFi
 val versionJsonFile = tasks.register("versionJson") {
     group = taskGroup
     description = "Generates the vanilla launcher version.json file"
-    dependsOn("reobfJar")
     inputs.file("launcher-metadata/version.json")
     inputs.property("version", project.version)
     inputs.property("jvmArgs", extraJavaArgs)
@@ -198,6 +180,18 @@ val versionJsonFile = tasks.register("versionJson") {
     }
 }
 
+tasks.shadowJar {
+    dependsOn(forgePatchesJar, versionJsonFile)
+    from(hotswapSet.output)
+    // Use .zip because shadow unpacks .jar archives into the parent jar
+    from(forgePatchesJar) {
+        rename { "me/eigenraven/lwjgl3ify/relauncher/forgePatches.zip" }
+    }
+    from(versionJsonFile) {
+        rename { "me/eigenraven/lwjgl3ify/relauncher/version.json" }
+    }
+}
+
 val versionJsonArtifact = artifacts.add("versionJsonElements", versionJsonPath) {
     type = "json"
     classifier = "version"
@@ -208,7 +202,6 @@ tasks.named("assemble").configure {
     dependsOn(forgePatchesJar)
     dependsOn(mmcInstanceFilesZip)
     dependsOn(versionJsonFile)
-    dependsOn(bundleJar)
 }
 
 val runComparisonTool = tasks.register<JavaExec>("runComparisonTool") {
@@ -232,7 +225,6 @@ publishing.publications.named<MavenPublication>("maven") {
     artifact(forgePatchesJar)
     artifact(mmcInstanceFilesZip)
     artifact(versionJsonArtifact)
-    artifact(bundleJar)
 }
 
 runComparisonTool.configure {
@@ -252,7 +244,7 @@ val veryNewJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
 
 val newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
 
-for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar", "bundleJar")) {
+for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
     tasks.named<Jar>(jarTask).configure {
         manifest {
             attributes("Multi-Release" to true)
@@ -287,6 +279,7 @@ runWithRelauncher.configure {
         sourceSets.mcLauncher.map { it.classesTaskName },
         tasks.downloadVanillaAssets,
         tasks.packagePatchedMc,
+        tasks.reobfJar,
         "jar"
     )
 
@@ -300,7 +293,7 @@ runWithRelauncher.configure {
     classpath(tasks.packagePatchedMc)
     classpath(originalLaunchWrapperPath)
     classpath(configurations.patchedMinecraft)
-    classpath(bundleJar)
+    classpath(tasks.reobfJar)
     classpath(configurations.runtimeClasspath)
     mainClass = "GradleStart"
 

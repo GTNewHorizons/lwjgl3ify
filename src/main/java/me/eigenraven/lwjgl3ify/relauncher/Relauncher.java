@@ -7,14 +7,18 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import net.minecraft.launchwrapper.Launch;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +38,7 @@ public class Relauncher {
     final Path mavenDownloadPath;
     final String[] args;
     final String gameVersion;
+    final Downloader downloader;
 
     private void runtimeExit(int exitCode) {
         SafeRuntimeExit.exitRuntime(exitCode);
@@ -75,8 +80,8 @@ public class Relauncher {
                 cacheDir = Paths.get(userHome, ".cache", "lwjgl3ify");
             }
             logger.warn(
-                "An error occurred while the lwjgl3ify relauncher cache path was created. The environment variable TEMP or LOCALAPPDATA could be set incorrectly. Using the default cache location: "
-                    + cacheDir,
+                "An error occurred while the lwjgl3ify relauncher cache path was created. The environment variable TEMP or LOCALAPPDATA could be set incorrectly. Using the default cache location: {}",
+                cacheDir,
                 e);
         }
         osCache = cacheDir;
@@ -99,7 +104,7 @@ public class Relauncher {
         }
         this.mavenDownloadPath = mavenDownloadPath;
 
-        final Downloader downloader = new Downloader(mavenDownloadPath);
+        downloader = new Downloader(mavenDownloadPath);
         downloader.loadTasks();
         final int dlTasks = downloader.remainingTasks();
         if (dlTasks > 0) {
@@ -113,23 +118,36 @@ public class Relauncher {
     // TODO: Unhardcode
     public Path javaBinary = Paths.get("/usr/lib/jvm/java-21-openjdk/bin/java");
 
-    public List<String> calculateClasspath() {
+    public List<String> createClasspath() {
         final List<String> classpath = new ArrayList<>();
-        // TODO: Add lwjgl, rfb
-        for (final String cpEntry : System.getProperty("java.class.path")
-            .split(File.pathSeparator)) {
-            final Path cpFile = Paths.get(cpEntry);
+        try {
+            // Extract RFB&libraries jar
+            final byte[] forgePatchesData = IOUtils.toByteArray(
+                Objects.requireNonNull(
+                    Relauncher.class.getResourceAsStream("forgePatches.zip"),
+                    "missing bundled forgePatches jar"));
+            final String forgePatchesDigest = DigestUtils.sha256Hex(forgePatchesData);
+            final Path jarsDir = mavenDownloadPath.getParent()
+                .resolve("jars");
+            Files.createDirectories(jarsDir);
+            final Path jarFile = jarsDir.resolve("forgePatches-" + forgePatchesDigest + ".jar");
+            if (!Files.exists(jarFile)) {
+                logger.info("Extracting bundled early classpath libraries to {}", jarFile);
+                Files.write(jarFile, forgePatchesData, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
+            } else {
+                logger.info("Using previously extracted bundled early classpath libraries from {}", jarFile);
+            }
+            classpath.add(jarFile.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (final Path cpFile : downloader.jarPaths()) {
             if (!Files.exists(cpFile)) {
                 continue;
             }
-            final String cpFileName = cpFile.getFileName()
-                .toString();
-            if (cpFileName.startsWith("lwjgl") || cpFileName.contains("commons-io")
-                || cpFileName.contains("commons-lang")
-                || cpFileName.contains("commons-compress")) {
-                continue;
-            }
-            classpath.add(cpEntry);
+            classpath.add(
+                cpFile.toAbsolutePath()
+                    .toString());
         }
         return classpath;
     }
@@ -139,20 +157,8 @@ public class Relauncher {
 
         final List<String> cmd = new ArrayList<>();
         cmd.addAll(Arrays.asList(RECOMMENDED_JAVA_ARGS));
-        cmd.addAll(
-            Arrays.asList(
-                "--version",
-                gameVersion,
-                "--gameDir",
-                Launch.minecraftHome.toString(),
-                "--assetsDir",
-                Launch.assetsDir.toString(),
-                "--tweakClass",
-                "cpw.mods.fml.common.launcher.FMLTweaker"));
-        cmd.addAll(Arrays.asList(args));
         cmd.add("-cp");
-        cmd.add(StringUtils.join(calculateClasspath(), File.pathSeparatorChar));
-
+        cmd.add(StringUtils.join(createClasspath(), File.pathSeparatorChar));
         // Forward any custom system properties
         outer: for (final Map.Entry<Object, Object> prop : System.getProperties()
             .entrySet()) {
@@ -171,6 +177,20 @@ public class Relauncher {
             cmd.add("-D" + key + "=" + value);
         }
 
+        cmd.add("com.gtnewhorizons.retrofuturabootstrap.Main");
+
+        cmd.addAll(
+            Arrays.asList(
+                "--version",
+                gameVersion,
+                "--gameDir",
+                Launch.minecraftHome.toString(),
+                "--assetsDir",
+                Launch.assetsDir.toString(),
+                "--tweakClass",
+                "cpw.mods.fml.common.launcher.FMLTweaker"));
+        cmd.addAll(Arrays.asList(args));
+
         final Path argFile = Files.createTempFile("lwjgl3ify-relaunch-", ".arg");
         Files.write(
             argFile,
@@ -185,7 +205,6 @@ public class Relauncher {
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
         logger.info("Starting relaunched process using args {}", bootstrapCmd);
-        runtimeExit(0);
         final Process p = pb.inheritIO()
             .start();
         while (p.isAlive()) {

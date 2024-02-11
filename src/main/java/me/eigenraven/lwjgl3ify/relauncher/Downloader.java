@@ -43,6 +43,7 @@ public class Downloader {
     public final @NotNull Path mavenCachePath;
     private final AtomicInteger remainingTasks = new AtomicInteger(0);
     private final List<Path> jarPaths = new ArrayList<>();
+    private final List<Path> nativePaths = new ArrayList<>();
     private final List<DownloadTask> tasks = new ArrayList<>();
     private final ConcurrentLinkedDeque<Throwable> taskExceptions = new ConcurrentLinkedDeque<>();
 
@@ -54,19 +55,32 @@ public class Downloader {
         return remainingTasks.get() + tasks.size();
     }
 
+    public List<Path> jarPaths() {
+        return jarPaths;
+    }
+
+    public List<Path> nativePaths() {
+        return nativePaths;
+    }
+
     public void loadTasks() {
         try {
+            String osFull = "";
             String os = "";
+            String archBits = SystemUtils.OS_ARCH.contains("64") ? "64" : "32";
             final boolean isArm = SystemUtils.OS_ARCH.equalsIgnoreCase("aarch64")
                 || SystemUtils.OS_ARCH.toLowerCase(Locale.ROOT)
                     .startsWith("arm");
             if (SystemUtils.IS_OS_WINDOWS) {
-                os = isArm ? "windows-arm64" : "windows";
+                osFull = isArm ? "windows-arm64" : "windows";
+                os = "windows";
             } else if (SystemUtils.IS_OS_MAC) {
-                os = isArm ? "osx-arm64" : "osx";
+                osFull = isArm ? "osx-arm64" : "osx";
+                os = "osx";
             } else if (SystemUtils.IS_OS_LINUX) {
                 // There is also linux-arm32, but does anyone care?
-                os = isArm ? "linux-arm64" : "linux";
+                osFull = isArm ? "linux-arm64" : "linux";
+                os = "linux";
             } else {
                 throw new UnsupportedOperationException(
                     "Unknown operating system " + SystemUtils.OS_NAME + ":" + SystemUtils.OS_ARCH);
@@ -83,7 +97,7 @@ public class Downloader {
                 .getAsJsonArray("libraries");
             for (final JsonElement libraryR : libraries) {
                 final JsonObject elLibrary = libraryR.getAsJsonObject();
-                if (!passesRules(elLibrary, os)) {
+                if (!passesRules(elLibrary, osFull)) {
                     continue;
                 }
                 final String elGav = elLibrary.getAsJsonPrimitive("name")
@@ -97,7 +111,21 @@ public class Downloader {
                         addArtifactDownload(elGav, elArtifact, tasks);
                     } else {
                         // Classifiers
-                        // TODO - twitch, jinput
+                        final JsonObject elNatives = elLibrary.getAsJsonObject("natives");
+                        if (!elNatives.has(os)) {
+                            continue;
+                        }
+                        final String classifier = elNatives.getAsJsonPrimitive(os)
+                            .getAsString()
+                            .replace("${arch}", archBits);
+                        final JsonObject elClassifiers = elDownloads.getAsJsonObject("classifiers");
+                        if (!elClassifiers.has(classifier)) {
+                            throw new IllegalStateException(
+                                "Missing download for " + elGav + " classifier " + classifier);
+                        }
+                        final JsonObject elArtifact = elClassifiers.getAsJsonObject(classifier);
+                        final DownloadTask task = addArtifactDownload(elGav + ":" + classifier, elArtifact, tasks);
+                        nativePaths.add(task.targetLocation());
                     }
                 } else {
                     // Maven artifact
@@ -166,7 +194,9 @@ public class Downloader {
                 }
                 tasks.clear();
                 executor.shutdown();
-                executor.awaitTermination(7, TimeUnit.DAYS);
+                if (!executor.awaitTermination(1, TimeUnit.DAYS)) {
+                    throw new IllegalStateException("executor won't terminate");
+                }
                 if (!taskExceptions.isEmpty()) {
                     Relauncher.logger.error("Exceptions happened during download task execution:");
                     Throwable last = null;
@@ -187,7 +217,7 @@ public class Downloader {
         }
     }
 
-    private void addArtifactDownload(String name, JsonObject elArtifact, List<DownloadTask> tasks)
+    private DownloadTask addArtifactDownload(String name, JsonObject elArtifact, List<DownloadTask> tasks)
         throws MalformedURLException, DecoderException {
         final String elPath;
         if (elArtifact.has("path")) {
@@ -205,7 +235,9 @@ public class Downloader {
         final Path path = mavenCachePath.resolve(elPath);
         final byte[] sha1 = Hex.decodeHex(elSha1.toCharArray());
         jarPaths.add(path);
-        tasks.add(new DownloadTask(url, sha1, path));
+        final DownloadTask task = new DownloadTask(url, sha1, path);
+        tasks.add(task);
+        return task;
     }
 
     private static boolean passesRules(final JsonObject library, final String os) {
@@ -332,13 +364,13 @@ public class Downloader {
             if (obj == this) return true;
             if (obj == null || obj.getClass() != this.getClass()) return false;
             var that = (DownloadTask) obj;
-            return Objects.equals(this.sourceUrl, that.sourceUrl) && Objects.equals(this.checksum, that.checksum)
+            return Objects.equals(this.sourceUrl, that.sourceUrl) && Arrays.equals(this.checksum, that.checksum)
                 && Objects.equals(this.targetLocation, that.targetLocation);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(sourceUrl, checksum, targetLocation);
+            return Objects.hash(sourceUrl, Arrays.hashCode(checksum), targetLocation);
         }
 
         @Override
