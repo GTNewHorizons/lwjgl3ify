@@ -63,6 +63,7 @@ public class Downloader {
         return nativePaths;
     }
 
+    @SuppressWarnings("deprecated") // Need to use deprecated Gson methods for compatibility
     public void loadTasks() {
         try {
             String osFull = "";
@@ -89,7 +90,7 @@ public class Downloader {
             try (final InputStream is = Downloader.class.getResourceAsStream("version.json");
                 final BufferedInputStream bis = new BufferedInputStream(is);
                 final InputStreamReader rdr = new InputStreamReader(bis, StandardCharsets.UTF_8)) {
-                versionRoot = JsonParser.parseReader(rdr);
+                versionRoot = new JsonParser().parse(rdr);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -143,6 +144,12 @@ public class Downloader {
                     tasks.add(new DownloadTask(url, null, path));
                 }
             }
+
+            // Add the minecraft client download
+            final JsonObject elClientDownload = versionRoot.getAsJsonObject()
+                .getAsJsonObject("downloads")
+                .getAsJsonObject("client");
+            addArtifactDownload("net.minecraft:client:1.7.10", elClientDownload, tasks);
 
             for (Iterator<DownloadTask> it = tasks.iterator(); it.hasNext();) {
                 final DownloadTask task = it.next();

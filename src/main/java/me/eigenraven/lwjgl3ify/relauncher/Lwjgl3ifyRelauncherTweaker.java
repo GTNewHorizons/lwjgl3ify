@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.CoreModManager;
 import cpw.mods.fml.relauncher.FMLLaunchHandler;
+import cpw.mods.fml.relauncher.FMLRelaunchLog;
 
 public class Lwjgl3ifyRelauncherTweaker implements ITweaker {
 
@@ -45,13 +46,33 @@ public class Lwjgl3ifyRelauncherTweaker implements ITweaker {
             File myFile = new File(".");
             if (mySrc.getProtocol()
                 .equals("file")) {
-                myFile = Paths.get(myFile.toURI())
+                myFile = Paths.get(mySrc.toURI())
                     .toFile();
             }
+            final String coreModName = myFile.getName();
+            boolean isReparseable = !System.getProperty("java.class.path")
+                .contains(coreModName);
+            FMLRelaunchLog.log.getLogger()
+                .info("Lwjgl3ify reparseable status: {} (name: {})", isReparseable, coreModName);
             // If this tweaker is loaded, FML skips loading the coremod by default.
             Launch.classLoader.addTransformerExclusion("me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod");
             final Class<CoreModManager> cmmClass = (Class<CoreModManager>) Class
                 .forName("cpw.mods.fml.relauncher.CoreModManager", true, Launch.classLoader);
+
+            if (isReparseable) {
+                final Method cmmGetReparseableCoremods = cmmClass.getMethod("getReparseableCoremods");
+                final Method cmmGetLoadedCoremods = cmmClass.getMethod("getLoadedCoremods");
+                final List<String> reparseableCoremods = (List<String>) cmmGetReparseableCoremods.invoke(null);
+                final List<String> loadedCoremods = (List<String>) cmmGetLoadedCoremods.invoke(null);
+                if (loadedCoremods.remove(coreModName)) {
+                    FMLRelaunchLog.log.getLogger()
+                        .info("Removed lwjgl3ify from the list of non-mod coremods");
+                }
+                if (!reparseableCoremods.contains(coreModName)) {
+                    reparseableCoremods.add(coreModName);
+                }
+            }
+
             final Method cmmAddCoremod = cmmClass
                 .getDeclaredMethod("loadCoreMod", LaunchClassLoader.class, String.class, File.class);
             cmmAddCoremod.setAccessible(true);
