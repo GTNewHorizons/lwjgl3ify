@@ -39,7 +39,7 @@ public class Relauncher {
     final String[] args;
     final String gameVersion;
     final Downloader downloader;
-    final RelauncherGui gui;
+    final RelauncherUserInterface gui;
 
     public void runtimeExit(int exitCode) {
         SafeRuntimeExit.exitRuntime(exitCode);
@@ -104,8 +104,9 @@ public class Relauncher {
             }
         }
         this.mavenDownloadPath = mavenDownloadPath;
+        RelauncherConfig.load();
 
-        this.gui = new RelauncherGui(this);
+        this.gui = new RelauncherUserInterface(this);
 
         downloader = new Downloader(mavenDownloadPath);
         downloader.loadTasks();
@@ -116,6 +117,8 @@ public class Relauncher {
         } else {
             logger.info("All libraries found in the cache at {}", mavenDownloadPath);
         }
+
+        gui.startSettingsIfNeeded();
     }
 
     // TODO: Unhardcode
