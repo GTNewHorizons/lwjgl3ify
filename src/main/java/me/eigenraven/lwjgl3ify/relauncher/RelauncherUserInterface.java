@@ -4,10 +4,13 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.management.MBeanServer;
@@ -15,9 +18,11 @@ import javax.management.ObjectName;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +46,7 @@ public class RelauncherUserInterface {
 
     private final Relauncher relauncher;
     private boolean swingInitialized = false;
+    public boolean runClicked = false;
 
     public RelauncherUserInterface(Relauncher relauncher) {
         this.relauncher = relauncher;
@@ -187,6 +193,12 @@ public class RelauncherUserInterface {
             contents.optMinMemory.setMajorTickSpacing(memTickSpacing);
             contents.optMaxMemory.setMajorTickSpacing(memTickSpacing);
 
+            // Update labels
+            contents.warningLowerTheMemoryTextPane.setVisible(
+                Runtime.getRuntime()
+                    .totalMemory() > 1024L * 1024L * 1024L);
+            contents.labelMinJavaVer.setText(contents.labelMinJavaVer.getText() + "17");
+
             // Set settings values
             final RelauncherConfig.ConfigObject initCfg = RelauncherConfig.config;
             final DefaultComboBoxModel<String> modelJavaPaths = new DefaultComboBoxModel<>(
@@ -212,8 +224,78 @@ public class RelauncherUserInterface {
             contents.optRfbDumpClasses.setSelected(initCfg.rfbDumpClasses);
             contents.optRfbDumpTransformers.setSelected(initCfg.rfbDumpPerTransformer);
 
+            refreshJavaInstalls(contents);
+            saveConfig(contents);
+
+            settingsDialog.addWindowListener(new WindowAdapter() {
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    saveConfig(contents);
+                }
+            });
+
+            contents.buttonAddJava.addActionListener(al -> {
+                final JFileChooser jfc = new JFileChooser();
+                jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                jfc.setDialogType(JFileChooser.OPEN_DIALOG);
+                jfc.setDialogTitle("Pick java executable");
+                final FileFilter fileFilter = new FileFilter() {
+
+                    @Override
+                    public boolean accept(File f) {
+                        if (f == null) {
+                            return false;
+                        }
+                        final String name = f.getName();
+                        return !f.isFile() || name.equalsIgnoreCase("java")
+                            || name.equalsIgnoreCase("javaw")
+                            || name.equalsIgnoreCase("java.exe")
+                            || name.equalsIgnoreCase("javaw.exe");
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "Java binaries";
+                    }
+                };
+                jfc.addChoosableFileFilter(fileFilter);
+                jfc.setFileFilter(fileFilter);
+                final int result = jfc.showOpenDialog(settingsDialog);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    final String path = jfc.getSelectedFile()
+                        .getAbsolutePath();
+                    final DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) contents.comboJavaExecutable
+                        .getModel();
+                    model.addElement(path);
+                    model.setSelectedItem(path);
+                    refreshJavaInstalls(contents);
+                }
+            });
+
+            contents.buttonRun.addActionListener(al -> {
+                runClicked = true;
+                saveConfig(contents);
+                settingsDialog.dispose();
+            });
+
             settingsDialog.setVisible(true);
         });
+    }
+
+    private static void refreshJavaInstalls(SettingsDialog contents) {
+        final DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) contents.comboJavaExecutable
+            .getModel();
+        final String oldSelection = Objects.toString(model.getSelectedItem());
+        final List<Path> validInstalls = JvmLocator.detectJavaInstalls(comboToList(model));
+        model.removeAllElements();
+        for (final Path p : validInstalls) {
+            final String pString = p.toString();
+            model.addElement(pString);
+            if (pString.equals(oldSelection)) {
+                model.setSelectedItem(pString);
+            }
+        }
     }
 
     private static <T> List<T> comboToList(ComboBoxModel<T> model) {

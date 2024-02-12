@@ -21,7 +21,7 @@ public class RelauncherConfig {
         G1GC(new String[] { "-XX:+UseG1GC" }),
         ZGC(new String[] { "-XX:+UseZGC" }),
         Shenandoah(new String[] { "-XX:+UseShenandoahGC" }),
-        GenZGC(new String[] { "-XX:+UseZGC", "-XX:+ZGenerational" }),
+        GenerationalZGC(new String[] { "-XX:+UseZGC", "-XX:+ZGenerational" }),
         Custom(new String[] {});
 
         public final String[] FLAGS;

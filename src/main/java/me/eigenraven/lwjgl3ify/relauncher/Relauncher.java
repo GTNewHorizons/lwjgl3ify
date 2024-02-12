@@ -19,8 +19,10 @@ import net.minecraft.launchwrapper.Launch;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -117,12 +119,7 @@ public class Relauncher {
         } else {
             logger.info("All libraries found in the cache at {}", mavenDownloadPath);
         }
-
-        gui.startSettingsIfNeeded();
     }
-
-    // TODO: Unhardcode
-    public Path javaBinary = Paths.get("/usr/lib/jvm/java-21-openjdk/bin/java");
 
     public List<String> createClasspath() {
         final List<String> classpath = new ArrayList<>();
@@ -160,9 +157,15 @@ public class Relauncher {
 
     @SuppressWarnings("deprecation")
     public void run() throws IOException {
+        gui.startSettingsIfNeeded();
+        if (!gui.runClicked) {
+            runtimeExit(0);
+            return;
+        }
 
         final List<String> cmd = new ArrayList<>();
         cmd.addAll(Arrays.asList(RECOMMENDED_JAVA_ARGS));
+        cmd.addAll(RelauncherConfig.config.toJvmArgs());
         cmd.add("-cp");
         cmd.add(StringUtils.join(createClasspath(), File.pathSeparatorChar));
         // Forward any custom system properties
@@ -206,7 +209,11 @@ public class Relauncher {
             StandardCharsets.UTF_8);
 
         final List<String> bootstrapCmd = new ArrayList<>();
-        bootstrapCmd.add(javaBinary.toString());
+        bootstrapCmd.add(
+            ArrayUtils.get(
+                RelauncherConfig.config.javaInstallationsCache,
+                RelauncherConfig.config.javaInstallation,
+                SystemUtils.IS_OS_WINDOWS ? "javaw" : "java"));
         bootstrapCmd.add("@" + argFile);
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
