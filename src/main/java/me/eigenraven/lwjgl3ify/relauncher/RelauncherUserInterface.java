@@ -213,7 +213,7 @@ public class RelauncherUserInterface {
             contents.optGC.setSelectedItem(initCfg.garbageCollector);
             contents.optCustom.getDocument()
                 .putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
-            contents.optCustom.setText(StringUtils.joinWith("\n", (Object[]) initCfg.customOptions));
+            contents.optCustom.setText(String.join("\n", initCfg.customOptions));
             contents.optForwardLogs.setSelected(initCfg.forwardLogs);
             contents.optDebugAgent.setSelected(initCfg.allowDebugger);
             contents.optDebugSuspend.setSelected(initCfg.waitForDebugger);

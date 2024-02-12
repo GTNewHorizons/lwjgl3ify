@@ -17,7 +17,7 @@ pluginManagement {
 }
 
 plugins {
-    id 'com.gtnewhorizons.gtnhsettingsconvention' version '1.0.13'
+    id 'com.gtnewhorizons.gtnhsettingsconvention' version '1.0.14'
 }
 
 

@@ -98,7 +98,6 @@ public class RelauncherConfig {
 
     public static ConfigObject config = new ConfigObject();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting()
-        .setLenient()
         .create();
 
     public static void load() {

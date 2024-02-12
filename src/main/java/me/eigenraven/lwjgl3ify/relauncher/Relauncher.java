@@ -19,7 +19,6 @@ import net.minecraft.launchwrapper.Launch;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
@@ -209,11 +208,15 @@ public class Relauncher {
             StandardCharsets.UTF_8);
 
         final List<String> bootstrapCmd = new ArrayList<>();
-        bootstrapCmd.add(
-            ArrayUtils.get(
-                RelauncherConfig.config.javaInstallationsCache,
-                RelauncherConfig.config.javaInstallation,
-                SystemUtils.IS_OS_WINDOWS ? "javaw" : "java"));
+        final String[] javas = RelauncherConfig.config.javaInstallationsCache;
+        final int javaIdx = RelauncherConfig.config.javaInstallation;
+        final String javaPath;
+        if (javaIdx < 0 || javaIdx >= javas.length) {
+            javaPath = SystemUtils.IS_OS_WINDOWS ? "javaw" : "java";
+        } else {
+            javaPath = javas[javaIdx];
+        }
+        bootstrapCmd.add(javaPath);
         bootstrapCmd.add("@" + argFile);
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
