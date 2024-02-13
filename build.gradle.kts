@@ -91,6 +91,7 @@ tasks.createMcLauncherFiles {
 }
 
 val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
+    dependsOn(tasks.compileJava)
     group = taskGroup
     description = "Packages the forgePatches jar"
     isReproducibleFileOrder = true
@@ -106,6 +107,9 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     exclude("module-info.class")
     exclude("META-INF/versions/9/module-info.class")
     exclude("log4j2.xml")
+    from(sourceSets.main.map { it.output.classesDirs }) {
+        include("me/eigenraven/lwjgl3ify/rfb/entry/ServerMain.class")
+    }
     archiveClassifier.set("forgePatches")
     manifest {
         val libraryList = listOf(
