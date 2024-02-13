@@ -43,7 +43,7 @@ public class RelauncherConfig {
         public GCOption garbageCollector = GCOption.G1GC;
         public String[] customOptions = new String[0];
         // Advanced
-        public boolean forwardLogs = true;
+        public boolean forwardLogs = false;
         public boolean allowDebugger = false;
         public boolean waitForDebugger = false;
         public boolean mixinDebug = false;

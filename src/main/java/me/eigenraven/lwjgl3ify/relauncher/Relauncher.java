@@ -2,6 +2,10 @@ package me.eigenraven.lwjgl3ify.relauncher;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -41,6 +45,7 @@ public class Relauncher {
     final String gameVersion;
     final Downloader downloader;
     final RelauncherUserInterface gui;
+    Path forgePatchesJarPath;
 
     public void runtimeExit(int exitCode) {
         SafeRuntimeExit.exitRuntime(exitCode);
@@ -140,6 +145,7 @@ public class Relauncher {
                 logger.info("Using previously extracted bundled early classpath libraries from {}", jarFile);
             }
             classpath.add(jarFile.toString());
+            this.forgePatchesJarPath = jarFile;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -154,12 +160,36 @@ public class Relauncher {
         return classpath;
     }
 
+    private static long getCurrentPid() {
+        final RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+        // getName is implemented to return getPid() + "@" + hostname
+        final String combinedPidHostname = runtime.getName();
+        final String[] parts = combinedPidHostname.split("@", 2);
+        return Integer.parseInt(parts[0]);
+    }
+
     @SuppressWarnings("deprecation")
     public void run() throws IOException {
         gui.startSettingsIfNeeded();
         if (!gui.runClicked) {
             runtimeExit(0);
             return;
+        }
+
+        URL myJarUrl = Relauncher.class.getProtectionDomain()
+            .getCodeSource()
+            .getLocation();
+        // In case of broken LW-like classloaders that pass in jar: urls as the code source
+        while ("jar".equalsIgnoreCase(myJarUrl.getProtocol())) {
+            final String str = myJarUrl.toString();
+            myJarUrl = new URL(str.substring(4, str.lastIndexOf('!')));
+        }
+        String[] combinedArgs = args;
+        final Path myJarPath;
+        try {
+            myJarPath = Paths.get(myJarUrl.toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
 
         final List<String> cmd = new ArrayList<>();
@@ -217,20 +247,45 @@ public class Relauncher {
             javaPath = javas[javaIdx];
         }
         bootstrapCmd.add(javaPath);
-        bootstrapCmd.add("@" + argFile);
+        if (RelauncherConfig.config.forwardLogs) {
+            bootstrapCmd.add("@" + argFile);
+        } else {
+            bootstrapCmd.add("-cp");
+            bootstrapCmd.add(forgePatchesJarPath + File.pathSeparator + myJarPath);
+            bootstrapCmd.add("--disable-@files");
+            bootstrapCmd.add("me.eigenraven.lwjgl3ify.relauncherstub.RelauncherStubMain");
+            bootstrapCmd.add(Long.toString(getCurrentPid()));
+            bootstrapCmd.add("true");
+            bootstrapCmd.add(javaPath);
+            bootstrapCmd.add("@" + argFile);
+        }
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);
-        logger.info("Starting relaunched process using args {}", bootstrapCmd);
-        final Process p = pb.inheritIO()
-            .start();
-        while (p.isAlive()) {
-            try {
-                p.waitFor();
-                break;
-            } catch (InterruptedException e) {
-                continue;
-            }
+        pb.inheritIO();
+        if (!RelauncherConfig.config.forwardLogs) {
+            pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
         }
-        runtimeExit(p.exitValue());
+        logger.info("Starting relaunched process using args {}", bootstrapCmd);
+        final Process p = pb.start();
+        if (RelauncherConfig.config.forwardLogs) {
+            while (p.isAlive()) {
+                try {
+                    p.waitFor();
+                    break;
+                } catch (InterruptedException e) {
+                    continue;
+                }
+            }
+            runtimeExit(p.exitValue());
+        } else {
+            // Wait for the "quit" message from the child process
+            try {
+                p.getInputStream()
+                    .read(new byte[6]);
+            } catch (IOException e) {
+                // ignored
+            }
+            runtimeExit(0);
+        }
     }
 }

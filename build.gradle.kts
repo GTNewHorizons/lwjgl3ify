@@ -47,22 +47,6 @@ minecraft {
     injectedTags.put("RECOMMENDED_JAVA_ARGS", extraJavaArgs.joinToString("\t"))
 }
 
-lateinit var hotswapSet: SourceSet
-
-sourceSets {
-    create("util") {
-        java {}
-    }
-    hotswapSet = create("hotswap") {
-        java {}
-    }
-    main {
-        java {
-            srcDir("src/generated/java")
-        }
-    }
-}
-
 lateinit var forgePatchesEmbedded: Configuration
 lateinit var versionJsonElements: Configuration
 
@@ -78,10 +62,33 @@ configurations {
     patchedMinecraft { extendsFrom(forgePatchesEmbedded) }
 }
 
-tasks.named<JavaCompile>("compileHotswapJava").configure {
+lateinit var hotswapSet: SourceSet
+lateinit var relauncherStubSet: SourceSet
+
+sourceSets {
+    create("util")
+    hotswapSet = create("hotswap")
+    relauncherStubSet = create("relauncherStub") {
+        compileClasspath += forgePatchesEmbedded + configurations.shadowImplementation.get()
+    }
+    main {
+        java {
+            srcDir("src/generated/java")
+        }
+    }
+}
+
+tasks.named<JavaCompile>(hotswapSet.compileJavaTaskName).configure {
     javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
     sourceCompatibility = JavaVersion.VERSION_17.majorVersion
     targetCompatibility = JavaVersion.VERSION_17.majorVersion
+}
+
+tasks.named<JavaCompile>(relauncherStubSet.compileJavaTaskName).configure {
+    javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
+    sourceCompatibility = JavaVersion.VERSION_17.majorVersion
+    targetCompatibility = JavaVersion.VERSION_17.majorVersion
+    options.release = 17
 }
 
 tasks.createMcLauncherFiles {
@@ -110,6 +117,7 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     from(sourceSets.main.map { it.output.classesDirs }) {
         include("me/eigenraven/lwjgl3ify/rfb/entry/ServerMain.class")
     }
+    from(relauncherStubSet.output)
     archiveClassifier.set("forgePatches")
     manifest {
         val libraryList = listOf(

@@ -64,7 +64,7 @@ public class RelauncherUserInterface {
         Thread.currentThread()
             .setContextClassLoader(mcLoader);
         try {
-            System.setProperty("awt.useSystemAAFontSettings", "true");
+            System.setProperty("awt.useSystemAAFontSettings", "on");
             LafManager.installTheme(new PreferredThemeStyle(ContrastRule.STANDARD, ColorToneRule.DARK));
         } catch (Exception e) {
             Relauncher.logger.warn("Could not initialize DarkLaf GUI theme", e);
