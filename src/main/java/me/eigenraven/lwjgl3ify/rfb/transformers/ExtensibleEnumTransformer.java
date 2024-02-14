@@ -82,10 +82,14 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
         Type array = Type.getType("[" + classType.getDescriptor());
         final int flags = Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL | Opcodes.ACC_SYNTHETIC;
 
-        FieldNode values = classNode.fields.stream()
+        final FieldNode values = classNode.fields.stream()
             .filter(f -> f.desc.contentEquals(array.getDescriptor()) && ((f.access & flags) == flags))
             .findFirst()
-            .orElse(null);
+            .orElse(
+                classNode.fields.stream()
+                    .filter(f -> f.desc.contentEquals(array.getDescriptor()) && f.name.equals("$VALUES"))
+                    .findFirst()
+                    .orElse(null));
 
         boolean process = false;
         if (classNode.interfaces.contains(MARKER_IFACE.getInternalName())) {
