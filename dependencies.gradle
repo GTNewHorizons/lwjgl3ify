@@ -8,7 +8,7 @@ def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault(
 def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
 def asmVersion = '9.6'
-def rfbVersion = '0.3.10'
+def rfbVersion = '0.3.11'
 // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
 def gsonVersion = '2.10.1'
 
@@ -27,7 +27,7 @@ dependencies {
 
     utilImplementation("org.ow2.asm:asm:${asmVersion}")
     utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
-    utilImplementation("org.apache.commons:commons-lang3:3.12.0")
+    utilImplementation("org.apache.commons:commons-lang3:3.14.0")
     utilImplementation("commons-io:commons-io:2.11.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
     utilImplementation("com.google.guava:guava:31.1-jre")
@@ -40,8 +40,7 @@ dependencies {
     forgePatchesEmbedded("org.ow2.asm:asm-tree:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-analysis:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-util:${asmVersion}")
-    forgePatchesEmbedded('org.ow2.asm:asm-deprecated:7.1')
-    forgePatchesEmbedded("org.apache.commons:commons-lang3:3.12.0")
+    forgePatchesEmbedded("org.apache.commons:commons-lang3:3.14.0")
 
     forgePatchesEmbedded("org.apache.commons:commons-compress:1.25.0")
 
