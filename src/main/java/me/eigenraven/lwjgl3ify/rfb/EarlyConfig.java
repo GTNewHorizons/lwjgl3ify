@@ -52,6 +52,8 @@ public class EarlyConfig {
         "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life",
         // Et Futurum Requiem
         "net.minecraft.world.WorldSettings$GameType",
+        // EnderIO Addons
+        "crazypants.enderio.ModObject",
         //
     };
 
