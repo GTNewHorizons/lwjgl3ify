@@ -54,7 +54,7 @@ dependencies {
     shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
     shadowImplementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")
-    shadowImplementation("org.mozilla:rhino-engine:1.7.14")
+    shadowImplementation("org.openjdk.nashorn:nashorn-core:15.4")
 
     shadowImplementation("com.github.weisj:darklaf-core:3.0.2")
 

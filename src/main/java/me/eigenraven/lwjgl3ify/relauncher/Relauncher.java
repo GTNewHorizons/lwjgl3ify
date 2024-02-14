@@ -184,7 +184,6 @@ public class Relauncher {
             final String str = myJarUrl.toString();
             myJarUrl = new URL(str.substring(4, str.lastIndexOf('!')));
         }
-        String[] combinedArgs = args;
         final Path myJarPath;
         try {
             myJarPath = Paths.get(myJarUrl.toURI());

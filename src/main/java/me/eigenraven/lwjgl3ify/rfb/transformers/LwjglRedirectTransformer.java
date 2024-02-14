@@ -107,9 +107,9 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     }
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "javax/servlet/",
-        "java/util/jar/Pack200" };
+        "java/util/jar/Pack200", "jdk/nashorn/" };
     final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/", "jakarta/servlet/",
-        "me/eigenraven/lwjgl3ify/pack200/Pack200" };
+        "me/eigenraven/lwjgl3ify/pack200/Pack200", "org/openjdk/nashorn/" };
     final byte[][] quickScans;
     final String[] excludedPackages;
 
