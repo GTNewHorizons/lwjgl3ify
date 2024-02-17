@@ -28,6 +28,7 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
         Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
         EarlyConfig.load();
         verifyJavaVersion();
+        Launch.classLoader.addClassLoaderExclusion("org.openjdk.nashorn");
     }
 
     @Override
