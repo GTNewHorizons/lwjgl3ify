@@ -35,6 +35,7 @@ import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
 
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Display {
@@ -194,6 +195,22 @@ public class Display {
                         KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                         (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
+                final InputEvents.KeyAction enumAction = switch (action) {
+                    case GLFW_PRESS -> InputEvents.KeyAction.PRESSED;
+                    case GLFW_RELEASE -> InputEvents.KeyAction.RELEASED;
+                    case GLFW_REPEAT -> InputEvents.KeyAction.REPEATED;
+                    default -> InputEvents.KeyAction.PRESSED;
+                };
+                InputEvents.injectKeyEvent(
+                    new InputEvents.KeyEvent(
+                        KeyCodes.glfwToLwjgl(key),
+                        key,
+                        scancode,
+                        enumAction,
+                        (mods & GLFW_MOD_CONTROL) != 0,
+                        (mods & GLFW_MOD_SHIFT) != 0,
+                        (mods & GLFW_MOD_ALT) != 0,
+                        (mods & GLFW_MOD_SUPER) != 0));
                 cancelNextChar = false;
                 if (action == GLFW_PRESS) {
                     if (key == GLFW_KEY_LEFT_ALT) {
@@ -281,6 +298,7 @@ public class Display {
                     Lwjgl3ify.LOG
                         .info("[DEBUG-KEY] char window:{} codepoint:{} char:{}", window, codepoint, (char) codepoint);
                 }
+                InputEvents.injectTextEvent(new InputEvents.TextEvent(String.valueOf((char) codepoint)));
                 if (cancelNextChar) { // Char event being cancelled
                     cancelNextChar = false;
                 } else if (ingredientKeyEvent != null) {

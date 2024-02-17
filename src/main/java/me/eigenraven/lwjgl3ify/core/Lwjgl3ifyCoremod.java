@@ -83,6 +83,9 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         mixins.add("fml.ObjectHolderRegistry");
         if (FMLLaunchHandler.side()
             .isClient()) {
+            // Improved KeyBinding handling to handle dead keys
+            mixins.add("game.MixinMinecraftKeyBinding");
+
             // STB replacements for vanilla functions
             if (Config.MIXIN_STBI_TEXTURE_LOADING) {
                 LOGGER.info("Enabling STB texture loading mixin");

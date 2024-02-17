@@ -24,7 +24,7 @@ import me.eigenraven.lwjgl3ify.rfb.transformers.UnfinalizeObjectHoldersTransform
 public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
 
     @Override
-    public void onConstruction(PluginContext ctx) {
+    public void onConstruction(@NotNull PluginContext ctx) {
         Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
         EarlyConfig.load();
         verifyJavaVersion();
