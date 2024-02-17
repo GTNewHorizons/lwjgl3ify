@@ -14,6 +14,7 @@ public class TransformHelper {
     static Field classLoaderExceptionsField;
     static Field xformerExceptionsField;
 
+    @SuppressWarnings("unchecked")
     public static byte[] transform(LaunchClassLoader loader, String name, byte[] classBytes) throws Exception {
         if (classLoaderExceptionsField == null) {
             classLoaderExceptionsField = loader.getClass()
