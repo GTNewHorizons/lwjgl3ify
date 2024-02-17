@@ -1,5 +1,7 @@
 package org.lwjgl.input;
 
+import org.lwjglx.LWJGLException;
+
 public class Keyboard {
 
     public static final int CHAR_NONE = (int) 0;
@@ -140,71 +142,71 @@ public class Keyboard {
     public static final int KEY_Z = (int) 44;
 
     public static boolean areRepeatEventsEnabled() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.areRepeatEventsEnabled();
     }
 
-    public static void create() {
-        throw new UnsupportedOperationException();
+    public static void create() throws LWJGLException {
+        org.lwjglx.input.Keyboard.create();
     }
 
     public static void destroy() {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Keyboard.destroy();
     }
 
     public static void enableRepeatEvents(boolean arg0) {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Keyboard.enableRepeatEvents(arg0);
     }
 
     public static char getEventCharacter() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getEventCharacter();
     }
 
     public static int getEventKey() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getEventKey();
     }
 
     public static boolean getEventKeyState() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getEventKeyState();
     }
 
     public static long getEventNanoseconds() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getEventNanoseconds();
     }
 
     public static int getKeyCount() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getKeyCount();
     }
 
     public static int getKeyIndex(java.lang.String arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getKeyIndex(arg0);
     }
 
     public static java.lang.String getKeyName(int arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getKeyName(arg0);
     }
 
     public static int getNumKeyboardEvents() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.getNumKeyboardEvents();
     }
 
     public static boolean isCreated() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.isCreated();
     }
 
     public static boolean isKeyDown(int arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.isKeyDown(arg0);
     }
 
     public static boolean isRepeatEvent() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.isRepeatEvent();
     }
 
     public static boolean next() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Keyboard.next();
     }
 
     public static void poll() {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Keyboard.poll();
     }
 
 }
