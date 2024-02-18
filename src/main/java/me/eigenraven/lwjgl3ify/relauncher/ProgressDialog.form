@@ -26,7 +26,7 @@
           <gridbag top="0" left="0" bottom="16" right="16" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Cancel"/>
+          <text value="KEY_CANCEL"/>
         </properties>
       </component>
       <component id="22fef" class="javax.swing.JLabel" binding="statusLabel">
@@ -35,7 +35,7 @@
           <gridbag top="0" left="16" bottom="8" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Downloading lwjgl3ify libraries..."/>
+          <text value="KEY_PROGRESS_DOWNLOADING_HEADER"/>
         </properties>
       </component>
       <vspacer id="38298">

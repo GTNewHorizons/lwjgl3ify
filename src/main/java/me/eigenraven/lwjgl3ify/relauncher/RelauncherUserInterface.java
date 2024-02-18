@@ -103,6 +103,7 @@ public class RelauncherUserInterface {
             progressDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             final ProgressDialog dialogContent = new ProgressDialog();
+            dialogContent.loadTranslations();
             progressDialog.add(dialogContent.panel);
 
             dialogContent.progressBar.setMinimum(0);
@@ -177,6 +178,7 @@ public class RelauncherUserInterface {
             settingsDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             final SettingsDialog contents = new SettingsDialog();
+            contents.loadTranslations();
             settingsDialog.add(contents.rootPanel);
 
             // Configure memory sliders
@@ -194,9 +196,6 @@ public class RelauncherUserInterface {
             contents.optMaxMemory.setMajorTickSpacing(memTickSpacing);
 
             // Update labels
-            contents.warningLowerTheMemoryTextPane.setVisible(
-                Runtime.getRuntime()
-                    .totalMemory() > 1024L * 1024L * 1024L);
             contents.labelMinJavaVer.setText(contents.labelMinJavaVer.getText() + "17");
 
             // Set settings values
