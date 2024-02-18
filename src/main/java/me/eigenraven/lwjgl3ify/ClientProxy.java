@@ -51,7 +51,7 @@ public class ClientProxy extends CommonProxy {
             if (mc == null) {
                 return;
             }
-            if (!(mc.currentScreen == null || mc.currentScreen.allowUserInput)) {
+            if (mc.currentScreen != null) {
                 return;
             }
             if (event.lwjgl2KeyCode > Keyboard.KEY_NONE) {

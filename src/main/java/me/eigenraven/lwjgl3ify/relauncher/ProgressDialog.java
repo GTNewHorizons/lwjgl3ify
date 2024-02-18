@@ -100,6 +100,8 @@ public class ProgressDialog {
     }
 
     /** @noinspection ALL */
-    public JComponent $$$getRootComponent$$$() {return panel;}
+    public JComponent $$$getRootComponent$$$() {
+        return panel;
+    }
 
 }

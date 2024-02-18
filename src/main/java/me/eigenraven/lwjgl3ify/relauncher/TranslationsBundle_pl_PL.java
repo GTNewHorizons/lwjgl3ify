@@ -1,6 +1,7 @@
 package me.eigenraven.lwjgl3ify.relauncher;
 
 public class TranslationsBundle_pl_PL extends TranslationsBundle {
+
     @Override
     protected Object[][] getContents() {
         return new Object[][] {

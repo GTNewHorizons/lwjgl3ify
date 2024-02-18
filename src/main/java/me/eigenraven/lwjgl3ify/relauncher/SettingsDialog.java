@@ -164,12 +164,14 @@ public class SettingsDialog {
         panelBasic = new JPanel();
         panelBasic.setLayout(new GridBagLayout());
         tabbedPane1.addTab("Basic", panelBasic);
-        panelBasic.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-            null,
-            TitledBorder.DEFAULT_JUSTIFICATION,
-            TitledBorder.DEFAULT_POSITION,
-            null,
-            null));
+        panelBasic.setBorder(
+            BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(),
+                null,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                null,
+                null));
         lblMinMemory = new JLabel();
         lblMinMemory.setText("Min memory [MB]");
         gbc = new GridBagConstraints();
@@ -253,12 +255,14 @@ public class SettingsDialog {
         panelAdvanced = new JPanel();
         panelAdvanced.setLayout(new GridBagLayout());
         tabbedPane1.addTab("Advanced", panelAdvanced);
-        panelAdvanced.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-            null,
-            TitledBorder.DEFAULT_JUSTIFICATION,
-            TitledBorder.DEFAULT_POSITION,
-            null,
-            null));
+        panelAdvanced.setBorder(
+            BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(),
+                null,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                null,
+                null));
         optRfbDumpClasses = new JCheckBox();
         optRfbDumpClasses.setText("RFB: Dump loaded classes");
         gbc = new GridBagConstraints();
@@ -378,17 +382,21 @@ public class SettingsDialog {
                 resultName = currentFont.getName();
             }
         }
-        Font font = new Font(resultName,
+        Font font = new Font(
+            resultName,
             style >= 0 ? style : currentFont.getStyle(),
             size >= 0 ? size : currentFont.getSize());
-        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
-        Font fontWithFallback = isMac
-            ? new Font(font.getFamily(), font.getStyle(), font.getSize())
+        boolean isMac = System.getProperty("os.name", "")
+            .toLowerCase(Locale.ENGLISH)
+            .startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize())
             : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
         return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
 
     /** @noinspection ALL */
-    public JComponent $$$getRootComponent$$$() {return rootPanel;}
+    public JComponent $$$getRootComponent$$$() {
+        return rootPanel;
+    }
 
 }
