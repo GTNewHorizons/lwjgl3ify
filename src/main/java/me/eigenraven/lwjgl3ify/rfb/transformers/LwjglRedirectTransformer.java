@@ -2,6 +2,7 @@ package me.eigenraven.lwjgl3ify.rfb.transformers;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.stream.Stream;
 
@@ -26,6 +27,9 @@ import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
 public class LwjglRedirectTransformer extends Remapper implements RfbClassTransformer {
+
+    /** Attribute to set to "true" on a JAR to skip class transforms from this transformer entirely */
+    public static final Attributes.Name MANIFEST_SAFE_ATTRIBUTE = new Attributes.Name("Lwjgl3ify-Aware");
 
     int remaps = 0, calls = 0;
 
@@ -66,6 +70,11 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle nodeHandle) {
         if (!nodeHandle.isPresent()) {
+            return false;
+        }
+        if (manifest != null && "true".equals(
+            manifest.getMainAttributes()
+                .getValue(MANIFEST_SAFE_ATTRIBUTE))) {
             return false;
         }
         if (!nodeHandle.isOriginal()) {
