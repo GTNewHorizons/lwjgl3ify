@@ -53,6 +53,52 @@ public class RelauncherConfig {
         public boolean rfbDumpClasses = false;
         public boolean rfbDumpPerTransformer = false;
 
+        public void setCustomOptionsFromQuotedString(final String input) {
+            final List<String> tokens = new ArrayList<>();
+            final StringBuilder tokenBuilder = new StringBuilder();
+            boolean inQuotes = false;
+            for (int i = 0; i < input.length(); i++) {
+                final char c = input.charAt(i);
+                final char peek = (i == input.length() - 1) ? '\0' : input.charAt(i + 1);
+                if (!inQuotes && Character.isWhitespace(c)) {
+                    if (tokenBuilder.length() != 0) {
+                        tokens.add(tokenBuilder.toString());
+                        tokenBuilder.delete(0, tokenBuilder.length());
+                    }
+                } else if (c == '\\' && peek != '\0') {
+                    tokenBuilder.append(peek);
+                    i++;
+                } else if (c == '"') {
+                    inQuotes = !inQuotes;
+                } else {
+                    tokenBuilder.append(c);
+                }
+            }
+            if (tokenBuilder.length() != 0) {
+                tokens.add(tokenBuilder.toString());
+                tokenBuilder.delete(0, tokenBuilder.length());
+            }
+            this.customOptions = tokens.toArray(new String[0]);
+        }
+
+        public String customOptionsToQuotedString() {
+            final StringBuilder out = new StringBuilder();
+            for (final String arg : this.customOptions) {
+                final String escaped = arg.replace("\\", "\\\\")
+                    .replace("\"", "\\\"");
+                if (escaped.chars()
+                    .anyMatch(Character::isWhitespace)) {
+                    out.append('"');
+                    out.append(escaped);
+                    out.append('"');
+                } else {
+                    out.append(escaped);
+                }
+                out.append('\n');
+            }
+            return out.toString();
+        }
+
         public List<String> toJvmArgs() {
             final List<String> out = new ArrayList<>();
             if (minMemoryMB > 0) {

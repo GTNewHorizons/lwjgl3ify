@@ -80,7 +80,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Java options: "/>
+          <text value="KEY_JAVA_OPTIONS"/>
         </properties>
       </component>
       <tabbedpane id="5a6a7" binding="tabbedPane1" default-binding="true">
@@ -95,7 +95,7 @@
         <children>
           <grid id="7d40" binding="panelBasic" layout-manager="GridBagLayout">
             <constraints>
-              <tabbedpane title="Basic"/>
+              <tabbedpane title="KEY_TAB_BASIC"/>
             </constraints>
             <properties/>
             <border type="etched"/>
@@ -106,7 +106,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Min memory [MB]"/>
+                  <text value="KEY_MIN_MEMORY_MB"/>
                 </properties>
               </component>
               <component id="bdb8c" class="javax.swing.JSlider" binding="optMinMemory">
@@ -130,7 +130,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Max memory [MB]"/>
+                  <text value="KEY_MAX_MEMORY_MB"/>
                 </properties>
               </component>
               <component id="73caa" class="javax.swing.JSlider" binding="optMaxMemory">
@@ -154,7 +154,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Garbage collector"/>
+                  <text value="KEY_GARBAGE_COLLECTOR"/>
                 </properties>
               </component>
               <component id="f6b97" class="javax.swing.JComboBox" binding="optGC">
@@ -170,7 +170,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Custom options"/>
+                  <text value="KEY_CUSTOM_OPTIONS"/>
                 </properties>
               </component>
               <scrollpane id="d90b2">
@@ -193,7 +193,7 @@
           </grid>
           <grid id="d9983" binding="panelAdvanced" layout-manager="GridBagLayout">
             <constraints>
-              <tabbedpane title="Advanced"/>
+              <tabbedpane title="KEY_TAB_ADVANCED"/>
             </constraints>
             <properties/>
             <border type="etched"/>
@@ -204,7 +204,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="RFB: Dump loaded classes"/>
+                  <text value="KEY_RFB_DUMP_CLASSES"/>
                 </properties>
               </component>
               <hspacer id="ab5ee">
@@ -225,7 +225,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="RFB: Dump classes per transformer"/>
+                  <text value="KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER"/>
                 </properties>
               </component>
               <component id="30c5d" class="javax.swing.JCheckBox" binding="optDebugAgent">
@@ -234,7 +234,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Allow attaching a debugger"/>
+                  <text value="KEY_ALLOW_DEBUGGER"/>
                 </properties>
               </component>
               <component id="355a3" class="javax.swing.JCheckBox" binding="optDebugSuspend">
@@ -243,7 +243,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Wait for debugger"/>
+                  <text value="KEY_WAIT_FOR_DEBUGGER"/>
                 </properties>
               </component>
               <component id="a0a2e" class="javax.swing.JCheckBox" binding="optForwardLogs">
@@ -252,8 +252,9 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <selected value="true"/>
-                  <text value="Forward logs to the parent launcher (uses more memory)"/>
+                  <enabled value="true"/>
+                  <selected value="false"/>
+                  <text value="KEY_FORWARD_LOGS"/>
                 </properties>
               </component>
               <component id="62930" class="javax.swing.JCheckBox" binding="optMixinExport">
@@ -262,7 +263,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Mixin: Export classes"/>
+                  <text value="KEY_MIXIN_EXPORT_CLASSES"/>
                 </properties>
               </component>
               <component id="19821" class="javax.swing.JCheckBox" binding="optMixinDebug">
@@ -271,7 +272,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Mixin: Debug"/>
+                  <text value="KEY_MIXIN_DEBUG"/>
                 </properties>
               </component>
               <component id="4950d" class="javax.swing.JCheckBox" binding="optMixinCount">
@@ -280,7 +281,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Mixin: Count injections"/>
+                  <text value="KEY_MIXIN_COUNT_INJECTIONS"/>
                 </properties>
               </component>
               <component id="a6cd3" class="javax.swing.JCheckBox" binding="optFmlDebugAts">
@@ -289,7 +290,7 @@
                   <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="FML: Debug Access Transformers"/>
+                  <text value="KEY_FML_DEBUG_AT"/>
                 </properties>
               </component>
             </children>
@@ -298,7 +299,7 @@
       </tabbedpane>
       <component id="e4c65" class="javax.swing.JButton" binding="buttonRun">
         <constraints>
-          <grid row="4" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -307,12 +308,21 @@
       </component>
       <component id="6b9a7" class="javax.swing.JCheckBox" binding="optHideOnFutureLaunches">
         <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <selected value="true"/>
-          <text value="Skip the settings window in the future"/>
+          <text value="KEY_SKIP_IN_FUTURE"/>
+        </properties>
+      </component>
+      <component id="f0795" class="javax.swing.JButton" binding="buttonPreviewJavaOpts">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_PREVIEW_JAVA_OPTS"/>
         </properties>
       </component>
     </children>

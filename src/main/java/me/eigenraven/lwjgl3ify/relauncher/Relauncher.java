@@ -249,6 +249,8 @@ public class Relauncher {
         if (RelauncherConfig.config.forwardLogs) {
             bootstrapCmd.add("@" + argFile);
         } else {
+            bootstrapCmd.add("-Xms16M");
+            bootstrapCmd.add("-Xmx256M");
             bootstrapCmd.add("-cp");
             bootstrapCmd.add(forgePatchesJarPath + File.pathSeparator + myJarPath);
             bootstrapCmd.add("--disable-@files");

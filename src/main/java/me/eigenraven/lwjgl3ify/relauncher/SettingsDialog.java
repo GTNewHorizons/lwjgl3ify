@@ -55,16 +55,42 @@ public class SettingsDialog {
     public JLabel lblMaxMemory;
     public JLabel lblGarbageCollector;
     public JLabel lblCustomOptions;
+    public JButton buttonPreviewJavaOpts;
+
+    public final ResourceBundle translations;
+
+    public SettingsDialog() {
+        translations = ResourceBundle.getBundle("me.eigenraven.lwjgl3ify.relauncher.TranslationsBundle");
+    }
 
     public void loadTranslations() {
-        final ResourceBundle bundle = ResourceBundle.getBundle("me.eigenraven.lwjgl3ify.relauncher.TranslationsBundle");
+        lblHeader.setText(translations.getString(TranslationsBundle.KEY_SETTINGS_HEADER));
+        buttonRefreshJavas.setText(translations.getString(TranslationsBundle.KEY_REFRESH));
+        buttonAddJava.setText(translations.getString(TranslationsBundle.KEY_ADD_JAVA));
+        buttonRun.setText(translations.getString(TranslationsBundle.KEY_RUN_GAME));
+        lblJavaExecutable.setText(translations.getString(TranslationsBundle.KEY_JAVA_EXECUTABLE));
+        labelMinJavaVer.setText(String.format(translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 17));
+        tabbedPane1.setTitleAt(0, translations.getString(TranslationsBundle.KEY_TAB_BASIC));
+        tabbedPane1.setTitleAt(1, translations.getString(TranslationsBundle.KEY_TAB_ADVANCED));
+        lblMinMemory.setText(translations.getString(TranslationsBundle.KEY_MIN_MEMORY_MB));
+        lblMaxMemory.setText(translations.getString(TranslationsBundle.KEY_MAX_MEMORY_MB));
+        lblGarbageCollector.setText(translations.getString(TranslationsBundle.KEY_GARBAGE_COLLECTOR));
+        lblCustomOptions.setText(translations.getString(TranslationsBundle.KEY_CUSTOM_OPTIONS));
+        lblJavaOptions.setText(translations.getString(TranslationsBundle.KEY_JAVA_OPTIONS));
+        optHideOnFutureLaunches.setText(translations.getString(TranslationsBundle.KEY_SKIP_IN_FUTURE));
+        buttonPreviewJavaOpts.setText(translations.getString(TranslationsBundle.KEY_PREVIEW_JAVA_OPTS));
 
-        lblHeader.setText(bundle.getString(TranslationsBundle.KEY_SETTINGS_HEADER));
-        buttonRefreshJavas.setText(bundle.getString(TranslationsBundle.KEY_REFRESH));
-        buttonAddJava.setText(bundle.getString(TranslationsBundle.KEY_ADD_JAVA));
-        buttonRun.setText(bundle.getString(TranslationsBundle.KEY_RUN_GAME));
-        lblJavaExecutable.setText(bundle.getString(TranslationsBundle.KEY_JAVA_EXECUTABLE));
-        labelMinJavaVer.setText(String.format(bundle.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 17));
+        optForwardLogs.setText(translations.getString(TranslationsBundle.KEY_FORWARD_LOGS));
+        optDebugAgent.setText(translations.getString(TranslationsBundle.KEY_ALLOW_DEBUGGER));
+        optDebugSuspend.setText(translations.getString(TranslationsBundle.KEY_WAIT_FOR_DEBUGGER));
+        optMixinDebug.setText(translations.getString(TranslationsBundle.KEY_MIXIN_DEBUG));
+        optMixinExport.setText(translations.getString(TranslationsBundle.KEY_MIXIN_EXPORT_CLASSES));
+        optMixinCount.setText(translations.getString(TranslationsBundle.KEY_MIXIN_COUNT_INJECTIONS));
+        optFmlDebugAts.setText(translations.getString(TranslationsBundle.KEY_FML_DEBUG_AT));
+        optRfbDumpClasses.setText(translations.getString(TranslationsBundle.KEY_RFB_DUMP_CLASSES));
+        optRfbDumpTransformers.setText(translations.getString(TranslationsBundle.KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER));
+
+        optForwardLogs.setToolTipText(translations.getString(TranslationsBundle.KEY_FORWARD_LOGS_TIP));
     }
 
     {
@@ -147,7 +173,7 @@ public class SettingsDialog {
         gbc.anchor = GridBagConstraints.WEST;
         rootPanel.add(labelMinJavaVer, gbc);
         lblJavaOptions = new JLabel();
-        lblJavaOptions.setText("Java options: ");
+        lblJavaOptions.setText("KEY_JAVA_OPTIONS");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 3;
@@ -163,7 +189,7 @@ public class SettingsDialog {
         rootPanel.add(tabbedPane1, gbc);
         panelBasic = new JPanel();
         panelBasic.setLayout(new GridBagLayout());
-        tabbedPane1.addTab("Basic", panelBasic);
+        tabbedPane1.addTab("KEY_TAB_BASIC", panelBasic);
         panelBasic.setBorder(
             BorderFactory.createTitledBorder(
                 BorderFactory.createEtchedBorder(),
@@ -173,7 +199,7 @@ public class SettingsDialog {
                 null,
                 null));
         lblMinMemory = new JLabel();
-        lblMinMemory.setText("Min memory [MB]");
+        lblMinMemory.setText("KEY_MIN_MEMORY_MB");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -195,7 +221,7 @@ public class SettingsDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelBasic.add(optMinMemory, gbc);
         lblMaxMemory = new JLabel();
-        lblMaxMemory.setText("Max memory [MB]");
+        lblMaxMemory.setText("KEY_MAX_MEMORY_MB");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -217,7 +243,7 @@ public class SettingsDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelBasic.add(optMaxMemory, gbc);
         lblGarbageCollector = new JLabel();
-        lblGarbageCollector.setText("Garbage collector");
+        lblGarbageCollector.setText("KEY_GARBAGE_COLLECTOR");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -231,7 +257,7 @@ public class SettingsDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelBasic.add(optGC, gbc);
         lblCustomOptions = new JLabel();
-        lblCustomOptions.setText("Custom options");
+        lblCustomOptions.setText("KEY_CUSTOM_OPTIONS");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -254,7 +280,7 @@ public class SettingsDialog {
         scrollPane1.setViewportView(optCustom);
         panelAdvanced = new JPanel();
         panelAdvanced.setLayout(new GridBagLayout());
-        tabbedPane1.addTab("Advanced", panelAdvanced);
+        tabbedPane1.addTab("KEY_TAB_ADVANCED", panelAdvanced);
         panelAdvanced.setBorder(
             BorderFactory.createTitledBorder(
                 BorderFactory.createEtchedBorder(),
@@ -264,7 +290,7 @@ public class SettingsDialog {
                 null,
                 null));
         optRfbDumpClasses = new JCheckBox();
-        optRfbDumpClasses.setText("RFB: Dump loaded classes");
+        optRfbDumpClasses.setText("KEY_RFB_DUMP_CLASSES");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 7;
@@ -286,7 +312,7 @@ public class SettingsDialog {
         gbc.fill = GridBagConstraints.VERTICAL;
         panelAdvanced.add(spacer4, gbc);
         optRfbDumpTransformers = new JCheckBox();
-        optRfbDumpTransformers.setText("RFB: Dump classes per transformer");
+        optRfbDumpTransformers.setText("KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 8;
@@ -294,7 +320,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optRfbDumpTransformers, gbc);
         optDebugAgent = new JCheckBox();
-        optDebugAgent.setText("Allow attaching a debugger");
+        optDebugAgent.setText("KEY_ALLOW_DEBUGGER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -302,7 +328,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optDebugAgent, gbc);
         optDebugSuspend = new JCheckBox();
-        optDebugSuspend.setText("Wait for debugger");
+        optDebugSuspend.setText("KEY_WAIT_FOR_DEBUGGER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -310,8 +336,9 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optDebugSuspend, gbc);
         optForwardLogs = new JCheckBox();
-        optForwardLogs.setSelected(true);
-        optForwardLogs.setText("Forward logs to the parent launcher (uses more memory)");
+        optForwardLogs.setEnabled(true);
+        optForwardLogs.setSelected(false);
+        optForwardLogs.setText("KEY_FORWARD_LOGS");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -319,7 +346,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optForwardLogs, gbc);
         optMixinExport = new JCheckBox();
-        optMixinExport.setText("Mixin: Export classes");
+        optMixinExport.setText("KEY_MIXIN_EXPORT_CLASSES");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -327,7 +354,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinExport, gbc);
         optMixinDebug = new JCheckBox();
-        optMixinDebug.setText("Mixin: Debug");
+        optMixinDebug.setText("KEY_MIXIN_DEBUG");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -335,7 +362,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinDebug, gbc);
         optMixinCount = new JCheckBox();
-        optMixinCount.setText("Mixin: Count injections");
+        optMixinCount.setText("KEY_MIXIN_COUNT_INJECTIONS");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 5;
@@ -343,7 +370,7 @@ public class SettingsDialog {
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinCount, gbc);
         optFmlDebugAts = new JCheckBox();
-        optFmlDebugAts.setText("FML: Debug Access Transformers");
+        optFmlDebugAts.setText("KEY_FML_DEBUG_AT");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -354,18 +381,25 @@ public class SettingsDialog {
         buttonRun.setText("KEY_RUN_GAME");
         gbc = new GridBagConstraints();
         gbc.gridx = 4;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         rootPanel.add(buttonRun, gbc);
         optHideOnFutureLaunches = new JCheckBox();
         optHideOnFutureLaunches.setSelected(true);
-        optHideOnFutureLaunches.setText("Skip the settings window in the future");
+        optHideOnFutureLaunches.setText("KEY_SKIP_IN_FUTURE");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.WEST;
+        rootPanel.add(optHideOnFutureLaunches, gbc);
+        buttonPreviewJavaOpts = new JButton();
+        buttonPreviewJavaOpts.setText("KEY_PREVIEW_JAVA_OPTS");
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
-        rootPanel.add(optHideOnFutureLaunches, gbc);
+        rootPanel.add(buttonPreviewJavaOpts, gbc);
     }
 
     /** @noinspection ALL */

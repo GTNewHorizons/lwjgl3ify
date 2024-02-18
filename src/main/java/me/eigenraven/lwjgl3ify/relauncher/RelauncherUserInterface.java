@@ -20,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.filechooser.FileFilter;
@@ -196,7 +197,8 @@ public class RelauncherUserInterface {
             contents.optMaxMemory.setMajorTickSpacing(memTickSpacing);
 
             // Update labels
-            contents.labelMinJavaVer.setText(contents.labelMinJavaVer.getText() + "17");
+            contents.labelMinJavaVer
+                .setText(String.format(contents.translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 17));
 
             // Set settings values
             final RelauncherConfig.ConfigObject initCfg = RelauncherConfig.config;
@@ -212,7 +214,7 @@ public class RelauncherUserInterface {
             contents.optGC.setSelectedItem(initCfg.garbageCollector);
             contents.optCustom.getDocument()
                 .putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
-            contents.optCustom.setText(String.join("\n", initCfg.customOptions));
+            contents.optCustom.setText(initCfg.customOptionsToQuotedString());
             contents.optForwardLogs.setSelected(initCfg.forwardLogs);
             contents.optDebugAgent.setSelected(initCfg.allowDebugger);
             contents.optDebugSuspend.setSelected(initCfg.waitForDebugger);
@@ -272,6 +274,15 @@ public class RelauncherUserInterface {
                 }
             });
 
+            contents.buttonPreviewJavaOpts.addActionListener(al -> {
+                saveConfig(contents);
+                JOptionPane.showMessageDialog(
+                    settingsDialog,
+                    String.join(System.lineSeparator(), RelauncherConfig.config.toJvmArgs()),
+                    "Java",
+                    JOptionPane.INFORMATION_MESSAGE);
+            });
+
             contents.buttonRun.addActionListener(al -> {
                 runClicked = true;
                 saveConfig(contents);
@@ -312,9 +323,9 @@ public class RelauncherUserInterface {
         initCfg.minMemoryMB = contents.optMinMemory.getValue();
         initCfg.maxMemoryMB = contents.optMaxMemory.getValue();
         initCfg.garbageCollector = (RelauncherConfig.GCOption) contents.optGC.getSelectedItem();
-        initCfg.customOptions = contents.optCustom.getText()
-            .replace("\r\n", "\n")
-            .split("\n");
+        initCfg.setCustomOptionsFromQuotedString(
+            contents.optCustom.getText()
+                .replace("\r\n", "\n"));
         initCfg.forwardLogs = contents.optForwardLogs.isSelected();
         initCfg.allowDebugger = contents.optDebugAgent.isSelected();
         initCfg.waitForDebugger = contents.optDebugSuspend.isSelected();
