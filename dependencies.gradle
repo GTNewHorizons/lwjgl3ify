@@ -8,7 +8,7 @@ def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault(
 def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
 def asmVersion = '9.6'
-def rfbVersion = '0.3.16'
+def rfbVersion = '0.4.0'
 // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
 def gsonVersion = '2.10.1'
 
@@ -41,8 +41,8 @@ dependencies {
     forgePatchesEmbedded("org.ow2.asm:asm-analysis:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-util:${asmVersion}")
     forgePatchesEmbedded("org.apache.commons:commons-lang3:3.14.0")
-
-    forgePatchesEmbedded("org.apache.commons:commons-compress:1.25.0")
+    forgePatchesEmbedded("org.apache.commons:commons-compress:1.26.0")
+    forgePatchesEmbedded("commons-io:commons-io:2.15.1")
 
     compileOnly("org.jetbrains:annotations:24.1.0")
 

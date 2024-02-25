@@ -38,16 +38,6 @@
         {
             "downloads": {
                 "artifact": {
-                    "sha1": "a698750c16740fd5b3871425f4cb3bbaa87f529d",
-                    "size": 365552,
-                    "url": "https://libraries.minecraft.net/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar"
-                }
-            },
-            "name": "org.apache.commons:commons-compress:1.8.1"
-        },
-        {
-            "downloads": {
-                "artifact": {
                     "sha1": "18f4247ff4572a074444572cee34647c43e7c9c7",
                     "size": 589512,
                     "url": "https://libraries.minecraft.net/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar"
@@ -184,16 +174,6 @@
                 }
             },
             "name": "com.google.guava:guava:15.0"
-        },
-        {
-            "downloads": {
-                "artifact": {
-                    "sha1": "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
-                    "size": 185140,
-                    "url": "https://libraries.minecraft.net/commons-io/commons-io/2.4/commons-io-2.4.jar"
-                }
-            },
-            "name": "commons-io:commons-io:2.4"
         },
         {
             "downloads": {

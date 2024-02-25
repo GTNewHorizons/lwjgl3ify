@@ -288,17 +288,6 @@
         {
             "downloads": {
                 "artifact": {
-                    "path": "commons-io/commons-io/2.4/commons-io-2.4.jar",
-                    "sha1": "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
-                    "size": 185140,
-                    "url": "https://libraries.minecraft.net/commons-io/commons-io/2.4/commons-io-2.4.jar"
-                }
-            },
-            "name": "commons-io:commons-io:2.4"
-        },
-        {
-            "downloads": {
-                "artifact": {
                     "path": "commons-codec/commons-codec/1.9/commons-codec-1.9.jar",
                     "sha1": "9ce04e34240f674bc72680f8b843b1457383161a",
                     "size": 263965,
