@@ -40,7 +40,7 @@ Lwjgl3ify also depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixi
 Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
 You can now launch the server with a command like the following, assuming the first java executable on your PATH is java 11/17/19:
 ```
-java -Xmx6G -Xms6G @java9args.txt nogui
+java -Xmx6G -Xms6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui
 ```
 
 # How does it work?

@@ -31,5 +31,3 @@ java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED
 jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED
 --add-opens
 java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
--jar
-lwjgl3ify-forgePatches.jar
