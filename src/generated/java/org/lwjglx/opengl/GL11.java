@@ -1,5 +1,6 @@
 package org.lwjglx.opengl;
 
+@SuppressWarnings("unused")
 public class GL11 {
 
     public static final int GL_2D = (int) 1536;
@@ -1001,7 +1002,19 @@ public class GL11 {
     }
 
     public static java.lang.String glGetString(int name) {
-        return org.lwjgl.opengl.GL11.glGetString(name);
+        // Prevent crashes when trying to access GL_RENDERER etc. from the crash report handler
+        boolean hasGlContext = true;
+        try {
+            org.lwjgl.opengl.GL.getCapabilities();
+        } catch (IllegalStateException ise) {
+            // No OpenGL context in current thread
+            hasGlContext = false;
+        }
+        if (hasGlContext) {
+            return org.lwjgl.opengl.GL11.glGetString(name);
+        } else {
+            return "no valid GL context";
+        }
     }
 
     public static void glGetTexEnv(int coord, int pname, java.nio.FloatBuffer params) {

@@ -32,7 +32,9 @@ public class Lwjgl3ify {
     @Mod.Instance
     public static Lwjgl3ify INSTANCE;
 
-    @SidedProxy(clientSide = "me.eigenraven.lwjgl3ify.ClientProxy", serverSide = "me.eigenraven.lwjgl3ify.CommonProxy")
+    @SidedProxy(
+        clientSide = "me.eigenraven.lwjgl3ify.client.ClientProxy",
+        serverSide = "me.eigenraven.lwjgl3ify.CommonProxy")
     public static CommonProxy PROXY;
 
     @Mod.EventHandler
