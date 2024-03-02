@@ -110,13 +110,13 @@ public class Display {
      * <p>
      * The window created will be set up in orthographic 2D projection, with 1:1 pixel ratio with GL coordinates.
      *
-     * @param pixel_format    Describes the minimum specifications the context must fulfill.
-     * @param shared_drawable The Drawable to share context with. (optional, may be null)
+     * @param pixelFormat    Describes the minimum specifications the context must fulfill.
+     * @param sharedDrawable The Drawable to share context with. (optional, may be null)
      *
      * @throws org.lwjglx.LWJGLException
      */
-    public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
-        create(pixel_format, (ContextAttribs) null);
+    public static void create(PixelFormat pixelFormat, Drawable sharedDrawable) {
+        create(pixelFormat, (ContextAttribs) null, sharedDrawable.getGlfwWindowId());
     }
 
     public static void create() {
@@ -128,6 +128,10 @@ public class Display {
     }
 
     public static void create(PixelFormat pixelFormat, ContextAttribs attribs) {
+        create(pixelFormat, attribs, NULL);
+    }
+
+    public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow) {
         if (displayCreated) {
             return;
         }
@@ -184,7 +188,7 @@ public class Display {
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
                                                                    // on MacOS
 
-        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
+        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, sharedWindow);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");
         }

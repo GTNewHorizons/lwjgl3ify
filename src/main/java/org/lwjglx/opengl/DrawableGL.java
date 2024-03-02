@@ -141,4 +141,11 @@ public class DrawableGL implements DrawableLWJGL {
     protected final void checkDestroyed() {
         if (context == null) throw new IllegalStateException("The Drawable has no context available.");
     }
+
+    @Override
+    public long getGlfwWindowId() {
+        synchronized (GlobalLock.lock) {
+            return context.glfwWindow;
+        }
+    }
 }
