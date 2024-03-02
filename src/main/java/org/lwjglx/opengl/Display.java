@@ -116,21 +116,18 @@ public class Display {
      * @throws org.lwjglx.LWJGLException
      */
     public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
-        System.out.println("TODO: Implement Display.create(PixelFormat, Drawable)"); // TODO
-        create();
-    }
-
-    public static void create(PixelFormat pixel_format, ContextAttribs attribs) {
-        System.out.println("TODO: Implement Display.create(PixelFormat, ContextAttribs)"); // TODO
-        create();
-    }
-
-    public static void create(PixelFormat pixel_format) {
-        System.out.println("TODO: Implement Display.create(PixelFormat)"); // TODO
-        create();
+        create(pixel_format, (ContextAttribs) null);
     }
 
     public static void create() {
+        create(null, (ContextAttribs) null);
+    }
+
+    public static void create(PixelFormat pixelFormat) {
+        create(pixelFormat, (ContextAttribs) null);
+    }
+
+    public static void create(PixelFormat pixelFormat, ContextAttribs attribs) {
         if (displayCreated) {
             return;
         }
@@ -145,11 +142,24 @@ public class Display {
 
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
 
+        final int ctxMajor = (attribs != null) ? attribs.getMajorVersion() : 2;
+        final int ctxMinor = (attribs != null) ? attribs.getMinorVersion() : 1;
+        final boolean ctxForwardCompat = attribs != null && attribs.isForwardCompatible();
+        final boolean ctxSrgb = pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
+
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, ctxMajor);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, ctxMinor);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, ctxForwardCompat ? GLFW_TRUE : GLFW_FALSE);
+        if (attribs != null) {
+            if (attribs.isProfileCore()) {
+                glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            } else if (attribs.isProfileCompatibility()) {
+                glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+            }
+        }
 
         glfwWindowHint(GLFW_MAXIMIZED, Config.WINDOW_START_MAXIMIZED ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_FOCUSED, Config.WINDOW_START_FOCUSED ? GLFW_TRUE : GLFW_FALSE);
@@ -158,7 +168,7 @@ public class Display {
         displayVisible = !Config.WINDOW_START_ICONIFIED;
         glfwWindowHint(GLFW_DECORATED, Config.WINDOW_DECORATED ? GLFW_TRUE : GLFW_FALSE);
 
-        glfwWindowHint(GLFW_SRGB_CAPABLE, Config.OPENGL_SRGB_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_SRGB_CAPABLE, ctxSrgb ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_DOUBLEBUFFER, Config.OPENGL_DOUBLEBUFFER ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_CONTEXT_NO_ERROR, Config.OPENGL_CONTEXT_NO_ERROR ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(
