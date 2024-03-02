@@ -156,8 +156,8 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
     from(forgePatchesJar) {
         into("libraries/")
     }
-    exclude("forgepatches-for-dev-work.json", "META-INF", "META-INF/**")
-    filesMatching(listOf("mmc-pack.json", "patches/me.eigenraven.lwjgl3ify.forgepatches.json")) {
+    exclude("META-INF", "META-INF/**")
+    filesMatching(listOf("mmc-pack.json", "patches/me.eigenraven.lwjgl3ify.forgepatches.json", "patches/me.eigenraven.lwjgl3ify.launchargs.json")) {
         expand(
             mapOf(
                 "version" to project.version,
@@ -340,4 +340,5 @@ tasks.shadowJar {
     manifest.attributes.put("TweakClass", "me.eigenraven.lwjgl3ify.relauncher.Lwjgl3ifyRelauncherTweaker")
 }
 
+apply(from = "repositories.gradle")
 apply(from = "dependencies.gradle")

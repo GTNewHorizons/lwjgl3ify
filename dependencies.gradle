@@ -50,6 +50,8 @@ dependencies {
     compileOnly('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')
     api("com.google.code.gson:gson:${gsonVersion}")
 
+    compileOnly("com.mumfrey:liteloader:1.7.10_04:mcpnames")
+
     shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
     shadowImplementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")

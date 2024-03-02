@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify.pack200;
+package me.eigenraven.lwjgl3ify.redirects;
 
 import java.beans.PropertyChangeListener;
 import java.io.ByteArrayInputStream;

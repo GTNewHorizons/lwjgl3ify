@@ -1,6 +1,6 @@
 {
     "formatVersion": 1,
-    "name": "Forge-lwjgl3ify-Patches",
+    "name": "LWJGL3ify Early Classpath",
     "uid": "me.eigenraven.lwjgl3ify.forgepatches",
     "version": "${version}",
     "order": 3,

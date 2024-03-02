@@ -43,6 +43,9 @@ You can now launch the server with a command like the following, assuming the fi
 java -Xmx6G -Xms6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui
 ```
 
+# LiteLoader compatibility
+If you install LiteLoader via MultiMC or a fork like PrismLauncher, make sure to move the "LiteLoader" entry above the "LWJGL3ify Launch Args" entry, otherwise the launch will fail.
+
 # How does it work?
 
 There are a few components to enabling modern java and lwjgl usage on old minecraft versions, lwjgl3ify implements these for 1.7.10 specifically:
