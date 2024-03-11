@@ -1,6 +1,7 @@
 # LWJGL3ify
 
 Brings LWJGL3 and modern Java versions to Minecraft 1.7.10.
+Bundles [RetroFuturaBootstrap](https://github.com/GTNewHorizons/RetroFuturaBootstrap) as a flexible early load plugin system.
 
 # Usage
 
@@ -29,6 +30,11 @@ For MultiMC, you need to manually put in extra java arguments, prismlauncher can
 -Dfile.encoding=UTF-8 -Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader -Djava.security.manager=allow --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming --add-opens java.desktop/sun.awt=ALL-UNNAMED --add-opens java.desktop/sun.awt.image=ALL-UNNAMED --add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED --add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 ```
 
+### (Experimental) Relauncher installation
+
+To install in any client launcher, just drop the `lwjgl3ify-VERSION.jar` mod jar in the `mods/` directory and configure to launch with Java 8 as usual.
+On startup, a window should appear prompting you to select a modern Java version to relaunch with, and the JVM settings for that Java installation.
+
 ### Tweaking configs
 If you want to tweak your default window size, OpenGL context properties or other more advanced settings, check out the config file in `config/lwjgl3ify.cfg` after the first startup.
 
@@ -38,7 +44,7 @@ Then, install the mod jar (and unimixins, hodgepodge and gtnhlib as needed) in `
 **Thermos/Crucible/Hybrid servers are not supported!**.
 Lwjgl3ify also depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7.
 Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
-You can now launch the server with a command like the following, assuming the first java executable on your PATH is java 11/17/19:
+You can now launch the server with a command like the following, assuming the first java executable on your PATH is java 11/17/newer:
 ```
 java -Xmx6G -Xms6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui
 ```
@@ -145,6 +151,8 @@ public static void setField(Field data, Object object, Object value) {
     }
 }
 ```
+
+This is likely to be removed from a 2025 Java release though, I'll probably build a JNI-based alternative built into lwjgl3ify by then.
 
 **Beware**, the Java JIT compiler will assume that final fields don't change value at runtime, so the value you write there using Unsafe might not actually be read back by some code.
 This can lead to inconsistent states, where some methods might see the old value while other ones will see the new value, especially if you change the value down a callchain that already read the value earlier.
