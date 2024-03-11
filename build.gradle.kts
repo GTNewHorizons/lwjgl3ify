@@ -28,6 +28,7 @@ val addOpens = listOf(
     "java.base/jdk.internal.reflect=ALL-UNNAMED",
     "java.base/sun.nio.ch=ALL-UNNAMED",
     "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
+    "java.desktop/sun.awt=ALL-UNNAMED",
     "java.desktop/sun.awt.image=ALL-UNNAMED",
     "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
     "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
