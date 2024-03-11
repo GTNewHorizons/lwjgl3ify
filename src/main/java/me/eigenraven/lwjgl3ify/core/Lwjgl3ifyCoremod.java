@@ -1,6 +1,5 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import java.awt.Toolkit;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,11 +12,6 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.system.Configuration;
-import org.lwjgl.system.Platform;
-import org.lwjglx.Sys;
-import org.spongepowered.asm.launch.GlobalProperties;
-import org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapper;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
@@ -34,16 +28,6 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         Config.loadConfig();
         try {
             LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
-            // Packages that used to be in rt.jar
-            launchLoader.addClassLoaderExclusion("com.sun");
-            launchLoader.addClassLoaderExclusion("com.oracle");
-            launchLoader.addClassLoaderExclusion("javax");
-            launchLoader.addClassLoaderExclusion("jdk");
-            launchLoader.addClassLoaderExclusion("org.ietf.jgss");
-            launchLoader.addClassLoaderExclusion("org.jcp.xml.dsig.internal");
-            launchLoader.addClassLoaderExclusion("org.omg");
-            launchLoader.addClassLoaderExclusion("org.w3c.dom");
-            launchLoader.addClassLoaderExclusion("org.xml.sax");
             launchLoader.addClassLoaderExclusion("org.hotswap.agent");
             launchLoader.addClassLoaderExclusion("org.lwjglx.debug");
         } catch (ClassCastException e) {
@@ -52,38 +36,15 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
                     .getClass(),
                 e);
         }
-        // Ensure javax.script.ScriptEngineManager gets loaded
-        try {
-            Class.forName("javax.script.ScriptEngineManager");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        if (Launch.blackboard.get("lwjgl3ify:rfb-booted") != Boolean.TRUE) {
+            return;
         }
-        if (FMLLaunchHandler.side()
-            .isClient()) {
-            clientMacOsFix();
-            Sys.initialize();
-        }
-    }
-
-    private void clientMacOsFix() {
-        if (Platform.get() == Platform.MACOSX) {
-            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
-            Configuration.GLFW_CHECK_THREAD0.set(false);
-            Toolkit.getDefaultToolkit(); // Initialize AWT before GLFW
-        }
+        LateInit.lateConstruct();
     }
 
     @Override
     public String[] getASMTransformerClass() {
-        LOGGER.info("Registering lwjgl3ify redirect transformer");
-
-        List<String> tweakClasses = GlobalProperties.get(MixinServiceLaunchWrapper.BLACKBOARD_KEY_TWEAKCLASSES);
-        if (tweakClasses != null) {
-            tweakClasses.add(PostMixinTransformInjector.class.getName());
-        }
-
-        return new String[] { LwjglRedirectTransformer.class.getName(),
-            UnfinalizeObjectHoldersTransformer.class.getName() };
+        return new String[0];
     }
 
     @Override
@@ -118,11 +79,13 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
         // FML Java 9+ compatibility patches
         mixins.add("fml.ItemStackHolderRef");
         mixins.add("fml.JarDiscoverer");
-        mixins.add("fml.ModVisitorAsmVersion");
         mixins.add("fml.ObjectHolderRef");
         mixins.add("fml.ObjectHolderRegistry");
         if (FMLLaunchHandler.side()
             .isClient()) {
+            // Improved KeyBinding handling to handle dead keys
+            mixins.add("game.MixinMinecraftKeyBinding");
+
             // STB replacements for vanilla functions
             if (Config.MIXIN_STBI_TEXTURE_LOADING) {
                 LOGGER.info("Enabling STB texture loading mixin");

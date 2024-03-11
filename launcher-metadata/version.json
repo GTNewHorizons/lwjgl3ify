@@ -288,17 +288,6 @@
         {
             "downloads": {
                 "artifact": {
-                    "path": "commons-io/commons-io/2.4/commons-io-2.4.jar",
-                    "sha1": "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
-                    "size": 185140,
-                    "url": "https://libraries.minecraft.net/commons-io/commons-io/2.4/commons-io-2.4.jar"
-                }
-            },
-            "name": "commons-io:commons-io:2.4"
-        },
-        {
-            "downloads": {
-                "artifact": {
                     "path": "commons-codec/commons-codec/1.9/commons-codec-1.9.jar",
                     "sha1": "9ce04e34240f674bc72680f8b843b1457383161a",
                     "size": 263965,
@@ -332,13 +321,13 @@
         {
             "downloads": {
                 "artifact": {
-                    "path": "com/google/code/gson/gson/2.2.4/gson-2.2.4.jar",
-                    "sha1": "a60a5e993c98c864010053cb901b7eab25306568",
-                    "size": 190432,
-                    "url": "https://libraries.minecraft.net/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+                    "path": "com/google/code/gson/gson/2.10.1/gson-2.10.1.jar",
+                    "sha1": "b3add478d4382b78ea20b1671390a858002feb6c",
+                    "size": 283367,
+                    "url": "https://libraries.minecraft.net/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar"
                 }
             },
-            "name": "com.google.code.gson:gson:2.2.4"
+            "name": "com.google.code.gson:gson:2.10.1"
         },
         {
             "downloads": {
@@ -1715,10 +1704,12 @@
             "url": "https://maven.minecraftforge.net/"
         },
         {
-            "name": "lzma:lzma:0.0.1"
+            "name": "lzma:lzma:0.0.1",
+            "url": "https://libraries.minecraft.net/"
         },
         {
-            "name": "com.google.guava:guava:17.0"
+            "name": "com.google.guava:guava:17.0",
+            "url": "https://libraries.minecraft.net/"
         }
     ],
     "logging": {
@@ -1733,7 +1724,7 @@
             "type": "log4j2-xml"
         }
     },
-    "mainClass": "net.minecraft.launchwrapper.Launch",
+    "mainClass": "com.gtnewhorizons.retrofuturabootstrap.Main",
     "minimumLauncherVersion": 21,
     "releaseTime": "@time@",
     "time": "@time@",

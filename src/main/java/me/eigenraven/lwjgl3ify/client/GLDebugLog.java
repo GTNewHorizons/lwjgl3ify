@@ -1,5 +1,11 @@
 package me.eigenraven.lwjgl3ify.client;
 
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL43;
+import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.opengl.GLDebugMessageCallback;
+
 public class GLDebugLog {
 
     private static void printDetail(java.io.PrintStream stream, String type, String message) {
@@ -61,67 +67,69 @@ public class GLDebugLog {
 
     private static String getDebugSource(int source) {
         return switch (source) {
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_API -> "API";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_WINDOW_SYSTEM -> "WINDOW SYSTEM";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_SHADER_COMPILER -> "SHADER COMPILER";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_THIRD_PARTY -> "THIRD PARTY";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_APPLICATION -> "APPLICATION";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SOURCE_OTHER -> "OTHER";
+            case GL43.GL_DEBUG_SOURCE_API -> "API";
+            case GL43.GL_DEBUG_SOURCE_WINDOW_SYSTEM -> "WINDOW SYSTEM";
+            case GL43.GL_DEBUG_SOURCE_SHADER_COMPILER -> "SHADER COMPILER";
+            case GL43.GL_DEBUG_SOURCE_THIRD_PARTY -> "THIRD PARTY";
+            case GL43.GL_DEBUG_SOURCE_APPLICATION -> "APPLICATION";
+            case GL43.GL_DEBUG_SOURCE_OTHER -> "OTHER";
             default -> String.format("Unknown [0x%X]", source);
         };
     }
 
     private static String getDebugType(int type) {
         return switch (type) {
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_ERROR -> "ERROR";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR -> "DEPRECATED BEHAVIOR";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR -> "UNDEFINED BEHAVIOR";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_PORTABILITY -> "PORTABILITY";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_PERFORMANCE -> "PERFORMANCE";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_OTHER -> "OTHER";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_TYPE_MARKER -> "MARKER";
+            case GL43.GL_DEBUG_TYPE_ERROR -> "ERROR";
+            case GL43.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR -> "DEPRECATED BEHAVIOR";
+            case GL43.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR -> "UNDEFINED BEHAVIOR";
+            case GL43.GL_DEBUG_TYPE_PORTABILITY -> "PORTABILITY";
+            case GL43.GL_DEBUG_TYPE_PERFORMANCE -> "PERFORMANCE";
+            case GL43.GL_DEBUG_TYPE_OTHER -> "OTHER";
+            case GL43.GL_DEBUG_TYPE_MARKER -> "MARKER";
             default -> String.format("Unknown [0x%X]", type);
         };
     }
 
     private static String getDebugSeverity(int severity) {
         return switch (severity) {
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_NOTIFICATION -> "NOTIFICATION";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_HIGH -> "HIGH";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_MEDIUM -> "MEDIUM";
-            case org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_LOW -> "LOW";
+            case GL43.GL_DEBUG_SEVERITY_NOTIFICATION -> "NOTIFICATION";
+            case GL43.GL_DEBUG_SEVERITY_HIGH -> "HIGH";
+            case GL43.GL_DEBUG_SEVERITY_MEDIUM -> "MEDIUM";
+            case GL43.GL_DEBUG_SEVERITY_LOW -> "LOW";
             default -> String.format("Unknown [0x%X]", severity);
         };
     }
 
     public static void setupDebugMessageCallback() {
-        org.lwjgl.opengl.GLCapabilities caps = org.lwjgl.opengl.GL.getCapabilities();
+        GLCapabilities caps = GL.getCapabilities();
         final java.io.PrintStream stream = org.lwjgl.system.APIUtil.DEBUG_STREAM;
         if (caps.OpenGL43) {
             org.lwjgl.system.APIUtil.apiLog("[GL] Using OpenGL 4.3 for error logging.");
-            org.lwjgl.opengl.GLDebugMessageCallback proc = org.lwjgl.opengl.GLDebugMessageCallback
+            GLDebugMessageCallback proc = GLDebugMessageCallback
                 .create((source, type, id, severity, length, message, userParam) -> {
                     String level;
-                    if (severity == org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_NOTIFICATION
-                        || severity == org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_LOW) level = "info ";
-                    else if (severity == org.lwjgl.opengl.GL43.GL_DEBUG_SEVERITY_MEDIUM) level = "warn ";
+                    if (severity == GL43.GL_DEBUG_SEVERITY_NOTIFICATION) {
+                        // skip
+                        return;
+                    }
+                    if (severity == GL43.GL_DEBUG_SEVERITY_LOW) level = "info ";
+                    else if (severity == GL43.GL_DEBUG_SEVERITY_MEDIUM) level = "warn ";
                     else level = "error";
                     stream.println("[" + level + "] OpenGL debug message");
                     printDetail(stream, "ID", String.format("0x%X", id));
                     printDetail(stream, "Source", getDebugSource(source));
                     printDetail(stream, "Type", getDebugType(type));
                     printDetail(stream, "Severity", getDebugSeverity(severity));
-                    printDetail(stream, "Message", org.lwjgl.opengl.GLDebugMessageCallback.getMessage(length, message));
+                    printDetail(stream, "Message", GLDebugMessageCallback.getMessage(length, message));
                     printTrace(stream);
 
                 });
-            org.lwjgl.opengl.GL43.glDebugMessageCallback(proc, org.lwjgl.system.MemoryUtil.NULL);
-            if ((org.lwjgl.opengl.GL11.glGetInteger(org.lwjgl.opengl.GL43.GL_CONTEXT_FLAGS)
-                & org.lwjgl.opengl.GL43.GL_CONTEXT_FLAG_DEBUG_BIT) == 0) {
+            GL43.glDebugMessageCallback(proc, org.lwjgl.system.MemoryUtil.NULL);
+            if ((GL11.glGetInteger(GL43.GL_CONTEXT_FLAGS) & GL43.GL_CONTEXT_FLAG_DEBUG_BIT) == 0) {
                 org.lwjgl.system.APIUtil.apiLog("[GL] Warning: A non-debug context may not produce any debug output.");
-                org.lwjgl.opengl.GL11.glEnable(org.lwjgl.opengl.GL43.GL_DEBUG_OUTPUT);
+                GL11.glEnable(GL43.GL_DEBUG_OUTPUT);
             }
-            org.lwjgl.opengl.GL11.glEnable(org.lwjgl.opengl.GL43.GL_DEBUG_OUTPUT_SYNCHRONOUS);
+            GL11.glEnable(GL43.GL_DEBUG_OUTPUT_SYNCHRONOUS);
         }
     }
 }

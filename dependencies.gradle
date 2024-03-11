@@ -1,53 +1,80 @@
 
 minecraft {
     mainLwjglVersion = 3
-    lwjgl3Version = "3.3.2"
+    lwjgl3Version = "3.3.3"
 }
 
-def addGtForTesting = false
-def addReikaModsForTesting = false
+def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
+def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
-def asmVersion = '9.5'
+def asmVersion = '9.6'
+def rfbVersion = '1.0.0'
+// 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
+def gsonVersion = '2.10.1'
+
+configurations.configureEach {
+    resolutionStrategy.dependencySubstitution {
+        substitute module('net.minecraft:launchwrapper') using module("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") because("LW replacement")
+    }
+}
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
-    vanilla_minecraft('net.minecraft:launchwrapper:1.17.4') { transitive = false }
-    forgePatchesEmbedded('net.minecraft:launchwrapper:1.17.4') { transitive = false }
+    vanilla_minecraft("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
+    forgePatchesEmbedded("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
+    vanilla_minecraft("com.google.code.gson:gson:${gsonVersion}")
+    forgePatchesEmbedded("com.google.code.gson:gson:${gsonVersion}")
+
+    utilImplementation("org.ow2.asm:asm:${asmVersion}")
+    utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
+    utilImplementation("org.apache.commons:commons-lang3:3.14.0")
+    utilImplementation("commons-io:commons-io:2.11.0")
+    utilImplementation("commons-collections:commons-collections:3.2.2")
+    utilImplementation("com.google.guava:guava:31.1-jre")
+
+    hotswapCompileOnly("org.hotswapagent:hotswap-agent-core:1.4.1")
+    hotswapCompileOnly("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}")
 
     forgePatchesEmbedded("org.ow2.asm:asm:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-commons:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-tree:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-analysis:${asmVersion}")
     forgePatchesEmbedded("org.ow2.asm:asm-util:${asmVersion}")
-    forgePatchesEmbedded('org.ow2.asm:asm-deprecated:7.1')
-    forgePatchesEmbedded("org.apache.commons:commons-lang3:3.12.0")
+    forgePatchesEmbedded("org.apache.commons:commons-lang3:3.14.0")
+    forgePatchesEmbedded("org.apache.commons:commons-compress:1.26.0")
+    forgePatchesEmbedded("commons-io:commons-io:2.15.1")
 
-    forgePatchesEmbedded("org.apache.commons:commons-compress:1.21")
+    compileOnly("org.jetbrains:annotations:24.1.0")
 
     // Allow using Unsafe with newer javac versions
     compileOnly('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')
+    api("com.google.code.gson:gson:${gsonVersion}")
+
+    compileOnly("com.mumfrey:liteloader:1.7.10_04:mcpnames")
 
     shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
-    shadowImplementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    shadowImplementation("javax.servlet:javax.servlet-api:4.0.1")
     shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")
-    shadowImplementation("org.mozilla:rhino-engine:1.7.14")
+    shadowImplementation("org.openjdk.nashorn:nashorn-core:15.4")
 
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev')
+    shadowImplementation("com.github.weisj:darklaf-core:3.0.2")
+
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.5.17-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.6.2:dev')
     if (addGtForTesting) {
-        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.45.38:dev')
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-312-GTNH:dev")
+        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.45.61:dev')
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-317-GTNH:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.13.4-GTNH:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.8.2:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.15.5:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.6.3:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.6.4:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:ProjectRed:4.9.3-GTNH:dev") { transitive = false }
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:MrTJPCore:1.1.6:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeMultipart:1.4.7:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeRelocation:0.1.0:dev")
         reobfJarConfiguration group: 'curse.maven', name: 'cofh-core-69162', version: '2388750'
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:AppleCore:3.3.0:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.4.9:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.4.20:dev")
     }
     if (addReikaModsForTesting) {
         // DragonAPI

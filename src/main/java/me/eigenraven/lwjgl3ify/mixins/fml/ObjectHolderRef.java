@@ -1,10 +1,9 @@
 package me.eigenraven.lwjgl3ify.mixins.fml;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.RegistryNamespaced;
 
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,8 +30,6 @@ public class ObjectHolderRef {
     @Shadow(remap = false)
     private boolean isItem;
 
-    private MethodHandle fieldSetter = null;
-
     /**
      * @author eigenraven
      * @reason Simple helper function
@@ -52,24 +49,17 @@ public class ObjectHolderRef {
      */
     @Overwrite(remap = false)
     public void apply() {
-        if (fieldSetter == null) {
-            try {
-                fieldSetter = MethodHandles.lookup()
-                    .unreflectSetter(this.field);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
         Object thing;
+        RegistryNamespaced registry;
         if (isBlock) {
-            thing = GameData.getBlockRegistry()
-                .getObject(injectedObject);
+            registry = GameData.getBlockRegistry();
+            thing = registry.getObject(injectedObject);
             if (thing == Blocks.air) {
                 thing = null;
             }
         } else if (isItem) {
-            thing = GameData.getItemRegistry()
-                .getObject(injectedObject);
+            registry = GameData.getItemRegistry();
+            thing = registry.getObject(injectedObject);
         } else {
             thing = null;
         }
@@ -84,7 +74,7 @@ public class ObjectHolderRef {
             return;
         }
         try {
-            fieldSetter.invoke(thing);
+            field.set(null, thing);
             FMLLog.finer("Set field " + field.toString() + " to " + thing);
         } catch (Throwable e) {
             FMLLog.log(Level.WARN, e, "Unable to set %s with value %s (%s)", this.field, thing, this.injectedObject);

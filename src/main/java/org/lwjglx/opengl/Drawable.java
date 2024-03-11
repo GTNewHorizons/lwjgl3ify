@@ -55,4 +55,8 @@ public interface Drawable {
      * @param properties The target properties buffer. It must have at least 4 positions remaining.
      */
     void setCLSharingProperties(PointerBuffer properties) throws LWJGLException;
+
+    default long getGlfwWindowId() {
+        return 0;
+    }
 }

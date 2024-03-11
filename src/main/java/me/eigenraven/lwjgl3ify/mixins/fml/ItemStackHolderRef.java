@@ -1,7 +1,5 @@
 package me.eigenraven.lwjgl3ify.mixins.fml;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
 import net.minecraft.item.ItemStack;
@@ -31,8 +29,6 @@ public class ItemStackHolderRef {
     @Shadow(remap = false)
     private String serializednbt;
 
-    private static MethodHandle fieldSetter;
-
     /**
      * @author eigenraven
      * @reason Simple helper function
@@ -41,8 +37,6 @@ public class ItemStackHolderRef {
     private static void makeWritable(Field f) {
         try {
             f.setAccessible(true);
-            fieldSetter = MethodHandles.lookup()
-                .unreflectSetter(f);
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -71,7 +65,7 @@ public class ItemStackHolderRef {
             throw e;
         }
         try {
-            fieldSetter.invoke(is);
+            field.set(null, is);
         } catch (Throwable e) {
             FMLLog.getLogger()
                 .log(

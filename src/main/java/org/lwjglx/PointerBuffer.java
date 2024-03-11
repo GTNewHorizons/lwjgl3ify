@@ -50,6 +50,16 @@ public class PointerBuffer extends org.lwjgl.PointerBuffer {
         super(ver3.address(), getContainer(ver3), ver3.position(), ver3.position(), ver3.limit(), ver3.capacity());
     }
 
+    public PointerBuffer(ByteBuffer buffer) {
+        this(
+            org.lwjgl.system.MemoryUtil.memAddress(buffer),
+            buffer,
+            0,
+            buffer.position(),
+            buffer.limit(),
+            buffer.capacity());
+    }
+
     /**
      * Allocates a new pointer buffer.
      *
@@ -84,5 +94,9 @@ public class PointerBuffer extends org.lwjgl.PointerBuffer {
      */
     public static PointerBuffer create(ByteBuffer source) {
         return new PointerBuffer(org.lwjgl.PointerBuffer.create(source));
+    }
+
+    public static int getPointerSize() {
+        return org.lwjgl.PointerBuffer.POINTER_SIZE;
     }
 }

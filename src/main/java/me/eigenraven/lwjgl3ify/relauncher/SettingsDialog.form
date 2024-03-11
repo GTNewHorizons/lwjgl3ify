@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="me.eigenraven.lwjgl3ify.relauncher.SettingsDialog">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="808" height="648"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <hspacer id="b4e51">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <component id="fc507" class="javax.swing.JLabel" binding="lblHeader">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="KEY_SETTINGS_HEADER"/>
+        </properties>
+      </component>
+      <component id="6e546" class="javax.swing.JLabel" binding="lblJavaExecutable">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_JAVA_EXECUTABLE"/>
+        </properties>
+      </component>
+      <component id="12ab4" class="javax.swing.JComboBox" binding="comboJavaExecutable">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="ecee8" class="javax.swing.JButton" binding="buttonRefreshJavas">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_REFRESH"/>
+        </properties>
+      </component>
+      <hspacer id="2cba2">
+        <constraints>
+          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <component id="89fbc" class="javax.swing.JButton" binding="buttonAddJava">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_ADD_JAVA"/>
+        </properties>
+      </component>
+      <component id="d49bc" class="javax.swing.JLabel" binding="labelMinJavaVer">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_MIN_MOD_JAVA"/>
+        </properties>
+      </component>
+      <component id="abf5b" class="javax.swing.JLabel" binding="lblJavaOptions">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_JAVA_OPTIONS"/>
+        </properties>
+      </component>
+      <tabbedpane id="5a6a7" binding="tabbedPane1" default-binding="true">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="1.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="7d40" binding="panelBasic" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="KEY_TAB_BASIC"/>
+            </constraints>
+            <properties/>
+            <border type="etched"/>
+            <children>
+              <component id="aa2dd" class="javax.swing.JLabel" binding="lblMinMemory">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_MIN_MEMORY_MB"/>
+                </properties>
+              </component>
+              <component id="bdb8c" class="javax.swing.JSlider" binding="optMinMemory">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <majorTickSpacing value="1024"/>
+                  <maximum value="8192"/>
+                  <minorTickSpacing value="256"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                  <snapToTicks value="true"/>
+                  <valueIsAdjusting value="false"/>
+                </properties>
+              </component>
+              <component id="a2143" class="javax.swing.JLabel" binding="lblMaxMemory">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_MAX_MEMORY_MB"/>
+                </properties>
+              </component>
+              <component id="73caa" class="javax.swing.JSlider" binding="optMaxMemory">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <majorTickSpacing value="1024"/>
+                  <maximum value="8192"/>
+                  <minorTickSpacing value="256"/>
+                  <paintLabels value="true"/>
+                  <paintTicks value="true"/>
+                  <snapToTicks value="true"/>
+                  <valueIsAdjusting value="false"/>
+                </properties>
+              </component>
+              <component id="2d9b1" class="javax.swing.JLabel" binding="lblGarbageCollector">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_GARBAGE_COLLECTOR"/>
+                </properties>
+              </component>
+              <component id="f6b97" class="javax.swing.JComboBox" binding="optGC">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="4461f" class="javax.swing.JLabel" binding="lblCustomOptions">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_CUSTOM_OPTIONS"/>
+                </properties>
+              </component>
+              <scrollpane id="d90b2">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="4" bottom="4" right="4" weightx="1.0" weighty="1.0"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="350d3" class="javax.swing.JTextPane" binding="optCustom">
+                    <constraints/>
+                    <properties>
+                      <minimumSize width="256" height="128"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
+          <grid id="d9983" binding="panelAdvanced" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="KEY_TAB_ADVANCED"/>
+            </constraints>
+            <properties/>
+            <border type="etched"/>
+            <children>
+              <component id="173ab" class="javax.swing.JCheckBox" binding="optRfbDumpClasses">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_RFB_DUMP_CLASSES"/>
+                </properties>
+              </component>
+              <hspacer id="ab5ee">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="55f1a">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="1.0"/>
+                </constraints>
+              </vspacer>
+              <component id="4439e" class="javax.swing.JCheckBox" binding="optRfbDumpTransformers">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER"/>
+                </properties>
+              </component>
+              <component id="30c5d" class="javax.swing.JCheckBox" binding="optDebugAgent">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_ALLOW_DEBUGGER"/>
+                </properties>
+              </component>
+              <component id="355a3" class="javax.swing.JCheckBox" binding="optDebugSuspend">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_WAIT_FOR_DEBUGGER"/>
+                </properties>
+              </component>
+              <component id="a0a2e" class="javax.swing.JCheckBox" binding="optForwardLogs">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <selected value="false"/>
+                  <text value="KEY_FORWARD_LOGS"/>
+                </properties>
+              </component>
+              <component id="62930" class="javax.swing.JCheckBox" binding="optMixinExport">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_MIXIN_EXPORT_CLASSES"/>
+                </properties>
+              </component>
+              <component id="19821" class="javax.swing.JCheckBox" binding="optMixinDebug">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_MIXIN_DEBUG"/>
+                </properties>
+              </component>
+              <component id="4950d" class="javax.swing.JCheckBox" binding="optMixinCount">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_MIXIN_COUNT_INJECTIONS"/>
+                </properties>
+              </component>
+              <component id="a6cd3" class="javax.swing.JCheckBox" binding="optFmlDebugAts">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="4" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="KEY_FML_DEBUG_AT"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+      <component id="e4c65" class="javax.swing.JButton" binding="buttonRun">
+        <constraints>
+          <grid row="5" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_RUN_GAME"/>
+        </properties>
+      </component>
+      <component id="6b9a7" class="javax.swing.JCheckBox" binding="optHideOnFutureLaunches">
+        <constraints>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="KEY_SKIP_IN_FUTURE"/>
+        </properties>
+      </component>
+      <component id="f0795" class="javax.swing.JButton" binding="buttonPreviewJavaOpts">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="KEY_PREVIEW_JAVA_OPTS"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

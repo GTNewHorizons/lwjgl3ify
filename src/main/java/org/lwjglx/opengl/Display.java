@@ -35,6 +35,7 @@ import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
 
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Display {
@@ -109,27 +110,28 @@ public class Display {
      * <p>
      * The window created will be set up in orthographic 2D projection, with 1:1 pixel ratio with GL coordinates.
      *
-     * @param pixel_format    Describes the minimum specifications the context must fulfill.
-     * @param shared_drawable The Drawable to share context with. (optional, may be null)
+     * @param pixelFormat    Describes the minimum specifications the context must fulfill.
+     * @param sharedDrawable The Drawable to share context with. (optional, may be null)
      *
      * @throws org.lwjglx.LWJGLException
      */
-    public static void create(PixelFormat pixel_format, Drawable shared_drawable) {
-        System.out.println("TODO: Implement Display.create(PixelFormat, Drawable)"); // TODO
-        create();
-    }
-
-    public static void create(PixelFormat pixel_format, ContextAttribs attribs) {
-        System.out.println("TODO: Implement Display.create(PixelFormat, ContextAttribs)"); // TODO
-        create();
-    }
-
-    public static void create(PixelFormat pixel_format) {
-        System.out.println("TODO: Implement Display.create(PixelFormat)"); // TODO
-        create();
+    public static void create(PixelFormat pixelFormat, Drawable sharedDrawable) {
+        create(pixelFormat, (ContextAttribs) null, sharedDrawable.getGlfwWindowId());
     }
 
     public static void create() {
+        create(null, (ContextAttribs) null);
+    }
+
+    public static void create(PixelFormat pixelFormat) {
+        create(pixelFormat, (ContextAttribs) null);
+    }
+
+    public static void create(PixelFormat pixelFormat, ContextAttribs attribs) {
+        create(pixelFormat, attribs, NULL);
+    }
+
+    public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow) {
         if (displayCreated) {
             return;
         }
@@ -144,11 +146,24 @@ public class Display {
 
         desktopDisplayMode = new DisplayMode(monitorWidth, monitorHeight, monitorBitPerPixel, monitorRefreshRate);
 
+        final int ctxMajor = (attribs != null) ? attribs.getMajorVersion() : 2;
+        final int ctxMinor = (attribs != null) ? attribs.getMinorVersion() : 1;
+        final boolean ctxForwardCompat = attribs != null && attribs.isForwardCompatible();
+        final boolean ctxSrgb = pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
+
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, ctxMajor);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, ctxMinor);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, ctxForwardCompat ? GLFW_TRUE : GLFW_FALSE);
+        if (attribs != null) {
+            if (attribs.isProfileCore()) {
+                glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+            } else if (attribs.isProfileCompatibility()) {
+                glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+            }
+        }
 
         glfwWindowHint(GLFW_MAXIMIZED, Config.WINDOW_START_MAXIMIZED ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_FOCUSED, Config.WINDOW_START_FOCUSED ? GLFW_TRUE : GLFW_FALSE);
@@ -157,7 +172,7 @@ public class Display {
         displayVisible = !Config.WINDOW_START_ICONIFIED;
         glfwWindowHint(GLFW_DECORATED, Config.WINDOW_DECORATED ? GLFW_TRUE : GLFW_FALSE);
 
-        glfwWindowHint(GLFW_SRGB_CAPABLE, Config.OPENGL_SRGB_CONTEXT ? GLFW_TRUE : GLFW_FALSE);
+        glfwWindowHint(GLFW_SRGB_CAPABLE, ctxSrgb ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_DOUBLEBUFFER, Config.OPENGL_DOUBLEBUFFER ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(GLFW_CONTEXT_NO_ERROR, Config.OPENGL_CONTEXT_NO_ERROR ? GLFW_TRUE : GLFW_FALSE);
         glfwWindowHint(
@@ -173,7 +188,7 @@ public class Display {
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
                                                                    // on MacOS
 
-        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, NULL);
+        Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, sharedWindow);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");
         }
@@ -194,6 +209,22 @@ public class Display {
                         KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                         (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
+                final InputEvents.KeyAction enumAction = switch (action) {
+                    case GLFW_PRESS -> InputEvents.KeyAction.PRESSED;
+                    case GLFW_RELEASE -> InputEvents.KeyAction.RELEASED;
+                    case GLFW_REPEAT -> InputEvents.KeyAction.REPEATED;
+                    default -> InputEvents.KeyAction.PRESSED;
+                };
+                InputEvents.injectKeyEvent(
+                    new InputEvents.KeyEvent(
+                        KeyCodes.glfwToLwjgl(key),
+                        key,
+                        scancode,
+                        enumAction,
+                        (mods & GLFW_MOD_CONTROL) != 0,
+                        (mods & GLFW_MOD_SHIFT) != 0,
+                        (mods & GLFW_MOD_ALT) != 0,
+                        (mods & GLFW_MOD_SUPER) != 0));
                 cancelNextChar = false;
                 if (action == GLFW_PRESS) {
                     if (key == GLFW_KEY_LEFT_ALT) {
@@ -281,6 +312,7 @@ public class Display {
                     Lwjgl3ify.LOG
                         .info("[DEBUG-KEY] char window:{} codepoint:{} char:{}", window, codepoint, (char) codepoint);
                 }
+                InputEvents.injectTextEvent(new InputEvents.TextEvent(String.valueOf((char) codepoint)));
                 if (cancelNextChar) { // Char event being cancelled
                     cancelNextChar = false;
                 } else if (ingredientKeyEvent != null) {

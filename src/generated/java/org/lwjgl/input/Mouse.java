@@ -1,99 +1,101 @@
 package org.lwjgl.input;
 
+import org.lwjglx.LWJGLException;
+
 public class Mouse {
 
     public static final int EVENT_SIZE = (int) 22;
 
-    public static void create() {
-        throw new UnsupportedOperationException();
+    public static void create() throws LWJGLException {
+        org.lwjglx.input.Mouse.create();
     }
 
     public static void destroy() {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.destroy();
     }
 
     public static int getButtonCount() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getButtonCount();
     }
 
     public static int getButtonIndex(java.lang.String arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getButtonIndex(arg0);
     }
 
     public static java.lang.String getButtonName(int arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getButtonName(arg0);
     }
 
     public static int getDWheel() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getDWheel();
     }
 
     public static int getDX() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getDX();
     }
 
     public static int getDY() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getDY();
     }
 
     public static int getEventButton() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventButton();
     }
 
     public static boolean getEventButtonState() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventButtonState();
     }
 
     public static int getEventDWheel() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventDWheel();
     }
 
     public static int getEventDX() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventDX();
     }
 
     public static int getEventDY() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventDY();
     }
 
     public static long getEventNanoseconds() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventNanoseconds();
     }
 
     public static int getEventX() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventX();
     }
 
     public static int getEventY() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getEventY();
     }
 
     public static org.lwjgl.input.Cursor getNativeCursor() {
-        throw new UnsupportedOperationException();
+        return null;
     }
 
     public static int getX() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getX();
     }
 
     public static int getY() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.getY();
     }
 
     public static boolean hasWheel() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.hasWheel();
     }
 
     public static boolean isButtonDown(int arg0) {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.isButtonDown(arg0);
     }
 
     public static boolean isClipMouseCoordinatesToWindow() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.isClipMouseCoordinatesToWindow();
     }
 
     public static boolean isCreated() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.isCreated();
     }
 
     public static boolean isGrabbed() {
@@ -101,23 +103,23 @@ public class Mouse {
     }
 
     public static boolean isInsideWindow() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.isInsideWindow();
     }
 
     public static boolean next() {
-        throw new UnsupportedOperationException();
+        return org.lwjglx.input.Mouse.next();
     }
 
     public static void poll() {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.poll();
     }
 
     public static void setClipMouseCoordinatesToWindow(boolean arg0) {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.setClipMouseCoordinatesToWindow(arg0);
     }
 
     public static void setCursorPosition(int arg0, int arg1) {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.setCursorPosition(arg0, arg1);
     }
 
     public static void setGrabbed(boolean arg0) {
@@ -125,10 +127,10 @@ public class Mouse {
     }
 
     public static org.lwjgl.input.Cursor setNativeCursor(org.lwjgl.input.Cursor arg0) {
-        throw new UnsupportedOperationException();
+        return null;
     }
 
     public static void updateCursor() {
-        throw new UnsupportedOperationException();
+        org.lwjglx.input.Mouse.updateCursor();
     }
 }
