@@ -186,7 +186,7 @@ val versionJsonFile = tasks.register("versionJson") {
                 ReplaceTokens::class, "tokens" to mapOf(
                     "version" to project.version,
                     "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", "),
-                    "time" to DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(OffsetDateTime.now(ZoneOffset.UTC))
+                    "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(OffsetDateTime.now(ZoneOffset.UTC))
                 )
             )
         }
