@@ -25,7 +25,6 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
     public static final Logger LOGGER = LogManager.getLogger("lwjgl3ify");
 
     public Lwjgl3ifyCoremod() {
-        Config.loadConfig();
         try {
             LaunchClassLoader launchLoader = (LaunchClassLoader) getClass().getClassLoader();
             launchLoader.addClassLoaderExclusion("org.hotswap.agent");
@@ -36,6 +35,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
                     .getClass(),
                 e);
         }
+        Config.loadConfig();
         if (Launch.blackboard.get("lwjgl3ify:rfb-booted") != Boolean.TRUE) {
             return;
         }

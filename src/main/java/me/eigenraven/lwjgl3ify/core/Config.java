@@ -38,6 +38,7 @@ public class Config {
     public static double INPUT_SCROLL_SPEED = 1.0;
     public static boolean INPUT_CTRL_ALT_TEXT = false;
     public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
+    public static boolean INPUT_RAW_MOUSE = false;
 
     public static String X11_CLASS_NAME = "minecraft";
     public static String COCOA_FRAME_NAME = "minecraft";
@@ -157,6 +158,8 @@ public class Config {
             CATEGORY_INPUT,
             INPUT_ALTGR_ESCAPE_CODES,
             "Allows AltGr use in Ctrl+key special key combinations (disables text character input handling when AltGr is pressed)");
+        INPUT_RAW_MOUSE = config
+            .getBoolean("rawMouseInput", CATEGORY_INPUT, INPUT_RAW_MOUSE, "Use raw (unaccelerated) mouse input");
 
         OPENGL_DEBUG_CONTEXT = config.getBoolean(
             "debugContext",

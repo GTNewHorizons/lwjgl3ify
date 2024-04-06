@@ -37,6 +37,7 @@ import org.lwjglx.input.Mouse;
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.core.Config;
+import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
 public class Display {
 
@@ -187,6 +188,8 @@ public class Display {
 
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
                                                                    // on MacOS
+
+        lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
 
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, sharedWindow);
         if (Window.handle == 0L) {
@@ -468,6 +471,18 @@ public class Display {
         Window.windowSizeCallback.invoke(Window.handle, x[0], y[0]);
         GLFW.glfwGetFramebufferSize(Window.handle, x, y);
         Window.framebufferSizeCallback.invoke(Window.handle, x[0], y[0]);
+    }
+
+    public static void lwjgl3ify$updateRawMouseMode(boolean mode) {
+        final boolean supported = GLFW.glfwRawMouseMotionSupported();
+        if (isCreated()) {
+            if (supported) {
+                GLFW.glfwSetInputMode(Window.handle, GLFW_RAW_MOUSE_MOTION, mode ? GLFW_TRUE : GLFW_FALSE);
+                Lwjgl3ifyCoremod.LOGGER.info("Updated raw mouse input mode to " + mode);
+            } else if (mode) {
+                Lwjgl3ifyCoremod.LOGGER.warn("Raw mouse input not supported on your system.");
+            }
+        }
     }
 
     public static boolean isCreated() {

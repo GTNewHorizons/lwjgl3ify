@@ -6,7 +6,10 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjglx.input.Keyboard;
+import org.lwjglx.opengl.Display;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import me.eigenraven.lwjgl3ify.CommonProxy;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
@@ -34,6 +37,9 @@ public class ClientProxy extends CommonProxy {
         // Populate keyboard-layout-dependent key lookup tables
         Keyboard.populateKeyLookupTables();
         registerKeybindHandler();
+        FMLCommonHandler.instance()
+            .bus()
+            .register(this);
     }
 
     private static final class McKeybindHandler implements InputEvents.KeyboardListener {
@@ -74,5 +80,16 @@ public class ClientProxy extends CommonProxy {
                 event.right.add(Math.min(3, event.right.size()), javaVersion);
             }
         }
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused") // event handler
+    public void onConfigChange(final ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (!event.modID.equals("lwjgl3ify")) {
+            return;
+        }
+        Config.config.save();
+        Config.reloadConfigObject();
+        Display.lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
     }
 }
