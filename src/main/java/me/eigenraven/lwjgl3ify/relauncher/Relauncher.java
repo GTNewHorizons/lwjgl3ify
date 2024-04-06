@@ -253,12 +253,11 @@ public class Relauncher {
             bootstrapCmd.add("-Xmx256M");
             bootstrapCmd.add("-cp");
             bootstrapCmd.add(forgePatchesJarPath + File.pathSeparator + myJarPath);
-            bootstrapCmd.add("--disable-@files");
             bootstrapCmd.add("me.eigenraven.lwjgl3ify.relauncherstub.RelauncherStubMain");
             bootstrapCmd.add(Long.toString(getCurrentPid()));
             bootstrapCmd.add("true");
             bootstrapCmd.add(javaPath);
-            bootstrapCmd.add("@" + argFile);
+            bootstrapCmd.add(argFile.toString());
         }
 
         final ProcessBuilder pb = new ProcessBuilder(bootstrapCmd);

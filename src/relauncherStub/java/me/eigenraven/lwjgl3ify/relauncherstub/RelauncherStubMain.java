@@ -2,7 +2,6 @@ package me.eigenraven.lwjgl3ify.relauncherstub;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -22,7 +21,9 @@ public class RelauncherStubMain {
         }
         final long parentPid = Long.parseLong(args[0]);
         final boolean showConsole = Boolean.parseBoolean(args[1]);
-        final String[] javaCmdline = Arrays.copyOfRange(args, 2, args.length);
+        final String javaBinary = args[2];
+        final String javaArgFile = args[3];
+        final String[] javaCmdline = new String[] { javaBinary, "@" + javaArgFile };
         final ProcessHandle myProcess = ProcessHandle.current();
         final ProcessHandle parentProcess = ProcessHandle.of(parentPid)
             .orElse(
