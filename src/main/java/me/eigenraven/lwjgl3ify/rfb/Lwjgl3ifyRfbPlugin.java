@@ -29,8 +29,8 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
         EarlyConfig.load();
         verifyJavaVersion();
         Launch.classLoader.addClassLoaderExclusion("org.openjdk.nashorn");
-        Launch.classLoader.addClassLoaderExclusion("org.lwjgl.");
-        Launch.classLoader.addClassLoaderExclusion("org.lwjglx.");
+        Launch.classLoader.addTransformerExclusion("org.lwjgl.");
+        Launch.classLoader.addTransformerExclusion("org.lwjglx.");
     }
 
     @Override
