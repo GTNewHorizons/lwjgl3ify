@@ -21,10 +21,17 @@ Reload the launcher, and it should show up modified versions of Forge, Minecraft
 Put the mod jar (`lwjgl3ify-VERSION.jar`) in `mods/` in your instance's minecraft folder, it will get loaded as a coremod.
 The forgePatches jar will get automatically downloaded by the launcher.
 
+Make sure you have installed the UniMixins GTNHMixins and Mixin modules, or the all modules combined jar.
+
 Change the instance java version to 17.0.6, 19.0.2, 20 or 21 (or newer), these are the currently supported versions.
 You can also use Java 11 if you remove the `-Djava.security.manager=allow` argument from `patches/me.eigenraven.lwjgl3ify.forgepatches.json`.
 
 ### MultiMC setup (GTNH and non-GTNH)
+
+> [!IMPORTANT]
+> If you're using GTNH 2.5.1 or older, use the lwjgl3ify 1.x arguments from <https://github.com/GTNewHorizons/lwjgl3ify/blob/2229295b9fe5ed3304f62288f76f84bdb79ff5bb/README.MD#multimc-setup-gtnh-and-non-gtnh>.
+> The following arguments are relevant to the 2.x version.
+
 For MultiMC, you need to manually put in extra java arguments, prismlauncher can load them from the patches json files automatically:
 ```
 -Dfile.encoding=UTF-8 -Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader -Djava.security.manager=allow --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.text=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming --add-opens java.desktop/sun.awt=ALL-UNNAMED --add-opens java.desktop/sun.awt.image=ALL-UNNAMED --add-opens jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED --add-opens java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
