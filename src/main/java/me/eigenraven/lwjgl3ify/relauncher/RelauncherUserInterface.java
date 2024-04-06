@@ -166,6 +166,10 @@ public class RelauncherUserInterface {
     }
 
     public void startSettingsIfNeeded() {
+        if (RelauncherConfig.config.hideSettingsOnLaunch) {
+            // TODO: Show a countdown and add a way to show settings again
+            return;
+        }
         invokeOnSwingThread(true, () -> {
             initSwingIfNeeded();
             final JDialog settingsDialog = new JDialog(
@@ -224,6 +228,10 @@ public class RelauncherUserInterface {
             contents.optFmlDebugAts.setSelected(initCfg.fmlDebugAts);
             contents.optRfbDumpClasses.setSelected(initCfg.rfbDumpClasses);
             contents.optRfbDumpTransformers.setSelected(initCfg.rfbDumpPerTransformer);
+            contents.optHideOnFutureLaunches.setSelected(initCfg.hideSettingsOnLaunch);
+            // do not show for now
+            contents.optHideOnFutureLaunches.setEnabled(false);
+            contents.optHideOnFutureLaunches.setVisible(false);
 
             refreshJavaInstalls(contents);
             saveConfig(contents);
@@ -335,6 +343,7 @@ public class RelauncherUserInterface {
         initCfg.fmlDebugAts = contents.optFmlDebugAts.isSelected();
         initCfg.rfbDumpClasses = contents.optRfbDumpClasses.isSelected();
         initCfg.rfbDumpPerTransformer = contents.optRfbDumpTransformers.isSelected();
+        initCfg.hideSettingsOnLaunch = contents.optHideOnFutureLaunches.isSelected();
         RelauncherConfig.save();
     }
 

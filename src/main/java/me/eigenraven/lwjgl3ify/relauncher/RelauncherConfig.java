@@ -42,6 +42,7 @@ public class RelauncherConfig {
         public int maxMemoryMB = 4096;
         public GCOption garbageCollector = GCOption.G1GC;
         public String[] customOptions = new String[0];
+        public boolean hideSettingsOnLaunch = false;
         // Advanced
         public boolean forwardLogs = false;
         public boolean allowDebugger = false;
