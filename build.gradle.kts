@@ -1,5 +1,6 @@
 import com.gtnewhorizons.retrofuturagradle.minecraft.RunMinecraftTask
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
+import com.modrinth.minotaur.ModrinthExtension
 import org.apache.tools.ant.filters.ReplaceTokens
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -158,7 +159,13 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
         into("libraries/")
     }
     exclude("META-INF", "META-INF/**")
-    filesMatching(listOf("mmc-pack.json", "patches/me.eigenraven.lwjgl3ify.forgepatches.json", "patches/me.eigenraven.lwjgl3ify.launchargs.json")) {
+    filesMatching(
+        listOf(
+            "mmc-pack.json",
+            "patches/me.eigenraven.lwjgl3ify.forgepatches.json",
+            "patches/me.eigenraven.lwjgl3ify.launchargs.json"
+        )
+    ) {
         expand(
             mapOf(
                 "version" to project.version,
@@ -186,7 +193,8 @@ val versionJsonFile = tasks.register("versionJson") {
                 ReplaceTokens::class, "tokens" to mapOf(
                     "version" to project.version,
                     "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", "),
-                    "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(OffsetDateTime.now(ZoneOffset.UTC))
+                    "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
+                        .format(OffsetDateTime.now(ZoneOffset.UTC))
                 )
             )
         }
@@ -343,3 +351,21 @@ tasks.shadowJar {
 
 apply(from = "repositories.gradle")
 apply(from = "dependencies.gradle")
+
+pluginManager.withPlugin("com.modrinth.minotaur") {
+    val modrinth = project.extensions.getByType<ModrinthExtension>()
+    modrinth.additionalFiles.add(forgePatchesJar)
+    tasks.named("modrinth") {
+        dependsOn(forgePatchesJar)
+    }
+}
+
+tasks.publishCurseforge {
+    dependsOn(forgePatchesJar)
+    val mainArtifact = this.uploadArtifacts[0]
+    mainArtifact.withAdditionalFile(forgePatchesJar.get().archiveFile.get().asFile)
+    mainArtifact.additionalArtifacts.forEach { additionalArtifact ->
+        additionalArtifact.changelogType = mainArtifact.changelogType
+        additionalArtifact.changelog = mainArtifact.changelog
+    }
+}
