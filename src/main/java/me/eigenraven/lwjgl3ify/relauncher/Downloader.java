@@ -348,9 +348,13 @@ public class Downloader {
 
         public void download() throws IOException {
             final Path targetDir = targetLocation.getParent();
+            final Path tempLocation = targetDir.resolve(
+                targetLocation.getFileName()
+                    .toString() + ".tmp");
 
             Files.createDirectories(targetDir);
             Files.deleteIfExists(targetLocation);
+            Files.deleteIfExists(tempLocation);
 
             byte[] data = null;
             Relauncher.logger.info("Downloading {} from {}", targetLocation, sourceUrl);
@@ -372,7 +376,8 @@ public class Downloader {
                 }
             }
             Objects.requireNonNull(data);
-            Files.write(targetLocation, data);
+            Files.write(tempLocation, data);
+            Files.move(tempLocation, targetLocation);
         }
 
         @Override
