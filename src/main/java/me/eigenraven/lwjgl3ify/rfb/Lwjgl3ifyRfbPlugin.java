@@ -12,6 +12,7 @@ import net.minecraft.launchwrapper.Launch;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.base.Throwables;
 import com.gtnewhorizons.retrofuturabootstrap.api.PluginContext;
 import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
 import com.gtnewhorizons.retrofuturabootstrap.api.RfbPlugin;
@@ -25,8 +26,18 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
 
     @Override
     public void onConstruction(@NotNull PluginContext ctx) {
+        Launch.classLoader.addClassLoaderExclusion("me.eigenraven.lwjgl3ify.rfb.EarlyConfig");
         Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
-        EarlyConfig.load();
+        try {
+            @SuppressWarnings("unchecked")
+            final Class<EarlyConfig> earlyConfig = (Class<EarlyConfig>) Class
+                .forName("me.eigenraven.lwjgl3ify.rfb.EarlyConfig");
+            MethodHandles.lookup()
+                .findStatic(earlyConfig, "load", MethodType.methodType(void.class))
+                .invokeExact();
+        } catch (Throwable e) {
+            throw Throwables.propagate(e);
+        }
         verifyJavaVersion();
         Launch.classLoader.addClassLoaderExclusion("org.openjdk.nashorn");
         Launch.classLoader.addTransformerExclusion("org.lwjgl.");
