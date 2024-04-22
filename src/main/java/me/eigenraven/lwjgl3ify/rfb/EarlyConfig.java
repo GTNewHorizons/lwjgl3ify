@@ -39,7 +39,7 @@ public class EarlyConfig {
         "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
         // Non-GTNH Mods Compat
         // The Lord of the Rings Mod: Legacy
-        "net.minecraft.event.HoverEvent$Action",
+        "net.minecraft.event.HoverEvent$Action", "lotr.common.fac.LOTRFaction",
         // Reika's mods
         "net.minecraft.client.audio.SoundCategory",
         "Reika.RotaryCraft.TileEntities.Processing.TileEntityFuelConverter$Conversions",
