@@ -40,6 +40,7 @@ public class EarlyConfig {
         // Non-GTNH Mods Compat
         // The Lord of the Rings Mod: Legacy
         "net.minecraft.event.HoverEvent$Action",
+        "lotr.common.fac.LOTRFaction",
         // Reika's mods
         "net.minecraft.client.audio.SoundCategory",
         "Reika.RotaryCraft.TileEntities.Processing.TileEntityFuelConverter$Conversions",
