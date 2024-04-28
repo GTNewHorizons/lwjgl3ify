@@ -39,8 +39,9 @@ public class EarlyConfig {
         "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
         // Non-GTNH Mods Compat
         // The Lord of the Rings Mod: Legacy
-        "net.minecraft.event.HoverEvent$Action", "lotr.common.fac.LOTRFaction",
-        "lotr.common.quest.LOTRMiniQuestFactory", "lotr.common.world.map.LOTRWaypoint",
+        "net.minecraft.event.HoverEvent$Action",
+        // LotR Addons
+        "lotr.common.fac.LOTRFaction", "lotr.common.quest.LOTRMiniQuestFactory", "lotr.common.world.map.LOTRWaypoint",
         "lotr.common.world.map.LOTRWaypoint$Region", "lotr.common.world.spawning.LOTRInvasions",
         "lotr.common.LOTRShields", "lotr.common.LOTRDimension$DimensionRegion",
         "lotr.common.item.LOTRItemBanner$BannerType", "lotr.common.LOTRAchievement$Category",
