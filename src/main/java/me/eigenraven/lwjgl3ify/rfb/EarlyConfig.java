@@ -58,6 +58,7 @@ public class EarlyConfig {
         "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life",
         // Et Futurum Requiem
         "net.minecraft.world.WorldSettings$GameType",
+        "ganymedes01.etfuturum.tileentities.TileEntityBanner$EnumBannerPattern",
         // EnderIO Addons
         "crazypants.enderio.ModObject",
         //
