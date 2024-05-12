@@ -52,10 +52,10 @@ dependencies {
 
     compileOnly("com.mumfrey:liteloader:1.7.10_04:mcpnames")
 
-    shadowImplementation("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
-    shadowImplementation("javax.servlet:javax.servlet-api:4.0.1")
-    shadowImplementation("com.sun.xml.bind:jaxb-impl:3.0.2")
-    shadowImplementation("org.openjdk.nashorn:nashorn-core:15.4")
+    forgePatchesEmbedded("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
+    forgePatchesEmbedded("javax.servlet:javax.servlet-api:4.0.1")
+    forgePatchesEmbedded("com.sun.xml.bind:jaxb-impl:3.0.2")
+    forgePatchesEmbedded("org.openjdk.nashorn:nashorn-core:15.4")
 
     shadowImplementation("com.github.weisj:darklaf-core:3.0.2")
 

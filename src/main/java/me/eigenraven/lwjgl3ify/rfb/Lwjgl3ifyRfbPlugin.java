@@ -40,6 +40,7 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
         }
         verifyJavaVersion();
         Launch.classLoader.addClassLoaderExclusion("org.openjdk.nashorn");
+        Launch.classLoader.addClassLoaderExclusion("jakarta.xml.bind.");
         Launch.classLoader.addTransformerExclusion("org.lwjgl.");
         Launch.classLoader.addTransformerExclusion("org.lwjglx.");
     }
