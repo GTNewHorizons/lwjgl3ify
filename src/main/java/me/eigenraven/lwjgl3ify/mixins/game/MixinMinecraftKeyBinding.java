@@ -20,4 +20,12 @@ public class MixinMinecraftKeyBinding {
     private void lwjgl3ify$noKeybindUpdateHere(int eventKey, boolean eventKeyState) {
         // Disable, handled in the client proxy
     }
+
+    @Redirect(
+        method = "runTick",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/settings/KeyBinding;onTick(I)V"),
+        slice = @Slice(from = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Keyboard;next()Z", remap = false)))
+    private void lwjgl3ify$noKeybindTickHere(int eventKey) {
+        // Disable, handled in the client proxy
+    }
 }
