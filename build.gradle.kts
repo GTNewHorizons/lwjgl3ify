@@ -120,6 +120,10 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
         include("me/eigenraven/lwjgl3ify/rfb/entry/ServerMain.class")
     }
     from(relauncherStubSet.output)
+    inputs.property("version", project.version.toString())
+    from(resources.text.fromString(project.version.toString()).asFile()) {
+        rename { return@rename "META-INF/lwjgl3ify-forgePatches-version.txt" }
+    }
     archiveClassifier.set("forgePatches")
     manifest {
         val libraryList = listOf(
