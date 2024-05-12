@@ -5,6 +5,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import kotlin.streams.toList
 
 plugins {
     id("com.gtnewhorizons.gtnhconvention")
@@ -23,6 +24,8 @@ val addOpens = listOf(
     "java.base/java.nio=ALL-UNNAMED",
     "java.base/java.io=ALL-UNNAMED",
     "java.base/java.lang=ALL-UNNAMED",
+    "java.base/java.lang.ref=ALL-UNNAMED",
+    "java.base/java.util.concurrent.locks=ALL-UNNAMED",
     "java.base/java.lang.reflect=ALL-UNNAMED",
     "java.base/java.text=ALL-UNNAMED",
     "java.base/java.util=ALL-UNNAMED",
@@ -147,6 +150,7 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
         attributes(
             mapOf(
                 "Class-Path" to libraryList.joinToString(" "),
+                "Add-Opens" to addOpens.stream().map{ it.split("=")[0]}.toList().joinToString(" "),
                 "Main-Class" to "me.eigenraven.lwjgl3ify.rfb.entry.ServerMain"
             )
         )
