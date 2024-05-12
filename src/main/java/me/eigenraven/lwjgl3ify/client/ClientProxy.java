@@ -55,6 +55,9 @@ public class ClientProxy extends CommonProxy {
             }
             if (event.lwjgl2KeyCode > Keyboard.KEY_NONE) {
                 KeyBinding.setKeyBindState(event.lwjgl2KeyCode, event.action != InputEvents.KeyAction.RELEASED);
+                if (event.action != InputEvents.KeyAction.RELEASED) {
+                    KeyBinding.onTick(event.lwjgl2KeyCode);
+                }
             }
         }
     }
