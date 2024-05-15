@@ -2,17 +2,17 @@
     "components": [
         {
             "cachedName": "LWJGL 3",
-            "cachedVersion": "3.3.2",
+            "cachedVersion": "3.3.3",
             "cachedVolatile": true,
             "dependencyOnly": true,
             "uid": "org.lwjgl3",
-            "version": "3.3.2"
+            "version": "3.3.3"
         },
         {
             "cachedName": "Minecraft with LWJGL3",
             "cachedRequires": [
                 {
-                    "suggests": "3.3.2",
+                    "suggests": "3.3.3",
                     "uid": "org.lwjgl3"
                 }
             ],

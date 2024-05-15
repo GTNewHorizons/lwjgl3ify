@@ -11,7 +11,8 @@
         17,
         19,
         20,
-        21
+        21,
+        22
     ],
     "formatVersion": 1,
     "libraries": [
@@ -399,7 +400,7 @@
     "releaseTime": "2014-05-14T17:29:23+00:00",
     "requires": [
         {
-            "suggests": "3.3.2",
+            "suggests": "3.3.3",
             "uid": "org.lwjgl3"
         }
     ],
