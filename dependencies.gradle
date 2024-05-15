@@ -1,7 +1,9 @@
 
+def lwjgl3Ver = "3.3.3"
+
 minecraft {
     mainLwjglVersion = 3
-    lwjgl3Version = "3.3.3"
+    lwjgl3Version = lwjgl3Ver
 }
 
 def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
@@ -15,6 +17,15 @@ def gsonVersion = '2.10.1'
 configurations.configureEach {
     resolutionStrategy.dependencySubstitution {
         substitute module('net.minecraft:launchwrapper') using module("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") because("LW replacement")
+    }
+}
+
+afterEvaluate {
+    String lwjgl3Natives = project.extensions.findByName("lwjgl3Natives")
+    dependencies {
+        lwjgl3Classpath("org.lwjgl:lwjgl-nuklear:${lwjgl3Ver}")
+        compileOnlyApi("org.lwjgl:lwjgl-nuklear:${lwjgl3Ver}")
+        lwjgl3Classpath("org.lwjgl:lwjgl-nuklear:${lwjgl3Ver}:${lwjgl3Natives}")
     }
 }
 

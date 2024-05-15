@@ -1,10 +1,13 @@
 package me.eigenraven.lwjgl3ify.client;
 
+import static org.lwjgl.nuklear.Nuklear.NK_ANTI_ALIASING_ON;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import org.lwjgl.opengl.GL11;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.opengl.Display;
 
@@ -82,6 +85,24 @@ public class ClientProxy extends CommonProxy {
             if (Config.SHOW_JAVA_VERSION) {
                 event.right.add(Math.min(3, event.right.size()), javaVersion);
             }
+        }
+    }
+
+    NuklearUi ui;
+
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    public void onRenderHud(RenderGameOverlayEvent.Post event) {
+        if (event.type == RenderGameOverlayEvent.ElementType.ALL) {
+            GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+            if (ui == null) {
+                ui = new NuklearUi();
+                ui.setup();
+            }
+            ui.newFrame();
+            ui.demo_layout(32, 32);
+            ui.render(NK_ANTI_ALIASING_ON);
+            GL11.glPopAttrib();
         }
     }
 
