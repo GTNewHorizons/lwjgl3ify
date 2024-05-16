@@ -56,7 +56,7 @@ public class InputEvents {
         }
     }
 
-    /** Implement this interface and register it with this class to receive raw LWJGL3 input events. */
+    /** Implement this interface and register it with this class to receive raw LWJGL3 keyboard input events. */
     public interface KeyboardListener {
 
         /** Handle a key press event */

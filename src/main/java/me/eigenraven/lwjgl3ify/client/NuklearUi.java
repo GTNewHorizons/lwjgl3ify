@@ -24,7 +24,6 @@ import org.lwjgl.nuklear.NkConvertConfig;
 import org.lwjgl.nuklear.NkDrawCommand;
 import org.lwjgl.nuklear.NkDrawNullTexture;
 import org.lwjgl.nuklear.NkDrawVertexLayoutElement;
-import org.lwjgl.nuklear.NkMouse;
 import org.lwjgl.nuklear.NkRect;
 import org.lwjgl.nuklear.NkUserFont;
 import org.lwjgl.nuklear.NkUserFontGlyph;
@@ -341,105 +340,6 @@ public final class NuklearUi {
     }
 
     private NkContext setupWindow() {
-        /*
-         * glfwSetScrollCallback(win, (window, xoffset, yoffset) -> {
-         * try (MemoryStack stack = stackPush()) {
-         * NkVec2 scroll = NkVec2.malloc(stack)
-         * .x((float)xoffset)
-         * .y((float)yoffset);
-         * nk_input_scroll(ctx, scroll);
-         * }
-         * });
-         * glfwSetCharCallback(win, (window, codepoint) -> nk_input_unicode(ctx, codepoint));
-         * glfwSetKeyCallback(win, (window, key, scancode, action, mods) -> {
-         * boolean press = action == GLFW_PRESS;
-         * switch (key) {
-         * case GLFW_KEY_ESCAPE:
-         * glfwSetWindowShouldClose(window, true);
-         * break;
-         * case GLFW_KEY_DELETE:
-         * nk_input_key(ctx, NK_KEY_DEL, press);
-         * break;
-         * case GLFW_KEY_ENTER:
-         * nk_input_key(ctx, NK_KEY_ENTER, press);
-         * break;
-         * case GLFW_KEY_TAB:
-         * nk_input_key(ctx, NK_KEY_TAB, press);
-         * break;
-         * case GLFW_KEY_BACKSPACE:
-         * nk_input_key(ctx, NK_KEY_BACKSPACE, press);
-         * break;
-         * case GLFW_KEY_UP:
-         * nk_input_key(ctx, NK_KEY_UP, press);
-         * break;
-         * case GLFW_KEY_DOWN:
-         * nk_input_key(ctx, NK_KEY_DOWN, press);
-         * break;
-         * case GLFW_KEY_HOME:
-         * nk_input_key(ctx, NK_KEY_TEXT_START, press);
-         * nk_input_key(ctx, NK_KEY_SCROLL_START, press);
-         * break;
-         * case GLFW_KEY_END:
-         * nk_input_key(ctx, NK_KEY_TEXT_END, press);
-         * nk_input_key(ctx, NK_KEY_SCROLL_END, press);
-         * break;
-         * case GLFW_KEY_PAGE_DOWN:
-         * nk_input_key(ctx, NK_KEY_SCROLL_DOWN, press);
-         * break;
-         * case GLFW_KEY_PAGE_UP:
-         * nk_input_key(ctx, NK_KEY_SCROLL_UP, press);
-         * break;
-         * case GLFW_KEY_LEFT_SHIFT:
-         * case GLFW_KEY_RIGHT_SHIFT:
-         * nk_input_key(ctx, NK_KEY_SHIFT, press);
-         * break;
-         * case GLFW_KEY_LEFT_CONTROL:
-         * case GLFW_KEY_RIGHT_CONTROL:
-         * if (press) {
-         * nk_input_key(ctx, NK_KEY_COPY, glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_PASTE, glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_CUT, glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_UNDO, glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_REDO, glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_WORD_LEFT, glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_WORD_RIGHT, glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_LINE_START, glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_TEXT_LINE_END, glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS);
-         * } else {
-         * nk_input_key(ctx, NK_KEY_LEFT, glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_RIGHT, glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS);
-         * nk_input_key(ctx, NK_KEY_COPY, false);
-         * nk_input_key(ctx, NK_KEY_PASTE, false);
-         * nk_input_key(ctx, NK_KEY_CUT, false);
-         * nk_input_key(ctx, NK_KEY_SHIFT, false);
-         * }
-         * break;
-         * }
-         * });
-         * glfwSetCursorPosCallback(win, (window, xpos, ypos) -> nk_input_motion(ctx, (int)xpos, (int)ypos));
-         * glfwSetMouseButtonCallback(win, (window, button, action, mods) -> {
-         * try (MemoryStack stack = stackPush()) {
-         * DoubleBuffer cx = stack.mallocDouble(1);
-         * DoubleBuffer cy = stack.mallocDouble(1);
-         * glfwGetCursorPos(window, cx, cy);
-         * int x = (int)cx.get(0);
-         * int y = (int)cy.get(0);
-         * int nkButton;
-         * switch (button) {
-         * case GLFW_MOUSE_BUTTON_RIGHT:
-         * nkButton = NK_BUTTON_RIGHT;
-         * break;
-         * case GLFW_MOUSE_BUTTON_MIDDLE:
-         * nkButton = NK_BUTTON_MIDDLE;
-         * break;
-         * default:
-         * nkButton = NK_BUTTON_LEFT;
-         * }
-         * nk_input_button(ctx, nkButton, x, y, action == GLFW_PRESS);
-         * }
-         * });
-         */
-
         nk_init(ctx, ALLOCATOR, null);
         ctx.clip()
             .copy((handle, text, len) -> {
@@ -464,31 +364,6 @@ public final class NuklearUi {
 
         setupContext();
         return ctx;
-    }
-
-    public void newFrame() {
-        nk_input_begin(ctx);
-        // glfwPollEvents();
-
-        NkMouse mouse = ctx.input()
-            .mouse();
-        if (mouse.grab()) {
-            // glfwSetInputMode(win, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-        } else if (mouse.grabbed()) {
-            float prevX = mouse.prev()
-                .x();
-            float prevY = mouse.prev()
-                .y();
-            // glfwSetCursorPos(win, prevX, prevY);
-            mouse.pos()
-                .x(prevX);
-            mouse.pos()
-                .y(prevY);
-        } else if (mouse.ungrab()) {
-            // glfwSetInputMode(win, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-        }
-
-        nk_input_end(ctx);
     }
 
     public void render(int AA) {

@@ -12,8 +12,10 @@ import org.lwjglx.input.Keyboard;
 import org.lwjglx.opengl.Display;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import me.eigenraven.lwjgl3ify.CommonProxy;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.core.Config;
@@ -22,6 +24,10 @@ public class ClientProxy extends CommonProxy {
 
     static final String javaVersion;
     static final String lwjglVersion = "LWJGL: " + org.lwjgl.Version.getVersion();
+    static final KeyBinding debugUiKeybind = new KeyBinding(
+        "key.lwjgl3ify.debuggui",
+        Keyboard.KEY_F6,
+        "key.categories.misc");
 
     static {
         String javaVersionRaw = "Java: " + System.getProperty("java.version");
@@ -40,6 +46,7 @@ public class ClientProxy extends CommonProxy {
         // Populate keyboard-layout-dependent key lookup tables
         Keyboard.populateKeyLookupTables();
         registerKeybindHandler();
+        ClientRegistry.registerKeyBinding(debugUiKeybind);
         FMLCommonHandler.instance()
             .bus()
             .register(this);
@@ -99,10 +106,21 @@ public class ClientProxy extends CommonProxy {
                 ui = new NuklearUi();
                 ui.setup();
             }
-            ui.newFrame();
             ui.demo_layout(32, 32);
             ui.render(NK_ANTI_ALIASING_ON);
             GL11.glPopAttrib();
+        }
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused") // event handler
+    public void onClientTick(final TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.START) {
+            return;
+        }
+        final Minecraft mc = Minecraft.getMinecraft();
+        if (ui != null && mc.inGameHasFocus && debugUiKeybind.isPressed()) {
+            mc.displayGuiScreen(new GuiNuklear(ui));
         }
     }
 
