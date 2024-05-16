@@ -66,7 +66,6 @@ public class GuiNuklear extends GuiScreen implements InputEvents.KeyboardListene
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-        System.out.println("Clicked");
         mousePresses.add(mouseButton);
         mouseXs.add(Mouse.getX());
         mouseYs.add(Mouse.getY());
