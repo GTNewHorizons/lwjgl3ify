@@ -189,8 +189,6 @@ public class Display {
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
                                                                    // on MacOS
 
-        lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
-
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, sharedWindow);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");
@@ -461,6 +459,8 @@ public class Display {
         glfwSwapInterval(1);
 
         displayCreated = true;
+
+        lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
 
         if (startFullscreen) {
             setFullscreen(true);
