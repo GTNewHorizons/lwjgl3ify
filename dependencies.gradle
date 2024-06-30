@@ -43,6 +43,8 @@ dependencies {
     forgePatchesEmbedded("org.apache.commons:commons-lang3:3.14.0")
     forgePatchesEmbedded("org.apache.commons:commons-compress:1.26.2")
     forgePatchesEmbedded("commons-io:commons-io:2.15.1")
+    // For Just Another Spawner
+    forgePatchesEmbedded("org.mvel:mvel2:2.5.2.Final")
 
     compileOnly("org.jetbrains:annotations:24.1.0")
 

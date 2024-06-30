@@ -2,6 +2,7 @@ import com.gtnewhorizons.retrofuturagradle.minecraft.RunMinecraftTask
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
 import com.modrinth.minotaur.ModrinthExtension
 import org.apache.tools.ant.filters.ReplaceTokens
+import java.nio.charset.StandardCharsets
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -138,7 +139,13 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
             filesMatching("META-INF/*") {
                 this.name = "${dep.name}-${this.name}"
             }
+            filesMatching("META-INF/services/javax.script.ScriptEngineFactory") {
+                this.exclude()
+            }
         }
+    }
+    from(resources.text.fromString("org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory\norg.mvel2.jsr223.MvelScriptEngineFactory").asFile(StandardCharsets.UTF_8.name())) {
+        rename { return@rename "META-INF/services/javax.script.ScriptEngineFactory" }
     }
     exclude("module-info.class")
     exclude("META-INF/versions/9/module-info.class")
