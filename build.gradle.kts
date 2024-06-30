@@ -19,24 +19,39 @@ val newJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
 }
 
 val addOpens = listOf(
-    "java.base/jdk.internal.loader=ALL-UNNAMED",
-    "java.base/java.net=ALL-UNNAMED",
-    "java.base/java.nio=ALL-UNNAMED",
     "java.base/java.io=ALL-UNNAMED",
-    "java.base/java.lang=ALL-UNNAMED",
+    "java.base/java.lang.invoke=ALL-UNNAMED",
     "java.base/java.lang.ref=ALL-UNNAMED",
-    "java.base/java.util.concurrent.locks=ALL-UNNAMED",
     "java.base/java.lang.reflect=ALL-UNNAMED",
+    "java.base/java.lang=ALL-UNNAMED",
+    "java.base/java.net.spi=ALL-UNNAMED",
+    "java.base/java.net=ALL-UNNAMED",
+    "java.base/java.nio.channels=ALL-UNNAMED",
+    "java.base/java.nio.charset=ALL-UNNAMED",
+    "java.base/java.nio.file=ALL-UNNAMED",
+    "java.base/java.nio=ALL-UNNAMED",
     "java.base/java.text=ALL-UNNAMED",
+    "java.base/java.time.chrono=ALL-UNNAMED",
+    "java.base/java.time.format=ALL-UNNAMED",
+    "java.base/java.time.temporal=ALL-UNNAMED",
+    "java.base/java.time.zone=ALL-UNNAMED",
+    "java.base/java.time=ALL-UNNAMED",
+    "java.base/java.util.concurrent.atomics=ALL-UNNAMED",
+    "java.base/java.util.concurrent.locks=ALL-UNNAMED",
+    "java.base/java.util.jar=ALL-UNNAMED",
+    "java.base/java.util.zip=ALL-UNNAMED",
     "java.base/java.util=ALL-UNNAMED",
+    "java.base/jdk.internal.loader=ALL-UNNAMED",
+    "java.base/jdk.internal.misc=ALL-UNNAMED",
+    "java.base/jdk.internal.ref=ALL-UNNAMED",
     "java.base/jdk.internal.reflect=ALL-UNNAMED",
     "java.base/sun.nio.ch=ALL-UNNAMED",
-    "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
-    "java.desktop/sun.awt=ALL-UNNAMED",
-    "java.desktop/sun.awt.image=ALL-UNNAMED",
     "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
-    "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
+    "java.desktop/sun.awt.image=ALL-UNNAMED",
+    "java.desktop/sun.awt=ALL-UNNAMED",
     "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED",
+    "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
+    "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
 )
 
 val extraJavaArgs = mutableListOf(
@@ -46,6 +61,15 @@ val extraJavaArgs = mutableListOf(
 )
 for (openSpec in addOpens) {
     extraJavaArgs += listOf("--add-opens", openSpec)
+}
+
+tasks.register("updateJava9ArgsTxt") {
+    group = taskGroup
+    description = "Updates java9args.txt with the current argument list"
+    outputs.file("java9args.txt")
+    doLast {
+        file("java9args.txt").writeText(extraJavaArgs.joinToString("\n") + "\n", Charsets.UTF_8)
+    }
 }
 
 minecraft {
