@@ -189,6 +189,11 @@ public class Display {
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
                                                                    // on MacOS
 
+        if (Config.WINDOW_CENTERED) {
+            glfwWindowHint(GLFW_POSITION_X, (monitorWidth - mode.getWidth()) / 2);
+            glfwWindowHint(GLFW_POSITION_Y, (monitorHeight - mode.getHeight()) / 2);
+        }
+
         Window.handle = glfwCreateWindow(mode.getWidth(), mode.getHeight(), windowTitle, NULL, sharedWindow);
         if (Window.handle == 0L) {
             throw new IllegalStateException("Failed to create Display window");

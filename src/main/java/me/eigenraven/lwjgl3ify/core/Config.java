@@ -25,6 +25,7 @@ public class Config {
     public static boolean SHOW_LWJGL_VERSION = true;
 
     public static boolean WINDOW_START_MAXIMIZED = false, WINDOW_START_FOCUSED = true, WINDOW_START_ICONIFIED = false;
+    public static boolean WINDOW_CENTERED = true;
     public static boolean WINDOW_DECORATED = true;
     public static boolean OPENGL_DEBUG_CONTEXT = false;
     public static boolean OPENGL_SRGB_CONTEXT = false;
@@ -118,6 +119,7 @@ public class Config {
         WINDOW_START_FOCUSED = config.getBoolean("focused", CATEGORY_WINDOW, WINDOW_START_FOCUSED, "Start focused?");
         WINDOW_START_ICONIFIED = config
             .getBoolean("iconified", CATEGORY_WINDOW, WINDOW_START_ICONIFIED, "Start iconified?");
+        WINDOW_CENTERED = config.getBoolean("centered", CATEGORY_WINDOW, WINDOW_CENTERED, "Start centered?");
         WINDOW_DECORATED = config.getBoolean(
             "decorated",
             CATEGORY_WINDOW,
