@@ -59,11 +59,14 @@ public class Pack200 {
             // The Apache library doesn't handle LzmaInputStreams well
             final byte[] allData = IOUtils.toByteArray(in);
             parent.unpack(new ByteArrayInputStream(allData), out);
+            out.flush();
+            out.close(); // Forge expects this
         }
 
         @Override
         public void unpack(File in, JarOutputStream out) throws IOException {
             parent.unpack(in, out);
+            out.flush();
         }
 
         @Override

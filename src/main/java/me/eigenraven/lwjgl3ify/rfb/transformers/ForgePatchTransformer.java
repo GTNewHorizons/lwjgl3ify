@@ -18,6 +18,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InsnList;
 import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.LdcInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
@@ -33,12 +34,13 @@ public class ForgePatchTransformer implements RfbClassTransformer {
         return "forge-patch";
     }
 
+    public static final String CLASS_PATCH_MANAGER = "cpw.mods.fml.common.patcher.ClassPatchManager";
     public static final String TRACING_PRINT_STREAM = "cpw.mods.fml.common.TracingPrintStream";
     public static final String FML_SECURITY_MANAGER = "cpw.mods.fml.relauncher.FMLSecurityManager";
     public static final String ENUM_HELPER = "net.minecraftforge.common.util.EnumHelper";
 
-    public static final String[] PATCHED_CLASSES = new String[] { TRACING_PRINT_STREAM, FML_SECURITY_MANAGER,
-        ENUM_HELPER };
+    public static final String[] PATCHED_CLASSES = new String[] { CLASS_PATCH_MANAGER, TRACING_PRINT_STREAM,
+        FML_SECURITY_MANAGER, ENUM_HELPER };
 
     @Override
     public boolean shouldTransformClass(@NotNull ExtensibleClassLoader classLoader,
@@ -59,9 +61,47 @@ public class ForgePatchTransformer implements RfbClassTransformer {
             return;
         }
         switch (className) {
+            case CLASS_PATCH_MANAGER -> tfClassPatchManager(classNode);
             case TRACING_PRINT_STREAM -> tfTracingPrintStream(classNode);
             case FML_SECURITY_MANAGER -> tfFmlSecurityManager(classNode);
             case ENUM_HELPER -> tfEnumHelper(classNode);
+        }
+    }
+
+    private void tfClassPatchManager(@NotNull ClassNodeHandle handle) {
+        // Fix an infinite loop if an EOFException happens
+        final ClassNode node = handle.getNode();
+        if (node == null || node.methods == null) {
+            logger.error("Class patch manager missing class data");
+            return;
+        }
+        for (final MethodNode mn : node.methods) {
+            if (!"setup".equals(mn.name)) {
+                continue;
+            }
+            if (mn.instructions == null || mn.instructions.size() == 0) {
+                logger.error("ClassPatchManager#setup(Side) missing code");
+                return;
+            }
+            for (final AbstractInsnNode insn : mn.instructions) {
+                if (insn.getOpcode() != INVOKEVIRTUAL) {
+                    continue;
+                }
+                if (!(insn instanceof MethodInsnNode minsn)) {
+                    continue;
+                }
+                if (!"java/util/jar/JarInputStream".equals(minsn.owner)) {
+                    continue;
+                }
+                if (!"getNextJarEntry".equals(minsn.name)) {
+                    continue;
+                }
+                // redirect
+                minsn.setOpcode(INVOKESTATIC);
+                minsn.owner = "me/eigenraven/lwjgl3ify/redirects/JarInputStream";
+                minsn.name = "getNextJarEntrySafe";
+                minsn.desc = "(Ljava/util/jar/JarInputStream;)Ljava/util/jar/JarEntry;";
+            }
         }
     }
 
