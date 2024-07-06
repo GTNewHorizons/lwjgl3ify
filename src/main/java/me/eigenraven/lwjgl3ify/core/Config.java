@@ -27,6 +27,8 @@ public class Config {
     public static boolean WINDOW_START_MAXIMIZED = false, WINDOW_START_FOCUSED = true, WINDOW_START_ICONIFIED = false;
     public static boolean WINDOW_CENTERED = true;
     public static boolean WINDOW_DECORATED = true;
+    public static boolean WINDOW_BORDERLESS_REPLACES_FULLSCREEN = false;
+    public static boolean WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY = true;
     public static boolean OPENGL_DEBUG_CONTEXT = false;
     public static boolean OPENGL_SRGB_CONTEXT = false;
     public static boolean OPENGL_DOUBLEBUFFER = true;
@@ -120,6 +122,16 @@ public class Config {
         WINDOW_START_ICONIFIED = config
             .getBoolean("iconified", CATEGORY_WINDOW, WINDOW_START_ICONIFIED, "Start iconified?");
         WINDOW_CENTERED = config.getBoolean("centered", CATEGORY_WINDOW, WINDOW_CENTERED, "Start centered?");
+        WINDOW_BORDERLESS_REPLACES_FULLSCREEN = config.getBoolean(
+            "borderless",
+            CATEGORY_WINDOW,
+            WINDOW_BORDERLESS_REPLACES_FULLSCREEN,
+            "Should exclusive fullscreen mode replaced with borderless fullscreen mode");
+        WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY = config.getBoolean(
+            "borderlessWindowsCompatibility",
+            CATEGORY_WINDOW,
+            WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY,
+            "Windows-only - should borderless window have height increased by 1 to solve flickering on un-focusing");
         WINDOW_DECORATED = config.getBoolean(
             "decorated",
             CATEGORY_WINDOW,
