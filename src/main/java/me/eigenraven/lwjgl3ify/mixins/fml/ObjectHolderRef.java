@@ -35,7 +35,7 @@ public class ObjectHolderRef {
      * @reason Simple helper function
      */
     @Overwrite(remap = false)
-    private static void makeWritable(Field f) {
+    public static void makeWritable(Field f) {
         try {
             f.setAccessible(true);
         } catch (Exception e) {
