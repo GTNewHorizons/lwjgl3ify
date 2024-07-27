@@ -87,7 +87,7 @@ public class Sys {
             .endsWith("64");
     }
 
-    public String getClipboard() {
+    public static String getClipboard() {
         return GLFW.glfwGetClipboardString(Display.getWindow());
     }
 }
