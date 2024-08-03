@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify.mixins.game;
+package me.eigenraven.lwjgl3ify.mixins.early.game;
 
 import java.awt.image.BufferedImage;
 

@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify.mixins.fml;
+package me.eigenraven.lwjgl3ify.mixins.early.fml;
 
 import java.util.zip.ZipEntry;
 

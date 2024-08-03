@@ -1,4 +1,4 @@
-package me.eigenraven.lwjgl3ify.mixins.fml;
+package me.eigenraven.lwjgl3ify.mixins.early.fml;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
