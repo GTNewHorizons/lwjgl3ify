@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
-import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import me.eigenraven.lwjgl3ify.mixins.Mixins;
 
@@ -23,6 +22,7 @@ import me.eigenraven.lwjgl3ify.mixins.Mixins;
 public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     public static final Logger LOGGER = LogManager.getLogger("lwjgl3ify");
+    public static Set<String> loadedCoreMods = null; // see Mixins.java
 
     public Lwjgl3ifyCoremod() {
         try {
@@ -72,25 +72,11 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public List<String> getMixins(Set<String> loadedCoreMods) {
-        if (FMLLaunchHandler.side()
-            .isClient()) {
-            final boolean hasFastcraft = loadedCoreMods.contains("fastcraft.Tweaker");
-            final boolean hasOptifine = loadedCoreMods.contains("optifine.OptiFineForgeTweaker");
-            final boolean fcBugFixedByOF = isFastcraftVersion1_25();
-            final boolean fcBugTriggered = hasFastcraft && !(hasOptifine && fcBugFixedByOF);
-            if (fcBugTriggered && !Config.MIXIN_STBI_IGNORE_FASTCRAFT) {
-                LOGGER.error(
-                    "Not using STB stitching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or "
-                        + (!fcBugFixedByOF ? "update to FastCraft 1.25 and " : "")
-                        + "add OptiFine to enable these performance-improving patches.");
-                Config.MIXIN_STBI_TEXTURE_STITCHING = false;
-            }
-        }
-
+        this.loadedCoreMods = loadedCoreMods; // see Mixins.java
         return Mixins.getEarlyMixins(loadedCoreMods);
     }
 
-    private static boolean isFastcraftVersion1_25() {
+    public static boolean isFastcraftVersion1_25() {
         // FastCraft tweaker hasn't run yet so no easy way to grab version.
         // Let's compare the hash of fastcraft.a, which contains the version string in both 1.23 and 1.25.
         try {

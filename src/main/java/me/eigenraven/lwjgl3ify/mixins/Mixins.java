@@ -42,13 +42,31 @@ public enum Mixins {
         .setPhase(Phase.EARLY)
         .addMixinClasses("game.MixinTextureAtlasSprite", "game.MixinTextureMap")
         .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
-
-    // the config is disabled in the coremod if the fastcraft bug is triggered
     STB_STITCHING(new Builder("STB texture stitching mixin").addTargetedMod(TargetedMod.VANILLA)
         .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
         .addMixinClasses("game.MixinStitcher")
-        .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING));
+        .setApplyIf(() -> shouldApplyMixinStitcher()));
+
+    private static boolean shouldApplyMixinStitcher() {
+        // this is bad and I hate it, but:
+        // 1: it fits well with upstream code from Hodgepodge,
+        // 2: it allows logging the message about updating FastCraft and installing Optifine, and
+        // 3: it neatly handles the complex logic that is required to avoid the bug
+        Set<String> loadedCoreMods = Lwjgl3ifyCoremod.loadedCoreMods;
+        boolean fcVer1_25 = Lwjgl3ifyCoremod.isFastcraftVersion1_25();
+        boolean noFastcraft = !loadedCoreMods.contains(TargetedMod.FASTCRAFT.coreModClass);
+        boolean hasOptifine = loadedCoreMods.contains(TargetedMod.OPTIFINE.coreModClass);
+        boolean shouldApply = noFastcraft || (hasOptifine && fcVer1_25) || Config.MIXIN_STBI_IGNORE_FASTCRAFT;
+        if (!shouldApply) {
+            Lwjgl3ifyCoremod.LOGGER.error(
+                "Not using STB stitching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or "
+                    + (!fcVer1_25 ? "update to FastCraft 1.25 and " : "")
+                    + "add OptiFine to enable these performance-improving patches.");
+            return false;
+        }
+        return Config.MIXIN_STBI_TEXTURE_STITCHING;
+    }
 
     private final List<String> mixinClasses;
     private final List<TargetedMod> targetedMods;

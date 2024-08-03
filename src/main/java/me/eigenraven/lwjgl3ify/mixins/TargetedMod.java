@@ -4,7 +4,6 @@ import cpw.mods.fml.common.Mod;
 
 public enum TargetedMod {
 
-    // NOTE: This doesn't work - late mods need a modid, not a coremod class
     FASTCRAFT("FastCraft", "fastcraft.Tweaker"),
     OPTIFINE("Optifine", "optifine.OptiFineForgeTweaker", "Optifine"),
     VANILLA("Minecraft", null);
