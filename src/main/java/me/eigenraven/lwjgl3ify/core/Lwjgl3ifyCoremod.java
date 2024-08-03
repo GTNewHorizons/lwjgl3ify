@@ -83,7 +83,7 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
                     "Not using STB stitching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or "
                         + (!fcBugFixedByOF ? "update to FastCraft 1.25 and " : "")
                         + "add OptiFine to enable these performance-improving patches.");
-                Config.MIXIN_STBI_TEXTURE_STICHING = false;
+                Config.MIXIN_STBI_TEXTURE_STITCHING = false;
             }
         }
 

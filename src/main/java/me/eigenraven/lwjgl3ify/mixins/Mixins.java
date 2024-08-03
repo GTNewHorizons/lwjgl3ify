@@ -48,7 +48,7 @@ public enum Mixins {
         .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
         .addMixinClasses("game.MixinStitcher")
-        .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STICHING)); // sic
+        .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING));
 
     private final List<String> mixinClasses;
     private final List<TargetedMod> targetedMods;
