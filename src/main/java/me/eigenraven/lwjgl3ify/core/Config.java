@@ -14,7 +14,7 @@ public class Config {
     private static boolean configLoaded = false;
 
     public static boolean MIXIN_STBI_TEXTURE_LOADING = true;
-    public static boolean MIXIN_STBI_TEXTURE_STICHING = true;
+    public static boolean MIXIN_STBI_TEXTURE_STITCHING = true;
     public static boolean MIXIN_STBI_IGNORE_FASTCRAFT = false;
 
     public static boolean DEBUG_PRINT_KEY_EVENTS = false;
@@ -84,10 +84,10 @@ public class Config {
             CATEGORY_MIXIN,
             MIXIN_STBI_TEXTURE_LOADING,
             "Use the faster stb_image-based texture loader");
-        MIXIN_STBI_TEXTURE_STICHING = config.getBoolean(
-            "stbiTextureStiching",
+        MIXIN_STBI_TEXTURE_STITCHING = config.getBoolean(
+            "stbiTextureStitching",
             CATEGORY_MIXIN,
-            MIXIN_STBI_TEXTURE_STICHING,
+            MIXIN_STBI_TEXTURE_STITCHING,
             "Use the much faster stb_rectpack-based texture stitcher");
         MIXIN_STBI_IGNORE_FASTCRAFT = config.getBoolean(
             "stbiIgnoreFastcraft",

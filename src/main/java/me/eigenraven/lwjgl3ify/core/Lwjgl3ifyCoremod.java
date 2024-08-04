@@ -1,7 +1,6 @@
 package me.eigenraven.lwjgl3ify.core;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +14,15 @@ import org.apache.logging.log4j.Logger;
 
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 
-import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import me.eigenraven.lwjgl3ify.mixins.Mixins;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
 public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     public static final Logger LOGGER = LogManager.getLogger("lwjgl3ify");
+    public static Set<String> loadedCoreMods = null; // see Mixins.java
 
     public Lwjgl3ifyCoremod() {
         try {
@@ -72,52 +72,11 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public List<String> getMixins(Set<String> loadedCoreMods) {
-
-        final boolean hasFastcraft = loadedCoreMods.contains("fastcraft.Tweaker");
-        final boolean hasOptifine = loadedCoreMods.contains("optifine.OptiFineForgeTweaker");
-        List<String> mixins = new ArrayList<>(8);
-        // FML Java 9+ compatibility patches
-        mixins.add("fml.ItemStackHolderRef");
-        mixins.add("fml.JarDiscoverer");
-        mixins.add("fml.ObjectHolderRef");
-        mixins.add("fml.ObjectHolderRegistry");
-        if (FMLLaunchHandler.side()
-            .isClient()) {
-            // Improved KeyBinding handling to handle dead keys
-            mixins.add("game.MixinMinecraftKeyBinding");
-
-            // Adds the borderless mode
-            mixins.add("game.MixinBorderlessWindow");
-
-            // STB replacements for vanilla functions
-            if (Config.MIXIN_STBI_TEXTURE_LOADING) {
-                LOGGER.info("Enabling STB texture loading mixin");
-                mixins.add("game.MixinTextureAtlasSprite");
-                mixins.add("game.MixinTextureMap");
-            } else {
-                LOGGER.info("Disabling STB texture loading mixin");
-            }
-
-            final boolean fcBugFixedByOF = isFastcraftVersion1_25();
-            final boolean fcBugTriggered = hasFastcraft && !(hasOptifine && fcBugFixedByOF);
-            if (fcBugTriggered && !Config.MIXIN_STBI_IGNORE_FASTCRAFT) {
-                LOGGER.error(
-                    "Not using STB stiching mixins because FastCraft is installed to prevent rapidly flashing screen. Remove FastCraft or "
-                        + (!fcBugFixedByOF ? "update to FastCraft 1.25 and " : "")
-                        + "add OptiFine to enable these performance-improving patches.");
-            } else {
-                if (Config.MIXIN_STBI_TEXTURE_STICHING) {
-                    LOGGER.info("Enabling STB texture stitching mixin");
-                    mixins.add("game.MixinStitcher");
-                } else {
-                    LOGGER.info("Disabling STB texture stitching mixin");
-                }
-            }
-        }
-        return mixins;
+        this.loadedCoreMods = loadedCoreMods; // see Mixins.java
+        return Mixins.getEarlyMixins(loadedCoreMods);
     }
 
-    private static boolean isFastcraftVersion1_25() {
+    public static boolean isFastcraftVersion1_25() {
         // FastCraft tweaker hasn't run yet so no easy way to grab version.
         // Let's compare the hash of fastcraft.a, which contains the version string in both 1.23 and 1.25.
         try {
