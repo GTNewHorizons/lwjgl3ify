@@ -195,8 +195,8 @@ public class Display {
         glfwWindowHintString(GLFW_X11_CLASS_NAME, Config.X11_CLASS_NAME);
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
 
-        glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // request a non-hidpi framebuffer on Retina displays
-        // on MacOS
+        // request a non-hidpi framebuffer on Retina displays on MacOS
+        // glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE);
 
         if (Config.WINDOW_CENTERED) {
             glfwWindowHint(GLFW_POSITION_X, (monitorWidth - mode.getWidth()) / 2);
@@ -607,19 +607,14 @@ public class Display {
         return displayY;
     }
 
+    // vanilla and forge both expect these to return the framebuffer width
+    // rather than the window width, and they both call glViewport with the
+    // result
     public static int getWidth() {
-        return displayWidth;
-    }
-
-    public static int getHeight() {
-        return displayHeight;
-    }
-
-    public static int getFramebufferWidth() {
         return displayFramebufferWidth;
     }
 
-    public static int getFramebufferHeight() {
+    public static int getHeight() {
         return displayFramebufferHeight;
     }
 
