@@ -196,7 +196,7 @@ public class Display {
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
 
         // request a non-hidpi framebuffer on Retina displays on MacOS
-        // glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE);
+        if (glfwGetPlatform() == GLFW_PLATFORM_COCOA) glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE);
 
         if (Config.WINDOW_CENTERED) {
             glfwWindowHint(GLFW_POSITION_X, (monitorWidth - mode.getWidth()) / 2);
