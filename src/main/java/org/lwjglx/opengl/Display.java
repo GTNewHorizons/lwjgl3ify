@@ -895,8 +895,8 @@ public class Display {
         // framebuffer size and window size always map 1:1
         glfwGetWindowSize(getWindow(), windowWidth, windowHeight);
         glfwGetFramebufferSize(getWindow(), framebufferWidth, framebufferHeight);
-        xScale = (float)framebufferWidth[0]/windowWidth[0];
-        yScale = (float)framebufferHeight[0]/windowHeight[0];
+        xScale = (float) framebufferWidth[0] / windowWidth[0];
+        yScale = (float) framebufferHeight[0] / windowHeight[0];
         return Math.max(xScale, yScale);
     }
 
