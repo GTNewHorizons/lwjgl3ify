@@ -7,7 +7,7 @@ minecraft {
 def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
 def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
-def asmVersion = '9.7'
+def asmVersion = '9.7.1'
 def rfbVersion = '1.0.7'
 // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
 def gsonVersion = '2.10.1'
