@@ -69,7 +69,7 @@ public class SettingsDialog {
         buttonAddJava.setText(translations.getString(TranslationsBundle.KEY_ADD_JAVA));
         buttonRun.setText(translations.getString(TranslationsBundle.KEY_RUN_GAME));
         lblJavaExecutable.setText(translations.getString(TranslationsBundle.KEY_JAVA_EXECUTABLE));
-        labelMinJavaVer.setText(String.format(translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 17));
+        labelMinJavaVer.setText(String.format(translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 8));
         tabbedPane1.setTitleAt(0, translations.getString(TranslationsBundle.KEY_TAB_BASIC));
         tabbedPane1.setTitleAt(1, translations.getString(TranslationsBundle.KEY_TAB_ADVANCED));
         lblMinMemory.setText(translations.getString(TranslationsBundle.KEY_MIN_MEMORY_MB));

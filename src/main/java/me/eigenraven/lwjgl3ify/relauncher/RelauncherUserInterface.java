@@ -202,7 +202,7 @@ public class RelauncherUserInterface {
 
             // Update labels
             contents.labelMinJavaVer
-                .setText(String.format(contents.translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 17));
+                .setText(String.format(contents.translations.getString(TranslationsBundle.KEY_MIN_MOD_JAVA), 8));
 
             // Set settings values
             final RelauncherConfig.ConfigObject initCfg = RelauncherConfig.config;
