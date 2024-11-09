@@ -276,9 +276,14 @@ public class Downloader {
                     final String elAction = elRule.get("action")
                         .getAsString();
                     switch (elAction) {
-                        case "allow" -> allowed = true;
-                        case "disallow" -> allowed = false;
-                        default -> throw new IllegalStateException("Illegal rule action: " + elAction);
+                        case "allow":
+                            allowed = true;
+                            break;
+                        case "disallow":
+                            allowed = false;
+                            break;
+                        default:
+                            throw new IllegalStateException("Illegal rule action: " + elAction);
                     }
                 }
             }
@@ -384,7 +389,7 @@ public class Downloader {
         public boolean equals(Object obj) {
             if (obj == this) return true;
             if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (DownloadTask) obj;
+            DownloadTask that = (DownloadTask) obj;
             return Objects.equals(this.sourceUrl, that.sourceUrl) && Arrays.equals(this.checksum, that.checksum)
                 && Objects.equals(this.targetLocation, that.targetLocation);
         }

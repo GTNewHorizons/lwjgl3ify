@@ -245,11 +245,20 @@ public class Keyboard {
     }
 
     public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods, char c) {
-        final KeyState state = switch (action) {
-            case GLFW.GLFW_PRESS -> KeyState.PRESS;
-            case GLFW.GLFW_RELEASE -> KeyState.RELEASE;
-            case GLFW.GLFW_REPEAT -> KeyState.REPEAT;
-            default -> KeyState.RELEASE;
+        KeyState state = null;
+        switch (action) {
+            case GLFW.GLFW_PRESS:
+                state = KeyState.PRESS;
+                break;
+            case GLFW.GLFW_RELEASE:
+                state = KeyState.RELEASE;
+                break;
+            case GLFW.GLFW_REPEAT:
+                state = KeyState.REPEAT;
+                break;
+            default:
+                state = KeyState.RELEASE;
+                break;
         };
         addRawKeyEvent(new KeyEvent(KeyCodes.glfwToLwjgl(key), c, state, Sys.getNanoTime()));
     }

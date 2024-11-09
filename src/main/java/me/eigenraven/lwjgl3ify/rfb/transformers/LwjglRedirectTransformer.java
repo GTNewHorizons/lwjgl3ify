@@ -60,8 +60,8 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
 
     @Override
     public void onRegistration(@NotNull ExtensibleClassLoader classLoader) {
-        if (classLoader instanceof LaunchClassLoader lcl) {
-            lcl.addClassLoaderExclusion("me.eigenraven.lwjgl3ify.pack200.");
+        if (classLoader instanceof LaunchClassLoader) {
+            ((LaunchClassLoader) classLoader).addClassLoaderExclusion("me.eigenraven.lwjgl3ify.pack200.");
         }
     }
 

@@ -368,12 +368,16 @@ public class GLU {
     }
 
     public static String gluErrorString(int error_code) {
-        return switch (error_code) {
-            case GLU_INVALID_ENUM -> "Invalid enum (glu)";
-            case GLU_INVALID_VALUE -> "Invalid value (glu)";
-            case GLU_OUT_OF_MEMORY -> "Out of memory (glu)";
-            default -> Util.translateGLErrorString(error_code);
-        };
+        switch (error_code) {
+            case GLU_INVALID_ENUM:
+                return "Invalid enum (glu)";
+            case GLU_INVALID_VALUE:
+                return "Invalid value (glu)";
+            case GLU_OUT_OF_MEMORY:
+                return "Out of memory (glu)";
+            default:
+                return Util.translateGLErrorString(error_code);
+        }
     }
 
     public static GLUtessellator gluNewTess() {

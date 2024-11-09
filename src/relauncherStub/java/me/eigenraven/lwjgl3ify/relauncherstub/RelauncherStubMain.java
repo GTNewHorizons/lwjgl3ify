@@ -1,5 +1,10 @@
 package me.eigenraven.lwjgl3ify.relauncherstub;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -23,8 +28,35 @@ public class RelauncherStubMain {
         final boolean showConsole = Boolean.parseBoolean(args[1]);
         final String javaBinary = args[2];
         final String javaArgFile = args[3];
-        final String[] javaCmdline = new String[] { javaBinary, "@" + javaArgFile };
-        final ProcessHandle myProcess = ProcessHandle.current();
+        File file = new File(javaArgFile);
+        FileInputStream fis = new FileInputStream(file);
+        byte[] b = new byte[1024];
+        StringBuilder sb = new StringBuilder();
+        int r = 0;
+        while ((r = fis.read(b)) != -1) {
+            sb.append(new String(Arrays.copyOf(b, r)));
+        }
+        String[] lines = sb.toString().split("\\r?\\n");
+        ArrayList<String> arr = new ArrayList<String>();
+        arr.add(javaBinary);
+        for (String line : lines) {
+            String line2 = line.substring(1);
+            line2 = line2.substring(0, line2.length() - 1);
+            //if (line.contains("-Dfile.encoding=UTF-8")) continue;
+            if (line.contains("--add-opens")) continue;
+            if (line.contains("java.base/")) continue;
+            if (line.contains("java.desktop/")) continue;
+            if (line.contains("java.sql.rowset/")) continue;
+            if (line.contains("jdk.dynalink/")) continue;
+            if (line.contains("jdk.naming.dns/")) continue;
+            if (line.contains("-Djava.security.manager=allow")) continue;
+            //sb2.append(line2 + " ");
+            System.out.println(line2);
+            arr.add(line2);
+        }
+        //final String[] javaCmdline = new String[] { javaBinary, "@" + javaArgFile };
+        final String[] javaCmdline = arr.toArray(new String[0]);
+        /*final ProcessHandle myProcess = ProcessHandle.current();
         final ProcessHandle parentProcess = ProcessHandle.of(parentPid)
             .orElse(
                 myProcess.parent()
@@ -35,10 +67,10 @@ public class RelauncherStubMain {
             // Wait for parent to fully exit
             parentProcess.onExit()
                 .get();
-        } else {
+        } else {*/
             // Wait a little bit, hopefully the parent exits in this time (not finding the parent shouldn't happen)
             Thread.sleep(1000);
-        }
+        //}
 
         final ProcessBuilder childBuilder = new ProcessBuilder(javaCmdline);
 
@@ -48,8 +80,14 @@ public class RelauncherStubMain {
             final Process child = childBuilder.start();
             new GraphicalConsole(child.getInputStream(), child.getErrorStream(), child);
         } else {
-            childBuilder.redirectOutput(ProcessBuilder.Redirect.DISCARD);
-            childBuilder.redirectError(ProcessBuilder.Redirect.DISCARD);
+            //childBuilder.redirectOutput(ProcessBuilder.Redirect.DISCARD);
+            //childBuilder.redirectError(ProcessBuilder.Redirect.DISCARD);
+            File NULL_FILE = new File(
+                   (System.getProperty("os.name")
+                              .startsWith("Windows") ? "NUL" : "/dev/null")
+            );
+            childBuilder.redirectOutput(NULL_FILE);
+            childBuilder.redirectError(NULL_FILE);
             childBuilder.start();
         }
 

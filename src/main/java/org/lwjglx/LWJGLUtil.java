@@ -260,10 +260,17 @@ public class LWJGLUtil {
 
     static {
         switch (Platform.get()) {
-            case WINDOWS -> PLATFORM = PLATFORM_WINDOWS;
-            case LINUX -> PLATFORM = PLATFORM_LINUX;
-            case MACOSX -> PLATFORM = PLATFORM_MACOSX;
-            default -> throw new LinkageError("Unknown platform: " + Platform.get());
+            case WINDOWS:
+                PLATFORM = PLATFORM_WINDOWS;
+                break;
+            case LINUX:
+                PLATFORM = PLATFORM_LINUX;
+                break;
+            case MACOSX:
+                PLATFORM = PLATFORM_MACOSX;
+                break;
+            default:
+                throw new LinkageError("Unknown platform: " + Platform.get());
         }
     }
 
@@ -293,12 +300,16 @@ public class LWJGLUtil {
      * @return current platform name
      */
     public static String getPlatformName() {
-        return switch (LWJGLUtil.getPlatform()) {
-            case LWJGLUtil.PLATFORM_LINUX -> PLATFORM_LINUX_NAME;
-            case LWJGLUtil.PLATFORM_MACOSX -> PLATFORM_MACOSX_NAME;
-            case LWJGLUtil.PLATFORM_WINDOWS -> PLATFORM_WINDOWS_NAME;
-            default -> "unknown";
-        };
+        switch (LWJGLUtil.getPlatform()) {
+            case LWJGLUtil.PLATFORM_LINUX:
+                return PLATFORM_LINUX_NAME;
+            case LWJGLUtil.PLATFORM_MACOSX:
+                return PLATFORM_MACOSX_NAME;
+            case LWJGLUtil.PLATFORM_WINDOWS:
+                return PLATFORM_WINDOWS_NAME;
+            default:
+                return "unknown";
+        }
     }
 
     /**

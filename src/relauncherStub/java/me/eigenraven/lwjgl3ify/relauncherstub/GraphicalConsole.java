@@ -45,7 +45,7 @@ public class GraphicalConsole {
 
         final BufferedReader reader;
         final JTextArea guiLog;
-        final static String LINE_SEPARATOR = System.lineSeparator();
+        final String LINE_SEPARATOR = System.lineSeparator();
 
         StreamToQueueAdapter(InputStream stream, JTextArea guiLog) {
             reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
@@ -154,9 +154,7 @@ public class GraphicalConsole {
 
             final Thread processDeathAwaiter = new Thread(() -> {
                 try {
-                    final Process terminated = process.onExit()
-                        .get();
-                    final int exitCode = terminated.exitValue();
+                    final int exitCode = process.waitFor();
                     invokeOnSwingThread(false, () -> {
                         killButton.setEnabled(false);
                         try {
@@ -171,7 +169,7 @@ public class GraphicalConsole {
                         }
                     });
 
-                } catch (InterruptedException | ExecutionException e) {
+                } catch (InterruptedException e) {
                     // ignored
                 }
             }, "death awaiter");
@@ -191,11 +189,7 @@ public class GraphicalConsole {
         } catch (InterruptedException e) {
             // cancelled
         } catch (InvocationTargetException e) {
-            if (e.getCause() instanceof RuntimeException re) {
-                throw re;
-            } else {
-                throw new RuntimeException(e);
-            }
+            throw new RuntimeException(e);
         }
     }
 }

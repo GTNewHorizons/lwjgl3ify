@@ -221,11 +221,20 @@ public class Display {
                         KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(key))),
                         (key >= 32 && key < 127) ? ((char) key) : '?');
                 }
-                final InputEvents.KeyAction enumAction = switch (action) {
-                    case GLFW_PRESS -> InputEvents.KeyAction.PRESSED;
-                    case GLFW_RELEASE -> InputEvents.KeyAction.RELEASED;
-                    case GLFW_REPEAT -> InputEvents.KeyAction.REPEATED;
-                    default -> InputEvents.KeyAction.PRESSED;
+                InputEvents.KeyAction enumAction = null;
+                switch (action) {
+                    case GLFW_PRESS:
+                        enumAction = InputEvents.KeyAction.PRESSED;
+                        break;
+                    case GLFW_RELEASE:
+                        enumAction = InputEvents.KeyAction.RELEASED;
+                        break;
+                    case GLFW_REPEAT:
+                        enumAction = InputEvents.KeyAction.REPEATED;
+                        break;
+                    default:
+                        enumAction = InputEvents.KeyAction.PRESSED;
+                        break;
                 };
                 InputEvents.injectKeyEvent(
                     new InputEvents.KeyEvent(
@@ -304,12 +313,23 @@ public class Display {
                         Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, '\0');
                     }
                 } else { // Other key with no char event associated
-                    char mappedChar = switch (key) {
-                        case GLFW_KEY_ENTER -> 0x0D;
-                        case GLFW_KEY_ESCAPE -> 0x1B;
-                        case GLFW_KEY_TAB -> 0x09;
-                        case GLFW_KEY_BACKSPACE -> 0x08;
-                        default -> '\0';
+                    char mappedChar = '\0';
+                    switch (key) {
+                        case GLFW_KEY_ENTER:
+                            mappedChar = 0x0D;
+                            break;
+                        case GLFW_KEY_ESCAPE:
+                            mappedChar = 0x1B;
+                            break;
+                        case GLFW_KEY_TAB:
+                            mappedChar = 0x09;
+                            break;
+                        case GLFW_KEY_BACKSPACE:
+                            mappedChar = 0x08;
+                            break;
+                        default:
+                            mappedChar = '\0';
+                            break;
                     };
                     Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, mappedChar);
                 }
@@ -728,8 +748,44 @@ public class Display {
             vidmode);
     }
 
-    @Desugar
-    public record PositionedGLFWVidMode(int x, int y, Rectangle bounds, long monitorId, GLFWVidMode vidMode) {}
+    public static class PositionedGLFWVidMode {
+        
+        int x, y;
+        
+        Rectangle bounds;
+        
+        long monitorId;
+        
+        GLFWVidMode vidMode;
+        
+        public PositionedGLFWVidMode(int x, int y, Rectangle bounds, long monitorId, GLFWVidMode vidMode) {
+            this.x = x;
+            this.y = y;
+            this.bounds = bounds;
+            this.monitorId = monitorId;
+            this.vidMode = vidMode;
+        }
+        
+        public int x() {
+            return x;
+        }
+        
+        public int y() {
+            return y;
+        }
+        
+        public Rectangle bounds() {
+            return bounds;
+        }
+        
+        public long monitorId() {
+            return monitorId;
+        }
+        
+        public GLFWVidMode vidMode() {
+            return vidMode;
+        }
+    }
 
     public static void setFullscreen(boolean fullscreen) {
         final long window = getWindow();

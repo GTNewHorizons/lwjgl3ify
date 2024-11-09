@@ -205,19 +205,19 @@ class Sweep {
 
     static boolean IsWindingInside(GLUtessellatorImpl tess, int n) {
         switch (tess.windingRule) {
-            case GLU_TESS_WINDING_ODD -> {
+            case GLU_TESS_WINDING_ODD: {
                 return (n & 1) != 0;
             }
-            case GLU_TESS_WINDING_NONZERO -> {
+            case GLU_TESS_WINDING_NONZERO: {
                 return (n != 0);
             }
-            case GLU_TESS_WINDING_POSITIVE -> {
+            case GLU_TESS_WINDING_POSITIVE: {
                 return (n > 0);
             }
-            case GLU_TESS_WINDING_NEGATIVE -> {
+            case GLU_TESS_WINDING_NEGATIVE: {
                 return (n < 0);
             }
-            case GLU_TESS_WINDING_ABS_GEQ_TWO -> {
+            case GLU_TESS_WINDING_ABS_GEQ_TWO: {
                 return (n >= 2) || (n <= -2);
             }
         }

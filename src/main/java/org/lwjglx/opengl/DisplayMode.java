@@ -83,11 +83,11 @@ public final class DisplayMode {
      * @see java.lang.Object#equals(Object)
      */
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof DisplayMode dm)) {
+        if (obj == null || !(obj instanceof DisplayMode)) {
             return false;
         }
 
-        return dm.width == width && dm.height == height && dm.bpp == bpp && dm.freq == freq;
+        return ((DisplayMode) obj).width == width && ((DisplayMode) obj).height == height && ((DisplayMode) obj).bpp == bpp && ((DisplayMode) obj).freq == freq;
     }
 
     /**

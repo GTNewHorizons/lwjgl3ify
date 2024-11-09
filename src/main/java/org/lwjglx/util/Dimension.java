@@ -74,8 +74,8 @@ public final class Dimension implements Serializable, ReadableDimension, Writabl
      * Checks whether two dimension objects have equal values.
      */
     public boolean equals(Object obj) {
-        if (obj instanceof ReadableDimension d) {
-            return (width == d.getWidth()) && (height == d.getHeight());
+        if (obj instanceof ReadableDimension) {
+            return (width == ((ReadableDimension) obj).getWidth()) && (height == ((ReadableDimension) obj).getHeight());
         }
         return false;
     }

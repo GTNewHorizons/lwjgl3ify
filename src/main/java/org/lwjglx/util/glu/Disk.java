@@ -65,7 +65,7 @@ public class Disk extends Quadric {
         dr = (outerRadius - innerRadius) / loops;
 
         switch (super.drawStyle) {
-            case GLU_FILL -> {
+            case GLU_FILL: {
                 /*
                  * texture of a gluDisk is a cut out of the texture unit square x, y in [-outerRadius, +outerRadius]; s,
                  * t in [0, 1] (linear mapping)
@@ -109,8 +109,9 @@ public class Disk extends Quadric {
                     }
                     r1 = r2;
                 }
+                return;
             }
-            case GLU_LINE -> {
+            case GLU_LINE: {
                 int l, s;
                 /* draw loops */
                 for (l = 0; l <= loops; l++) {
@@ -134,8 +135,9 @@ public class Disk extends Quadric {
                     }
                     glEnd();
                 }
+                return;
             }
-            case GLU_POINT -> {
+            case GLU_POINT: {
                 int s;
                 glBegin(GL_POINTS);
                 for (s = 0; s < slices; s++) {
@@ -149,8 +151,9 @@ public class Disk extends Quadric {
                     }
                 }
                 glEnd();
+                return;
             }
-            case GLU_SILHOUETTE -> {
+            case GLU_SILHOUETTE: {
                 if (innerRadius != 0.0) {
                     float a;
                     glBegin(GL_LINE_LOOP);
@@ -171,8 +174,9 @@ public class Disk extends Quadric {
                     }
                     glEnd();
                 }
+                return;
             }
-            default -> {
+            default: {
                 return;
             }
         }

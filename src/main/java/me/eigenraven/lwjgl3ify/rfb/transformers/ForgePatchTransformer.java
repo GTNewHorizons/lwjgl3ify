@@ -61,10 +61,18 @@ public class ForgePatchTransformer implements RfbClassTransformer {
             return;
         }
         switch (className) {
-            case CLASS_PATCH_MANAGER -> tfClassPatchManager(classNode);
-            case TRACING_PRINT_STREAM -> tfTracingPrintStream(classNode);
-            case FML_SECURITY_MANAGER -> tfFmlSecurityManager(classNode);
-            case ENUM_HELPER -> tfEnumHelper(classNode);
+            case CLASS_PATCH_MANAGER:
+                tfClassPatchManager(classNode);
+                break;
+            case TRACING_PRINT_STREAM:
+                tfTracingPrintStream(classNode);
+                break;
+            case FML_SECURITY_MANAGER:
+                tfFmlSecurityManager(classNode);
+                break;
+            case ENUM_HELPER:
+                tfEnumHelper(classNode);
+                break;
         }
     }
 
@@ -87,20 +95,20 @@ public class ForgePatchTransformer implements RfbClassTransformer {
                 if (insn.getOpcode() != INVOKEVIRTUAL) {
                     continue;
                 }
-                if (!(insn instanceof MethodInsnNode minsn)) {
+                if (!(insn instanceof MethodInsnNode)) {
                     continue;
                 }
-                if (!"java/util/jar/JarInputStream".equals(minsn.owner)) {
+                if (!"java/util/jar/JarInputStream".equals(((MethodInsnNode) insn).owner)) {
                     continue;
                 }
-                if (!"getNextJarEntry".equals(minsn.name)) {
+                if (!"getNextJarEntry".equals(((MethodInsnNode) insn).name)) {
                     continue;
                 }
                 // redirect
-                minsn.setOpcode(INVOKESTATIC);
-                minsn.owner = "me/eigenraven/lwjgl3ify/redirects/JarInputStream";
-                minsn.name = "getNextJarEntrySafe";
-                minsn.desc = "(Ljava/util/jar/JarInputStream;)Ljava/util/jar/JarEntry;";
+                ((MethodInsnNode) insn).setOpcode(INVOKESTATIC);
+                ((MethodInsnNode) insn).owner = "me/eigenraven/lwjgl3ify/redirects/JarInputStream";
+                ((MethodInsnNode) insn).name = "getNextJarEntrySafe";
+                ((MethodInsnNode) insn).desc = "(Ljava/util/jar/JarInputStream;)Ljava/util/jar/JarEntry;";
             }
         }
     }
@@ -126,37 +134,53 @@ public class ForgePatchTransformer implements RfbClassTransformer {
     }
 
     private static Integer tryIconst(AbstractInsnNode i) {
-        return switch (i.getOpcode()) {
-            case ICONST_0 -> 0;
-            case ICONST_1 -> 1;
-            case ICONST_2 -> 2;
-            case ICONST_3 -> 3;
-            case ICONST_4 -> 4;
-            case ICONST_5 -> 5;
-            case ICONST_M1 -> -1;
-            case LDC -> {
+        switch (i.getOpcode()) {
+            case ICONST_0:
+                return 0;
+            case ICONST_1:
+                return 1;
+            case ICONST_2:
+                return 2;
+            case ICONST_3:
+                return 3;
+            case ICONST_4:
+                return 4;
+            case ICONST_5:
+                return 5;
+            case ICONST_M1:
+                return -1;
+            case LDC: {
                 final Object cst = ((LdcInsnNode) i).cst;
                 if (cst instanceof Integer) {
-                    yield (Integer) cst;
+                    return (Integer) cst;
                 } else {
-                    yield null;
+                    return null;
                 }
             }
-            default -> null;
-        };
+            default:
+                return null;
+        }
     }
 
     private static AbstractInsnNode makeIconst(int i) {
-        return switch (i) {
-            case 0 -> new InsnNode(ICONST_0);
-            case 1 -> new InsnNode(ICONST_1);
-            case 2 -> new InsnNode(ICONST_2);
-            case 3 -> new InsnNode(ICONST_3);
-            case 4 -> new InsnNode(ICONST_4);
-            case 5 -> new InsnNode(ICONST_5);
-            case -1 -> new InsnNode(ICONST_M1);
-            default -> new LdcInsnNode(i);
-        };
+        switch (i) {
+            case 0:
+                return new InsnNode(ICONST_0);
+            case 1:
+                return new InsnNode(ICONST_1);
+            case 2:
+                return new InsnNode(ICONST_2);
+            case 3:
+                return new InsnNode(ICONST_3);
+            case 4:
+                return new InsnNode(ICONST_4);
+            case 5:
+                return new InsnNode(ICONST_5);
+            case -1:
+                return new InsnNode(ICONST_M1);
+            default:
+                return new LdcInsnNode(i);
+        }
     }
 
     private void tfFmlSecurityManager(@NotNull ClassNodeHandle handle) {

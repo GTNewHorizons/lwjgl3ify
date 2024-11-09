@@ -1,6 +1,7 @@
 package me.eigenraven.lwjgl3ify.relauncher;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
@@ -236,6 +237,33 @@ public class Relauncher {
                 .collect(Collectors.toList()),
             StandardCharsets.UTF_8);
 
+        File file = argFile.toFile();
+        FileInputStream fis = new FileInputStream(file);
+        byte[] b = new byte[1024];
+        StringBuilder sb = new StringBuilder();
+        int r = 0;
+        while ((r = fis.read(b)) != -1) {
+            sb.append(new String(Arrays.copyOf(b, r)));
+        }
+        String[] lines = sb.toString().split("\\r?\\n");
+        ArrayList<String> arr = new ArrayList<String>();
+        //arr.add(javaBinary);
+        for (String line : lines) {
+            String line2 = line.substring(1);
+            line2 = line2.substring(0, line2.length() - 1);
+            //if (line.contains("-Dfile.encoding=UTF-8")) continue;
+            if (line.contains("--add-opens")) continue;
+            if (line.contains("java.base/")) continue;
+            if (line.contains("java.desktop/")) continue;
+            if (line.contains("java.sql.rowset/")) continue;
+            if (line.contains("jdk.dynalink/")) continue;
+            if (line.contains("jdk.naming.dns/")) continue;
+            if (line.contains("-Djava.security.manager=allow")) continue;
+            //sb2.append(line2 + " ");
+            System.out.println(line2);
+            arr.add(line2);
+        }
+
         final List<String> bootstrapCmd = new ArrayList<>();
         final String[] javas = RelauncherConfig.config.javaInstallationsCache;
         final int javaIdx = RelauncherConfig.config.javaInstallation;
@@ -247,7 +275,9 @@ public class Relauncher {
         }
         bootstrapCmd.add(javaPath);
         if (RelauncherConfig.config.forwardLogs) {
-            bootstrapCmd.add("@" + argFile);
+            for (String arg : arr.toArray(new String[0])) {
+                bootstrapCmd.add(arg);
+            }
         } else {
             bootstrapCmd.add("-Xms16M");
             bootstrapCmd.add("-Xmx256M");

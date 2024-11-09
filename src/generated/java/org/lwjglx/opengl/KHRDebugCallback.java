@@ -48,35 +48,78 @@ public class KHRDebugCallback extends org.lwjglx.PointerWrapperAbstract implemen
                 System.err.println("[LWJGL] KHR_debug message");
                 System.err.println("\tID: " + id);
 
-                String description = switch (source) {
-                    case GL_DEBUG_SOURCE_API -> "API";
-                    case GL_DEBUG_SOURCE_WINDOW_SYSTEM -> "WINDOW SYSTEM";
-                    case GL_DEBUG_SOURCE_SHADER_COMPILER -> "SHADER COMPILER";
-                    case GL_DEBUG_SOURCE_THIRD_PARTY -> "THIRD PARTY";
-                    case GL_DEBUG_SOURCE_APPLICATION -> "APPLICATION";
-                    case GL_DEBUG_SOURCE_OTHER -> "OTHER";
-                    default -> printUnknownToken(source);
+                String description = null;
+                switch (source) {
+                    case GL_DEBUG_SOURCE_API:
+                        description = "API";
+                        break;
+                    case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+                        description = "WINDOW SYSTEM";
+                        break;
+                    case GL_DEBUG_SOURCE_SHADER_COMPILER:
+                        description = "SHADER COMPILER";
+                        break;
+                    case GL_DEBUG_SOURCE_THIRD_PARTY:
+                        description = "THIRD PARTY";
+                        break;
+                    case GL_DEBUG_SOURCE_APPLICATION:
+                        description = "APPLICATION";
+                        break;
+                    case GL_DEBUG_SOURCE_OTHER:
+                        description = "OTHER";
+                        break;
+                    default:
+                        description = printUnknownToken(source);
+                        break;
                 };
                 System.err.println("\tSource: " + description);
 
-                description = switch (type) {
-                    case GL_DEBUG_TYPE_ERROR -> "ERROR";
-                    case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR -> "DEPRECATED BEHAVIOR";
-                    case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR -> "UNDEFINED BEHAVIOR";
-                    case GL_DEBUG_TYPE_PORTABILITY -> "PORTABILITY";
-                    case GL_DEBUG_TYPE_PERFORMANCE -> "PERFORMANCE";
-                    case GL_DEBUG_TYPE_OTHER -> "OTHER";
-                    case GL_DEBUG_TYPE_MARKER -> "MARKER";
-                    default -> printUnknownToken(type);
+                description = null;
+                switch (type) {
+                    case GL_DEBUG_TYPE_ERROR:
+                        description = "ERROR";
+                        break;
+                    case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+                        description = "DEPRECATED BEHAVIOR";
+                        break;
+                    case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+                        description = "UNDEFINED BEHAVIOR";
+                        break;
+                    case GL_DEBUG_TYPE_PORTABILITY:
+                        description = "PORTABILITY";
+                        break;
+                    case GL_DEBUG_TYPE_PERFORMANCE:
+                        description = "PERFORMANCE";
+                        break;
+                    case GL_DEBUG_TYPE_OTHER:
+                        description = "OTHER";
+                        break;
+                    case GL_DEBUG_TYPE_MARKER:
+                        description = "MARKER";
+                        break;
+                    default:
+                        description = printUnknownToken(type);
+                        break;
                 };
                 System.err.println("\tType: " + description);
 
-                description = switch (severity) {
-                    case GL_DEBUG_SEVERITY_HIGH -> "HIGH";
-                    case GL_DEBUG_SEVERITY_MEDIUM -> "MEDIUM";
-                    case GL_DEBUG_SEVERITY_LOW -> "LOW";
-                    case GL_DEBUG_SEVERITY_NOTIFICATION -> "NOTIFICATION";
-                    default -> printUnknownToken(severity);
+                description = null;
+                switch (severity) {
+                    case GL_DEBUG_SEVERITY_HIGH:
+                        description = "HIGH";
+                        break;
+                    case GL_DEBUG_SEVERITY_MEDIUM:
+                        description = "MEDIUM";
+                        break;
+                    case GL_DEBUG_SEVERITY_LOW:
+                        description = "LOW";
+                        break;
+                    case GL_DEBUG_SEVERITY_NOTIFICATION:
+                        description = "NOTIFICATION";
+                        break;
+                    default:
+                        description = printUnknownToken(severity);
+                        break;
                 };
                 System.err.println("\tSeverity: " + description);
 

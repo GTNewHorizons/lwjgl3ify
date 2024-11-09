@@ -411,35 +411,41 @@ public final class Color implements ReadableColor, Serializable, WritableColor {
             float f6 = brightness * (1.0F - saturation * f4);
             float f7 = brightness * (1.0F - saturation * (1.0F - f4));
             switch ((int) f3) {
-                case 0 -> {
+                case 0: {
                     red = (byte) (brightness * 255F + 0.5F);
                     green = (byte) (f7 * 255F + 0.5F);
                     blue = (byte) (f5 * 255F + 0.5F);
+                    break;
                 }
-                case 1 -> {
+                case 1: {
                     red = (byte) (f6 * 255F + 0.5F);
                     green = (byte) (brightness * 255F + 0.5F);
                     blue = (byte) (f5 * 255F + 0.5F);
+                    break;
                 }
-                case 2 -> {
+                case 2: {
                     red = (byte) (f5 * 255F + 0.5F);
                     green = (byte) (brightness * 255F + 0.5F);
                     blue = (byte) (f7 * 255F + 0.5F);
+                    break;
                 }
-                case 3 -> {
+                case 3: {
                     red = (byte) (f5 * 255F + 0.5F);
                     green = (byte) (f6 * 255F + 0.5F);
                     blue = (byte) (brightness * 255F + 0.5F);
+                    break;
                 }
-                case 4 -> {
+                case 4: {
                     red = (byte) (f7 * 255F + 0.5F);
                     green = (byte) (f5 * 255F + 0.5F);
                     blue = (byte) (brightness * 255F + 0.5F);
+                    break;
                 }
-                case 5 -> {
+                case 5: {
                     red = (byte) (brightness * 255F + 0.5F);
                     green = (byte) (f5 * 255F + 0.5F);
                     blue = (byte) (f6 * 255F + 0.5F);
+                    break;
                 }
             }
         }

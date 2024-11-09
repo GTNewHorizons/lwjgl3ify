@@ -110,8 +110,8 @@ public final class Point implements ReadablePoint, WritablePoint, Serializable {
      *         values; <code>false</code> otherwise
      */
     public boolean equals(Object obj) {
-        if (obj instanceof Point pt) {
-            return (x == pt.x) && (y == pt.y);
+        if (obj instanceof Point) {
+            return (x == ((Point) obj).x) && (y == ((Point) obj).y);
         }
         return super.equals(obj);
     }

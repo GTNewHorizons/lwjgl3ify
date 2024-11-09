@@ -79,11 +79,7 @@ public class Lwjgl3ifyRelauncherTweaker implements ITweaker {
             cmmAddCoremod.invoke(null, Launch.classLoader, "me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod", myFile);
             coremodInjected = true;
         } catch (InvocationTargetException e) {
-            if (e.getCause() instanceof RuntimeException re) {
-                throw re;
-            } else {
-                throw new RuntimeException(e);
-            }
+            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

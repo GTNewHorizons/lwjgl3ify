@@ -66,38 +66,58 @@ public class GLDebugLog {
     }
 
     private static String getDebugSource(int source) {
-        return switch (source) {
-            case GL43.GL_DEBUG_SOURCE_API -> "API";
-            case GL43.GL_DEBUG_SOURCE_WINDOW_SYSTEM -> "WINDOW SYSTEM";
-            case GL43.GL_DEBUG_SOURCE_SHADER_COMPILER -> "SHADER COMPILER";
-            case GL43.GL_DEBUG_SOURCE_THIRD_PARTY -> "THIRD PARTY";
-            case GL43.GL_DEBUG_SOURCE_APPLICATION -> "APPLICATION";
-            case GL43.GL_DEBUG_SOURCE_OTHER -> "OTHER";
-            default -> String.format("Unknown [0x%X]", source);
-        };
+        switch (source) {
+            case GL43.GL_DEBUG_SOURCE_API:
+                return "API";
+            case GL43.GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+                return "WINDOW SYSTEM";
+            case GL43.GL_DEBUG_SOURCE_SHADER_COMPILER:
+                return "SHADER COMPILER";
+            case GL43.GL_DEBUG_SOURCE_THIRD_PARTY:
+                return "THIRD PARTY";
+            case GL43.GL_DEBUG_SOURCE_APPLICATION:
+                return "APPLICATION";
+            case GL43.GL_DEBUG_SOURCE_OTHER:
+                return "OTHER";
+            default:
+                return String.format("Unknown [0x%X]", source);
+        }
     }
 
     private static String getDebugType(int type) {
-        return switch (type) {
-            case GL43.GL_DEBUG_TYPE_ERROR -> "ERROR";
-            case GL43.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR -> "DEPRECATED BEHAVIOR";
-            case GL43.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR -> "UNDEFINED BEHAVIOR";
-            case GL43.GL_DEBUG_TYPE_PORTABILITY -> "PORTABILITY";
-            case GL43.GL_DEBUG_TYPE_PERFORMANCE -> "PERFORMANCE";
-            case GL43.GL_DEBUG_TYPE_OTHER -> "OTHER";
-            case GL43.GL_DEBUG_TYPE_MARKER -> "MARKER";
-            default -> String.format("Unknown [0x%X]", type);
-        };
+        switch (type) {
+            case GL43.GL_DEBUG_TYPE_ERROR:
+                return "ERROR";
+            case GL43.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+                return "DEPRECATED BEHAVIOR";
+            case GL43.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+                return "UNDEFINED BEHAVIOR";
+            case GL43.GL_DEBUG_TYPE_PORTABILITY:
+                return "PORTABILITY";
+            case GL43.GL_DEBUG_TYPE_PERFORMANCE:
+                return "PERFORMANCE";
+            case GL43.GL_DEBUG_TYPE_OTHER:
+                return "OTHER";
+            case GL43.GL_DEBUG_TYPE_MARKER:
+                return "MARKER";
+            default:
+                return String.format("Unknown [0x%X]", type);
+        }
     }
 
     private static String getDebugSeverity(int severity) {
-        return switch (severity) {
-            case GL43.GL_DEBUG_SEVERITY_NOTIFICATION -> "NOTIFICATION";
-            case GL43.GL_DEBUG_SEVERITY_HIGH -> "HIGH";
-            case GL43.GL_DEBUG_SEVERITY_MEDIUM -> "MEDIUM";
-            case GL43.GL_DEBUG_SEVERITY_LOW -> "LOW";
-            default -> String.format("Unknown [0x%X]", severity);
-        };
+        switch (severity) {
+            case GL43.GL_DEBUG_SEVERITY_NOTIFICATION:
+                return "NOTIFICATION";
+            case GL43.GL_DEBUG_SEVERITY_HIGH:
+                return "HIGH";
+            case GL43.GL_DEBUG_SEVERITY_MEDIUM:
+                return "MEDIUM";
+            case GL43.GL_DEBUG_SEVERITY_LOW:
+                return "LOW";
+            default:
+                return String.format("Unknown [0x%X]", severity);
+        }
     }
 
     public static void setupDebugMessageCallback() {

@@ -16,7 +16,7 @@ val taskGroup = "lwjgl3ify"
 
 val newJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
     vendor = JvmVendorSpec.AZUL
-    languageVersion = JavaLanguageVersion.of(17)
+    languageVersion = JavaLanguageVersion.of(11)
 }
 
 val addOpens = listOf(
@@ -108,17 +108,11 @@ sourceSets {
     }
 }
 
-tasks.named<JavaCompile>(hotswapSet.compileJavaTaskName).configure {
+tasks.withType<JavaCompile>(){
     javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
-    sourceCompatibility = JavaVersion.VERSION_17.majorVersion
-    targetCompatibility = JavaVersion.VERSION_17.majorVersion
-}
-
-tasks.named<JavaCompile>(relauncherStubSet.compileJavaTaskName).configure {
-    javaCompiler = javaToolchains.compilerFor(newJavaToolchainSpec)
-    sourceCompatibility = JavaVersion.VERSION_17.majorVersion
-    targetCompatibility = JavaVersion.VERSION_17.majorVersion
-    options.release = 17
+    sourceCompatibility = JavaVersion.VERSION_1_8.majorVersion
+    targetCompatibility = JavaVersion.VERSION_1_8.majorVersion
+    options.release = 8
 }
 
 tasks.createMcLauncherFiles {
@@ -299,7 +293,7 @@ runComparisonTool.configure {
 
 val veryNewJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
     vendor = JvmVendorSpec.AZUL
-    languageVersion = JavaLanguageVersion.of(21)
+    languageVersion = JavaLanguageVersion.of(8)
 }
 
 val newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
