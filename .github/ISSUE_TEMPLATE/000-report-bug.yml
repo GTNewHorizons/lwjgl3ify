@@ -1,0 +1,70 @@
+name: Report Bug
+description: "Report a bug."
+body:
+  - type: markdown
+    attributes:
+      value: "A bug/crash report with sufficient information and logs to reproduce and track down."
+  - type: input
+    id: discord
+    attributes:
+      label: Your GTNH Discord Username
+      description: Leave empty if you don't have one, but this will make it harder to contact you if we need additional info.
+      placeholder: "Example: Fake#1234"
+  - type: input
+    id: version
+    attributes:
+      label: Mod Version
+      description: "What version of the Mod are you using?"
+      placeholder: "Example: 1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Bug Report
+      description: "Relevant information, as well as relevant logs attached such as `logs/fml-client-latest.log."
+      placeholder: "Example: https://mclo.gs/ OR submit the file to github by dragging it to this textbox."
+    validations:
+      required: true
+  - type: textarea
+    id: java
+    attributes:
+      label: Java Version
+      description: "What Java version are you using? Include the vendor"
+      placeholder: "Example: Adoptium OpenJDK Java 17.0.6"
+    validations:
+      required: true
+  - type: textarea
+    id: os
+    attributes:
+      label: Operating System
+      description: "What OS is your system?"
+      placeholder: "Ubuntu 24.04"
+    validations:
+      required: true
+  - type: textarea
+    id: keyboard
+    attributes:
+      label: Keyboard Layout
+      description: "What is your keyboard layout?"
+      placeholder: "English (UK)"
+    validations:
+      required: true
+  - type: textarea
+    id: modlist
+    attributes:
+      label: Mod List or GTNH Pack Version
+      description: "List of mods, ideally a minimal reproducible set (can be retrieved from latest.log).  If using GTNH please indicate pack version and any changed mods, not the entire modlist."
+      placeholder: "List of mods or GTNH Pack version goes here"
+    validations:
+      required: true
+  - type: checkboxes
+    id: final
+    attributes:
+      label: Final Checklist
+      description: Certify that you read things
+      options:
+        - label: "I have searched the issues and haven't found a similar issue."
+          required: true
+
+
