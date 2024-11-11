@@ -26,7 +26,7 @@ body:
       placeholder: "Example: https://mclo.gs/ OR submit the file to github by dragging it to this textbox."
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: java
     attributes:
       label: Java Version
@@ -34,7 +34,7 @@ body:
       placeholder: "Example: Adoptium OpenJDK Java 17.0.6"
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: os
     attributes:
       label: Operating System
@@ -42,7 +42,7 @@ body:
       placeholder: "Ubuntu 24.04"
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: keyboard
     attributes:
       label: Keyboard Layout
