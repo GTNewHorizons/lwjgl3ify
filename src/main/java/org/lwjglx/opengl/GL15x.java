@@ -4,7 +4,6 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 import java.nio.ByteBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.system.MemoryStack;

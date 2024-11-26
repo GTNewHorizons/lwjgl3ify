@@ -7,7 +7,6 @@ import java.nio.IntBuffer;
 import org.lwjgl.openal.ALC10;
 import org.lwjgl.openal.ALCCapabilities;
 import org.lwjgl.system.MemoryStack;
-import org.lwjglx.BufferUtils;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 

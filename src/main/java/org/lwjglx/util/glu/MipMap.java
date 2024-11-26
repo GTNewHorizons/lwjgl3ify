@@ -19,12 +19,10 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImageResize.*;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjglx.util.glu.GLU.*;
-import static org.openjdk.nashorn.internal.objects.NativeError.getStack;
 
 import java.nio.ByteBuffer;
 
 import org.lwjgl.system.MemoryStack;
-import org.lwjglx.BufferUtils;
 
 /**
  * MipMap.java
