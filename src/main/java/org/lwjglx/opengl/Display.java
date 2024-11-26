@@ -1,6 +1,7 @@
 package org.lwjglx.opengl;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.awt.Canvas;
@@ -33,6 +34,7 @@ import org.lwjgl.glfw.GLFWWindowRefreshCallback;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.Platform;
 import org.lwjglx.BufferUtils;
 import org.lwjglx.Sys;
@@ -449,11 +451,13 @@ public class Display {
         displayWidth = mode.getWidth();
         displayHeight = mode.getHeight();
 
-        IntBuffer fbw = BufferUtils.createIntBuffer(1);
-        IntBuffer fbh = BufferUtils.createIntBuffer(1);
-        GLFW.glfwGetFramebufferSize(Window.handle, fbw, fbh);
-        displayFramebufferWidth = fbw.get(0);
-        displayFramebufferHeight = fbh.get(0);
+        try (MemoryStack stack = stackPush()) {
+            IntBuffer fbw = stack.mallocInt(1);
+            IntBuffer fbh = stack.mallocInt(1);
+            GLFW.glfwGetFramebufferSize(Window.handle, fbw, fbh);
+            displayFramebufferWidth = fbw.get(0);
+            displayFramebufferHeight = fbh.get(0);
+        }
 
         displayX = (monitorWidth - mode.getWidth()) / 2;
         displayY = (monitorHeight - mode.getHeight()) / 2;
@@ -642,19 +646,21 @@ public class Display {
             return 0;
         }
         GLFWImage.Buffer glfwImages = GLFWImage.calloc(icons.length);
-        ByteBuffer[] nativeBuffers = new ByteBuffer[icons.length];
-        for (int icon = 0; icon < icons.length; icon++) {
-            nativeBuffers[icon] = org.lwjgl.BufferUtils.createByteBuffer(icons[icon].capacity());
-            nativeBuffers[icon].put(icons[icon]);
-            nativeBuffers[icon].flip();
-            int dimension = (int) Math.sqrt(nativeBuffers[icon].limit() / 4D);
-            if (dimension * dimension * 4 != nativeBuffers[icon].limit()) {
-                throw new IllegalStateException();
+        try (MemoryStack stack = stackPush()) {
+            ByteBuffer[] nativeBuffers = new ByteBuffer[icons.length];
+            for (int icon = 0; icon < icons.length; icon++) {
+                nativeBuffers[icon] = stack.malloc(icons[icon].capacity());
+                nativeBuffers[icon].put(icons[icon]);
+                nativeBuffers[icon].flip();
+                int dimension = (int) Math.sqrt(nativeBuffers[icon].limit() / 4D);
+                if (dimension * dimension * 4 != nativeBuffers[icon].limit()) {
+                    throw new IllegalStateException();
+                }
+                glfwImages.put(
+                    icon,
+                    GLFWImage.create()
+                        .set(dimension, dimension, nativeBuffers[icon]));
             }
-            glfwImages.put(
-                icon,
-                GLFWImage.create()
-                    .set(dimension, dimension, nativeBuffers[icon]));
         }
         GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
         glfwImages.free();
@@ -711,12 +717,15 @@ public class Display {
     }
 
     private static PositionedGLFWVidMode getPositionedMonitorInfo(long monitorId) {
-        IntBuffer posX = BufferUtils.createIntBuffer(1);
-        IntBuffer posY = BufferUtils.createIntBuffer(1);
+        int x, y;
+        try (MemoryStack stack = stackPush()) {
+            IntBuffer posX = stack.mallocInt(1);
+            IntBuffer posY = stack.mallocInt(1);
 
-        glfwGetMonitorPos(monitorId, posX, posY);
-        int x = posX.get(0);
-        int y = posY.get(0);
+            glfwGetMonitorPos(monitorId, posX, posY);
+            x = posX.get(0);
+            y = posY.get(0);
+        }
 
         GLFWVidMode vidmode = glfwGetVideoMode(monitorId);
         assert vidmode != null;
@@ -817,20 +826,22 @@ public class Display {
         long window = Display.getWindow();
         long windowMonitor = glfwGetWindowMonitor(Display.getWindow());
         if (Display.getWindow() != 0 && windowMonitor == NULL) {
-            IntBuffer windowX = BufferUtils.createIntBuffer(1);
-            IntBuffer windowY = BufferUtils.createIntBuffer(1);
-            IntBuffer windowWidth = BufferUtils.createIntBuffer(1);
-            IntBuffer windowHeight = BufferUtils.createIntBuffer(1);
+            try (MemoryStack stack = stackPush()) {
+                IntBuffer windowX = stack.mallocInt(1);
+                IntBuffer windowY = stack.mallocInt(1);
+                IntBuffer windowWidth = stack.mallocInt(1);
+                IntBuffer windowHeight = stack.mallocInt(1);
 
-            glfwGetWindowPos(window, windowX, windowY);
-            glfwGetWindowSize(window, windowWidth, windowHeight);
+                glfwGetWindowPos(window, windowX, windowY);
+                glfwGetWindowSize(window, windowWidth, windowHeight);
 
-            Display.PositionedGLFWVidMode monitorInfo = Display.getTargetFullscreenMonitor();
-            GLFWVidMode vidMode = monitorInfo.vidMode();
+                Display.PositionedGLFWVidMode monitorInfo = Display.getTargetFullscreenMonitor();
+                GLFWVidMode vidMode = monitorInfo.vidMode();
 
-            return windowX.get(0) == monitorInfo.x() && windowY.get(0) == monitorInfo.y()
-                && windowWidth.get(0) == vidMode.width()
-                && (windowHeight.get(0) >= vidMode.height());
+                return windowX.get(0) == monitorInfo.x() && windowY.get(0) == monitorInfo.y()
+                    && windowWidth.get(0) == vidMode.width()
+                    && (windowHeight.get(0) >= vidMode.height());
+            }
         }
         return false;
     }

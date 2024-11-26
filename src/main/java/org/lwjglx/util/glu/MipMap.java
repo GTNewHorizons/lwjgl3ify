@@ -17,10 +17,13 @@ package org.lwjglx.util.glu;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImageResize.*;
+import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjglx.util.glu.GLU.*;
+import static org.openjdk.nashorn.internal.objects.NativeError.getStack;
 
 import java.nio.ByteBuffer;
 
+import org.lwjgl.system.MemoryStack;
 import org.lwjglx.BufferUtils;
 
 /**
@@ -28,7 +31,7 @@ import org.lwjglx.BufferUtils;
  *
  *
  * Created 11-jan-2004
- * 
+ *
  * @author Erik Duijs
  */
 public class MipMap extends Util {
@@ -64,49 +67,51 @@ public class MipMap extends Util {
         int retVal = 0;
         boolean done = false;
 
-        if (w != width || h != height) {
-            // must rescale image to get "top" mipmap texture image
-            image = BufferUtils.createByteBuffer((w + 4) * h * bpp);
-            int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
-            if (error != 0) {
-                retVal = error;
-                done = true;
+        try (MemoryStack stack = stackPush()) {
+            if (w != width || h != height) {
+                // must rescale image to get "top" mipmap texture image
+                image = stack.malloc((w + 4) * h * bpp);
+                int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
+                if (error != 0) {
+                    retVal = error;
+                    done = true;
+                }
+
+            } else {
+                image = data;
             }
 
-        } else {
-            image = data;
-        }
+            ByteBuffer bufferA = null;
+            ByteBuffer bufferB = null;
 
-        ByteBuffer bufferA = null;
-        ByteBuffer bufferB = null;
+            int level = 0;
+            while (!done) {
+                glTexImage2D(target, level, components, w, h, 0, format, type, image);
 
-        int level = 0;
-        while (!done) {
-            glTexImage2D(target, level, components, w, h, 0, format, type, image);
+                if (w == 1 && h == 1) break;
 
-            if (w == 1 && h == 1) break;
+                final int newW = (w < 2) ? 1 : w >> 1;
+                final int newH = (h < 2) ? 1 : h >> 1;
 
-            final int newW = (w < 2) ? 1 : w >> 1;
-            final int newH = (h < 2) ? 1 : h >> 1;
+                final ByteBuffer newImage;
 
-            final ByteBuffer newImage;
+                if (bufferA == null) newImage = (bufferA = stack.malloc((newW + 4) * newH * bpp));
+                else if (bufferB == null) newImage = (bufferB = stack.malloc((newW + 4) * newH * bpp));
+                else newImage = bufferB;
 
-            if (bufferA == null) newImage = (bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
-            else if (bufferB == null) newImage = (bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
-            else newImage = bufferB;
+                int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
+                if (error != 0) {
+                    retVal = error;
+                    done = true;
+                }
 
-            int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
-            if (error != 0) {
-                retVal = error;
-                done = true;
+                image = newImage;
+                if (bufferB != null) bufferB = bufferA;
+
+                w = newW;
+                h = newH;
+                level++;
             }
-
-            image = newImage;
-            if (bufferB != null) bufferB = bufferA;
-
-            w = newW;
-            h = newH;
-            level++;
         }
 
         return retVal;
@@ -114,7 +119,7 @@ public class MipMap extends Util {
 
     /**
      * Method gluScaleImage.
-     * 
+     *
      * @param format
      * @param widthIn
      * @param heightIn
