@@ -661,8 +661,8 @@ public class Display {
                     GLFWImage.create()
                         .set(dimension, dimension, nativeBuffers[icon]));
             }
+            GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
         }
-        GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
         glfwImages.free();
         return 0;
     }
