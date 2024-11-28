@@ -15,6 +15,7 @@
  */
 package org.lwjglx.util.glu;
 
+import static java.nio.ByteBuffer.allocateDirect;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImageResize.*;
 import static org.lwjgl.system.MemoryStack.stackPush;
@@ -65,51 +66,49 @@ public class MipMap extends Util {
         int retVal = 0;
         boolean done = false;
 
-        try (MemoryStack stack = stackPush()) {
-            if (w != width || h != height) {
-                // must rescale image to get "top" mipmap texture image
-                image = stack.malloc((w + 4) * h * bpp);
-                int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
-                if (error != 0) {
-                    retVal = error;
-                    done = true;
-                }
-
-            } else {
-                image = data;
+        if (w != width || h != height) {
+            // must rescale image to get "top" mipmap texture image
+            image = allocateDirect((w + 4) * h * bpp);
+            int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
+            if (error != 0) {
+                retVal = error;
+                done = true;
             }
 
-            ByteBuffer bufferA = null;
-            ByteBuffer bufferB = null;
+        } else {
+            image = data;
+        }
 
-            int level = 0;
-            while (!done) {
-                glTexImage2D(target, level, components, w, h, 0, format, type, image);
+        ByteBuffer bufferA = null;
+        ByteBuffer bufferB = null;
 
-                if (w == 1 && h == 1) break;
+        int level = 0;
+        while (!done) {
+            glTexImage2D(target, level, components, w, h, 0, format, type, image);
 
-                final int newW = (w < 2) ? 1 : w >> 1;
-                final int newH = (h < 2) ? 1 : h >> 1;
+            if (w == 1 && h == 1) break;
 
-                final ByteBuffer newImage;
+            final int newW = (w < 2) ? 1 : w >> 1;
+            final int newH = (h < 2) ? 1 : h >> 1;
 
-                if (bufferA == null) newImage = (bufferA = stack.malloc((newW + 4) * newH * bpp));
-                else if (bufferB == null) newImage = (bufferB = stack.malloc((newW + 4) * newH * bpp));
-                else newImage = bufferB;
+            final ByteBuffer newImage;
 
-                int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
-                if (error != 0) {
-                    retVal = error;
-                    done = true;
-                }
+            if (bufferA == null) newImage = (bufferA = allocateDirect((newW + 4) * newH * bpp));
+            else if (bufferB == null) newImage = (bufferB = allocateDirect((newW + 4) * newH * bpp));
+            else newImage = bufferB;
 
-                image = newImage;
-                if (bufferB != null) bufferB = bufferA;
-
-                w = newW;
-                h = newH;
-                level++;
+            int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
+            if (error != 0) {
+                retVal = error;
+                done = true;
             }
+
+            image = newImage;
+            if (bufferB != null) bufferB = bufferA;
+
+            w = newW;
+            h = newH;
+            level++;
         }
 
         return retVal;
