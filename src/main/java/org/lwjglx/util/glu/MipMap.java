@@ -18,12 +18,9 @@ package org.lwjglx.util.glu;
 import static java.nio.ByteBuffer.allocateDirect;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImageResize.*;
-import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjglx.util.glu.GLU.*;
 
 import java.nio.ByteBuffer;
-
-import org.lwjgl.system.MemoryStack;
 
 /**
  * MipMap.java
