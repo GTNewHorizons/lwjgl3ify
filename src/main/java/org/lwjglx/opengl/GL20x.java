@@ -1,13 +1,15 @@
 package org.lwjglx.opengl;
 
+import static org.lwjgl.system.MemoryStack.stackPush;
+
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
 
 public class GL20x {
@@ -32,18 +34,23 @@ public class GL20x {
 
     public static String glGetActiveAttrib(int program, int index, int maxLength, IntBuffer sizeType) {
         // TODO check if correct
-        IntBuffer type = BufferUtils.createIntBuffer(1);
-        String s = GL20.glGetActiveAttrib(program, index, maxLength, sizeType, type);
-        sizeType.put(type.get(0));
+        String s;
+        try (MemoryStack stack = stackPush()) {
+            IntBuffer type = stack.mallocInt(1);
+            s = GL20.glGetActiveAttrib(program, index, maxLength, sizeType, type);
+            sizeType.put(type.get(0));
+        }
         return s;
     }
 
     public static void glShaderSource(int shader, java.nio.ByteBuffer string) {
-        PointerBuffer strings = BufferUtils.createPointerBuffer(1);
-        IntBuffer lengths = BufferUtils.createIntBuffer(1);
+        try (MemoryStack stack = stackPush()) {
+            PointerBuffer strings = stack.mallocPointer(1);
+            IntBuffer lengths = stack.mallocInt(1);
 
-        strings.put(0, string);
-        lengths.put(0, new String(string.array()).length()); // source.length());
-        org.lwjgl.opengl.GL20.glShaderSource(shader, strings, lengths);
+            strings.put(0, string);
+            lengths.put(0, new String(string.array()).length()); // source.length());
+            org.lwjgl.opengl.GL20.glShaderSource(shader, strings, lengths);
+        }
     }
 }

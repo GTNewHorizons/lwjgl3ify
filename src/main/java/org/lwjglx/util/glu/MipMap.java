@@ -15,20 +15,19 @@
  */
 package org.lwjglx.util.glu;
 
+import static java.nio.ByteBuffer.allocateDirect;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImageResize.*;
 import static org.lwjglx.util.glu.GLU.*;
 
 import java.nio.ByteBuffer;
 
-import org.lwjglx.BufferUtils;
-
 /**
  * MipMap.java
  *
  *
  * Created 11-jan-2004
- * 
+ *
  * @author Erik Duijs
  */
 public class MipMap extends Util {
@@ -66,7 +65,7 @@ public class MipMap extends Util {
 
         if (w != width || h != height) {
             // must rescale image to get "top" mipmap texture image
-            image = BufferUtils.createByteBuffer((w + 4) * h * bpp);
+            image = allocateDirect((w + 4) * h * bpp);
             int error = gluScaleImage(format, width, height, type, data, w, h, type, image);
             if (error != 0) {
                 retVal = error;
@@ -91,8 +90,8 @@ public class MipMap extends Util {
 
             final ByteBuffer newImage;
 
-            if (bufferA == null) newImage = (bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
-            else if (bufferB == null) newImage = (bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
+            if (bufferA == null) newImage = (bufferA = allocateDirect((newW + 4) * newH * bpp));
+            else if (bufferB == null) newImage = (bufferB = allocateDirect((newW + 4) * newH * bpp));
             else newImage = bufferB;
 
             int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
@@ -114,7 +113,7 @@ public class MipMap extends Util {
 
     /**
      * Method gluScaleImage.
-     * 
+     *
      * @param format
      * @param widthIn
      * @param heightIn
