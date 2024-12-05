@@ -61,22 +61,22 @@ dependencies {
 
     shadowImplementation("com.github.weisj:darklaf-core:3.0.2")
 
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.5.17-GTNH:dev')
-    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.6.2:dev')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.6.49-GTNH:dev')
+    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.0:dev')
     if (addGtForTesting) {
-        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.45.61:dev')
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-317-GTNH:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.13.4-GTNH:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.8.2:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.15.5:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.6.4:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ProjectRed:4.9.3-GTNH:dev") { transitive = false }
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:MrTJPCore:1.1.6:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeMultipart:1.4.7:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeRelocation:0.1.0:dev")
+        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.50.95:dev')
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-478-GTNH:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.15.3-GTNH:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.9.19:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.15.15:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.8.22:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ProjectRed:4.10.5-GTNH:dev") { transitive = false }
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:MrTJPCore:1.2.1:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeMultipart:1.5.0:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeRelocation:0.2.0:dev")
         reobfJarConfiguration group: 'curse.maven', name: 'cofh-core-69162', version: '2388750'
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:AppleCore:3.3.0:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.4.20:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:AppleCore:3.3.4:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.5.82:dev")
     }
     if (addReikaModsForTesting) {
         // DragonAPI
