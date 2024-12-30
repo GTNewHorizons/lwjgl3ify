@@ -196,6 +196,7 @@ public class Display {
 
         glfwWindowHintString(GLFW_X11_CLASS_NAME, Config.X11_CLASS_NAME);
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
+        glfwWindowHintString(GLFW_WAYLAND_APP_ID, Config.WAYLAND_APP_ID);
 
         if (Config.WINDOW_CENTERED) {
             glfwWindowHint(GLFW_POSITION_X, (monitorWidth - mode.getWidth()) / 2);

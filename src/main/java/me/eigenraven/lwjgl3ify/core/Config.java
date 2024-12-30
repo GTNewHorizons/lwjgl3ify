@@ -45,6 +45,7 @@ public class Config {
 
     public static String X11_CLASS_NAME = "minecraft";
     public static String COCOA_FRAME_NAME = "minecraft";
+    public static String WAYLAND_APP_ID = "minecraft";
 
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
