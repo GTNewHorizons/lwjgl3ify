@@ -116,8 +116,8 @@
     },
     "id": "1.7.10-Forge10.13.4.1614-1.7.10",
     "javaVersion": {
-        "component": "java-runtime-gamma",
-        "majorVersion": 17
+        "component": "java-runtime-delta",
+        "majorVersion": 21
     },
     "libraries": [
         {
