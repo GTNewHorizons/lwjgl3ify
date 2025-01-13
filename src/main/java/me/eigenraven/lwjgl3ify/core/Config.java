@@ -148,6 +148,11 @@ public class Config {
             CATEGORY_WINDOW,
             COCOA_FRAME_NAME,
             "OSX-only - identifier used to save and restore the window position and size");
+        WAYLAND_APP_ID = config.getString(
+            "waylandAppId",
+            CATEGORY_WINDOW,
+            WAYLAND_APP_ID,
+            "Linux-only - change the Wayland app id, which is used by your window manager to identify the running application");
 
         INPUT_INVERT_WHEEL = config
             .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
