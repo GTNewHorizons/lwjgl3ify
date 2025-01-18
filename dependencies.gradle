@@ -1,7 +1,9 @@
 
+def lwjglVersion = "3.4.0-SNAPSHOT"
+
 minecraft {
     mainLwjglVersion = 3
-    lwjgl3Version = "3.3.3"
+    lwjgl3Version = lwjglVersion
 }
 
 def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
@@ -24,6 +26,9 @@ dependencies {
     forgePatchesEmbedded("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
     vanilla_minecraft("com.google.code.gson:gson:${gsonVersion}")
     forgePatchesEmbedded("com.google.code.gson:gson:${gsonVersion}")
+
+    patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}")
+    patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}:${lwjgl3Natives}")
 
     utilImplementation("org.ow2.asm:asm:${asmVersion}")
     utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
