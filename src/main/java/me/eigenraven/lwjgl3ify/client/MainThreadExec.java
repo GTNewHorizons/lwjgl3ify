@@ -153,14 +153,26 @@ public class MainThreadExec {
     }
 
     public static boolean runOnMainThread(BooleanSupplier r) {
+        Objects.requireNonNull(r);
+        if (SDL_IsMainThread()) {
+            return r.getAsBoolean();
+        }
         return Objects.requireNonNull(runOnMainThread(() -> (Boolean) r.getAsBoolean()));
     }
 
     public static int runOnMainThread(IntSupplier r) {
+        Objects.requireNonNull(r);
+        if (SDL_IsMainThread()) {
+            return r.getAsInt();
+        }
         return Objects.requireNonNull(runOnMainThread(() -> (Integer) r.getAsInt()));
     }
 
     public static long runOnMainThread(LongSupplier r) {
+        Objects.requireNonNull(r);
+        if (SDL_IsMainThread()) {
+            return r.getAsLong();
+        }
         return Objects.requireNonNull(runOnMainThread(() -> (Long) r.getAsLong()));
     }
 
