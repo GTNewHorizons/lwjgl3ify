@@ -13,6 +13,7 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.sdl.SDLClipboard;
 import org.lwjgl.sdl.SDLMisc;
+import org.lwjgl.system.Configuration;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.system.Platform;
 import org.lwjgl.system.Pointer;
@@ -22,7 +23,7 @@ import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 
 public class Sys {
 
-    static {
+    static private void firstTimeInit() {
         if (Platform.get() == Platform.MACOSX) {
             Toolkit.getDefaultToolkit(); // Initialize AWT before SDL
         }
@@ -53,6 +54,10 @@ public class Sys {
             }
         });
         // TODO: remove
+        if (MainThreadExec.IS_MACOS) {
+            Configuration.GLFW_CHECK_THREAD0.set(false);
+            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
+        }
         GLFW.glfwInit();
     }
 
@@ -67,6 +72,8 @@ public class Sys {
     public static void initialize() {
         if (!isFirstInit.compareAndSet(true, false)) {
             return;
+        } else {
+            firstTimeInit();
         }
         if (!MainThreadExec.IS_MACOS && !SDL_IsMainThread()) {
             throw new IllegalStateException("SDL was initialized on the wrong thread.");
