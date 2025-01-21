@@ -70,12 +70,21 @@ public class MainThreadExec {
             return;
         }
         final ArrayBlockingQueue<Throwable> lock = new ArrayBlockingQueue<>(1);
+        final ClassLoader outerLoader = Thread.currentThread()
+            .getContextClassLoader();
         jdkPerformOnMainThreadAfterDelay(() -> {
+            final ClassLoader innerLoader = Thread.currentThread()
+                .getContextClassLoader();
+            Thread.currentThread()
+                .setContextClassLoader(outerLoader);
             try {
                 r.run();
                 lock.add(NO_EXCEPTION_TOKEN);
             } catch (Throwable t) {
                 lock.add(t);
+            } finally {
+                Thread.currentThread()
+                    .setContextClassLoader(innerLoader);
             }
         }, 0);
         while (true) {
