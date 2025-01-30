@@ -5,7 +5,10 @@ Bundles [RetroFuturaBootstrap](https://github.com/GTNewHorizons/RetroFuturaBoots
 
 # Usage
 
-Lwjgl3ify depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7 with the GTNHMixins module.
+Lwjgl3ify depends on:
+ - Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7 with the GTNHMixins module.
+ - GTNHLib (<https://github.com/GTNewHorizons/GTNHLib/>), at least 0.6.2.
+
 Hodgepodge (<https://github.com/GTNewHorizons/Hodgepodge>) is strongly recommended, it has many Java 17+ compatibility patches for ARR mods (Biomes'o'Plenty, Witchery, JourneyMap, and more) which we could not directly fix in the GTNH forks.
 
 ## Client

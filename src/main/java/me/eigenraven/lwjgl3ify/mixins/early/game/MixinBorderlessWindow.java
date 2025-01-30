@@ -20,7 +20,7 @@ public class MixinBorderlessWindow {
         if (Config.WINDOW_BORDERLESS_REPLACES_FULLSCREEN) {
             ci.cancel();
 
-            Display.toggleBorderless();
+            // TODO Display.toggleBorderless();
         }
     }
 }
