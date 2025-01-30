@@ -15,17 +15,12 @@
  */
 package org.lwjglx.opengl;
 
-import static org.lwjgl.glfw.GLFW.GLFW_FALSE;
-import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.opengl.GL11.*;
 
-import org.lwjgl.glfw.GLFW;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.LWJGLUtil;
 import org.lwjglx.PointerBuffer;
 
-/** @author Spasi */
 public class DrawableGL implements DrawableLWJGL {
 
     /** The PixelFormat used to create the drawable. */
@@ -38,7 +33,7 @@ public class DrawableGL implements DrawableLWJGL {
     protected ContextGL context;
 
     protected DrawableGL() {
-        context = new ContextGL(Display.getWindow(), false);
+        context = new ContextGL(Display.sdlWindow, Display.sdlMainGlContext, false);
     }
 
     public void setPixelFormat(final PixelFormatLWJGL pf) throws LWJGLException {
@@ -62,12 +57,15 @@ public class DrawableGL implements DrawableLWJGL {
 
     public ContextGL createSharedContext() throws LWJGLException {
         synchronized (GlobalLock.lock) {
-            glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+            /*glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
             long hiddenWindow = GLFW.glfwCreateWindow(16, 16, "MC - Shared Drawable", 0, this.context.glfwWindow);
             if (hiddenWindow == 0) {
                 throw new LWJGLException("Couldn't create shared context hidden window");
             }
             return new ContextGL(hiddenWindow, true);
+            TODO
+             */
+            throw new UnsupportedOperationException();
         }
     }
 
@@ -143,9 +141,9 @@ public class DrawableGL implements DrawableLWJGL {
     }
 
     @Override
-    public long getGlfwWindowId() {
+    public long getSdlWindowId() {
         synchronized (GlobalLock.lock) {
-            return context.glfwWindow;
+            return context.sdlWindow;
         }
     }
 }

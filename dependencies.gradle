@@ -27,6 +27,8 @@ dependencies {
     vanilla_minecraft("com.google.code.gson:gson:${gsonVersion}")
     forgePatchesEmbedded("com.google.code.gson:gson:${gsonVersion}")
 
+    api("com.github.GTNewHorizons:GTNHLib:0.6.2:dev")
+
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}")
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}:${lwjgl3Natives}")
 
