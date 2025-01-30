@@ -12,6 +12,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
 import java.util.function.LongSupplier;
 import java.util.function.Supplier;
@@ -121,6 +122,8 @@ public class MainThreadExec {
         Objects.requireNonNull(r);
         if (SDL_IsMainThread()) {
             r.run();
+        } else if (IS_MACOS) {
+            runOnMainSelectorOnMac(r);
         } else {
             final int runHandle = allocateRunHandle(r);
             if (!SDL_RunOnMainThread(mtCallback, runHandle, true)) {
@@ -140,6 +143,8 @@ public class MainThreadExec {
         Objects.requireNonNull(r);
         if (SDL_IsMainThread()) {
             return r.get();
+        } else if (IS_MACOS) {
+            return runOnMainSelectorOnMac(r);
         } else {
             final AtomicReference<ReturnType> output = new AtomicReference<>(null);
             final Runnable wrapper = () -> { output.set(r.get()); };
@@ -174,6 +179,14 @@ public class MainThreadExec {
             return r.getAsLong();
         }
         return Objects.requireNonNull(runOnMainThread(() -> (Long) r.getAsLong()));
+    }
+
+    public static double runOnMainThread(DoubleSupplier r) {
+        Objects.requireNonNull(r);
+        if (SDL_IsMainThread()) {
+            return r.getAsDouble();
+        }
+        return Objects.requireNonNull(runOnMainThread(() -> (Double) r.getAsDouble()));
     }
 
     private static final AtomicReferenceArray<Runnable> runHandles = new AtomicReferenceArray<>(256);

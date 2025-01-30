@@ -24,6 +24,7 @@ import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 public class Sys {
 
     static private void firstTimeInit() {
+        Configuration.OPENGL_EXPLICIT_INIT.set(true);
         if (Platform.get() == Platform.MACOSX) {
             Toolkit.getDefaultToolkit(); // Initialize AWT before SDL
         }
