@@ -36,7 +36,7 @@ public class EarlyConfig {
         "vswe.stevesfactory.components.ConnectionSet", "vswe.stevesfactory.components.ConnectionOption",
         "ic2.core.init.InternalName", "gregtech.api.enums.Element", "gregtech.api.enums.OrePrefixes",
         "net.minecraft.client.audio.MusicTicker$MusicType", "org.bukkit.Material",
-        "buildcraft.api.transport.IPipeTile.PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
+        "buildcraft.api.transport.IPipeTile$PipeType", "thaumcraft.common.entities.golems.EnumGolemType",
         // Non-GTNH Mods Compat
         // The Lord of the Rings Mod: Legacy
         "net.minecraft.event.HoverEvent$Action",
