@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import com.google.gson.Gson;
@@ -91,7 +92,10 @@ public class EarlyConfig {
                 final String earlyConfigContents = new String(
                     Files.readAllBytes(earlyConfigPath),
                     StandardCharsets.UTF_8);
-                cfg = gson.fromJson(earlyConfigContents, ConfigObject.class);
+                ConfigObject parsedConfig = gson.fromJson(earlyConfigContents, ConfigObject.class);
+                if (Objects.nonNull(parsedConfig)) {
+                    cfg = parsedConfig;
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
