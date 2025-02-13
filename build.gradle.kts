@@ -58,7 +58,6 @@ val addOpens = listOf(
 val extraJavaArgs = mutableListOf(
     "-Dfile.encoding=UTF-8",
     "-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader",
-    "-Djava.security.manager=allow",
 )
 for (openSpec in addOpens) {
     extraJavaArgs += listOf("--add-opens", openSpec)
