@@ -57,13 +57,14 @@ public class DrawableGL implements DrawableLWJGL {
 
     public ContextGL createSharedContext() throws LWJGLException {
         synchronized (GlobalLock.lock) {
-            /*glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-            long hiddenWindow = GLFW.glfwCreateWindow(16, 16, "MC - Shared Drawable", 0, this.context.glfwWindow);
-            if (hiddenWindow == 0) {
-                throw new LWJGLException("Couldn't create shared context hidden window");
-            }
-            return new ContextGL(hiddenWindow, true);
-            TODO
+            /*
+             * glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+             * long hiddenWindow = GLFW.glfwCreateWindow(16, 16, "MC - Shared Drawable", 0, this.context.glfwWindow);
+             * if (hiddenWindow == 0) {
+             * throw new LWJGLException("Couldn't create shared context hidden window");
+             * }
+             * return new ContextGL(hiddenWindow, true);
+             * TODO
              */
             throw new UnsupportedOperationException();
         }
