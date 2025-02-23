@@ -1,8 +1,8 @@
 
 repositories {
     ivy {
-        name "LiteLoader"
-        artifactPattern "https://dl.liteloader.com/versions/com/mumfrey/[module]/1.7.10/[module]-[revision](-[classifier]).[ext]"
+        name("LiteLoader")
+        artifactPattern("https://dl.liteloader.com/versions/com/mumfrey/[module]/1.7.10/[module]-[revision](-[classifier]).[ext]")
         metadataSources {
             artifact()
         }
