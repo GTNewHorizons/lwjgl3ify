@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class CommonProxy {
 
-    public void registerF3Handler() {}
+    public void registerEventHandler() {}
 
     @SuppressWarnings("unchecked")
     public void runCompatHooks() {

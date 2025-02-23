@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
+import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
+
 /**
  * Provides direct access to raw key press and text input events.
  * The main benefit is the separation of key and char events, which allows proper dead key and unicode input handling.
@@ -163,5 +165,19 @@ public class InputEvents {
                 strong.onTextEvent(ev);
             }
         }
+    }
+
+    /**
+     * Turns on {@link TextEvent} generation.
+     */
+    public static void beginTextInput() {
+        TextFieldHandler.beginTextInput();
+    }
+
+    /**
+     * Turns off {@link TextEvent} generation.
+     */
+    public static void endTextInput() {
+        TextFieldHandler.endTextInput(null);
     }
 }

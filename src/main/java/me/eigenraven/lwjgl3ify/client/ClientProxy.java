@@ -1,7 +1,9 @@
 package me.eigenraven.lwjgl3ify.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -60,6 +62,11 @@ public class ClientProxy extends CommonProxy {
                 }
             }
         }
+
+        @Override
+        public void onTextEvent(InputEvents.TextEvent event) {
+            TextFieldHandler.onTextInput(event);
+        }
     }
 
     private void registerKeybindHandler() {
@@ -67,7 +74,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerF3Handler() {
+    public void registerEventHandler() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -94,5 +101,15 @@ public class ClientProxy extends CommonProxy {
         Config.config.save();
         Config.reloadConfigObject();
         Display.lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    public void onGuiChange(final GuiOpenEvent event) {
+        final GuiScreen oldScreen = Minecraft.getMinecraft().currentScreen;
+        final GuiScreen newScreen = event.gui;
+        if (oldScreen != newScreen) {
+            TextFieldHandler.resetTextInput();
+        }
     }
 }

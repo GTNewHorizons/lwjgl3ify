@@ -29,7 +29,10 @@ import org.jetbrains.annotations.Nullable;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.sdl.*;
+import org.lwjgl.sdl.SDLKeyboard;
+import org.lwjgl.sdl.SDLKeycode;
+import org.lwjgl.sdl.SDLVideo;
+import org.lwjgl.sdl.SDL_DisplayMode;
 import org.lwjgl.system.MemoryStack;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
@@ -283,6 +286,8 @@ public class Display {
             displayCreated = true;
 
             lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
+
+            Keyboard.sdlKeyPressedArray = SDLKeyboard.SDL_GetKeyboardState();
 
             if (startFullscreen) {
                 // TODO setFullscreen(true);

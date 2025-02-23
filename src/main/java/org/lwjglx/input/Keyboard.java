@@ -2,6 +2,7 @@ package org.lwjglx.input;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -163,6 +164,8 @@ public class Keyboard {
 
     public static final int keyCount;
 
+    public static ByteBuffer sdlKeyPressedArray;
+
     private static final Map<String, Integer> reverseKeyMap = new ConcurrentHashMap<>();
 
     public enum KeyState {
@@ -264,12 +267,15 @@ public class Keyboard {
     public static void create() throws LWJGLException {}
 
     public static boolean isKeyDown(int key) {
-        if (key == KEY_NONE) {
+        final ByteBuffer array = sdlKeyPressedArray;
+        if (key == KEY_NONE || array == null) {
             return false;
         }
-        final int keyCode = KeyCodes.lwjglToGlfw(key);
-        // TODO return keyCode != GLFW_KEY_UNKNOWN && GLFW.glfwGetKey(Display.getWindow(), keyCode) == GLFW.GLFW_PRESS;
-        return false;
+        final int sdlScancode = KeyCodes.lwjglToSdlScancode(key);
+        if (sdlScancode <= 0 || sdlScancode >= array.limit()) {
+            return false;
+        }
+        return array.get(sdlScancode) != 0;
     }
 
     public static void poll() {

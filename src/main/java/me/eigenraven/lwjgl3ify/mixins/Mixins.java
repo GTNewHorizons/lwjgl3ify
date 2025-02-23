@@ -11,7 +11,6 @@ import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import me.eigenraven.lwjgl3ify.core.Config;
 import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
-// TODO: have someone who knows what they're doing rewrite these descriptions
 public enum Mixins {
 
     // client and server FML Java 9+ compatibility patches
@@ -36,6 +35,11 @@ public enum Mixins {
         .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
         .addMixinClasses("game.MixinBorderlessWindow")
+        .setApplyIf(() -> true)),
+    TEXT_FIELD_SDL_INPUT(new Builder("GuiTextField advanced text input support").addTargetedMod(TargetedMod.VANILLA)
+        .setSide(Side.CLIENT)
+        .setPhase(Phase.EARLY)
+        .addMixinClasses("game.MixinGuiTextField", "game.MixinGuiScreen")
         .setApplyIf(() -> true)),
     STB_LOADING(new Builder("STB texture loading mixin").addTargetedMod(TargetedMod.VANILLA)
         .setSide(Side.CLIENT)

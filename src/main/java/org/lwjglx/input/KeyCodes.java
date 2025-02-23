@@ -769,6 +769,146 @@ public class KeyCodes {
         };
     }
 
+    public static int lwjglToSdlScancode(int lwjglCode) {
+        return switch (lwjglCode) {
+            case Keyboard.KEY_UNLABELED -> -1;
+            case Keyboard.KEY_ESCAPE -> SDL_SCANCODE_ESCAPE;
+            case Keyboard.KEY_BACK -> SDL_SCANCODE_BACKSPACE;
+            case Keyboard.KEY_TAB -> SDL_SCANCODE_TAB;
+            case Keyboard.KEY_RETURN -> SDL_SCANCODE_RETURN;
+            case Keyboard.KEY_SPACE -> SDL_SCANCODE_SPACE;
+            case Keyboard.KEY_LCONTROL -> SDL_SCANCODE_LCTRL;
+            case Keyboard.KEY_LSHIFT -> SDL_SCANCODE_LSHIFT;
+            case Keyboard.KEY_LMENU -> SDL_SCANCODE_MENU;
+            case Keyboard.KEY_LMETA -> SDL_SCANCODE_LGUI;
+            case Keyboard.KEY_RCONTROL -> SDL_SCANCODE_RCTRL;
+            case Keyboard.KEY_RSHIFT -> SDL_SCANCODE_RSHIFT;
+            case Keyboard.KEY_1 -> SDL_SCANCODE_1;
+            case Keyboard.KEY_2 -> SDL_SCANCODE_2;
+            case Keyboard.KEY_3 -> SDL_SCANCODE_3;
+            case Keyboard.KEY_4 -> SDL_SCANCODE_4;
+            case Keyboard.KEY_5 -> SDL_SCANCODE_5;
+            case Keyboard.KEY_6 -> SDL_SCANCODE_6;
+            case Keyboard.KEY_7 -> SDL_SCANCODE_7;
+            case Keyboard.KEY_8 -> SDL_SCANCODE_8;
+            case Keyboard.KEY_9 -> SDL_SCANCODE_9;
+            case Keyboard.KEY_0 -> SDL_SCANCODE_0;
+            case Keyboard.KEY_A -> SDL_SCANCODE_A;
+            case Keyboard.KEY_B -> SDL_SCANCODE_B;
+            case Keyboard.KEY_C -> SDL_SCANCODE_C;
+            case Keyboard.KEY_D -> SDL_SCANCODE_D;
+            case Keyboard.KEY_E -> SDL_SCANCODE_E;
+            case Keyboard.KEY_F -> SDL_SCANCODE_F;
+            case Keyboard.KEY_G -> SDL_SCANCODE_G;
+            case Keyboard.KEY_H -> SDL_SCANCODE_H;
+            case Keyboard.KEY_I -> SDL_SCANCODE_I;
+            case Keyboard.KEY_J -> SDL_SCANCODE_J;
+            case Keyboard.KEY_K -> SDL_SCANCODE_K;
+            case Keyboard.KEY_L -> SDL_SCANCODE_L;
+            case Keyboard.KEY_M -> SDL_SCANCODE_M;
+            case Keyboard.KEY_N -> SDL_SCANCODE_N;
+            case Keyboard.KEY_O -> SDL_SCANCODE_O;
+            case Keyboard.KEY_P -> SDL_SCANCODE_P;
+            case Keyboard.KEY_Q -> SDL_SCANCODE_Q;
+            case Keyboard.KEY_R -> SDL_SCANCODE_R;
+            case Keyboard.KEY_S -> SDL_SCANCODE_S;
+            case Keyboard.KEY_T -> SDL_SCANCODE_T;
+            case Keyboard.KEY_U -> SDL_SCANCODE_U;
+            case Keyboard.KEY_V -> SDL_SCANCODE_V;
+            case Keyboard.KEY_W -> SDL_SCANCODE_W;
+            case Keyboard.KEY_X -> SDL_SCANCODE_X;
+            case Keyboard.KEY_Y -> SDL_SCANCODE_Y;
+            case Keyboard.KEY_Z -> SDL_SCANCODE_Z;
+            case Keyboard.KEY_UP -> SDL_SCANCODE_UP;
+            case Keyboard.KEY_DOWN -> SDL_SCANCODE_DOWN;
+            case Keyboard.KEY_LEFT -> SDL_SCANCODE_LEFT;
+            case Keyboard.KEY_RIGHT -> SDL_SCANCODE_RIGHT;
+            case Keyboard.KEY_INSERT -> SDL_SCANCODE_INSERT;
+            case Keyboard.KEY_DELETE -> SDL_SCANCODE_DELETE;
+            case Keyboard.KEY_HOME -> SDL_SCANCODE_HOME;
+            case Keyboard.KEY_END -> SDL_SCANCODE_END;
+            case Keyboard.KEY_PRIOR -> SDL_SCANCODE_PAGEUP;
+            case Keyboard.KEY_NEXT -> SDL_SCANCODE_PAGEDOWN;
+            case Keyboard.KEY_F1 -> SDL_SCANCODE_F1;
+            case Keyboard.KEY_F2 -> SDL_SCANCODE_F2;
+            case Keyboard.KEY_F3 -> SDL_SCANCODE_F3;
+            case Keyboard.KEY_F4 -> SDL_SCANCODE_F4;
+            case Keyboard.KEY_F5 -> SDL_SCANCODE_F5;
+            case Keyboard.KEY_F6 -> SDL_SCANCODE_F6;
+            case Keyboard.KEY_F7 -> SDL_SCANCODE_F7;
+            case Keyboard.KEY_F8 -> SDL_SCANCODE_F8;
+            case Keyboard.KEY_F9 -> SDL_SCANCODE_F9;
+            case Keyboard.KEY_F10 -> SDL_SCANCODE_F10;
+            case Keyboard.KEY_F11 -> SDL_SCANCODE_F11;
+            case Keyboard.KEY_F12 -> SDL_SCANCODE_F12;
+            case Keyboard.KEY_F13 -> SDL_SCANCODE_F13;
+            case Keyboard.KEY_F14 -> SDL_SCANCODE_F14;
+            case Keyboard.KEY_F15 -> SDL_SCANCODE_F15;
+            case Keyboard.KEY_F16 -> SDL_SCANCODE_F16;
+            case Keyboard.KEY_F17 -> SDL_SCANCODE_F17;
+            case Keyboard.KEY_F18 -> SDL_SCANCODE_F18;
+            case Keyboard.KEY_F19 -> SDL_SCANCODE_F19;
+            case Keyboard.KEY_NUMPAD1 -> SDL_SCANCODE_KP_1;
+            case Keyboard.KEY_NUMPAD2 -> SDL_SCANCODE_KP_2;
+            case Keyboard.KEY_NUMPAD3 -> SDL_SCANCODE_KP_3;
+            case Keyboard.KEY_NUMPAD4 -> SDL_SCANCODE_KP_4;
+            case Keyboard.KEY_NUMPAD5 -> SDL_SCANCODE_KP_5;
+            case Keyboard.KEY_NUMPAD6 -> SDL_SCANCODE_KP_6;
+            case Keyboard.KEY_NUMPAD7 -> SDL_SCANCODE_KP_7;
+            case Keyboard.KEY_NUMPAD8 -> SDL_SCANCODE_KP_8;
+            case Keyboard.KEY_NUMPAD9 -> SDL_SCANCODE_KP_9;
+            case Keyboard.KEY_NUMPAD0 -> SDL_SCANCODE_KP_0;
+            case Keyboard.KEY_ADD -> SDL_SCANCODE_KP_PLUS;
+            case Keyboard.KEY_SUBTRACT -> SDL_SCANCODE_KP_MINUS;
+            case Keyboard.KEY_MULTIPLY -> SDL_SCANCODE_KP_MULTIPLY;
+            case Keyboard.KEY_DIVIDE -> SDL_SCANCODE_KP_DIVIDE;
+            case Keyboard.KEY_DECIMAL -> SDL_SCANCODE_KP_DECIMAL;
+            case Keyboard.KEY_NUMPADEQUALS -> SDL_SCANCODE_KP_EQUALS;
+            case Keyboard.KEY_NUMPADENTER -> SDL_SCANCODE_KP_ENTER;
+            case Keyboard.KEY_NUMLOCK -> SDL_SCANCODE_NUMLOCKCLEAR;
+            case Keyboard.KEY_SEMICOLON -> SDL_SCANCODE_SEMICOLON;
+            case Keyboard.KEY_BACKSLASH -> SDL_SCANCODE_BACKSLASH;
+            case Keyboard.KEY_COMMA -> SDL_SCANCODE_COMMA;
+            case Keyboard.KEY_PERIOD -> SDL_SCANCODE_PERIOD;
+            case Keyboard.KEY_SLASH -> SDL_SCANCODE_SLASH;
+            case Keyboard.KEY_GRAVE -> SDL_SCANCODE_GRAVE;
+            case Keyboard.KEY_CAPITAL -> SDL_SCANCODE_CAPSLOCK;
+            case Keyboard.KEY_SCROLL -> SDL_SCANCODE_SCROLLLOCK;
+            case Keyboard.KEY_PAUSE -> SDL_SCANCODE_PAUSE;
+
+            case Keyboard.KEY_MINUS -> SDL_SCANCODE_MINUS;
+            case Keyboard.KEY_EQUALS -> SDL_SCANCODE_EQUALS;
+            case Keyboard.KEY_LBRACKET -> SDL_SCANCODE_LEFTBRACKET;
+            case Keyboard.KEY_RBRACKET -> SDL_SCANCODE_RIGHTBRACKET;
+            case Keyboard.KEY_APOSTROPHE -> SDL_SCANCODE_APOSTROPHE;
+            case Keyboard.KEY_AT -> SDL_SCANCODE_KP_AT; /* (NEC PC98) */
+            case Keyboard.KEY_COLON -> SDL_SCANCODE_KP_COLON; /* (NEC PC98) */
+            // case Keyboard.KEY_UNDERLINE -> SDL_SCANCODE_UNDERLINE; /* (NEC PC98) */
+
+            case Keyboard.KEY_KANA -> SDL_SCANCODE_LANG3; /* (Japanese keyboard) */
+            case Keyboard.KEY_CONVERT -> SDL_SCANCODE_LANG2; /* (Japanese keyboard) */
+            case Keyboard.KEY_NOCONVERT -> SDL_SCANCODE_LANG4; /* (Japanese keyboard) */
+            case Keyboard.KEY_YEN -> SDL_SCANCODE_INTERNATIONAL3; /* (Japanese keyboard) */
+
+            case Keyboard.KEY_CIRCUMFLEX -> SDL_SCANCODE_LANG1; /* (Japanese keyboard) */
+            case Keyboard.KEY_KANJI -> SDL_SCANCODE_LANG5; /* (Japanese keyboard) */
+            case Keyboard.KEY_STOP -> SDL_SCANCODE_STOP; /* (NEC PC98) */
+            case Keyboard.KEY_AX -> SDL_SCANCODE_LANG6; /* (Japan AX) */
+            case Keyboard.KEY_SECTION -> SDL_SCANCODE_LANG8; /* Section symbol (Mac) */
+            case Keyboard.KEY_NUMPADCOMMA -> SDL_SCANCODE_KP_COMMA; /* , on numeric keypad (NEC PC98) */
+            case Keyboard.KEY_SYSRQ -> SDL_SCANCODE_SYSREQ;
+            // case Keyboard.KEY_FUNCTION -> SDL_SCANCODE_UNKNOWN; /* Function (Mac) */
+
+            case Keyboard.KEY_CLEAR -> SDL_SCANCODE_CLEAR; /* Clear key (Mac) */
+
+            case Keyboard.KEY_APPS -> SDL_SCANCODE_APPLICATION; /* AppMenu key */
+            case Keyboard.KEY_POWER -> SDL_SCANCODE_POWER;
+            case Keyboard.KEY_SLEEP -> SDL_SCANCODE_SLEEP;
+
+            default -> SDL_SCANCODE_UNKNOWN;
+        };
+    }
+
     public static int awtToLwjgl(int awtCode) {
         return switch (awtCode) {
             case KeyEvent.VK_ESCAPE -> Keyboard.KEY_ESCAPE;
