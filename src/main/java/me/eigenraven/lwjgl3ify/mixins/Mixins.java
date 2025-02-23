@@ -41,6 +41,15 @@ public enum Mixins {
         .setPhase(Phase.EARLY)
         .addMixinClasses("game.MixinGuiTextField", "game.MixinGuiScreen")
         .setApplyIf(() -> true)),
+    OPEN_URL_WITH_SDL(new Builder("Open URL using SDL APIs").addTargetedMod(TargetedMod.VANILLA)
+        .setSide(Side.CLIENT)
+        .setPhase(Phase.EARLY)
+        .addMixinClasses(
+            "game.openurl.MixinGuiChat",
+            "game.openurl.MixinGuiMainMenu",
+            "game.openurl.MixinGuiScreenDemoResourcePacks",
+            "game.openurl.MixinGuiStreamUnavailable")
+        .setApplyIf(() -> true)),
     STB_LOADING(new Builder("STB texture loading mixin").addTargetedMod(TargetedMod.VANILLA)
         .setSide(Side.CLIENT)
         .setPhase(Phase.EARLY)
