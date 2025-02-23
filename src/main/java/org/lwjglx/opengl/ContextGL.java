@@ -15,8 +15,10 @@
  */
 package org.lwjglx.opengl;
 
-import org.lwjgl.glfw.GLFW;
+import static org.lwjgl.system.MemoryUtil.*;
+
 import org.lwjgl.opengl.GL;
+import org.lwjgl.sdl.SDLVideo;
 import org.lwjglx.LWJGLException;
 import org.lwjglx.PointerBuffer;
 
@@ -32,17 +34,23 @@ import org.lwjglx.PointerBuffer;
  */
 public final class ContextGL implements Context {
 
-    public long glfwWindow = Long.MIN_VALUE;
+    public long sdlWindow = 0, sdlContext = 0;
     public final boolean shared;
 
-    public ContextGL(long glfwWindow, boolean shared) {
-        this.glfwWindow = glfwWindow;
+    public ContextGL(long sdlWindow, long sdlContext, boolean shared) {
+        this.sdlWindow = sdlWindow;
+        this.sdlContext = sdlContext;
         this.shared = shared;
     }
 
     public void releaseCurrent() throws LWJGLException {
-        GLFW.glfwMakeContextCurrent(0);
-        GL.setCapabilities(null);
+        Display.glContextMutex.lock();
+        try {
+            GL.setCapabilities(null);
+            SDLVideo.SDL_GL_MakeCurrent(sdlWindow, NULL);
+        } finally {
+            Display.glContextMutex.unlock();
+        }
     }
 
     public synchronized void releaseDrawable() throws LWJGLException {}
@@ -50,20 +58,25 @@ public final class ContextGL implements Context {
     public synchronized void update() {}
 
     public static void swapBuffers() throws LWJGLException {
-        GLFW.glfwSwapBuffers(Display.getWindow());
+        Display.swapBuffers();
     }
 
     public synchronized void makeCurrent() throws LWJGLException {
-        GLFW.glfwMakeContextCurrent(glfwWindow);
-        GL.createCapabilities();
+        Display.glContextMutex.lock();
+        try {
+            SDLVideo.SDL_GL_MakeCurrent(sdlWindow, sdlContext);
+            GL.createCapabilities();
+        } finally {
+            Display.glContextMutex.unlock();
+        }
     }
 
     public synchronized boolean isCurrent() throws LWJGLException {
-        return GLFW.glfwGetCurrentContext() == glfwWindow;
+        return SDLVideo.SDL_GL_GetCurrentContext() == sdlContext;
     }
 
     public static void setSwapInterval(int value) {
-        GLFW.glfwSwapInterval(value);
+        Display.setSwapInterval(value);
     }
 
     public synchronized void forceDestroy() throws LWJGLException {
@@ -71,9 +84,13 @@ public final class ContextGL implements Context {
     }
 
     public synchronized void destroy() throws LWJGLException {
-        if (shared && glfwWindow > 0) {
-            GLFW.glfwDestroyWindow(glfwWindow);
-            glfwWindow = -1;
+        if (shared && sdlWindow != NULL) {
+            if (sdlContext != NULL) {
+                SDLVideo.SDL_GL_DestroyContext(sdlContext);
+                sdlContext = NULL;
+            }
+            SDLVideo.SDL_DestroyWindow(sdlWindow);
+            sdlWindow = NULL;
         }
     }
 

@@ -56,7 +56,7 @@ public interface Drawable {
      */
     void setCLSharingProperties(PointerBuffer properties) throws LWJGLException;
 
-    default long getGlfwWindowId() {
+    default long getSdlWindowId() {
         return 0;
     }
 }
