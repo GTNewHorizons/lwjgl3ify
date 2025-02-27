@@ -252,9 +252,7 @@ public class Display {
                     throw new RuntimeException("Could not create an OpenGL context: " + SDL_GetError());
                 }
                 checkSdl(nSDL_GL_LoadLibrary(NULL));
-                GL.create(SDLVideo::SDL_GL_GetProcAddress);
-                GL.createCapabilities();
-                drawable = new DrawableGL();
+                checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
             } finally {
                 SDL_DestroyProperties(props);
             }
@@ -293,6 +291,11 @@ public class Display {
                 // TODO setFullscreen(true);
             }
         });
+
+        checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
+        GL.create(SDLVideo::SDL_GL_GetProcAddress);
+        GL.createCapabilities();
+        drawable = new DrawableGL();
     }
 
     private static final ByteBuffer HINT_MOUSE_RELATIVE_SYSTEM_SCALE = memASCII(SDL_HINT_MOUSE_RELATIVE_SYSTEM_SCALE);

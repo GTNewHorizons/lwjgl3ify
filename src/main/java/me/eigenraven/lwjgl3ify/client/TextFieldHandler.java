@@ -28,7 +28,7 @@ public final class TextFieldHandler {
             return;
         }
         if (textInputDepth++ == 0) {
-            SDL_StartTextInput(Display.getWindow());
+            MainThreadExec.runOnMainThread(() -> { SDL_StartTextInput(Display.getWindow()); });
         }
     }
 
@@ -37,7 +37,7 @@ public final class TextFieldHandler {
             return;
         }
         if (--textInputDepth == 0) {
-            SDL_StopTextInput(Display.getWindow());
+            MainThreadExec.runOnMainThread(() -> { SDL_StopTextInput(Display.getWindow()); });
         }
         if (textField != null && textField == focusedTextInput.get()) {
             focusedTextInput = NULL_TEXT_FIELD;
@@ -46,10 +46,10 @@ public final class TextFieldHandler {
 
     public static void resetTextInput() {
         if (textInputDepth != 0) {
-            SDL_StopTextInput(Display.getWindow());
+            MainThreadExec.runOnMainThread(() -> { SDL_StopTextInput(Display.getWindow()); });
             textInputDepth = 0;
-            focusedTextInput = NULL_TEXT_FIELD;
         }
+        focusedTextInput = NULL_TEXT_FIELD;
     }
 
     public static void setFocusedTextField(GuiTextField textField) {
