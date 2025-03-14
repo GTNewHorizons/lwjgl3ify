@@ -57,7 +57,7 @@ public class Lwjgl3ify {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        PROXY.registerF3Handler();
+        PROXY.registerEventHandler();
         final LaunchClassLoader loader = Launch.classLoader;
         try {
             final Field clExclusionsF = loader.getClass()

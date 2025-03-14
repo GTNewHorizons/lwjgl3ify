@@ -4,7 +4,6 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import net.minecraft.client.Minecraft;
 
-import org.lwjglx.opengl.Display;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,7 +19,7 @@ public class MixinBorderlessWindow {
         if (Config.WINDOW_BORDERLESS_REPLACES_FULLSCREEN) {
             ci.cancel();
 
-            Display.toggleBorderless();
+            // TODO Display.toggleBorderless();
         }
     }
 }
