@@ -237,14 +237,14 @@ public class Keyboard {
                 event.state,
                 event.state,
                 java.awt.event.KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(event.key))),
-                (event.key >= 32 && event.key < 127) ? ((char) event.key) : '?');
+                (event.key >= 32 && event.key < 127) ? (event.key) : '?');
         }
         try {
             eventQueue.add(event);
         } catch (IllegalStateException ignored) {}
     }
 
-    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods, char c) {
+    public static void addGlfwKeyEvent(long window, int key, int scancode, int action, int mods, int c) {
         final KeyState state = switch (action) {
             case GLFW.GLFW_PRESS -> KeyState.PRESS;
             case GLFW.GLFW_RELEASE -> KeyState.RELEASE;
@@ -254,9 +254,9 @@ public class Keyboard {
         addRawKeyEvent(new KeyEvent(KeyCodes.glfwToLwjgl(key), c, state, Sys.getNanoTime()));
     }
 
-    public static void addCharEvent(int key, char c) {
+    public static void addCharEvent(int key, int c) {
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
-            Lwjgl3ify.LOG.info("[DEBUG-KEY-QUEUE] queued char virtual keypress codepoint:{} char:{}", (int) c, c);
+            Lwjgl3ify.LOG.info("[DEBUG-KEY-QUEUE] queued char virtual keypress codepoint:{} char:{}", c, c);
         }
         try {
             eventQueue.add(new KeyEvent(KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
@@ -310,7 +310,7 @@ public class Keyboard {
     }
 
     public static char getEventCharacter() {
-        return eventQueue.peek().aChar;
+        return (char) eventQueue.peek().codepoint;
 
     }
 
@@ -364,20 +364,20 @@ public class Keyboard {
     public static final class KeyEvent {
 
         public int key;
-        public char aChar;
+        public int codepoint;
         public KeyState state;
         public long nano;
         public boolean queueOutOfOrderRelease = false;
 
-        public KeyEvent(int key, char aChar, KeyState state, long nano) {
+        public KeyEvent(int key, int codepoint, KeyState state, long nano) {
             this.key = key;
-            this.aChar = aChar;
+            this.codepoint = codepoint;
             this.state = state;
             this.nano = nano;
         }
 
         public KeyEvent copy() {
-            final KeyEvent ev = new KeyEvent(key, aChar, state, nano);
+            final KeyEvent ev = new KeyEvent(key, codepoint, state, nano);
             ev.queueOutOfOrderRelease = this.queueOutOfOrderRelease;
             return ev;
         }
