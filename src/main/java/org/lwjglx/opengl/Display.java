@@ -272,7 +272,7 @@ public class Display {
                             ctrlGraphicalMode = Config.INPUT_CTRL_ALT_TEXT;
                         }
                         if (ctrlGraphicalMode) {
-                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (key & 0x1f));
+                            Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
                         }
                     } else {
                         ctrlGraphicalMode = false;
@@ -340,7 +340,7 @@ public class Display {
                     }
                     ingredientKeyEvent = null;
                 } else {
-                    Keyboard.addCharEvent(0, (char) codepoint); // Non-ASCII chars
+                    Keyboard.addCharEvent(0, codepoint); // Non-ASCII chars
                 }
             }
         };

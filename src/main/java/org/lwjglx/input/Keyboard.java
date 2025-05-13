@@ -311,7 +311,10 @@ public class Keyboard {
 
     public static char getEventCharacter() {
         return (char) eventQueue.peek().codepoint;
+    }
 
+    public static int getEventCodePoint() {
+        return eventQueue.peek().codepoint;
     }
 
     public static boolean getEventKeyState() {
