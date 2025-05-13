@@ -279,7 +279,7 @@ public class Display {
                     }
 
                     if ((GLFW_MOD_SUPER & mods) != 0) {
-                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) key);
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, key);
                         if (Platform.get() != Platform.MACOSX) {
                             // MacOS doesn't send a char event for Cmd+KEY presses, but other platforms do.
                             cancelNextChar = true;
@@ -291,7 +291,7 @@ public class Display {
                                 isAlt,
                                 isAltGr);
                         }
-                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (char) (key & 0x1f));
+                        Keyboard.addGlfwKeyEvent(window, key, scancode, action, mods, (key & 0x1f));
                         cancelNextChar = true; // Cancel char event from ctrl key since its already handled here
                     } else if (action > 0) { // Delay press and repeat key event to actual char input. There is ALWAYS a
                         // char after them
@@ -327,11 +327,11 @@ public class Display {
                     Lwjgl3ify.LOG
                         .info("[DEBUG-KEY] char window:{} codepoint:{} char:{}", window, codepoint, (char) codepoint);
                 }
-                InputEvents.injectTextEvent(new InputEvents.TextEvent(String.valueOf((char) codepoint)));
+                InputEvents.injectTextEvent(new InputEvents.TextEvent(new String(Character.toChars(codepoint))));
                 if (cancelNextChar) { // Char event being cancelled
                     cancelNextChar = false;
                 } else if (ingredientKeyEvent != null) {
-                    ingredientKeyEvent.aChar = (char) codepoint; // Send char with ASCII key event here
+                    ingredientKeyEvent.codepoint = codepoint; // Send char with ASCII key event here
                     Keyboard.addRawKeyEvent(ingredientKeyEvent);
                     if (ingredientKeyEvent.queueOutOfOrderRelease) {
                         ingredientKeyEvent = ingredientKeyEvent.copy();
@@ -340,7 +340,7 @@ public class Display {
                     }
                     ingredientKeyEvent = null;
                 } else {
-                    Keyboard.addCharEvent(0, (char) codepoint); // Non-ASCII chars
+                    Keyboard.addCharEvent(0, codepoint); // Non-ASCII chars
                 }
             }
         };
