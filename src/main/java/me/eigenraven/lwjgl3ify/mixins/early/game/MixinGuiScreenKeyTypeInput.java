@@ -19,7 +19,7 @@ public abstract class MixinGuiScreenKeyTypeInput {
     @Inject(method = "handleKeyboardInput", at = @At("HEAD"), cancellable = true)
     private void lwjgl3ify$handleKeyboardInput(CallbackInfo ci) {
         if (Keyboard.getEventKeyState()) {
-            int codepoint = org.lwjglx.input.Keyboard.getEventCodePoint();
+            int codepoint = org.lwjglx.input.Keyboard.lwjgl3ify$getEventCodePoint();
             int keycode = Keyboard.getEventKey();
             char[] chars = Character.toChars(codepoint);
             for (char c : chars) {

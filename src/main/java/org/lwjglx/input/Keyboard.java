@@ -313,7 +313,7 @@ public class Keyboard {
         return (char) eventQueue.peek().codepoint;
     }
 
-    public static int getEventCodePoint() {
+    public static int lwjgl3ify$getEventCodePoint() {
         return eventQueue.peek().codepoint;
     }
 
