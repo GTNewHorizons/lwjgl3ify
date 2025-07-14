@@ -1,7 +1,5 @@
 package me.eigenraven.lwjgl3ify.core;
 
-import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,7 +15,6 @@ import com.gtnewhorizon.gtnhmixins.builders.IMixins;
 
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import me.eigenraven.lwjgl3ify.mixins.Mixins;
-import me.eigenraven.lwjgl3ify.mixins.TargetedMod;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.SortingIndex(Integer.MAX_VALUE - 2)
@@ -74,45 +71,12 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
     @Override
     public List<String> getMixins(Set<String> loadedCoreMods) {
         final List<String> mixins = IMixins.getEarlyMixins(Mixins.class, loadedCoreMods);
-        if (mixins.contains("game.MixinStitcher") && !shouldApplyMixinStitcher(loadedCoreMods)) {
-            mixins.remove("game.MixinStitcher");
+        if (Config.MIXIN_STBI_TEXTURE_STITCHING && !mixins.contains("game.MixinStitcher")) {
+            Lwjgl3ifyCoremod.LOGGER.error(
+                "Disabled STB stitching mixins to prevent rapidly flashing screen."
+                    + " Remove FastCraft or update to FastCraft 1.25 and "
+                    + "add OptiFine to enable these performance-improving patches.");
         }
         return mixins;
-    }
-
-    private static boolean shouldApplyMixinStitcher(Set<String> loadedCoreMods) {
-        if (Config.MIXIN_STBI_IGNORE_FASTCRAFT) return true;
-        boolean fcVer1_25 = isFastcraftVersion1_25();
-        boolean noFastcraft = !loadedCoreMods.contains(TargetedMod.FASTCRAFT.coreModClass);
-        boolean hasOptifine = loadedCoreMods.contains(TargetedMod.OPTIFINE.coreModClass);
-        boolean shouldApply = noFastcraft || (hasOptifine && fcVer1_25);
-        if (!shouldApply) {
-            Lwjgl3ifyCoremod.LOGGER.error(
-                "Disabling STB stitching mixins to prevent rapidly flashing screen. Remove FastCraft or "
-                    + (!fcVer1_25 ? "update to FastCraft 1.25 and " : "")
-                    + "add OptiFine to enable these performance-improving patches.");
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean isFastcraftVersion1_25() {
-        // FastCraft tweaker hasn't run yet so no easy way to grab version.
-        // Let's compare the hash of fastcraft.a, which contains the version string in both 1.23 and 1.25.
-        try {
-            byte[] bytes = Launch.classLoader.getClassBytes("fastcraft.a");
-
-            if (bytes == null) return false;
-
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(bytes);
-
-            final byte[] fc125AHash = new byte[] { -125, -16, 44, -79, -105, 108, -65, -19, 56, -98, -65, -94, 0, -49,
-                66, -58, -60, -39, -23, 55, 87, 127, -77, 100, 73, -92, 37, 84, 115, -114, -76, -23 };
-
-            return Arrays.equals(fc125AHash, hash);
-        } catch (Exception e) {
-            return false;
-        }
     }
 }

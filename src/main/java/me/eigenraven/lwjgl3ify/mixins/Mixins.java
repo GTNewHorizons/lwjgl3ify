@@ -31,10 +31,27 @@ public enum Mixins implements IMixins {
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")
             .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
+
+    // apply the texture stitching mixin if
+    // - you don't have fastcraft
+    // - or you have fastcraft and the force enabled setting
+    // - or you have fastcraft 1.25 and optifine
     STB_TEXTURE_STITCHING(
         new MixinBuilder()
             .addClientMixins("game.MixinStitcher")
-            .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING));
+            .addExcludedMod(TargetedMod.FASTCRAFT_ANY)
+            .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING)),
+    STB_TEXTURE_STITCHING_FORCE(
+        new MixinBuilder()
+            .addClientMixins("game.MixinStitcher")
+            .addRequiredMod(TargetedMod.FASTCRAFT_ANY)
+            .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING && Config.MIXIN_STBI_IGNORE_FASTCRAFT)),
+    STB_TEXTURE_STITCHING_FOR_FASCRAFT(
+        new MixinBuilder()
+            .addClientMixins("game.MixinStitcher")
+            .addRequiredMod(TargetedMod.FASTCRAFT_1_25)
+            .addRequiredMod(TargetedMod.OPTIFINE)
+            .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_STITCHING && !Config.MIXIN_STBI_IGNORE_FASTCRAFT));
     // spotless:on
 
     private final MixinBuilder builder;
