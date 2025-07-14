@@ -7,7 +7,6 @@ import com.gtnewhorizon.gtnhmixins.builders.MixinBuilder;
 
 import me.eigenraven.lwjgl3ify.core.Config;
 
-// TODO: have someone who knows what they're doing rewrite these descriptions
 public enum Mixins implements IMixins {
 
     // spotless:off
