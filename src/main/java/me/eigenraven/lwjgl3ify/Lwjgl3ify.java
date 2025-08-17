@@ -11,10 +11,13 @@ import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import me.eigenraven.lwjgl3ify.api.ConfigUtils;
 import me.eigenraven.lwjgl3ify.core.Config;
 
@@ -41,6 +44,10 @@ public class Lwjgl3ify {
     public void preInit(FMLPreInitializationEvent event) {
         PROXY.runCompatHooks();
         LOG.info("Lwjgl3ify preInit - Java version {}", System.getProperty("java.specification.version"));
+
+        FMLCommonHandler.instance()
+            .bus()
+            .register(this);
 
         // Test that ConfigUtils works as expected
         ConfigUtils utils = new ConfigUtils(LOG);
@@ -84,4 +91,14 @@ public class Lwjgl3ify {
             LOG.warn(e);
         }
     }
+
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        // This fires after the player has fully entered the world
+        LOG.info("Player {} logged in", event.player.getDisplayName());
+        Launch.classLoader.logTimings();
+        ((LaunchClassLoader) getClass().getClassLoader()).getRfbParent()
+            .logTimings();
+    }
+
 }

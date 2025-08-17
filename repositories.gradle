@@ -10,4 +10,5 @@ repositories {
             includeGroup("com.mumfrey")
         }
     }
+    mavenLocal()
 }
