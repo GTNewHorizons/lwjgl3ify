@@ -35,7 +35,7 @@ java.base/java.time.zone=ALL-UNNAMED
 --add-opens
 java.base/java.time=ALL-UNNAMED
 --add-opens
-java.base/java.util.concurrent.atomics=ALL-UNNAMED
+java.base/java.util.concurrent.atomic=ALL-UNNAMED
 --add-opens
 java.base/java.util.concurrent.locks=ALL-UNNAMED
 --add-opens
