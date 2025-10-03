@@ -198,6 +198,9 @@ public class Display {
         glfwWindowHintString(GLFW_COCOA_FRAME_NAME, Config.COCOA_FRAME_NAME);
         glfwWindowHintString(GLFW_WAYLAND_APP_ID, Config.WAYLAND_APP_ID);
 
+        // request a non-hidpi framebuffer on Retina displays on MacOS
+        if (glfwGetPlatform() == GLFW_PLATFORM_COCOA) glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE);
+
         if (Config.WINDOW_CENTERED) {
             glfwWindowHint(GLFW_POSITION_X, (monitorWidth - mode.getWidth()) / 2);
             glfwWindowHint(GLFW_POSITION_Y, (monitorHeight - mode.getHeight()) / 2);
