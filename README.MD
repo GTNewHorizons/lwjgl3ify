@@ -167,3 +167,5 @@ This can lead to inconsistent states, where some methods might see the old value
 
 First, do `./gradlew build` and use the zip in `./build/distributions/lwjgl3ify-VERSION-multimc.zip` to install lwjgl3ify into a 1.7.10 forge instance in Prism.
 Install the mod jar from `./build/libs/` as usual.
+
+When testing in the deobfuscated environment, please use the `runClient`/`runServer` tasks that run with modern java by default. `runClient17` et al. are no-ops.
