@@ -64,8 +64,8 @@ dependencies {
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.19-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.1:dev')
     if (addGtForTesting) {
-        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.52.62:dev')
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-717-GTNH:dev")
+        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.52.65:dev')
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-718-GTNH:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.17.0-GTNH:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.10.17:dev")
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.17.0:dev")
