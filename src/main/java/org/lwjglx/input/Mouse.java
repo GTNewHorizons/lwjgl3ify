@@ -287,7 +287,7 @@ public class Mouse {
         float inv_scale = 1.0f / Display.getPixelScaleFactor();
         new_x *= inv_scale;
         new_y *= inv_scale;
-        GLFW.glfwSetCursorPos(Display.getWindow(), new_x * inv_scale, new_y * inv_scale);
+        GLFW.glfwSetCursorPos(Display.getWindow(), new_x, new_y);
         // this might lose accuracy, since we just went from fb->screen and this will
         // undo that change. Yay floating point numbers!
         addMoveEvent(new_x, new_y);

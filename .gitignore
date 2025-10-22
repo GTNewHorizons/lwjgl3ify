@@ -29,3 +29,4 @@ whitelist.json
 *.bat
 *.DS_Store
 !gradlew.bat
+layout.json
