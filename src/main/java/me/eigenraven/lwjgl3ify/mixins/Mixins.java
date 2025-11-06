@@ -25,6 +25,11 @@ public enum Mixins {
         .setApplyIf(() -> true)),
 
     // client only
+    FIX_UNICODE_INPUT(new Builder("Fix the input method to support all Unicode").addTargetedMod(TargetedMod.VANILLA)
+        .setSide(Side.CLIENT)
+        .setPhase(Phase.EARLY)
+        .addMixinClasses("game.MixinGuiScreenKeyTypeInput")
+        .setApplyIf(() -> true)),
     FIX_DEADKEY_KEYBINDING(
         new Builder("Improved KeyBinding handling to handle dead keys").addTargetedMod(TargetedMod.VANILLA)
             .setSide(Side.CLIENT)
