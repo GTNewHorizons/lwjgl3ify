@@ -13,6 +13,7 @@ import static org.lwjgl.sdl.SDLEvents.SDL_EVENT_WINDOW_RESTORED;
 import static org.lwjgl.sdl.SDLHints.*;
 import static org.lwjgl.sdl.SDLPixels.*;
 import static org.lwjgl.sdl.SDLProperties.*;
+import static org.lwjgl.sdl.SDLSurface.*;
 import static org.lwjgl.sdl.SDLVideo.*;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -21,7 +22,9 @@ import java.awt.Canvas;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.IntBuffer;
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,6 +36,7 @@ import org.lwjgl.sdl.SDLKeyboard;
 import org.lwjgl.sdl.SDLKeycode;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
+import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
@@ -470,34 +474,69 @@ public class Display {
         // no-op
     }
 
+    /**
+     * Sets one or more icons for the Display.
+     * <ul>
+     * <li>On Windows you should supply at least one 16x16 icon and one 32x32.</li>
+     * <li>Linux (and similar platforms) expect one 32x32 icon.</li>
+     * <li>Mac OS X should be supplied one 128x128 icon</li>
+     * </ul>
+     * The implementation will use the supplied ByteBuffers with image data in RGBA (size must be a power of two) and
+     * perform any conversions nescesarry for the specific platform.
+     * <p/>
+     * <b>NOTE:</b> The display will make a deep copy of the supplied byte buffer array, for the purpose
+     * of recreating the icons when you go back and forth fullscreen mode. You therefore only need to
+     * set the icon once per instance.
+     *
+     * @param icons Array of icons in RGBA mode. Pass the icons in order of preference.
+     *
+     * @return number of icons used, or 0 if display hasn't been created
+     */
     public static int setIcon(java.nio.ByteBuffer[] icons) {
-        if (sdlWindow == NULL) {
-            savedIcons = icons;
+        if (icons == null || icons.length == 0) {
             return 0;
         }
-        /*
-         * GLFWImage.Buffer glfwImages = GLFWImage.calloc(icons.length);
-         * try (MemoryStack stack = stackPush()) {
-         * ByteBuffer[] nativeBuffers = new ByteBuffer[icons.length];
-         * for (int icon = 0; icon < icons.length; icon++) {
-         * nativeBuffers[icon] = stack.malloc(icons[icon].capacity());
-         * nativeBuffers[icon].put(icons[icon]);
-         * nativeBuffers[icon].flip();
-         * int dimension = (int) Math.sqrt(nativeBuffers[icon].limit() / 4D);
-         * if (dimension * dimension * 4 != nativeBuffers[icon].limit()) {
-         * throw new IllegalStateException();
-         * }
-         * glfwImages.put(
-         * icon,
-         * GLFWImage.create()
-         * .set(dimension, dimension, nativeBuffers[icon]));
-         * }
-         * GLFW.glfwSetWindowIcon(getWindow(), glfwImages);
-         * }
-         * glfwImages.free();
-         * TODO:
-         */
-        return 0;
+        if (sdlWindow == NULL) {
+            savedIcons = new ByteBuffer[icons.length];
+            for (int i = 0; i < icons.length; i++) {
+                final ByteBuffer icon = icons[i];
+                savedIcons[i] = ByteBuffer.allocate(icon.remaining())
+                    .order(ByteOrder.nativeOrder());
+                final int oldPos = icon.position();
+                savedIcons[i].put(icon);
+                icon.position(oldPos);
+                savedIcons[i].flip();
+            }
+            return icons.length;
+        }
+
+        try (MemoryStack stack = stackPush()) {
+            SDL_Surface iconSet = null;
+            for (int icon = 0; icon < icons.length; icon++) {
+                final ByteBuffer iconRgba = icons[icon];
+                final int dimension = (int) Math.sqrt(iconRgba.remaining() / 4D);
+                if (dimension * dimension * 4 != iconRgba.remaining()) {
+                    throw new IllegalStateException(
+                        "Could not determine icon size from a buffer length of " + iconRgba.remaining());
+                }
+                final SDL_Surface iconSurface = checkSdl(
+                    SDL_CreateSurface(dimension, dimension, SDL_PIXELFORMAT_RGBA32));
+                checkSdl(SDL_LockSurface(iconSurface));
+                final ByteBuffer pixels = Objects.requireNonNull(iconSurface.pixels());
+                final int oldPos = iconRgba.position();
+                pixels.put(iconRgba);
+                iconRgba.position(oldPos);
+                SDL_UnlockSurface(iconSurface);
+                if (iconSet == null) {
+                    iconSet = iconSurface;
+                } else {
+                    SDL_AddSurfaceAlternateImage(iconSet, iconSurface);
+                }
+            }
+            SDL_SetWindowIcon(getWindow(), iconSet);
+            SDL_DestroySurface(iconSet);
+        }
+        return icons.length;
     }
 
     public static void setResizable(boolean resizable) {
@@ -661,6 +700,12 @@ public class Display {
      * return false;
      * }
      */
+
+    public static void setFullscreen(boolean fullscreen) {
+        if (sdlWindow != NULL) {
+            MainThreadExec.runOnMainThread(() -> { SDL_SetWindowFullscreen(sdlWindow, fullscreen); });
+        }
+    }
 
     public static boolean isFullscreen() {
         if (sdlWindow != NULL) {
