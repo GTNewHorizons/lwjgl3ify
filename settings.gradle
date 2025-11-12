@@ -17,7 +17,7 @@ pluginManagement {
 }
 
 plugins {
-    id 'com.gtnewhorizons.gtnhsettingsconvention' version '1.0.44'
+    id 'com.gtnewhorizons.gtnhsettingsconvention' version '1.0.48'
 }
 
 rootProject.name = "lwjgl3ify"
