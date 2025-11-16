@@ -117,6 +117,9 @@ public class Mouse {
             delta = -delta;
         }
         delta *= Config.INPUT_SCROLL_SPEED;
+        if (Config.FORCE_DISCRETE_SCROLLING) {
+            delta = Math.signum(delta);
+        }
 
         final int lastWheel = (int) fractionalWheelPosition;
         fractionalWheelPosition += delta;
