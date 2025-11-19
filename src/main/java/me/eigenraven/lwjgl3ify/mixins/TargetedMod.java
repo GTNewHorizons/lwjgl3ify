@@ -1,32 +1,41 @@
 package me.eigenraven.lwjgl3ify.mixins;
 
-import cpw.mods.fml.common.Mod;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.lib.tree.AbstractInsnNode;
+import org.spongepowered.asm.lib.tree.LdcInsnNode;
+import org.spongepowered.asm.lib.tree.MethodNode;
 
-public enum TargetedMod {
+import com.gtnewhorizon.gtnhmixins.builders.ITargetMod;
+import com.gtnewhorizon.gtnhmixins.builders.TargetModBuilder;
 
-    FASTCRAFT("FastCraft", "fastcraft.Tweaker"),
-    OPTIFINE("Optifine", "optifine.OptiFineForgeTweaker", "Optifine"),
-    VANILLA("Minecraft", null);
+public enum TargetedMod implements ITargetMod {
 
-    /** The "name" in the {@link Mod @Mod} annotation */
-    public final String modName;
-    /** Class that implements the IFMLLoadingPlugin interface */
-    public final String coreModClass;
-    /** The "modid" in the {@link Mod @Mod} annotation */
-    public final String modId;
+    FASTCRAFT_1_25(new TargetModBuilder().setTargetClass("fastcraft.a")
+        .setClassNodeTest(cn -> {
+            // we look for the strings in the call :
+            // Launch.blackboard.put("fcVersion", "1.25");
+            for (MethodNode mn : cn.methods) {
+                for (AbstractInsnNode node : mn.instructions.toArray()) {
+                    if (node instanceof LdcInsnNode && "fcVersion".equals(((LdcInsnNode) node).cst)) {
+                        AbstractInsnNode next = node.getNext();
+                        return next instanceof LdcInsnNode && "1.25".equals(((LdcInsnNode) next).cst);
+                    }
+                }
+            }
+            return false;
+        })),
+    FASTCRAFT_ANY(new TargetModBuilder().setCoreModClass("fastcraft.Tweaker")),
+    OPTIFINE(new TargetModBuilder().setCoreModClass("optifine.OptiFineForgeTweaker"));
 
-    TargetedMod(String modName, String coreModClass) {
-        this(modName, coreModClass, null);
+    private final TargetModBuilder builder;
+
+    TargetedMod(TargetModBuilder builder) {
+        this.builder = builder;
     }
 
-    TargetedMod(String modName, String coreModClass, String modId) {
-        this.modName = modName;
-        this.coreModClass = coreModClass;
-        this.modId = modId;
-    }
-
+    @NotNull
     @Override
-    public String toString() {
-        return "TargetedMod{modName='" + modName + "', coreModClass='" + coreModClass + "', modId='" + modId + "'}";
+    public TargetModBuilder getBuilder() {
+        return builder;
     }
 }
