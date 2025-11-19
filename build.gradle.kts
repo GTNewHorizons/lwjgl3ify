@@ -68,8 +68,9 @@ tasks.register("updateJava9ArgsTxt") {
     group = taskGroup
     description = "Updates java9args.txt with the current argument list"
     outputs.file("java9args.txt")
+    val writtenText = extraJavaArgs.joinToString("\n") + "\n"
     doLast {
-        file("java9args.txt").writeText(extraJavaArgs.joinToString("\n") + "\n", Charsets.UTF_8)
+        file("java9args.txt").writeText(writtenText, Charsets.UTF_8)
     }
 }
 
@@ -198,6 +199,8 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
         into("libraries/")
     }
     exclude("META-INF", "META-INF/**")
+    val projVersion = project.version
+    val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
     filesMatching(
         listOf(
             "mmc-pack.json",
@@ -207,14 +210,18 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
     ) {
         expand(
             mapOf(
-                "version" to project.version,
-                "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", ")
+                "version" to projVersion,
+                "jvmArgs" to jvmArgs
             )
         )
     }
 }
 
 val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFile
+
+interface FsOps {
+    @get:Inject val fs: FileSystemOperations
+}
 
 val versionJsonFile = tasks.register("versionJson") {
     group = taskGroup
@@ -223,15 +230,19 @@ val versionJsonFile = tasks.register("versionJson") {
     inputs.property("version", project.version)
     inputs.property("jvmArgs", extraJavaArgs)
     outputs.file(versionJsonPath)
+    val projVersion = project.version.toString()
+    val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
+    val versionJsonPathLocal = versionJsonPath
+    val fsOps = project.objects.newInstance<FsOps>()
     doLast {
-        versionJsonPath.parentFile.mkdirs()
-        copy {
+        versionJsonPathLocal.parentFile.mkdirs()
+        fsOps.fs.copy {
             from("launcher-metadata/version.json")
-            into(versionJsonPath.parentFile)
+            into(versionJsonPathLocal.parentFile)
             filter(
                 ReplaceTokens::class, "tokens" to mapOf(
-                    "version" to project.version,
-                    "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", "),
+                    "version" to projVersion,
+                    "jvmArgs" to jvmArgs,
                     "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
                         .format(OffsetDateTime.now(ZoneOffset.UTC))
                 )
@@ -276,8 +287,9 @@ val runComparisonTool = tasks.register<JavaExec>("runComparisonTool") {
 
 tasks.processResources {
     inputs.property("version", project.version.toString())
+    val projVersion = project.version.toString()
     filesMatching("META-INF/rfb-plugin/*") {
-        expand("version" to project.version.toString())
+        expand("version" to projVersion)
     }
 }
 
