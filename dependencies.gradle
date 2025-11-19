@@ -31,6 +31,8 @@ dependencies {
 
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}")
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}:${lwjgl3Natives}")
+    patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}")
+    patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}:${lwjgl3Natives}")
 
     utilImplementation("org.ow2.asm:asm:${asmVersion}")
     utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
