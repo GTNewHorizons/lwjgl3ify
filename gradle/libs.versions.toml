@@ -1,0 +1,14 @@
+[versions]
+# https://asm.ow2.io/versions.html
+asm = "9.9"
+lwjgl = "3.4.0-SNAPSHOT"
+
+[libraries]
+asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
+asmCommons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
+asmTree = { module = "org.ow2.asm:asm-tree", version.ref = "asm" }
+asmAnalysis = { module = "org.ow2.asm:asm-analysis", version.ref = "asm" }
+asmUtil = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
+gson = { module = "com.google.code.gson:gson", version = "2.13.2" }
+
+rfb = { module = "com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap", version = "1.0.11" }

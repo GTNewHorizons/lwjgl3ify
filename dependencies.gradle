@@ -1,5 +1,5 @@
 
-def lwjglVersion = "3.4.0-SNAPSHOT"
+def lwjglVersion = libs.versions.lwjgl.get()
 
 minecraft {
     mainLwjglVersion = 3
@@ -9,23 +9,20 @@ minecraft {
 def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
 def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
-def asmVersion = '9.8'
-def rfbVersion = '1.0.11'
 // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
-def gsonVersion = '2.11.0'
 
 configurations.configureEach {
     resolutionStrategy.dependencySubstitution {
-        substitute module('net.minecraft:launchwrapper') using module("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") because("LW replacement")
+        substitute module('net.minecraft:launchwrapper') using module(libs.rfb.get().toString()) because("LW replacement")
     }
 }
 
 dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
-    vanilla_minecraft("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
-    forgePatchesEmbedded("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}") { transitive = false }
-    vanilla_minecraft("com.google.code.gson:gson:${gsonVersion}")
-    forgePatchesEmbedded("com.google.code.gson:gson:${gsonVersion}")
+    vanilla_minecraft(libs.rfb) { transitive = false }
+    forgePatchesEmbedded(libs.rfb) { transitive = false }
+    vanilla_minecraft(libs.gson)
+    forgePatchesEmbedded(libs.gson)
 
     api("com.github.GTNewHorizons:GTNHLib:0.6.2:dev")
 
@@ -34,21 +31,21 @@ dependencies {
     patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}")
     patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}:${lwjgl3Natives}")
 
-    utilImplementation("org.ow2.asm:asm:${asmVersion}")
-    utilImplementation("org.ow2.asm:asm-tree:${asmVersion}")
+    utilImplementation(libs.asm)
+    utilImplementation(libs.asmTree)
     utilImplementation("org.apache.commons:commons-lang3:3.17.0")
     utilImplementation("commons-io:commons-io:2.18.0")
     utilImplementation("commons-collections:commons-collections:3.2.2")
     utilImplementation("com.google.guava:guava:33.4.0-jre")
 
     hotswapCompileOnly("org.hotswapagent:hotswap-agent-core:1.4.1")
-    hotswapCompileOnly("com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:${rfbVersion}")
+    hotswapCompileOnly(libs.rfb)
 
-    forgePatchesEmbedded("org.ow2.asm:asm:${asmVersion}")
-    forgePatchesEmbedded("org.ow2.asm:asm-commons:${asmVersion}")
-    forgePatchesEmbedded("org.ow2.asm:asm-tree:${asmVersion}")
-    forgePatchesEmbedded("org.ow2.asm:asm-analysis:${asmVersion}")
-    forgePatchesEmbedded("org.ow2.asm:asm-util:${asmVersion}")
+    forgePatchesEmbedded(libs.asm)
+    forgePatchesEmbedded(libs.asmCommons)
+    forgePatchesEmbedded(libs.asmTree)
+    forgePatchesEmbedded(libs.asmAnalysis)
+    forgePatchesEmbedded(libs.asmUtil)
     forgePatchesEmbedded("org.apache.commons:commons-lang3:3.17.0")
     forgePatchesEmbedded("org.apache.commons:commons-compress:1.27.1")
     forgePatchesEmbedded("commons-io:commons-io:2.18.0")
@@ -59,7 +56,7 @@ dependencies {
 
     // Allow using Unsafe with newer javac versions
     compileOnly('me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0')
-    api("com.google.code.gson:gson:${gsonVersion}")
+    api(libs.gson)
 
     compileOnly("com.mumfrey:liteloader:1.7.10_04:mcpnames")
 
