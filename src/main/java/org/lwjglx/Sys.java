@@ -1,6 +1,6 @@
 package org.lwjglx;
 
-import static org.lwjgl.sdl.SDLError.*;
+import static org.lwjgl.sdl.SDLHints.*;
 import static org.lwjgl.sdl.SDLInit.*;
 import static org.lwjgl.sdl.SDLMessageBox.*;
 import static org.lwjgl.sdl.SDLStdinc.*;
@@ -58,6 +58,9 @@ public class Sys {
                     | SDL_INIT_HAPTIC
                     | SDL_INIT_SENSOR)) {
                 throw new SDLException("Could not initialize SDL.");
+            }
+            if (Platform.get() == Platform.MACOSX) {
+                SDL_SetHint(SDL_HINT_MAC_OPENGL_ASYNC_DISPATCH, "1");
             }
         });
     }
