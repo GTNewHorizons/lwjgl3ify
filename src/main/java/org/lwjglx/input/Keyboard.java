@@ -244,7 +244,7 @@ public class Keyboard {
                 event.key,
                 event.state,
                 event.state,
-                java.awt.event.KeyEvent.getKeyText(KeyCodes.lwjglToAwt(KeyCodes.glfwToLwjgl(event.key))),
+                java.awt.event.KeyEvent.getKeyText(KeyCodes.lwjglToAwt(event.key)),
                 (event.key >= 32 && event.key < 127) ? (event.key) : '?');
         }
         try {

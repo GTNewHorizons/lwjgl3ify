@@ -89,8 +89,8 @@ public class Display {
 
     static {
         try {
-            Class<SDLKeycode> glfwClass = SDLKeycode.class;
-            for (Field f : glfwClass.getFields()) {
+            Class<SDLKeycode> keycodeClass = SDLKeycode.class;
+            for (Field f : keycodeClass.getFields()) {
                 if (f.getName()
                     .startsWith("SDLK") && f.getType() == int.class
                     && Modifier.isStatic(f.getModifiers())) {
