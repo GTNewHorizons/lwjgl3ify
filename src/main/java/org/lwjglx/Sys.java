@@ -22,6 +22,7 @@ import org.lwjgl.system.Pointer;
 import org.lwjglx.opengl.Display;
 
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 public class Sys {
 
@@ -40,7 +41,7 @@ public class Sys {
                 MemoryUtil::nmemCallocChecked,
                 MemoryUtil::nmemReallocChecked,
                 MemoryUtil::nmemFree);
-            checkSdl(SDL_SetAppMetadata("Lwjgl3ify Minecraft", "1.7.10", "com.gtnewhorizons.Lwjgl3ifyMinecraft"));
+            checkSdl(SDL_SetAppMetadata("Lwjgl3ify Minecraft", "1.7.10", Config.APP_ID));
             checkSdl(
                 SDL_SetAppMetadataProperty(
                     SDL_PROP_APP_METADATA_URL_STRING,

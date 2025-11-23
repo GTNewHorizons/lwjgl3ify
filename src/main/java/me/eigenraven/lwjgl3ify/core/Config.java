@@ -29,6 +29,7 @@ public class Config {
     public static boolean WINDOW_DECORATED = true;
     public static boolean WINDOW_BORDERLESS_REPLACES_FULLSCREEN = false;
     public static boolean WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY = true;
+    public static boolean WINDOW_HIDPI_RENDERING = true;
     public static boolean OPENGL_DEBUG_CONTEXT = false;
     public static boolean OPENGL_SRGB_CONTEXT = false;
     public static boolean OPENGL_DOUBLEBUFFER = true;
@@ -43,9 +44,7 @@ public class Config {
     public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
     public static boolean INPUT_RAW_MOUSE = false;
 
-    public static String X11_CLASS_NAME = "minecraft";
-    public static String COCOA_FRAME_NAME = "minecraft";
-    public static String WAYLAND_APP_ID = "minecraft";
+    public static String APP_ID = "com.gtnewhorizons.Lwjgl3ifyMinecraft";
 
     public static String LWJGL3IFY_VERSION = Tags.VERSION;
 
@@ -138,21 +137,16 @@ public class Config {
             CATEGORY_WINDOW,
             WINDOW_DECORATED,
             "Should the window have decorations (titlebar, border, close button)");
-        X11_CLASS_NAME = config.getString(
-            "x11ClassName",
+        APP_ID = config.getString(
+            "appId",
             CATEGORY_WINDOW,
-            X11_CLASS_NAME,
-            "Linux-only - change the X11 class name, which is used by your window manager to identify the running application");
-        COCOA_FRAME_NAME = config.getString(
-            "cocoaFrameName",
+            APP_ID,
+            "Changes the application ID used for categorizing windows in window managers, saving per-app settings etc.");
+        WINDOW_HIDPI_RENDERING = config.getBoolean(
+            "hidpiRendering",
             CATEGORY_WINDOW,
-            COCOA_FRAME_NAME,
-            "OSX-only - identifier used to save and restore the window position and size");
-        WAYLAND_APP_ID = config.getString(
-            "waylandAppId",
-            CATEGORY_WINDOW,
-            WAYLAND_APP_ID,
-            "Linux-only - change the Wayland app id, which is used by your window manager to identify the running application");
+            WINDOW_HIDPI_RENDERING,
+            "Enables high DPI rendering in the window, make sure to increase your GUI scale in options if enabled");
 
         INPUT_INVERT_WHEEL = config
             .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");
