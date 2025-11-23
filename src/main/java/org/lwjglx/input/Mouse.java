@@ -10,7 +10,6 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_MouseMotionEvent;
 import org.lwjgl.system.MemoryStack;
-import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
 
@@ -186,7 +185,11 @@ public class Mouse {
         y = latestY;
     }
 
-    public static void create() throws LWJGLException {}
+    public static void create() {
+        if (currentCursor != null) {
+            setNativeCursor(currentCursor);
+        }
+    }
 
     public static boolean isCreated() {
         return Display.isCreated();
@@ -300,9 +303,30 @@ public class Mouse {
             () -> { SDL_WarpMouseInWindow(Display.getWindow(), new_x * inv_scale, new_y * inv_scale); });
     }
 
-    public static Cursor setNativeCursor(Cursor cursor) throws LWJGLException {
-        // no-op
-        return null;
+    private static Cursor currentCursor;
+    private static long systemCursor;
+
+    public static synchronized Cursor getNativeCursor() {
+        return currentCursor;
+    }
+
+    public static synchronized Cursor setNativeCursor(final Cursor cursor) {
+        final Cursor prevCursor = currentCursor;
+        currentCursor = cursor;
+        if (!Display.isCreated()) {
+            return prevCursor;
+        }
+
+        if (cursor == null) {
+            if (systemCursor == 0) {
+                systemCursor = Sys.checkSdl(SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_DEFAULT));
+            }
+            MainThreadExec.runOnMainThread(() -> SDL_SetCursor(systemCursor));
+        } else {
+            cursor.sdlSet();
+        }
+
+        return prevCursor;
     }
 
     public static void destroy() {}
@@ -317,10 +341,6 @@ public class Mouse {
 
     public static String getButtonName(int button) {
         return "BUTTON" + button;
-    }
-
-    public static Cursor getNativeCursor() {
-        return null;
     }
 
     public static boolean hasWheel() {

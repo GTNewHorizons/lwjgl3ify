@@ -9,7 +9,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.StringUtils;
-import org.lwjglx.LWJGLException;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
 
@@ -264,7 +263,7 @@ public class Keyboard {
         } catch (IllegalStateException ignored) {}
     }
 
-    public static void create() throws LWJGLException {}
+    public static void create() {}
 
     public static boolean isKeyDown(int key) {
         final ByteBuffer array = sdlKeyPressedArray;

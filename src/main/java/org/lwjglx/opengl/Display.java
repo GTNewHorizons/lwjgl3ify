@@ -279,6 +279,9 @@ public class Display {
 
             Keyboard.sdlKeyPressedArray = SDLKeyboard.SDL_GetKeyboardState();
 
+            Mouse.create();
+            Keyboard.create();
+
             if (startFullscreen) {
                 // TODO setFullscreen(true);
             }
