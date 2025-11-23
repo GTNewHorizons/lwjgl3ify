@@ -193,6 +193,9 @@ public class Relauncher {
 
         final List<String> cmd = new ArrayList<>();
         cmd.addAll(Arrays.asList(RECOMMENDED_JAVA_ARGS));
+        if (SystemUtils.IS_OS_MAC) {
+            cmd.add("-XstartOnFirstThread");
+        }
         cmd.addAll(RelauncherConfig.config.toJvmArgs());
         cmd.add("-cp");
         cmd.add(StringUtils.join(createClasspath(), File.pathSeparatorChar));
@@ -214,7 +217,7 @@ public class Relauncher {
             cmd.add("-D" + key + "=" + value);
         }
 
-        cmd.add("com.gtnewhorizons.retrofuturabootstrap.Main");
+        cmd.add("com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread");
 
         cmd.addAll(
             Arrays.asList(

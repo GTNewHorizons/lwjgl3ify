@@ -1,4 +1,5 @@
 import com.gtnewhorizons.retrofuturagradle.minecraft.RunMinecraftTask
+import com.gtnewhorizons.retrofuturagradle.shadow.org.apache.commons.lang3.SystemUtils
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
 import com.modrinth.minotaur.ModrinthExtension
 import org.apache.tools.ant.filters.ReplaceTokens
@@ -324,17 +325,14 @@ for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
     }
 }
 
-for (runTask in listOf(tasks.runClient, tasks.runServer)) {
+for (runTask in listOf(tasks.runClient, tasks.runServer, tasks.runObfClient, tasks.runObfServer)) {
     runTask.configure {
         classpath = files(forgePatchesJar) + classpath
-        extraJvmArgs = extraJavaArgs
-        javaLauncher.set(newJavaLauncher)
-    }
-}
-
-for (runTask in listOf(tasks.runObfClient, tasks.runObfServer)) {
-    runTask.configure {
-        classpath = files(forgePatchesJar) + classpath
+        val jArgs = mutableListOf<String>()
+        jArgs.addAll(extraJavaArgs)
+        if (this.side == Distribution.CLIENT && SystemUtils.IS_OS_MAC) {
+            jArgs += "-XstartOnFirstThread"
+        }
         extraJvmArgs = extraJavaArgs
         javaLauncher.set(newJavaLauncher)
     }

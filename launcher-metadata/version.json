@@ -72,6 +72,19 @@
                 ],
                 "value": "-Xss1M"
             },
+            {
+                "rules": [
+                    {
+                        "action": "allow",
+                        "os": {
+                            "name": "osx"
+                        }
+                    }
+                ],
+                "value": [
+                    "-XstartOnFirstThread"
+                ]
+            },
             "-Djava.library.path=${natives_directory}", "-cp", "${classpath}", @jvmArgs@
         ]
     },

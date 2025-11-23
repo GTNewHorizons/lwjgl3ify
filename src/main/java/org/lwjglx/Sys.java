@@ -57,7 +57,7 @@ public class Sys {
                     | SDL_INIT_GAMEPAD
                     | SDL_INIT_HAPTIC
                     | SDL_INIT_SENSOR)) {
-                throw new RuntimeException("Could not initialize SDL.");
+                throw new SDLException("Could not initialize SDL.");
             }
         });
     }
