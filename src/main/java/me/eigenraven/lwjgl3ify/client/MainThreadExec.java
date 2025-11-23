@@ -138,6 +138,7 @@ public class MainThreadExec {
         final ArrayBlockingQueue<Throwable> lock = new ArrayBlockingQueue<>(1);
         final ClassLoader outerLoader = Thread.currentThread()
             .getContextClassLoader();
+        final Throwable noExceptionToken = NO_EXCEPTION_TOKEN;
         // noinspection Convert2Lambda
         jdkPerformOnMainThreadAfterDelay(new Runnable() {
 
@@ -149,7 +150,7 @@ public class MainThreadExec {
                     .setContextClassLoader(outerLoader);
                 try {
                     r.run();
-                    lock.add(NO_EXCEPTION_TOKEN);
+                    lock.add(noExceptionToken);
                 } catch (Throwable t) {
                     lock.add(t);
                 } finally {
@@ -161,7 +162,7 @@ public class MainThreadExec {
         while (true) {
             try {
                 final Throwable ex = lock.take();
-                if (ex != NO_EXCEPTION_TOKEN) {
+                if (ex != noExceptionToken) {
                     throw new RuntimeException("Exception occurred on the main selector thread", ex);
                 } else {
                     break;
