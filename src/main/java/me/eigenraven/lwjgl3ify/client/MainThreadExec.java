@@ -91,10 +91,16 @@ public class MainThreadExec {
         macOsMainSelectorInvoker = invoker;
         final AtomicReference<Thread> mainThreadStorage = new AtomicReference<>();
         if (IS_MACOS) {
-            runOnMainSelectorOnMac(() -> { mainThreadStorage.set(Thread.currentThread()); });
+            // noinspection Convert2Lambda
+            runOnMainSelectorOnMac(new Runnable() {
+
+                @Override
+                public void run() {
+                    mainThreadStorage.set(Thread.currentThread());
+                }
+            });
         } else {
             try {
-                System.err.println("t0");
                 // Lambdas cause a deadlock on the class initializer monitor here
                 // noinspection Convert2Lambda
                 Uninterruptibles
@@ -102,13 +108,10 @@ public class MainThreadExec {
 
                         @Override
                         public Object call() {
-                            System.err.println("t1");
                             mainThreadStorage.set(Thread.currentThread());
-                            System.err.println("t2");
                             return null;
                         }
                     })));
-                System.err.println("t3");
             } catch (ExecutionException e) {
                 throw Throwables.propagate(e.getCause());
             }
@@ -135,19 +138,24 @@ public class MainThreadExec {
         final ArrayBlockingQueue<Throwable> lock = new ArrayBlockingQueue<>(1);
         final ClassLoader outerLoader = Thread.currentThread()
             .getContextClassLoader();
-        jdkPerformOnMainThreadAfterDelay(() -> {
-            final ClassLoader innerLoader = Thread.currentThread()
-                .getContextClassLoader();
-            Thread.currentThread()
-                .setContextClassLoader(outerLoader);
-            try {
-                r.run();
-                lock.add(NO_EXCEPTION_TOKEN);
-            } catch (Throwable t) {
-                lock.add(t);
-            } finally {
+        // noinspection Convert2Lambda
+        jdkPerformOnMainThreadAfterDelay(new Runnable() {
+
+            @Override
+            public void run() {
+                final ClassLoader innerLoader = Thread.currentThread()
+                    .getContextClassLoader();
                 Thread.currentThread()
-                    .setContextClassLoader(innerLoader);
+                    .setContextClassLoader(outerLoader);
+                try {
+                    r.run();
+                    lock.add(NO_EXCEPTION_TOKEN);
+                } catch (Throwable t) {
+                    lock.add(t);
+                } finally {
+                    Thread.currentThread()
+                        .setContextClassLoader(innerLoader);
+                }
             }
         }, 0);
         while (true) {
@@ -170,11 +178,16 @@ public class MainThreadExec {
      */
     private static <ReturnType> ReturnType runOnMainSelectorOnMac(Callable<ReturnType> r) {
         final AtomicReference<ReturnType> output = new AtomicReference<>(null);
-        final Runnable wrapper = () -> {
-            try {
-                output.set(r.call());
-            } catch (Exception e) {
-                throw Throwables.propagate(e);
+        // noinspection Convert2Lambda
+        final Runnable wrapper = new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    output.set(r.call());
+                } catch (Exception e) {
+                    throw Throwables.propagate(e);
+                }
             }
         };
         runOnMainSelectorOnMac(wrapper);
