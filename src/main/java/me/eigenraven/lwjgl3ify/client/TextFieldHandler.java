@@ -14,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 import org.lwjgl.sdl.SDLClipboard;
 import org.lwjglx.opengl.Display;
 
+import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
+import me.eigenraven.lwjgl3ify.core.Config;
 
 /** @see me.eigenraven.lwjgl3ify.mixins.early.game.MixinGuiTextField */
 public final class TextFieldHandler {
@@ -28,6 +30,9 @@ public final class TextFieldHandler {
             return;
         }
         if (textInputDepth++ == 0) {
+            if (Config.DEBUG_PRINT_KEY_EVENTS) {
+                Lwjgl3ify.LOG.info("[DEBUG] Beginning text input");
+            }
             MainThreadExec.runOnMainThread(() -> { SDL_StartTextInput(Display.getWindow()); });
         }
     }
@@ -37,6 +42,9 @@ public final class TextFieldHandler {
             return;
         }
         if (--textInputDepth == 0) {
+            if (Config.DEBUG_PRINT_KEY_EVENTS) {
+                Lwjgl3ify.LOG.info("[DEBUG] Stopping text input");
+            }
             MainThreadExec.runOnMainThread(() -> { SDL_StopTextInput(Display.getWindow()); });
         }
         if (textField != null && textField == focusedTextInput.get()) {
@@ -46,6 +54,9 @@ public final class TextFieldHandler {
 
     public static void resetTextInput() {
         if (textInputDepth != 0) {
+            if (Config.DEBUG_PRINT_KEY_EVENTS) {
+                Lwjgl3ify.LOG.info("[DEBUG] Stopping text input (reset)");
+            }
             MainThreadExec.runOnMainThread(() -> { SDL_StopTextInput(Display.getWindow()); });
             textInputDepth = 0;
         }
