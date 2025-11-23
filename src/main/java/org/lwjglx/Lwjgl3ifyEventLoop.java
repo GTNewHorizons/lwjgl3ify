@@ -37,7 +37,7 @@ public class Lwjgl3ifyEventLoop {
      * Call on the thread that called Java main() to process incoming SDL events.
      */
     public static void pumpEvents() {
-        MainThreadExec.runOnMainSelectorOnMac(Lwjgl3ifyEventLoop::internalPumpEvents);
+        MainThreadExec.runOnMainThread(Lwjgl3ifyEventLoop::internalPumpEvents);
     }
 
     public static final SDL_Event event = SDL_Event.calloc();

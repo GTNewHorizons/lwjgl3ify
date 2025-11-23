@@ -27,8 +27,6 @@ import java.nio.IntBuffer;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
@@ -72,10 +70,10 @@ public class Display {
     private static int displayY = 0;
 
     private static boolean displayResized = false;
-    private static int displayWidth = 0;
-    private static int displayHeight = 0;
-    private static int displayFramebufferWidth = 0;
-    private static int displayFramebufferHeight = 0;
+    private static int displayWidth = 1;
+    private static int displayHeight = 1;
+    private static int displayFramebufferWidth = 1;
+    private static int displayFramebufferHeight = 1;
 
     private static boolean latestResized = false;
     private static int latestWidth = 0;
@@ -86,38 +84,8 @@ public class Display {
     private static boolean lastAltIsRightAlt = false;
     private static Int2ObjectOpenHashMap<String> sdlKeycodeNames = new Int2ObjectOpenHashMap<>();
 
-    public static volatile long sdlWindow, sdlWindowProps, sdlMainGlContext;
-
-    private static void sdlThrow() {
-        throw new RuntimeException("SDL error: " + SDL_GetError());
-    }
-
-    private static void checkSdl(boolean result) {
-        if (!result) {
-            sdlThrow();
-        }
-    }
-
-    private static <T> @NotNull T checkSdl(@Nullable T result) {
-        if (result == null) {
-            sdlThrow();
-        }
-        return result;
-    }
-
-    private static int checkSdl(int result) {
-        if (result == NULL) {
-            sdlThrow();
-        }
-        return result;
-    }
-
-    private static long checkSdl(long result) {
-        if (result == NULL) {
-            sdlThrow();
-        }
-        return result;
-    }
+    public static volatile long sdlWindow, sdlHiddenWindow, sdlMainGlContext, sdlCloneableGlContext;
+    public static int sdlWindowId;
 
     static {
         try {
@@ -171,7 +139,7 @@ public class Display {
         }
         Sys.initialize();
 
-        MainThreadExec.runOnMainSelectorOnMac(() -> {
+        MainThreadExec.runOnMainThread(() -> {
             final int ctxMajor = (attribs != null) ? attribs.getMajorVersion() : 2;
             final int ctxMinor = (attribs != null) ? attribs.getMinorVersion() : 1;
             final boolean ctxForwardCompat = attribs != null && attribs.isForwardCompatible();
@@ -195,26 +163,26 @@ public class Display {
                     windowFlags |= SDL_WINDOW_BORDERLESS;
                 }
 
-                checkSdl(
+                Sys.checkSdl(
                     SDL_SetNumberProperty(
                         props,
                         SDL_PROP_WINDOW_CREATE_X_NUMBER,
                         Config.WINDOW_CENTERED ? SDL_WINDOWPOS_CENTERED : SDL_WINDOWPOS_UNDEFINED));
-                checkSdl(
+                Sys.checkSdl(
                     SDL_SetNumberProperty(
                         props,
                         SDL_PROP_WINDOW_CREATE_Y_NUMBER,
                         Config.WINDOW_CENTERED ? SDL_WINDOWPOS_CENTERED : SDL_WINDOWPOS_UNDEFINED));
-                checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_WIDTH_NUMBER, mode.getWidth()));
-                checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_HEIGHT_NUMBER, mode.getHeight()));
-                checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_FLAGS_NUMBER, windowFlags));
-                checkSdl(SDL_SetStringProperty(props, SDL_PROP_WINDOW_CREATE_TITLE_STRING, windowTitle));
-                checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_OPENGL_BOOLEAN, true));
-                checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_HIDDEN_BOOLEAN, false));
-                checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_RESIZABLE_BOOLEAN, true));
-                checkSdl(
+                Sys.checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_WIDTH_NUMBER, mode.getWidth()));
+                Sys.checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_HEIGHT_NUMBER, mode.getHeight()));
+                Sys.checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_FLAGS_NUMBER, windowFlags));
+                Sys.checkSdl(SDL_SetStringProperty(props, SDL_PROP_WINDOW_CREATE_TITLE_STRING, windowTitle));
+                Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_OPENGL_BOOLEAN, true));
+                Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_HIDDEN_BOOLEAN, false));
+                Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_RESIZABLE_BOOLEAN, true));
+                Sys.checkSdl(
                     SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_BORDERLESS_BOOLEAN, !Config.WINDOW_DECORATED));
-                checkSdl(
+                Sys.checkSdl(
                     SDL_SetBooleanProperty(
                         props,
                         SDL_PROP_WINDOW_CREATE_MAXIMIZED_BOOLEAN,
@@ -228,35 +196,55 @@ public class Display {
                     ctxFlags |= SDL_GL_CONTEXT_DEBUG_FLAG;
                 }
                 SDL_GL_ResetAttributes();
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, ctxFlags));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, ctxMajor));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, ctxMinor));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG, ctxForwardCompat ? 1 : 0));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, ctxSrgb ? 1 : 0));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, Config.OPENGL_DOUBLEBUFFER ? 1 : 0));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_NO_ERROR, Config.OPENGL_CONTEXT_NO_ERROR ? 1 : 0));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24));
-                checkSdl(SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, ctxFlags));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, ctxMajor));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, ctxMinor));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG, ctxForwardCompat ? 1 : 0));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, ctxSrgb ? 1 : 0));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, Config.OPENGL_DOUBLEBUFFER ? 1 : 0));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_NO_ERROR, Config.OPENGL_CONTEXT_NO_ERROR ? 1 : 0));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8));
+                Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_SHARE_WITH_CURRENT_CONTEXT, 1));
                 if (attribs != null) {
                     if (attribs.isProfileCore()) {
-                        checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE));
+                        Sys.checkSdl(SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE));
                     } else if (attribs.isProfileCompatibility()) {
-                        checkSdl(
+                        Sys.checkSdl(
                             SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY));
                     }
                 }
-                // TODO: shared context
+
                 sdlWindow = SDL_CreateWindowWithProperties(props);
                 if (sdlWindow == NULL) {
                     throw new RuntimeException("Could not create the Display window: " + SDL_GetError());
                 }
+                sdlWindowId = SDL_GetWindowID(sdlWindow);
 
+                Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
                 sdlMainGlContext = SDL_GL_CreateContext(sdlWindow);
                 if (sdlMainGlContext == NULL) {
                     throw new RuntimeException("Could not create an OpenGL context: " + SDL_GetError());
                 }
-                checkSdl(nSDL_GL_LoadLibrary(NULL));
-                checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
+
+                sdlHiddenWindow = SDL_CreateWindow(
+                    "lwjgl3ify-cloneableGlContext",
+                    1,
+                    1,
+                    SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN);
+                if (sdlHiddenWindow == NULL) {
+                    throw new RuntimeException(
+                        "Could not create the hidden Display window for sharing GL contexts: " + SDL_GetError());
+                }
+
+                sdlCloneableGlContext = SDL_GL_CreateContext(sdlHiddenWindow);
+                if (sdlCloneableGlContext == NULL) {
+                    throw new RuntimeException("Could not create a secondary OpenGL context: " + SDL_GetError());
+                }
+
+                Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
+                Sys.checkSdl(nSDL_GL_LoadLibrary(NULL));
+                Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
             } finally {
                 SDL_DestroyProperties(props);
             }
@@ -296,10 +284,10 @@ public class Display {
             }
         });
 
-        checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
+        Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
         GL.create(SDLVideo::SDL_GL_GetProcAddress);
-        GL.createCapabilities();
         drawable = new DrawableGL();
+        drawable.makeCurrent();
     }
 
     private static final ByteBuffer HINT_MOUSE_RELATIVE_SYSTEM_SCALE = memASCII(SDL_HINT_MOUSE_RELATIVE_SYSTEM_SCALE);
@@ -326,11 +314,11 @@ public class Display {
     }
 
     public static void setLocation(int new_x, int new_y) {
-        checkSdl(SDL_SetWindowPosition(sdlWindow, new_x, new_y));
+        Sys.checkSdl(SDL_SetWindowPosition(sdlWindow, new_x, new_y));
     }
 
     public static void setVSyncEnabled(boolean sync) {
-        checkSdl(SDL_GL_SetSwapInterval(sync ? 1 : 0));
+        Sys.checkSdl(SDL_GL_SetSwapInterval(sync ? 1 : 0));
     }
 
     /** @return The SDL window pointer */
@@ -368,10 +356,10 @@ public class Display {
     }
 
     public static void swapBuffers() {
-        checkSdl(SDL_GL_SwapWindow(sdlWindow));
+        Sys.checkSdl(SDL_GL_SwapWindow(sdlWindow));
     }
 
-    public static void destroy() {
+    public static synchronized void destroy() {
         try {
             GL.setCapabilities(null);
         } catch (Throwable t) {/* no-op */}
@@ -379,6 +367,14 @@ public class Display {
             GL.destroy();
         } catch (Throwable t) {/* no-op */}
         MainThreadExec.runOnMainThread(() -> {
+            if (sdlCloneableGlContext != NULL) {
+                SDL_GL_DestroyContext(sdlCloneableGlContext);
+                sdlCloneableGlContext = NULL;
+            }
+            if (sdlHiddenWindow != NULL) {
+                SDL_DestroyWindow(sdlHiddenWindow);
+                sdlHiddenWindow = NULL;
+            }
             if (sdlMainGlContext != NULL) {
                 SDL_GL_DestroyContext(sdlMainGlContext);
                 sdlMainGlContext = NULL;
@@ -386,6 +382,7 @@ public class Display {
             if (sdlWindow != NULL) {
                 SDL_DestroyWindow(sdlWindow);
                 sdlWindow = NULL;
+                sdlWindowId = 0;
             }
         });
 
@@ -402,12 +399,13 @@ public class Display {
 
     public static DisplayMode[] getAvailableDisplayModes() {
         return MainThreadExec.runOnMainThread(() -> {
-            int monitor = checkSdl(SDL_GetPrimaryDisplay());
-            final PointerBuffer modes = checkSdl(SDL_GetFullscreenDisplayModes(monitor));
+            int monitor = Sys.checkSdl(SDL_GetPrimaryDisplay());
+            final PointerBuffer modes = Sys.checkSdl(SDL_GetFullscreenDisplayModes(monitor));
             DisplayMode[] displayModes = new DisplayMode[modes.remaining()];
             for (int i = 0; i < displayModes.length; i++) {
                 final SDL_DisplayMode reader = new SDL_DisplayMode(modes.getByteBuffer(i, SDL_DisplayMode.SIZEOF));
-                final int bpp = checkSdl(SDL_GetPixelFormatDetails(reader.format())).bits_per_pixel();
+                final int bpp = Sys.checkSdl(SDL_GetPixelFormatDetails(reader.format()))
+                    .bits_per_pixel();
                 displayModes[i] = new DisplayMode(reader.w(), reader.h(), bpp, Math.round(reader.refresh_rate()));
             }
             modes.free();
@@ -417,56 +415,54 @@ public class Display {
 
     public static DisplayMode getDesktopDisplayMode() {
         return MainThreadExec.runOnMainThread(() -> {
-            int monitor = checkSdl(SDL_GetPrimaryDisplay());
-            if (monitor == 0) {
-                sdlThrow();
-            }
-            final SDL_DisplayMode mode = checkSdl(SDL_GetDesktopDisplayMode(monitor));
+            int monitor = Sys.checkSdl(SDL_GetPrimaryDisplay());
+            final SDL_DisplayMode mode = Sys.checkSdl(SDL_GetDesktopDisplayMode(monitor));
             return new DisplayMode(
                 mode.w(),
                 mode.h(),
-                checkSdl(SDL_GetPixelFormatDetails(mode.format())).bits_per_pixel(),
+                Sys.checkSdl(SDL_GetPixelFormatDetails(mode.format()))
+                    .bits_per_pixel(),
                 Math.round(mode.refresh_rate()));
         });
     }
 
-    public static boolean wasResized() {
+    public static synchronized boolean wasResized() {
         return displayResized;
     }
 
-    public static int getX() {
+    public static synchronized int getX() {
         return displayX;
     }
 
-    public static int getY() {
+    public static synchronized int getY() {
         return displayY;
     }
 
     // vanilla and forge both expect these to return the framebuffer width
     // rather than the window width, and they both call glViewport with the
     // result
-    public static int getWidth() {
+    public static synchronized int getWidth() {
         return displayFramebufferWidth;
     }
 
-    public static int getHeight() {
+    public static synchronized int getHeight() {
         return displayFramebufferHeight;
     }
 
-    public static void setTitle(String title) {
+    public static synchronized void setTitle(String title) {
         windowTitle = title;
         if (isCreated()) {
-            MainThreadExec.runOnMainThread(() -> { checkSdl(SDL_SetWindowTitle(sdlWindow, title)); });
+            MainThreadExec.runOnMainThread(() -> { Sys.checkSdl(SDL_SetWindowTitle(sdlWindow, title)); });
         }
     }
 
-    public static boolean isCloseRequested() {
+    public static synchronized boolean isCloseRequested() {
         final boolean saved = displayCloseRequested;
         displayCloseRequested = false;
         return saved;
     }
 
-    public static boolean isDirty() {
+    public static synchronized boolean isDirty() {
         return displayDirty;
     }
 
@@ -519,9 +515,9 @@ public class Display {
                     throw new IllegalStateException(
                         "Could not determine icon size from a buffer length of " + iconRgba.remaining());
                 }
-                final SDL_Surface iconSurface = checkSdl(
-                    SDL_CreateSurface(dimension, dimension, SDL_PIXELFORMAT_RGBA32));
-                checkSdl(SDL_LockSurface(iconSurface));
+                final SDL_Surface iconSurface = Sys
+                    .checkSdl(SDL_CreateSurface(dimension, dimension, SDL_PIXELFORMAT_RGBA32));
+                Sys.checkSdl(SDL_LockSurface(iconSurface));
                 final ByteBuffer pixels = Objects.requireNonNull(iconSurface.pixels());
                 final int oldPos = iconRgba.position();
                 pixels.put(iconRgba);
@@ -539,12 +535,12 @@ public class Display {
         return icons.length;
     }
 
-    public static void setResizable(boolean resizable) {
+    public static synchronized void setResizable(boolean resizable) {
         displayResizable = resizable;
         // Ignore the request because why would you make the game window non-resizable
     }
 
-    public static boolean isResizable() {
+    public static synchronized boolean isResizable() {
         return displayResizable;
     }
 
@@ -799,33 +795,51 @@ public class Display {
     /**
      * @return true if the event was handled here.
      */
-    public static boolean lwjgl3ify$handleSdlEvent() {
+    public static synchronized boolean lwjgl3ify$handleSdlEvent() {
         return switch (Lwjgl3ifyEventLoop.event.type()) {
             case SDL_EVENT_QUIT -> {
                 displayCloseRequested = true;
                 yield true;
             }
             case SDL_EVENT_WINDOW_EXPOSED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayDirty = true;
                 yield true;
             }
             case SDL_EVENT_WINDOW_FOCUS_GAINED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayFocused = true;
                 yield true;
             }
             case SDL_EVENT_WINDOW_FOCUS_LOST -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayFocused = false;
                 yield true;
             }
             case SDL_EVENT_WINDOW_MINIMIZED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayVisible = false;
                 yield true;
             }
             case SDL_EVENT_WINDOW_RESTORED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayVisible = true;
                 yield true;
             }
             case SDL_EVENT_WINDOW_RESIZED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayWidth = Lwjgl3ifyEventLoop.windowEvent.data1();
                 displayHeight = Lwjgl3ifyEventLoop.windowEvent.data2();
                 if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
@@ -838,6 +852,9 @@ public class Display {
                 yield true;
             }
             case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayFramebufferWidth = Lwjgl3ifyEventLoop.windowEvent.data1();
                 displayFramebufferHeight = Lwjgl3ifyEventLoop.windowEvent.data2();
                 if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
@@ -853,6 +870,9 @@ public class Display {
                 yield true;
             }
             case SDL_EVENT_WINDOW_MOVED -> {
+                if (Lwjgl3ifyEventLoop.windowEvent.windowID() != sdlWindowId) {
+                    yield true;
+                }
                 displayX = Lwjgl3ifyEventLoop.windowEvent.data1();
                 displayY = Lwjgl3ifyEventLoop.windowEvent.data2();
                 yield true;

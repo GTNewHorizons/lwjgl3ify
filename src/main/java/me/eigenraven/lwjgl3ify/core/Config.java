@@ -84,7 +84,7 @@ public class Config {
             "stbiTextureLoading",
             CATEGORY_MIXIN,
             MIXIN_STBI_TEXTURE_LOADING,
-            "Use the faster stb_image-based texture loader");
+            "Use the faster spng-based texture loader");
         MIXIN_STBI_TEXTURE_STITCHING = config.getBoolean(
             "stbiTextureStitching",
             CATEGORY_MIXIN,

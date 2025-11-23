@@ -16,10 +16,13 @@
 package org.lwjglx.opengl;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.sdl.SDLVideo.*;
 
 import org.lwjglx.LWJGLException;
-import org.lwjglx.LWJGLUtil;
 import org.lwjglx.PointerBuffer;
+import org.lwjglx.Sys;
+
+import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 
 public class DrawableGL implements DrawableLWJGL {
 
@@ -33,7 +36,15 @@ public class DrawableGL implements DrawableLWJGL {
     protected ContextGL context;
 
     protected DrawableGL() {
-        context = new ContextGL(Display.sdlWindow, Display.sdlMainGlContext, false);
+        this(Display.sdlWindow, Display.sdlMainGlContext, false);
+    }
+
+    protected DrawableGL(ContextGL gl) {
+        this.context = gl;
+    }
+
+    protected DrawableGL(long window, long context, boolean shared) {
+        this.context = new ContextGL(window, context, shared);
     }
 
     public void setPixelFormat(final PixelFormatLWJGL pf) throws LWJGLException {
@@ -55,18 +66,22 @@ public class DrawableGL implements DrawableLWJGL {
         }
     }
 
-    public ContextGL createSharedContext() throws LWJGLException {
+    public ContextGL createSharedContext() {
         synchronized (GlobalLock.lock) {
-            /*
-             * glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-             * long hiddenWindow = GLFW.glfwCreateWindow(16, 16, "MC - Shared Drawable", 0, this.context.glfwWindow);
-             * if (hiddenWindow == 0) {
-             * throw new LWJGLException("Couldn't create shared context hidden window");
-             * }
-             * return new ContextGL(hiddenWindow, true);
-             * TODO
-             */
-            throw new UnsupportedOperationException();
+            return MainThreadExec.runOnMainThread(() -> {
+                long prevCtx = SDL_GL_GetCurrentContext();
+                long prevWin = SDL_GL_GetCurrentWindow();
+                Sys.checkSdl(SDL_GL_MakeCurrent(Display.sdlHiddenWindow, Display.sdlCloneableGlContext));
+                long newWin = Sys.checkSdl(
+                    SDL_CreateWindow(
+                        "lwjgl3ify-sharedContext-" + Display.sdlMainGlContext,
+                        1,
+                        1,
+                        SDL_WINDOW_OPENGL | SDL_WINDOW_HIDDEN));
+                long newCtx = Sys.checkSdl(SDL_GL_CreateContext(newWin));
+                Sys.checkSdl(SDL_GL_MakeCurrent(prevWin, prevCtx));
+                return new ContextGL(newWin, newCtx, true);
+            });
         }
     }
 
@@ -78,7 +93,7 @@ public class DrawableGL implements DrawableLWJGL {
         ContextGL.setSwapInterval(swap_interval);
     }
 
-    public void swapBuffers() throws LWJGLException {
+    public void swapBuffers() {
         ContextGL.swapBuffers();
     }
 
@@ -89,21 +104,21 @@ public class DrawableGL implements DrawableLWJGL {
         glClear(GL_COLOR_BUFFER_BIT);
     }
 
-    public boolean isCurrent() throws LWJGLException {
+    public boolean isCurrent() {
         synchronized (GlobalLock.lock) {
             checkDestroyed();
             return context.isCurrent();
         }
     }
 
-    public void makeCurrent() throws LWJGLException {
+    public void makeCurrent() {
         synchronized (GlobalLock.lock) {
             checkDestroyed();
             context.makeCurrent();
         }
     }
 
-    public void releaseContext() throws LWJGLException {
+    public void releaseContext() {
         synchronized (GlobalLock.lock) {
             checkDestroyed();
             if (context.isCurrent()) context.releaseCurrent();
@@ -114,23 +129,19 @@ public class DrawableGL implements DrawableLWJGL {
         synchronized (GlobalLock.lock) {
             if (context == null) return;
 
-            try {
-                releaseContext();
+            releaseContext();
 
-                context.forceDestroy();
-                context = null;
+            context.forceDestroy();
+            context = null;
 
-                if (peer_info != null) {
-                    peer_info.destroy();
-                    peer_info = null;
-                }
-            } catch (LWJGLException e) {
-                LWJGLUtil.log("Exception occurred while destroying Drawable: " + e);
+            if (peer_info != null) {
+                peer_info.destroy();
+                peer_info = null;
             }
         }
     }
 
-    public void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {
+    public void setCLSharingProperties(final PointerBuffer properties) {
         synchronized (GlobalLock.lock) {
             checkDestroyed();
             context.setCLSharingProperties(properties);

@@ -5,10 +5,13 @@ import static org.lwjgl.sdl.SDLInit.*;
 import static org.lwjgl.sdl.SDLMessageBox.*;
 import static org.lwjgl.sdl.SDLStdinc.*;
 import static org.lwjgl.sdl.SDLTimer.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.awt.Toolkit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.sdl.SDLClipboard;
@@ -28,23 +31,24 @@ public class Sys {
         if (Platform.get() == Platform.MACOSX) {
             Toolkit.getDefaultToolkit(); // Initialize AWT before SDL
         }
-        MainThreadExec.runOnMainSelectorOnMac(() -> {
+        MainThreadExec.ensureInitialised();
+        MainThreadExec.runOnMainThread(() -> {
             SDL_SetMemoryFunctions(
                 MemoryUtil::nmemAllocChecked,
                 MemoryUtil::nmemCallocChecked,
                 MemoryUtil::nmemReallocChecked,
                 MemoryUtil::nmemFree);
-            checkSdlError(SDL_SetAppMetadata("Lwjgl3ify Minecraft", "1.7.10", "com.gtnewhorizons.Lwjgl3ifyMinecraft"));
-            checkSdlError(
+            checkSdl(SDL_SetAppMetadata("Lwjgl3ify Minecraft", "1.7.10", "com.gtnewhorizons.Lwjgl3ifyMinecraft"));
+            checkSdl(
                 SDL_SetAppMetadataProperty(
                     SDL_PROP_APP_METADATA_URL_STRING,
                     "https://github.com/GTNewHorizons/lwjgl3ify"));
-            checkSdlError(SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_CREATOR_STRING, "Mojang, GTNH Team"));
-            checkSdlError(
+            checkSdl(SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_CREATOR_STRING, "Mojang, GTNH Team"));
+            checkSdl(
                 SDL_SetAppMetadataProperty(
                     SDL_PROP_APP_METADATA_COPYRIGHT_STRING,
                     "https://www.minecraft.net/en-us/eula"));
-            checkSdlError(SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_TYPE_STRING, "game"));
+            checkSdl(SDL_SetAppMetadataProperty(SDL_PROP_APP_METADATA_TYPE_STRING, "game"));
             if (!SDL_Init(
                 SDL_INIT_VIDEO | SDL_INIT_EVENTS
                     | SDL_INIT_JOYSTICK
@@ -64,20 +68,11 @@ public class Sys {
 
     private static final AtomicBoolean isFirstInit = new AtomicBoolean(true);
 
-    private static void checkSdlError(boolean b) {
-        if (!b) {
-            throw new RuntimeException("SDL Error: " + SDL_GetError());
-        }
-    }
-
     public static void initialize() {
         if (!isFirstInit.compareAndSet(true, false)) {
             return;
         } else {
             firstTimeInit();
-        }
-        if (!MainThreadExec.IS_MACOS && !SDL_IsMainThread()) {
-            throw new IllegalStateException("SDL was initialized on the wrong thread.");
         }
     }
 
@@ -127,5 +122,32 @@ public class Sys {
 
     public static String getClipboard() {
         return MainThreadExec.runOnMainThread(SDLClipboard::SDL_GetClipboardText);
+    }
+
+    public static void checkSdl(boolean result) {
+        if (!result) {
+            throw new SDLException();
+        }
+    }
+
+    public static <T> @NotNull T checkSdl(@Nullable T result) {
+        if (result == null) {
+            throw new SDLException();
+        }
+        return result;
+    }
+
+    public static int checkSdl(int result) {
+        if (result == NULL) {
+            throw new SDLException();
+        }
+        return result;
+    }
+
+    public static long checkSdl(long result) {
+        if (result == NULL) {
+            throw new SDLException();
+        }
+        return result;
     }
 }

@@ -15,8 +15,6 @@
  */
 package org.lwjglx.opengl;
 
-import org.lwjglx.LWJGLException;
-
 /**
  * @author Spasi
  */
@@ -29,11 +27,14 @@ import org.lwjglx.LWJGLException;
  */
 public final class SharedDrawable extends DrawableGL {
 
-    public SharedDrawable(final Drawable drawable) throws LWJGLException {
-        this.context = (ContextGL) ((DrawableLWJGL) drawable).createSharedContext();
+    final Drawable drawable;
+
+    public SharedDrawable(final Drawable drawable) {
+        super(((DrawableGL) drawable).createSharedContext());
+        this.drawable = drawable;
     }
 
     public ContextGL createSharedContext() {
-        throw new UnsupportedOperationException();
+        return ((DrawableGL) drawable).createSharedContext();
     }
 }

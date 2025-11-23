@@ -18,9 +18,10 @@ package org.lwjglx.opengl;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GLCapabilities;
 import org.lwjgl.sdl.SDLVideo;
-import org.lwjglx.LWJGLException;
 import org.lwjglx.PointerBuffer;
+import org.lwjglx.Sys;
 
 /**
  * <p/>
@@ -36,6 +37,7 @@ public final class ContextGL implements Context {
 
     public long sdlWindow = 0, sdlContext = 0;
     public final boolean shared;
+    GLCapabilities glCaps = null;
 
     public ContextGL(long sdlWindow, long sdlContext, boolean shared) {
         this.sdlWindow = sdlWindow;
@@ -43,7 +45,7 @@ public final class ContextGL implements Context {
         this.shared = shared;
     }
 
-    public void releaseCurrent() throws LWJGLException {
+    public void releaseCurrent() {
         Display.glContextMutex.lock();
         try {
             GL.setCapabilities(null);
@@ -53,25 +55,29 @@ public final class ContextGL implements Context {
         }
     }
 
-    public synchronized void releaseDrawable() throws LWJGLException {}
+    public synchronized void releaseDrawable() {}
 
     public synchronized void update() {}
 
-    public static void swapBuffers() throws LWJGLException {
+    public static void swapBuffers() {
         Display.swapBuffers();
     }
 
-    public synchronized void makeCurrent() throws LWJGLException {
+    public synchronized void makeCurrent() {
         Display.glContextMutex.lock();
         try {
-            SDLVideo.SDL_GL_MakeCurrent(sdlWindow, sdlContext);
-            GL.createCapabilities();
+            Sys.checkSdl(SDLVideo.SDL_GL_MakeCurrent(sdlWindow, sdlContext));
+            if (glCaps == null) {
+                glCaps = GL.createCapabilities();
+            } else {
+                GL.setCapabilities(glCaps);
+            }
         } finally {
             Display.glContextMutex.unlock();
         }
     }
 
-    public synchronized boolean isCurrent() throws LWJGLException {
+    public synchronized boolean isCurrent() {
         return SDLVideo.SDL_GL_GetCurrentContext() == sdlContext;
     }
 
@@ -79,11 +85,11 @@ public final class ContextGL implements Context {
         Display.setSwapInterval(value);
     }
 
-    public synchronized void forceDestroy() throws LWJGLException {
+    public synchronized void forceDestroy() {
         destroy();
     }
 
-    public synchronized void destroy() throws LWJGLException {
+    public synchronized void destroy() {
         if (shared && sdlWindow != NULL) {
             if (sdlContext != NULL) {
                 SDLVideo.SDL_GL_DestroyContext(sdlContext);
@@ -94,5 +100,5 @@ public final class ContextGL implements Context {
         }
     }
 
-    public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {}
+    public synchronized void setCLSharingProperties(final PointerBuffer properties) {}
 }

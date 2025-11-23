@@ -6,23 +6,24 @@ import static org.lwjgl.sdl.SDLInit.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 import java.util.function.IntSupplier;
 import java.util.function.LongSupplier;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.sdl.SDL_MainThreadCallback;
 import org.lwjgl.system.Platform;
+
+import com.google.common.base.Throwables;
+import com.google.common.util.concurrent.Uninterruptibles;
 
 /**
  * Utilities for running code on the main thread for interacting with the SDL video/event subsystem.
@@ -32,6 +33,36 @@ public class MainThreadExec {
     public static final boolean IS_MACOS = Platform.get() == Platform.MACOSX;
     private static final RuntimeException NO_EXCEPTION_TOKEN = new RuntimeException("no exception");
     private static final MethodHandle macOsMainSelectorInvoker;
+    // Use a custom "main" thread to allow any thread to poll SDL events without deadlocks, on macOS use the main
+    // selector instead.
+    private static final ExecutorService nonMacOsMainThread;
+    private static final @NotNull Thread mainThread;
+
+    static class CallableWithClassLoader<Ret> implements Callable<Ret> {
+
+        private final ClassLoader loader;
+        private final Callable<Ret> inner;
+
+        public CallableWithClassLoader(Callable<Ret> inner) {
+            this.loader = Thread.currentThread()
+                .getContextClassLoader();
+            this.inner = inner;
+        }
+
+        @Override
+        public Ret call() throws Exception {
+            final ClassLoader savedLoader = Thread.currentThread()
+                .getContextClassLoader();
+            Thread.currentThread()
+                .setContextClassLoader(loader);
+            try {
+                return inner.call();
+            } finally {
+                Thread.currentThread()
+                    .setContextClassLoader(savedLoader);
+            }
+        }
+    }
 
     static {
         MethodHandle invoker = null;
@@ -46,8 +77,43 @@ public class MainThreadExec {
             } catch (Throwable t) {
                 throw new IllegalStateException(t);
             }
+            nonMacOsMainThread = null;
+        } else {
+            nonMacOsMainThread = Executors.newSingleThreadExecutor((runnable) -> {
+                final Thread t = new Thread(runnable, "lwjgl3ify-SDL-main");
+                t.setDaemon(true);
+                t.setContextClassLoader(
+                    Thread.currentThread()
+                        .getContextClassLoader());
+                return t;
+            });
         }
         macOsMainSelectorInvoker = invoker;
+        final AtomicReference<Thread> mainThreadStorage = new AtomicReference<>();
+        if (IS_MACOS) {
+            runOnMainSelectorOnMac(() -> { mainThreadStorage.set(Thread.currentThread()); });
+        } else {
+            try {
+                System.err.println("t0");
+                // Lambdas cause a deadlock on the class initializer monitor here
+                // noinspection Convert2Lambda
+                Uninterruptibles
+                    .getUninterruptibly(nonMacOsMainThread.submit(new CallableWithClassLoader<>(new Callable<>() {
+
+                        @Override
+                        public Object call() {
+                            System.err.println("t1");
+                            mainThreadStorage.set(Thread.currentThread());
+                            System.err.println("t2");
+                            return null;
+                        }
+                    })));
+                System.err.println("t3");
+            } catch (ExecutionException e) {
+                throw Throwables.propagate(e.getCause());
+            }
+        }
+        mainThread = Objects.requireNonNull(mainThreadStorage.get());
     }
 
     private static void jdkPerformOnMainThreadAfterDelay(Runnable r, long delayMs) {
@@ -65,11 +131,7 @@ public class MainThreadExec {
     /**
      * @param r The Runnable to run either on the main selector thread on macOS, or current thread on other platforms.
      */
-    public static void runOnMainSelectorOnMac(Runnable r) {
-        if (!IS_MACOS) {
-            r.run();
-            return;
-        }
+    private static void runOnMainSelectorOnMac(Runnable r) {
         final ArrayBlockingQueue<Throwable> lock = new ArrayBlockingQueue<>(1);
         final ClassLoader outerLoader = Thread.currentThread()
             .getContextClassLoader();
@@ -103,33 +165,50 @@ public class MainThreadExec {
     }
 
     /**
-     * @param r The Supplier to run either on the main selector thread on macOS, or current thread on other platforms.
-     * @return The value produced by the supplier.
+     * @param r The Callable to run either on the main selector thread on macOS, or current thread on other platforms.
+     * @return The value produced by the callable.
      */
-    public static <ReturnType> ReturnType runOnMainSelectorOnMac(Supplier<ReturnType> r) {
+    private static <ReturnType> ReturnType runOnMainSelectorOnMac(Callable<ReturnType> r) {
         final AtomicReference<ReturnType> output = new AtomicReference<>(null);
-        final Runnable wrapper = () -> { output.set(r.get()); };
+        final Runnable wrapper = () -> {
+            try {
+                output.set(r.call());
+            } catch (Exception e) {
+                throw Throwables.propagate(e);
+            }
+        };
         runOnMainSelectorOnMac(wrapper);
         return output.get();
     }
 
+    public static void ensureInitialised() {}
+
     /**
-     * Requires SDL to already have been initialized on the correct thread.
-     *
+     * @return If the current thread is the main thread that can run thread-specific SDL commands.
+     */
+    public static boolean isMainThread() {
+        return Thread.currentThread() == mainThread;
+    }
+
+    private static <R> Callable<R> bindClassloader(Callable<R> callable) {
+        return new CallableWithClassLoader<>(callable);
+    }
+
+    /**
      * @param r The Runnable to run on the main thread - if the current thread is main, it gets run immediately.
      */
     public static void runOnMainThread(Runnable r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
+        if (isMainThread()) {
             r.run();
         } else if (IS_MACOS) {
             runOnMainSelectorOnMac(r);
         } else {
-            final int runHandle = allocateRunHandle(r);
-            if (!SDL_RunOnMainThread(mtCallback, runHandle, true)) {
-                throw new RuntimeException("Could not SDL_RunOnMainThread: " + SDL_GetError());
+            try {
+                Uninterruptibles.getUninterruptibly(nonMacOsMainThread.submit(bindClassloader(Executors.callable(r))));
+            } catch (ExecutionException e) {
+                throw Throwables.propagate(e.getCause());
             }
-            dequeueAndThrowException(runHandle);
         }
     }
 
@@ -139,27 +218,28 @@ public class MainThreadExec {
      * @param r The Supplier to run on the main thread - if the current thread is main, it gets run immediately.
      * @return The value produced by the supplier.
      */
-    public static <ReturnType> @Nullable ReturnType runOnMainThread(Supplier<@Nullable ReturnType> r) {
+    public static <ReturnType> @Nullable ReturnType runOnMainThread(Callable<@Nullable ReturnType> r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
-            return r.get();
-        } else if (IS_MACOS) {
-            return runOnMainSelectorOnMac(r);
-        } else {
-            final AtomicReference<ReturnType> output = new AtomicReference<>(null);
-            final Runnable wrapper = () -> { output.set(r.get()); };
-            final int runHandle = allocateRunHandle(wrapper);
-            if (!SDL_RunOnMainThread(mtCallback, runHandle, true)) {
-                throw new RuntimeException("Could not SDL_RunOnMainThread: " + SDL_GetError());
+        try {
+            if (isMainThread()) {
+                return r.call();
+            } else if (IS_MACOS) {
+                return runOnMainSelectorOnMac(r);
+            } else {
+                try {
+                    return Uninterruptibles.getUninterruptibly(nonMacOsMainThread.submit(bindClassloader(r)));
+                } catch (ExecutionException e) {
+                    throw Throwables.propagate(e.getCause());
+                }
             }
-            dequeueAndThrowException(runHandle);
-            return output.get();
+        } catch (Exception e) {
+            throw Throwables.propagate(e);
         }
     }
 
     public static boolean runOnMainThread(BooleanSupplier r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
+        if (isMainThread()) {
             return r.getAsBoolean();
         }
         return Objects.requireNonNull(runOnMainThread(() -> (Boolean) r.getAsBoolean()));
@@ -167,7 +247,7 @@ public class MainThreadExec {
 
     public static int runOnMainThread(IntSupplier r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
+        if (isMainThread()) {
             return r.getAsInt();
         }
         return Objects.requireNonNull(runOnMainThread(() -> (Integer) r.getAsInt()));
@@ -175,7 +255,7 @@ public class MainThreadExec {
 
     public static long runOnMainThread(LongSupplier r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
+        if (isMainThread()) {
             return r.getAsLong();
         }
         return Objects.requireNonNull(runOnMainThread(() -> (Long) r.getAsLong()));
@@ -183,70 +263,9 @@ public class MainThreadExec {
 
     public static double runOnMainThread(DoubleSupplier r) {
         Objects.requireNonNull(r);
-        if (SDL_IsMainThread()) {
+        if (isMainThread()) {
             return r.getAsDouble();
         }
         return Objects.requireNonNull(runOnMainThread(() -> (Double) r.getAsDouble()));
-    }
-
-    private static final AtomicReferenceArray<Runnable> runHandles = new AtomicReferenceArray<>(256);
-    private static final List<ArrayBlockingQueue<Throwable>> exceptionQueues = IntStream.range(0, runHandles.length())
-        .mapToObj(i -> new ArrayBlockingQueue<Throwable>(1))
-        .collect(Collectors.toList());
-    private static final SDL_MainThreadCallback mtCallback = SDL_MainThreadCallback
-        .create(MainThreadExec::mtCallbackImpl);
-
-    private static void mtCallbackImpl(long userdata) {
-        final int handle = (int) userdata;
-        Throwable exception = NO_EXCEPTION_TOKEN;
-        try {
-            final Runnable runHandle = deallocateRunHandle(handle);
-            runHandle.run();
-        } catch (Throwable t) {
-            exception = t;
-        }
-        while (true) {
-            try {
-                exceptionQueues.get(handle)
-                    .put(exception);
-                break;
-            } catch (InterruptedException e) {
-                // continue
-            }
-        }
-    }
-
-    private static int allocateRunHandle(@NotNull Runnable handle) {
-        Objects.requireNonNull(handle);
-        for (int i = 0; i < 256; i++) {
-            if (runHandles.compareAndSet(i, null, handle)) {
-                return i;
-            }
-        }
-        throw new IllegalStateException(
-            "More than " + runHandles.length()
-                + " threads attempted to queue operations on the SDL main thread simultaneously");
-    }
-
-    private static @NotNull Runnable deallocateRunHandle(int h) {
-        final Runnable o = runHandles.getAndSet(h, null);
-        Objects.requireNonNull(o, "Invalid handle " + h);
-        return o;
-    }
-
-    private static void dequeueAndThrowException(int runHandle) {
-        final ArrayBlockingQueue<Throwable> queue = exceptionQueues.get(runHandle);
-        while (true) {
-            try {
-                final Throwable ex = queue.take();
-                if (ex != NO_EXCEPTION_TOKEN) {
-                    throw new RuntimeException("Exception occurred on the main selector thread", ex);
-                } else {
-                    break;
-                }
-            } catch (InterruptedException iex) {
-                // try again
-            }
-        }
     }
 }
