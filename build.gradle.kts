@@ -333,7 +333,7 @@ for (runTask in listOf(tasks.runClient, tasks.runServer, tasks.runObfClient, tas
         if (this.side == Distribution.CLIENT && SystemUtils.IS_OS_MAC) {
             jArgs += "-XstartOnFirstThread"
         }
-        extraJvmArgs = extraJavaArgs
+        extraJvmArgs = jArgs
         javaLauncher.set(newJavaLauncher)
     }
 }
