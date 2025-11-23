@@ -7,13 +7,12 @@ import static org.lwjgl.sdl.SDLStdinc.*;
 import static org.lwjgl.sdl.SDLTimer.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-import java.awt.Toolkit;
+import java.awt.GraphicsEnvironment;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.Version;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.sdl.SDLClipboard;
 import org.lwjgl.sdl.SDLMisc;
 import org.lwjgl.system.Configuration;
@@ -29,7 +28,10 @@ public class Sys {
     static private void firstTimeInit() {
         Configuration.OPENGL_EXPLICIT_INIT.set(true);
         if (Platform.get() == Platform.MACOSX) {
-            Toolkit.getDefaultToolkit(); // Initialize AWT before SDL
+            if (!GraphicsEnvironment.isHeadless()) {
+                throw new IllegalStateException(
+                    "java.awt.headless must be set to true on macOS, this is normally set by RFB!");
+            }
         }
         MainThreadExec.ensureInitialised();
         MainThreadExec.runOnMainThread(() -> {
@@ -58,12 +60,6 @@ public class Sys {
                 throw new RuntimeException("Could not initialize SDL.");
             }
         });
-        // TODO: remove
-        if (MainThreadExec.IS_MACOS) {
-            Configuration.GLFW_CHECK_THREAD0.set(false);
-            Configuration.GLFW_LIBRARY_NAME.set("glfw_async");
-        }
-        GLFW.glfwInit();
     }
 
     private static final AtomicBoolean isFirstInit = new AtomicBoolean(true);

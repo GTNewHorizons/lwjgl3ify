@@ -124,7 +124,7 @@ tasks.named<JavaCompile>(relauncherStubSet.compileJavaTaskName).configure {
 
 tasks.createMcLauncherFiles {
     // Override main class
-    replacementTokens.put("@@BOUNCERCLIENT@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
+    replacementTokens.put("@@BOUNCERCLIENT@@", "com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread")
     replacementTokens.put("@@BOUNCERSERVER@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
 }
 
@@ -379,7 +379,7 @@ runWithRelauncher.configure {
 }
 
 tasks.runObfClient {
-    mainClass.set("com.gtnewhorizons.retrofuturabootstrap.Main")
+    mainClass.set("com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread")
 }
 
 tasks.runObfServer {

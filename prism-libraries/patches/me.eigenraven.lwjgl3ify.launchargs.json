@@ -4,5 +4,8 @@
     "uid": "me.eigenraven.lwjgl3ify.launchargs",
     "version": "${version}",
     "order": 100,
-    "mainClass": "com.gtnewhorizons.retrofuturabootstrap.Main"
+    "mainClass": "com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread",
+    "+traits": [
+        "FirstThreadOnMacOS"
+    ]
 }

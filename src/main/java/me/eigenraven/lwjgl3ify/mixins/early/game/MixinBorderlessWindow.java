@@ -1,7 +1,5 @@
 package me.eigenraven.lwjgl3ify.mixins.early.game;
 
-import static org.lwjgl.glfw.GLFW.*;
-
 import net.minecraft.client.Minecraft;
 
 import org.spongepowered.asm.mixin.Mixin;
