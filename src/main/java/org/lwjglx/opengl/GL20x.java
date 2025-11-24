@@ -33,7 +33,6 @@ public class GL20x {
     }
 
     public static String glGetActiveAttrib(int program, int index, int maxLength, IntBuffer sizeType) {
-        // TODO check if correct
         String s;
         try (MemoryStack stack = stackPush()) {
             IntBuffer type = stack.mallocInt(1);

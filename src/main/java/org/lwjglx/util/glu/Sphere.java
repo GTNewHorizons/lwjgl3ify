@@ -23,7 +23,7 @@ import static org.lwjglx.util.glu.GLU.*;
  *
  *
  * Created 23-dec-2003
- * 
+ *
  * @author Erik Duijs
  */
 public class Sphere extends Quadric {
@@ -47,8 +47,6 @@ public class Sphere extends Quadric {
      * +y axis, to 0.25 at the +x axis, to 0.5 at the -y axis, to 0.75 at the -x axis, and back to 1.0 at the +y axis.
      */
     public void draw(float radius, int slices, int stacks) {
-        // TODO
-
         float rho, drho, theta, dtheta;
         float x, y, z;
         float s, t, ds, dt;
