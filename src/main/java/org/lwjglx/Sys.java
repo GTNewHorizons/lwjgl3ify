@@ -28,6 +28,7 @@ public class Sys {
 
     static private void firstTimeInit() {
         Configuration.OPENGL_EXPLICIT_INIT.set(true);
+        Configuration.HARFBUZZ_LIBRARY_NAME.set("freetype");
         if (Platform.get() == Platform.MACOSX) {
             if (!GraphicsEnvironment.isHeadless()) {
                 throw new IllegalStateException(

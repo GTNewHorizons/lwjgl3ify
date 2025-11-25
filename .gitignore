@@ -30,3 +30,4 @@ whitelist.json
 *.DS_Store
 !gradlew.bat
 layout.json
+buildSrc/build

@@ -11,6 +11,7 @@ import kotlin.streams.toList
 
 plugins {
     id("com.gtnewhorizons.gtnhconvention")
+    id("lwjgl3ify-helper")
 }
 
 val taskGroup = "lwjgl3ify"
