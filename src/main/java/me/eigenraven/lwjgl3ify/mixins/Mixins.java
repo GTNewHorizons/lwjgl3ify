@@ -23,9 +23,6 @@ public enum Mixins implements IMixins {
     FIX_DEADKEY_KEYBINDING(
         new MixinBuilder("Improved KeyBinding handling to handle dead keys")
             .addClientMixins("game.MixinMinecraftKeyBinding")),
-    BORDERLESS_FULLSCREEN(
-        new MixinBuilder()
-            .addClientMixins("game.MixinBorderlessWindow")),
     STB_TEXTURE_LOADING(
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")

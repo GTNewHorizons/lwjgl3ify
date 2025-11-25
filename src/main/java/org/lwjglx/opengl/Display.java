@@ -49,6 +49,23 @@ import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
 public class Display {
 
+    enum WindowedState {
+
+        WINDOWED(false),
+        BORDERLESS(true),
+        FULLSCREEN(true);
+
+        public final boolean isFullscreen;
+
+        WindowedState(boolean isFullscreen) {
+            this.isFullscreen = isFullscreen;
+        }
+
+        public static WindowedState fullscreen() {
+            return Config.WINDOW_BORDERLESS_REPLACES_FULLSCREEN ? BORDERLESS : FULLSCREEN;
+        }
+    }
+
     private static String windowTitle = "Game";
 
     public static final ReentrantLock glContextMutex = new ReentrantLock();
@@ -59,8 +76,7 @@ public class Display {
     private static boolean displayDirty = false;
     private static boolean displayResizable = false;
     private static boolean displayCloseRequested = false;
-    private static boolean startFullscreen = false;
-    private static boolean borderlessInsteadOfFullscreen = true;
+    private static WindowedState displayWindowed = WindowedState.WINDOWED;
 
     private static DisplayMode mode = new DisplayMode(854, 480);
 
@@ -287,8 +303,8 @@ public class Display {
             Mouse.create();
             Keyboard.create();
 
-            if (startFullscreen) {
-                // TODO setFullscreen(true);
+            if (displayWindowed.isFullscreen) {
+                setFullscreen(true);
             }
         });
 
@@ -397,10 +413,27 @@ public class Display {
         displayCreated = false;
     }
 
-    public static void setDisplayMode(DisplayMode dm) {
+    /**
+     * Set the current display mode. If no OpenGL context has been created, the given mode will apply to
+     * the context when create() is called, and no immediate mode switching will happen. If there is a
+     * context already, it will be resized according to the given mode. If the context is also a
+     * fullscreen context, the mode will also be switched immediately. The native cursor position
+     * is also reset.
+     *
+     * @param dm The new display mode to set
+     */
+    public static synchronized void setDisplayMode(DisplayMode dm) {
         mode = dm;
+        if (isCreated()) {
+            MainThreadExec.runOnMainThread(() -> { SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight()); });
+        }
     }
 
+    /**
+     * Return the current display mode, as set by setDisplayMode().
+     *
+     * @return The current display mode
+     */
     public static DisplayMode getDisplayMode() {
         return mode;
     }
@@ -553,169 +586,37 @@ public class Display {
     }
 
     public static void setDisplayModeAndFullscreen(DisplayMode mode) {
-        // TODO
-        System.out.println("TODO: Implement Display.setDisplayModeAndFullscreen(DisplayMode)");
+        setDisplayMode(mode);
+        setFullscreen(true);
     }
 
-    /*
-     * private static int savedX[] = new int[1], savedY[] = new int[1];
-     * private static int savedW[] = new int[1], savedH[] = new int[1];
-     * public static PositionedGLFWVidMode getTargetFullscreenMonitor() {
-     * int x = savedX[0] + (savedW[0] / 2);
-     * int y = savedY[0] + (savedH[0] / 2);
-     * PointerBuffer monitors = glfwGetMonitors();
-     * assert monitors != null;
-     * ArrayList<PositionedGLFWVidMode> monitorInfos = new ArrayList<>(monitors.limit());
-     * for (int i = 0; i < monitors.limit(); i++) {
-     * long monitor = monitors.get(i);
-     * PositionedGLFWVidMode monitorInfo = getPositionedMonitorInfo(monitor);
-     * monitorInfos.add(monitorInfo);
-     * if (monitorInfo.bounds.contains(x, y)) {
-     * return monitorInfo;
-     * }
-     * }
-     * // If the center of the screen doesn't contains in any monitors, try to look by intersect area
-     * Rectangle windowBounds = new Rectangle(savedX[0], savedY[0], savedW[0], savedH[0]);
-     * Optional<PositionedGLFWVidMode> targetMonitor = monitorInfos.stream()
-     * .filter(
-     * o -> !o.bounds.intersection(windowBounds, null)
-     * .isEmpty())
-     * .max(
-     * Comparator.comparingInt(
-     * o -> o.bounds.intersection(windowBounds, null)
-     * .getArea()));
-     * return targetMonitor.orElse(getPositionedMonitorInfo(glfwGetPrimaryMonitor()));
-     * }
-     * private static PositionedGLFWVidMode getPositionedMonitorInfo(long monitorId) {
-     * int x, y;
-     * try (MemoryStack stack = stackPush()) {
-     * IntBuffer posX = stack.mallocInt(1);
-     * IntBuffer posY = stack.mallocInt(1);
-     * glfwGetMonitorPos(monitorId, posX, posY);
-     * x = posX.get(0);
-     * y = posY.get(0);
-     * }
-     * GLFWVidMode vidmode = glfwGetVideoMode(monitorId);
-     * assert vidmode != null;
-     * return new PositionedGLFWVidMode(
-     * x,
-     * y,
-     * new Rectangle(x, y, vidmode.width(), vidmode.height()),
-     * monitorId,
-     * vidmode);
-     * }
-     * @Desugar
-     * public record PositionedGLFWVidMode(int x, int y, Rectangle bounds, long monitorId, GLFWVidMode vidMode) {}
-     * public static void setFullscreen(boolean fullscreen) {
-     * final long window = getWindow();
-     * if (window == 0) {
-     * startFullscreen = fullscreen;
-     * return;
-     * }
-     * final boolean currentState = isFullscreen();
-     * if (currentState == fullscreen) {
-     * return;
-     * }
-     * glfwSetWindowSizeLimits(window, 0, 0, GLFW_DONT_CARE, GLFW_DONT_CARE);
-     * if (fullscreen) {
-     * glfwGetWindowPos(window, savedX, savedY);
-     * glfwGetWindowSize(window, savedW, savedH);
-     * PositionedGLFWVidMode monitorInfo = getTargetFullscreenMonitor();
-     * GLFWVidMode vidMode = monitorInfo.vidMode;
-     * glfwSetWindowMonitor(
-     * window,
-     * monitorInfo.monitorId,
-     * 0,
-     * 0,
-     * vidMode.width(),
-     * vidMode.height(),
-     * vidMode.refreshRate());
-     * Minecraft.getMinecraft()
-     * .resize(vidMode.width(), vidMode.height());
-     * } else {
-     * glfwSetWindowSize(window, savedW[0], savedH[0]);
-     * glfwSetWindowMonitor(window, NULL, savedX[0], savedY[0], savedW[0], savedH[0], 0);
-     * }
-     * }
-     * public static void toggleBorderless() {
-     * setBorderless(!isBorderless());
-     * }
-     * public static void setBorderless(boolean toBorderless) {
-     * final long window = getWindow();
-     * if (window == NULL) {
-     * return;
-     * }
-     * if (toBorderless) {
-     * glfwGetWindowPos(window, savedX, savedY);
-     * glfwGetWindowSize(window, savedW, savedH);
-     * PositionedGLFWVidMode monitorInfo = getTargetFullscreenMonitor();
-     * GLFWVidMode vidMode = monitorInfo.vidMode;
-     * int height = vidMode.height();
-     * // Fix bothered from
-     * //
-     * https://github.com/Kir-Antipov/cubes-without-borders/blob/b38306bf17d3f0936475a3a28c4ee2be4e881a62/src/main/java/
-     * dev/kir/cubeswithoutborders/mixin/WindowMixin.java#L130
-     * // There's a bug that causes a fullscreen window to flicker when it loses focus.
-     * // As far as I know, this is relevant for Windows and X11 desktops.
-     * // Fuck X11 - it's a perpetually broken piece of legacy.
-     * // However, we do need to implement a fix for Windows desktops, as they
-     * // are not going anywhere in the foreseeable future (sadly enough).
-     * // This "fix" involves not bringing a window into a "proper" fullscreen mode,
-     * // but rather stretching it 1 pixel beyond the screen's supported resolution.
-     * if (Config.WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY && System.getProperty("os.name")
-     * .toLowerCase()
-     * .contains("win")) {
-     * height = height + 1;
-     * }
-     * glfwSetWindowSizeLimits(window, 0, 0, vidMode.width(), height);
-     * glfwSetWindowSize(window, vidMode.width(), height);
-     * glfwSetWindowMonitor(
-     * window,
-     * NULL,
-     * monitorInfo.x,
-     * monitorInfo.y,
-     * vidMode.width(),
-     * height,
-     * vidMode.refreshRate());
-     * } else {
-     * glfwSetWindowSizeLimits(window, 0, 0, GLFW_DONT_CARE, GLFW_DONT_CARE);
-     * glfwSetWindowSize(window, savedW[0], savedH[0]);
-     * glfwSetWindowMonitor(window, NULL, savedX[0], savedY[0], savedW[0], savedH[0], 0);
-     * }
-     * }
-     * public static boolean isBorderless() {
-     * long window = Display.getWindow();
-     * long windowMonitor = glfwGetWindowMonitor(Display.getWindow());
-     * if (Display.getWindow() != 0 && windowMonitor == NULL) {
-     * try (MemoryStack stack = stackPush()) {
-     * IntBuffer windowX = stack.mallocInt(1);
-     * IntBuffer windowY = stack.mallocInt(1);
-     * IntBuffer windowWidth = stack.mallocInt(1);
-     * IntBuffer windowHeight = stack.mallocInt(1);
-     * glfwGetWindowPos(window, windowX, windowY);
-     * glfwGetWindowSize(window, windowWidth, windowHeight);
-     * Display.PositionedGLFWVidMode monitorInfo = Display.getTargetFullscreenMonitor();
-     * GLFWVidMode vidMode = monitorInfo.vidMode();
-     * return windowX.get(0) == monitorInfo.x() && windowY.get(0) == monitorInfo.y()
-     * && windowWidth.get(0) == vidMode.width()
-     * && (windowHeight.get(0) >= vidMode.height());
-     * }
-     * }
-     * return false;
-     * }
-     */
-
     public static void setFullscreen(boolean fullscreen) {
+        displayWindowed = fullscreen ? WindowedState.fullscreen() : WindowedState.WINDOWED;
         if (sdlWindow != NULL) {
-            MainThreadExec.runOnMainThread(() -> { SDL_SetWindowFullscreen(sdlWindow, fullscreen); });
+            // TODO
+            // Fix bothered from
+            // https: //
+            // github.com/Kir-Antipov/cubes-without-borders/blob/b38306bf17d3f0936475a3a28c4ee2be4e881a62/src/main/java/
+            // dev/kir/cubeswithoutborders/mixin/WindowMixin.java#L130
+            // There's a bug that causes a fullscreen window to flicker when it loses focus.
+            // As far as I know, this is relevant for Windows and X11 desktops.
+            // Fuck X11 - it's a perpetually broken piece of legacy.
+            // However, we do need to implement a fix for Windows desktops, as they
+            // are not going anywhere in the foreseeable future (sadly enough).
+            // This "fix" involves not bringing a window into a "proper" fullscreen mode,
+            // but rather stretching it 1 pixel beyond the screen's supported resolution.
+            MainThreadExec.runOnMainThread(() -> {
+                SDL_SetWindowFullscreen(sdlWindow, fullscreen);
+                // restore original window size as dictated by the game
+                if (!fullscreen) {
+                    SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+                }
+            });
         }
     }
 
     public static boolean isFullscreen() {
-        if (sdlWindow != NULL) {
-            return MainThreadExec.runOnMainThread(() -> { return SDL_GetWindowFullscreenMode(sdlWindow) != null; });
-        }
-        return false;
+        return displayWindowed.isFullscreen;
     }
 
     public static void setParent(java.awt.Canvas parent) {
