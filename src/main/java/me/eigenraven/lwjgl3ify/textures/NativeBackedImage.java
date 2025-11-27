@@ -139,7 +139,12 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
                     spngCheck(SPNG.spng_get_ihdr(ctx, ihdr));
 
                     imageBuffer = MemoryUtil.nmemAlloc(outSizeI);
-                    final int decodeEc = SPNG.nspng_decode_image(ctx, imageBuffer, outSizeI, SPNG.SPNG_FMT_RGBA8, 0);
+                    final int decodeEc = SPNG.nspng_decode_image(
+                        ctx,
+                        imageBuffer,
+                        outSizeI,
+                        SPNG.SPNG_FMT_RGBA8,
+                        SPNG.SPNG_DECODE_TRNS | SPNG.SPNG_DECODE_GAMMA);
                     if (decodeEc != 0) {
                         MemoryUtil.nmemFree(imageBuffer);
                         spngCheck(decodeEc);

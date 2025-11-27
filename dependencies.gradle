@@ -67,6 +67,8 @@ dependencies {
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.35-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.1:dev')
     // runtimeOnlyNonPublishable('maven.modrinth:cursormod:1.2.2-1.7.10')
+    // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:fplib-665627:7244842"))
+    // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:mcpatcher-1344779:7032456"))
     if (addGtForTesting) {
         runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.52.104:dev')
         runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-739-GTNH:dev")
