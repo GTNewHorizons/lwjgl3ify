@@ -200,17 +200,20 @@ public class Mouse {
             return;
         }
         MainThreadExec.runOnMainThread(() -> {
-            SDL_SetWindowRelativeMouseMode(Display.getWindow(), grab);
-            if (!grab) {
-                try (final MemoryStack ms = MemoryStack.stackPush()) {
-                    final IntBuffer w = ms.ints(0);
-                    final IntBuffer h = ms.ints(0);
-                    SDLVideo.SDL_GetWindowSize(Display.getWindow(), w, h);
+            try (final MemoryStack ms = MemoryStack.stackPush()) {
+                final IntBuffer w = ms.ints(0);
+                final IntBuffer h = ms.ints(0);
+                SDLVideo.SDL_GetWindowSize(Display.getWindow(), w, h);
+                if (!grab) {
                     SDL_WarpMouseInWindow(Display.getWindow(), w.get(0) / 2.0f, h.get(0) / 2.0f);
                 }
+                SDL_SetWindowRelativeMouseMode(Display.getWindow(), grab);
+                if (!grab) {
+                    SDL_WarpMouseInWindow(Display.getWindow(), w.get(0) / 2.0f, h.get(0) / 2.0f);
+                }
+                dx = 0;
+                dy = 0;
             }
-            dx = 0;
-            dy = 0;
         });
         grabbed = grab;
     }
