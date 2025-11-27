@@ -81,6 +81,7 @@ private val lwjgl3Bindings = listOf(
     LwjglBinding("opengl"),
     LwjglBinding("sdl"),
     LwjglBinding("spng"),
+    LwjglBinding("stb"),
     LwjglBinding("tinyfd"),
     LwjglBinding("zstd")
 );
