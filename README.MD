@@ -93,7 +93,7 @@ There are a few components to enabling modern java and lwjgl usage on old minecr
    - FMLSecurityManager: fix some array index out of bounds exceptions, it is also deprecated in java 17 and will need to be replaced once a new API is available
    - EnumHelper: replace all the enumhelper apis with new variants using the extensible enum transformer and unsafe hacks.
  - Additional performance-enhancing mixins making use of LWJGL3 features:
-   - STB_image-based image loader, much faster than Image4J
+   - spng-based image loader, much faster than Image4J
    - STB_rectpack-based texture sticher, it's nearly instant with tens of thousands of textures, compared to the vanilla code which takes many seconds to stitch that many textures into an atlas
 
 ## Fixing mods
