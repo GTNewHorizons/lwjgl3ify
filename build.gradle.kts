@@ -63,6 +63,8 @@ val addOpens = listOf(
 val extraJavaArgs = mutableListOf(
     "-Dfile.encoding=UTF-8",
     "-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader",
+    "--enable-native-access",
+    "ALL-UNNAMED"
 )
 for (openSpec in addOpens) {
     extraJavaArgs += listOf("--add-opens", openSpec)
@@ -74,7 +76,7 @@ tasks.register("updateJava9ArgsTxt") {
     outputs.file("java9args.txt")
     val writtenText = extraJavaArgs.joinToString("\n") + "\n"
     doLast {
-        file("java9args.txt").writeText(writtenText, Charsets.UTF_8)
+        File("java9args.txt").writeText(writtenText, Charsets.UTF_8)
     }
 }
 

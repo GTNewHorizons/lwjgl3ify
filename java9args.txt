@@ -1,5 +1,7 @@
 -Dfile.encoding=UTF-8
 -Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader
+--enable-native-access
+ALL-UNNAMED
 --add-opens
 java.base/java.io=ALL-UNNAMED
 --add-opens
@@ -60,6 +62,8 @@ java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED
 java.desktop/sun.awt.image=ALL-UNNAMED
 --add-opens
 java.desktop/sun.awt=ALL-UNNAMED
+--add-opens
+java.desktop/sun.lwawt.macosx=ALL-UNNAMED
 --add-opens
 java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED
 --add-opens
