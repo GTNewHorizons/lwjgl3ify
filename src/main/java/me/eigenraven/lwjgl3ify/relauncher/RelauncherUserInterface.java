@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -23,15 +24,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.DefaultEditorKit;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.weisj.darklaf.LafManager;
-import com.github.weisj.darklaf.theme.spec.ColorToneRule;
-import com.github.weisj.darklaf.theme.spec.ContrastRule;
-import com.github.weisj.darklaf.theme.spec.PreferredThemeStyle;
 import com.google.common.base.Throwables;
 
 /** Implements the UI components of the relauncher */
@@ -66,9 +64,15 @@ public class RelauncherUserInterface {
             .setContextClassLoader(mcLoader);
         try {
             System.setProperty("awt.useSystemAAFontSettings", "on");
-            LafManager.installTheme(new PreferredThemeStyle(ContrastRule.STANDARD, ColorToneRule.DARK));
+            if (System.getProperty("os.name")
+                .toLowerCase(Locale.ROOT)
+                .contains("linux")) {
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } else {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            }
         } catch (Exception e) {
-            Relauncher.logger.warn("Could not initialize DarkLaf GUI theme", e);
+            Relauncher.logger.warn("Could not initialize GUI theme", e);
         }
         Thread.currentThread()
             .setContextClassLoader(original);

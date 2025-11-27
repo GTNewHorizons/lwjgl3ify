@@ -23,13 +23,20 @@ public enum Mixins implements IMixins {
     FIX_DEADKEY_KEYBINDING(
         new MixinBuilder("Improved KeyBinding handling to handle dead keys")
             .addClientMixins("game.MixinMinecraftKeyBinding")),
-    BORDERLESS_FULLSCREEN(
-        new MixinBuilder()
-            .addClientMixins("game.MixinBorderlessWindow")),
     STB_TEXTURE_LOADING(
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")
             .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
+    TEXT_FIELD_SDL_INPUT(
+        new MixinBuilder()
+            .addClientMixins("game.MixinGuiTextField", "game.MixinGuiScreen")),
+    OPEN_URL_WITH_SDL(
+        new MixinBuilder()
+            .addClientMixins(
+                "game.openurl.MixinGuiChat",
+                "game.openurl.MixinGuiMainMenu",
+                "game.openurl.MixinGuiScreenDemoResourcePacks",
+                "game.openurl.MixinGuiStreamUnavailable")),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft

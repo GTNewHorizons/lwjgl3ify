@@ -61,14 +61,11 @@ public class Relauncher {
         Path cacheDir;
         try {
             if (system.contains("win")) {
-                String temp = System.getenv("TEMP");
                 String localAppData = System.getenv("LOCALAPPDATA");
-                if (temp != null) {
-                    cacheDir = Paths.get(temp, "lwjgl3ify");
-                } else if (localAppData != null) {
-                    cacheDir = Paths.get(localAppData, "Temp", "lwjgl3ify");
+                if (localAppData != null) {
+                    cacheDir = Paths.get(localAppData, "lwjgl3ify");
                 } else {
-                    cacheDir = Paths.get(userHome, "AppData", "Local", "Temp", "lwjgl3ify");
+                    cacheDir = Paths.get(userHome, "AppData", "Local", "lwjgl3ify");
                 }
             } else if (system.contains("mac")) {
                 cacheDir = Paths.get(userHome, "Library", "Caches", "lwjgl3ify");
@@ -82,7 +79,7 @@ public class Relauncher {
             }
         } catch (InvalidPathException e) {
             if (system.contains("win")) {
-                cacheDir = Paths.get(userHome, "AppData", "Local", "Temp", "lwjgl3ify");
+                cacheDir = Paths.get(userHome, "AppData", "Local", "lwjgl3ify");
             } else {
                 cacheDir = Paths.get(userHome, ".cache", "lwjgl3ify");
             }
@@ -193,6 +190,9 @@ public class Relauncher {
 
         final List<String> cmd = new ArrayList<>();
         cmd.addAll(Arrays.asList(RECOMMENDED_JAVA_ARGS));
+        if (SystemUtils.IS_OS_MAC) {
+            cmd.add("-XstartOnFirstThread");
+        }
         cmd.addAll(RelauncherConfig.config.toJvmArgs());
         cmd.add("-cp");
         cmd.add(StringUtils.join(createClasspath(), File.pathSeparatorChar));
@@ -214,7 +214,7 @@ public class Relauncher {
             cmd.add("-D" + key + "=" + value);
         }
 
-        cmd.add("com.gtnewhorizons.retrofuturabootstrap.Main");
+        cmd.add("com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread");
 
         cmd.addAll(
             Arrays.asList(

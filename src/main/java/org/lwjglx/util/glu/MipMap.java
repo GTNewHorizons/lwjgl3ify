@@ -16,6 +16,8 @@
 package org.lwjglx.util.glu;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_BGR;
+import static org.lwjgl.opengl.GL12.GL_BGRA;
 import static org.lwjgl.stb.STBImageResize.*;
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjglx.util.glu.GLU.*;
@@ -175,10 +177,18 @@ public class MipMap extends Util {
         int heightOut, int typeOut, ByteBuffer dataOut) {
 
         final int components = compPerPix(format);
-        final int alphaIdx = formatAlphaIndex(format);
         if (components == -1) return GLU_INVALID_ENUM;
         final int strideIn = widthIn * components;
         final int strideOut = widthOut * components;
+        final int pixelType = switch (format) {
+            case GL_COLOR_INDEX, GL_STENCIL_INDEX, GL_DEPTH_COMPONENT, GL_RED, GL_GREEN, GL_BLUE, GL_ALPHA, GL_LUMINANCE -> STBIR_1CHANNEL;
+            case GL_LUMINANCE_ALPHA -> STBIR_AR;
+            case GL_RGB -> STBIR_RGB;
+            case GL_BGR -> STBIR_BGR;
+            case GL_RGBA -> STBIR_RGBA;
+            case GL_BGRA -> STBIR_BGRA;
+            default -> components;
+        };
 
         if (typein != typeOut) {
             // We don't care about float->int resizing unless proven otherwise
@@ -188,7 +198,7 @@ public class MipMap extends Util {
         // Determine bytes per input type
         switch (typein) {
             case GL_UNSIGNED_BYTE -> {
-                if (!stbir_resize_uint8_srgb(
+                if (stbir_resize_uint8_srgb(
                     dataIn,
                     widthIn,
                     heightIn,
@@ -197,14 +207,12 @@ public class MipMap extends Util {
                     widthOut,
                     heightOut,
                     strideOut,
-                    components,
-                    alphaIdx,
-                    0)) {
+                    pixelType) == null) {
                     throw new RuntimeException("Couldn't resize image with stbir");
                 }
             }
             case GL_FLOAT -> {
-                if (!stbir_resize_float(
+                if (stbir_resize_float_linear(
                     dataIn.asFloatBuffer(),
                     widthIn,
                     heightIn,
@@ -213,7 +221,7 @@ public class MipMap extends Util {
                     widthOut,
                     heightOut,
                     strideOut * 4,
-                    components)) {
+                    pixelType) == null) {
                     throw new RuntimeException("Couldn't resize image with stbir");
                 }
             }

@@ -1,13 +1,23 @@
 
 repositories {
     ivy {
-        name "LiteLoader"
-        artifactPattern "https://dl.liteloader.com/versions/com/mumfrey/[module]/1.7.10/[module]-[revision](-[classifier]).[ext]"
+        name = "LiteLoader"
+        artifactPattern("https://dl.liteloader.com/versions/com/mumfrey/[module]/1.7.10/[module]-[revision](-[classifier]).[ext]")
         metadataSources {
             artifact()
         }
         content {
             includeGroup("com.mumfrey")
+        }
+    }
+    maven {
+        name = "LWJGL snapshots"
+        // original upstream
+        //url = "https://central.sonatype.com/repository/maven-snapshots"
+        // gtnh proxy that won't remove artifacts for releases
+        url = "https://nexus.gtnewhorizons.com/repository/central-sonatype-snapshots/"
+        content {
+            includeGroup("org.lwjgl")
         }
     }
 }
