@@ -3,6 +3,7 @@ import com.gtnewhorizons.retrofuturagradle.shadow.org.apache.commons.lang3.Syste
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
 import com.gtnewhorizons.retrofuturagradle.util.ProviderToStringWrapper
 import com.modrinth.minotaur.ModrinthExtension
+import de.undercouch.gradle.tasks.download.Download
 import org.apache.tools.ant.filters.ReplaceTokens
 import java.nio.charset.StandardCharsets
 import java.time.OffsetDateTime
@@ -362,6 +363,12 @@ for (runTask in listOf(tasks.runClient, tasks.runServer, tasks.runObfClient, tas
 
 val originalLaunchWrapperPath = project.layout.buildDirectory.file("launchwrapper-1.12.jar").get().asFile
 
+val dlOriginalLaunchwrapper = tasks.register<Download>("dlOriginalLaunchwrapper") {
+    src("https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar")
+    dest(originalLaunchWrapperPath)
+    overwrite(false)
+}
+
 val runWithRelauncher = tasks.register<RunMinecraftTask>("runClientWithRelauncher", Distribution.CLIENT, gradle)
 runWithRelauncher.configure {
     setup(project)
@@ -372,6 +379,7 @@ runWithRelauncher.configure {
         tasks.downloadVanillaAssets,
         tasks.packagePatchedMc,
         tasks.reobfJar,
+        dlOriginalLaunchwrapper,
         "jar"
     )
 
@@ -388,14 +396,6 @@ runWithRelauncher.configure {
     classpath(tasks.reobfJar)
     classpath(configurations.runtimeClasspath)
     mainClass = "GradleStart"
-
-    doFirst {
-        download.run {
-            src("https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar")
-            dest(originalLaunchWrapperPath)
-            overwrite(false)
-        }
-    }
 }
 
 tasks.runObfClient {

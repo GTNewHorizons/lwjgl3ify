@@ -9,8 +9,6 @@ minecraft {
 def addGtForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withGregtech", "false").toString())
 def addReikaModsForTesting = Boolean.parseBoolean(project.getProperties().getOrDefault("withReikaMods", "false").toString())
 
-// 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
-
 configurations.configureEach {
     resolutionStrategy.dependencySubstitution {
         substitute module('net.minecraft:launchwrapper') using module(libs.rfb.get().toString()) because("LW replacement")
@@ -21,6 +19,7 @@ dependencies {
     // Resolve newer versions of LaunchWrapper to allow java 9+ compat
     vanilla_minecraft(libs.rfb) { transitive = false }
     forgePatchesEmbedded(libs.rfb) { transitive = false }
+    // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
     vanilla_minecraft(libs.gson)
     forgePatchesEmbedded(libs.gson)
 
@@ -64,8 +63,6 @@ dependencies {
     forgePatchesEmbedded("javax.servlet:javax.servlet-api:4.0.1")
     forgePatchesEmbedded("com.sun.xml.bind:jaxb-impl:3.0.2")
     forgePatchesEmbedded("org.openjdk.nashorn:nashorn-core:15.4")
-
-    shadowImplementation("com.github.weisj:darklaf-core:3.0.2")
 
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.35-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.1:dev')
