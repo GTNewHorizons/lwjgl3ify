@@ -1,6 +1,7 @@
 import com.gtnewhorizons.retrofuturagradle.minecraft.RunMinecraftTask
 import com.gtnewhorizons.retrofuturagradle.shadow.org.apache.commons.lang3.SystemUtils
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
+import com.gtnewhorizons.retrofuturagradle.util.ProviderToStringWrapper
 import com.modrinth.minotaur.ModrinthExtension
 import org.apache.tools.ant.filters.ReplaceTokens
 import java.nio.charset.StandardCharsets
@@ -191,10 +192,16 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     }
 }
 
-val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
+abstract class MmcZip: Zip() {
+    @get:InputFile
+    abstract val lwjgl3Json: RegularFileProperty
+}
+
+val mmcInstanceFilesZip = tasks.register<MmcZip>("mmcInstanceFiles") {
     group = taskGroup
     description = "Packages the MultiMC patches"
-    dependsOn(forgePatchesJar)
+    dependsOn(forgePatchesJar, tasks.makeLwjgl3Json)
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
     archiveClassifier.set("multimc")
     from(project.file("prism-libraries/"))
     from(forgePatchesJar) {
@@ -203,17 +210,22 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
     exclude("META-INF", "META-INF/**")
     val projVersion = project.version
     val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
+    val lwjglVersion = libs.versions.lwjgl.get()
+    val lwjglDownloadsFile = lwjgl3Json.asFile.get().absolutePath
     filesMatching(
         listOf(
             "mmc-pack.json",
             "patches/me.eigenraven.lwjgl3ify.forgepatches.json",
-            "patches/me.eigenraven.lwjgl3ify.launchargs.json"
+            "patches/me.eigenraven.lwjgl3ify.launchargs.json",
+            "patches/org.lwjgl3.json"
         )
     ) {
         expand(
             mapOf(
                 "version" to projVersion,
-                "jvmArgs" to jvmArgs
+                "jvmArgs" to jvmArgs,
+                "lwjglVersion" to lwjglVersion,
+                "lwjglDownloadsFile" to lwjglDownloadsFile
             )
         )
     }
@@ -221,30 +233,39 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
 
 val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFile
 
-interface FsOps {
-    @get:Inject val fs: FileSystemOperations
+abstract class VersionJsonTask : DefaultTask() {
+    @get:Inject
+    abstract val fs: FileSystemOperations
+    @get:InputFile
+    abstract val lwjgl3Json: RegularFileProperty
 }
 
-val versionJsonFile = tasks.register("versionJson") {
+val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     group = taskGroup
     description = "Generates the vanilla launcher version.json file"
+    dependsOn(tasks.makeLwjgl3Json)
     inputs.file("launcher-metadata/version.json")
     inputs.property("version", project.version)
     inputs.property("jvmArgs", extraJavaArgs)
     outputs.file(versionJsonPath)
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
     val projVersion = project.version.toString()
     val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
     val versionJsonPathLocal = versionJsonPath
-    val fsOps = project.objects.newInstance<FsOps>()
+    val lwjglVersion = libs.versions.lwjgl.get()
+    val lwjglDownloadsFile = lwjgl3Json.asFile.get()
     doLast {
         versionJsonPathLocal.parentFile.mkdirs()
-        fsOps.fs.copy {
+        val lwjglDownloads = lwjglDownloadsFile.readText(Charsets.UTF_8)
+        fs.copy {
             from("launcher-metadata/version.json")
             into(versionJsonPathLocal.parentFile)
             filter(
                 ReplaceTokens::class, "tokens" to mapOf(
                     "version" to projVersion,
                     "jvmArgs" to jvmArgs,
+                    "lwjglVersion" to lwjglVersion,
+                    "lwjglDownloads" to lwjglDownloads,
                     "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
                         .format(OffsetDateTime.now(ZoneOffset.UTC))
                 )

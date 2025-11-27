@@ -9,9 +9,8 @@
     "compatibleJavaMajors": [
         17,
         21,
-        23,
-        24,
-        25
+        25,
+        26
     ],
     "formatVersion": 1,
     "libraries": [
@@ -399,7 +398,7 @@
     "releaseTime": "2014-05-14T17:29:23+00:00",
     "requires": [
         {
-            "suggests": "3.3.3",
+            "suggests": "${lwjglVersion}",
             "uid": "org.lwjgl3"
         }
     ],

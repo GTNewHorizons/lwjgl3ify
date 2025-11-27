@@ -12,7 +12,10 @@ repositories {
     }
     maven {
         name = "LWJGL snapshots"
-        url = "https://central.sonatype.com/repository/maven-snapshots"
+        // original upstream
+        //url = "https://central.sonatype.com/repository/maven-snapshots"
+        // gtnh proxy that won't remove artifacts for releases
+        url = "https://nexus.gtnewhorizons.com/repository/central-sonatype-snapshots/"
         content {
             includeGroup("org.lwjgl")
         }
