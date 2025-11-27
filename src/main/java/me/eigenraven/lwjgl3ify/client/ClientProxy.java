@@ -7,6 +7,7 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import org.lwjgl.sdl.SDLVersion;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.opengl.Display;
 
@@ -20,7 +21,7 @@ import me.eigenraven.lwjgl3ify.core.Config;
 public class ClientProxy extends CommonProxy {
 
     static final String javaVersion;
-    static final String lwjglVersion = "LWJGL: " + org.lwjgl.Version.getVersion();
+    static final String lwjglVersion;
 
     static {
         String javaVersionRaw = "Java: " + System.getProperty("java.version");
@@ -28,6 +29,12 @@ public class ClientProxy extends CommonProxy {
             javaVersionRaw = javaVersionRaw.substring(0, 29) + "...";
         }
         javaVersion = javaVersionRaw;
+        final int sdlVer = SDLVersion.SDL_GetVersion();
+        final int sdlMajor = SDLVersion.SDL_VERSIONNUM_MAJOR(sdlVer);
+        final int sdlMinor = SDLVersion.SDL_VERSIONNUM_MINOR(sdlVer);
+        final int sdlMicro = SDLVersion.SDL_VERSIONNUM_MICRO(sdlVer);
+        lwjglVersion = String
+            .format("LWJGL: %s  SDL: %d.%d.%d", org.lwjgl.Version.getVersion(), sdlMajor, sdlMinor, sdlMicro);
     }
 
     @Override
