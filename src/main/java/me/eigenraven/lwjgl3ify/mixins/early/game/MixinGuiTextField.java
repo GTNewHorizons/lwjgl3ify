@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
@@ -36,8 +37,13 @@ public class MixinGuiTextField {
 
     @Redirect(
         method = "textboxKeyTyped",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ChatAllowedCharacters;isAllowedCharacter(C)Z"))
-    private boolean lwjgl3ify$denyStandardTextInput(char character) {
-        return false;
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiTextField;writeText(Ljava/lang/String;)V"),
+        slice = @Slice(
+            from = @At(value = "INVOKE", target = "Lnet/minecraft/util/ChatAllowedCharacters;isAllowedCharacter(C)Z")))
+    private void lwjgl3ify$denyStandardTextInput(GuiTextField instance, String s) {
+        // Inject queued IME text input
+        final GuiTextField self = (GuiTextField) (Object) this;
+        self.writeText(TextFieldHandler.textBuffer.toString());
+        TextFieldHandler.textBuffer.delete(0, TextFieldHandler.textBuffer.length());
     }
 }

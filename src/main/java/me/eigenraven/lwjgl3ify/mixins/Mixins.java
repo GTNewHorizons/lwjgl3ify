@@ -17,12 +17,6 @@ public enum Mixins implements IMixins {
                 "fml.JarDiscoverer",
                 "fml.ObjectHolderRef",
                 "fml.ObjectHolderRegistry")),
-    FIX_UNICODE_INPUT(
-        new MixinBuilder("Fix the input method to support all Unicode")
-            .addClientMixins("game.MixinGuiScreenKeyTypeInput")),
-    FIX_DEADKEY_KEYBINDING(
-        new MixinBuilder("Improved KeyBinding handling to handle dead keys")
-            .addClientMixins("game.MixinMinecraftKeyBinding")),
     STB_TEXTURE_LOADING(
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")

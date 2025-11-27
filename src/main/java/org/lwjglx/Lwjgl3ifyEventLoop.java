@@ -200,9 +200,14 @@ public class Lwjgl3ifyEventLoop {
     private static void handleTextEvent() {
         final long ns = textEvent.timestamp();
         final String text = textEvent.textString();
+        if (text == null) {
+            return;
+        }
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
             Lwjgl3ify.LOG.info("[DEBUG-KEY] ns:{} text:<{}>", ns, text);
         }
         InputEvents.injectTextEvent(new InputEvents.TextEvent(text));
+        text.chars()
+            .forEachOrdered(c -> Keyboard.addCharEvent(Keyboard.KEY_NONE, c));
     }
 }

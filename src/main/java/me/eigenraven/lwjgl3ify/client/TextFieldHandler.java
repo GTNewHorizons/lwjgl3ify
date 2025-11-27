@@ -24,6 +24,7 @@ public final class TextFieldHandler {
     private static int textInputDepth = 0;
     private static final WeakReference<GuiTextField> NULL_TEXT_FIELD = new WeakReference<>(null);
     private static WeakReference<GuiTextField> focusedTextInput = NULL_TEXT_FIELD;
+    public static final StringBuilder textBuffer = new StringBuilder(8);
 
     public static void beginTextInput() {
         if (textInputDepth == Integer.MAX_VALUE) {
@@ -76,7 +77,7 @@ public final class TextFieldHandler {
         }
         if (event.text.chars()
             .allMatch(chr -> ChatAllowedCharacters.isAllowedCharacter((char) chr))) {
-            textField.writeText(event.text);
+            textBuffer.append(event.text);
         }
     }
 
