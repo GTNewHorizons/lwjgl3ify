@@ -76,6 +76,9 @@ public class Mouse {
         };
     }
 
+    // Accumulate small floating-point movements
+    static float dxAccum = 0.0f, dyAccum = 0.0f;
+
     public static void addMoveEvent(SDL_MouseMotionEvent event) {
         if (ignoreNextMove > 0) {
             ignoreNextMove--;
@@ -85,8 +88,13 @@ public class Mouse {
         final float mouseX = event.x() * scale;
         final float mouseY = event.y() * scale;
         // convert from screen-space coordinates to framebuffer coordinates
-        dx += (int) (event.xrel() * scale);
-        dy -= (int) (event.yrel() * scale);
+        dxAccum += event.xrel() * scale;
+        dyAccum -= event.yrel() * scale;
+        final int wholeDx = Math.round(dxAccum), wholeDy = Math.round(dyAccum);
+        dxAccum -= wholeDx;
+        dyAccum -= wholeDy;
+        dx += wholeDx;
+        dy += wholeDy;
         latestX = (int) mouseX;
         latestY = Display.getHeight() - (int) mouseY;
         if (ignoreNextDelta > 0) {
@@ -97,6 +105,8 @@ public class Mouse {
             lastEventY = latestY;
             dx = 0;
             dy = 0;
+            dxAccum = 0;
+            dyAccum = 0;
         }
 
         lastxEvents[queue.getNextPos()] = lastEventX;
@@ -213,6 +223,8 @@ public class Mouse {
                 }
                 dx = 0;
                 dy = 0;
+                dxAccum = 0;
+                dyAccum = 0;
             }
         });
         grabbed = grab;
