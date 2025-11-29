@@ -32,6 +32,10 @@ public enum Mixins implements IMixins {
                 "game.openurl.MixinGuiScreenDemoResourcePacks",
                 "game.openurl.MixinGuiStreamUnavailable")),
 
+    // Mod compat patches
+    XAEROS_MINIMAP_SCROLL(new MixinBuilder().addClientMixins("XaerosMinimapScrolling").addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
+    XAEROS_WORLDMAP_SCROLL(new MixinBuilder().addClientMixins("XaerosWorldmapScrolling").addRequiredMod(TargetedMod.XAEROS_WORLDMAP)),
+
     // apply the texture stitching mixin if
     // - you don't have fastcraft
     // - or you have fastcraft and the force enabled setting

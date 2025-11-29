@@ -25,7 +25,11 @@ public enum TargetedMod implements ITargetMod {
             return false;
         })),
     FASTCRAFT_ANY(new TargetModBuilder().setCoreModClass("fastcraft.Tweaker")),
-    OPTIFINE(new TargetModBuilder().setCoreModClass("optifine.OptiFineForgeTweaker"));
+    OPTIFINE(new TargetModBuilder().setCoreModClass("optifine.OptiFineForgeTweaker")),
+    XAEROS_MINIMAP(new TargetModBuilder().setCoreModClass("xaero.common.core.XaeroMinimapPlugin")),
+    XAEROS_WORLDMAP(new TargetModBuilder().setCoreModClass("xaero.map.core.XaeroWorldMapPlugin")),
+    //
+    ;
 
     private final TargetModBuilder builder;
 
