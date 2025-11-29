@@ -383,7 +383,7 @@ public class Display {
         Sys.checkSdl(SDL_GL_SwapWindow(sdlWindow));
     }
 
-    public static synchronized void destroy() {
+    public static void destroy() {
         try {
             GL.setCapabilities(null);
         } catch (Throwable t) {/* no-op */}
