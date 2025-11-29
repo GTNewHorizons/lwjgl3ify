@@ -122,7 +122,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
                 long ctx = SPNG.spng_ctx_new(0);
                 final long imageBuffer;
                 try {
-                    spngCheck(SPNG.spng_set_image_limits(ctx, 32768, 32768));
+                    spngCheck(SPNG.spng_set_image_limits(ctx, 2_097_152, 2_097_152));
                     // 1 GB PNG file ought to be enough for anyone
                     spngCheck(SPNG.spng_set_chunk_limits(ctx, 1 << 30, 1 << 30));
                     spngCheck(SPNG.spng_set_png_buffer(ctx, imgBuf));

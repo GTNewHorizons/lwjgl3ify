@@ -86,9 +86,14 @@ dependencies {
     }
     if (addReikaModsForTesting) {
         // DragonAPI
-        reobfJarConfiguration('curse.maven:dragon-api-235591:3574508')
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:dragon-api-235591:4722480'))
         // Chromaticraft
-        reobfJarConfiguration('curse.maven:chromaticraft-235590:3574503')
+        // runtimeOnlyNonPublishable(rfg.deobf('curse.maven:chromaticraft-235590:4721192'))
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:mystcraft-224599:2417042'))
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:bloodmagic-224791:2264826'))
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:am2-67313:2280862'))
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:animationapi-77191:2221721'))
+        runtimeOnlyNonPublishable(rfg.deobf('curse.maven:pneumaticraft-281849:2221721'))
     }
     // Just enough calculation
     // reobfJarConfiguration('curse.maven:jec-242223:4192990')
