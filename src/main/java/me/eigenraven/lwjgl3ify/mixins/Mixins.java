@@ -31,6 +31,12 @@ public enum Mixins implements IMixins {
                 "game.openurl.MixinGuiMainMenu",
                 "game.openurl.MixinGuiScreenDemoResourcePacks",
                 "game.openurl.MixinGuiStreamUnavailable")),
+    FLOAT_MOUSE_MOVEMENT(
+        new MixinBuilder()
+            .addClientMixins(
+                "game.MixinMouseHelper",
+                "game.MixinEntityRenderer")
+    ),
 
     // Mod compat patches
     XAEROS_MINIMAP_SCROLL(Phase.LATE, new MixinBuilder()

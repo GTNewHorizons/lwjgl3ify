@@ -13,6 +13,7 @@ import org.lwjgl.system.MemoryStack;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
 
+import me.eigenraven.lwjgl3ify.api.FloatMouseHelper;
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 import me.eigenraven.lwjgl3ify.core.Config;
 
@@ -36,6 +37,7 @@ public class Mouse {
     private static int y = 0;
 
     private static int dx = 0, dy = 0, dwheel = 0;
+    private static float dxFloat = 0, dyFloat = 0;
 
     private static EventQueue queue = new EventQueue(128);
 
@@ -88,6 +90,8 @@ public class Mouse {
         final float mouseX = event.x() * scale;
         final float mouseY = event.y() * scale;
         // convert from screen-space coordinates to framebuffer coordinates
+        dxFloat += event.xrel() * scale;
+        dyFloat -= event.yrel() * scale;
         dxAccum += event.xrel() * scale;
         dyAccum -= event.yrel() * scale;
         final int wholeDx = Math.round(dxAccum), wholeDy = Math.round(dyAccum);
@@ -107,6 +111,8 @@ public class Mouse {
             dy = 0;
             dxAccum = 0;
             dyAccum = 0;
+            dxFloat = 0;
+            dyFloat = 0;
         }
 
         lastxEvents[queue.getNextPos()] = lastEventX;
@@ -225,6 +231,8 @@ public class Mouse {
                 dy = 0;
                 dxAccum = 0;
                 dyAccum = 0;
+                dxFloat = 0;
+                dyFloat = 0;
             }
         });
         grabbed = grab;
@@ -285,13 +293,40 @@ public class Mouse {
     public static int getDX() {
         int value = dx;
         dx = 0;
+        dxFloat = 0;
         return value;
     }
 
     public static int getDY() {
         int value = dy;
         dy = 0;
+        dyFloat = 0;
         return value;
+    }
+
+    public static float lwjgl3ify$getDXFloat() {
+        float value = dxFloat;
+        dx = 0;
+        dxFloat = 0;
+        return value;
+    }
+
+    public static float lwjgl3ify$getDYFloat() {
+        float value = dyFloat;
+        dy = 0;
+        dyFloat = 0;
+        return value;
+    }
+
+    public static void lwjgl3ify$updateMouseHelper(FloatMouseHelper mouseHelper) {
+        mouseHelper.lwjgl3ify$setIntDX(dx);
+        mouseHelper.lwjgl3ify$setIntDY(dy);
+        mouseHelper.lwjgl3ify$setFloatDX(dxFloat);
+        mouseHelper.lwjgl3ify$setFloatDY(dyFloat);
+        dx = 0;
+        dxFloat = 0;
+        dy = 0;
+        dyFloat = 0;
     }
 
     public static int getDWheel() {
