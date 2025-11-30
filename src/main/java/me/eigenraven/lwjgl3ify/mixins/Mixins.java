@@ -33,8 +33,12 @@ public enum Mixins implements IMixins {
                 "game.openurl.MixinGuiStreamUnavailable")),
 
     // Mod compat patches
-    XAEROS_MINIMAP_SCROLL(new MixinBuilder().addClientMixins("XaerosMinimapScrolling").addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
-    XAEROS_WORLDMAP_SCROLL(new MixinBuilder().addClientMixins("XaerosWorldmapScrolling").addRequiredMod(TargetedMod.XAEROS_WORLDMAP)),
+    XAEROS_MINIMAP_SCROLL(Phase.LATE, new MixinBuilder()
+        .addClientMixins("xaeros.XaerosMinimapScrolling")
+        .addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
+    XAEROS_WORLDMAP_SCROLL(Phase.LATE, new MixinBuilder()
+        .addClientMixins("xaeros.XaerosWorldmapScrolling")
+        .addRequiredMod(TargetedMod.XAEROS_WORLDMAP)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
@@ -61,7 +65,11 @@ public enum Mixins implements IMixins {
     private final MixinBuilder builder;
 
     Mixins(MixinBuilder builder) {
-        this.builder = builder.setPhase(Phase.EARLY);
+        this(Phase.EARLY, builder);
+    }
+
+    Mixins(Phase phase, MixinBuilder builder) {
+        this.builder = builder.setPhase(phase);
     }
 
     @Nonnull
