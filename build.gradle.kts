@@ -411,8 +411,10 @@ tasks.runObfServer {
 // Regular runClient/runServer tasks run in Java 17 in this project.
 tasks.runClient17 { enabled = false }
 tasks.runClient21 { enabled = false }
+tasks.runClient25 { enabled = false }
 tasks.runServer17 { enabled = false }
 tasks.runServer21 { enabled = false }
+tasks.runServer25 { enabled = false }
 
 tasks.jar {
     manifest.attributes.put("TweakClass", "me.eigenraven.lwjgl3ify.relauncher.Lwjgl3ifyRelauncherTweaker")
