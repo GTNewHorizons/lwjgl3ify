@@ -31,6 +31,7 @@ public class EarlyConfig {
         "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
         "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
         "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
+        "net.minecraftforge.common.BiomeDictionary$Type",
         // From GTNH crashes
         "vswe.stevesfactory.Localization", "vswe.stevesfactory.blocks.ClusterMethodRegistration",
         "vswe.stevesfactory.blocks.ConnectionBlockType", "vswe.stevesfactory.components.ComponentType",
