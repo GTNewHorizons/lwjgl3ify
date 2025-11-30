@@ -314,6 +314,9 @@ public class Display {
         GL.create(SDLVideo::SDL_GL_GetProcAddress);
         drawable = new DrawableGL();
         drawable.makeCurrent();
+        if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+            Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-created");
+        }
     }
 
     private static final ByteBuffer HINT_MOUSE_RELATIVE_SYSTEM_SCALE = memASCII(SDL_HINT_MOUSE_RELATIVE_SYSTEM_SCALE);
@@ -366,12 +369,6 @@ public class Display {
         displayDirty = false;
 
         if (processMessages) processMessages();
-    }
-
-    public static void processMessages() {
-        Lwjgl3ifyEventLoop.pumpEvents();
-        Keyboard.poll();
-        Mouse.poll();
 
         if (latestResized) {
             latestResized = false;
@@ -381,11 +378,20 @@ public class Display {
         }
     }
 
+    public static void processMessages() {
+        Lwjgl3ifyEventLoop.pumpEvents();
+        Keyboard.poll();
+        Mouse.poll();
+    }
+
     public static void swapBuffers() {
         Sys.checkSdl(SDL_GL_SwapWindow(sdlWindow));
     }
 
     public static void destroy() {
+        if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+            Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-destroy");
+        }
         try {
             GL.setCapabilities(null);
         } catch (Throwable t) {/* no-op */}
@@ -427,6 +433,9 @@ public class Display {
     public static synchronized void setDisplayMode(DisplayMode dm) {
         mode = dm;
         if (isCreated()) {
+            if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-set desktop mode: {}", dm);
+            }
             MainThreadExec.runOnMainThread(() -> { SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight()); });
         }
     }
@@ -460,12 +469,16 @@ public class Display {
         return MainThreadExec.runOnMainThread(() -> {
             int monitor = Sys.checkSdl(SDL_GetPrimaryDisplay());
             final SDL_DisplayMode mode = Sys.checkSdl(SDL_GetDesktopDisplayMode(monitor));
-            return new DisplayMode(
+            final DisplayMode lwjglMode = new DisplayMode(
                 mode.w(),
                 mode.h(),
                 Sys.checkSdl(SDL_GetPixelFormatDetails(mode.format()))
                     .bits_per_pixel(),
                 Math.round(mode.refresh_rate()));
+            if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-get desktop mode: {}", lwjglMode);
+            }
+            return lwjglMode;
         });
     }
 
@@ -616,6 +629,7 @@ public class Display {
                 if (!fullscreen) {
                     SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
                 }
+                SDL_SyncWindow(sdlWindow);
             });
         }
     }
@@ -713,6 +727,9 @@ public class Display {
         return switch (Lwjgl3ifyEventLoop.event.type()) {
             case SDL_EVENT_QUIT -> {
                 displayCloseRequested = true;
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-close-request");
+                }
                 yield true;
             }
             case SDL_EVENT_WINDOW_EXPOSED -> {
@@ -727,6 +744,9 @@ public class Display {
                     yield true;
                 }
                 displayFocused = true;
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-focus");
+                }
                 yield true;
             }
             case SDL_EVENT_WINDOW_FOCUS_LOST -> {
@@ -734,6 +754,9 @@ public class Display {
                     yield true;
                 }
                 displayFocused = false;
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-unfocus");
+                }
                 yield true;
             }
             case SDL_EVENT_WINDOW_MINIMIZED -> {
@@ -741,6 +764,9 @@ public class Display {
                     yield true;
                 }
                 displayVisible = false;
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-minimize");
+                }
                 yield true;
             }
             case SDL_EVENT_WINDOW_RESTORED -> {
@@ -748,6 +774,9 @@ public class Display {
                     yield true;
                 }
                 displayVisible = true;
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+                    Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-restore");
+                }
                 yield true;
             }
             case SDL_EVENT_WINDOW_RESIZED -> {
@@ -756,9 +785,9 @@ public class Display {
                 }
                 displayWidth = Lwjgl3ifyEventLoop.windowEvent.data1();
                 displayHeight = Lwjgl3ifyEventLoop.windowEvent.data2();
-                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                        "[DEBUG-MOUSE] window-resize window:{} w:{} h:{}",
+                        "[DEBUG-WINDOW] window-resize window:{} w:{} h:{}",
                         Lwjgl3ifyEventLoop.windowEvent.windowID(),
                         displayWidth,
                         displayHeight);
@@ -771,9 +800,9 @@ public class Display {
                 }
                 displayFramebufferWidth = Lwjgl3ifyEventLoop.windowEvent.data1();
                 displayFramebufferHeight = Lwjgl3ifyEventLoop.windowEvent.data2();
-                if (Config.DEBUG_PRINT_MOUSE_EVENTS) {
+                if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
                     Lwjgl3ify.LOG.info(
-                        "[DEBUG-MOUSE] framebuffer-resize window:{} w:{} h:{}",
+                        "[DEBUG-WINDOW] framebuffer-pixel scale change window:{} w:{} h:{}",
                         Lwjgl3ifyEventLoop.windowEvent.windowID(),
                         displayFramebufferWidth,
                         displayFramebufferHeight);

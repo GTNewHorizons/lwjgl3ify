@@ -37,6 +37,10 @@ public enum Mixins implements IMixins {
                 "game.MixinMouseHelper",
                 "game.MixinEntityRenderer")
     ),
+    MINECRAFT_SCALE_FULLSCREEN_CORRECTLY(
+        new MixinBuilder()
+            .addClientMixins("game.MixinMinecraft_Display")
+    ),
 
     // Mod compat patches
     XAEROS_MINIMAP_SCROLL(Phase.LATE, new MixinBuilder()

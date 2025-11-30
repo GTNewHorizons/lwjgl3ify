@@ -19,6 +19,7 @@ public class Config {
 
     public static boolean DEBUG_PRINT_KEY_EVENTS = false;
     public static boolean DEBUG_PRINT_MOUSE_EVENTS = false;
+    public static boolean DEBUG_PRINT_WINDOW_EVENTS = false;
     public static boolean DEBUG_REGISTER_OPENGL_LOGGER = false;
 
     public static boolean SHOW_JAVA_VERSION = true;
@@ -105,6 +106,11 @@ public class Config {
             CATEGORY_DEBUG,
             DEBUG_PRINT_MOUSE_EVENTS,
             "Print mouse-related events to the log");
+        DEBUG_PRINT_WINDOW_EVENTS = config.getBoolean(
+            "printWindowEvents",
+            CATEGORY_DEBUG,
+            DEBUG_PRINT_WINDOW_EVENTS,
+            "Print window-related events to the log");
         DEBUG_REGISTER_OPENGL_LOGGER = config.getBoolean(
             "registerOpenGLLogger",
             CATEGORY_DEBUG,
