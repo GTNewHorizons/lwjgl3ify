@@ -24,6 +24,8 @@ import java.lang.reflect.Modifier;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -549,8 +551,11 @@ public class Display {
 
         try (MemoryStack stack = stackPush()) {
             SDL_Surface iconSet = null;
-            for (int icon = 0; icon < icons.length; icon++) {
-                final ByteBuffer iconRgba = icons[icon];
+            ByteBuffer[] sortedIcons = Arrays.copyOf(icons, icons.length);
+            // Make sure to use the largest icon first
+            Arrays.sort(sortedIcons, Comparator.comparingInt(bb -> -bb.remaining()));
+            for (int icon = 0; icon < sortedIcons.length; icon++) {
+                final ByteBuffer iconRgba = sortedIcons[icon];
                 final int dimension = (int) Math.sqrt(iconRgba.remaining() / 4D);
                 if (dimension * dimension * 4 != iconRgba.remaining()) {
                     throw new IllegalStateException(
