@@ -44,6 +44,7 @@ public class Config {
     public static boolean INPUT_CTRL_ALT_TEXT = false;
     public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
     public static boolean INPUT_RAW_MOUSE = false;
+    public static boolean FORCE_DISCRETE_SCROLLING = false;
 
     public static String APP_ID = "com.gtnewhorizons.Lwjgl3ifyMinecraft";
 
@@ -180,6 +181,11 @@ public class Config {
             "Allows AltGr use in Ctrl+key special key combinations (disables text character input handling when AltGr is pressed)");
         INPUT_RAW_MOUSE = config
             .getBoolean("rawMouseInput", CATEGORY_INPUT, INPUT_RAW_MOUSE, "Use raw (unaccelerated) mouse input");
+        FORCE_DISCRETE_SCROLLING = config.getBoolean(
+            "forceDiscreteScrolling",
+            CATEGORY_INPUT,
+            FORCE_DISCRETE_SCROLLING,
+            "Forces all scrolling events to receive a discrete mouse wheel value, this can fix problems when scrolling doesn't change slot");
 
         OPENGL_DEBUG_CONTEXT = config.getBoolean(
             "debugContext",
