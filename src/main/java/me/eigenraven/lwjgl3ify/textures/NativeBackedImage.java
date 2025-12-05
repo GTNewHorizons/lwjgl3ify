@@ -5,14 +5,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 
 import org.apache.commons.io.IOUtils;
-import org.lwjgl.stb.STBImage;
+import org.lwjgl.PointerBuffer;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.util.spng.SPNG;
+import org.lwjgl.util.spng.spng_ihdr;
 
 public class NativeBackedImage extends BufferedImage implements AutoCloseable {
 
@@ -83,7 +84,7 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
     @Override
     public void close() throws Exception {
         if (this.pointer != 0) {
-            STBImage.nstbi_image_free(this.pointer);
+            MemoryUtil.nmemFree(this.pointer);
 
             this.pointer = 0;
         }
@@ -98,6 +99,15 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
 
     // Parsing
 
+    static final int MAX_IMAGE_DIM = 32768;
+
+    private static final void spngCheck(int ec) throws IOException {
+        if (ec == 0) {
+            return;
+        }
+        throw new IOException("Error while decoding PNG data: " + SPNG.spng_strerror(ec));
+    }
+
     public static NativeBackedImage make(InputStream stream) throws IOException {
         ByteBuffer imgBuf = null;
 
@@ -106,17 +116,44 @@ public class NativeBackedImage extends BufferedImage implements AutoCloseable {
             imgBuf.rewind();
 
             try (MemoryStack memoryStack = MemoryStack.stackPush()) {
-                IntBuffer width = memoryStack.mallocInt(1);
-                IntBuffer height = memoryStack.mallocInt(1);
-                IntBuffer channels = memoryStack.mallocInt(1);
+                PointerBuffer outSize = memoryStack.mallocPointer(1);
+                spng_ihdr ihdr = spng_ihdr.calloc(memoryStack);
 
-                // 4 channels: RGBA
-                ByteBuffer buf = STBImage.stbi_load_from_memory(imgBuf, width, height, channels, 4);
-                if (buf == null) {
-                    throw new IOException("Could not load image: " + STBImage.stbi_failure_reason());
+                long ctx = SPNG.spng_ctx_new(0);
+                final long imageBuffer;
+                try {
+                    spngCheck(SPNG.spng_set_image_limits(ctx, 2_097_152, 2_097_152));
+                    // 1 GB PNG file ought to be enough for anyone
+                    spngCheck(SPNG.spng_set_chunk_limits(ctx, 1 << 30, 1 << 30));
+                    spngCheck(SPNG.spng_set_png_buffer(ctx, imgBuf));
+                    spngCheck(SPNG.spng_decoded_image_size(ctx, SPNG.SPNG_FMT_RGBA8, outSize));
+                    if (outSize.get(0) > MAX_IMAGE_DIM * MAX_IMAGE_DIM) {
+                        throw new IOException(
+                            String.format(
+                                "Could not load image: output buffer size %d larger than max supported %d x %d",
+                                outSize.get(0),
+                                MAX_IMAGE_DIM,
+                                MAX_IMAGE_DIM));
+                    }
+                    final int outSizeI = Math.toIntExact(outSize.get(0));
+                    spngCheck(SPNG.spng_get_ihdr(ctx, ihdr));
+
+                    imageBuffer = MemoryUtil.nmemAlloc(outSizeI);
+                    final int decodeEc = SPNG.nspng_decode_image(
+                        ctx,
+                        imageBuffer,
+                        outSizeI,
+                        SPNG.SPNG_FMT_RGBA8,
+                        SPNG.SPNG_DECODE_TRNS | SPNG.SPNG_DECODE_GAMMA);
+                    if (decodeEc != 0) {
+                        MemoryUtil.nmemFree(imageBuffer);
+                        spngCheck(decodeEc);
+                    }
+                } finally {
+                    SPNG.spng_ctx_free(ctx);
                 }
 
-                return new NativeBackedImage(width.get(0), height.get(0), MemoryUtil.memAddress(buf));
+                return new NativeBackedImage(ihdr.width(), ihdr.height(), imageBuffer);
             }
 
         } finally {

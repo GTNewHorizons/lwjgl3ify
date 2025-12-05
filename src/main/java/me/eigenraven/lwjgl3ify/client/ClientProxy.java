@@ -1,10 +1,12 @@
 package me.eigenraven.lwjgl3ify.client;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import org.lwjgl.sdl.SDLVersion;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.opengl.Display;
 
@@ -18,7 +20,7 @@ import me.eigenraven.lwjgl3ify.core.Config;
 public class ClientProxy extends CommonProxy {
 
     static final String javaVersion;
-    static final String lwjglVersion = "LWJGL: " + org.lwjgl.Version.getVersion();
+    static final String lwjglVersion;
 
     static {
         String javaVersionRaw = "Java: " + System.getProperty("java.version");
@@ -26,6 +28,12 @@ public class ClientProxy extends CommonProxy {
             javaVersionRaw = javaVersionRaw.substring(0, 29) + "...";
         }
         javaVersion = javaVersionRaw;
+        final int sdlVer = SDLVersion.SDL_GetVersion();
+        final int sdlMajor = SDLVersion.SDL_VERSIONNUM_MAJOR(sdlVer);
+        final int sdlMinor = SDLVersion.SDL_VERSIONNUM_MINOR(sdlVer);
+        final int sdlMicro = SDLVersion.SDL_VERSIONNUM_MICRO(sdlVer);
+        lwjglVersion = String
+            .format("LWJGL: %s  SDL: %d.%d.%d", org.lwjgl.Version.getVersion(), sdlMajor, sdlMinor, sdlMicro);
     }
 
     @Override
@@ -45,20 +53,11 @@ public class ClientProxy extends CommonProxy {
     private static final class McKeybindHandler implements InputEvents.KeyboardListener {
 
         @Override
-        public void onKeyEvent(InputEvents.KeyEvent event) {
-            final Minecraft mc = Minecraft.getMinecraft();
-            if (mc == null) {
-                return;
-            }
-            if (mc.currentScreen != null) {
-                return;
-            }
-            if (event.lwjgl2KeyCode > Keyboard.KEY_NONE) {
-                KeyBinding.setKeyBindState(event.lwjgl2KeyCode, event.action != InputEvents.KeyAction.RELEASED);
-                if (event.action != InputEvents.KeyAction.RELEASED) {
-                    KeyBinding.onTick(event.lwjgl2KeyCode);
-                }
-            }
+        public void onKeyEvent(InputEvents.KeyEvent event) {}
+
+        @Override
+        public void onTextEvent(InputEvents.TextEvent event) {
+            TextFieldHandler.onTextInput(event);
         }
     }
 
@@ -67,7 +66,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerF3Handler() {
+    public void registerEventHandler() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -94,5 +93,15 @@ public class ClientProxy extends CommonProxy {
         Config.config.save();
         Config.reloadConfigObject();
         Display.lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    public void onGuiChange(final GuiOpenEvent event) {
+        final GuiScreen oldScreen = Minecraft.getMinecraft().currentScreen;
+        final GuiScreen newScreen = event.gui;
+        if (oldScreen != newScreen) {
+            TextFieldHandler.resetTextInput();
+        }
     }
 }

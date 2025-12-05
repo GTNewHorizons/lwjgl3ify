@@ -1,6 +1,9 @@
 import com.gtnewhorizons.retrofuturagradle.minecraft.RunMinecraftTask
+import com.gtnewhorizons.retrofuturagradle.shadow.org.apache.commons.lang3.SystemUtils
 import com.gtnewhorizons.retrofuturagradle.util.Distribution
+import com.gtnewhorizons.retrofuturagradle.util.ProviderToStringWrapper
 import com.modrinth.minotaur.ModrinthExtension
+import de.undercouch.gradle.tasks.download.Download
 import org.apache.tools.ant.filters.ReplaceTokens
 import java.nio.charset.StandardCharsets
 import java.time.OffsetDateTime
@@ -10,6 +13,7 @@ import kotlin.streams.toList
 
 plugins {
     id("com.gtnewhorizons.gtnhconvention")
+    id("lwjgl3ify-helper")
 }
 
 val taskGroup = "lwjgl3ify"
@@ -50,6 +54,7 @@ val addOpens = listOf(
     "java.desktop/com.sun.imageio.plugins.png=ALL-UNNAMED",
     "java.desktop/sun.awt.image=ALL-UNNAMED",
     "java.desktop/sun.awt=ALL-UNNAMED",
+    "java.desktop/sun.lwawt.macosx=ALL-UNNAMED",
     "java.sql.rowset/javax.sql.rowset.serial=ALL-UNNAMED",
     "jdk.dynalink/jdk.dynalink.beans=ALL-UNNAMED",
     "jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED,java.naming",
@@ -58,6 +63,8 @@ val addOpens = listOf(
 val extraJavaArgs = mutableListOf(
     "-Dfile.encoding=UTF-8",
     "-Djava.system.class.loader=com.gtnewhorizons.retrofuturabootstrap.RfbSystemClassLoader",
+    "--enable-native-access",
+    "ALL-UNNAMED"
 )
 for (openSpec in addOpens) {
     extraJavaArgs += listOf("--add-opens", openSpec)
@@ -67,8 +74,9 @@ tasks.register("updateJava9ArgsTxt") {
     group = taskGroup
     description = "Updates java9args.txt with the current argument list"
     outputs.file("java9args.txt")
+    val writtenText = extraJavaArgs.joinToString("\n") + "\n"
     doLast {
-        file("java9args.txt").writeText(extraJavaArgs.joinToString("\n") + "\n", Charsets.UTF_8)
+        File("java9args.txt").writeText(writtenText, Charsets.UTF_8)
     }
 }
 
@@ -122,7 +130,7 @@ tasks.named<JavaCompile>(relauncherStubSet.compileJavaTaskName).configure {
 
 tasks.createMcLauncherFiles {
     // Override main class
-    replacementTokens.put("@@BOUNCERCLIENT@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
+    replacementTokens.put("@@BOUNCERCLIENT@@", "com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread")
     replacementTokens.put("@@BOUNCERSERVER@@", "com.gtnewhorizons.retrofuturabootstrap.Main")
 }
 
@@ -187,27 +195,40 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
     }
 }
 
-val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
+abstract class MmcZip: Zip() {
+    @get:InputFile
+    abstract val lwjgl3Json: RegularFileProperty
+}
+
+val mmcInstanceFilesZip = tasks.register<MmcZip>("mmcInstanceFiles") {
     group = taskGroup
     description = "Packages the MultiMC patches"
-    dependsOn(forgePatchesJar)
+    dependsOn(forgePatchesJar, tasks.makeLwjgl3Json)
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
     archiveClassifier.set("multimc")
     from(project.file("prism-libraries/"))
     from(forgePatchesJar) {
         into("libraries/")
     }
     exclude("META-INF", "META-INF/**")
+    val projVersion = project.version
+    val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
+    val lwjglVersion = libs.versions.lwjgl.get()
+    val lwjglDownloadsFile = lwjgl3Json.asFile.get().absolutePath
     filesMatching(
         listOf(
             "mmc-pack.json",
             "patches/me.eigenraven.lwjgl3ify.forgepatches.json",
-            "patches/me.eigenraven.lwjgl3ify.launchargs.json"
+            "patches/me.eigenraven.lwjgl3ify.launchargs.json",
+            "patches/org.lwjgl3.json"
         )
     ) {
         expand(
             mapOf(
-                "version" to project.version,
-                "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", ")
+                "version" to projVersion,
+                "jvmArgs" to jvmArgs,
+                "lwjglVersion" to lwjglVersion,
+                "lwjglDownloadsFile" to lwjglDownloadsFile
             )
         )
     }
@@ -215,22 +236,39 @@ val mmcInstanceFilesZip = tasks.register<Zip>("mmcInstanceFiles") {
 
 val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFile
 
-val versionJsonFile = tasks.register("versionJson") {
+abstract class VersionJsonTask : DefaultTask() {
+    @get:Inject
+    abstract val fs: FileSystemOperations
+    @get:InputFile
+    abstract val lwjgl3Json: RegularFileProperty
+}
+
+val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     group = taskGroup
     description = "Generates the vanilla launcher version.json file"
+    dependsOn(tasks.makeLwjgl3Json)
     inputs.file("launcher-metadata/version.json")
     inputs.property("version", project.version)
     inputs.property("jvmArgs", extraJavaArgs)
     outputs.file(versionJsonPath)
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
+    val projVersion = project.version.toString()
+    val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
+    val versionJsonPathLocal = versionJsonPath
+    val lwjglVersion = libs.versions.lwjgl.get()
+    val lwjglDownloadsFile = lwjgl3Json.asFile.get()
     doLast {
-        versionJsonPath.parentFile.mkdirs()
-        copy {
+        versionJsonPathLocal.parentFile.mkdirs()
+        val lwjglDownloads = lwjglDownloadsFile.readText(Charsets.UTF_8)
+        fs.copy {
             from("launcher-metadata/version.json")
-            into(versionJsonPath.parentFile)
+            into(versionJsonPathLocal.parentFile)
             filter(
                 ReplaceTokens::class, "tokens" to mapOf(
-                    "version" to project.version,
-                    "jvmArgs" to extraJavaArgs.map { '"' + it + '"' }.joinToString(", "),
+                    "version" to projVersion,
+                    "jvmArgs" to jvmArgs,
+                    "lwjglVersion" to lwjglVersion,
+                    "lwjglDownloads" to lwjglDownloads,
                     "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
                         .format(OffsetDateTime.now(ZoneOffset.UTC))
                 )
@@ -275,8 +313,9 @@ val runComparisonTool = tasks.register<JavaExec>("runComparisonTool") {
 
 tasks.processResources {
     inputs.property("version", project.version.toString())
+    val projVersion = project.version.toString()
     filesMatching("META-INF/rfb-plugin/*") {
-        expand("version" to project.version.toString())
+        expand("version" to projVersion)
     }
 }
 
@@ -311,23 +350,26 @@ for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
     }
 }
 
-for (runTask in listOf(tasks.runClient, tasks.runServer)) {
+for (runTask in listOf(tasks.runClient, tasks.runServer, tasks.runObfClient, tasks.runObfServer)) {
     runTask.configure {
         classpath = files(forgePatchesJar) + classpath
-        extraJvmArgs = extraJavaArgs
-        javaLauncher.set(newJavaLauncher)
-    }
-}
-
-for (runTask in listOf(tasks.runObfClient, tasks.runObfServer)) {
-    runTask.configure {
-        classpath = files(forgePatchesJar) + classpath
-        extraJvmArgs = extraJavaArgs
+        val jArgs = mutableListOf<String>()
+        jArgs.addAll(extraJavaArgs)
+        if (this.side == Distribution.CLIENT && SystemUtils.IS_OS_MAC) {
+            jArgs += "-XstartOnFirstThread"
+        }
+        extraJvmArgs = jArgs
         javaLauncher.set(newJavaLauncher)
     }
 }
 
 val originalLaunchWrapperPath = project.layout.buildDirectory.file("launchwrapper-1.12.jar").get().asFile
+
+val dlOriginalLaunchwrapper = tasks.register<Download>("dlOriginalLaunchwrapper") {
+    src("https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar")
+    dest(originalLaunchWrapperPath)
+    overwrite(false)
+}
 
 val runWithRelauncher = tasks.register<RunMinecraftTask>("runClientWithRelauncher", Distribution.CLIENT, gradle)
 runWithRelauncher.configure {
@@ -339,6 +381,7 @@ runWithRelauncher.configure {
         tasks.downloadVanillaAssets,
         tasks.packagePatchedMc,
         tasks.reobfJar,
+        dlOriginalLaunchwrapper,
         "jar"
     )
 
@@ -355,18 +398,10 @@ runWithRelauncher.configure {
     classpath(tasks.reobfJar)
     classpath(configurations.runtimeClasspath)
     mainClass = "GradleStart"
-
-    doFirst {
-        download.run {
-            src("https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar")
-            dest(originalLaunchWrapperPath)
-            overwrite(false)
-        }
-    }
 }
 
 tasks.runObfClient {
-    mainClass.set("com.gtnewhorizons.retrofuturabootstrap.Main")
+    mainClass.set("com.gtnewhorizons.retrofuturabootstrap.MainStartOnFirstThread")
 }
 
 tasks.runObfServer {
@@ -376,8 +411,10 @@ tasks.runObfServer {
 // Regular runClient/runServer tasks run in Java 17 in this project.
 tasks.runClient17 { enabled = false }
 tasks.runClient21 { enabled = false }
+tasks.runClient25 { enabled = false }
 tasks.runServer17 { enabled = false }
 tasks.runServer21 { enabled = false }
+tasks.runServer25 { enabled = false }
 
 tasks.jar {
     manifest.attributes.put("TweakClass", "me.eigenraven.lwjgl3ify.relauncher.Lwjgl3ifyRelauncherTweaker")

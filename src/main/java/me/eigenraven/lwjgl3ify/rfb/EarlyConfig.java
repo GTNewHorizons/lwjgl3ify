@@ -31,6 +31,7 @@ public class EarlyConfig {
         "net.minecraftforge.event.terraingen.InitMapGenEvent$EventType",
         "net.minecraftforge.event.terraingen.OreGenEvent$GenerateMinable$EventType",
         "net.minecraftforge.event.terraingen.DecorateBiomeEvent$Decorate$EventType",
+        "net.minecraftforge.common.BiomeDictionary$Type",
         // From GTNH crashes
         "vswe.stevesfactory.Localization", "vswe.stevesfactory.blocks.ClusterMethodRegistration",
         "vswe.stevesfactory.blocks.ConnectionBlockType", "vswe.stevesfactory.components.ComponentType",
@@ -56,7 +57,7 @@ public class EarlyConfig {
         "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Territory",
         "Reika.DragonAPI.ModInteract.Bees.BeeAlleleRegistry$Life",
         "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Fertility",
-        "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life",
+        "Reika.DragonAPI.ModInteract.Bees.ButterflyAlleleRegistry$Life", "Reika.DragonAPI.ModRegistry.ModCropList",
         // Et Futurum Requiem
         "net.minecraft.world.WorldSettings$GameType",
         "ganymedes01.etfuturum.tileentities.TileEntityBanner$EnumBannerPattern",

@@ -4,5 +4,8 @@
   "package": "me.eigenraven.lwjgl3ify.mixins.early",
   "refmap": "mixins.lwjgl3ify.refmap.json",
   "target": "@env(DEFAULT)",
-  "compatibilityLevel": "JAVA_8"
+  "compatibilityLevel": "JAVA_8",
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  }
 }

@@ -176,7 +176,10 @@ public class RelauncherConfig {
 
         final String jsonCfg = gson.toJson(config);
         try {
-            Files.createDirectories(earlyConfigPath.getParent());
+            // Allow symlinks
+            if (!Files.isDirectory(earlyConfigPath.getParent())) {
+                Files.createDirectories(earlyConfigPath.getParent());
+            }
             Files.write(earlyConfigPath, jsonCfg.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -17,19 +17,38 @@ public enum Mixins implements IMixins {
                 "fml.JarDiscoverer",
                 "fml.ObjectHolderRef",
                 "fml.ObjectHolderRegistry")),
-    FIX_UNICODE_INPUT(
-        new MixinBuilder("Fix the input method to support all Unicode")
-            .addClientMixins("game.MixinGuiScreenKeyTypeInput")),
-    FIX_DEADKEY_KEYBINDING(
-        new MixinBuilder("Improved KeyBinding handling to handle dead keys")
-            .addClientMixins("game.MixinMinecraftKeyBinding")),
-    BORDERLESS_FULLSCREEN(
-        new MixinBuilder()
-            .addClientMixins("game.MixinBorderlessWindow")),
     STB_TEXTURE_LOADING(
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")
             .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
+    TEXT_FIELD_SDL_INPUT(
+        new MixinBuilder()
+            .addClientMixins("game.MixinGuiTextField", "game.MixinGuiScreen")),
+    OPEN_URL_WITH_SDL(
+        new MixinBuilder()
+            .addClientMixins(
+                "game.openurl.MixinGuiChat",
+                "game.openurl.MixinGuiMainMenu",
+                "game.openurl.MixinGuiScreenDemoResourcePacks",
+                "game.openurl.MixinGuiStreamUnavailable")),
+    FLOAT_MOUSE_MOVEMENT(
+        new MixinBuilder()
+            .addClientMixins(
+                "game.MixinMouseHelper",
+                "game.MixinEntityRenderer")
+    ),
+    MINECRAFT_SCALE_FULLSCREEN_CORRECTLY(
+        new MixinBuilder()
+            .addClientMixins("game.MixinMinecraft_Display")
+    ),
+
+    // Mod compat patches
+    XAEROS_MINIMAP_SCROLL(Phase.LATE, new MixinBuilder()
+        .addClientMixins("xaeros.XaerosMinimapScrolling")
+        .addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
+    XAEROS_WORLDMAP_SCROLL(Phase.LATE, new MixinBuilder()
+        .addClientMixins("xaeros.XaerosWorldmapScrolling")
+        .addRequiredMod(TargetedMod.XAEROS_WORLDMAP)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
@@ -56,7 +75,11 @@ public enum Mixins implements IMixins {
     private final MixinBuilder builder;
 
     Mixins(MixinBuilder builder) {
-        this.builder = builder.setPhase(Phase.EARLY);
+        this(Phase.EARLY, builder);
+    }
+
+    Mixins(Phase phase, MixinBuilder builder) {
+        this.builder = builder.setPhase(phase);
     }
 
     @Nonnull

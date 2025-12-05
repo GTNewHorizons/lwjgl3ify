@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -21,13 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.text.BadLocationException;
-
-import com.github.weisj.darklaf.LafManager;
-import com.github.weisj.darklaf.theme.spec.ColorToneRule;
-import com.github.weisj.darklaf.theme.spec.ContrastRule;
-import com.github.weisj.darklaf.theme.spec.PreferredThemeStyle;
 
 public class GraphicalConsole {
 
@@ -103,7 +100,13 @@ public class GraphicalConsole {
         this.process = process;
         try {
             System.setProperty("awt.useSystemAAFontSettings", "on");
-            LafManager.installTheme(new PreferredThemeStyle(ContrastRule.STANDARD, ColorToneRule.DARK));
+            if (System.getProperty("os.name")
+                .toLowerCase(Locale.ROOT)
+                .contains("linux")) {
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } else {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            }
         } catch (Exception e) {
             consoleBuffer.add("Could not initialize DarkLaf GUI theme");
         }
