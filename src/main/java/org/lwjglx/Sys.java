@@ -61,9 +61,18 @@ public class Sys {
                     | SDL_INIT_SENSOR)) {
                 throw new SDLException("Could not initialize SDL.");
             }
-            if (Platform.get() == Platform.MACOSX) {
-                SDL_SetHint(SDL_HINT_MAC_OPENGL_ASYNC_DISPATCH, "1");
+            // Platform-specific tricks
+            switch (Platform.get()) {
+                case MACOSX -> {
+                    SDL_SetHint(SDL_HINT_MAC_OPENGL_ASYNC_DISPATCH, "1");
+                }
+                case LINUX -> {
+                    // This is buggy on NVIDIA and crashes on secondary context creation on Wayland
+                    SDL_setenv_unsafe("__GL_THREADED_OPTIMIZATIONS", "0", 1);
+                }
+                default -> {}
             }
+            SDL_SetHint(SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH, "1");
         });
     }
 
