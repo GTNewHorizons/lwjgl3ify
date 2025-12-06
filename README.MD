@@ -60,7 +60,9 @@ java -Xmx6G -Xms6G @java9args.txt -jar lwjgl3ify-forgePatches.jar nogui
 ```
 
 # LiteLoader compatibility
-If you install LiteLoader via MultiMC or a fork like PrismLauncher, make sure to move the "LiteLoader" entry above the "LWJGL3ify Launch Args" entry, otherwise the launch will fail.
+To use LiteLoader with lwjgl3ify/RetroFuturaBootstrap the LiteloaderLoader by Midnight is required.
+
+The install instructions can be found at [Midnight145/LiteloaderLoader/INSTALLATION.md](https://github.com/Midnight145/LiteloaderLoader/blob/master/INSTALLATION.md).
 
 # How does it work?
 
