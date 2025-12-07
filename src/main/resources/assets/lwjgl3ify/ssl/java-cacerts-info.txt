@@ -1,0 +1,1 @@
+Extracted on 2025-12-07 from Arch Linux's ca-certificates bundle.

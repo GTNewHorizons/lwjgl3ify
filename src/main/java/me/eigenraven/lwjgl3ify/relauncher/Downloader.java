@@ -185,6 +185,10 @@ public class Downloader {
                 cacheLock = cacheChannel.lock();
             }
 
+            if (!tasks.isEmpty()) {
+                LetsEncryptAdder.addLetsEncryptCertificates();
+            }
+
             final ExecutorService executor = Executors.newFixedThreadPool(4, r -> {
                 final Thread t = new Thread(r);
                 t.setName("Lwjgl3ify downloader");
