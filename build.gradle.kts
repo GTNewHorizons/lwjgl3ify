@@ -151,7 +151,7 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
             }
         }
     }
-    from(resources.text.fromString("org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory\norg.mvel2.jsr223.MvelScriptEngineFactory").asFile(StandardCharsets.UTF_8.name())) {
+    from(project.file("src/forgePatches/ScriptEngineServices.txt")) {
         rename { return@rename "META-INF/services/javax.script.ScriptEngineFactory" }
     }
     exclude("module-info.class")
@@ -161,8 +161,10 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
         include("me/eigenraven/lwjgl3ify/rfb/entry/ServerMain.class")
     }
     from(relauncherStubSet.output)
-    inputs.property("version", project.version.toString())
-    from(resources.text.fromString(project.version.toString()).asFile()) {
+    val versionString = project.version.toString()
+    inputs.property("version", versionString)
+    from("src/forgePatches/lwjgl3ify-forgePatches-version.txt") {
+        expand(mapOf("version" to versionString))
         rename { return@rename "META-INF/lwjgl3ify-forgePatches-version.txt" }
     }
     archiveClassifier.set("forgePatches")

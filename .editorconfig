@@ -23,3 +23,7 @@ trim_trailing_whitespace = false
 
 [prism-libraries/**.json]
 indent_size = 4
+
+[src/forgePatches/*]
+insert_final_newline = false
+
