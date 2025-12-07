@@ -98,7 +98,7 @@ public class Sys {
      * @return timer resolution in ticks per second or 0 if no timer is present.
      */
     public static long getTimerResolution() {
-        return 1_000_000;
+        return 1_000;
     }
 
     /**
@@ -107,10 +107,12 @@ public class Sys {
      * <p>
      * <strong>NOTEZ BIEN</strong> that the hires timer WILL wrap around.
      *
+     * Note: LWJGL2 always returned milliseconds here, so we do the same.
+     *
      * @return the current hires time, in ticks (always >= 0)
      */
     public static long getTime() {
-        return SDL_GetTicksNS() / 1_000;
+        return SDL_GetTicksNS() / 1_000_000;
     }
 
     public static long getNanoTime() {
