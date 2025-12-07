@@ -245,6 +245,10 @@ abstract class VersionJsonTask : DefaultTask() {
     abstract val lwjgl3Json: RegularFileProperty
 }
 
+val gitLastCommitDate = providers.exec {
+    commandLine("git", "log", "-1", "--format=%aI", "HEAD")
+}.standardOutput.asText.get().trim()
+
 val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     group = taskGroup
     description = "Generates the vanilla launcher version.json file"
@@ -259,8 +263,10 @@ val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     val versionJsonPathLocal = versionJsonPath
     val lwjglVersion = libs.versions.lwjgl.get()
     val lwjglDownloadsFile = lwjgl3Json.asFile.get()
+    val gitLastCommitDateStr = gitLastCommitDate
     doLast {
         versionJsonPathLocal.parentFile.mkdirs()
+
         val lwjglDownloads = lwjglDownloadsFile.readText(Charsets.UTF_8)
         fs.copy {
             from("launcher-metadata/version.json")
@@ -271,8 +277,7 @@ val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
                     "jvmArgs" to jvmArgs,
                     "lwjglVersion" to lwjglVersion,
                     "lwjglDownloads" to lwjglDownloads,
-                    "time" to DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
-                        .format(OffsetDateTime.now(ZoneOffset.UTC))
+                    "time" to gitLastCommitDateStr
                 )
             )
         }
