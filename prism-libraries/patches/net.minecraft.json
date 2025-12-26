@@ -12,6 +12,7 @@
         25,
         26
     ],
+    "compatibleJavaName": "java-runtime-epsilon",
     "formatVersion": 1,
     "libraries": [
         {
