@@ -28,6 +28,7 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
     public void onConstruction(@NotNull PluginContext ctx) {
         Launch.classLoader.addClassLoaderExclusion("me.eigenraven.lwjgl3ify.rfb.EarlyConfig");
         Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
+        Launch.blackboard.put("lwjgl3ify:major-version", 3);
         try {
             @SuppressWarnings("unchecked")
             final Class<EarlyConfig> earlyConfig = (Class<EarlyConfig>) Class
