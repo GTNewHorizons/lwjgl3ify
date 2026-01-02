@@ -21,6 +21,10 @@ public enum Mixins implements IMixins {
         new MixinBuilder()
             .addClientMixins("game.MixinTextureAtlasSprite", "game.MixinTextureMap")
             .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
+    LOADING_PROGRESS_NOTIFY(
+        new MixinBuilder()
+            .addClientMixins("fml.LoadingProgressNotify")
+            .setApplyIf(() -> Config.WINDOW_LOADING_PROGRESS)),
     TEXT_FIELD_SDL_INPUT(
         new MixinBuilder()
             .addClientMixins("game.MixinGuiTextField", "game.MixinGuiScreen")),

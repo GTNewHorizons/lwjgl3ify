@@ -268,6 +268,10 @@ public class Display {
                 Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
                 Sys.checkSdl(nSDL_GL_LoadLibrary(NULL));
                 Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
+
+                if (Config.WINDOW_LOADING_PROGRESS) {
+                    SDL_SetWindowProgressState(sdlWindow, SDL_PROGRESS_STATE_INDETERMINATE);
+                }
             } finally {
                 SDL_DestroyProperties(props);
             }
