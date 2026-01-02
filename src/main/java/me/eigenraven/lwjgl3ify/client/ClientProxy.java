@@ -1,5 +1,8 @@
 package me.eigenraven.lwjgl3ify.client;
 
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -7,11 +10,13 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.sdl.SDLVersion;
+import org.lwjgl.sdl.SDLVideo;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.opengl.Display;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ProgressManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import me.eigenraven.lwjgl3ify.CommonProxy;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
@@ -95,13 +100,50 @@ public class ClientProxy extends CommonProxy {
         Display.lwjgl3ify$updateRawMouseMode(Config.INPUT_RAW_MOUSE);
     }
 
+    private static final AtomicBoolean gameIsLoading = new AtomicBoolean(true);
+
     @SubscribeEvent
     @SuppressWarnings("unused")
     public void onGuiChange(final GuiOpenEvent event) {
         final GuiScreen oldScreen = Minecraft.getMinecraft().currentScreen;
         final GuiScreen newScreen = event.gui;
+        if (gameIsLoading.get()) {
+            gameIsLoading.set(false);
+            MainThreadExec.runOnMainThread(
+                () -> { SDLVideo.SDL_SetWindowProgressState(Display.getWindow(), SDLVideo.SDL_PROGRESS_STATE_NONE); });
+        }
         if (oldScreen != newScreen) {
             TextFieldHandler.resetTextInput();
         }
+    }
+
+    static float lastProgress = -1.0f;
+
+    @SuppressWarnings("deprecation")
+    public static void onProgressUpdate() {
+        if (!gameIsLoading.get()) {
+            return;
+        }
+        float newProgress = 0.0f;
+        float curUnit = 1.0f;
+        for (final Iterator<ProgressManager.ProgressBar> it = ProgressManager.barIterator(); it.hasNext();) {
+            final ProgressManager.ProgressBar bar = it.next();
+            final float barUnit = 1.0f / (bar.getSteps() + 1);
+            final float barProgress = (bar.getStep() + 1) * barUnit;
+            newProgress += curUnit * barProgress;
+            curUnit *= barUnit;
+        }
+        newProgress = Math.max(0.0f, Math.min(newProgress, 1.0f));
+        if (Math.abs(newProgress - lastProgress) < 0.01f) {
+            return;
+        }
+        final float finalNewProgress = newProgress;
+        MainThreadExec.runOnMainThread(() -> {
+            final long window = Display.getWindow();
+            SDLVideo.SDL_SetWindowProgressState(window, SDLVideo.SDL_PROGRESS_STATE_NORMAL);
+            SDLVideo.SDL_SetWindowProgressValue(window, finalNewProgress);
+        });
+        lastProgress = finalNewProgress;
+        System.err.println("ZZZPROGRESS " + lastProgress);
     }
 }

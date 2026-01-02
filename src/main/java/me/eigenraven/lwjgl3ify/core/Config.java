@@ -28,9 +28,11 @@ public class Config {
     public static boolean WINDOW_START_MAXIMIZED = false, WINDOW_START_FOCUSED = true, WINDOW_START_ICONIFIED = false;
     public static boolean WINDOW_CENTERED = true;
     public static boolean WINDOW_DECORATED = true;
+    public static boolean WINDOW_LOADING_PROGRESS = true;
     public static boolean WINDOW_BORDERLESS_REPLACES_FULLSCREEN = false;
     public static boolean WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY = true;
     public static boolean WINDOW_HIDPI_RENDERING = true;
+    public static boolean WINDOW_LINUX_DESKTOP_ENTRY = true;
     public static boolean OPENGL_DEBUG_CONTEXT = false;
     public static boolean OPENGL_SRGB_CONTEXT = false;
     public static boolean OPENGL_DOUBLEBUFFER = true;
@@ -144,6 +146,11 @@ public class Config {
             CATEGORY_WINDOW,
             WINDOW_DECORATED,
             "Should the window have decorations (titlebar, border, close button)");
+        WINDOW_LOADING_PROGRESS = config.getBoolean(
+            "showLoadingProgress",
+            CATEGORY_WINDOW,
+            WINDOW_LOADING_PROGRESS,
+            "Show game loading progress in the task bar on supported systems");
         APP_ID = config.getString(
             "appId",
             CATEGORY_WINDOW,
@@ -154,6 +161,11 @@ public class Config {
             CATEGORY_WINDOW,
             WINDOW_HIDPI_RENDERING,
             "Enables high DPI rendering in the window, make sure to increase your GUI scale in options if enabled");
+        WINDOW_LINUX_DESKTOP_ENTRY = config.getBoolean(
+            "linuxCreateAppDesktopEntry",
+            CATEGORY_WINDOW,
+            WINDOW_LINUX_DESKTOP_ENTRY,
+            "On Linux only, creates a hidden .desktop file in your XDG_DATA_HOME/applications folder matching the appId to improve Wayland support");
 
         INPUT_INVERT_WHEEL = config
             .getBoolean("invertScrollWheel", CATEGORY_INPUT, INPUT_INVERT_WHEEL, "Invert scrolling direction");

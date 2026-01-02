@@ -121,9 +121,16 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
             val fileSize = file.length()
             val fileSha1 = sha1.digest(file.readBytes()).joinToString("") { "%02x".format(it) }
             // Reconstruct maven GAV coordinates and URL from the file name
-            val versionInterlude = "-${lwjglVersion}"
-            val versionIdx = fileName.indexOf(versionInterlude)
-            require(versionIdx > 0)
+            var versionInterlude = "-${lwjglVersion}"
+            var versionIdx = fileName.indexOf(versionInterlude)
+            if (versionIdx == -1) {
+                versionInterlude = "-3.4.0-SNAPSHOT"
+                versionIdx = fileName.indexOf(versionInterlude)
+            }
+            if (versionIdx == -1) {
+                logger.error("Could not determine lwjgl version in file $file")
+                throw IllegalArgumentException("Could not determine lwjgl version in file $file")
+            }
             val artifact = fileName.substring(0, versionIdx)
             val fileVersion = lwjglVersion
             val versionDash = lwjglVersion.indexOf('-')
