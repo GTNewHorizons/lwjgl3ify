@@ -275,7 +275,7 @@ public class ForgePatchTransformer implements RfbClassTransformer {
         Objects.requireNonNull(retNode);
         final MethodInsnNode myCall = new MethodInsnNode(
             INVOKESTATIC,
-            "me/eigenraven/lwjgl3ify/client/ClientProxy",
+            "me/eigenraven/lwjgl3ify/redirects/ProgressBar",
             "onProgressUpdate",
             "()V",
             false);
