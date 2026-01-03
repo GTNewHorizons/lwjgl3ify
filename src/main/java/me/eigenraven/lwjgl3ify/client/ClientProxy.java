@@ -121,7 +121,7 @@ public class ClientProxy extends CommonProxy {
 
     @SuppressWarnings("deprecation")
     public static void onProgressUpdate() {
-        if (!gameIsLoading.get()) {
+        if (!Config.WINDOW_LOADING_PROGRESS || !gameIsLoading.get()) {
             return;
         }
         float newProgress = 0.0f;
