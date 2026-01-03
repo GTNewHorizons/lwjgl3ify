@@ -4,6 +4,7 @@ import static org.objectweb.asm.Opcodes.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.jar.Manifest;
 
 import org.apache.logging.log4j.LogManager;
@@ -38,9 +39,10 @@ public class ForgePatchTransformer implements RfbClassTransformer {
     public static final String TRACING_PRINT_STREAM = "cpw.mods.fml.common.TracingPrintStream";
     public static final String FML_SECURITY_MANAGER = "cpw.mods.fml.relauncher.FMLSecurityManager";
     public static final String ENUM_HELPER = "net.minecraftforge.common.util.EnumHelper";
+    public static final String PROGRESS_BAR = "cpw.mods.fml.common.ProgressManager$ProgressBar";
 
     public static final String[] PATCHED_CLASSES = new String[] { CLASS_PATCH_MANAGER, TRACING_PRINT_STREAM,
-        FML_SECURITY_MANAGER, ENUM_HELPER };
+        FML_SECURITY_MANAGER, ENUM_HELPER, PROGRESS_BAR };
 
     @Override
     public boolean shouldTransformClass(@NotNull ExtensibleClassLoader classLoader,
@@ -65,6 +67,7 @@ public class ForgePatchTransformer implements RfbClassTransformer {
             case TRACING_PRINT_STREAM -> tfTracingPrintStream(classNode);
             case FML_SECURITY_MANAGER -> tfFmlSecurityManager(classNode);
             case ENUM_HELPER -> tfEnumHelper(classNode);
+            case PROGRESS_BAR -> tfProgressBar(classNode);
         }
     }
 
@@ -240,5 +243,42 @@ public class ForgePatchTransformer implements RfbClassTransformer {
             newMethods.add(newMethod);
         }
         node.methods = newMethods;
+    }
+
+    private void tfProgressBar(@NotNull ClassNodeHandle handle) {
+        // Add a close() override that does not close the underlying stream
+        // Pack200 tries to close this stream when loading patches.
+        final ClassNode node = handle.getNode();
+        if (node == null || node.methods == null) {
+            logger.error("ProgressBar missing class data");
+            return;
+        }
+        MethodNode mStep = null;
+        for (int i = 0; i < node.methods.size(); i++) {
+            final MethodNode m = node.methods.get(i);
+            if (m.name.equals("step") && m.desc.equals("(Ljava/lang/String;)V")) {
+                mStep = m;
+                break;
+            }
+        }
+        Objects.requireNonNull(mStep, "Could not find ProgressBar.step(String)V");
+        final InsnList insns = mStep.instructions;
+        Objects.requireNonNull(insns);
+        AbstractInsnNode retNode = null;
+        for (int i = insns.size() - 1; i >= 0; i--) {
+            final AbstractInsnNode in = insns.get(i);
+            if (in.getOpcode() == RETURN) {
+                retNode = in;
+                break;
+            }
+        }
+        Objects.requireNonNull(retNode);
+        final MethodInsnNode myCall = new MethodInsnNode(
+            INVOKESTATIC,
+            "me/eigenraven/lwjgl3ify/redirects/ProgressBar",
+            "onProgressUpdate",
+            "()V",
+            false);
+        insns.insertBefore(retNode, myCall);
     }
 }
