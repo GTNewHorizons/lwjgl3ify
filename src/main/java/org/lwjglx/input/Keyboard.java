@@ -1,21 +1,6 @@
 package org.lwjglx.input;
 
 import static org.lwjgl.sdl.SDLKeyboard.*;
-import static org.lwjgl.sdl.SDLKeycode.*;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_CAPSLOCK;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_ESCAPE;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_HOME;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_LALT;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_LCTRL;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_LGUI;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_LSHIFT;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_NUMLOCKCLEAR;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_RALT;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_RCTRL;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_RGUI;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_RSHIFT;
-import static org.lwjgl.sdl.SDLKeycode.SDLK_SCROLLLOCK;
-import static org.lwjgl.system.MemoryUtil.memUTF8Safe;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
