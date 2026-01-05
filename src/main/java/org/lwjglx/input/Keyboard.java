@@ -11,6 +11,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.sdl.SDLKeycode;
+import org.lwjgl.sdl.SDLScancode;
 import org.lwjglx.Sys;
 import org.lwjglx.opengl.Display;
 
@@ -345,8 +346,12 @@ public class Keyboard {
         if (cached != null) {
             return cached;
         }
-        int sdlKey = KeyCodes.lwjglToSdlKeycode(key);
-        if (sdlKey == -1 || sdlKey == SDLKeycode.SDLK_UNKNOWN) {
+        int sdlScan = KeyCodes.lwjglToSdlScancode(key);
+        if (sdlScan == -1 || sdlScan == SDLScancode.SDL_SCANCODE_UNKNOWN) {
+            return "Key " + key;
+        }
+        int sdlKey = SDL_GetKeyFromScancode(sdlScan, (short) 0, true);
+        if (sdlKey == SDLKeycode.SDLK_UNKNOWN) {
             return "Key " + key;
         }
         String name = Objects.firstNonNull(MainThreadExec.runOnMainThread(() -> SDL_GetKeyName(sdlKey)), "UNKNOWN")
