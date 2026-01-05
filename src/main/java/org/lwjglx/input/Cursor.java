@@ -21,7 +21,8 @@ import static org.lwjgl.sdl.SDLSurface.*;
 
 import java.nio.IntBuffer;
 
-import org.joml.Math;
+import net.minecraft.util.MathHelper;
+
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
 import org.lwjglx.Sys;
@@ -93,8 +94,8 @@ public class Cursor {
             sdlCursor = Sys.checkSdl(
                 SDL_CreateColorCursor(
                     sdlSurface,
-                    Math.clamp(xHotspot, 0, width - 1),
-                    Math.clamp(height - 1 - yHotspot, 0, height - 1)));
+                    MathHelper.clamp_int(xHotspot, 0, width - 1),
+                    MathHelper.clamp_int(height - 1 - yHotspot, 0, height - 1)));
         }
     }
 

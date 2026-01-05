@@ -7,7 +7,6 @@ Bundles [RetroFuturaBootstrap](https://github.com/GTNewHorizons/RetroFuturaBoots
 
 Lwjgl3ify depends on:
  - Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.23 with the GTNHMixins module.
- - GTNHLib (<https://github.com/GTNewHorizons/GTNHLib/>), at least 0.6.2.
 
 Hodgepodge (<https://github.com/GTNewHorizons/Hodgepodge>) is strongly recommended, it has many Java 17+ compatibility patches for ARR mods (Biomes'o'Plenty, Witchery, JourneyMap, and more) which we could not directly fix in the GTNH forks.
 
@@ -50,7 +49,7 @@ If you want to tweak your default window size, OpenGL context properties or othe
 
 ## Server
 First, install a working 1.7.10 Forge server, from a modpack zip or using forge's installer.
-Then, install the mod jar (and unimixins, hodgepodge and gtnhlib as needed) in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
+Then, install the mod jar (and unimixins, hodgepodge as needed) in `mods/`, and download the `forgePatches` jar. Put the forgePatches jar in the same folder as your forge-universal and minecraft server jars.
 **Thermos/Crucible/Hybrid servers are not supported!**.
 Lwjgl3ify also depends on Unimixins (<https://github.com/LegacyModdingMC/UniMixins/>), use at least version 0.1.7.
 Rename the forgePatches jar to just `lwjgl3ify-forgePatches.jar`. Create a file named `java9args.txt` with the contents of [the file in this repository](java9args.txt).
