@@ -144,6 +144,5 @@ public class ClientProxy extends CommonProxy {
             SDLVideo.SDL_SetWindowProgressValue(window, finalNewProgress);
         });
         lastProgress = finalNewProgress;
-        System.err.println("ZZZPROGRESS " + lastProgress);
     }
 }
