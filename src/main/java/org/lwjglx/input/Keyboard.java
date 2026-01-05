@@ -417,11 +417,7 @@ public class Keyboard {
          */
         public static boolean shouldTreatAsScancode(int lwjglKey) {
             return switch (lwjglKey) {
-                case Keyboard.KEY_ESCAPE, Keyboard.KEY_HOME,
-                     Keyboard.KEY_NUMLOCK, Keyboard.KEY_CAPITAL, Keyboard.KEY_SCROLL,
-                     Keyboard.KEY_LCONTROL , Keyboard.KEY_LSHIFT, Keyboard.KEY_LMETA, Keyboard.KEY_LMENU,
-                     Keyboard.KEY_RCONTROL , Keyboard.KEY_RSHIFT, Keyboard.KEY_RMETA, Keyboard.KEY_RMENU
-                    -> false;
+                case Keyboard.KEY_ESCAPE, Keyboard.KEY_HOME, Keyboard.KEY_NUMLOCK, Keyboard.KEY_CAPITAL, Keyboard.KEY_SCROLL, Keyboard.KEY_LCONTROL, Keyboard.KEY_LSHIFT, Keyboard.KEY_LMETA, Keyboard.KEY_LMENU, Keyboard.KEY_RCONTROL, Keyboard.KEY_RSHIFT, Keyboard.KEY_RMETA, Keyboard.KEY_RMENU -> false;
                 default -> true;
             };
         }
