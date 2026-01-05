@@ -349,10 +349,10 @@ val veryNewJavaToolchainSpec: JavaToolchainSpec.() -> Unit = {
 
 val newJavaLauncher = javaToolchains.launcherFor(veryNewJavaToolchainSpec)
 
-for (jarTask in listOf("jar", "shadowJar", "forgePatchesJar")) {
-    tasks.named<Jar>(jarTask).configure {
+for (jarTask in listOf(tasks.jar, tasks.shadowJar, forgePatchesJar, tasks.apiJar)) {
+    jarTask.configure {
         manifest {
-            attributes("Multi-Release" to true)
+            attributes("Multi-Release" to true, "Implementation-Title" to "lwjgl3ify", "Implementation-Version" to project.version.toString())
         }
     }
 }
