@@ -398,7 +398,7 @@ public class Keyboard {
         public boolean queueOutOfOrderRelease = false;
 
         public KeyEvent(int key, int keyNonScancode, int codepoint, KeyState state, long nano) {
-            this.key = key;
+            this.key = shouldTreatAsScancode(key) ? key : keyNonScancode;
             this.keyNonScancode = keyNonScancode;
             this.codepoint = codepoint;
             this.state = state;
@@ -410,5 +410,23 @@ public class Keyboard {
             ev.queueOutOfOrderRelease = this.queueOutOfOrderRelease;
             return ev;
         }
+
+        /**
+         * These are all the keys where we use the actual keycodes as inputs to respect different keyboard
+         * layouts/remappings better
+         */
+        public static boolean shouldTreatAsScancode(int lwjglKey) {
+            return switch (lwjglKey) {
+                // spotless:off
+                case Keyboard.KEY_ESCAPE, Keyboard.KEY_HOME,
+                     Keyboard.KEY_NUMLOCK, Keyboard.KEY_CAPITAL, Keyboard.KEY_SCROLL,
+                     Keyboard.KEY_LCONTROL , Keyboard.KEY_LSHIFT, Keyboard.KEY_LMETA, Keyboard.KEY_LMENU,
+                     Keyboard.KEY_RCONTROL , Keyboard.KEY_RSHIFT, Keyboard.KEY_RMETA, Keyboard.KEY_RMENU
+                    -> false;
+                // spotless:on
+                default -> true;
+            };
+        }
+
     }
 }
