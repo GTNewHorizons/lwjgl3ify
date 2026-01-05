@@ -28,6 +28,9 @@ public enum TargetedMod implements ITargetMod {
     OPTIFINE(new TargetModBuilder().setCoreModClass("optifine.OptiFineForgeTweaker")),
     XAEROS_MINIMAP(new TargetModBuilder().setModId("XaeroMinimap")),
     XAEROS_WORLDMAP(new TargetModBuilder().setModId("XaeroWorldMap")),
+    // Support both the NH fork and upstream
+    OPENCOMPUTERS(new TargetModBuilder().setCoreModClass("li.cil.oc.common.launch.TransformerLoader")
+        .setModId("OpenComputers"))
     //
     ;
 

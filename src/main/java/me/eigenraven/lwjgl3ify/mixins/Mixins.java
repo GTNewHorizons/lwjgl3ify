@@ -49,6 +49,9 @@ public enum Mixins implements IMixins {
     XAEROS_WORLDMAP_SCROLL(Phase.LATE, new MixinBuilder()
         .addClientMixins("xaeros.XaerosWorldmapScrolling")
         .addRequiredMod(TargetedMod.XAEROS_WORLDMAP)),
+    OPENCOMPUTERS_KEYBOARD_INPUT_FIX(Phase.EARLY, new MixinBuilder()
+        .addClientMixins("oc.OcInputBuffer")
+        .addRequiredMod(TargetedMod.OPENCOMPUTERS)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
