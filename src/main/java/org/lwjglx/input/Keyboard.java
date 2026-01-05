@@ -17,8 +17,8 @@ import org.lwjglx.opengl.Display;
 
 import com.google.common.base.Objects;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-import it.unimi.dsi.fastutil.objects.Object2IntArrayMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
+import gnu.trove.map.hash.TObjectIntHashMap;
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
@@ -173,8 +173,8 @@ public class Keyboard {
 
     public static ByteBuffer sdlKeyPressedArray;
 
-    private static final Int2ObjectArrayMap<String> keyMap = new Int2ObjectArrayMap();
-    private static final Object2IntArrayMap<String> reverseKeyMap = new Object2IntArrayMap<>();
+    private static final TIntObjectHashMap<String> keyMap = new TIntObjectHashMap<>(512, 0.5f);
+    private static final TObjectIntHashMap<String> reverseKeyMap = new TObjectIntHashMap<>(512, 0.5f, -1);
 
     public enum KeyState {
 
@@ -230,6 +230,8 @@ public class Keyboard {
 
     /** Populates the key name->index lookup table with the current keyboard layout based names. */
     public static void populateKeyLookupTables() {
+        keyMap.clear();
+        reverseKeyMap.clear();
         for (int key = 0; key <= 255; key++) {
             getKeyName(key);
         }
@@ -365,7 +367,8 @@ public class Keyboard {
         if (keyName.equals("NONE")) {
             return KEY_NONE;
         }
-        int ret = reverseKeyMap.getOrDefault(keyName, -1);
+
+        int ret = reverseKeyMap.get(keyName);
         if (ret == -1) {
             if (keyName.matches("Key -?[0-9]+]")) {
                 return Integer.parseInt(StringUtils.removeStart(keyName, "Key "));

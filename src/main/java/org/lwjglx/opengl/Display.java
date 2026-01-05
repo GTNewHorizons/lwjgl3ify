@@ -19,8 +19,6 @@ import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.awt.Canvas;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
@@ -33,7 +31,6 @@ import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.sdl.SDLKeyboard;
-import org.lwjgl.sdl.SDLKeycode;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
 import org.lwjgl.sdl.SDL_Surface;
@@ -43,7 +40,6 @@ import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 import me.eigenraven.lwjgl3ify.core.Config;
@@ -100,26 +96,9 @@ public class Display {
     private static Keyboard.KeyEvent ingredientKeyEvent;
     private static ByteBuffer[] savedIcons;
     private static boolean lastAltIsRightAlt = false;
-    private static Int2ObjectOpenHashMap<String> sdlKeycodeNames = new Int2ObjectOpenHashMap<>();
 
     public static volatile long sdlWindow, sdlHiddenWindow, sdlMainGlContext, sdlCloneableGlContext;
     public static int sdlWindowId;
-
-    static {
-        try {
-            Class<SDLKeycode> keycodeClass = SDLKeycode.class;
-            for (Field f : keycodeClass.getFields()) {
-                if (f.getName()
-                    .startsWith("SDLK") && f.getType() == int.class
-                    && Modifier.isStatic(f.getModifiers())) {
-                    int value = f.getInt(null);
-                    sdlKeycodeNames.put(value, f.getName());
-                }
-            }
-        } catch (ReflectiveOperationException e) {
-            // ignore
-        }
-    }
 
     /**
      * Create the OpenGL context with the given minimum parameters. If isFullscreen() is true or if windowed context are

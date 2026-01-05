@@ -89,6 +89,10 @@ public class Lwjgl3ifyEventLoop {
                     float yoffset = mouseWheelEvent.y();
                     Mouse.addWheelEvent(yoffset == 0 ? (Config.INPUT_INVERT_X_WHEEL ? -xoffset : xoffset) : yoffset);
                 }
+                case SDL_EVENT_KEYMAP_CHANGED -> {
+                    Lwjgl3ify.LOG.info("System keyboard layout changed, reloading key names");
+                    Keyboard.populateKeyLookupTables();
+                }
                 case SDL_EVENT_KEY_DOWN, SDL_EVENT_KEY_UP -> {
                     handleKeyEvent();
                 }
