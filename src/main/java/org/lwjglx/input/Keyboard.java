@@ -1,6 +1,21 @@
 package org.lwjglx.input;
 
 import static org.lwjgl.sdl.SDLKeyboard.*;
+import static org.lwjgl.sdl.SDLKeycode.*;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_CAPSLOCK;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_ESCAPE;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_HOME;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_LALT;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_LCTRL;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_LGUI;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_LSHIFT;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_NUMLOCKCLEAR;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_RALT;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_RCTRL;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_RGUI;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_RSHIFT;
+import static org.lwjgl.sdl.SDLKeycode.SDLK_SCROLLLOCK;
+import static org.lwjgl.system.MemoryUtil.memUTF8Safe;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -398,7 +413,7 @@ public class Keyboard {
         public boolean queueOutOfOrderRelease = false;
 
         public KeyEvent(int key, int keyNonScancode, int codepoint, KeyState state, long nano) {
-            this.key = key;
+            this.key = shouldTreatAsScancode(key) ? key : keyNonScancode;
             this.keyNonScancode = keyNonScancode;
             this.codepoint = codepoint;
             this.state = state;
@@ -410,5 +425,21 @@ public class Keyboard {
             ev.queueOutOfOrderRelease = this.queueOutOfOrderRelease;
             return ev;
         }
+
+        /**
+         * These are all the keys where we use the actual keycodes as inputs to respect different keyboard
+         * layouts/remappings better
+         */
+        public static boolean shouldTreatAsScancode(int lwjglKey) {
+            return switch (lwjglKey) {
+                case Keyboard.KEY_ESCAPE, Keyboard.KEY_HOME,
+                     Keyboard.KEY_NUMLOCK, Keyboard.KEY_CAPITAL, Keyboard.KEY_SCROLL,
+                     Keyboard.KEY_LCONTROL , Keyboard.KEY_LSHIFT, Keyboard.KEY_LMETA, Keyboard.KEY_LMENU,
+                     Keyboard.KEY_RCONTROL , Keyboard.KEY_RSHIFT, Keyboard.KEY_RMETA, Keyboard.KEY_RMENU
+                    -> false;
+                default -> true;
+            };
+        }
+
     }
 }
