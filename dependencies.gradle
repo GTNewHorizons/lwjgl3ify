@@ -64,9 +64,10 @@ dependencies {
 
     compileOnly(rfg.deobf("curse.maven:xaeros-minimap-263420:6012805"))
     compileOnly(rfg.deobf("curse.maven:xaeros-world-map-317780:5987124"))
+    compileOnly('com.github.GTNewHorizons:OpenComputers:1.12.9-GTNH:dev')
 
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.35-GTNH:dev')
-    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:OpenComputers:1.12.8-GTNH:dev')
+    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:OpenComputers:1.12.9-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.1:dev')
     // runtimeOnlyNonPublishable('maven.modrinth:cursormod:1.2.2-1.7.10')
     // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:fplib-665627:7244842"))

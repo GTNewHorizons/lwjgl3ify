@@ -225,7 +225,7 @@ public class Keyboard {
                 unlocalizedKeyNameMiniLut[i] = "Key " + i;
             }
         }
-        eventQueue.add(new KeyEvent(0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
+        eventQueue.add(new KeyEvent(0, 0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
     }
 
     /** Populates the key name->index lookup table with the current keyboard layout based names. */
@@ -262,7 +262,8 @@ public class Keyboard {
             case RELEASED -> KeyState.RELEASE;
             case REPEATED -> KeyState.REPEAT;
         };
-        addRawKeyEvent(new KeyEvent(KeyCodes.sdlScancodeToLwjgl(scancode), c, state, nanoTime));
+        addRawKeyEvent(
+            new KeyEvent(KeyCodes.sdlScancodeToLwjgl(scancode), KeyCodes.sdlKeycodeToLwjgl(key), c, state, nanoTime));
     }
 
     public static void addCharEvent(int key, int c) {
@@ -270,7 +271,7 @@ public class Keyboard {
             Lwjgl3ify.LOG.info("[DEBUG-KEY-QUEUE] queued char virtual keypress codepoint:{} char:{}", c, c);
         }
         try {
-            eventQueue.add(new KeyEvent(KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
+            eventQueue.add(new KeyEvent(KEY_NONE, KEY_NONE, c, KeyState.PRESS, Sys.getNanoTime()));
         } catch (IllegalStateException ignored) {}
     }
 
@@ -322,6 +323,10 @@ public class Keyboard {
 
     public static int getEventKey() {
         return eventQueue.peek().key;
+    }
+
+    public static int lwjgl3ify$getEventKeyNonScancode() {
+        return eventQueue.peek().keyNonScancode;
     }
 
     public static char getEventCharacter() {
@@ -386,20 +391,22 @@ public class Keyboard {
     public static final class KeyEvent {
 
         public int key;
+        public int keyNonScancode;
         public int codepoint;
         public KeyState state;
         public long nano;
         public boolean queueOutOfOrderRelease = false;
 
-        public KeyEvent(int key, int codepoint, KeyState state, long nano) {
+        public KeyEvent(int key, int keyNonScancode, int codepoint, KeyState state, long nano) {
             this.key = key;
+            this.keyNonScancode = keyNonScancode;
             this.codepoint = codepoint;
             this.state = state;
             this.nano = nano;
         }
 
         public KeyEvent copy() {
-            final KeyEvent ev = new KeyEvent(key, codepoint, state, nano);
+            final KeyEvent ev = new KeyEvent(key, keyNonScancode, codepoint, state, nano);
             ev.queueOutOfOrderRelease = this.queueOutOfOrderRelease;
             return ev;
         }
