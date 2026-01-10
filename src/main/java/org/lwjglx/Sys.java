@@ -70,6 +70,10 @@ public class Sys {
                 }
             }
 
+            if (currentPlatform == Platform.LINUX) {
+                SDL_SetHint(SDL_HINT_VIDEO_FORCE_EGL, "1");
+            }
+
             if (!SDL_Init(
                 SDL_INIT_VIDEO | SDL_INIT_EVENTS
                     | SDL_INIT_JOYSTICK
