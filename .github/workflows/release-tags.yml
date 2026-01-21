@@ -10,36 +10,54 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       VERSION: ${{ github.ref_name }}
       RELEASE_VERSION: ${{ github.ref_name }}
-      SNAPSHOT: ${{ contains(github.ref_name, 'snapshot') || contains(github.event.head_commit.message, '[snapshot]') }}
+      SNAPSHOT: ${{ endsWith(github.ref_name, '-snapshot') || contains(github.event.head_commit.message, '[snapshot]') }}
+      PRERELEASE: ${{ endsWith(github.ref_name, '-pre') }}
       MAVEN_PUBLISHING_URL: ${{ vars.MAVEN_PUBLISHING_URL || 'https://nexus.gtnewhorizons.com/repository/releases/' }}
     steps:
       - name: Checkout mod repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 32
+          submodules: recursive
 
-      - name: Validate gradle wrapper checksum
-        uses: gradle/wrapper-validation-action@v1
+      - name: Determine JDK versions
+        id: list-jdk-versions
+        shell: bash
+        run: |
+          (
+            echo 'java-versions<<EOF'
+            echo 8
+            echo 17
+            echo 21
+            if [[ -f gradle/gradle-daemon-jvm.properties ]]; then
+              yq -pprops -oprops '.toolchainVersion' gradle/gradle-daemon-jvm.properties
+            fi
+            echo EOF
+          ) | tee -a "${GITHUB_OUTPUT}"
 
-      - name: Set up JDKs
-        uses: actions/setup-java@v4
+      - name: Set up JDK versions
+        uses: actions/setup-java@v5
         with:
-          java-version: |
-            8
-            17
-            21
+          java-version: ${{ steps.list-jdk-versions.outputs.java-versions }}
           distribution: 'zulu'
-          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          build-scan-publish: true
+          build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+          build-scan-terms-of-use-agree: "yes"
+          validate-wrappers: true
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Setup the workspace
-        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' ${{ inputs.workspace }}
+        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' setupDecompWorkspace
 
       - name: Build the mod
         run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' build
@@ -54,35 +72,51 @@ jobs:
 
       - name: Release under current tag
         run: |
-          PRERELEASE=""
+          PRERELEASE_FLAG=""
+          # DreamAssemblerXXL unfortunately breaks if prereleases are tagged as such on GitHub, so we only check for
+          # $SNAPSHOT here.
           if [[ "$SNAPSHOT" == "true" ]]; then
-            PRERELEASE="--prerelease"
+            PRERELEASE_FLAG="--prerelease"
           fi
-          export "CHANGELOG_FILE=$(mktemp --suffix=.md)"
-          echo "CHANGELOG_FILE=${CHANGELOG_FILE}" >> $GITHUB_ENV
-          gh api --method POST -H "Accept: application/vnd.github+json" \
-            "/repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
-            -f tag_name="${RELEASE_VERSION}" \
-            --jq ".body" > "${CHANGELOG_FILE}"
+          CHANGELOG_OVERRIDE=".changelogs/${RELEASE_VERSION}.md"
+          if [[ -f "$CHANGELOG_OVERRIDE" ]]; then
+            echo "Using changelog override: $CHANGELOG_OVERRIDE"
+            export "CHANGELOG_FILE=$CHANGELOG_OVERRIDE"
+            echo "CHANGELOG_FILE=${CHANGELOG_FILE}" >> $GITHUB_ENV
+          else
+            echo "Generating changelog notes..."
+            export "CHANGELOG_FILE=$(mktemp --suffix=.md)"
+            echo "CHANGELOG_FILE=${CHANGELOG_FILE}" >> $GITHUB_ENV
+            gh api --method POST -H "Accept: application/vnd.github+json" \
+              "/repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+              -f tag_name="${RELEASE_VERSION}" \
+              --jq ".body" > "${CHANGELOG_FILE}"
+          fi
           cat "${CHANGELOG_FILE}"
-          gh release create "${RELEASE_VERSION}" -F "${CHANGELOG_FILE}" $PRERELEASE ./build/libs/*.jar ./build/libs/*.json ./build/distributions/*.zip
+          gh release create "${RELEASE_VERSION}" -F "${CHANGELOG_FILE}" ${PRERELEASE_FLAG} ./build/libs/*.jar ./build/libs/*.json ./build/distributions/*.zip
         shell: bash
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to Maven
-        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' build publish
+        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' assemble publish -x test
         continue-on-error: true
         env:
           MAVEN_USER: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
         if: ${{ env.MAVEN_USER != '' }}
 
-      - name: Publish to Modrinth and CurseForge
-        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' build publish
+      - name: Publish to Modrinth
+        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' assemble publish -x test
         continue-on-error: true
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        if: ${{ env.SNAPSHOT != 'true' && env.PRERELEASE != 'true' }}
+
+      - name: Publish to Curseforge
+        run: ./gradlew --build-cache --info --stacktrace -PmavenPublishUrl='${{ env.MAVEN_PUBLISHING_URL }}' assemble publish -x test
+        continue-on-error: true
+        env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-        if: ${{ env.SNAPSHOT != 'true' }}
+        if: ${{ env.SNAPSHOT != 'true' && env.PRERELEASE != 'true' }}
