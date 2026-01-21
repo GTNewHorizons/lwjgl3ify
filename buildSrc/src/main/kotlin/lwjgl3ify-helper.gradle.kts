@@ -161,7 +161,9 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
             val downloadUrl = if (urlVersion.contains("-SNAPSHOT")) {
                 "https://nexus.gtnewhorizons.com/repository/central-sonatype-snapshots/org/lwjgl/${artifact}/${urlVersion}/${artifact}-${fileVersion}${dashClassifier}.jar"
             } else {
-                "https://libraries.minecraft.net/org/lwjgl/${artifact}/${urlVersion}/${artifact}-${fileVersion}${dashClassifier}.jar"
+                // "https://libraries.minecraft.net/org/lwjgl/${artifact}/${urlVersion}/${artifact}-${fileVersion}${dashClassifier}.jar"
+                // "https://build.lwjgl.org/release/${urlVersion}/bin/${artifact}/${artifact}${dashClassifier}.jar"
+                "https://repo1.maven.org/maven2/org/lwjgl/${artifact}/${urlVersion}/${artifact}-${fileVersion}${dashClassifier}.jar"
             }
             val outObj = mutableMapOf(
                 "downloads" to JsonObject(
