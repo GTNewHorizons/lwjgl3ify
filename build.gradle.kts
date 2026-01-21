@@ -234,6 +234,11 @@ val mmcInstanceFilesZip = tasks.register<MmcZip>("mmcInstanceFiles") {
             )
         )
     }
+    filesMatching("patches/net.minecraft.json") {
+        filter {
+            it.replace("\${lwjglVersion}", lwjglVersion)
+        }
+    }
 }
 
 val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFile
