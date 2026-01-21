@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 import com.gtnewhorizon.gtnhmixins.builders.IMixins;
 
+import cpw.mods.fml.relauncher.FMLLaunchHandler;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import me.eigenraven.lwjgl3ify.mixins.Mixins;
 
@@ -71,7 +72,9 @@ public class Lwjgl3ifyCoremod implements IFMLLoadingPlugin, IEarlyMixinLoader {
     @Override
     public List<String> getMixins(Set<String> loadedCoreMods) {
         final List<String> mixins = IMixins.getEarlyMixins(Mixins.class, loadedCoreMods);
-        if (Config.MIXIN_STBI_TEXTURE_STITCHING && !mixins.contains("game.MixinStitcher")) {
+        if (FMLLaunchHandler.side()
+            .isClient() && Config.MIXIN_STBI_TEXTURE_STITCHING
+            && !mixins.contains("game.MixinStitcher")) {
             Lwjgl3ifyCoremod.LOGGER.error(
                 "Disabled STB stitching mixins to prevent rapidly flashing screen."
                     + " Remove FastCraft or update to FastCraft 1.25 and "
