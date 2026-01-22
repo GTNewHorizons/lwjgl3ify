@@ -178,7 +178,7 @@ public class Lwjgl3ifyEventLoop {
                     ctrlGraphicalMode = Config.INPUT_CTRL_ALT_TEXT;
                 }
                 if (ctrlGraphicalMode) {
-                    Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (rawKeyCode & 0x1f), ns);
+                    Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (keyCode & 0x1f), ns);
                 }
             } else {
                 ctrlGraphicalMode = false;
@@ -192,7 +192,7 @@ public class Lwjgl3ifyEventLoop {
                         isAlt,
                         isAltGr);
                 }
-                Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (rawKeyCode & 0x1f), ns);
+                Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (keyCode & 0x1f), ns);
             } else {
                 Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, rawKeyCodeToChar(rawKeyCode), ns);
             }
