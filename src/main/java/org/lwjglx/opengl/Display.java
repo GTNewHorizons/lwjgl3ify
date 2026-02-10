@@ -28,8 +28,10 @@ import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.lwjgl.PointerBuffer;
+import org.lwjgl.opengl.ARBFramebufferSRGB;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL11C;
 import org.lwjgl.sdl.SDLKeyboard;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
@@ -142,7 +144,7 @@ public class Display {
             final boolean ctxForwardCompat = attribs != null && attribs.isForwardCompatible();
             final boolean ctxDebug = (attribs != null && attribs.isDebug()) || Config.OPENGL_DEBUG_CONTEXT
                 || Config.DEBUG_REGISTER_OPENGL_LOGGER;
-            final boolean ctxSrgb = pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
+            final boolean ctxSrgb = true;// pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
 
             final int props = SDL_CreateProperties();
             try {
@@ -297,6 +299,11 @@ public class Display {
         GL.create(SDLVideo::SDL_GL_GetProcAddress);
         drawable = new DrawableGL();
         drawable.makeCurrent();
+        // Work around SDL 3.4.0 sRGB context bugs (will be fixed in SDL 3.4.2)
+        if (GL.getCapabilities().GL_ARB_framebuffer_sRGB) {
+            GL11C.glDisable(ARBFramebufferSRGB.GL_FRAMEBUFFER_SRGB);
+            GL11C.glGetError(); // clear error if the above call fails
+        }
         if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
             Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-created");
         }
