@@ -239,7 +239,7 @@ public class Keyboard {
 
     public static void addRawKeyEvent(KeyEvent event) {
         boolean actuallyDoRepeatEvents = doRepeatEvents || Config.INPUT_ALWAYS_REPEAT_KEYS;
-        if (event == null || (event.state == KeyState.REPEAT && !doRepeatEvents)) {
+        if (event == null || (event.state == KeyState.REPEAT && !actuallyDoRepeatEvents)) {
             return;
         }
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
