@@ -46,6 +46,7 @@ public class Config {
     public static boolean INPUT_CTRL_ALT_TEXT = false;
     public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
     public static boolean INPUT_RAW_MOUSE = false;
+    public static boolean INPUT_ALWAYS_REPEAT_KEYS = false;
     public static boolean FORCE_DISCRETE_SCROLLING = false;
 
     public static String APP_ID = "com.gtnewhorizons.Lwjgl3ifyMinecraft";
@@ -193,6 +194,11 @@ public class Config {
             "Allows AltGr use in Ctrl+key special key combinations (disables text character input handling when AltGr is pressed)");
         INPUT_RAW_MOUSE = config
             .getBoolean("rawMouseInput", CATEGORY_INPUT, INPUT_RAW_MOUSE, "Use raw (unaccelerated) mouse input");
+        INPUT_ALWAYS_REPEAT_KEYS = config.getBoolean(
+            "alwaysRepeatKeys",
+            CATEGORY_INPUT,
+            INPUT_ALWAYS_REPEAT_KEYS,
+            "Always create repeat key press events when a key is held, instead of letting the game control the setting at runtime.");
         FORCE_DISCRETE_SCROLLING = config.getBoolean(
             "forceDiscreteScrolling",
             CATEGORY_INPUT,

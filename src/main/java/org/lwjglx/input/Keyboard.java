@@ -189,7 +189,7 @@ public class Keyboard {
         }
     }
 
-    private static boolean doRepeatEvents = true;
+    private static boolean doRepeatEvents = false;
 
     public static final int KEYBOARD_SIZE = Short.MAX_VALUE;
     public static Queue<KeyEvent> eventQueue = new ArrayBlockingQueue<>(256);
@@ -238,6 +238,7 @@ public class Keyboard {
     }
 
     public static void addRawKeyEvent(KeyEvent event) {
+        boolean actuallyDoRepeatEvents = doRepeatEvents || Config.INPUT_ALWAYS_REPEAT_KEYS;
         if (event == null || (event.state == KeyState.REPEAT && !doRepeatEvents)) {
             return;
         }
