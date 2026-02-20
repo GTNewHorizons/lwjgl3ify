@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.FileChannel;
@@ -363,8 +364,15 @@ public class Downloader {
             byte[] data = null;
             Relauncher.logger.info("Downloading {} from {}", targetLocation, sourceUrl);
             for (int retries = 0; retries < 5; retries++) {
+                HttpURLConnection conn = null;
                 try {
-                    data = IOUtils.toByteArray(sourceUrl);
+                    conn = (HttpURLConnection) sourceUrl.openConnection();
+                    conn.setRequestProperty("http.agent", "curl/8.18.0");
+                    conn.setRequestProperty("User-Agent", "curl/8.18.0");
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "*/*");
+                    conn.connect();
+                    data = IOUtils.toByteArray(conn);
                     if (checksum != null) {
                         final byte[] dataSum = DigestUtils.sha1(data);
                         if (!Arrays.equals(dataSum, checksum)) {
@@ -372,6 +380,19 @@ public class Downloader {
                         }
                     }
                 } catch (Exception e) {
+                    if (conn != null) {
+                        String httpErr = "<could not read error response>";
+                        try (InputStream errorStream = conn.getErrorStream()) {
+                            IOUtils.toString(errorStream, StandardCharsets.UTF_8);
+                        } finally {
+                            System.err.printf(
+                                "Received HTTP error code when reading %s: %d: %s \n%s\n",
+                                sourceUrl,
+                                conn.getResponseCode(),
+                                conn.getResponseMessage(),
+                                httpErr);
+                        }
+                    }
                     if (retries != 4) {
                         continue;
                     } else {
