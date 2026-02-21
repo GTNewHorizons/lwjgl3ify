@@ -144,7 +144,7 @@ public class Display {
             final boolean ctxForwardCompat = attribs != null && attribs.isForwardCompatible();
             final boolean ctxDebug = (attribs != null && attribs.isDebug()) || Config.OPENGL_DEBUG_CONTEXT
                 || Config.DEBUG_REGISTER_OPENGL_LOGGER;
-            final boolean ctxSrgb = true;// pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
+            final boolean ctxSrgb = pixelFormat != null ? pixelFormat.isSRGB() : Config.OPENGL_SRGB_CONTEXT;
 
             final int props = SDL_CreateProperties();
             try {
