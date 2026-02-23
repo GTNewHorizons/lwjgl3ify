@@ -12,4 +12,4 @@ asmAnalysis = { module = "org.ow2.asm:asm-analysis", version.ref = "asm" }
 asmUtil = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
 gson = { module = "com.google.code.gson:gson", version = "2.13.2" }
 
-rfb = { module = "com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap", version = "1.0.14" }
+rfb = { module = "com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap", version = "1.0.14-test.6" }
