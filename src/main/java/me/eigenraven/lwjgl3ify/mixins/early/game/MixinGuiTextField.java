@@ -2,6 +2,7 @@ package me.eigenraven.lwjgl3ify.mixins.early.game;
 
 import net.minecraft.client.gui.GuiTextField;
 
+import org.lwjglx.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -41,9 +42,16 @@ public class MixinGuiTextField {
         slice = @Slice(
             from = @At(value = "INVOKE", target = "Lnet/minecraft/util/ChatAllowedCharacters;isAllowedCharacter(C)Z")))
     private void lwjgl3ify$denyStandardTextInput(GuiTextField instance, String s) {
-        // Inject queued IME text input
         final GuiTextField self = (GuiTextField) (Object) this;
-        self.writeText(TextFieldHandler.textBuffer.toString());
-        TextFieldHandler.textBuffer.delete(0, TextFieldHandler.textBuffer.length());
+        if (TextFieldHandler.textBuffer.length() > 0) {
+            // SDL_TEXTINPUT fired: use the buffered text (handles IME/dead key composition correctly)
+            self.writeText(TextFieldHandler.textBuffer.toString());
+            TextFieldHandler.textBuffer.delete(0, TextFieldHandler.textBuffer.length());
+        } else if (Keyboard.getEventKey() != Keyboard.KEY_NONE) {
+            // SDL_TEXTINPUT did not fire (e.g. Wayland compositor without zwp_text_input_v3,
+            // or compositor hasn't yet acknowledged SDL_StartTextInput). Fall back to the
+            // character SDL already decoded from the key event.
+            self.writeText(s);
+        }
     }
 }
