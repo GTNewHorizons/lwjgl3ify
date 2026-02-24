@@ -42,44 +42,44 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (className.equals("net.minecraft.init.Blocks") || className.equals("net.minecraft.init.Items")) {
             return true;
         }
-        return ClassHeaderMetadata.hasSubstring(classNode.getOriginalBytes(), QUICKSCAN_BYTES);
+        final ClassHeaderMetadata metadata = classNode.getOriginalMetadata();
+        if (metadata == null) {
+            return false;
+        }
+        return metadata.hasSubstring(QUICKSCAN_BYTES);
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String name, @NotNull ClassNodeHandle classNodeHandle) {
+    public boolean transformClass(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String name,
+        @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode node = classNodeHandle.getNode();
         if (node == null) {
-            return;
+            return false;
         }
         boolean transformClass = false;
-        boolean workDone = false;
+        boolean transformed = false;
         if (name.equals("net.minecraft.init.Blocks") || name.equals("net.minecraft.init.Items")) {
             transformClass = true;
         }
         transformClass |= isHolder(node.visibleAnnotations);
         int fieldsModified = 0;
         for (FieldNode field : node.fields) {
-            boolean transform = transformClass;
-            if (!transform) {
-                transform = isHolder(field.visibleAnnotations);
-            }
-            if (transform) {
-                workDone = true;
-                if ((field.access & Opcodes.ACC_FINAL) != 0) {
-                    if (field.visibleAnnotations == null) {
-                        field.visibleAnnotations = new ArrayList<>(1);
-                        field.visibleAnnotations
-                            .add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
-                    }
-                    field.access = field.access & (~Opcodes.ACC_FINAL);
+            boolean transform = transformClass || isHolder(field.visibleAnnotations);
+            if (transform && (field.access & Opcodes.ACC_FINAL) != 0) {
+                if (field.visibleAnnotations == null) {
+                    field.visibleAnnotations = new ArrayList<>(1);
+                    field.visibleAnnotations.add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
                 }
+                field.access = field.access & (~Opcodes.ACC_FINAL);
+                transformed = true;
                 fieldsModified++;
             }
         }
-        if (workDone) {
+        if (transformed) {
             Lwjgl3ifyCoremod.LOGGER.debug("Unfinalized {} Holder fields in {}", fieldsModified, name);
         }
+        return transformed;
     }
 
     private static boolean isHolder(List<AnnotationNode> annotations) {
