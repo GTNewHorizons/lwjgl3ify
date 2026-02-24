@@ -77,19 +77,20 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
                 .getValue(MANIFEST_SAFE_ATTRIBUTE))) {
             return false;
         }
-        final byte[] original = nodeHandle.getOriginalBytes();
-        if (original == null) {
+        final ClassHeaderMetadata metadata = nodeHandle.getOriginalMetadata();
+        if (metadata == null) {
             return false;
         }
-        return ClassHeaderMetadata.hasSubstrings(original, quickScans);
+        return metadata.hasSubstrings(quickScans);
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String className, @NotNull ClassNodeHandle nodeHandle) {
+    public boolean transformClass(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
+        @NotNull ClassNodeHandle nodeHandle) {
         final ClassNode inputNode = nodeHandle.getNode();
         if (inputNode == null) {
-            return;
+            return false;
         }
 
         final ClassNode outputNode = new ClassNode();
@@ -98,13 +99,14 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         try {
             inputNode.accept(visitor);
         } catch (Lwjgl3AwareException e) {
-            return;
+            return false;
         } catch (Exception e) {
             Lwjgl3ifyCoremod.LOGGER.warn("Couldn't remap class {}", className, e);
-            return;
+            return false;
         }
 
         nodeHandle.setNode(outputNode);
+        return true;
     }
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
