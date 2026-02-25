@@ -2,7 +2,10 @@ package me.eigenraven.lwjgl3ify.rfb.transformers;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.jar.Manifest;
 
 import org.intellij.lang.annotations.Pattern;
@@ -24,7 +27,19 @@ import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
 public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
 
-    final byte[] QUICKSCAN_BYTES = "cpw/mods/fml/common/registry/GameRegistry".getBytes(StandardCharsets.UTF_8);
+    private final static Set<String> objectHolders = new HashSet<>(
+        Arrays.asList(
+            "Lcpw/mods/fml/common/registry/GameRegistry$ObjectHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry$ItemStackHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry/ObjectHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry/ItemStackHolder;"));
+
+    private final static byte[][] objectHolderBytes = Arrays.stream(objectHolders.toArray(new String[0]))
+        .map(s -> s.getBytes(StandardCharsets.UTF_8))
+        .toArray(byte[][]::new);
+
+    private final static ClassHeaderMetadata.NeedleIndex scanIndex = new ClassHeaderMetadata.NeedleIndex(
+        objectHolderBytes).exactMatch();
 
     @Pattern("[a-z0-9-]+")
     @Override
@@ -46,7 +61,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (metadata == null) {
             return false;
         }
-        return metadata.hasSubstring(QUICKSCAN_BYTES);
+        return metadata.hasSubstrings(scanIndex);
     }
 
     @Override
@@ -87,18 +102,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
             return false;
         }
         for (AnnotationNode annotationNode : annotations) {
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry$ObjectHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry$ItemStackHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ObjectHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ItemStackHolder")) {
-                return true;
-            }
+            return objectHolders.contains(annotationNode.desc);
         }
         return false;
     }

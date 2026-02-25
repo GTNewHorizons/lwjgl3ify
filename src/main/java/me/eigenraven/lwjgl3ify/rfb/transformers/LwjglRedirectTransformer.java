@@ -37,9 +37,10 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
             .map(s -> s.replace('/', '.'))
             .toArray(String[]::new);
-        quickScans = Arrays.stream(fromPrefixes)
-            .map(s -> s.getBytes(StandardCharsets.UTF_8))
-            .toArray(byte[][]::new);
+        scanIndex = new ClassHeaderMetadata.NeedleIndex(
+            Arrays.stream(fromPrefixes)
+                .map(s -> s.getBytes(StandardCharsets.UTF_8))
+                .toArray(byte[][]::new));
     }
 
     @Override
@@ -81,7 +82,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         if (metadata == null) {
             return false;
         }
-        return metadata.hasSubstrings(quickScans);
+        return metadata.hasSubstrings(scanIndex);
     }
 
     @Override
@@ -115,7 +116,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
         "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
         "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
-    final byte[][] quickScans;
+    final ClassHeaderMetadata.NeedleIndex scanIndex;
     final String[] excludedPackages;
 
     @Override
