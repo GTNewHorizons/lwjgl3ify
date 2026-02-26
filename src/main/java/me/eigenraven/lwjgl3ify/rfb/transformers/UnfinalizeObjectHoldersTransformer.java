@@ -102,7 +102,9 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
             return false;
         }
         for (AnnotationNode annotationNode : annotations) {
-            return objectHolders.contains(annotationNode.desc);
+            if (objectHolders.contains(annotationNode.desc)) {
+                return true;
+            }
         }
         return false;
     }
