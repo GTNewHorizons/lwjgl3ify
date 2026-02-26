@@ -30,8 +30,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
 
     /** Attribute to set to "true" on a JAR to skip class transforms from this transformer entirely */
     public static final Attributes.Name MANIFEST_SAFE_ATTRIBUTE = new Attributes.Name("Lwjgl3ify-Aware");
-
-    int remaps = 0, calls = 0;
+    private boolean transformed = false;
 
     public LwjglRedirectTransformer() {
         excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
@@ -94,6 +93,8 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
             return false;
         }
 
+        transformed = false;
+
         final ClassNode outputNode = new ClassNode();
         final ClassVisitor visitor = new EscapingClassRemapper(outputNode);
 
@@ -106,8 +107,10 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
             return false;
         }
 
-        nodeHandle.setNode(outputNode);
-        return true;
+        if (transformed) {
+            nodeHandle.setNode(outputNode);
+        }
+        return transformed;
     }
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
@@ -124,10 +127,9 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         if (typeName == null) {
             return null;
         }
-        calls++;
         for (int pfx = 0; pfx < fromPrefixes.length; pfx++) {
             if (typeName.startsWith(fromPrefixes[pfx])) {
-                remaps++;
+                transformed = true;
                 return toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
             }
         }
