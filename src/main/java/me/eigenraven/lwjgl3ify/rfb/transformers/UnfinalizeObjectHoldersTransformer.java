@@ -72,32 +72,33 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (node == null) {
             return false;
         }
-        boolean transformClass = false;
-        boolean transformed = false;
-        if (name.equals("net.minecraft.init.Blocks") || name.equals("net.minecraft.init.Items")) {
-            transformClass = true;
-        }
-        transformClass |= isHolder(node.visibleAnnotations);
+
+        final boolean isClassObjectHolder = name.equals("net.minecraft.init.Blocks")
+            || name.equals("net.minecraft.init.Items")
+            || isObjectHolder(node.visibleAnnotations);
         int fieldsModified = 0;
-        for (FieldNode field : node.fields) {
-            boolean transform = transformClass || isHolder(field.visibleAnnotations);
-            if (transform && (field.access & Opcodes.ACC_FINAL) != 0) {
+
+        for (final FieldNode field : node.fields) {
+            final boolean isObjectHolder = isClassObjectHolder || isObjectHolder(field.visibleAnnotations);
+            final boolean isFinal = (field.access & Opcodes.ACC_FINAL) != 0;
+            if (isObjectHolder && isFinal) {
                 if (field.visibleAnnotations == null) {
                     field.visibleAnnotations = new ArrayList<>(1);
-                    field.visibleAnnotations.add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
                 }
+                field.visibleAnnotations.add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
                 field.access = field.access & (~Opcodes.ACC_FINAL);
-                transformed = true;
                 fieldsModified++;
             }
         }
-        if (transformed) {
+
+        if (fieldsModified > 0) {
             Lwjgl3ifyCoremod.LOGGER.debug("Unfinalized {} Holder fields in {}", fieldsModified, name);
+            return true;
         }
-        return transformed;
+        return false;
     }
 
-    private static boolean isHolder(List<AnnotationNode> annotations) {
+    private static boolean isObjectHolder(List<AnnotationNode> annotations) {
         if (annotations == null) {
             return false;
         }
