@@ -2,7 +2,7 @@
 # https://asm.ow2.io/versions.html
 asm = "9.9.1"
 # https://central.sonatype.com/repository/maven-snapshots/org/lwjgl/lwjgl/3.4.2-SNAPSHOT/maven-metadata.xml
-lwjgl = "3.4.2-20260213.173042-1"
+lwjgl = "3.4.2-20260225.192616-2"
 
 [libraries]
 asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
