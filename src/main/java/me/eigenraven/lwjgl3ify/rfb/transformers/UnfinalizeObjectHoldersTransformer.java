@@ -42,11 +42,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (className.equals("net.minecraft.init.Blocks") || className.equals("net.minecraft.init.Items")) {
             return true;
         }
-        if (classNode.isOriginal()) {
-            return ClassHeaderMetadata.hasSubstring(classNode.getOriginalBytes(), QUICKSCAN_BYTES);
-        } else {
-            return true;
-        }
+        return ClassHeaderMetadata.hasSubstring(classNode.getOriginalBytes(), QUICKSCAN_BYTES);
     }
 
     @Override
