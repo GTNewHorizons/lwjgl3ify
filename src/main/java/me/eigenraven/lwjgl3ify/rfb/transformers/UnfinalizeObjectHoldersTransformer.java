@@ -2,7 +2,10 @@ package me.eigenraven.lwjgl3ify.rfb.transformers;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.jar.Manifest;
 
 import org.intellij.lang.annotations.Pattern;
@@ -24,7 +27,19 @@ import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
 
 public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
 
-    final byte[] QUICKSCAN_BYTES = "cpw/mods/fml/common/registry/GameRegistry".getBytes(StandardCharsets.UTF_8);
+    private final static Set<String> objectHolders = new HashSet<>(
+        Arrays.asList(
+            "Lcpw/mods/fml/common/registry/GameRegistry$ObjectHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry$ItemStackHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry/ObjectHolder;",
+            "Lcpw/mods/fml/common/registry/GameRegistry/ItemStackHolder;"));
+
+    private final static byte[][] objectHolderBytes = Arrays.stream(objectHolders.toArray(new String[0]))
+        .map(s -> s.getBytes(StandardCharsets.UTF_8))
+        .toArray(byte[][]::new);
+
+    private final static ClassHeaderMetadata.NeedleIndex scanIndex = new ClassHeaderMetadata.NeedleIndex(
+        objectHolderBytes).exactMatch();
 
     @Pattern("[a-z0-9-]+")
     @Override
@@ -42,61 +57,53 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (className.equals("net.minecraft.init.Blocks") || className.equals("net.minecraft.init.Items")) {
             return true;
         }
-        return ClassHeaderMetadata.hasSubstring(classNode.getOriginalBytes(), QUICKSCAN_BYTES);
+        final ClassHeaderMetadata metadata = classNode.getOriginalMetadata();
+        if (metadata == null) {
+            return false;
+        }
+        return metadata.hasSubstrings(scanIndex);
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String name, @NotNull ClassNodeHandle classNodeHandle) {
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String name,
+        @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode node = classNodeHandle.getNode();
         if (node == null) {
-            return;
+            return false;
         }
-        boolean transformClass = false;
-        boolean workDone = false;
-        if (name.equals("net.minecraft.init.Blocks") || name.equals("net.minecraft.init.Items")) {
-            transformClass = true;
-        }
-        transformClass |= isHolder(node.visibleAnnotations);
+
+        final boolean isClassObjectHolder = name.equals("net.minecraft.init.Blocks")
+            || name.equals("net.minecraft.init.Items")
+            || isObjectHolder(node.visibleAnnotations);
         int fieldsModified = 0;
-        for (FieldNode field : node.fields) {
-            boolean transform = transformClass;
-            if (!transform) {
-                transform = isHolder(field.visibleAnnotations);
-            }
-            if (transform) {
-                workDone = true;
-                if ((field.access & Opcodes.ACC_FINAL) != 0) {
-                    if (field.visibleAnnotations == null) {
-                        field.visibleAnnotations = new ArrayList<>(1);
-                        field.visibleAnnotations
-                            .add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
-                    }
-                    field.access = field.access & (~Opcodes.ACC_FINAL);
+
+        for (final FieldNode field : node.fields) {
+            final boolean isObjectHolder = isClassObjectHolder || isObjectHolder(field.visibleAnnotations);
+            final boolean isFinal = (field.access & Opcodes.ACC_FINAL) != 0;
+            if (isObjectHolder && isFinal) {
+                if (field.visibleAnnotations == null) {
+                    field.visibleAnnotations = new ArrayList<>(1);
                 }
+                field.visibleAnnotations.add(new AnnotationNode(Type.getDescriptor(WasFinalObjectHolder.class)));
+                field.access = field.access & (~Opcodes.ACC_FINAL);
                 fieldsModified++;
             }
         }
-        if (workDone) {
+
+        if (fieldsModified > 0) {
             Lwjgl3ifyCoremod.LOGGER.debug("Unfinalized {} Holder fields in {}", fieldsModified, name);
+            return true;
         }
+        return false;
     }
 
-    private static boolean isHolder(List<AnnotationNode> annotations) {
+    private static boolean isObjectHolder(List<AnnotationNode> annotations) {
         if (annotations == null) {
             return false;
         }
         for (AnnotationNode annotationNode : annotations) {
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry$ObjectHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry$ItemStackHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ObjectHolder")) {
-                return true;
-            }
-            if (annotationNode.desc.contains("cpw/mods/fml/common/registry/GameRegistry/ItemStackHolder")) {
+            if (objectHolders.contains(annotationNode.desc)) {
                 return true;
             }
         }
