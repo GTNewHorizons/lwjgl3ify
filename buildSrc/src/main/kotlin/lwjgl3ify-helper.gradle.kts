@@ -124,7 +124,7 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
             var versionInterlude = "-${lwjglVersion}"
             var versionIdx = fileName.indexOf(versionInterlude)
             if (versionIdx == -1) {
-                versionInterlude = "-3.4.0-SNAPSHOT"
+                versionInterlude = "-3.4.2-SNAPSHOT"
                 versionIdx = fileName.indexOf(versionInterlude)
             }
             if (versionIdx == -1) {
