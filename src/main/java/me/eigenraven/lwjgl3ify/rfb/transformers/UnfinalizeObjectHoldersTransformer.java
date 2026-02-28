@@ -1,6 +1,5 @@
 package me.eigenraven.lwjgl3ify.rfb.transformers;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -17,6 +16,7 @@ import org.objectweb.asm.tree.AnnotationNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.FieldNode;
 
+import com.gtnewhorizons.retrofuturabootstrap.api.BytePatternMatcher;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassHeaderMetadata;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
 import com.gtnewhorizons.retrofuturabootstrap.api.ExtensibleClassLoader;
@@ -34,12 +34,9 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
             "Lcpw/mods/fml/common/registry/GameRegistry/ObjectHolder;",
             "Lcpw/mods/fml/common/registry/GameRegistry/ItemStackHolder;"));
 
-    private final static byte[][] objectHolderBytes = Arrays.stream(objectHolders.toArray(new String[0]))
-        .map(s -> s.getBytes(StandardCharsets.UTF_8))
-        .toArray(byte[][]::new);
-
-    private final static ClassHeaderMetadata.NeedleIndex scanIndex = new ClassHeaderMetadata.NeedleIndex(
-        objectHolderBytes).exactMatch();
+    private final static BytePatternMatcher patternMatcher = new BytePatternMatcher(
+        objectHolders.toArray(new String[0]),
+        BytePatternMatcher.Mode.Equals);
 
     @Pattern("[a-z0-9-]+")
     @Override
@@ -61,11 +58,11 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         if (metadata == null) {
             return false;
         }
-        return metadata.hasSubstrings(scanIndex);
+        return metadata.matchesBytes(patternMatcher);
     }
 
     @Override
-    public boolean transformClass(@NotNull ExtensibleClassLoader classLoader,
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String name,
         @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode node = classNodeHandle.getNode();
