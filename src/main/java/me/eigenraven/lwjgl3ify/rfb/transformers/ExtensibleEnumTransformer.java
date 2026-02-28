@@ -63,7 +63,7 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
     }
 
     @Override
-    public boolean transformClass(@NotNull ExtensibleClassLoader extensibleClassLoader,
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader extensibleClassLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode classNode = classNodeHandle.getNode();

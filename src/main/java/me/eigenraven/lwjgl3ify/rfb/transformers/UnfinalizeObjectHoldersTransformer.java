@@ -65,7 +65,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
     }
 
     @Override
-    public boolean transformClass(@NotNull ExtensibleClassLoader classLoader,
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String name,
         @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode node = classNodeHandle.getNode();

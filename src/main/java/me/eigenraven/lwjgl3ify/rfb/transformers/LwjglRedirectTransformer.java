@@ -85,7 +85,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     }
 
     @Override
-    public boolean transformClass(@NotNull ExtensibleClassLoader classLoader,
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle nodeHandle) {
         final ClassNode inputNode = nodeHandle.getNode();
