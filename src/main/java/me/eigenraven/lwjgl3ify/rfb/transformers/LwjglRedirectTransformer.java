@@ -1,6 +1,5 @@
 package me.eigenraven.lwjgl3ify.rfb.transformers;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
@@ -18,6 +17,7 @@ import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.tree.ClassNode;
 
+import com.gtnewhorizons.retrofuturabootstrap.api.BytePatternMatcher;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassHeaderMetadata;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
 import com.gtnewhorizons.retrofuturabootstrap.api.ExtensibleClassLoader;
@@ -32,15 +32,17 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     public static final Attributes.Name MANIFEST_SAFE_ATTRIBUTE = new Attributes.Name("Lwjgl3ify-Aware");
     private boolean transformed = false;
 
-    public LwjglRedirectTransformer() {
-        excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
-            .map(s -> s.replace('/', '.'))
-            .toArray(String[]::new);
-        scanIndex = new ClassHeaderMetadata.NeedleIndex(
-            Arrays.stream(fromPrefixes)
-                .map(s -> s.getBytes(StandardCharsets.UTF_8))
-                .toArray(byte[][]::new));
-    }
+    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
+        "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
+    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/",
+        "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
+        "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
+        "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
+
+    final BytePatternMatcher patternMatcher = new BytePatternMatcher(fromPrefixes, BytePatternMatcher.Mode.StartsWith);
+    final String[] excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
+        .map(s -> s.replace('/', '.'))
+        .toArray(String[]::new);
 
     @Override
     public @NotNull String @Nullable [] sortAfter() {
@@ -81,7 +83,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         if (metadata == null) {
             return false;
         }
-        return metadata.hasSubstrings(scanIndex);
+        return metadata.matchesBytes(patternMatcher);
     }
 
     @Override
@@ -112,15 +114,6 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         }
         return transformed;
     }
-
-    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
-        "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
-    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/",
-        "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
-        "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
-        "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
-    final ClassHeaderMetadata.NeedleIndex scanIndex;
-    final String[] excludedPackages;
 
     @Override
     public String map(String typeName) {
