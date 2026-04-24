@@ -37,6 +37,7 @@ public class Config {
     public static boolean OPENGL_SRGB_CONTEXT = false;
     public static boolean OPENGL_DOUBLEBUFFER = true;
     public static boolean OPENGL_CONTEXT_NO_ERROR = false;
+    public static boolean OPENGL_SHARED_CONTEXT = true;
 
     public static boolean OPENAL_ENABLE_HRTF = false;
 
@@ -225,6 +226,11 @@ public class Config {
             CATEGORY_GLCONTEXT,
             OPENGL_CONTEXT_NO_ERROR,
             "Enable GL_KHR_no_error to use faster driver code, but which can cause memory corruption in case of OpenGL errors");
+        OPENGL_SHARED_CONTEXT = config.getBoolean(
+            "sharedContext",
+            CATEGORY_GLCONTEXT,
+            OPENGL_SHARED_CONTEXT,
+            "Create a hidden GL context shared with the main one, used by the loading splash thread. Disable on mobile / OpenGL ES drivers that do not support shared contexts.");
 
         OPENAL_ENABLE_HRTF = config
             .getBoolean("enableHRTF", CATEGORY_OPENALCONTEXT, OPENAL_ENABLE_HRTF, "Enable HRTF sound support");

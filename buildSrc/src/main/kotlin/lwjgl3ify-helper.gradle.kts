@@ -40,7 +40,8 @@ fun makePlatform(name: String, launcherOs: List<String>): LwjglPlatform {
     return platform
 }
 
-data class LwjglBinding(val name: String, val hasNatives: Boolean = true) {
+data class LwjglBinding(val name: String, val nativePlatforms: List<LwjglPlatform> = supportedNatives) {
+    val hasNatives: Boolean get() = nativePlatforms.isNotEmpty()
     fun getGav(): String {
         if (name.isEmpty()) {
             return "org.lwjgl:lwjgl:${lwjglVersion}"
@@ -74,15 +75,18 @@ private val hostNativePlatform = nativesByName[hostNativeClassifier]!!;
 private val lwjgl3Bindings = listOf(
     LwjglBinding(""),
     LwjglBinding("freetype"),
-    LwjglBinding("harfbuzz", false),
+    LwjglBinding("harfbuzz", emptyList()),
     LwjglBinding("jemalloc"),
     LwjglBinding("nuklear"),
     LwjglBinding("openal"),
     LwjglBinding("opengl"),
     LwjglBinding("sdl"),
+    LwjglBinding("shaderc"),
     LwjglBinding("spng"),
+    LwjglBinding("spvc"),
     LwjglBinding("stb"),
     LwjglBinding("tinyfd"),
+    LwjglBinding("vulkan", listOf(nativesByName["macos"]!!, nativesByName["macos-arm64"]!!)),
     LwjglBinding("zstd")
 );
 
@@ -94,8 +98,10 @@ for (binding in lwjgl3Bindings) {
     dependencies.add(lwjgl3Classpath.name, binding.getGav())
     dependencies.add(allOfLwjgl3.name, binding.getGav())
     if (binding.hasNatives) {
-        dependencies.add(lwjgl3Classpath.name, binding.getNativeGav(hostNativePlatform))
-        for (platform in supportedNatives) {
+        if (hostNativePlatform in binding.nativePlatforms) {
+            dependencies.add(lwjgl3Classpath.name, binding.getNativeGav(hostNativePlatform))
+        }
+        for (platform in binding.nativePlatforms) {
             dependencies.add(allOfLwjgl3.name, binding.getNativeGav(platform))
         }
     }

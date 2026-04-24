@@ -27,6 +27,11 @@ dependencies {
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}:${lwjgl3Natives}")
     patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}")
     patchedMinecraft("org.lwjgl:lwjgl-spng:${lwjglVersion}:${lwjgl3Natives}")
+    // SDL GPU backend shader compilation and cross-compilation
+    patchedMinecraft("org.lwjgl:lwjgl-shaderc:${lwjglVersion}")
+    patchedMinecraft("org.lwjgl:lwjgl-shaderc:${lwjglVersion}:${lwjgl3Natives}")
+    patchedMinecraft("org.lwjgl:lwjgl-spvc:${lwjglVersion}")
+    patchedMinecraft("org.lwjgl:lwjgl-spvc:${lwjglVersion}:${lwjgl3Natives}")
 
     utilImplementation(libs.asm)
     utilImplementation(libs.asmTree)

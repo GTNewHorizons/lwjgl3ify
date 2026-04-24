@@ -264,9 +264,6 @@ public final class ContextAttribs {
      * If {@code profileES} is true, all other bits in the mask are cleared.
      */
     public ContextAttribs withProfileES(boolean profileES) {
-        if (!(majorVersion == 2 && minorVersion == 0))
-            throw new IllegalArgumentException("The OpenGL ES profile is only supported on OpenGL version 2.0.");
-
         return toggleMask(CONTEXT_ES2_PROFILE_BIT_EXT, profileES);
     }
 
@@ -431,7 +428,7 @@ public final class ContextAttribs {
             sb.append(", Profile=");
             if (hasMask(CONTEXT_CORE_PROFILE_BIT_ARB)) sb.append("CORE");
             else if (hasMask(CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB)) sb.append("COMPATIBLITY");
-            else if (hasMask(CONTEXT_ES2_PROFILE_BIT_EXT)) sb.append("ES2");
+            else if (hasMask(CONTEXT_ES2_PROFILE_BIT_EXT)) sb.append("ES");
             else sb.append("*unknown*");
         }
 

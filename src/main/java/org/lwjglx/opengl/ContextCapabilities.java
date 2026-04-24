@@ -4,9 +4,16 @@ import java.lang.reflect.Field;
 
 public class ContextCapabilities {
 
-    org.lwjgl.opengl.GLCapabilities cap = org.lwjgl.opengl.GL.getCapabilities();
+    org.lwjgl.opengl.GLCapabilities cap;
 
     public ContextCapabilities() {
+        if (Display.isSDLGPUWindow()) {
+            // No GL context exists -- fields left at defaults (false).
+            cap = null;
+            return;
+        }
+
+        cap = org.lwjgl.opengl.GL.getCapabilities();
 
         Field[] fields = org.lwjgl.opengl.GLCapabilities.class.getFields();
 
@@ -28,6 +35,17 @@ public class ContextCapabilities {
             }
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    /** Sets a capability field by name. Used by SDL GPU backend to populate capabilities from device properties. */
+    public void setField(String name, boolean value) {
+        try {
+            Field f = this.getClass()
+                .getField(name);
+            f.setBoolean(this, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            // Unknown capability — ignore
         }
     }
 

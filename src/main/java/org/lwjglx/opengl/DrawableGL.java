@@ -68,6 +68,10 @@ public class DrawableGL implements DrawableLWJGL {
 
     public ContextGL createSharedContext() {
         synchronized (GlobalLock.lock) {
+            if (Display.sdlCloneableGlContext == 0L) {
+                throw new UnsupportedOperationException(
+                    "Shared GL contexts are disabled (Config.OPENGL_SHARED_CONTEXT=false)");
+            }
             return MainThreadExec.runOnMainThread(() -> {
                 long prevCtx = SDL_GL_GetCurrentContext();
                 long prevWin = SDL_GL_GetCurrentWindow();
