@@ -37,6 +37,7 @@ import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.Platform;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -199,6 +200,8 @@ public class Display {
                 Sys.checkSdl(SDL_SetStringProperty(props, SDL_PROP_WINDOW_CREATE_TITLE_STRING, windowTitle));
                 if (!sdlGpuWindow) {
                     Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_OPENGL_BOOLEAN, true));
+                } else if (Platform.get() == Platform.MACOSX) {
+                    Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_METAL_BOOLEAN, true));
                 }
                 Sys.checkSdl(
                     SDL_SetBooleanProperty(
