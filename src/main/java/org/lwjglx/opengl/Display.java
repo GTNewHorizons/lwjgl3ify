@@ -26,7 +26,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Consumer;
 
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.ARBFramebufferSRGB;
 import org.lwjgl.opengl.GL;
@@ -37,7 +39,6 @@ import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.Platform;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -103,24 +104,14 @@ public class Display {
     public static volatile long sdlWindow, sdlHiddenWindow, sdlMainGlContext, sdlCloneableGlContext;
     public static int sdlWindowId;
 
-    /** When true, the window will be created without a GL context -- SDL GPU backend claims it. */
-    private static boolean sdlGpuWindow = false;
-
-    /** Returns true if the window was created for SDL GPU (no GL context exists). */
-    public static boolean isSDLGPUWindow() {
-        return sdlGpuWindow;
-    }
-
     /**
-     * Request an SDL GPU window instead of an OpenGL window.
-     * Must be called BEFORE {@link #create} -- calling after create throws IllegalStateException.
-     * The SDL GPU backend will claim the window via SDL_ClaimWindowForGPUDevice() after creation.
+     * Does the display have a GL context. Required to be set before {@code create()} is run.
      */
-    public static void requestSDLGPUWindow() {
-        if (sdlWindow != 0) {
-            throw new IllegalStateException("Display.requestSDLGPUWindow() must be called before Display.create()");
-        }
-        sdlGpuWindow = true;
+    private static boolean hasGLContext = true;
+
+    /** Returns true if {@link #create} will create (or did create) a GL context for the window. */
+    public static boolean hasGLContext() {
+        return hasGLContext;
     }
 
     /**
@@ -154,10 +145,30 @@ public class Display {
     }
 
     public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow) {
+        create(pixelFormat, attribs, sharedWindow, true, null, null);
+    }
+
+    /**
+     * Let's the caller fully control Display creation with pre/post window callbacks.
+     *
+     * @param createGLContext    when {@code false}, no GL context is created -- the caller is responsible for
+     *                           claiming the window with its own backend (SDL GPU, Vulkan, etc.).
+     * @param onPreWindowCreate  invoked on the main thread immediately before {@code SDL_CreateWindowWithProperties}
+     *                           Use this to set additional SDL window-creation properties (e.g. {@code METAL_BOOLEAN}).
+     * @param onPostWindowCreate invoked on the SDL main thread after the window (and GL context, if requested) exist.
+     */
+    public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow,
+        boolean createGLContext, @Nullable Consumer<DisplayWindowContext> onPreWindowCreate,
+        @Nullable Consumer<DisplayWindowContext> onPostWindowCreate) {
         if (displayCreated) {
             return;
         }
         Sys.initialize();
+
+        hasGLContext = createGLContext;
+        final boolean glCtxEnabled = createGLContext;
+        final Consumer<DisplayWindowContext> preCreate = onPreWindowCreate;
+        final Consumer<DisplayWindowContext> postCreate = onPostWindowCreate;
 
         MainThreadExec.runOnMainThread(() -> {
             final int ctxMajor = (attribs != null) ? attribs.getMajorVersion() : 2;
@@ -198,10 +209,8 @@ public class Display {
                 Sys.checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_HEIGHT_NUMBER, mode.getHeight()));
                 Sys.checkSdl(SDL_SetNumberProperty(props, SDL_PROP_WINDOW_CREATE_FLAGS_NUMBER, windowFlags));
                 Sys.checkSdl(SDL_SetStringProperty(props, SDL_PROP_WINDOW_CREATE_TITLE_STRING, windowTitle));
-                if (!sdlGpuWindow) {
+                if (glCtxEnabled) {
                     Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_OPENGL_BOOLEAN, true));
-                } else if (Platform.get() == Platform.MACOSX) {
-                    Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_METAL_BOOLEAN, true));
                 }
                 Sys.checkSdl(
                     SDL_SetBooleanProperty(
@@ -218,7 +227,7 @@ public class Display {
                         SDL_PROP_WINDOW_CREATE_MAXIMIZED_BOOLEAN,
                         Config.WINDOW_START_MAXIMIZED));
 
-                if (!sdlGpuWindow) {
+                if (glCtxEnabled) {
                     int ctxFlags = 0;
                     if (ctxForwardCompat) {
                         ctxFlags |= SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG;
@@ -250,13 +259,26 @@ public class Display {
                     }
                 }
 
+                if (preCreate != null) {
+                    preCreate.accept(
+                        new DisplayWindowContext(
+                            props,
+                            /* window */ 0L,
+                            /* glContext */ 0L,
+                            pixelFormat,
+                            attribs,
+                            mode,
+                            windowTitle,
+                            glCtxEnabled));
+                }
+
                 sdlWindow = SDL_CreateWindowWithProperties(props);
                 if (sdlWindow == NULL) {
                     throw new RuntimeException("Could not create the Display window: " + SDL_GetError());
                 }
                 sdlWindowId = SDL_GetWindowID(sdlWindow);
 
-                if (!sdlGpuWindow) {
+                if (glCtxEnabled) {
                     Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
                     sdlMainGlContext = SDL_GL_CreateContext(sdlWindow);
                     if (sdlMainGlContext == NULL) {
@@ -285,8 +307,19 @@ public class Display {
                     Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
                     Sys.checkSdl(nSDL_GL_LoadLibrary(NULL));
                     Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
-                } else {
-                    externalPresenting = true;
+                }
+
+                if (postCreate != null) {
+                    postCreate.accept(
+                        new DisplayWindowContext(
+                            /* props */ 0,
+                            sdlWindow,
+                            sdlMainGlContext,
+                            pixelFormat,
+                            attribs,
+                            mode,
+                            windowTitle,
+                            glCtxEnabled));
                 }
 
                 if (Config.WINDOW_LOADING_PROGRESS) {
@@ -318,7 +351,7 @@ public class Display {
                 savedIcons = null;
             }
 
-            if (!sdlGpuWindow) {
+            if (glCtxEnabled) {
                 SDL_GL_SetSwapInterval(1);
             }
 
@@ -336,7 +369,7 @@ public class Display {
             }
         });
 
-        if (!sdlGpuWindow) {
+        if (glCtxEnabled) {
             Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext));
             GL.create(SDLVideo::SDL_GL_GetProcAddress);
             drawable = new DrawableGL();
@@ -348,7 +381,7 @@ public class Display {
             }
         }
         if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
-            Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-created sdlGpu={}", sdlGpuWindow);
+            Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-created glCtx={}", glCtxEnabled);
         }
     }
 
@@ -380,7 +413,7 @@ public class Display {
     }
 
     public static void setVSyncEnabled(boolean sync) {
-        if (sdlGpuWindow) return;
+        if (!hasGLContext) return;
         Sys.checkSdl(SDL_GL_SetSwapInterval(sync ? 1 : 0));
     }
 
@@ -418,11 +451,8 @@ public class Display {
         Mouse.poll();
     }
 
-    /** When true, swapBuffers() is a no-op -- an external backend (SDL GPU) handles presentation. */
-    public static volatile boolean externalPresenting = false;
-
     public static void swapBuffers() {
-        if (externalPresenting) return;
+        if (!hasGLContext) return;
         Sys.checkSdl(SDL_GL_SwapWindow(sdlWindow));
     }
 
@@ -430,7 +460,8 @@ public class Display {
         if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
             Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-destroy");
         }
-        if (!sdlGpuWindow) {
+        final boolean glCtxEnabled = hasGLContext;
+        if (glCtxEnabled) {
             try {
                 GL.setCapabilities(null);
             } catch (Throwable t) {/* no-op */}
@@ -439,7 +470,7 @@ public class Display {
             } catch (Throwable t) {/* no-op */}
         }
         MainThreadExec.runOnMainThread(() -> {
-            if (!sdlGpuWindow) {
+            if (glCtxEnabled) {
                 if (sdlCloneableGlContext != NULL) {
                     SDL_GL_DestroyContext(sdlCloneableGlContext);
                     sdlCloneableGlContext = NULL;
@@ -685,7 +716,7 @@ public class Display {
     }
 
     public static void releaseContext() {
-        if (sdlGpuWindow) return;
+        if (!hasGLContext) return;
         glContextMutex.lock();
         try {
             SDL_GL_MakeCurrent(sdlWindow, NULL);
@@ -695,12 +726,12 @@ public class Display {
     }
 
     public static boolean isCurrent() {
-        if (sdlGpuWindow) return false;
+        if (!hasGLContext) return false;
         return SDL_GL_GetCurrentContext() == sdlMainGlContext;
     }
 
     public static void makeCurrent() {
-        if (sdlGpuWindow) return;
+        if (!hasGLContext) return;
         glContextMutex.lock();
         try {
             SDL_GL_MakeCurrent(sdlWindow, sdlMainGlContext);
@@ -739,7 +770,7 @@ public class Display {
     }
 
     public static void setSwapInterval(int value) {
-        if (sdlGpuWindow) return;
+        if (!hasGLContext) return;
         MainThreadExec.runOnMainThread(() -> { SDL_GL_SetSwapInterval(value); });
     }
 

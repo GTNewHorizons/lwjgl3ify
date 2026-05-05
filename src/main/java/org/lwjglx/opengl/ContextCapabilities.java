@@ -7,7 +7,7 @@ public class ContextCapabilities {
     org.lwjgl.opengl.GLCapabilities cap;
 
     public ContextCapabilities() {
-        if (Display.isSDLGPUWindow()) {
+        if (!Display.hasGLContext()) {
             // No GL context exists -- fields left at defaults (false).
             cap = null;
             return;
@@ -38,7 +38,9 @@ public class ContextCapabilities {
         }
     }
 
-    /** Sets a capability field by name. Used by SDL GPU backend to populate capabilities from device properties. */
+    /**
+     * Sets a capability field by name. Used to populate capabilities from device properties.
+     */
     public void setField(String name, boolean value) {
         try {
             Field f = this.getClass()
