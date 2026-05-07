@@ -104,6 +104,9 @@ public class Display {
     public static volatile long sdlWindow, sdlHiddenWindow, sdlMainGlContext, sdlCloneableGlContext;
     public static int sdlWindowId;
 
+    @Nullable
+    private static Consumer<SwapchainInvalidatingChange> onPreSwapchainInvalidatingChange;
+
     /**
      * Does the display have a GL context. Required to be set before {@code create()} is run.
      */
@@ -365,7 +368,7 @@ public class Display {
             Keyboard.create();
 
             if (displayWindowed.isFullscreen) {
-                setFullscreen(true);
+                doSetFullscreenLocked(true);
             }
         });
 
@@ -509,6 +512,12 @@ public class Display {
             if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
                 Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-set desktop mode: {}", dm);
             }
+            fireSwapchainHook(
+                onPreSwapchainInvalidatingChange,
+                new SwapchainInvalidatingChange(
+                    SwapchainInvalidatingChange.Kind.DISPLAY_MODE,
+                    displayWindowed.isFullscreen,
+                    dm));
             MainThreadExec.runOnMainThread(() -> { SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight()); });
         }
     }
@@ -684,26 +693,55 @@ public class Display {
     public static void setFullscreen(boolean fullscreen) {
         displayWindowed = fullscreen ? WindowedState.fullscreen() : WindowedState.WINDOWED;
         if (sdlWindow != NULL) {
-            // TODO
-            // Fix bothered from
-            // https: //
-            // github.com/Kir-Antipov/cubes-without-borders/blob/b38306bf17d3f0936475a3a28c4ee2be4e881a62/src/main/java/
-            // dev/kir/cubeswithoutborders/mixin/WindowMixin.java#L130
-            // There's a bug that causes a fullscreen window to flicker when it loses focus.
-            // As far as I know, this is relevant for Windows and X11 desktops.
-            // Fuck X11 - it's a perpetually broken piece of legacy.
-            // However, we do need to implement a fix for Windows desktops, as they
-            // are not going anywhere in the foreseeable future (sadly enough).
-            // This "fix" involves not bringing a window into a "proper" fullscreen mode,
-            // but rather stretching it 1 pixel beyond the screen's supported resolution.
-            MainThreadExec.runOnMainThread(() -> {
-                SDL_SetWindowFullscreen(sdlWindow, fullscreen);
-                // restore original window size as dictated by the game
-                if (!fullscreen) {
-                    SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
-                }
-                SDL_SyncWindow(sdlWindow);
-            });
+            fireSwapchainHook(
+                onPreSwapchainInvalidatingChange,
+                new SwapchainInvalidatingChange(SwapchainInvalidatingChange.Kind.FULLSCREEN, fullscreen, null));
+            doSetFullscreenLocked(fullscreen);
+        }
+    }
+
+    // TODO
+    // Fix bothered from
+    // https: //
+    // github.com/Kir-Antipov/cubes-without-borders/blob/b38306bf17d3f0936475a3a28c4ee2be4e881a62/src/main/java/
+    // dev/kir/cubeswithoutborders/mixin/WindowMixin.java#L130
+    // There's a bug that causes a fullscreen window to flicker when it loses focus.
+    // As far as I know, this is relevant for Windows and X11 desktops.
+    // Fuck X11 - it's a perpetually broken piece of legacy.
+    // However, we do need to implement a fix for Windows desktops, as they
+    // are not going anywhere in the foreseeable future (sadly enough).
+    // This "fix" involves not bringing a window into a "proper" fullscreen mode,
+    // but rather stretching it 1 pixel beyond the screen's supported resolution.
+    private static void doSetFullscreenLocked(boolean fullscreen) {
+        MainThreadExec.runOnMainThread(() -> {
+            SDL_SetWindowFullscreen(sdlWindow, fullscreen);
+            // restore original window size as dictated by the game
+            if (!fullscreen) {
+                SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+            }
+            SDL_SyncWindow(sdlWindow);
+        });
+    }
+
+    /**
+     * Registers a callback fired immediately before a Display call that recreates the SDL swapchain
+     * <p>
+     * The callback runs synchronously on the calling thread of the mutating Display method
+     * (the same thread that runs the wrapped {@link MainThreadExec#runOnMainThread} body).
+     *
+     * Not invoked from {@link #create} or {@link #destroy} - those have their own pre/post hooks.
+     */
+    public static void setOnPreSwapchainInvalidatingChange(@Nullable Consumer<SwapchainInvalidatingChange> cb) {
+        onPreSwapchainInvalidatingChange = cb;
+    }
+
+    private static void fireSwapchainHook(@Nullable Consumer<SwapchainInvalidatingChange> cb,
+        SwapchainInvalidatingChange change) {
+        if (cb == null) return;
+        try {
+            cb.accept(change);
+        } catch (Throwable t) {
+            Lwjgl3ify.LOG.error("Swapchain-invalidating change hook threw", t);
         }
     }
 
