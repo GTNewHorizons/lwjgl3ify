@@ -77,19 +77,11 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
                 .getValue(MANIFEST_SAFE_ATTRIBUTE))) {
             return false;
         }
-        if (!nodeHandle.isOriginal()) {
-            return true;
-        }
         final byte[] original = nodeHandle.getOriginalBytes();
         if (original == null) {
             return false;
         }
-        for (final byte[] pattern : quickScans) {
-            if (ClassHeaderMetadata.hasSubstring(original, pattern)) {
-                return true;
-            }
-        }
-        return false;
+        return ClassHeaderMetadata.hasSubstrings(original, quickScans);
     }
 
     @Override

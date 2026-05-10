@@ -14,13 +14,13 @@ public class APPLEObjectPurgeable {
     public static final int GL_VOLATILE_APPLE = (int) 35354;
 
     public static void glGetObjectParameterAPPLE(int objectType, int name, int pname, java.nio.IntBuffer params) {
-        org.lwjgl.opengl.APPLEObjectPurgeable.glGetObjectParameterAPPLE(objectType, name, pname, params);
+        org.lwjgl.opengl.APPLEObjectPurgeable.glGetObjectParameterivAPPLE(objectType, name, pname, params);
     }
 
     public static int glGetObjectParameteriAPPLE(int objectType, int name, int pname) {
         try (MemoryStack ms = MemoryStack.stackPush()) {
             IntBuffer val = ms.ints(1);
-            org.lwjgl.opengl.APPLEObjectPurgeable.glGetObjectParameterAPPLE(objectType, name, pname, val);
+            org.lwjgl.opengl.APPLEObjectPurgeable.glGetObjectParameterivAPPLE(objectType, name, pname, val);
             return val.get(0);
         }
     }

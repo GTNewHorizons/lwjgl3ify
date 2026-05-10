@@ -99,7 +99,7 @@ public final class ContextAttribs {
     public ContextAttribs(int majorVersion, int minorVersion, int profileMask, int contextFlags) {
         if (majorVersion < 0 || 4 < majorVersion
             || minorVersion < 0
-            || (majorVersion == 4 && 5 < minorVersion)
+            || (majorVersion == 4 && 6 < minorVersion)
             || (majorVersion == 3 && 3 < minorVersion)
             || (majorVersion == 2 && 1 < minorVersion)
             || (majorVersion == 1 && 5 < minorVersion))
