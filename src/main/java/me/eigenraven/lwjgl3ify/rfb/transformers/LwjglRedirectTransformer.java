@@ -1,6 +1,5 @@
 package me.eigenraven.lwjgl3ify.rfb.transformers;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
@@ -18,6 +17,7 @@ import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.Remapper;
 import org.objectweb.asm.tree.ClassNode;
 
+import com.gtnewhorizons.retrofuturabootstrap.api.BytePatternMatcher;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassHeaderMetadata;
 import com.gtnewhorizons.retrofuturabootstrap.api.ClassNodeHandle;
 import com.gtnewhorizons.retrofuturabootstrap.api.ExtensibleClassLoader;
@@ -31,16 +31,16 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     /** Attribute to set to "true" on a JAR to skip class transforms from this transformer entirely */
     public static final Attributes.Name MANIFEST_SAFE_ATTRIBUTE = new Attributes.Name("Lwjgl3ify-Aware");
 
-    int remaps = 0, calls = 0;
+    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
+        "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
+    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/",
+        "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
+        "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
+        "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
 
-    public LwjglRedirectTransformer() {
-        excludedPackages = Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
-            .map(s -> s.replace('/', '.'))
-            .toArray(String[]::new);
-        quickScans = Arrays.stream(fromPrefixes)
-            .map(s -> s.getBytes(StandardCharsets.UTF_8))
-            .toArray(byte[][]::new);
-    }
+    final BytePatternMatcher deprecatedClassMatcher = new BytePatternMatcher(
+        fromPrefixes,
+        BytePatternMatcher.Mode.Contains);
 
     @Override
     public @NotNull String @Nullable [] sortAfter() {
@@ -55,7 +55,9 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
 
     @Override
     public @NotNull String @Nullable [] additionalExclusions() {
-        return excludedPackages;
+        return Stream.concat(Arrays.stream(fromPrefixes), Arrays.stream(toPrefixes))
+            .map(s -> s.replace('/', '.'))
+            .toArray(String[]::new);
     }
 
     @Override
@@ -77,11 +79,9 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
                 .getValue(MANIFEST_SAFE_ATTRIBUTE))) {
             return false;
         }
-        final byte[] original = nodeHandle.getOriginalBytes();
-        if (original == null) {
-            return false;
-        }
-        return ClassHeaderMetadata.hasSubstrings(original, quickScans);
+
+        final ClassHeaderMetadata metadata = nodeHandle.getOriginalMetadata();
+        return metadata != null && metadata.matchesBytes(deprecatedClassMatcher);
     }
 
     @Override
@@ -107,24 +107,13 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         nodeHandle.setNode(outputNode);
     }
 
-    final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
-        "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
-    final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/",
-        "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
-        "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
-        "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
-    final byte[][] quickScans;
-    final String[] excludedPackages;
-
     @Override
     public String map(String typeName) {
         if (typeName == null) {
             return null;
         }
-        calls++;
         for (int pfx = 0; pfx < fromPrefixes.length; pfx++) {
             if (typeName.startsWith(fromPrefixes[pfx])) {
-                remaps++;
                 return toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
             }
         }
