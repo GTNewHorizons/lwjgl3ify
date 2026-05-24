@@ -86,7 +86,6 @@ private val lwjgl3Bindings = listOf(
     LwjglBinding("spvc"),
     LwjglBinding("stb"),
     LwjglBinding("tinyfd"),
-    LwjglBinding("vulkan", listOf(nativesByName["macos"]!!, nativesByName["macos-arm64"]!!)),
     LwjglBinding("zstd")
 );
 

@@ -152,7 +152,7 @@ public class Display {
     }
 
     /**
-     * Let's the caller fully control Display creation with pre/post window callbacks.
+     * Lets the caller fully control Display creation with pre/post window callbacks.
      *
      * @param createGLContext    when {@code false}, no GL context is created -- the caller is responsible for
      *                           claiming the window with its own backend (SDL GPU, Vulkan, etc.).
