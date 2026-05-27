@@ -5,6 +5,7 @@ import com.gtnewhorizons.retrofuturagradle.util.ProviderToStringWrapper
 import com.modrinth.minotaur.ModrinthExtension
 import de.undercouch.gradle.tasks.download.Download
 import org.apache.tools.ant.filters.ReplaceTokens
+import org.eclipse.jgit.util.sha1.SHA1
 import java.nio.charset.StandardCharsets
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -258,7 +259,10 @@ val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     group = taskGroup
     description = "Generates the vanilla launcher version.json file"
     dependsOn(tasks.makeLwjgl3Json)
+    dependsOn(forgePatchesJar)
+    val theForgePatchesJar = forgePatchesJar.map { it.outputs.files.first() }
     inputs.file("launcher-metadata/version.json")
+    inputs.file(theForgePatchesJar)
     inputs.property("version", project.version)
     inputs.property("jvmArgs", extraJavaArgs)
     outputs.file(versionJsonPath)
@@ -272,6 +276,21 @@ val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
     doLast {
         versionJsonPathLocal.parentFile.mkdirs()
 
+        val patchesJar = theForgePatchesJar.get()
+        val (patchesJarHash, patchesJarSize) = patchesJar.inputStream().use { input ->
+            val hash = SHA1.newInstance()
+            var buf = ByteArray(4096)
+            var totalSize = 0
+            while (true) {
+                val read = input.read(buf)
+                if (read < 0) {
+                    break
+                }
+                totalSize += read
+                hash.update(buf, 0, read)
+            }
+            hash.digest().toHexString() to totalSize
+        }
         val lwjglDownloads = lwjglDownloadsFile.readText(Charsets.UTF_8)
         fs.copy {
             from("launcher-metadata/version.json")
@@ -279,6 +298,8 @@ val versionJsonFile = tasks.register<VersionJsonTask>("versionJson") {
             filter(
                 ReplaceTokens::class, "tokens" to mapOf(
                     "version" to projVersion,
+                    "patchesJarSize" to patchesJarSize.toString(),
+                    "patchesJarHash" to patchesJarHash,
                     "jvmArgs" to jvmArgs,
                     "lwjglVersion" to lwjglVersion,
                     "lwjglDownloads" to lwjglDownloads,
