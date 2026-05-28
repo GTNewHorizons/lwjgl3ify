@@ -5,9 +5,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import li.cil.oc.client.gui.traits.InputBuffer$class;
-
-@Mixin(value = InputBuffer$class.class, remap = false)
+/// InputBuffer$class is public and could be specified directly, but doing so causes IDEA's linter to implode.
+/// TODO undo this whenever that bug is fixed
+@SuppressWarnings("UnusedMixin")
+@Mixin(remap = false, targets = { "li.cil.oc.client.gui.traits.InputBuffer$class" })
 public class OcInputBuffer {
 
     @Redirect(
