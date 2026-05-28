@@ -81,7 +81,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         }
 
         final ClassHeaderMetadata metadata = nodeHandle.getOriginalMetadata();
-        return metadata != null && metadata.matchesBytes(deprecatedClassMatcher);
+        return metadata != null && metadata.matchesBytes(nodeHandle.getOriginalBytes(), deprecatedClassMatcher);
     }
 
     @Override

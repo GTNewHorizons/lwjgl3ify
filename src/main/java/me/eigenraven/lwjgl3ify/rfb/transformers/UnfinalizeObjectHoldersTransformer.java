@@ -55,7 +55,7 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
         }
 
         final ClassHeaderMetadata metadata = classNode.getOriginalMetadata();
-        return metadata != null && metadata.matchesBytes(holderMatcher);
+        return metadata != null && metadata.matchesBytes(classNode.getOriginalBytes(), holderMatcher);
     }
 
     @Override
