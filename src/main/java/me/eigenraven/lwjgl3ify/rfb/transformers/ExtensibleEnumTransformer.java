@@ -63,13 +63,13 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader extensibleClassLoader,
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader extensibleClassLoader,
         @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
         @NotNull ClassNodeHandle classNodeHandle) {
-        final Type classType = Type.getObjectType(className.replace('.', '/'));
         final ClassNode classNode = classNodeHandle.getNode();
+        boolean transformed = false;
         if (classNode == null) {
-            return;
+            return false;
         }
 
         if (EarlyConfig.EXTENSIBLE_ENUMS.contains(className)) {
@@ -77,8 +77,10 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
                 classNode.interfaces = new ArrayList<>(1);
             }
             classNode.interfaces.add(MARKER_IFACE.getInternalName());
+            transformed = true;
         }
 
+        final Type classType = Type.getObjectType(className.replace('.', '/'));
         Type array = Type.getType("[" + classType.getDescriptor());
         final int flags = Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL | Opcodes.ACC_SYNTHETIC;
 
@@ -102,7 +104,7 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
             }
         }
         if (!process) {
-            return;
+            return transformed;
         }
 
         classNodeHandle.computeMaxs();
@@ -311,5 +313,7 @@ public class ExtensibleEnumTransformer implements RfbClassTransformer {
                 ins.areturn(classType);
             }
         });
+
+        return true;
     }
 }

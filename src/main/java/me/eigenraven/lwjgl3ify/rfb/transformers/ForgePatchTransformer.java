@@ -57,10 +57,11 @@ public class ForgePatchTransformer implements RfbClassTransformer {
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String className, @NotNull ClassNodeHandle classNode) {
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
+        @NotNull ClassNodeHandle classNode) {
         if (!classNode.isPresent()) {
-            return;
+            return false;
         }
         switch (className) {
             case CLASS_PATCH_MANAGER -> tfClassPatchManager(classNode);
@@ -69,6 +70,7 @@ public class ForgePatchTransformer implements RfbClassTransformer {
             case ENUM_HELPER -> tfEnumHelper(classNode);
             case PROGRESS_BAR -> tfProgressBar(classNode);
         }
+        return true;
     }
 
     private void tfClassPatchManager(@NotNull ClassNodeHandle handle) {

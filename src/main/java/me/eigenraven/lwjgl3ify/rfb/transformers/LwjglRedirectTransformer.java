@@ -30,6 +30,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
 
     /** Attribute to set to "true" on a JAR to skip class transforms from this transformer entirely */
     public static final Attributes.Name MANIFEST_SAFE_ATTRIBUTE = new Attributes.Name("Lwjgl3ify-Aware");
+    private boolean transformed = false;
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
         "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
@@ -85,12 +86,15 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String className, @NotNull ClassNodeHandle nodeHandle) {
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String className,
+        @NotNull ClassNodeHandle nodeHandle) {
         final ClassNode inputNode = nodeHandle.getNode();
         if (inputNode == null) {
-            return;
+            return false;
         }
+
+        transformed = false;
 
         final ClassNode outputNode = new ClassNode();
         final ClassVisitor visitor = new EscapingClassRemapper(outputNode);
@@ -98,13 +102,16 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         try {
             inputNode.accept(visitor);
         } catch (Lwjgl3AwareException e) {
-            return;
+            return false;
         } catch (Exception e) {
             Lwjgl3ifyCoremod.LOGGER.warn("Couldn't remap class {}", className, e);
-            return;
+            return false;
         }
 
-        nodeHandle.setNode(outputNode);
+        if (transformed) {
+            nodeHandle.setNode(outputNode);
+        }
+        return transformed;
     }
 
     @Override
@@ -114,6 +121,7 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         }
         for (int pfx = 0; pfx < fromPrefixes.length; pfx++) {
             if (typeName.startsWith(fromPrefixes[pfx])) {
+                transformed = true;
                 return toPrefixes[pfx] + typeName.substring(fromPrefixes[pfx].length());
             }
         }

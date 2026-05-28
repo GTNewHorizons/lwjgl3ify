@@ -20,4 +20,5 @@ repositories {
             includeGroup("org.lwjgl")
         }
     }
+    mavenLocal()
 }

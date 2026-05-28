@@ -59,11 +59,12 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
     }
 
     @Override
-    public void transformClass(@NotNull ExtensibleClassLoader classLoader, @NotNull RfbClassTransformer.Context context,
-        @Nullable Manifest manifest, @NotNull String name, @NotNull ClassNodeHandle classNodeHandle) {
+    public boolean transformClassIfNeeded(@NotNull ExtensibleClassLoader classLoader,
+        @NotNull RfbClassTransformer.Context context, @Nullable Manifest manifest, @NotNull String name,
+        @NotNull ClassNodeHandle classNodeHandle) {
         final ClassNode node = classNodeHandle.getNode();
         if (node == null) {
-            return;
+            return false;
         }
 
         final boolean isClassObjectHolder = name.equals("net.minecraft.init.Blocks")
@@ -86,7 +87,9 @@ public class UnfinalizeObjectHoldersTransformer implements RfbClassTransformer {
 
         if (fieldsModified > 0) {
             Lwjgl3ifyCoremod.LOGGER.debug("Unfinalized {} Holder fields in {}", fieldsModified, name);
+            return true;
         }
+        return false;
     }
 
     private static boolean isObjectHolder(List<AnnotationNode> annotations) {
