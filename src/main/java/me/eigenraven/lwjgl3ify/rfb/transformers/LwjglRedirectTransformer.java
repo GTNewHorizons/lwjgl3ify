@@ -33,9 +33,11 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     private boolean transformed = false;
 
     final String[] fromPrefixes = new String[] { "org/lwjgl/", "javax/xml/bind/", "java/util/jar/Pack200",
-        "jdk/nashorn/", "com/mumfrey/liteloader/launch/ClassPathUtilities", "javax/activity/InvalidActivityException" };
+        "jdk/nashorn/", "javax/script/ScriptEngineManager", "com/mumfrey/liteloader/launch/ClassPathUtilities",
+        "javax/activity/InvalidActivityException" };
     final String[] toPrefixes = new String[] { "org/lwjglx/", "jakarta/xml/bind/",
         "me/eigenraven/lwjgl3ify/redirects/Pack200", "org/openjdk/nashorn/",
+        "me/eigenraven/lwjgl3ify/redirects/ScriptEngineManager",
         "me/eigenraven/lwjgl3ify/redirects/LiteLoaderClassPathUtilities",
         "me/eigenraven/lwjgl3ify/redirects/InvalidActivityException" };
 
