@@ -3,6 +3,7 @@ package me.eigenraven.lwjgl3ify;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
 
 import net.minecraft.launchwrapper.Launch;
@@ -68,8 +69,10 @@ public class Lwjgl3ify {
             tfExclusionsF.setAccessible(true);
             @SuppressWarnings("unchecked")
             final Set<String> clExclusions = (Set<String>) clExclusionsF.get(loader);
+            clExclusions.removeIf(Objects::isNull);
             @SuppressWarnings("unchecked")
             final Set<String> tfExclusions = (Set<String>) tfExclusionsF.get(loader);
+            tfExclusions.removeIf(Objects::isNull);
             final ArrayList<String> clExclusionsSorted = new ArrayList<>(clExclusions);
             clExclusionsSorted.sort(Comparator.naturalOrder());
             final ArrayList<String> tfExclusionsSorted = new ArrayList<>(tfExclusions);
