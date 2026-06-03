@@ -23,7 +23,12 @@ public enum Mixins implements IMixins {
             .setApplyIf(() -> Config.MIXIN_STBI_TEXTURE_LOADING)),
     TEXT_FIELD_SDL_INPUT(
         new MixinBuilder()
-            .addClientMixins("game.MixinGuiEditSign", "game.MixinGuiTextField", "game.MixinGuiScreen", "game.MixinGuiTextInput")),
+            .addClientMixins(
+                "game.MixinGuiEditSign",
+                "game.MixinGuiScreenBook",
+                "game.MixinGuiTextField",
+                "game.MixinGuiScreen",
+                "game.MixinGuiTextInput")),
     OPEN_URL_WITH_SDL(
         new MixinBuilder()
             .addClientMixins(
