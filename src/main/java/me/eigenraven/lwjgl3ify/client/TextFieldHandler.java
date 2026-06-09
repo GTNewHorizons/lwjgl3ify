@@ -47,6 +47,7 @@ public final class TextFieldHandler {
                 Lwjgl3ify.LOG.info("[DEBUG] Stopping text input");
             }
             MainThreadExec.runOnMainThread(() -> { SDL_StopTextInput(Display.getWindow()); });
+            textBuffer.setLength(0);
         }
         if (textField != null && textField == focusedTextInput.get()) {
             focusedTextInput = NULL_TEXT_FIELD;
@@ -62,6 +63,7 @@ public final class TextFieldHandler {
             textInputDepth = 0;
         }
         focusedTextInput = NULL_TEXT_FIELD;
+        textBuffer.setLength(0);
     }
 
     public static void setFocusedTextField(GuiTextField textField) {
