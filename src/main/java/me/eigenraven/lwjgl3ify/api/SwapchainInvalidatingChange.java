@@ -1,11 +1,12 @@
-package org.lwjglx.opengl;
+package me.eigenraven.lwjgl3ify.api;
 
 import org.jetbrains.annotations.Nullable;
+import org.lwjglx.opengl.DisplayMode;
 
 import com.github.bsideup.jabel.Desugar;
 
 /**
- * Describes a pending or just-completed change to the SDL window that invalidates the swapchain.
+ * Describes a pending change to the SDL window that invalidates the swapchain.
  *
  * @param kind          which kind of mutation triggered the hook
  * @param newFullscreen for {@link Kind#FULLSCREEN}, the requested fullscreen state. Undefined for other kinds.

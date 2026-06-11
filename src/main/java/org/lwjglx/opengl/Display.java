@@ -26,9 +26,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Consumer;
 
-import org.jetbrains.annotations.Nullable;
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.opengl.ARBFramebufferSRGB;
 import org.lwjgl.opengl.GL;
@@ -45,6 +43,9 @@ import org.lwjglx.input.Keyboard;
 import org.lwjglx.input.Mouse;
 
 import me.eigenraven.lwjgl3ify.Lwjgl3ify;
+import me.eigenraven.lwjgl3ify.api.DisplayEvents;
+import me.eigenraven.lwjgl3ify.api.DisplayWindowContext;
+import me.eigenraven.lwjgl3ify.api.SwapchainInvalidatingChange;
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 import me.eigenraven.lwjgl3ify.core.Config;
 import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
@@ -104,11 +105,8 @@ public class Display {
     public static volatile long sdlWindow, sdlHiddenWindow, sdlMainGlContext, sdlCloneableGlContext;
     public static int sdlWindowId;
 
-    @Nullable
-    private static Consumer<SwapchainInvalidatingChange> onPreSwapchainInvalidatingChange;
-
     /**
-     * Does the display have a GL context. Required to be set before {@code create()} is run.
+     * Does the display have a GL context.
      */
     private static boolean hasGLContext = true;
 
@@ -148,30 +146,13 @@ public class Display {
     }
 
     public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow) {
-        create(pixelFormat, attribs, sharedWindow, true, null, null);
-    }
-
-    /**
-     * Lets the caller fully control Display creation with pre/post window callbacks.
-     *
-     * @param createGLContext    when {@code false}, no GL context is created -- the caller is responsible for
-     *                           claiming the window with its own backend (SDL GPU, Vulkan, etc.).
-     * @param onPreWindowCreate  invoked on the main thread immediately before {@code SDL_CreateWindowWithProperties}
-     *                           Use this to set additional SDL window-creation properties (e.g. {@code METAL_BOOLEAN}).
-     * @param onPostWindowCreate invoked on the SDL main thread after the window (and GL context, if requested) exist.
-     */
-    public static void create(PixelFormat pixelFormat, ContextAttribs attribs, long sharedWindow,
-        boolean createGLContext, @Nullable Consumer<DisplayWindowContext> onPreWindowCreate,
-        @Nullable Consumer<DisplayWindowContext> onPostWindowCreate) {
         if (displayCreated) {
             return;
         }
         Sys.initialize();
 
-        hasGLContext = createGLContext;
-        final boolean glCtxEnabled = createGLContext;
-        final Consumer<DisplayWindowContext> preCreate = onPreWindowCreate;
-        final Consumer<DisplayWindowContext> postCreate = onPostWindowCreate;
+        hasGLContext = DisplayEvents.isCreateGLContextEnabled();
+        final boolean glCtxEnabled = hasGLContext;
 
         MainThreadExec.runOnMainThread(() -> {
             final int ctxMajor = (attribs != null) ? attribs.getMajorVersion() : 2;
@@ -262,18 +243,16 @@ public class Display {
                     }
                 }
 
-                if (preCreate != null) {
-                    preCreate.accept(
-                        new DisplayWindowContext(
-                            props,
-                            /* window */ 0L,
-                            /* glContext */ 0L,
-                            pixelFormat,
-                            attribs,
-                            mode,
-                            windowTitle,
-                            glCtxEnabled));
-                }
+                DisplayEvents.firePreWindowCreate(
+                    new DisplayWindowContext(
+                        props,
+                        /* window */ 0L,
+                        /* glContext */ 0L,
+                        pixelFormat,
+                        attribs,
+                        mode,
+                        windowTitle,
+                        glCtxEnabled));
 
                 sdlWindow = SDL_CreateWindowWithProperties(props);
                 if (sdlWindow == NULL) {
@@ -312,18 +291,16 @@ public class Display {
                     Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
                 }
 
-                if (postCreate != null) {
-                    postCreate.accept(
-                        new DisplayWindowContext(
-                            /* props */ 0,
-                            sdlWindow,
-                            sdlMainGlContext,
-                            pixelFormat,
-                            attribs,
-                            mode,
-                            windowTitle,
-                            glCtxEnabled));
-                }
+                DisplayEvents.firePostWindowCreate(
+                    new DisplayWindowContext(
+                        /* props */ 0,
+                        sdlWindow,
+                        sdlMainGlContext,
+                        pixelFormat,
+                        attribs,
+                        mode,
+                        windowTitle,
+                        glCtxEnabled));
 
                 if (Config.WINDOW_LOADING_PROGRESS) {
                     SDL_SetWindowProgressState(sdlWindow, SDL_PROGRESS_STATE_INDETERMINATE);
@@ -383,6 +360,7 @@ public class Display {
                 GL11C.glGetError(); // clear error if the above call fails
             }
         }
+        GLContext.refreshCapabilities();
         if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
             Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-created glCtx={}", glCtxEnabled);
         }
@@ -512,8 +490,7 @@ public class Display {
             if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
                 Lwjgl3ify.LOG.info("[DEBUG-WINDOW] window-set desktop mode: {}", dm);
             }
-            fireSwapchainHook(
-                onPreSwapchainInvalidatingChange,
+            DisplayEvents.firePreSwapchainInvalidatingChange(
                 new SwapchainInvalidatingChange(
                     SwapchainInvalidatingChange.Kind.DISPLAY_MODE,
                     displayWindowed.isFullscreen,
@@ -693,8 +670,7 @@ public class Display {
     public static void setFullscreen(boolean fullscreen) {
         displayWindowed = fullscreen ? WindowedState.fullscreen() : WindowedState.WINDOWED;
         if (sdlWindow != NULL) {
-            fireSwapchainHook(
-                onPreSwapchainInvalidatingChange,
+            DisplayEvents.firePreSwapchainInvalidatingChange(
                 new SwapchainInvalidatingChange(SwapchainInvalidatingChange.Kind.FULLSCREEN, fullscreen, null));
             doSetFullscreenLocked(fullscreen);
         }
@@ -721,28 +697,6 @@ public class Display {
             }
             SDL_SyncWindow(sdlWindow);
         });
-    }
-
-    /**
-     * Registers a callback fired immediately before a Display call that recreates the SDL swapchain
-     * <p>
-     * The callback runs synchronously on the calling thread of the mutating Display method
-     * (the same thread that runs the wrapped {@link MainThreadExec#runOnMainThread} body).
-     *
-     * Not invoked from {@link #create} or {@link #destroy} - those have their own pre/post hooks.
-     */
-    public static void setOnPreSwapchainInvalidatingChange(@Nullable Consumer<SwapchainInvalidatingChange> cb) {
-        onPreSwapchainInvalidatingChange = cb;
-    }
-
-    private static void fireSwapchainHook(@Nullable Consumer<SwapchainInvalidatingChange> cb,
-        SwapchainInvalidatingChange change) {
-        if (cb == null) return;
-        try {
-            cb.accept(change);
-        } catch (Throwable t) {
-            Lwjgl3ify.LOG.error("Swapchain-invalidating change hook threw", t);
-        }
     }
 
     public static boolean isFullscreen() {

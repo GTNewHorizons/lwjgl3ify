@@ -40,8 +40,7 @@ fun makePlatform(name: String, launcherOs: List<String>): LwjglPlatform {
     return platform
 }
 
-data class LwjglBinding(val name: String, val nativePlatforms: List<LwjglPlatform> = supportedNatives) {
-    val hasNatives: Boolean get() = nativePlatforms.isNotEmpty()
+data class LwjglBinding(val name: String, val hasNatives: Boolean = true) {
     fun getGav(): String {
         if (name.isEmpty()) {
             return "org.lwjgl:lwjgl:${lwjglVersion}"
@@ -75,7 +74,7 @@ private val hostNativePlatform = nativesByName[hostNativeClassifier]!!;
 private val lwjgl3Bindings = listOf(
     LwjglBinding(""),
     LwjglBinding("freetype"),
-    LwjglBinding("harfbuzz", emptyList()),
+    LwjglBinding("harfbuzz", hasNatives = false),
     LwjglBinding("jemalloc"),
     LwjglBinding("nuklear"),
     LwjglBinding("openal"),
@@ -97,10 +96,8 @@ for (binding in lwjgl3Bindings) {
     dependencies.add(lwjgl3Classpath.name, binding.getGav())
     dependencies.add(allOfLwjgl3.name, binding.getGav())
     if (binding.hasNatives) {
-        if (hostNativePlatform in binding.nativePlatforms) {
-            dependencies.add(lwjgl3Classpath.name, binding.getNativeGav(hostNativePlatform))
-        }
-        for (platform in binding.nativePlatforms) {
+        dependencies.add(lwjgl3Classpath.name, binding.getNativeGav(hostNativePlatform))
+        for (platform in supportedNatives) {
             dependencies.add(allOfLwjgl3.name, binding.getNativeGav(platform))
         }
     }
