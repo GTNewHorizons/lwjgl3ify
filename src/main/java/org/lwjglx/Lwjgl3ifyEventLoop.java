@@ -172,15 +172,19 @@ public class Lwjgl3ifyEventLoop {
              * the last pressed Alt key side.
              * Ctrl combos have to send a (key & 0x1f) ASCII Escape code to work correctly with a lot of older
              * mods, but this obviously breaks text input.
-             * The escape code must be derived from the scancode (the physical, layout-independent key) rather
-             * than the keycode: on non-Latin layouts (e.g. Russian, where the physically-V-positioned key
-             * types `м`) the keycode is not an ASCII letter, so Ctrl+V would otherwise never produce the
-             * expected escape code 22 and paste would silently fail.
+             * The escape code must be picked by letter when the layout actually produces a Latin letter here
+             * (e.g. AZERTY/QWERTZ/Dvorak, which just rearrange Latin letters across scancodes - there Ctrl+A
+             * must trigger on whichever key prints 'A', not on the scancode that's labeled A on a US keyboard).
+             * Only when the layout doesn't produce a Latin letter at all for this scancode (e.g. Russian, where
+             * the physically-V-positioned key types `м`) do we fall back to the scancode position, matching how
+             * Windows itself assigns Ctrl+letter shortcuts for non-Latin layouts.
              * Therefore, we assume text input with AltGr, and control combination input with Left Alt, but both
              * can be switched in the config if the player desires.
              */
-            final char escapeChar = isLatinLetterScancode ? (char) (scanCode - SDL_SCANCODE_A + 1)
-                : (char) (keyCode & 0x1f);
+            final boolean rawKeyCodeIsLatinLetter = (rawKeyCode >= 'A' && rawKeyCode <= 'Z')
+                || (rawKeyCode >= 'a' && rawKeyCode <= 'z');
+            final char escapeChar = rawKeyCodeIsLatinLetter ? (char) ((rawKeyCode | 0x20) - 'a' + 1)
+                : isLatinLetterScancode ? (char) (scanCode - SDL_SCANCODE_A + 1) : (char) (keyCode & 0x1f);
             final boolean isAlt = (kmods & SDL_KMOD_ALT) != 0;
             final boolean isAltGr = (kmods & SDL_KMOD_RALT) != 0;
             final boolean ctrlGraphicalMode;
