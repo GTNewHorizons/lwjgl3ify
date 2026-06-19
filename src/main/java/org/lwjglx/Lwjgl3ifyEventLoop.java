@@ -181,13 +181,19 @@ public class Lwjgl3ifyEventLoop {
              * Therefore, we assume text input with AltGr, and control combination input with Left Alt, but both
              * can be switched in the config if the player desires.
              */
-            final boolean rawKeyCodeIsLatinLetter = (rawKeyCode >= 'A' && rawKeyCode <= 'Z')
-                || (rawKeyCode >= 'a' && rawKeyCode <= 'z');
-            final char escapeChar = rawKeyCodeIsLatinLetter ? (char) ((rawKeyCode | 0x20) - 'a' + 1)
-                : isLatinLetterScancode ? (char) (scanCode - SDL_SCANCODE_A + 1) : (char) (keyCode & 0x1f);
             final boolean isAlt = (kmods & SDL_KMOD_ALT) != 0;
             final boolean isAltGr = (kmods & SDL_KMOD_RALT) != 0;
             final boolean ctrlGraphicalMode;
+            final char escapeChar;
+
+            if (rawKeyCode >= 'A' && rawKeyCode <= 'Z' || rawKeyCode >= 'a' && rawKeyCode <= 'z') {
+                escapeChar = (char) ((rawKeyCode | 0x20) - 'a' + 1);
+            } else if (isLatinLetterScancode) {
+                escapeChar = (char) (scanCode - SDL_SCANCODE_A + 1);
+            } else {
+                escapeChar = (char) (keyCode & 0x1f);
+            }
+
             if (isAlt) {
                 if (isAltGr) {
                     ctrlGraphicalMode = !Config.INPUT_ALTGR_ESCAPE_CODES;
