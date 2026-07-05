@@ -188,7 +188,7 @@ public class Lwjgl3ifyEventLoop {
 
             if (rawKeyCode >= 'A' && rawKeyCode <= 'Z' || rawKeyCode >= 'a' && rawKeyCode <= 'z') {
                 escapeChar = (char) ((rawKeyCode | 0x20) - 'a' + 1);
-            } else if (isLatinLetterScancode) {
+            } else if (isLatinLetterScancode && (rawKeyCode < SDLK_SPACE || rawKeyCode > SDLK_TILDE)) {
                 escapeChar = (char) (scanCode - SDL_SCANCODE_A + 1);
             } else {
                 escapeChar = (char) (keyCode & 0x1f);
