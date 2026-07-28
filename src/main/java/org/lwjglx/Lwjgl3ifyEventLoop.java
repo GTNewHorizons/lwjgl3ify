@@ -5,6 +5,7 @@ import static org.lwjgl.sdl.SDLInit.*;
 import static org.lwjgl.sdl.SDLKeyboard.*;
 import static org.lwjgl.sdl.SDLKeycode.*;
 import static org.lwjgl.sdl.SDLMouse.*;
+import static org.lwjgl.sdl.SDLScancode.*;
 import static org.lwjgl.sdl.SDLVideo.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
@@ -161,7 +162,9 @@ public class Lwjgl3ifyEventLoop {
                 enumAction,
                 kmods,
                 keyNamePtr));
-        if (rawKeyCode >= SDLK_SPACE && rawKeyCode <= SDLK_TILDE) {
+
+        final boolean isLatinLetterScancode = scanCode >= SDL_SCANCODE_A && scanCode <= SDL_SCANCODE_Z;
+        if (rawKeyCode >= SDLK_SPACE && rawKeyCode <= SDLK_TILDE || isLatinLetterScancode) {
             /*
              * AltGr and LAlt require special consideration.
              * On Windows, AltGr and Ctrl+Alt send the same `mods` value of ALT|CTRL in this event.
@@ -169,12 +172,28 @@ public class Lwjgl3ifyEventLoop {
              * the last pressed Alt key side.
              * Ctrl combos have to send a (key & 0x1f) ASCII Escape code to work correctly with a lot of older
              * mods, but this obviously breaks text input.
+             * The escape code must be picked by letter when the layout actually produces a Latin letter here
+             * (e.g. AZERTY/QWERTZ/Dvorak, which just rearrange Latin letters across scancodes - there Ctrl+A
+             * must trigger on whichever key prints 'A', not on the scancode that's labeled A on a US keyboard).
+             * Only when the layout doesn't produce a Latin letter at all for this scancode (e.g. Russian, where
+             * the physically-V-positioned key types `м`) do we fall back to the scancode position, matching how
+             * Windows itself assigns Ctrl+letter shortcuts for non-Latin layouts.
              * Therefore, we assume text input with AltGr, and control combination input with Left Alt, but both
              * can be switched in the config if the player desires.
              */
             final boolean isAlt = (kmods & SDL_KMOD_ALT) != 0;
             final boolean isAltGr = (kmods & SDL_KMOD_RALT) != 0;
             final boolean ctrlGraphicalMode;
+            final char escapeChar;
+
+            if (rawKeyCode >= 'A' && rawKeyCode <= 'Z' || rawKeyCode >= 'a' && rawKeyCode <= 'z') {
+                escapeChar = (char) ((rawKeyCode | 0x20) - 'a' + 1);
+            } else if (isLatinLetterScancode && (rawKeyCode < SDLK_SPACE || rawKeyCode > SDLK_TILDE)) {
+                escapeChar = (char) (scanCode - SDL_SCANCODE_A + 1);
+            } else {
+                escapeChar = (char) (keyCode & 0x1f);
+            }
+
             if (isAlt) {
                 if (isAltGr) {
                     ctrlGraphicalMode = !Config.INPUT_ALTGR_ESCAPE_CODES;
@@ -183,7 +202,7 @@ public class Lwjgl3ifyEventLoop {
                     ctrlGraphicalMode = Config.INPUT_CTRL_ALT_TEXT;
                 }
                 if (ctrlGraphicalMode) {
-                    Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (keyCode & 0x1f), ns);
+                    Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, escapeChar, ns);
                 }
             } else {
                 ctrlGraphicalMode = false;
@@ -197,7 +216,7 @@ public class Lwjgl3ifyEventLoop {
                         isAlt,
                         isAltGr);
                 }
-                Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, (char) (keyCode & 0x1f), ns);
+                Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, escapeChar, ns);
             } else {
                 Keyboard.addSdlKeyEvent(keyCode, scanCode, enumAction, kmods, rawKeyCodeToChar(rawKeyCode), ns);
             }

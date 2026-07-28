@@ -127,8 +127,8 @@
         {
             "downloads": {
                 "artifact": {
-                    "sha1": "",
-                    "size": 0,
+                    "sha1": "521616dc7487b42bef0e803bd2fa3faf668101d7",
+                    "size": 5762,
                     "url": "https://libraries.minecraft.net/lzma/lzma/0.0.1/lzma-0.0.1.jar"
                 }
             },

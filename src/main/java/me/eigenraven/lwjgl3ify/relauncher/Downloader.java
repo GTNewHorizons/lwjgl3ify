@@ -384,6 +384,8 @@ public class Downloader {
                         String httpErr = "<could not read error response>";
                         try (InputStream errorStream = conn.getErrorStream()) {
                             IOUtils.toString(errorStream, StandardCharsets.UTF_8);
+                        } catch (Exception e2) {
+                            e.addSuppressed(e2);
                         } finally {
                             System.err.printf(
                                 "Received HTTP error code when reading %s: %d: %s \n%s\n",
