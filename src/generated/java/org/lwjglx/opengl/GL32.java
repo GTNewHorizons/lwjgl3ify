@@ -1,5 +1,7 @@
 package org.lwjglx.opengl;
 
+import java.nio.IntBuffer;
+
 public class GL32 {
 
     public static final int GL_ALREADY_SIGNALED = (int) 37146;
@@ -182,4 +184,39 @@ public class GL32 {
             .glTexImage3DMultisample(target, samples, internalformat, width, height, depth, fixedsamplelocations);
     }
 
+    public static boolean glIsSync(org.lwjglx.opengl.GLSync sync) {
+        return org.lwjgl.opengl.GL32.glIsSync(sync.getPointer());
+    }
+
+    public static void glDeleteSync(org.lwjglx.opengl.GLSync sync) {
+        org.lwjgl.opengl.GL32.glDeleteSync(sync.getPointer());
+    }
+
+    public static int glClientWaitSync(org.lwjglx.opengl.GLSync sync, int flags, long timeout) {
+        return org.lwjgl.opengl.GL32.glClientWaitSync(sync.getPointer(), flags, timeout);
+    }
+
+    public static void glWaitSync(org.lwjglx.opengl.GLSync sync, int flags, long timeout) {
+        org.lwjgl.opengl.GL32.glWaitSync(sync.getPointer(), flags, timeout);
+    }
+
+    public static void glGetSync(org.lwjglx.opengl.GLSync sync, int pname, IntBuffer length, IntBuffer values) {
+        org.lwjgl.opengl.GL32.glGetSynciv(sync.getPointer(), pname, length, values);
+    }
+
+    /**
+     * Overloads glGetSynciv.
+     * <p>
+     * 
+     * @deprecated Will be removed in 3.0. Use {@link #glGetSynci} instead.
+     */
+    @Deprecated
+    public static int glGetSync(org.lwjglx.opengl.GLSync sync, int pname) {
+        return org.lwjgl.opengl.GL32.glGetSynci(sync.getPointer(), pname, null);
+    }
+
+    /** Overloads glGetSynciv. */
+    public static int glGetSynci(org.lwjglx.opengl.GLSync sync, int pname) {
+        return org.lwjgl.opengl.GL32.glGetSynci(sync.getPointer(), pname, null);
+    }
 }
