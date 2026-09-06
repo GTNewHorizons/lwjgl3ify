@@ -165,10 +165,12 @@ public class Mouse {
             delta = Math.signum(delta);
         }
 
-        final int lastWheel = (int) fractionalWheelPosition;
+        // Round instead of truncating toward zero, otherwise the first notch after a direction change is lost
+        // when hi-res sub-steps don't sum to exactly one notch (e.g. Logitech MagSpeed wheels)
+        final int lastWheel = (int) Math.round(fractionalWheelPosition);
         fractionalWheelPosition += delta;
         totalScrollAmount += delta;
-        final int newWheel = (int) fractionalWheelPosition;
+        final int newWheel = (int) Math.round(fractionalWheelPosition);
         if (newWheel != lastWheel) {
             lastxEvents[queue.getNextPos()] = lastEventX;
             lastyEvents[queue.getNextPos()] = lastEventY;
@@ -188,7 +190,7 @@ public class Mouse {
 
             queue.add();
         }
-        fractionalWheelPosition = fractionalWheelPosition % 1;
+        fractionalWheelPosition -= newWheel;
     }
 
     public static void poll() {
