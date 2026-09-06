@@ -130,7 +130,7 @@ public class Lwjgl3ifyEventLoop {
         final long keyNamePtr = nSDL_GetKeyName(keyCode);
         final int rawKeyCode = SDL_GetKeyFromScancode(scanCode, kmods, false);
         final int lwjgl2KeyCode = KeyCodes.sdlKeycodeToLwjgl(keyCode);
-        final int lwjgl2ScanCode = KeyCodes.sdlScancodeToLwjgl(keyCode);
+        final int lwjgl2ScanCode = KeyCodes.sdlScancodeToLwjgl(scanCode);
 
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
             Lwjgl3ify.LOG.info(
