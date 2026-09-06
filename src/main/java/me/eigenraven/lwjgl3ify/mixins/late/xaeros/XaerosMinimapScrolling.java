@@ -17,6 +17,7 @@ import xaero.common.gui.GuiWaypoints;
 
 @Mixin(value = { GuiAddWaypoint.class, GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class })
 public abstract class XaerosMinimapScrolling {
+
     @Shadow
     public abstract void onGuiClosed();
 
