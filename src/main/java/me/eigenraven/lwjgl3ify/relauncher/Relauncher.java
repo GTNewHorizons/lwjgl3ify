@@ -6,7 +6,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -23,7 +23,6 @@ import net.minecraft.launchwrapper.Launch;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.logging.log4j.LogManager;
@@ -157,6 +156,33 @@ public class Relauncher {
         return classpath;
     }
 
+    /**
+     * Quotes one entry for a java @argfile. The launcher only understands backslash escapes for the backslash and the
+     * double quote, so anything else (including non-ASCII characters) must be written as-is.
+     */
+    static String quoteArgFileEntry(String arg) {
+        return '"' + arg.replace("\\", "\\\\")
+            .replace("\"", "\\\"") + '"';
+    }
+
+    /**
+     * The java launcher reads @argfiles as raw bytes in the platform encoding, so the file must be written in the same
+     * encoding (sun.jnu.encoding) for paths with non-ASCII characters to survive.
+     */
+    static Charset argFileCharset() {
+        final String jnuEncoding = System.getProperty("sun.jnu.encoding");
+        if (jnuEncoding != null) {
+            try {
+                return Charset.forName(jnuEncoding);
+            } catch (IllegalArgumentException e) {
+                logger.warn(
+                    "Unknown sun.jnu.encoding {}, using the default charset for the relaunch arg file",
+                    jnuEncoding);
+            }
+        }
+        return Charset.defaultCharset();
+    }
+
     private static long getCurrentPid() {
         final RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
         // getName is implemented to return getPid() + "@" + hostname
@@ -232,9 +258,9 @@ public class Relauncher {
         Files.write(
             argFile,
             cmd.stream()
-                .map(c -> '"' + StringEscapeUtils.escapeJava(c) + '"')
+                .map(Relauncher::quoteArgFileEntry)
                 .collect(Collectors.toList()),
-            StandardCharsets.UTF_8);
+            argFileCharset());
 
         final List<String> bootstrapCmd = new ArrayList<>();
         final String[] javas = RelauncherConfig.config.javaInstallationsCache;
