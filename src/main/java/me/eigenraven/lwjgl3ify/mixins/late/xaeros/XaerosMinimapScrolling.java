@@ -1,6 +1,8 @@
 package me.eigenraven.lwjgl3ify.mixins.late.xaeros;
 
+import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +16,9 @@ import xaero.common.gui.GuiTransfer;
 import xaero.common.gui.GuiWaypoints;
 
 @Mixin(value = { GuiAddWaypoint.class, GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class })
-public class XaerosMinimapScrolling {
+public abstract class XaerosMinimapScrolling {
+    @Shadow
+    public abstract void onGuiClosed();
 
     // Optional because an old hodgepodge patch might also do the same
     @ModifyConstant(method = "handleMouseInput", constant = @Constant(intValue = 120), expect = -1)
@@ -27,8 +31,9 @@ public class XaerosMinimapScrolling {
         TextFieldHandler.beginTextInput();
     }
 
-    @Inject(method = "onGuiClosed()V", at = @At("HEAD"), remap = false)
-    private void lwjgl3ify$onClose(CallbackInfo ci) {
+    @Intrinsic(displace = true)
+    private void lwjgl3ify$onGuiClosed() {
         TextFieldHandler.endTextInput(null);
+        this.onGuiClosed();
     }
 }
