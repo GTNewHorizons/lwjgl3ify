@@ -195,6 +195,11 @@ val forgePatchesJar = tasks.register<Jar>("forgePatchesJar") {
                 "Main-Class" to "me.eigenraven.lwjgl3ify.rfb.entry.ServerMain"
             )
         )
+
+        attributes(
+            mapOf("Implementation-Version" to libs.asm.get().version),
+            "org/objectweb/asm/"
+        )
     }
 }
 

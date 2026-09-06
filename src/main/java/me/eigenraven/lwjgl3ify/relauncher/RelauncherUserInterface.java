@@ -181,7 +181,11 @@ public class RelauncherUserInterface {
 
     public void startSettingsIfNeeded() {
         if (RelauncherConfig.config.hideSettingsOnLaunch) {
+            // The settings GUI is skipped, so nobody will ever click the "Run" button.
+            // Approve the relaunch with the saved config here, otherwise Relauncher.run()
+            // sees runClicked == false and silently exits without starting the game.
             // TODO: Show a countdown and add a way to show settings again
+            runClicked = true;
             return;
         }
         invokeOnSwingThread(true, () -> {
