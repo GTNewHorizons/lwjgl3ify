@@ -130,6 +130,10 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     }
 
     public static class Lwjgl3AwareException extends RuntimeException {
+
+        Lwjgl3AwareException() {
+            super(null, null, false, false);
+        }
     }
 
     public class EscapingClassRemapper extends ClassRemapper {
