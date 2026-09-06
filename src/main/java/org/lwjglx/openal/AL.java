@@ -65,7 +65,8 @@ public class AL {
             long deviceHandle = org.lwjgl.openal.ALC10.alcOpenDevice(deviceArguments);
 
             if (deviceHandle == 0) {
-                throw new LWJGLException("Could not open ALC device");
+                throw new LWJGLException(
+                    "Could not open ALC device: " + (deviceArguments == null ? "default" : deviceArguments));
             }
 
             alcDevice = new ALCdevice(deviceHandle);
