@@ -4,7 +4,6 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 
 import java.nio.IntBuffer;
 
-import org.lwjgl.openal.ALC10;
 import org.lwjgl.openal.ALCCapabilities;
 import org.lwjgl.system.MemoryStack;
 import org.lwjglx.LWJGLException;
@@ -63,12 +62,11 @@ public class AL {
             attribs.put(0);
             attribs.flip();
 
-            String defaultDevice = org.lwjgl.openal.ALC10.alcGetString(0, ALC10.ALC_DEFAULT_DEVICE_SPECIFIER);
-
-            long deviceHandle = org.lwjgl.openal.ALC10.alcOpenDevice(defaultDevice);
+            long deviceHandle = org.lwjgl.openal.ALC10.alcOpenDevice(deviceArguments);
 
             if (deviceHandle == 0) {
-                throw new LWJGLException("Could not open ALC device");
+                throw new LWJGLException(
+                    "Could not open ALC device: " + (deviceArguments == null ? "default" : deviceArguments));
             }
 
             alcDevice = new ALCdevice(deviceHandle);
