@@ -23,6 +23,8 @@ import org.lwjgl.sdl.SDLVideo;
 import org.lwjglx.PointerBuffer;
 import org.lwjglx.Sys;
 
+import me.eigenraven.lwjgl3ify.client.MainThreadExec;
+
 /**
  * <p/>
  * Context encapsulates an OpenGL context.
@@ -91,12 +93,14 @@ public final class ContextGL implements Context {
 
     public synchronized void destroy() {
         if (shared && sdlWindow != NULL) {
-            if (sdlContext != NULL) {
-                SDLVideo.SDL_GL_DestroyContext(sdlContext);
-                sdlContext = NULL;
-            }
-            SDLVideo.SDL_DestroyWindow(sdlWindow);
-            sdlWindow = NULL;
+            MainThreadExec.runOnMainThread(() -> {
+                if (sdlContext != NULL) {
+                    SDLVideo.SDL_GL_DestroyContext(sdlContext);
+                    sdlContext = NULL;
+                }
+                SDLVideo.SDL_DestroyWindow(sdlWindow);
+                sdlWindow = NULL;
+            });
         }
     }
 
