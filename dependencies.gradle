@@ -64,10 +64,10 @@ dependencies {
 
     compileOnly(rfg.deobf("curse.maven:xaeros-minimap-263420:6012805"))
     compileOnly(rfg.deobf("curse.maven:xaeros-world-map-317780:5987124"))
-    compileOnly('com.github.GTNewHorizons:OpenComputers:1.12.9-GTNH:dev')
+    compileOnly('com.github.GTNewHorizons:OpenComputers:1.12.61-GTNH:dev')
 
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.35-GTNH:dev')
-    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:OpenComputers:1.12.9-GTNH:dev')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.143-GTNH:dev')
+    // runtimeOnlyNonPublishable('com.github.GTNewHorizons:OpenComputers:1.12.61-GTNH:dev')
     // runtimeOnlyNonPublishable('com.github.GTNewHorizons:inventory-tweaks:1.7.1:dev')
     // runtimeOnlyNonPublishable('maven.modrinth:cursormod:1.2.2-1.7.10')
     // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:fplib-665627:7244842"))
@@ -76,19 +76,19 @@ dependencies {
     // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:xaeros-world-map-317780:5987124"))
     // runtimeOnlyNonPublishable(rfg.deobf("curse.maven:signpicture-250822:2450569"))
     if (addGtForTesting) {
-        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.52.104:dev')
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-739-GTNH:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.17.5-GTNH:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.11.2:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.17.6:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.10.3:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ProjectRed:4.12.4-GTNH:dev") { transitive = false }
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:MrTJPCore:1.3.4:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeMultipart:1.7.0:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeRelocation:0.3.4:dev")
+        runtimeOnlyNonPublishable('com.github.GTNewHorizons:GT5-Unofficial:5.09.54.168:dev')
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-999-GTNH:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Chisel:2.17.33-GTNH:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForestryMC:4.11.38:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Railcraft:9.17.31:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:EnderIO:2.10.45:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ProjectRed:4.12.43-GTNH:dev") { transitive = false }
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:MrTJPCore:1.3.7:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeMultipart:1.7.15:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:ForgeRelocation:0.3.7:dev")
         reobfJarConfiguration("curse.maven:cofh-core-69162:2388750")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:AppleCore:3.3.7:dev")
-        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.7.11:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:AppleCore:3.3.13:dev")
+        runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.7.208:dev")
     }
     if (addReikaModsForTesting) {
         // DragonAPI

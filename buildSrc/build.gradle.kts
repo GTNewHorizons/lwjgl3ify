@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     `kotlin-dsl`
-    kotlin("plugin.serialization") version "2.2.21"
+    embeddedKotlin("plugin.serialization")
 }
 
 repositories {
