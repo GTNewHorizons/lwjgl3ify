@@ -47,6 +47,7 @@ public class Config {
     public static boolean INPUT_CTRL_ALT_TEXT = false;
     public static boolean INPUT_ALTGR_ESCAPE_CODES = false;
     public static boolean INPUT_RAW_MOUSE = false;
+    public static boolean INPUT_EAGER_SDL_GAMEPAD = false;
     public static boolean INPUT_ALWAYS_REPEAT_KEYS = false;
     public static boolean FORCE_DISCRETE_SCROLLING = false;
 
@@ -195,6 +196,11 @@ public class Config {
             "Allows AltGr use in Ctrl+key special key combinations (disables text character input handling when AltGr is pressed)");
         INPUT_RAW_MOUSE = config
             .getBoolean("rawMouseInput", CATEGORY_INPUT, INPUT_RAW_MOUSE, "Use raw (unaccelerated) mouse input");
+        INPUT_EAGER_SDL_GAMEPAD = config.getBoolean(
+            "eagerSdlGamepadInit",
+            CATEGORY_INPUT,
+            INPUT_EAGER_SDL_GAMEPAD,
+            "Initialize SDL joystick/gamepad/haptic/sensor at startup instead of on demand");
         INPUT_ALWAYS_REPEAT_KEYS = config.getBoolean(
             "alwaysRepeatKeys",
             CATEGORY_INPUT,
