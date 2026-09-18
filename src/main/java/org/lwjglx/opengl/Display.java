@@ -35,8 +35,10 @@ import org.lwjgl.opengl.GL11C;
 import org.lwjgl.sdl.SDLKeyboard;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
+import org.lwjgl.sdl.SDL_Rect;
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.Platform;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -87,6 +89,12 @@ public class Display {
 
     private static int displayX = 0;
     private static int displayY = 0;
+
+    private static int windowedX = 0;
+    private static int windowedY = 0;
+    private static int windowedW = 0;
+    private static int windowedH = 0;
+    private static boolean windowedGeometryValid = false;
 
     private static boolean displayResized = false;
     private static int displayWidth = 1;
@@ -506,7 +514,11 @@ public class Display {
                     SwapchainInvalidatingChange.Kind.DISPLAY_MODE,
                     displayWindowed.isFullscreen,
                     dm));
-            MainThreadExec.runOnMainThread(() -> { SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight()); });
+            MainThreadExec.runOnMainThread(() -> {
+                if (displayWindowed != WindowedState.BORDERLESS) {
+                    SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight());
+                }
+            });
         }
     }
 
@@ -701,10 +713,50 @@ public class Display {
     // but rather stretching it 1 pixel beyond the screen's supported resolution.
     private static void doSetFullscreenLocked(boolean fullscreen) {
         MainThreadExec.runOnMainThread(() -> {
-            SDL_SetWindowFullscreen(sdlWindow, fullscreen);
-            // restore original window size as dictated by the game
-            if (!fullscreen) {
-                SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+            if (displayWindowed == WindowedState.BORDERLESS) {
+                if (fullscreen) {
+                    try (MemoryStack stack = stackPush()) {
+                        IntBuffer x = stack.ints(0);
+                        IntBuffer y = stack.ints(0);
+                        SDL_GetWindowPosition(sdlWindow, x, y);
+                        windowedX = x.get(0);
+                        windowedY = y.get(0);
+                    }
+                    try (MemoryStack stack = stackPush()) {
+                        IntBuffer w = stack.ints(0);
+                        IntBuffer h = stack.ints(0);
+                        SDL_GetWindowSize(sdlWindow, w, h);
+                        windowedW = w.get(0);
+                        windowedH = h.get(0);
+                    }
+                    windowedGeometryValid = true;
+                    SDL_SetWindowBordered(sdlWindow, false);
+                    final int display = Sys.checkSdl(SDL_GetDisplayForWindow(sdlWindow));
+                    try (MemoryStack stack = stackPush()) {
+                        SDL_Rect bounds = SDL_Rect.calloc(stack);
+                        Sys.checkSdl(SDL_GetDisplayBounds(display, bounds));
+                        int height = bounds.h();
+                        if (Config.WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY && Platform.get() == Platform.WINDOWS) {
+                            height += 1;
+                        }
+                        SDL_SetWindowPosition(sdlWindow, bounds.x(), bounds.y());
+                        SDL_SetWindowSize(sdlWindow, bounds.w(), height);
+                    }
+                } else {
+                    SDL_SetWindowBordered(sdlWindow, Config.WINDOW_DECORATED);
+                    if (windowedGeometryValid) {
+                        SDL_SetWindowPosition(sdlWindow, windowedX, windowedY);
+                        SDL_SetWindowSize(sdlWindow, windowedW, windowedH);
+                    } else {
+                        SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+                    }
+                }
+            } else {
+                SDL_SetWindowFullscreen(sdlWindow, fullscreen);
+                // restore original window size as dictated by the game
+                if (!fullscreen) {
+                    SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+                }
             }
             SDL_SyncWindow(sdlWindow);
         });
