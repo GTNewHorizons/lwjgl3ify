@@ -478,6 +478,8 @@ tasks.publishCurseforge {
     val mainArtifact = this.uploadArtifacts[0]
     mainArtifact.withAdditionalFile(forgePatchesJar.get().archiveFile.get().asFile)
     mainArtifact.additionalArtifacts.forEach { additionalArtifact ->
+        // Work around https://github.com/Darkhax/CurseForgeGradle/issues/35
+        additionalArtifact.gameVersions.addAll(mainArtifact.gameVersions)
         additionalArtifact.changelogType = mainArtifact.changelogType
         additionalArtifact.changelog = mainArtifact.changelog
     }
