@@ -15,26 +15,41 @@ import xaero.common.gui.GuiEntityRadar;
 import xaero.common.gui.GuiTransfer;
 import xaero.common.gui.GuiWaypoints;
 
-@Mixin(value = { GuiAddWaypoint.class, GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class })
 public abstract class XaerosMinimapScrolling {
 
-    @Shadow(remap = false)
-    public abstract void onGuiClosed();
+    @Mixin(value = { GuiAddWaypoint.class, GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class })
+    public static abstract class AllClasses {
 
-    // Optional because an old hodgepodge patch might also do the same
-    @ModifyConstant(method = "handleMouseInput", constant = @Constant(intValue = 120), expect = -1)
-    private int lwjgl3ify$rescaledGetEventDWheel(int original) {
-        return 1;
+        // Optional because an old hodgepodge patch might also do the same
+        @ModifyConstant(method = "handleMouseInput", constant = @Constant(intValue = 120), expect = -1)
+        private int lwjgl3ify$rescaledGetEventDWheel(int original) {
+            return 1;
+        }
+
+        @Inject(method = "initGui()V", at = @At("HEAD"), remap = false)
+        private void lwjgl3ify$onInit(CallbackInfo ci) {
+            TextFieldHandler.beginTextInput();
+        }
     }
 
-    @Inject(method = "initGui()V", at = @At("HEAD"), remap = false)
-    private void lwjgl3ify$onInit(CallbackInfo ci) {
-        TextFieldHandler.beginTextInput();
+    @Mixin(value = { GuiAddWaypoint.class })
+    public static abstract class OnGuiClosedExistsClasses {
+
+        @Shadow(remap = false)
+        public abstract void onGuiClosed();
+
+        @Intrinsic(displace = true)
+        private void lwjgl3ify$onGuiClosed() {
+            TextFieldHandler.endTextInput(null);
+            this.onGuiClosed();
+        }
     }
 
-    @Intrinsic(displace = true)
-    private void lwjgl3ify$onGuiClosed() {
-        TextFieldHandler.endTextInput(null);
-        this.onGuiClosed();
+    @Mixin(value = { GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class })
+    public static abstract class OnGuiClosedNotExistsClasses {
+
+        public void onGuiClosed() {
+            TextFieldHandler.endTextInput(null);
+        }
     }
 }
