@@ -1,0 +1,3710 @@
+
+> Resolve dependencies of :lwjgl2Classpath
+> Configure project :
+You might want to check out './gradlew :faq' if your build fails.
+
+> Task :compileUtilJava UP-TO-DATE
+> Task :compileUtilScala NO-SOURCE
+> Task :extractForgeUserdev SKIPPED
+> Task :extractMcpData SKIPPED
+> Task :extractDependencyATs SKIPPED
+> Task :generateForgeSrgMappings SKIPPED
+> Task :downloadLauncherAllVersionsManifest SKIPPED
+> Task :downloadLauncherVersionManifest SKIPPED
+> Task :downloadVanillaJars SKIPPED
+> Task :mergeVanillaSidedJars SKIPPED
+> Task :deobfuscateMergedJarToSrg SKIPPED
+> Task :downloadFernflower SKIPPED
+> Task :decompileSrgJar SKIPPED
+> Task :cleanupDecompSrgJar SKIPPED
+> Task :patchDecompiledJar SKIPPED
+> Task :remapDecompiledJar SKIPPED
+
+
+<===----------> 29% EXECUTING [286ms]> :decompressDecompiledSources> Task :decompressDecompiledSources UP-TO-DATE
+> Task :compilePatchedMcJava UP-TO-DATE
+> Task :compilePatchedMcScala NO-SOURCE
+> Task :processPatchedMcResources UP-TO-DATE
+> Task :patchedMcClasses UP-TO-DATE
+> Task :compileApiJava NO-SOURCE
+> Task :compileApiScala NO-SOURCE
+> Task :processApiResources NO-SOURCE
+> Task :apiClasses UP-TO-DATE
+> Task :compileForgePatchesJava UP-TO-DATE
+> Task :compileForgePatchesScala NO-SOURCE
+> Task :injectTags UP-TO-DATE
+> Task :compileInjectedTagsJava UP-TO-DATE
+> Task :compileInjectedTagsScala NO-SOURCE
+> Task :extractNatives3 UP-TO-DATE
+> Task :createMcLauncherFiles UP-TO-DATE
+> Task :compileMcLauncherJava UP-TO-DATE
+> Task :compileMcLauncherScala NO-SOURCE
+> Task :processForgePatchesResources NO-SOURCE
+> Task :forgePatchesClasses UP-TO-DATE
+> Task :processInjectedTagsResources NO-SOURCE
+> Task :injectedTagsClasses UP-TO-DATE
+> Task :processMcLauncherResources NO-SOURCE
+> Task :mcLauncherClasses UP-TO-DATE
+
+
+<=========----> 74% EXECUTING [386ms]> :compileJava<=========----> 74% EXECUTING [486ms]<=========----> 74% EXECUTING [586ms]<=========----> 74% EXECUTING [686ms]<=========----> 74% EXECUTING [786ms]<=========----> 74% EXECUTING [886ms]<=========----> 74% EXECUTING [986ms]<=========----> 74% EXECUTING [1s]<=========----> 74% EXECUTING [2s]
+> Task :compileJava
+Jabel: initialized
+
+
+<=========----> 74% EXECUTING [2s]> :compileJava<=========----> 74% EXECUTING [3s]
+> Task :compileScala NO-SOURCE
+> Task :generateAssets
+
+
+<==========---> 79% EXECUTING [3s]> :processResources> Task :processResources
+> Task :classes
+> Task :jar SKIPPED
+> Task :compileHotswapJava UP-TO-DATE
+> Task :compileHotswapScala SKIPPED
+> Task :processHotswapResources UP-TO-DATE
+> Task :hotswapClasses UP-TO-DATE
+
+
+<============-> 92% EXECUTING [3s]> :shadowJar<============-> 92% EXECUTING [4s]> Task :shadowJar
+> Task :processUtilResources NO-SOURCE
+> Task :utilClasses UP-TO-DATE
+
+
+<============-> 98% EXECUTING [4s]> :runComparisonTool<============-> 98% EXECUTING [5s]
+> Task :runComparisonTool
+Missing gl3: org/lwjgl/BufferChecks
+Missing gl3: org/lwjgl/LWJGLException
+Missing gl3: org/lwjgl/LWJGLUtil
+Missing gl3: org/lwjgl/LWJGLUtil$TokenFilter
+Missing gl3: org/lwjgl/MemoryUtil
+Missing in mod: org/lwjgl/PointerBuffer : <init>:(I)V
+Missing in mod: org/lwjgl/PointerBuffer : <init>:(Ljava/nio/ByteBuffer;)V
+Missing in mod: org/lwjgl/PointerBuffer : asReadOnlyBuffer:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : capacity:()I
+Missing in mod: org/lwjgl/PointerBuffer : clear:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : compact:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : compareTo:(Ljava/lang/Object;)I
+Missing in mod: org/lwjgl/PointerBuffer : duplicate:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : equals:(Ljava/lang/Object;)Z
+Missing in mod: org/lwjgl/PointerBuffer : flip:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : get:()J
+Missing in mod: org/lwjgl/PointerBuffer : get:(I)J
+Missing in mod: org/lwjgl/PointerBuffer : get:([J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : get:([JII)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : getBuffer:()Ljava/nio/ByteBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : getPointerSize:()I
+Missing in mod: org/lwjgl/PointerBuffer : hasRemaining:()Z
+Missing in mod: org/lwjgl/PointerBuffer : hashCode:()I
+Missing in mod: org/lwjgl/PointerBuffer : is64Bit:()Z
+Missing in mod: org/lwjgl/PointerBuffer : isReadOnly:()Z
+Missing in mod: org/lwjgl/PointerBuffer : limit:()I
+Missing in mod: org/lwjgl/PointerBuffer : limit:(I)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : mark:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : newInstance:(Ljava/nio/ByteBuffer;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : order:()Ljava/nio/ByteOrder;
+Missing in mod: org/lwjgl/PointerBuffer : position:()I
+Missing in mod: org/lwjgl/PointerBuffer : position:(I)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : positionByte:()I
+Missing in mod: org/lwjgl/PointerBuffer : put:(IJ)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(ILorg/lwjgl/PointerWrapper;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(Ljava/nio/ByteBuffer;IJ)V
+Missing in mod: org/lwjgl/PointerBuffer : put:(Ljava/nio/ByteBuffer;J)V
+Missing in mod: org/lwjgl/PointerBuffer : put:(Lorg/lwjgl/PointerBuffer;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:(Lorg/lwjgl/PointerWrapper;)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:([J)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : put:([JII)Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : remaining:()I
+Missing in mod: org/lwjgl/PointerBuffer : remainingByte:()I
+Missing in mod: org/lwjgl/PointerBuffer : reset:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : rewind:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : slice:()Lorg/lwjgl/PointerBuffer;
+Missing in mod: org/lwjgl/PointerBuffer : toString:()Ljava/lang/String;
+Missing gl3: org/lwjgl/PointerWrapper
+Missing gl3: org/lwjgl/PointerWrapperAbstract
+Missing gl3: org/lwjgl/Sys
+Missing gl3: org/lwjgl/input/Controller
+Missing gl3: org/lwjgl/input/Controllers
+Missing gl3: org/lwjgl/input/Cursor
+Missing gl3: org/lwjgl/input/Keyboard
+Missing gl3: org/lwjgl/input/Mouse
+Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZ)V
+Missing in mod: org/lwjgl/openal/AL : create:(Ljava/lang/String;IIZZ)V
+Missing in mod: org/lwjgl/openal/AL : getContext:()Lorg/lwjgl/openal/ALCcontext;
+org/lwjgl/openal/AL10
+ + alBufferData:(IILjava/nio/ByteBuffer;I)V
+ + alBufferData:(IILjava/nio/IntBuffer;I)V
+ + alBufferData:(IILjava/nio/ShortBuffer;I)V
+ + alDeleteBuffers:(I)V
+ + alDeleteBuffers:(Ljava/nio/IntBuffer;)V
+ + alDeleteSources:(I)V
+ + alDeleteSources:(Ljava/nio/IntBuffer;)V
+ + alDisable:(I)V
+ + alDistanceModel:(I)V
+ + alDopplerFactor:(F)V
+ + alDopplerVelocity:(F)V
+ + alEnable:(I)V
+ + alGenBuffers:()I
+ + alGenBuffers:(Ljava/nio/IntBuffer;)V
+ + alGenSources:()I
+ + alGenSources:(Ljava/nio/IntBuffer;)V
+ + alGetBoolean:(I)Z
+ + alGetBufferf:(II)F
+ + alGetBufferi:(II)I
+ + alGetDouble:(I)D
+ > alGetDouble:(ILjava/nio/DoubleBuffer;)V --> alGetDoublev:(ILjava/nio/DoubleBuffer;)V
+ + alGetError:()I
+ + alGetFloat:(I)F
+ > alGetFloat:(ILjava/nio/FloatBuffer;)V --> alGetFloatv:(ILjava/nio/FloatBuffer;)V
+ + alGetInteger:(I)I
+ > alGetInteger:(ILjava/nio/IntBuffer;)V --> alGetIntegerv:(ILjava/nio/IntBuffer;)V
+ > alGetListener:(ILjava/nio/FloatBuffer;)V --> alGetListenerfv:(ILjava/nio/FloatBuffer;)V
+ + alGetListenerf:(I)F
+ + alGetListeneri:(I)I
+ > alGetSource:(IILjava/nio/FloatBuffer;)V --> alGetSourcefv:(IILjava/nio/FloatBuffer;)V
+ + alGetSourcef:(II)F
+ + alGetSourcei:(II)I
+ + alGetString:(I)Ljava/lang/String;
+ + alIsBuffer:(I)Z
+ + alIsEnabled:(I)Z
+ + alIsSource:(I)Z
+ + alListener3f:(IFFF)V
+ > alListener:(ILjava/nio/FloatBuffer;)V --> alListenerfv:(ILjava/nio/FloatBuffer;)V
+ + alListenerf:(IF)V
+ + alListeneri:(II)V
+ + alSource3f:(IIFFF)V
+ > alSource:(IILjava/nio/FloatBuffer;)V --> alSourcefv:(IILjava/nio/FloatBuffer;)V
+ + alSourcePause:(I)V
+ > alSourcePause:(Ljava/nio/IntBuffer;)V --> alSourcePausev:(Ljava/nio/IntBuffer;)V
+ + alSourcePlay:(I)V
+ > alSourcePlay:(Ljava/nio/IntBuffer;)V --> alSourcePlayv:(Ljava/nio/IntBuffer;)V
+ + alSourceQueueBuffers:(II)V
+ + alSourceQueueBuffers:(ILjava/nio/IntBuffer;)V
+ + alSourceRewind:(I)V
+ > alSourceRewind:(Ljava/nio/IntBuffer;)V --> alSourceRewindv:(Ljava/nio/IntBuffer;)V
+ + alSourceStop:(I)V
+ > alSourceStop:(Ljava/nio/IntBuffer;)V --> alSourceStopv:(Ljava/nio/IntBuffer;)V
+ + alSourceUnqueueBuffers:(I)I
+ + alSourceUnqueueBuffers:(ILjava/nio/IntBuffer;)V
+ + alSourcef:(IIF)V
+ + alSourcei:(III)V
+org/lwjgl/openal/AL11
+ + alBuffer3f:(IIFFF)V
+ + alBuffer3i:(IIIII)V
+ > alBuffer:(IILjava/nio/FloatBuffer;)V --> alBufferfv:(IILjava/nio/FloatBuffer;)V
+ > alBuffer:(IILjava/nio/IntBuffer;)V --> alBufferiv:(IILjava/nio/IntBuffer;)V
+ + alBufferf:(IIF)V
+ + alBufferi:(III)V
+ > alGetBuffer:(IILjava/nio/FloatBuffer;)V --> alGetBufferfv:(IILjava/nio/FloatBuffer;)V
+ > alGetBuffer:(IILjava/nio/IntBuffer;)V --> alGetBufferiv:(IILjava/nio/IntBuffer;)V
+ + alGetBufferf:(II)F
+ + alGetBufferi:(II)I
+ + alListener3i:(IIII)V
+ + alSource3i:(IIIII)V
+ > alSource:(IILjava/nio/IntBuffer;)V --> alSourceiv:(IILjava/nio/IntBuffer;)V
+ + alSpeedOfSound:(F)V
+org/lwjgl/openal/ALC10
+java.lang.UnsupportedOperationException: org.lwjgl.openal.ALCcontext -> long in org/lwjgl/openal/ALC10 : alcDestroyContext:(Lorg/lwjgl/openal/ALCcontext;)V
+ - alcDestroyContext:(Lorg/lwjgl/openal/ALCcontext;)V
+java.lang.UnsupportedOperationException: org.lwjgl.openal.ALCcontext -> long in org/lwjgl/openal/ALC10 : alcGetContextsDevice:(Lorg/lwjgl/openal/ALCcontext;)Lorg/lwjgl/openal/ALCdevice;
+ - alcGetContextsDevice:(Lorg/lwjgl/openal/ALCcontext;)Lorg/lwjgl/openal/ALCdevice;
+java.lang.UnsupportedOperationException: org.lwjgl.openal.ALCcontext -> long in org/lwjgl/openal/ALC10 : alcMakeContextCurrent:(Lorg/lwjgl/openal/ALCcontext;)I
+ - alcMakeContextCurrent:(Lorg/lwjgl/openal/ALCcontext;)I
+java.lang.UnsupportedOperationException: org.lwjgl.openal.ALCcontext -> long in org/lwjgl/openal/ALC10 : alcProcessContext:(Lorg/lwjgl/openal/ALCcontext;)V
+ - alcProcessContext:(Lorg/lwjgl/openal/ALCcontext;)V
+java.lang.UnsupportedOperationException: org.lwjgl.openal.ALCcontext -> long in org/lwjgl/openal/ALC10 : alcSuspendContext:(Lorg/lwjgl/openal/ALCcontext;)V
+ - alcSuspendContext:(Lorg/lwjgl/openal/ALCcontext;)V
+org/lwjgl/openal/ALC11
+Missing gl3: org/lwjgl/openal/ALCcontext
+Missing gl3: org/lwjgl/openal/ALCdevice
+Missing gl3: org/lwjgl/openal/EFX10
+Missing gl3: org/lwjgl/openal/EFXUtil
+Missing gl3: org/lwjgl/openal/OpenALException
+Missing gl3: org/lwjgl/openal/Util
+org/lwjgl/opengl/AMDBlendMinmaxFactor
+org/lwjgl/opengl/AMDDebugOutput
+ - glDebugMessageCallbackAMD:(Lorg/lwjgl/opengl/AMDDebugOutputCallback;)V
+ + glDebugMessageEnableAMD:(IILjava/nio/IntBuffer;Z)V
+ + glDebugMessageInsertAMD:(IIILjava/lang/CharSequence;)V
+ + glDebugMessageInsertAMD:(IIILjava/nio/ByteBuffer;)V
+ + glGetDebugMessageLogAMD:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)I
+Missing gl3: org/lwjgl/opengl/AMDDebugOutputCallback
+Missing gl3: org/lwjgl/opengl/AMDDebugOutputCallback$Handler
+org/lwjgl/opengl/AMDDepthClampSeparate
+org/lwjgl/opengl/AMDDrawBuffersBlend
+ + glBlendEquationIndexedAMD:(II)V
+ + glBlendEquationSeparateIndexedAMD:(III)V
+ + glBlendFuncIndexedAMD:(III)V
+ + glBlendFuncSeparateIndexedAMD:(IIIII)V
+org/lwjgl/opengl/AMDInterleavedElements
+ + glVertexAttribParameteriAMD:(III)V
+Missing gl3: org/lwjgl/opengl/AMDMultiDrawIndirect
+Missing gl3: org/lwjgl/opengl/AMDNameGenDelete
+org/lwjgl/opengl/AMDPerformanceMonitor
+ + glBeginPerfMonitorAMD:(I)V
+ + glDeletePerfMonitorsAMD:(I)V
+ + glDeletePerfMonitorsAMD:(Ljava/nio/IntBuffer;)V
+ + glEndPerfMonitorAMD:(I)V
+ + glGenPerfMonitorsAMD:()I
+ + glGenPerfMonitorsAMD:(Ljava/nio/IntBuffer;)V
+ - glGetPerfMonitorCounterDataAMD:(II)I
+ + glGetPerfMonitorCounterDataAMD:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glGetPerfMonitorCounterInfoAMD:(IIILjava/nio/ByteBuffer;)V
+ - glGetPerfMonitorCounterStringAMD:(III)Ljava/lang/String;
+ + glGetPerfMonitorCounterStringAMD:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetPerfMonitorCountersAMD:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetPerfMonitorGroupStringAMD:(II)Ljava/lang/String;
+ + glGetPerfMonitorGroupStringAMD:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetPerfMonitorGroupsAMD:(Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glSelectPerfMonitorCountersAMD:(IZILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/AMDPinnedMemory
+org/lwjgl/opengl/AMDQueryBufferObject
+org/lwjgl/opengl/AMDSamplePositions
+ > glSetMultisampleAMD:(IILjava/nio/FloatBuffer;)V --> glSetMultisamplefvAMD:(IILjava/nio/FloatBuffer;)V
+org/lwjgl/opengl/AMDSeamlessCubemapPerTexture
+org/lwjgl/opengl/AMDSparseTexture
+ + glTexStorageSparseAMD:(IIIIIII)V
+ + glTextureStorageSparseAMD:(IIIIIIII)V
+org/lwjgl/opengl/AMDStencilOperationExtended
+ + glStencilOpValueAMD:(II)V
+org/lwjgl/opengl/AMDVertexShaderTessellator
+ + glTessellationFactorAMD:(F)V
+ + glTessellationModeAMD:(I)V
+Missing gl3: org/lwjgl/opengl/APPLEAuxDepthStencil
+Missing gl3: org/lwjgl/opengl/APPLEClientStorage
+Missing gl3: org/lwjgl/opengl/APPLEElementArray
+Missing gl3: org/lwjgl/opengl/APPLEFence
+Missing gl3: org/lwjgl/opengl/APPLEFloatPixels
+Missing gl3: org/lwjgl/opengl/APPLEFlushBufferRange
+Missing gl3: org/lwjgl/opengl/APPLEObjectPurgeable
+Missing gl3: org/lwjgl/opengl/APPLEPackedPixels
+Missing gl3: org/lwjgl/opengl/APPLERgb422
+Missing gl3: org/lwjgl/opengl/APPLERowBytes
+Missing gl3: org/lwjgl/opengl/APPLETextureRange
+Missing gl3: org/lwjgl/opengl/APPLEVertexArrayObject
+Missing gl3: org/lwjgl/opengl/APPLEVertexArrayRange
+Missing gl3: org/lwjgl/opengl/APPLEVertexProgramEvaluators
+Missing gl3: org/lwjgl/opengl/APPLEYcbcr422
+org/lwjgl/opengl/ARBBaseInstance
+ + glDrawArraysInstancedBaseInstance:(IIIII)V
+ + glDrawElementsInstancedBaseInstance:(IIIJII)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/ByteBuffer;II)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/IntBuffer;II)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/ShortBuffer;II)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(IIIJIII)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/ByteBuffer;III)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/IntBuffer;III)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/ShortBuffer;III)V
+org/lwjgl/opengl/ARBBindlessTexture
+ + glGetImageHandleARB:(IIZII)J
+ + glGetTextureHandleARB:(I)J
+ + glGetTextureSamplerHandleARB:(II)J
+ > glGetVertexAttribLuARB:(IILjava/nio/LongBuffer;)V --> glGetVertexAttribLui64vARB:(IILjava/nio/LongBuffer;)V
+ + glIsImageHandleResidentARB:(J)Z
+ + glIsTextureHandleResidentARB:(J)Z
+ + glMakeImageHandleNonResidentARB:(J)V
+ + glMakeImageHandleResidentARB:(JI)V
+ + glMakeTextureHandleNonResidentARB:(J)V
+ + glMakeTextureHandleResidentARB:(J)V
+ > glProgramUniformHandleuARB:(IILjava/nio/LongBuffer;)V --> glProgramUniformHandleui64vARB:(IILjava/nio/LongBuffer;)V
+ + glProgramUniformHandleui64ARB:(IIJ)V
+ > glUniformHandleuARB:(ILjava/nio/LongBuffer;)V --> glUniformHandleui64vARB:(ILjava/nio/LongBuffer;)V
+ + glUniformHandleui64ARB:(IJ)V
+ > glVertexAttribL1uARB:(ILjava/nio/LongBuffer;)V --> glVertexAttribL1ui64vARB:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL1ui64ARB:(IJ)V
+org/lwjgl/opengl/ARBBlendFuncExtended
+ + glBindFragDataLocationIndexed:(IIILjava/lang/CharSequence;)V
+ + glBindFragDataLocationIndexed:(IIILjava/nio/ByteBuffer;)V
+ + glGetFragDataIndex:(ILjava/lang/CharSequence;)I
+ + glGetFragDataIndex:(ILjava/nio/ByteBuffer;)I
+Missing gl3: org/lwjgl/opengl/ARBBufferObject
+org/lwjgl/opengl/ARBBufferStorage
+ + glBufferStorage:(IJI)V
+ + glBufferStorage:(ILjava/nio/ByteBuffer;I)V
+ + glBufferStorage:(ILjava/nio/DoubleBuffer;I)V
+ + glBufferStorage:(ILjava/nio/FloatBuffer;I)V
+ + glBufferStorage:(ILjava/nio/IntBuffer;I)V
+ - glBufferStorage:(ILjava/nio/LongBuffer;I)V
+ + glBufferStorage:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferStorageEXT:(IJI)V
+ + glNamedBufferStorageEXT:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferStorageEXT:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferStorageEXT:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferStorageEXT:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/ARBBufferStorage : glNamedBufferStorageEXT:(ILjava/nio/LongBuffer;I)V
+ - glNamedBufferStorageEXT:(ILjava/nio/LongBuffer;I)V
+ + glNamedBufferStorageEXT:(ILjava/nio/ShortBuffer;I)V
+org/lwjgl/opengl/ARBClearBufferObject
+ + glClearBufferData:(IIIILjava/nio/ByteBuffer;)V
+ + glClearBufferSubData:(IIJJIILjava/nio/ByteBuffer;)V
+ + glClearNamedBufferDataEXT:(IIIILjava/nio/ByteBuffer;)V
+ + glClearNamedBufferSubDataEXT:(IIJJIILjava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBClearTexture
+ + glClearTexImage:(IIIILjava/nio/ByteBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/DoubleBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/FloatBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/IntBuffer;)V
+ - glClearTexImage:(IIIILjava/nio/LongBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/ShortBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ - glClearTexSubImage:(IIIIIIIIIILjava/nio/LongBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/ARBClipControl
+ + glClipControl:(II)V
+org/lwjgl/opengl/ARBColorBufferFloat
+ + glClampColorARB:(II)V
+org/lwjgl/opengl/ARBCompressedTexturePixelStorage
+org/lwjgl/opengl/ARBComputeShader
+ + glDispatchCompute:(III)V
+ + glDispatchComputeIndirect:(J)V
+org/lwjgl/opengl/ARBComputeVariableGroupSize
+ + glDispatchComputeGroupSizeARB:(IIIIII)V
+org/lwjgl/opengl/ARBConditionalRenderInverted
+org/lwjgl/opengl/ARBCopyBuffer
+ + glCopyBufferSubData:(IIJJJ)V
+org/lwjgl/opengl/ARBCopyImage
+ + glCopyImageSubData:(IIIIIIIIIIIIIII)V
+org/lwjgl/opengl/ARBCullDistance
+org/lwjgl/opengl/ARBDebugOutput
+ - glDebugMessageCallbackARB:(Lorg/lwjgl/opengl/ARBDebugOutputCallback;)V
+ + glDebugMessageControlARB:(IIILjava/nio/IntBuffer;Z)V
+ + glDebugMessageInsertARB:(IIIILjava/lang/CharSequence;)V
+ + glDebugMessageInsertARB:(IIIILjava/nio/ByteBuffer;)V
+ + glGetDebugMessageLogARB:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)I
+Missing gl3: org/lwjgl/opengl/ARBDebugOutputCallback
+Missing gl3: org/lwjgl/opengl/ARBDebugOutputCallback$Handler
+org/lwjgl/opengl/ARBDepthBufferFloat
+org/lwjgl/opengl/ARBDepthClamp
+org/lwjgl/opengl/ARBDepthTexture
+org/lwjgl/opengl/ARBDirectStateAccess
+ + glBindTextureUnit:(II)V
+ + glBlitNamedFramebuffer:(IIIIIIIIIIII)V
+ + glCheckNamedFramebufferStatus:(II)I
+ + glClearNamedBufferData:(IIIILjava/nio/ByteBuffer;)V
+ + glClearNamedBufferSubData:(IIJJIILjava/nio/ByteBuffer;)V
+ - glClearNamedFramebuffer:(IIILjava/nio/FloatBuffer;)V
+ - glClearNamedFramebuffer:(IIILjava/nio/IntBuffer;)V
+ - glClearNamedFramebufferfi:(IIFI)V
+ - glClearNamedFramebufferu:(IIILjava/nio/IntBuffer;)V
+ + glCompressedTextureSubImage1D:(IIIIIIJ)V
+ + glCompressedTextureSubImage1D:(IIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage2D:(IIIIIIIIJ)V
+ + glCompressedTextureSubImage2D:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage3D:(IIIIIIIIIIJ)V
+ - glCompressedTextureSubImage3D:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glCopyNamedBufferSubData:(IIJJJ)V
+ + glCopyTextureSubImage1D:(IIIIII)V
+ + glCopyTextureSubImage2D:(IIIIIIII)V
+ + glCopyTextureSubImage3D:(IIIIIIIII)V
+ + glCreateBuffers:()I
+ + glCreateBuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateFramebuffers:()I
+ + glCreateFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateProgramPipelines:()I
+ + glCreateProgramPipelines:(Ljava/nio/IntBuffer;)V
+ + glCreateQueries:(I)I
+ + glCreateQueries:(ILjava/nio/IntBuffer;)V
+ + glCreateRenderbuffers:()I
+ + glCreateRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateSamplers:()I
+ + glCreateSamplers:(Ljava/nio/IntBuffer;)V
+ + glCreateTextures:(I)I
+ + glCreateTextures:(ILjava/nio/IntBuffer;)V
+ + glCreateTransformFeedbacks:()I
+ + glCreateTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glCreateVertexArrays:()I
+ + glCreateVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glDisableVertexArrayAttrib:(II)V
+ + glEnableVertexArrayAttrib:(II)V
+ + glFlushMappedNamedBufferRange:(IJJ)V
+ + glGenerateTextureMipmap:(I)V
+ + glGetCompressedTextureImage:(IIIJ)V
+ + glGetCompressedTextureImage:(IILjava/nio/ByteBuffer;)V
+ - glGetCompressedTextureImage:(IILjava/nio/IntBuffer;)V
+ - glGetCompressedTextureImage:(IILjava/nio/ShortBuffer;)V
+ - glGetNamedBufferParameter:(IILjava/nio/IntBuffer;)V
+ - glGetNamedBufferParameter:(IILjava/nio/LongBuffer;)V
+ + glGetNamedBufferParameteri64:(II)J
+ + glGetNamedBufferParameteri:(II)I
+ - glGetNamedBufferPointer:(II)Ljava/nio/ByteBuffer;
+ + glGetNamedBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ - glGetNamedFramebufferAttachmentParameter:(III)I
+ - glGetNamedFramebufferAttachmentParameter:(IIILjava/nio/IntBuffer;)V
+ - glGetNamedFramebufferParameter:(II)I
+ - glGetNamedFramebufferParameter:(IILjava/nio/IntBuffer;)V
+ - glGetNamedRenderbufferParameter:(II)I
+ - glGetNamedRenderbufferParameter:(IILjava/nio/IntBuffer;)V
+ + glGetTextureImage:(IIIIIJ)V
+ + glGetTextureImage:(IIIILjava/nio/ByteBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/DoubleBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/FloatBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/IntBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/ShortBuffer;)V
+ - glGetTextureLevelParameter:(IIILjava/nio/FloatBuffer;)V
+ - glGetTextureLevelParameter:(IIILjava/nio/IntBuffer;)V
+ + glGetTextureLevelParameterf:(III)F
+ + glGetTextureLevelParameteri:(III)I
+ - glGetTextureParameter:(IILjava/nio/FloatBuffer;)V
+ - glGetTextureParameter:(IILjava/nio/IntBuffer;)V
+ - glGetTextureParameterI:(IILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIi:(II)I
+ - glGetTextureParameterIu:(IILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIui:(II)I
+ + glGetTextureParameterf:(II)F
+ + glGetTextureParameteri:(II)I
+ - glGetTransformFeedback:(IIILjava/nio/IntBuffer;)V
+ - glGetTransformFeedback:(IIILjava/nio/LongBuffer;)V
+ - glGetTransformFeedback:(IILjava/nio/IntBuffer;)V
+ + glGetTransformFeedbacki64:(III)J
+ + glGetTransformFeedbacki:(II)I
+ + glGetTransformFeedbacki:(III)I
+ - glGetVertexArray:(II)I
+ - glGetVertexArray:(IILjava/nio/IntBuffer;)V
+ + glGetVertexArrayIndexed64i:(III)J
+ - glGetVertexArrayIndexed64i:(IIILjava/nio/LongBuffer;)V
+ - glGetVertexArrayIndexed:(III)I
+ - glGetVertexArrayIndexed:(IIILjava/nio/IntBuffer;)V
+ + glInvalidateNamedFramebufferData:(ILjava/nio/IntBuffer;)V
+ + glInvalidateNamedFramebufferSubData:(ILjava/nio/IntBuffer;IIII)V
+ + glMapNamedBuffer:(IIJLjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBuffer:(IILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBufferRange:(IJJILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glNamedBufferData:(IJI)V
+ + glNamedBufferData:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/IntBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferStorage:(IJI)V
+ + glNamedBufferStorage:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/IntBuffer;I)V
+ - glNamedBufferStorage:(ILjava/nio/LongBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ + glNamedFramebufferDrawBuffer:(II)V
+ + glNamedFramebufferDrawBuffers:(ILjava/nio/IntBuffer;)V
+ + glNamedFramebufferParameteri:(III)V
+ + glNamedFramebufferReadBuffer:(II)V
+ + glNamedFramebufferRenderbuffer:(IIII)V
+ + glNamedFramebufferTexture:(IIII)V
+ + glNamedFramebufferTextureLayer:(IIIII)V
+ + glNamedRenderbufferStorage:(IIII)V
+ + glNamedRenderbufferStorageMultisample:(IIIII)V
+ + glTextureBuffer:(III)V
+ + glTextureBufferRange:(IIIJJ)V
+ - glTextureParameter:(IILjava/nio/FloatBuffer;)V
+ - glTextureParameter:(IILjava/nio/IntBuffer;)V
+ - glTextureParameterI:(IILjava/nio/IntBuffer;)V
+ - glTextureParameterIu:(IILjava/nio/IntBuffer;)V
+ + glTextureParameterf:(IIF)V
+ + glTextureParameteri:(III)V
+ + glTextureStorage1D:(IIII)V
+ + glTextureStorage2D:(IIIII)V
+ + glTextureStorage2DMultisample:(IIIIIZ)V
+ + glTextureStorage3D:(IIIIII)V
+ + glTextureStorage3DMultisample:(IIIIIIZ)V
+ + glTextureSubImage1D:(IIIIIIJ)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIIJ)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIIJ)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+ + glTransformFeedbackBufferBase:(III)V
+ + glTransformFeedbackBufferRange:(IIIJJ)V
+ + glUnmapNamedBuffer:(I)Z
+ + glVertexArrayAttribBinding:(III)V
+ + glVertexArrayAttribFormat:(IIIIZI)V
+ + glVertexArrayAttribIFormat:(IIIII)V
+ + glVertexArrayAttribLFormat:(IIIII)V
+ + glVertexArrayBindingDivisor:(III)V
+ + glVertexArrayElementBuffer:(II)V
+ + glVertexArrayVertexBuffer:(IIIJI)V
+ - glVertexArrayVertexBuffers:(IIILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Ljava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBDrawBuffers
+ + glDrawBuffersARB:(Ljava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBDrawBuffersBlend
+ + glBlendEquationSeparateiARB:(III)V
+ + glBlendEquationiARB:(II)V
+ + glBlendFuncSeparateiARB:(IIIII)V
+ + glBlendFunciARB:(III)V
+org/lwjgl/opengl/ARBDrawElementsBaseVertex
+ + glDrawElementsBaseVertex:(IIIJI)V
+ + glDrawElementsBaseVertex:(ILjava/nio/ByteBuffer;I)V
+ + glDrawElementsBaseVertex:(ILjava/nio/IntBuffer;I)V
+ + glDrawElementsBaseVertex:(ILjava/nio/ShortBuffer;I)V
+ + glDrawElementsInstancedBaseVertex:(IIIJII)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/ByteBuffer;II)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/IntBuffer;II)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/ShortBuffer;II)V
+ + glDrawRangeElementsBaseVertex:(IIIIIJI)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/ByteBuffer;I)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/IntBuffer;I)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/ShortBuffer;I)V
+org/lwjgl/opengl/ARBDrawIndirect
+ + glDrawArraysIndirect:(IJ)V
+ + glDrawArraysIndirect:(ILjava/nio/ByteBuffer;)V
+ + glDrawArraysIndirect:(ILjava/nio/IntBuffer;)V
+ + glDrawElementsIndirect:(IIJ)V
+ + glDrawElementsIndirect:(IILjava/nio/ByteBuffer;)V
+ + glDrawElementsIndirect:(IILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBDrawInstanced
+ + glDrawArraysInstancedARB:(IIII)V
+ + glDrawElementsInstancedARB:(IIIJI)V
+ + glDrawElementsInstancedARB:(ILjava/nio/ByteBuffer;I)V
+ + glDrawElementsInstancedARB:(ILjava/nio/IntBuffer;I)V
+ + glDrawElementsInstancedARB:(ILjava/nio/ShortBuffer;I)V
+org/lwjgl/opengl/ARBES2Compatibility
+ + glClearDepthf:(F)V
+ + glDepthRangef:(FF)V
+ + glGetShaderPrecisionFormat:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glReleaseShaderCompiler:()V
+ + glShaderBinary:(Ljava/nio/IntBuffer;ILjava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBES31Compatibility
+ + glMemoryBarrierByRegion:(I)V
+org/lwjgl/opengl/ARBES3Compatibility
+org/lwjgl/opengl/ARBEnhancedLayouts
+org/lwjgl/opengl/ARBExplicitUniformLocation
+org/lwjgl/opengl/ARBFragmentProgram
+org/lwjgl/opengl/ARBFragmentShader
+org/lwjgl/opengl/ARBFramebufferNoAttachments
+ + glFramebufferParameteri:(III)V
+ - glGetFramebufferParameter:(IILjava/nio/IntBuffer;)V
+ + glGetFramebufferParameteri:(II)I
+ - glGetNamedFramebufferParameterEXT:(II)I
+ > glGetNamedFramebufferParameterEXT:(IILjava/nio/IntBuffer;)V --> glGetNamedFramebufferParameterivEXT:(IILjava/nio/IntBuffer;)V
+ + glNamedFramebufferParameteriEXT:(III)V
+org/lwjgl/opengl/ARBFramebufferObject
+ + glBindFramebuffer:(II)V
+ + glBindRenderbuffer:(II)V
+ + glBlitFramebuffer:(IIIIIIIIII)V
+ + glCheckFramebufferStatus:(I)I
+ + glDeleteFramebuffers:(I)V
+ + glDeleteFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glDeleteRenderbuffers:(I)V
+ + glDeleteRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glFramebufferRenderbuffer:(IIII)V
+ + glFramebufferTexture1D:(IIIII)V
+ + glFramebufferTexture2D:(IIIII)V
+ + glFramebufferTexture3D:(IIIIII)V
+ + glFramebufferTextureLayer:(IIIII)V
+ + glGenFramebuffers:()I
+ + glGenFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glGenRenderbuffers:()I
+ + glGenRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glGenerateMipmap:(I)V
+ - glGetFramebufferAttachmentParameter:(III)I
+ - glGetFramebufferAttachmentParameter:(IIILjava/nio/IntBuffer;)V
+ + glGetFramebufferAttachmentParameteri:(III)I
+ - glGetRenderbufferParameter:(II)I
+ - glGetRenderbufferParameter:(IILjava/nio/IntBuffer;)V
+ + glGetRenderbufferParameteri:(II)I
+ + glIsFramebuffer:(I)Z
+ + glIsRenderbuffer:(I)Z
+ + glRenderbufferStorage:(IIII)V
+ + glRenderbufferStorageMultisample:(IIIII)V
+org/lwjgl/opengl/ARBFramebufferSRGB
+org/lwjgl/opengl/ARBGeometryShader4
+ + glFramebufferTextureARB:(IIII)V
+ + glFramebufferTextureFaceARB:(IIIII)V
+ + glFramebufferTextureLayerARB:(IIIII)V
+ + glProgramParameteriARB:(III)V
+org/lwjgl/opengl/ARBGetProgramBinary
+ + glGetProgramBinary:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glProgramBinary:(IILjava/nio/ByteBuffer;)V
+ + glProgramParameteri:(III)V
+org/lwjgl/opengl/ARBGetTextureSubImage
+ + glGetCompressedTextureSubImage:(IIIIIIIIIJ)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIIIJ)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+Missing gl3: org/lwjgl/opengl/ARBGpuShader5
+Missing gl3: org/lwjgl/opengl/ARBGpuShaderFp64
+org/lwjgl/opengl/ARBHalfFloatPixel
+org/lwjgl/opengl/ARBHalfFloatVertex
+org/lwjgl/opengl/ARBImaging
+ + glBlendColor:(FFFF)V
+ + glBlendEquation:(I)V
+ + glColorSubTable:(IIIIIJ)V
+ + glColorSubTable:(IIIIILjava/nio/ByteBuffer;)V
+ + glColorTable:(IIIIIJ)V
+ + glColorTable:(IIIIILjava/nio/ByteBuffer;)V
+ + glColorTable:(IIIIILjava/nio/FloatBuffer;)V
+ > glColorTableParameter:(IILjava/nio/FloatBuffer;)V --> glColorTableParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glColorTableParameter:(IILjava/nio/IntBuffer;)V --> glColorTableParameteriv:(IILjava/nio/IntBuffer;)V
+ + glConvolutionFilter1D:(IIIIIJ)V
+ + glConvolutionFilter1D:(IIIIILjava/nio/ByteBuffer;)V
+ + glConvolutionFilter2D:(IIIIIIJ)V
+ + glConvolutionFilter2D:(IIIIIILjava/nio/ByteBuffer;)V
+ > glConvolutionParameter:(IILjava/nio/FloatBuffer;)V --> glConvolutionParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glConvolutionParameter:(IILjava/nio/IntBuffer;)V --> glConvolutionParameteriv:(IILjava/nio/IntBuffer;)V
+ + glConvolutionParameterf:(IIF)V
+ + glConvolutionParameteri:(III)V
+ + glCopyColorSubTable:(IIIII)V
+ + glCopyColorTable:(IIIII)V
+ + glCopyConvolutionFilter1D:(IIIII)V
+ + glCopyConvolutionFilter2D:(IIIIII)V
+ + glGetColorTable:(IIILjava/nio/ByteBuffer;)V
+ + glGetColorTable:(IIILjava/nio/FloatBuffer;)V
+ > glGetColorTableParameter:(IILjava/nio/FloatBuffer;)V --> glGetColorTableParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetColorTableParameter:(IILjava/nio/IntBuffer;)V --> glGetColorTableParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetConvolutionFilter:(IIIJ)V
+ + glGetConvolutionFilter:(IIILjava/nio/ByteBuffer;)V
+ > glGetConvolutionParameter:(IILjava/nio/FloatBuffer;)V --> glGetConvolutionParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetConvolutionParameter:(IILjava/nio/IntBuffer;)V --> glGetConvolutionParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetHistogram:(IZIIJ)V
+ + glGetHistogram:(IZIILjava/nio/ByteBuffer;)V
+ > glGetHistogramParameter:(IILjava/nio/FloatBuffer;)V --> glGetHistogramParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetHistogramParameter:(IILjava/nio/IntBuffer;)V --> glGetHistogramParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetMinmax:(IZIIJ)V
+ + glGetMinmax:(IZIILjava/nio/ByteBuffer;)V
+ > glGetMinmaxParameter:(IILjava/nio/FloatBuffer;)V --> glGetMinmaxParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetMinmaxParameter:(IILjava/nio/IntBuffer;)V --> glGetMinmaxParameteriv:(IILjava/nio/IntBuffer;)V
+ - glGetSeparableFilter:(IIIJJJ)V
+ + glGetSeparableFilter:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ + glHistogram:(IIIZ)V
+ + glMinmax:(IIZ)V
+ + glResetHistogram:(I)V
+ + glResetMinmax:(I)V
+ + glSeparableFilter2D:(IIIIIIJJ)V
+ + glSeparableFilter2D:(IIIIIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBIndirectParameters
+ + glMultiDrawArraysIndirectCountARB:(IJJII)V
+ + glMultiDrawArraysIndirectCountARB:(ILjava/nio/ByteBuffer;JII)V
+ + glMultiDrawArraysIndirectCountARB:(ILjava/nio/IntBuffer;JII)V
+ + glMultiDrawElementsIndirectCountARB:(IIJJII)V
+ + glMultiDrawElementsIndirectCountARB:(IILjava/nio/ByteBuffer;JII)V
+ + glMultiDrawElementsIndirectCountARB:(IILjava/nio/IntBuffer;JII)V
+org/lwjgl/opengl/ARBInstancedArrays
+ + glVertexAttribDivisorARB:(II)V
+org/lwjgl/opengl/ARBInternalformatQuery
+ - glGetInternalformat:(III)I
+ - glGetInternalformat:(IIILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBInternalformatQuery2
+ - glGetInternalformat:(IIILjava/nio/LongBuffer;)V
+ + glGetInternalformati64:(III)J
+org/lwjgl/opengl/ARBInvalidateSubdata
+ + glInvalidateBufferData:(I)V
+ + glInvalidateBufferSubData:(IJJ)V
+ + glInvalidateFramebuffer:(ILjava/nio/IntBuffer;)V
+ + glInvalidateSubFramebuffer:(ILjava/nio/IntBuffer;IIII)V
+ + glInvalidateTexImage:(II)V
+ + glInvalidateTexSubImage:(IIIIIIII)V
+org/lwjgl/opengl/ARBMapBufferAlignment
+org/lwjgl/opengl/ARBMapBufferRange
+ + glFlushMappedBufferRange:(IJJ)V
+ + glMapBufferRange:(IJJILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+org/lwjgl/opengl/ARBMatrixPalette
+ + glCurrentPaletteMatrixARB:(I)V
+ + glMatrixIndexPointerARB:(IIIJ)V
+ + glMatrixIndexPointerARB:(IILjava/nio/ByteBuffer;)V
+ + glMatrixIndexPointerARB:(IILjava/nio/IntBuffer;)V
+ + glMatrixIndexPointerARB:(IILjava/nio/ShortBuffer;)V
+ > glMatrixIndexuARB:(Ljava/nio/ByteBuffer;)V --> glMatrixIndexubvARB:(Ljava/nio/ByteBuffer;)V
+ > glMatrixIndexuARB:(Ljava/nio/IntBuffer;)V --> glMatrixIndexuivARB:(Ljava/nio/IntBuffer;)V
+ > glMatrixIndexuARB:(Ljava/nio/ShortBuffer;)V --> glMatrixIndexusvARB:(Ljava/nio/ShortBuffer;)V
+org/lwjgl/opengl/ARBMultiBind
+ - glBindBuffersBase:(IIILjava/nio/IntBuffer;)V
+ - glBindBuffersRange:(IIILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Lorg/lwjgl/PointerBuffer;)V
+ - glBindImageTextures:(IILjava/nio/IntBuffer;)V
+ - glBindSamplers:(IILjava/nio/IntBuffer;)V
+ - glBindTextures:(IILjava/nio/IntBuffer;)V
+ - glBindVertexBuffers:(IILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Ljava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBMultiDrawIndirect
+ + glMultiDrawArraysIndirect:(IJII)V
+ + glMultiDrawArraysIndirect:(ILjava/nio/ByteBuffer;II)V
+ + glMultiDrawArraysIndirect:(ILjava/nio/IntBuffer;II)V
+ + glMultiDrawElementsIndirect:(IIJII)V
+ + glMultiDrawElementsIndirect:(IILjava/nio/ByteBuffer;II)V
+ + glMultiDrawElementsIndirect:(IILjava/nio/IntBuffer;II)V
+org/lwjgl/opengl/ARBMultisample
+ + glSampleCoverageARB:(FZ)V
+org/lwjgl/opengl/ARBMultitexture
+ + glActiveTextureARB:(I)V
+ + glClientActiveTextureARB:(I)V
+ + glMultiTexCoord1dARB:(ID)V
+ + glMultiTexCoord1fARB:(IF)V
+ + glMultiTexCoord1iARB:(II)V
+ + glMultiTexCoord1sARB:(IS)V
+ + glMultiTexCoord2dARB:(IDD)V
+ + glMultiTexCoord2fARB:(IFF)V
+ + glMultiTexCoord2iARB:(III)V
+ + glMultiTexCoord2sARB:(ISS)V
+ + glMultiTexCoord3dARB:(IDDD)V
+ + glMultiTexCoord3fARB:(IFFF)V
+ + glMultiTexCoord3iARB:(IIII)V
+ + glMultiTexCoord3sARB:(ISSS)V
+ + glMultiTexCoord4dARB:(IDDDD)V
+ + glMultiTexCoord4fARB:(IFFFF)V
+ + glMultiTexCoord4iARB:(IIIII)V
+ + glMultiTexCoord4sARB:(ISSSS)V
+org/lwjgl/opengl/ARBOcclusionQuery
+ + glBeginQueryARB:(II)V
+ + glDeleteQueriesARB:(I)V
+ + glDeleteQueriesARB:(Ljava/nio/IntBuffer;)V
+ + glEndQueryARB:(I)V
+ + glGenQueriesARB:()I
+ + glGenQueriesARB:(Ljava/nio/IntBuffer;)V
+ - glGetQueryARB:(II)I
+ > glGetQueryARB:(IILjava/nio/IntBuffer;)V --> glGetQueryivARB:(IILjava/nio/IntBuffer;)V
+ > glGetQueryObjectARB:(IILjava/nio/IntBuffer;)V --> glGetQueryObjectivARB:(IILjava/nio/IntBuffer;)V
+ + glGetQueryObjectiARB:(II)I
+ > glGetQueryObjectuARB:(IILjava/nio/IntBuffer;)V --> glGetQueryObjectuivARB:(IILjava/nio/IntBuffer;)V
+ + glGetQueryObjectuiARB:(II)I
+ + glGetQueryiARB:(II)I
+ + glIsQueryARB:(I)Z
+org/lwjgl/opengl/ARBOcclusionQuery2
+org/lwjgl/opengl/ARBPipelineStatisticsQuery
+org/lwjgl/opengl/ARBPixelBufferObject
+org/lwjgl/opengl/ARBPointParameters
+ > glPointParameterARB:(ILjava/nio/FloatBuffer;)V --> glPointParameterfvARB:(ILjava/nio/FloatBuffer;)V
+ + glPointParameterfARB:(IF)V
+org/lwjgl/opengl/ARBPointSprite
+Missing gl3: org/lwjgl/opengl/ARBProgram
+org/lwjgl/opengl/ARBProgramInterfaceQuery
+ - glGetProgramInterface:(IIILjava/nio/IntBuffer;)V
+ + glGetProgramInterfacei:(III)I
+ - glGetProgramResource:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glGetProgramResourceIndex:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceLocation:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceLocation:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceLocationIndex:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceLocationIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceName:(IIII)Ljava/lang/String;
+ + glGetProgramResourceName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBProvokingVertex
+ + glProvokingVertex:(I)V
+org/lwjgl/opengl/ARBQueryBufferObject
+org/lwjgl/opengl/ARBRobustness
+ + glGetGraphicsResetStatusARB:()I
+ + glGetnColorTableARB:(IIILjava/nio/ByteBuffer;)V
+ - glGetnColorTableARB:(IIILjava/nio/DoubleBuffer;)V
+ + glGetnColorTableARB:(IIILjava/nio/FloatBuffer;)V
+ + glGetnCompressedTexImageARB:(IIIJ)V
+ + glGetnCompressedTexImageARB:(IILjava/nio/ByteBuffer;)V
+ - glGetnCompressedTexImageARB:(IILjava/nio/IntBuffer;)V
+ - glGetnCompressedTexImageARB:(IILjava/nio/ShortBuffer;)V
+ + glGetnConvolutionFilterARB:(IIIIJ)V
+ + glGetnConvolutionFilterARB:(IIILjava/nio/ByteBuffer;)V
+ - glGetnConvolutionFilterARB:(IIILjava/nio/DoubleBuffer;)V
+ - glGetnConvolutionFilterARB:(IIILjava/nio/FloatBuffer;)V
+ - glGetnConvolutionFilterARB:(IIILjava/nio/IntBuffer;)V
+ - glGetnConvolutionFilterARB:(IIILjava/nio/ShortBuffer;)V
+ + glGetnHistogramARB:(IZIIIJ)V
+ + glGetnHistogramARB:(IZIILjava/nio/ByteBuffer;)V
+ - glGetnHistogramARB:(IZIILjava/nio/DoubleBuffer;)V
+ - glGetnHistogramARB:(IZIILjava/nio/FloatBuffer;)V
+ - glGetnHistogramARB:(IZIILjava/nio/IntBuffer;)V
+ - glGetnHistogramARB:(IZIILjava/nio/ShortBuffer;)V
+ + glGetnMapdvARB:(IILjava/nio/DoubleBuffer;)V
+ + glGetnMapfvARB:(IILjava/nio/FloatBuffer;)V
+ + glGetnMapivARB:(IILjava/nio/IntBuffer;)V
+ + glGetnMinmaxARB:(IZIIIJ)V
+ + glGetnMinmaxARB:(IZIILjava/nio/ByteBuffer;)V
+ - glGetnMinmaxARB:(IZIILjava/nio/DoubleBuffer;)V
+ - glGetnMinmaxARB:(IZIILjava/nio/FloatBuffer;)V
+ - glGetnMinmaxARB:(IZIILjava/nio/IntBuffer;)V
+ - glGetnMinmaxARB:(IZIILjava/nio/ShortBuffer;)V
+ + glGetnPixelMapfvARB:(ILjava/nio/FloatBuffer;)V
+ + glGetnPixelMapuivARB:(ILjava/nio/IntBuffer;)V
+ + glGetnPixelMapusvARB:(ILjava/nio/ShortBuffer;)V
+ + glGetnPolygonStippleARB:(Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIIIJIJJ)V
+ + glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ShortBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ShortBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ByteBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/IntBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ByteBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/IntBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ShortBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ShortBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/FloatBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ShortBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ShortBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/IntBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ByteBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ByteBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ByteBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/FloatBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/FloatBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/FloatBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/IntBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/IntBuffer;Ljava/nio/ShortBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ShortBuffer;Ljava/nio/DoubleBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ShortBuffer;Ljava/nio/FloatBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ShortBuffer;Ljava/nio/IntBuffer;)V
+ - glGetnSeparableFilterARB:(IIILjava/nio/ShortBuffer;Ljava/nio/ShortBuffer;Ljava/nio/ShortBuffer;)V
+ + glGetnTexImageARB:(IIIIIJ)V
+ + glGetnTexImageARB:(IIIILjava/nio/ByteBuffer;)V
+ + glGetnTexImageARB:(IIIILjava/nio/DoubleBuffer;)V
+ + glGetnTexImageARB:(IIIILjava/nio/FloatBuffer;)V
+ + glGetnTexImageARB:(IIIILjava/nio/IntBuffer;)V
+ + glGetnTexImageARB:(IIIILjava/nio/ShortBuffer;)V
+ + glGetnUniformdvARB:(IILjava/nio/DoubleBuffer;)V
+ + glGetnUniformfvARB:(IILjava/nio/FloatBuffer;)V
+ + glGetnUniformivARB:(IILjava/nio/IntBuffer;)V
+ + glGetnUniformuivARB:(IILjava/nio/IntBuffer;)V
+ + glReadnPixelsARB:(IIIIIIIJ)V
+ + glReadnPixelsARB:(IIIIIILjava/nio/ByteBuffer;)V
+ - glReadnPixelsARB:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glReadnPixelsARB:(IIIIIILjava/nio/FloatBuffer;)V
+ + glReadnPixelsARB:(IIIIIILjava/nio/IntBuffer;)V
+ + glReadnPixelsARB:(IIIIIILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/ARBSampleShading
+ + glMinSampleShadingARB:(F)V
+org/lwjgl/opengl/ARBSamplerObjects
+ + glBindSampler:(II)V
+ + glDeleteSamplers:(I)V
+ + glDeleteSamplers:(Ljava/nio/IntBuffer;)V
+ + glGenSamplers:()I
+ + glGenSamplers:(Ljava/nio/IntBuffer;)V
+ - glGetSamplerParameter:(IILjava/nio/FloatBuffer;)V
+ - glGetSamplerParameter:(IILjava/nio/IntBuffer;)V
+ - glGetSamplerParameterI:(IILjava/nio/IntBuffer;)V
+ + glGetSamplerParameterIi:(II)I
+ - glGetSamplerParameterIu:(IILjava/nio/IntBuffer;)V
+ + glGetSamplerParameterIui:(II)I
+ + glGetSamplerParameterf:(II)F
+ + glGetSamplerParameteri:(II)I
+ + glIsSampler:(I)Z
+ - glSamplerParameter:(IILjava/nio/FloatBuffer;)V
+ - glSamplerParameter:(IILjava/nio/IntBuffer;)V
+ - glSamplerParameterI:(IILjava/nio/IntBuffer;)V
+ - glSamplerParameterIu:(IILjava/nio/IntBuffer;)V
+ + glSamplerParameterf:(IIF)V
+ + glSamplerParameteri:(III)V
+org/lwjgl/opengl/ARBSeamlessCubeMap
+org/lwjgl/opengl/ARBSeamlessCubemapPerTexture
+org/lwjgl/opengl/ARBSeparateShaderObjects
+ + glActiveShaderProgram:(II)V
+ + glBindProgramPipeline:(I)V
+ - glCreateShaderProgram:(IILjava/nio/ByteBuffer;)I
+ - glCreateShaderProgram:(ILjava/lang/CharSequence;)I
+ - glCreateShaderProgram:(ILjava/nio/ByteBuffer;)I
+ - glCreateShaderProgram:(I[Ljava/lang/CharSequence;)I
+ - glCreateShaderProgram:(I[Ljava/nio/ByteBuffer;)I
+ + glDeleteProgramPipelines:(I)V
+ + glDeleteProgramPipelines:(Ljava/nio/IntBuffer;)V
+ + glGenProgramPipelines:()I
+ + glGenProgramPipelines:(Ljava/nio/IntBuffer;)V
+ - glGetProgramPipeline:(IILjava/nio/IntBuffer;)V
+ + glGetProgramPipelineInfoLog:(II)Ljava/lang/String;
+ + glGetProgramPipelineInfoLog:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetProgramPipelinei:(II)I
+ + glIsProgramPipeline:(I)Z
+ + glProgramParameteri:(III)V
+ - glProgramUniform1:(IILjava/nio/DoubleBuffer;)V
+ - glProgramUniform1:(IILjava/nio/FloatBuffer;)V
+ - glProgramUniform1:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1d:(IID)V
+ + glProgramUniform1f:(IIF)V
+ + glProgramUniform1i:(III)V
+ - glProgramUniform1u:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1ui:(III)V
+ - glProgramUniform2:(IILjava/nio/DoubleBuffer;)V
+ - glProgramUniform2:(IILjava/nio/FloatBuffer;)V
+ - glProgramUniform2:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2d:(IIDD)V
+ + glProgramUniform2f:(IIFF)V
+ + glProgramUniform2i:(IIII)V
+ - glProgramUniform2u:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2ui:(IIII)V
+ - glProgramUniform3:(IILjava/nio/DoubleBuffer;)V
+ - glProgramUniform3:(IILjava/nio/FloatBuffer;)V
+ - glProgramUniform3:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3d:(IIDDD)V
+ + glProgramUniform3f:(IIFFF)V
+ + glProgramUniform3i:(IIIII)V
+ - glProgramUniform3u:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3ui:(IIIII)V
+ - glProgramUniform4:(IILjava/nio/DoubleBuffer;)V
+ - glProgramUniform4:(IILjava/nio/FloatBuffer;)V
+ - glProgramUniform4:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4d:(IIDDDD)V
+ + glProgramUniform4f:(IIFFFF)V
+ + glProgramUniform4i:(IIIIII)V
+ - glProgramUniform4u:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4ui:(IIIIII)V
+ - glProgramUniformMatrix2:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix2:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix2x3:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix2x3:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix2x4:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix2x4:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix3:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix3:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix3x2:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix3x2:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix3x4:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix3x4:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix4:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix4:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix4x2:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix4x2:(IIZLjava/nio/FloatBuffer;)V
+ - glProgramUniformMatrix4x3:(IIZLjava/nio/DoubleBuffer;)V
+ - glProgramUniformMatrix4x3:(IIZLjava/nio/FloatBuffer;)V
+ + glUseProgramStages:(III)V
+ + glValidateProgramPipeline:(I)V
+org/lwjgl/opengl/ARBShaderAtomicCounters
+ - glGetActiveAtomicCounterBuffer:(III)I
+ - glGetActiveAtomicCounterBuffer:(IIILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBShaderImageLoadStore
+ + glBindImageTexture:(IIIZIII)V
+ + glMemoryBarrier:(I)V
+org/lwjgl/opengl/ARBShaderObjects
+ + glAttachObjectARB:(II)V
+ + glCompileShaderARB:(I)V
+ + glCreateProgramObjectARB:()I
+ + glCreateShaderObjectARB:(I)I
+ + glDeleteObjectARB:(I)V
+ + glDetachObjectARB:(II)V
+ - glGetActiveUniformARB:(III)Ljava/lang/String;
+ - glGetActiveUniformARB:(IIILjava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetActiveUniformARB:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveUniformSizeARB:(II)I
+ - glGetActiveUniformTypeARB:(II)I
+ + glGetAttachedObjectsARB:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glGetHandleARB:(I)I
+ + glGetInfoLogARB:(II)Ljava/lang/String;
+ + glGetInfoLogARB:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetObjectParameterARB:(IILjava/nio/FloatBuffer;)V --> glGetObjectParameterfvARB:(IILjava/nio/FloatBuffer;)V
+ > glGetObjectParameterARB:(IILjava/nio/IntBuffer;)V --> glGetObjectParameterivARB:(IILjava/nio/IntBuffer;)V
+ - glGetObjectParameterfARB:(II)F
+ + glGetObjectParameteriARB:(II)I
+ + glGetShaderSourceARB:(II)Ljava/lang/String;
+ + glGetShaderSourceARB:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetUniformARB:(IILjava/nio/FloatBuffer;)V --> glGetUniformfvARB:(IILjava/nio/FloatBuffer;)V
+ > glGetUniformARB:(IILjava/nio/IntBuffer;)V --> glGetUniformivARB:(IILjava/nio/IntBuffer;)V
+ + glGetUniformLocationARB:(ILjava/lang/CharSequence;)I
+ + glGetUniformLocationARB:(ILjava/nio/ByteBuffer;)I
+ + glLinkProgramARB:(I)V
+ + glShaderSourceARB:(ILjava/lang/CharSequence;)V
+ + glShaderSourceARB:(I[Ljava/lang/CharSequence;)V
+ > glUniform1ARB:(ILjava/nio/FloatBuffer;)V --> glUniform1fvARB:(ILjava/nio/FloatBuffer;)V
+ > glUniform1ARB:(ILjava/nio/IntBuffer;)V --> glUniform1ivARB:(ILjava/nio/IntBuffer;)V
+ + glUniform1fARB:(IF)V
+ + glUniform1iARB:(II)V
+ > glUniform2ARB:(ILjava/nio/FloatBuffer;)V --> glUniform2fvARB:(ILjava/nio/FloatBuffer;)V
+ > glUniform2ARB:(ILjava/nio/IntBuffer;)V --> glUniform2ivARB:(ILjava/nio/IntBuffer;)V
+ + glUniform2fARB:(IFF)V
+ + glUniform2iARB:(III)V
+ > glUniform3ARB:(ILjava/nio/FloatBuffer;)V --> glUniform3fvARB:(ILjava/nio/FloatBuffer;)V
+ > glUniform3ARB:(ILjava/nio/IntBuffer;)V --> glUniform3ivARB:(ILjava/nio/IntBuffer;)V
+ + glUniform3fARB:(IFFF)V
+ + glUniform3iARB:(IIII)V
+ > glUniform4ARB:(ILjava/nio/FloatBuffer;)V --> glUniform4fvARB:(ILjava/nio/FloatBuffer;)V
+ > glUniform4ARB:(ILjava/nio/IntBuffer;)V --> glUniform4ivARB:(ILjava/nio/IntBuffer;)V
+ + glUniform4fARB:(IFFFF)V
+ + glUniform4iARB:(IIIII)V
+ > glUniformMatrix2ARB:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2fvARB:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix3ARB:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix3fvARB:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix4ARB:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix4fvARB:(IZLjava/nio/FloatBuffer;)V
+ + glUseProgramObjectARB:(I)V
+ + glValidateProgramARB:(I)V
+org/lwjgl/opengl/ARBShaderStorageBufferObject
+ + glShaderStorageBlockBinding:(III)V
+org/lwjgl/opengl/ARBShaderSubroutine
+ + glGetActiveSubroutineName:(IIII)Ljava/lang/String;
+ + glGetActiveSubroutineName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveSubroutineUniform:(IIIILjava/nio/IntBuffer;)V
+ + glGetActiveSubroutineUniformName:(IIII)Ljava/lang/String;
+ + glGetActiveSubroutineUniformName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetActiveSubroutineUniformi:(IIII)I
+ - glGetProgramStage:(IIILjava/nio/IntBuffer;)V
+ + glGetProgramStagei:(III)I
+ + glGetSubroutineIndex:(IILjava/lang/CharSequence;)I
+ + glGetSubroutineIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetSubroutineUniformLocation:(IILjava/lang/CharSequence;)I
+ + glGetSubroutineUniformLocation:(IILjava/nio/ByteBuffer;)I
+ - glGetUniformSubroutineu:(IILjava/nio/IntBuffer;)V
+ + glGetUniformSubroutineui:(II)I
+ - glUniformSubroutinesu:(ILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/ARBShadingLanguage100
+org/lwjgl/opengl/ARBShadingLanguageInclude
+java.lang.UnsupportedOperationException: int -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/ARBShadingLanguageInclude : glCompileShaderIncludeARB:(IILjava/nio/ByteBuffer;)V
+ - glCompileShaderIncludeARB:(IILjava/nio/ByteBuffer;)V
+ - glCompileShaderIncludeARB:(I[Ljava/lang/CharSequence;)V
+ + glDeleteNamedStringARB:(Ljava/lang/CharSequence;)V
+ + glDeleteNamedStringARB:(Ljava/nio/ByteBuffer;)V
+ + glGetNamedStringARB:(Ljava/lang/CharSequence;I)Ljava/lang/String;
+ + glGetNamedStringARB:(Ljava/lang/CharSequence;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetNamedStringARB:(Ljava/nio/ByteBuffer;ILjava/nio/IntBuffer;)V --> glGetNamedStringivARB:(Ljava/nio/ByteBuffer;ILjava/nio/IntBuffer;)V
+ + glGetNamedStringARB:(Ljava/nio/ByteBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetNamedStringiARB:(Ljava/lang/CharSequence;I)I
+ > glGetNamedStringiARB:(Ljava/lang/CharSequence;ILjava/nio/IntBuffer;)V --> glGetNamedStringivARB:(Ljava/lang/CharSequence;ILjava/nio/IntBuffer;)V
+ + glIsNamedStringARB:(Ljava/lang/CharSequence;)Z
+ + glIsNamedStringARB:(Ljava/nio/ByteBuffer;)Z
+ + glNamedStringARB:(ILjava/lang/CharSequence;Ljava/lang/CharSequence;)V
+ + glNamedStringARB:(ILjava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBShadow
+org/lwjgl/opengl/ARBShadowAmbient
+org/lwjgl/opengl/ARBSparseBuffer
+ + glBufferPageCommitmentARB:(IJJZ)V
+org/lwjgl/opengl/ARBSparseTexture
+ + glTexPageCommitmentARB:(IIIIIIIIZ)V
+ - glTexturePageCommitmentEXT:(IIIIIIIIIZ)V
+org/lwjgl/opengl/ARBStencilTexturing
+org/lwjgl/opengl/ARBSync
+ - glClientWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)I
+ - glDeleteSync:(Lorg/lwjgl/opengl/GLSync;)V
+ - glFenceSync:(II)Lorg/lwjgl/opengl/GLSync;
+ + glGetInteger64:(I)J
+ - glGetInteger64:(ILjava/nio/LongBuffer;)V
+ - glGetSync:(Lorg/lwjgl/opengl/GLSync;I)I
+ - glGetSync:(Lorg/lwjgl/opengl/GLSync;ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetSynci:(Lorg/lwjgl/opengl/GLSync;I)I
+ - glIsSync:(Lorg/lwjgl/opengl/GLSync;)Z
+ - glWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)V
+org/lwjgl/opengl/ARBTessellationShader
+ - glPatchParameter:(ILjava/nio/FloatBuffer;)V
+ + glPatchParameteri:(II)V
+org/lwjgl/opengl/ARBTextureBarrier
+ + glTextureBarrier:()V
+org/lwjgl/opengl/ARBTextureBorderClamp
+org/lwjgl/opengl/ARBTextureBufferObject
+ + glTexBufferARB:(III)V
+org/lwjgl/opengl/ARBTextureBufferRange
+ + glTexBufferRange:(IIIJJ)V
+ + glTextureBufferRangeEXT:(IIIIJJ)V
+org/lwjgl/opengl/ARBTextureCompression
+ + glCompressedTexImage1DARB:(IIIIIIJ)V
+ - glCompressedTexImage1DARB:(IIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexImage2DARB:(IIIIIIIJ)V
+ - glCompressedTexImage2DARB:(IIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexImage3DARB:(IIIIIIIIJ)V
+ - glCompressedTexImage3DARB:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage1DARB:(IIIIIIJ)V
+ + glCompressedTexSubImage1DARB:(IIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage2DARB:(IIIIIIIIJ)V
+ + glCompressedTexSubImage2DARB:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage3DARB:(IIIIIIIIIIJ)V
+ + glCompressedTexSubImage3DARB:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetCompressedTexImageARB:(IIJ)V
+ + glGetCompressedTexImageARB:(IILjava/nio/ByteBuffer;)V
+org/lwjgl/opengl/ARBTextureCompressionBPTC
+org/lwjgl/opengl/ARBTextureCompressionRGTC
+org/lwjgl/opengl/ARBTextureCubeMap
+org/lwjgl/opengl/ARBTextureCubeMapArray
+org/lwjgl/opengl/ARBTextureEnvCombine
+org/lwjgl/opengl/ARBTextureEnvDot3
+org/lwjgl/opengl/ARBTextureFloat
+org/lwjgl/opengl/ARBTextureGather
+org/lwjgl/opengl/ARBTextureMirrorClampToEdge
+org/lwjgl/opengl/ARBTextureMirroredRepeat
+org/lwjgl/opengl/ARBTextureMultisample
+ - glGetMultisample:(IILjava/nio/FloatBuffer;)V
+ + glSampleMaski:(II)V
+ + glTexImage2DMultisample:(IIIIIZ)V
+ + glTexImage3DMultisample:(IIIIIIZ)V
+org/lwjgl/opengl/ARBTextureRGB10_A2UI
+org/lwjgl/opengl/ARBTextureRectangle
+Missing gl3: org/lwjgl/opengl/ARBTextureRg
+org/lwjgl/opengl/ARBTextureStorage
+ + glTexStorage1D:(IIII)V
+ + glTexStorage2D:(IIIII)V
+ + glTexStorage3D:(IIIIII)V
+ + glTextureStorage1DEXT:(IIIII)V
+ + glTextureStorage2DEXT:(IIIIII)V
+ + glTextureStorage3DEXT:(IIIIIII)V
+org/lwjgl/opengl/ARBTextureStorageMultisample
+ + glTexStorage2DMultisample:(IIIIIZ)V
+ + glTexStorage3DMultisample:(IIIIIIZ)V
+ + glTextureStorage2DMultisampleEXT:(IIIIIIZ)V
+ + glTextureStorage3DMultisampleEXT:(IIIIIIIZ)V
+org/lwjgl/opengl/ARBTextureSwizzle
+org/lwjgl/opengl/ARBTextureView
+ + glTextureView:(IIIIIIII)V
+org/lwjgl/opengl/ARBTimerQuery
+ - glGetQueryObject:(IILjava/nio/LongBuffer;)V
+ + glGetQueryObjecti64:(II)J
+ - glGetQueryObjectu:(IILjava/nio/LongBuffer;)V
+ + glGetQueryObjectui64:(II)J
+ + glQueryCounter:(II)V
+org/lwjgl/opengl/ARBTransformFeedback2
+ + glBindTransformFeedback:(II)V
+ + glDeleteTransformFeedbacks:(I)V
+ + glDeleteTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glDrawTransformFeedback:(II)V
+ + glGenTransformFeedbacks:()I
+ + glGenTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glIsTransformFeedback:(I)Z
+ + glPauseTransformFeedback:()V
+ + glResumeTransformFeedback:()V
+org/lwjgl/opengl/ARBTransformFeedback3
+ + glBeginQueryIndexed:(III)V
+ + glDrawTransformFeedbackStream:(III)V
+ + glEndQueryIndexed:(II)V
+ - glGetQueryIndexed:(IIILjava/nio/IntBuffer;)V
+ + glGetQueryIndexedi:(III)I
+org/lwjgl/opengl/ARBTransformFeedbackInstanced
+ + glDrawTransformFeedbackInstanced:(III)V
+ + glDrawTransformFeedbackStreamInstanced:(IIII)V
+org/lwjgl/opengl/ARBTransformFeedbackOverflowQuery
+org/lwjgl/opengl/ARBTransposeMatrix
+ > glLoadTransposeMatrixARB:(Ljava/nio/FloatBuffer;)V --> glLoadTransposeMatrixfARB:(Ljava/nio/FloatBuffer;)V
+ > glMultTransposeMatrixARB:(Ljava/nio/FloatBuffer;)V --> glMultTransposeMatrixfARB:(Ljava/nio/FloatBuffer;)V
+org/lwjgl/opengl/ARBUniformBufferObject
+ + glBindBufferBase:(III)V
+ + glBindBufferRange:(IIIJJ)V
+ - glGetActiveUniformBlock:(III)I
+ - glGetActiveUniformBlock:(IIILjava/nio/IntBuffer;)V
+ + glGetActiveUniformBlockName:(III)Ljava/lang/String;
+ + glGetActiveUniformBlockName:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetActiveUniformBlocki:(III)I
+ + glGetActiveUniformName:(III)Ljava/lang/String;
+ + glGetActiveUniformName:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveUniforms:(III)I
+ - glGetActiveUniforms:(ILjava/nio/IntBuffer;ILjava/nio/IntBuffer;)V
+ + glGetActiveUniformsi:(III)I
+ - glGetInteger:(II)I
+ - glGetInteger:(IILjava/nio/IntBuffer;)V
+ + glGetUniformBlockIndex:(ILjava/lang/CharSequence;)I
+ + glGetUniformBlockIndex:(ILjava/nio/ByteBuffer;)I
+ - glGetUniformIndices:(ILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ + glGetUniformIndices:(I[Ljava/lang/CharSequence;Ljava/nio/IntBuffer;)V
+ + glUniformBlockBinding:(III)V
+Missing gl3: org/lwjgl/opengl/ARBVertexArrayBgra
+org/lwjgl/opengl/ARBVertexArrayObject
+ + glBindVertexArray:(I)V
+ + glDeleteVertexArrays:(I)V
+ + glDeleteVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glGenVertexArrays:()I
+ + glGenVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glIsVertexArray:(I)Z
+Missing gl3: org/lwjgl/opengl/ARBVertexAttrib64bit
+org/lwjgl/opengl/ARBVertexAttribBinding
+ + glBindVertexBuffer:(IIJI)V
+ + glVertexAttribBinding:(II)V
+ + glVertexAttribFormat:(IIIZI)V
+ + glVertexAttribIFormat:(IIII)V
+ + glVertexAttribLFormat:(IIII)V
+ + glVertexBindingDivisor:(II)V
+org/lwjgl/opengl/ARBVertexBlend
+ + glVertexBlendARB:(I)V
+ > glWeightARB:(Ljava/nio/ByteBuffer;)V --> glWeightbvARB:(Ljava/nio/ByteBuffer;)V
+ > glWeightARB:(Ljava/nio/DoubleBuffer;)V --> glWeightdvARB:(Ljava/nio/DoubleBuffer;)V
+ > glWeightARB:(Ljava/nio/FloatBuffer;)V --> glWeightfvARB:(Ljava/nio/FloatBuffer;)V
+ > glWeightARB:(Ljava/nio/IntBuffer;)V --> glWeightivARB:(Ljava/nio/IntBuffer;)V
+ > glWeightARB:(Ljava/nio/ShortBuffer;)V --> glWeightsvARB:(Ljava/nio/ShortBuffer;)V
+ + glWeightPointerARB:(IIIJ)V
+ > glWeightPointerARB:(IILjava/nio/DoubleBuffer;)V --> glWeightPointerARB:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glWeightPointerARB:(IILjava/nio/FloatBuffer;)V --> glWeightPointerARB:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glWeightuARB:(Ljava/nio/ByteBuffer;)V --> glWeightubvARB:(Ljava/nio/ByteBuffer;)V
+ > glWeightuARB:(Ljava/nio/IntBuffer;)V --> glWeightuivARB:(Ljava/nio/IntBuffer;)V
+ > glWeightuARB:(Ljava/nio/ShortBuffer;)V --> glWeightusvARB:(Ljava/nio/ShortBuffer;)V
+org/lwjgl/opengl/ARBVertexBufferObject
+org/lwjgl/opengl/ARBVertexProgram
+ + glDisableVertexAttribArrayARB:(I)V
+ + glEnableVertexAttribArrayARB:(I)V
+ - glGetVertexAttribARB:(IILjava/nio/DoubleBuffer;)V
+ - glGetVertexAttribARB:(IILjava/nio/FloatBuffer;)V
+ - glGetVertexAttribARB:(IILjava/nio/IntBuffer;)V
+ - glGetVertexAttribPointerARB:(IIJ)Ljava/nio/ByteBuffer;
+ + glVertexAttrib1dARB:(ID)V
+ + glVertexAttrib1fARB:(IF)V
+ + glVertexAttrib1sARB:(IS)V
+ + glVertexAttrib2dARB:(IDD)V
+ + glVertexAttrib2fARB:(IFF)V
+ + glVertexAttrib2sARB:(ISS)V
+ + glVertexAttrib3dARB:(IDDD)V
+ + glVertexAttrib3fARB:(IFFF)V
+ + glVertexAttrib3sARB:(ISSS)V
+ + glVertexAttrib4NubARB:(IBBBB)V
+ + glVertexAttrib4dARB:(IDDDD)V
+ + glVertexAttrib4fARB:(IFFFF)V
+ + glVertexAttrib4sARB:(ISSSS)V
+ + glVertexAttribPointerARB:(IIIZIJ)V
+ - glVertexAttribPointerARB:(IIZILjava/nio/DoubleBuffer;)V
+ - glVertexAttribPointerARB:(IIZILjava/nio/FloatBuffer;)V
+ - glVertexAttribPointerARB:(IIZZILjava/nio/ByteBuffer;)V
+ - glVertexAttribPointerARB:(IIZZILjava/nio/IntBuffer;)V
+ - glVertexAttribPointerARB:(IIZZILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/ARBVertexShader
+ + glBindAttribLocationARB:(IILjava/lang/CharSequence;)V
+ + glBindAttribLocationARB:(IILjava/nio/ByteBuffer;)V
+ + glDisableVertexAttribArrayARB:(I)V
+ + glEnableVertexAttribArrayARB:(I)V
+ - glGetActiveAttribARB:(III)Ljava/lang/String;
+ - glGetActiveAttribARB:(IIILjava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetActiveAttribARB:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveAttribSizeARB:(II)I
+ - glGetActiveAttribTypeARB:(II)I
+ + glGetAttribLocationARB:(ILjava/lang/CharSequence;)I
+ + glGetAttribLocationARB:(ILjava/nio/ByteBuffer;)I
+ > glGetVertexAttribARB:(IILjava/nio/DoubleBuffer;)V --> glGetVertexAttribdvARB:(IILjava/nio/DoubleBuffer;)V
+ > glGetVertexAttribARB:(IILjava/nio/FloatBuffer;)V --> glGetVertexAttribfvARB:(IILjava/nio/FloatBuffer;)V
+ > glGetVertexAttribARB:(IILjava/nio/IntBuffer;)V --> glGetVertexAttribivARB:(IILjava/nio/IntBuffer;)V
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/ARBVertexShader : glGetVertexAttribPointerARB:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetVertexAttribPointerARB:(IIJ)Ljava/nio/ByteBuffer;
+ + glVertexAttrib1dARB:(ID)V
+ + glVertexAttrib1fARB:(IF)V
+ + glVertexAttrib1sARB:(IS)V
+ + glVertexAttrib2dARB:(IDD)V
+ + glVertexAttrib2fARB:(IFF)V
+ + glVertexAttrib2sARB:(ISS)V
+ + glVertexAttrib3dARB:(IDDD)V
+ + glVertexAttrib3fARB:(IFFF)V
+ + glVertexAttrib3sARB:(ISSS)V
+ + glVertexAttrib4NubARB:(IBBBB)V
+ + glVertexAttrib4dARB:(IDDDD)V
+ + glVertexAttrib4fARB:(IFFFF)V
+ + glVertexAttrib4sARB:(ISSSS)V
+ + glVertexAttribPointerARB:(IIIZIJ)V
+ + glVertexAttribPointerARB:(IIIZILjava/nio/ByteBuffer;)V
+ > glVertexAttribPointerARB:(IIZILjava/nio/DoubleBuffer;)V --> glVertexAttribPointerARB:(IIIZILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexAttribPointerARB:(IIZILjava/nio/FloatBuffer;)V --> glVertexAttribPointerARB:(IIIZILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+org/lwjgl/opengl/ARBVertexType2_10_10_10_REV
+ - glColorP3u:(ILjava/nio/IntBuffer;)V
+ + glColorP3ui:(II)V
+ - glColorP4u:(ILjava/nio/IntBuffer;)V
+ + glColorP4ui:(II)V
+ - glMultiTexCoordP1u:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP1ui:(III)V
+ - glMultiTexCoordP2u:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP2ui:(III)V
+ - glMultiTexCoordP3u:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP3ui:(III)V
+ - glMultiTexCoordP4u:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP4ui:(III)V
+ - glNormalP3u:(ILjava/nio/IntBuffer;)V
+ + glNormalP3ui:(II)V
+ - glSecondaryColorP3u:(ILjava/nio/IntBuffer;)V
+ + glSecondaryColorP3ui:(II)V
+ - glTexCoordP1u:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP1ui:(II)V
+ - glTexCoordP2u:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP2ui:(II)V
+ - glTexCoordP3u:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP3ui:(II)V
+ - glTexCoordP4u:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP4ui:(II)V
+ - glVertexAttribP1u:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP1ui:(IIZI)V
+ - glVertexAttribP2u:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP2ui:(IIZI)V
+ - glVertexAttribP3u:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP3ui:(IIZI)V
+ - glVertexAttribP4u:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP4ui:(IIZI)V
+ - glVertexP2u:(ILjava/nio/IntBuffer;)V
+ + glVertexP2ui:(II)V
+ - glVertexP3u:(ILjava/nio/IntBuffer;)V
+ + glVertexP3ui:(II)V
+ - glVertexP4u:(ILjava/nio/IntBuffer;)V
+ + glVertexP4ui:(II)V
+org/lwjgl/opengl/ARBViewportArray
+ - glDepthRangeArray:(ILjava/nio/DoubleBuffer;)V
+ + glDepthRangeIndexed:(IDD)V
+ - glDisableIndexedEXT:(II)V
+ - glEnableIndexedEXT:(II)V
+ - glGetDouble:(II)D
+ - glGetDouble:(IILjava/nio/DoubleBuffer;)V
+ - glGetFloat:(II)F
+ - glGetFloat:(IILjava/nio/FloatBuffer;)V
+ - glGetIntegerIndexedEXT:(II)I
+ - glGetIntegerIndexedEXT:(IILjava/nio/IntBuffer;)V
+ - glIsEnabledIndexedEXT:(II)Z
+ - glScissorArray:(ILjava/nio/IntBuffer;)V
+ + glScissorIndexed:(IIIII)V
+ - glScissorIndexed:(ILjava/nio/IntBuffer;)V
+ - glViewportArray:(ILjava/nio/FloatBuffer;)V
+ - glViewportIndexed:(ILjava/nio/FloatBuffer;)V
+ + glViewportIndexedf:(IFFFF)V
+org/lwjgl/opengl/ARBWindowPos
+ + glWindowPos2dARB:(DD)V
+ + glWindowPos2fARB:(FF)V
+ + glWindowPos2iARB:(II)V
+ + glWindowPos2sARB:(SS)V
+ + glWindowPos3dARB:(DDD)V
+ + glWindowPos3fARB:(FFF)V
+ + glWindowPos3iARB:(III)V
+ + glWindowPos3sARB:(SSS)V
+Missing gl3: org/lwjgl/opengl/ATIDrawBuffers
+Missing gl3: org/lwjgl/opengl/ATIElementArray
+Missing gl3: org/lwjgl/opengl/ATIEnvmapBumpmap
+Missing gl3: org/lwjgl/opengl/ATIFragmentShader
+Missing gl3: org/lwjgl/opengl/ATIMapObjectBuffer
+org/lwjgl/opengl/ATIMeminfo
+Missing gl3: org/lwjgl/opengl/ATIPnTriangles
+Missing gl3: org/lwjgl/opengl/ATISeparateStencil
+Missing gl3: org/lwjgl/opengl/ATITextFragmentShader
+org/lwjgl/opengl/ATITextureCompression3DC
+Missing gl3: org/lwjgl/opengl/ATITextureEnvCombine3
+Missing gl3: org/lwjgl/opengl/ATITextureFloat
+Missing gl3: org/lwjgl/opengl/ATITextureMirrorOnce
+Missing gl3: org/lwjgl/opengl/ATIVertexArrayObject
+Missing gl3: org/lwjgl/opengl/ATIVertexAttribArrayObject
+Missing gl3: org/lwjgl/opengl/ATIVertexStreams
+Missing in mod: org/lwjgl/opengl/AWTGLCanvas : createSharedContext:()Lorg/lwjgl/opengl/Context;
+Missing in mod: org/lwjgl/opengl/AWTGLCanvas : getContext:()Lorg/lwjgl/opengl/Context;
+Missing in mod: org/lwjgl/opengl/ContextAttribs : <init>:(III)V
+Missing in mod: org/lwjgl/opengl/ContextAttribs : <init>:(IIII)V
+Missing in mod: org/lwjgl/opengl/ContextAttribs : getContextFlags:()I
+Missing in mod: org/lwjgl/opengl/ContextAttribs : getContextReleaseBehavior:()I
+Missing in mod: org/lwjgl/opengl/ContextAttribs : getContextResetNotificationStrategy:()I
+Missing in mod: org/lwjgl/opengl/ContextAttribs : getProfileMask:()I
+Missing in mod: org/lwjgl/opengl/ContextAttribs : isContextResetIsolation:()Z
+Missing in mod: org/lwjgl/opengl/ContextAttribs : isLoseContextOnReset:()Z
+Missing in mod: org/lwjgl/opengl/ContextAttribs : isRobustAccess:()Z
+Missing in mod: org/lwjgl/opengl/ContextAttribs : withContextReleaseBehavior:(I)Lorg/lwjgl/opengl/ContextAttribs;
+Missing in mod: org/lwjgl/opengl/ContextAttribs : withResetNotificationStrategy:(I)Lorg/lwjgl/opengl/ContextAttribs;
+Missing in mod: org/lwjgl/opengl/ContextAttribs : withRobustAccess:(Z)Lorg/lwjgl/opengl/ContextAttribs;
+Missing gl3: org/lwjgl/opengl/ContextAttribs
+Missing gl3: org/lwjgl/opengl/ContextCapabilities
+Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormat;Lorg/lwjgl/opengl/Drawable;Lorg/lwjgl/opengl/ContextAttribs;)V
+Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;)V
+Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengl/Drawable;)V
+Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengl/Drawable;Lorg/lwjgl/opengles/ContextAttribs;)V
+Missing in mod: org/lwjgl/opengl/Display : create:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengles/ContextAttribs;)V
+Missing gl3: org/lwjgl/opengl/Display
+Missing gl3: org/lwjgl/opengl/DisplayMode
+Missing gl3: org/lwjgl/opengl/Drawable
+Missing gl3: org/lwjgl/opengl/EXTAbgr
+Missing gl3: org/lwjgl/opengl/EXTBgra
+org/lwjgl/opengl/EXTBindableUniform
+ + glGetUniformBufferSizeEXT:(II)I
+ + glGetUniformOffsetEXT:(II)J
+ + glUniformBufferEXT:(III)V
+org/lwjgl/opengl/EXTBlendColor
+ + glBlendColorEXT:(FFFF)V
+org/lwjgl/opengl/EXTBlendEquationSeparate
+ + glBlendEquationSeparateEXT:(II)V
+org/lwjgl/opengl/EXTBlendFuncSeparate
+ + glBlendFuncSeparateEXT:(IIII)V
+org/lwjgl/opengl/EXTBlendMinmax
+ + glBlendEquationEXT:(I)V
+org/lwjgl/opengl/EXTBlendSubtract
+Missing gl3: org/lwjgl/opengl/EXTCgShader
+org/lwjgl/opengl/EXTCompiledVertexArray
+ + glLockArraysEXT:(II)V
+ + glUnlockArraysEXT:()V
+org/lwjgl/opengl/EXTDepthBoundsTest
+ + glDepthBoundsEXT:(DD)V
+org/lwjgl/opengl/EXTDirectStateAccess
+ + glBindMultiTextureEXT:(III)V
+ + glCheckNamedFramebufferStatusEXT:(II)I
+ + glClientAttribDefaultEXT:(I)V
+ + glCompressedMultiTexImage1DEXT:(IIIIIIIJ)V
+ + glCompressedMultiTexImage1DEXT:(IIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedMultiTexImage2DEXT:(IIIIIIIIJ)V
+ + glCompressedMultiTexImage2DEXT:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedMultiTexImage3DEXT:(IIIIIIIIIJ)V
+ + glCompressedMultiTexImage3DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedMultiTexSubImage1DEXT:(IIIIIIIJ)V
+ + glCompressedMultiTexSubImage1DEXT:(IIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedMultiTexSubImage2DEXT:(IIIIIIIIIJ)V
+ + glCompressedMultiTexSubImage2DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedMultiTexSubImage3DEXT:(IIIIIIIIIIIJ)V
+ + glCompressedMultiTexSubImage3DEXT:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureImage1DEXT:(IIIIIIIJ)V
+ + glCompressedTextureImage1DEXT:(IIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureImage2DEXT:(IIIIIIIIJ)V
+ + glCompressedTextureImage2DEXT:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureImage3DEXT:(IIIIIIIIIJ)V
+ + glCompressedTextureImage3DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage1DEXT:(IIIIIIIJ)V
+ + glCompressedTextureSubImage1DEXT:(IIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage2DEXT:(IIIIIIIIIJ)V
+ + glCompressedTextureSubImage2DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage3DEXT:(IIIIIIIIIIIJ)V
+ + glCompressedTextureSubImage3DEXT:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glCopyMultiTexImage1DEXT:(IIIIIIII)V
+ + glCopyMultiTexImage2DEXT:(IIIIIIIII)V
+ + glCopyMultiTexSubImage1DEXT:(IIIIIII)V
+ + glCopyMultiTexSubImage2DEXT:(IIIIIIIII)V
+ + glCopyMultiTexSubImage3DEXT:(IIIIIIIIII)V
+ + glCopyTextureImage1DEXT:(IIIIIIII)V
+ + glCopyTextureImage2DEXT:(IIIIIIIII)V
+ + glCopyTextureSubImage1DEXT:(IIIIIII)V
+ + glCopyTextureSubImage2DEXT:(IIIIIIIII)V
+ + glCopyTextureSubImage3DEXT:(IIIIIIIIII)V
+ + glDisableClientStateIndexedEXT:(II)V
+ + glDisableClientStateiEXT:(II)V
+ + glDisableIndexedEXT:(II)V
+ + glDisableVertexArrayAttribEXT:(II)V
+ + glDisableVertexArrayEXT:(II)V
+ + glEnableClientStateIndexedEXT:(II)V
+ + glEnableClientStateiEXT:(II)V
+ + glEnableIndexedEXT:(II)V
+ + glEnableVertexArrayAttribEXT:(II)V
+ + glEnableVertexArrayEXT:(II)V
+ + glFlushMappedNamedBufferRangeEXT:(IJJ)V
+ + glFramebufferDrawBufferEXT:(II)V
+ + glFramebufferDrawBuffersEXT:(ILjava/nio/IntBuffer;)V
+ + glFramebufferReadBufferEXT:(II)V
+ + glGenerateMultiTexMipmapEXT:(II)V
+ + glGenerateTextureMipmapEXT:(II)V
+ + glGetBooleanIndexedEXT:(II)Z
+ - glGetBooleanIndexedEXT:(IILjava/nio/ByteBuffer;)V
+ + glGetCompressedMultiTexImageEXT:(IIIJ)V
+ + glGetCompressedMultiTexImageEXT:(IIILjava/nio/ByteBuffer;)V
+ + glGetCompressedTextureImageEXT:(IIIJ)V
+ + glGetCompressedTextureImageEXT:(IIILjava/nio/ByteBuffer;)V
+ - glGetDoubleEXT:(II)D
+ > glGetDoubleEXT:(IILjava/nio/DoubleBuffer;)V --> glGetDoublei_vEXT:(IILjava/nio/DoubleBuffer;)V
+ + glGetDoubleIndexedEXT:(II)D
+ > glGetDoubleIndexedEXT:(IILjava/nio/DoubleBuffer;)V --> glGetDoubleIndexedvEXT:(IILjava/nio/DoubleBuffer;)V
+ - glGetFloatEXT:(II)F
+ > glGetFloatEXT:(IILjava/nio/FloatBuffer;)V --> glGetFloati_vEXT:(IILjava/nio/FloatBuffer;)V
+ + glGetFloatIndexedEXT:(II)F
+ > glGetFloatIndexedEXT:(IILjava/nio/FloatBuffer;)V --> glGetFloatIndexedvEXT:(IILjava/nio/FloatBuffer;)V
+ - glGetFramebufferParameterEXT:(II)I
+ > glGetFramebufferParameterEXT:(IILjava/nio/IntBuffer;)V --> glGetFramebufferParameterivEXT:(IILjava/nio/IntBuffer;)V
+ + glGetIntegerIndexedEXT:(II)I
+ - glGetIntegerIndexedEXT:(IILjava/nio/IntBuffer;)V
+ > glGetMultiTexEnvEXT:(IIILjava/nio/FloatBuffer;)V --> glGetMultiTexEnvfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glGetMultiTexEnvEXT:(IIILjava/nio/IntBuffer;)V --> glGetMultiTexEnvivEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetMultiTexGenEXT:(IIILjava/nio/DoubleBuffer;)V --> glGetMultiTexGendvEXT:(IIILjava/nio/DoubleBuffer;)V
+ > glGetMultiTexGenEXT:(IIILjava/nio/FloatBuffer;)V --> glGetMultiTexGenfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glGetMultiTexGenEXT:(IIILjava/nio/IntBuffer;)V --> glGetMultiTexGenivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetMultiTexImageEXT:(IIIIIJ)V
+ + glGetMultiTexImageEXT:(IIIIILjava/nio/ByteBuffer;)V
+ + glGetMultiTexImageEXT:(IIIIILjava/nio/DoubleBuffer;)V
+ + glGetMultiTexImageEXT:(IIIIILjava/nio/FloatBuffer;)V
+ + glGetMultiTexImageEXT:(IIIIILjava/nio/IntBuffer;)V
+ + glGetMultiTexImageEXT:(IIIIILjava/nio/ShortBuffer;)V
+ > glGetMultiTexLevelParameterEXT:(IIIILjava/nio/FloatBuffer;)V --> glGetMultiTexLevelParameterfvEXT:(IIIILjava/nio/FloatBuffer;)V
+ > glGetMultiTexLevelParameterEXT:(IIIILjava/nio/IntBuffer;)V --> glGetMultiTexLevelParameterivEXT:(IIIILjava/nio/IntBuffer;)V
+ + glGetMultiTexLevelParameterfEXT:(IIII)F
+ + glGetMultiTexLevelParameteriEXT:(IIII)I
+ > glGetMultiTexParameterEXT:(IIILjava/nio/FloatBuffer;)V --> glGetMultiTexParameterfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glGetMultiTexParameterEXT:(IIILjava/nio/IntBuffer;)V --> glGetMultiTexParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetMultiTexParameterIEXT:(IIILjava/nio/IntBuffer;)V --> glGetMultiTexParameterIivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetMultiTexParameterIiEXT:(III)I
+ > glGetMultiTexParameterIuEXT:(IIILjava/nio/IntBuffer;)V --> glGetMultiTexParameterIuivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetMultiTexParameterIuiEXT:(III)I
+ + glGetMultiTexParameterfEXT:(III)F
+ + glGetMultiTexParameteriEXT:(III)I
+ - glGetNamedBufferParameterEXT:(II)I
+ > glGetNamedBufferParameterEXT:(IILjava/nio/IntBuffer;)V --> glGetNamedBufferParameterivEXT:(IILjava/nio/IntBuffer;)V
+ - glGetNamedBufferPointerEXT:(II)Ljava/nio/ByteBuffer;
+ + glGetNamedBufferSubDataEXT:(IJLjava/nio/ByteBuffer;)V
+ + glGetNamedBufferSubDataEXT:(IJLjava/nio/DoubleBuffer;)V
+ + glGetNamedBufferSubDataEXT:(IJLjava/nio/FloatBuffer;)V
+ + glGetNamedBufferSubDataEXT:(IJLjava/nio/IntBuffer;)V
+ + glGetNamedBufferSubDataEXT:(IJLjava/nio/ShortBuffer;)V
+ - glGetNamedFramebufferAttachmentParameterEXT:(III)I
+ > glGetNamedFramebufferAttachmentParameterEXT:(IIILjava/nio/IntBuffer;)V --> glGetNamedFramebufferAttachmentParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ - glGetNamedProgramEXT:(III)I
+ > glGetNamedProgramEXT:(IIILjava/nio/IntBuffer;)V --> glGetNamedProgramivEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetNamedProgramLocalParameterEXT:(IIILjava/nio/DoubleBuffer;)V --> glGetNamedProgramLocalParameterdvEXT:(IIILjava/nio/DoubleBuffer;)V
+ > glGetNamedProgramLocalParameterEXT:(IIILjava/nio/FloatBuffer;)V --> glGetNamedProgramLocalParameterfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glGetNamedProgramLocalParameterIEXT:(IIILjava/nio/IntBuffer;)V --> glGetNamedProgramLocalParameterIivEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetNamedProgramLocalParameterIuEXT:(IIILjava/nio/IntBuffer;)V --> glGetNamedProgramLocalParameterIuivEXT:(IIILjava/nio/IntBuffer;)V
+ - glGetNamedProgramStringEXT:(III)Ljava/lang/String;
+ + glGetNamedProgramStringEXT:(IIILjava/nio/ByteBuffer;)V
+ - glGetNamedRenderbufferParameterEXT:(II)I
+ > glGetNamedRenderbufferParameterEXT:(IILjava/nio/IntBuffer;)V --> glGetNamedRenderbufferParameterivEXT:(IILjava/nio/IntBuffer;)V
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/EXTDirectStateAccess : glGetPointerEXT:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetPointerEXT:(IIJ)Ljava/nio/ByteBuffer;
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/EXTDirectStateAccess : glGetPointerIndexedEXT:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetPointerIndexedEXT:(IIJ)Ljava/nio/ByteBuffer;
+ + glGetTextureImageEXT:(IIIIIJ)V
+ + glGetTextureImageEXT:(IIIIILjava/nio/ByteBuffer;)V
+ + glGetTextureImageEXT:(IIIIILjava/nio/DoubleBuffer;)V
+ + glGetTextureImageEXT:(IIIIILjava/nio/FloatBuffer;)V
+ + glGetTextureImageEXT:(IIIIILjava/nio/IntBuffer;)V
+ + glGetTextureImageEXT:(IIIIILjava/nio/ShortBuffer;)V
+ > glGetTextureLevelParameterEXT:(IIIILjava/nio/FloatBuffer;)V --> glGetTextureLevelParameterfvEXT:(IIIILjava/nio/FloatBuffer;)V
+ > glGetTextureLevelParameterEXT:(IIIILjava/nio/IntBuffer;)V --> glGetTextureLevelParameterivEXT:(IIIILjava/nio/IntBuffer;)V
+ + glGetTextureLevelParameterfEXT:(IIII)F
+ + glGetTextureLevelParameteriEXT:(IIII)I
+ > glGetTextureParameterEXT:(IIILjava/nio/FloatBuffer;)V --> glGetTextureParameterfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glGetTextureParameterEXT:(IIILjava/nio/IntBuffer;)V --> glGetTextureParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetTextureParameterIEXT:(IIILjava/nio/IntBuffer;)V --> glGetTextureParameterIivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIiEXT:(III)I
+ > glGetTextureParameterIuEXT:(IIILjava/nio/IntBuffer;)V --> glGetTextureParameterIuivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIuiEXT:(III)I
+ + glGetTextureParameterfEXT:(III)F
+ + glGetTextureParameteriEXT:(III)I
+ + glGetVertexArrayIntegerEXT:(II)I
+ > glGetVertexArrayIntegerEXT:(IIILjava/nio/IntBuffer;)V --> glGetVertexArrayIntegeri_vEXT:(IIILjava/nio/IntBuffer;)V
+ > glGetVertexArrayIntegerEXT:(IILjava/nio/IntBuffer;)V --> glGetVertexArrayIntegervEXT:(IILjava/nio/IntBuffer;)V
+ + glGetVertexArrayIntegeriEXT:(III)I
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/EXTDirectStateAccess : glGetVertexArrayPointerEXT:(IIIJ)Ljava/nio/ByteBuffer;
+ - glGetVertexArrayPointerEXT:(IIIJ)Ljava/nio/ByteBuffer;
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/EXTDirectStateAccess : glGetVertexArrayPointerEXT:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetVertexArrayPointerEXT:(IIJ)Ljava/nio/ByteBuffer;
+ + glIsEnabledIndexedEXT:(II)Z
+ + glMapNamedBufferEXT:(IIJLjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBufferEXT:(IILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBufferRangeEXT:(IJJILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMatrixFrustumEXT:(IDDDDDD)V
+ > glMatrixLoadEXT:(ILjava/nio/DoubleBuffer;)V --> glMatrixLoaddEXT:(ILjava/nio/DoubleBuffer;)V
+ > glMatrixLoadEXT:(ILjava/nio/FloatBuffer;)V --> glMatrixLoadfEXT:(ILjava/nio/FloatBuffer;)V
+ + glMatrixLoadIdentityEXT:(I)V
+ > glMatrixLoadTransposeEXT:(ILjava/nio/DoubleBuffer;)V --> glMatrixLoadTransposedEXT:(ILjava/nio/DoubleBuffer;)V
+ > glMatrixLoadTransposeEXT:(ILjava/nio/FloatBuffer;)V --> glMatrixLoadTransposefEXT:(ILjava/nio/FloatBuffer;)V
+ > glMatrixMultEXT:(ILjava/nio/DoubleBuffer;)V --> glMatrixMultdEXT:(ILjava/nio/DoubleBuffer;)V
+ > glMatrixMultEXT:(ILjava/nio/FloatBuffer;)V --> glMatrixMultfEXT:(ILjava/nio/FloatBuffer;)V
+ > glMatrixMultTransposeEXT:(ILjava/nio/DoubleBuffer;)V --> glMatrixMultTransposedEXT:(ILjava/nio/DoubleBuffer;)V
+ > glMatrixMultTransposeEXT:(ILjava/nio/FloatBuffer;)V --> glMatrixMultTransposefEXT:(ILjava/nio/FloatBuffer;)V
+ + glMatrixOrthoEXT:(IDDDDDD)V
+ + glMatrixPopEXT:(I)V
+ + glMatrixPushEXT:(I)V
+ + glMatrixRotatedEXT:(IDDDD)V
+ + glMatrixRotatefEXT:(IFFFF)V
+ + glMatrixScaledEXT:(IDDD)V
+ + glMatrixScalefEXT:(IFFF)V
+ + glMatrixTranslatedEXT:(IDDD)V
+ + glMatrixTranslatefEXT:(IFFF)V
+ + glMultiTexBufferEXT:(IIII)V
+ + glMultiTexCoordPointerEXT:(IIIIJ)V
+ > glMultiTexCoordPointerEXT:(IIILjava/nio/DoubleBuffer;)V --> glMultiTexCoordPointerEXT:(IIIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glMultiTexCoordPointerEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexCoordPointerEXT:(IIIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glMultiTexEnvEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexEnvfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glMultiTexEnvEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexEnvivEXT:(IIILjava/nio/IntBuffer;)V
+ + glMultiTexEnvfEXT:(IIIF)V
+ + glMultiTexEnviEXT:(IIII)V
+ > glMultiTexGenEXT:(IIILjava/nio/DoubleBuffer;)V --> glMultiTexGendvEXT:(IIILjava/nio/DoubleBuffer;)V
+ > glMultiTexGenEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexGenfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glMultiTexGenEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexGenivEXT:(IIILjava/nio/IntBuffer;)V
+ + glMultiTexGendEXT:(IIID)V
+ + glMultiTexGenfEXT:(IIIF)V
+ + glMultiTexGeniEXT:(IIII)V
+ + glMultiTexImage1DEXT:(IIIIIIIIJ)V
+ + glMultiTexImage1DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexImage1DEXT:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexImage1DEXT:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexImage1DEXT:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexImage1DEXT:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glMultiTexImage2DEXT:(IIIIIIIIIJ)V
+ + glMultiTexImage2DEXT:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexImage2DEXT:(IIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexImage2DEXT:(IIIIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexImage2DEXT:(IIIIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexImage2DEXT:(IIIIIIIIILjava/nio/ShortBuffer;)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIIJ)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexImage3DEXT:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+ > glMultiTexParameterEXT:(IIILjava/nio/FloatBuffer;)V --> glMultiTexParameterfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glMultiTexParameterEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ > glMultiTexParameterIEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexParameterIivEXT:(IIILjava/nio/IntBuffer;)V
+ > glMultiTexParameterIuEXT:(IIILjava/nio/IntBuffer;)V --> glMultiTexParameterIuivEXT:(IIILjava/nio/IntBuffer;)V
+ + glMultiTexParameterfEXT:(IIIF)V
+ + glMultiTexParameteriEXT:(IIII)V
+ + glMultiTexRenderbufferEXT:(III)V
+ + glMultiTexSubImage1DEXT:(IIIIIIIJ)V
+ + glMultiTexSubImage1DEXT:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexSubImage1DEXT:(IIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexSubImage1DEXT:(IIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexSubImage1DEXT:(IIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexSubImage1DEXT:(IIIIIIILjava/nio/ShortBuffer;)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIIJ)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexSubImage2DEXT:(IIIIIIIIILjava/nio/ShortBuffer;)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIIJ)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIILjava/nio/IntBuffer;)V
+ + glMultiTexSubImage3DEXT:(IIIIIIIIIIILjava/nio/ShortBuffer;)V
+ + glNamedBufferDataEXT:(IJI)V
+ + glNamedBufferDataEXT:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferDataEXT:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferDataEXT:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferDataEXT:(ILjava/nio/IntBuffer;I)V
+ + glNamedBufferDataEXT:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferSubDataEXT:(IJLjava/nio/ByteBuffer;)V
+ + glNamedBufferSubDataEXT:(IJLjava/nio/DoubleBuffer;)V
+ + glNamedBufferSubDataEXT:(IJLjava/nio/FloatBuffer;)V
+ + glNamedBufferSubDataEXT:(IJLjava/nio/IntBuffer;)V
+ + glNamedBufferSubDataEXT:(IJLjava/nio/ShortBuffer;)V
+ + glNamedCopyBufferSubDataEXT:(IIJJJ)V
+ + glNamedFramebufferRenderbufferEXT:(IIII)V
+ + glNamedFramebufferTexture1DEXT:(IIIII)V
+ + glNamedFramebufferTexture2DEXT:(IIIII)V
+ + glNamedFramebufferTexture3DEXT:(IIIIII)V
+ + glNamedFramebufferTextureEXT:(IIII)V
+ + glNamedFramebufferTextureFaceEXT:(IIIII)V
+ + glNamedFramebufferTextureLayerEXT:(IIIII)V
+ > glNamedProgramLocalParameter4EXT:(IIILjava/nio/DoubleBuffer;)V --> glNamedProgramLocalParameter4dvEXT:(IIILjava/nio/DoubleBuffer;)V
+ > glNamedProgramLocalParameter4EXT:(IIILjava/nio/FloatBuffer;)V --> glNamedProgramLocalParameter4fvEXT:(IIILjava/nio/FloatBuffer;)V
+ + glNamedProgramLocalParameter4dEXT:(IIIDDDD)V
+ + glNamedProgramLocalParameter4fEXT:(IIIFFFF)V
+ > glNamedProgramLocalParameterI4EXT:(IIILjava/nio/IntBuffer;)V --> glNamedProgramLocalParameterI4ivEXT:(IIILjava/nio/IntBuffer;)V
+ + glNamedProgramLocalParameterI4iEXT:(IIIIIII)V
+ > glNamedProgramLocalParameterI4uEXT:(IIILjava/nio/IntBuffer;)V --> glNamedProgramLocalParameterI4uivEXT:(IIILjava/nio/IntBuffer;)V
+ + glNamedProgramLocalParameterI4uiEXT:(IIIIIII)V
+ > glNamedProgramLocalParameters4EXT:(IIILjava/nio/FloatBuffer;)V --> glNamedProgramLocalParameters4fvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glNamedProgramLocalParametersI4EXT:(IIILjava/nio/IntBuffer;)V --> glNamedProgramLocalParametersI4ivEXT:(IIILjava/nio/IntBuffer;)V
+ > glNamedProgramLocalParametersI4uEXT:(IIILjava/nio/IntBuffer;)V --> glNamedProgramLocalParametersI4uivEXT:(IIILjava/nio/IntBuffer;)V
+java.lang.UnsupportedOperationException: java.lang.CharSequence -> java.nio.ByteBuffer in org/lwjgl/opengl/EXTDirectStateAccess : glNamedProgramStringEXT:(IIILjava/lang/CharSequence;)V
+ - glNamedProgramStringEXT:(IIILjava/lang/CharSequence;)V
+ + glNamedProgramStringEXT:(IIILjava/nio/ByteBuffer;)V
+ + glNamedRenderbufferStorageEXT:(IIII)V
+ + glNamedRenderbufferStorageMultisampleCoverageEXT:(IIIIII)V
+ + glNamedRenderbufferStorageMultisampleEXT:(IIIII)V
+ > glProgramUniform1EXT:(IILjava/nio/FloatBuffer;)V --> glProgramUniform1fvEXT:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform1EXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform1ivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1fEXT:(IIF)V
+ + glProgramUniform1iEXT:(III)V
+ > glProgramUniform1uEXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform1uivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1uiEXT:(III)V
+ > glProgramUniform2EXT:(IILjava/nio/FloatBuffer;)V --> glProgramUniform2fvEXT:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform2EXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform2ivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2fEXT:(IIFF)V
+ + glProgramUniform2iEXT:(IIII)V
+ > glProgramUniform2uEXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform2uivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2uiEXT:(IIII)V
+ > glProgramUniform3EXT:(IILjava/nio/FloatBuffer;)V --> glProgramUniform3fvEXT:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform3EXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform3ivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3fEXT:(IIFFF)V
+ + glProgramUniform3iEXT:(IIIII)V
+ > glProgramUniform3uEXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform3uivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3uiEXT:(IIIII)V
+ > glProgramUniform4EXT:(IILjava/nio/FloatBuffer;)V --> glProgramUniform4fvEXT:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform4EXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform4ivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4fEXT:(IIFFFF)V
+ + glProgramUniform4iEXT:(IIIIII)V
+ > glProgramUniform4uEXT:(IILjava/nio/IntBuffer;)V --> glProgramUniform4uivEXT:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4uiEXT:(IIIIII)V
+ > glProgramUniformMatrix2EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix2x3EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2x3fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix2x4EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2x4fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3x2EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3x2fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3x4EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3x4fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4x2EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4x2fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4x3EXT:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4x3fvEXT:(IIZLjava/nio/FloatBuffer;)V
+ + glPushClientAttribDefaultEXT:(I)V
+ + glTextureBufferEXT:(IIII)V
+ + glTextureImage1DEXT:(IIIIIIIIJ)V
+ + glTextureImage1DEXT:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureImage1DEXT:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureImage1DEXT:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureImage1DEXT:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureImage1DEXT:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureImage2DEXT:(IIIIIIIIIJ)V
+ + glTextureImage2DEXT:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureImage2DEXT:(IIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureImage2DEXT:(IIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureImage2DEXT:(IIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureImage2DEXT:(IIIIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureImage3DEXT:(IIIIIIIIIIJ)V
+ + glTextureImage3DEXT:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureImage3DEXT:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureImage3DEXT:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureImage3DEXT:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureImage3DEXT:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+ > glTextureParameterEXT:(IIILjava/nio/FloatBuffer;)V --> glTextureParameterfvEXT:(IIILjava/nio/FloatBuffer;)V
+ > glTextureParameterEXT:(IIILjava/nio/IntBuffer;)V --> glTextureParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ > glTextureParameterIEXT:(IIILjava/nio/IntBuffer;)V --> glTextureParameterIivEXT:(IIILjava/nio/IntBuffer;)V
+ > glTextureParameterIuEXT:(IIILjava/nio/IntBuffer;)V --> glTextureParameterIuivEXT:(IIILjava/nio/IntBuffer;)V
+ + glTextureParameterfEXT:(IIIF)V
+ + glTextureParameteriEXT:(IIII)V
+ + glTextureRenderbufferEXT:(III)V
+ + glTextureSubImage1DEXT:(IIIIIIIJ)V
+ + glTextureSubImage1DEXT:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage1DEXT:(IIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage1DEXT:(IIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage1DEXT:(IIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage1DEXT:(IIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage2DEXT:(IIIIIIIIIJ)V
+ + glTextureSubImage2DEXT:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage2DEXT:(IIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage2DEXT:(IIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage2DEXT:(IIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage2DEXT:(IIIIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIIJ)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage3DEXT:(IIIIIIIIIIILjava/nio/ShortBuffer;)V
+ + glUnmapNamedBufferEXT:(I)Z
+ + glVertexArrayColorOffsetEXT:(IIIIIJ)V
+ + glVertexArrayEdgeFlagOffsetEXT:(IIIJ)V
+ + glVertexArrayFogCoordOffsetEXT:(IIIIJ)V
+ + glVertexArrayIndexOffsetEXT:(IIIIJ)V
+ + glVertexArrayMultiTexCoordOffsetEXT:(IIIIIIJ)V
+ + glVertexArrayNormalOffsetEXT:(IIIIJ)V
+ + glVertexArraySecondaryColorOffsetEXT:(IIIIIJ)V
+ + glVertexArrayTexCoordOffsetEXT:(IIIIIJ)V
+ + glVertexArrayVertexAttribIOffsetEXT:(IIIIIIJ)V
+ + glVertexArrayVertexAttribOffsetEXT:(IIIIIZIJ)V
+ + glVertexArrayVertexOffsetEXT:(IIIIIJ)V
+org/lwjgl/opengl/EXTDrawBuffers2
+ + glColorMaskIndexedEXT:(IZZZZ)V
+ + glDisableIndexedEXT:(II)V
+ + glEnableIndexedEXT:(II)V
+ + glGetBooleanIndexedEXT:(II)Z
+ > glGetBooleanIndexedEXT:(IILjava/nio/ByteBuffer;)V --> glGetBooleanIndexedvEXT:(IILjava/nio/ByteBuffer;)V
+ + glGetIntegerIndexedEXT:(II)I
+ > glGetIntegerIndexedEXT:(IILjava/nio/IntBuffer;)V --> glGetIntegerIndexedvEXT:(IILjava/nio/IntBuffer;)V
+ + glIsEnabledIndexedEXT:(II)Z
+org/lwjgl/opengl/EXTDrawInstanced
+ + glDrawArraysInstancedEXT:(IIII)V
+ + glDrawElementsInstancedEXT:(IIIJI)V
+ + glDrawElementsInstancedEXT:(ILjava/nio/ByteBuffer;I)V
+ + glDrawElementsInstancedEXT:(ILjava/nio/IntBuffer;I)V
+ + glDrawElementsInstancedEXT:(ILjava/nio/ShortBuffer;I)V
+Missing gl3: org/lwjgl/opengl/EXTDrawRangeElements
+Missing gl3: org/lwjgl/opengl/EXTFogCoord
+org/lwjgl/opengl/EXTFramebufferBlit
+ + glBlitFramebufferEXT:(IIIIIIIIII)V
+org/lwjgl/opengl/EXTFramebufferMultisample
+ + glRenderbufferStorageMultisampleEXT:(IIIII)V
+org/lwjgl/opengl/EXTFramebufferMultisampleBlitScaled
+org/lwjgl/opengl/EXTFramebufferObject
+ + glBindFramebufferEXT:(II)V
+ + glBindRenderbufferEXT:(II)V
+ + glCheckFramebufferStatusEXT:(I)I
+ + glDeleteFramebuffersEXT:(I)V
+ + glDeleteFramebuffersEXT:(Ljava/nio/IntBuffer;)V
+ + glDeleteRenderbuffersEXT:(I)V
+ + glDeleteRenderbuffersEXT:(Ljava/nio/IntBuffer;)V
+ + glFramebufferRenderbufferEXT:(IIII)V
+ + glFramebufferTexture1DEXT:(IIIII)V
+ + glFramebufferTexture2DEXT:(IIIII)V
+ + glFramebufferTexture3DEXT:(IIIIII)V
+ + glGenFramebuffersEXT:()I
+ + glGenFramebuffersEXT:(Ljava/nio/IntBuffer;)V
+ + glGenRenderbuffersEXT:()I
+ + glGenRenderbuffersEXT:(Ljava/nio/IntBuffer;)V
+ + glGenerateMipmapEXT:(I)V
+ - glGetFramebufferAttachmentParameterEXT:(III)I
+ > glGetFramebufferAttachmentParameterEXT:(IIILjava/nio/IntBuffer;)V --> glGetFramebufferAttachmentParameterivEXT:(IIILjava/nio/IntBuffer;)V
+ + glGetFramebufferAttachmentParameteriEXT:(III)I
+ - glGetRenderbufferParameterEXT:(II)I
+ > glGetRenderbufferParameterEXT:(IILjava/nio/IntBuffer;)V --> glGetRenderbufferParameterivEXT:(IILjava/nio/IntBuffer;)V
+ + glGetRenderbufferParameteriEXT:(II)I
+ + glIsFramebufferEXT:(I)Z
+ + glIsRenderbufferEXT:(I)Z
+ + glRenderbufferStorageEXT:(IIII)V
+org/lwjgl/opengl/EXTFramebufferSRGB
+org/lwjgl/opengl/EXTGeometryShader4
+ + glFramebufferTextureEXT:(IIII)V
+ + glFramebufferTextureFaceEXT:(IIIII)V
+ + glFramebufferTextureLayerEXT:(IIIII)V
+ + glProgramParameteriEXT:(III)V
+Missing gl3: org/lwjgl/opengl/EXTGpuProgramParameters
+Missing gl3: org/lwjgl/opengl/EXTGpuShader4
+Missing gl3: org/lwjgl/opengl/EXTMultiDrawArrays
+org/lwjgl/opengl/EXTPackedDepthStencil
+org/lwjgl/opengl/EXTPackedFloat
+Missing gl3: org/lwjgl/opengl/EXTPackedPixels
+Missing gl3: org/lwjgl/opengl/EXTPalettedTexture
+org/lwjgl/opengl/EXTPixelBufferObject
+org/lwjgl/opengl/EXTPointParameters
+ > glPointParameterEXT:(ILjava/nio/FloatBuffer;)V --> glPointParameterfvEXT:(ILjava/nio/FloatBuffer;)V
+ + glPointParameterfEXT:(IF)V
+org/lwjgl/opengl/EXTProvokingVertex
+ + glProvokingVertexEXT:(I)V
+Missing gl3: org/lwjgl/opengl/EXTRescaleNormal
+org/lwjgl/opengl/EXTSecondaryColor
+ + glSecondaryColor3bEXT:(BBB)V
+ + glSecondaryColor3dEXT:(DDD)V
+ + glSecondaryColor3fEXT:(FFF)V
+ + glSecondaryColor3ubEXT:(BBB)V
+ + glSecondaryColorPointerEXT:(IIIJ)V
+ > glSecondaryColorPointerEXT:(IILjava/nio/DoubleBuffer;)V --> glSecondaryColorPointerEXT:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glSecondaryColorPointerEXT:(IILjava/nio/FloatBuffer;)V --> glSecondaryColorPointerEXT:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+org/lwjgl/opengl/EXTSeparateShaderObjects
+ + glActiveProgramEXT:(I)V
+ + glCreateShaderProgramEXT:(ILjava/lang/CharSequence;)I
+ + glCreateShaderProgramEXT:(ILjava/nio/ByteBuffer;)I
+ + glUseShaderProgramEXT:(II)V
+Missing gl3: org/lwjgl/opengl/EXTSeparateSpecularColor
+org/lwjgl/opengl/EXTShaderImageLoadStore
+ + glBindImageTextureEXT:(IIIZIII)V
+ + glMemoryBarrierEXT:(I)V
+org/lwjgl/opengl/EXTSharedTexturePalette
+org/lwjgl/opengl/EXTStencilClearTag
+ + glStencilClearTagEXT:(II)V
+org/lwjgl/opengl/EXTStencilTwoSide
+ + glActiveStencilFaceEXT:(I)V
+org/lwjgl/opengl/EXTStencilWrap
+org/lwjgl/opengl/EXTTextureArray
+ + glFramebufferTextureLayerEXT:(IIIII)V
+org/lwjgl/opengl/EXTTextureBufferObject
+ + glTexBufferEXT:(III)V
+org/lwjgl/opengl/EXTTextureCompressionLATC
+org/lwjgl/opengl/EXTTextureCompressionRGTC
+org/lwjgl/opengl/EXTTextureCompressionS3TC
+Missing gl3: org/lwjgl/opengl/EXTTextureEnvCombine
+Missing gl3: org/lwjgl/opengl/EXTTextureEnvDot3
+org/lwjgl/opengl/EXTTextureFilterAnisotropic
+org/lwjgl/opengl/EXTTextureInteger
+ + glClearColorIiEXT:(IIII)V
+ + glClearColorIuiEXT:(IIII)V
+ > glGetTexParameterIEXT:(IILjava/nio/IntBuffer;)V --> glGetTexParameterIivEXT:(IILjava/nio/IntBuffer;)V
+ + glGetTexParameterIiEXT:(II)I
+ > glGetTexParameterIuEXT:(IILjava/nio/IntBuffer;)V --> glGetTexParameterIuivEXT:(IILjava/nio/IntBuffer;)V
+ + glGetTexParameterIuiEXT:(II)I
+ > glTexParameterIEXT:(IILjava/nio/IntBuffer;)V --> glTexParameterIivEXT:(IILjava/nio/IntBuffer;)V
+ + glTexParameterIiEXT:(III)V
+ > glTexParameterIuEXT:(IILjava/nio/IntBuffer;)V --> glTexParameterIuivEXT:(IILjava/nio/IntBuffer;)V
+ + glTexParameterIuiEXT:(III)V
+Missing gl3: org/lwjgl/opengl/EXTTextureLODBias
+org/lwjgl/opengl/EXTTextureMirrorClamp
+Missing gl3: org/lwjgl/opengl/EXTTextureRectangle
+org/lwjgl/opengl/EXTTextureSRGB
+org/lwjgl/opengl/EXTTextureSRGBDecode
+org/lwjgl/opengl/EXTTextureSharedExponent
+org/lwjgl/opengl/EXTTextureSnorm
+org/lwjgl/opengl/EXTTextureSwizzle
+org/lwjgl/opengl/EXTTimerQuery
+ - glGetQueryObjectEXT:(II)J
+ > glGetQueryObjectEXT:(IILjava/nio/LongBuffer;)V --> glGetQueryObjecti64vEXT:(IILjava/nio/LongBuffer;)V
+ - glGetQueryObjectuEXT:(II)J
+ > glGetQueryObjectuEXT:(IILjava/nio/LongBuffer;)V --> glGetQueryObjectui64vEXT:(IILjava/nio/LongBuffer;)V
+org/lwjgl/opengl/EXTTransformFeedback
+ + glBeginTransformFeedbackEXT:(I)V
+ + glBindBufferBaseEXT:(III)V
+ + glBindBufferOffsetEXT:(IIIJ)V
+ + glBindBufferRangeEXT:(IIIJJ)V
+ + glEndTransformFeedbackEXT:()V
+ + glGetTransformFeedbackVaryingEXT:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetTransformFeedbackVaryingEXT:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glTransformFeedbackVaryingsEXT:(IILjava/nio/ByteBuffer;I)V
+ + glTransformFeedbackVaryingsEXT:(I[Ljava/lang/CharSequence;I)V
+Missing gl3: org/lwjgl/opengl/EXTVertexArrayBgra
+org/lwjgl/opengl/EXTVertexAttrib64bit
+ > glGetVertexAttribLEXT:(IILjava/nio/DoubleBuffer;)V --> glGetVertexAttribLdvEXT:(IILjava/nio/DoubleBuffer;)V
+ + glVertexArrayVertexAttribLOffsetEXT:(IIIIIIJ)V
+ > glVertexAttribL1EXT:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL1dvEXT:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL1dEXT:(ID)V
+ > glVertexAttribL2EXT:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL2dvEXT:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL2dEXT:(IDD)V
+ > glVertexAttribL3EXT:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL3dvEXT:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL3dEXT:(IDDD)V
+ > glVertexAttribL4EXT:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL4dvEXT:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL4dEXT:(IDDDD)V
+ - glVertexAttribLPointerEXT:(IIIJ)V
+ + glVertexAttribLPointerEXT:(IIILjava/nio/DoubleBuffer;)V
+Missing gl3: org/lwjgl/opengl/EXTVertexShader
+Missing gl3: org/lwjgl/opengl/EXTVertexWeighting
+org/lwjgl/opengl/GL11
+ + glAccum:(IF)V
+ + glAlphaFunc:(IF)V
+ + glAreTexturesResident:(Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)Z
+ + glArrayElement:(I)V
+ + glBegin:(I)V
+ + glBindTexture:(II)V
+ + glBitmap:(IIFFFFJ)V
+ + glBitmap:(IIFFFFLjava/nio/ByteBuffer;)V
+ + glBlendFunc:(II)V
+ + glCallList:(I)V
+ + glCallLists:(Ljava/nio/ByteBuffer;)V
+ + glCallLists:(Ljava/nio/IntBuffer;)V
+ + glCallLists:(Ljava/nio/ShortBuffer;)V
+ + glClear:(I)V
+ + glClearAccum:(FFFF)V
+ + glClearColor:(FFFF)V
+ + glClearDepth:(D)V
+ + glClearStencil:(I)V
+ + glClipPlane:(ILjava/nio/DoubleBuffer;)V
+ + glColor3b:(BBB)V
+ + glColor3d:(DDD)V
+ + glColor3f:(FFF)V
+ + glColor3ub:(BBB)V
+ + glColor4b:(BBBB)V
+ + glColor4d:(DDDD)V
+ + glColor4f:(FFFF)V
+ + glColor4ub:(BBBB)V
+ + glColorMask:(ZZZZ)V
+ + glColorMaterial:(II)V
+ + glColorPointer:(IIIJ)V
+ + glColorPointer:(IIILjava/nio/ByteBuffer;)V
+ > glColorPointer:(IILjava/nio/DoubleBuffer;)V --> glColorPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glColorPointer:(IILjava/nio/FloatBuffer;)V --> glColorPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ + glCopyPixels:(IIIII)V
+ + glCopyTexImage1D:(IIIIIII)V
+ + glCopyTexImage2D:(IIIIIIII)V
+ + glCopyTexSubImage1D:(IIIIII)V
+ + glCopyTexSubImage2D:(IIIIIIII)V
+ + glCullFace:(I)V
+ + glDeleteLists:(II)V
+ + glDeleteTextures:(I)V
+ + glDeleteTextures:(Ljava/nio/IntBuffer;)V
+ + glDepthFunc:(I)V
+ + glDepthMask:(Z)V
+ + glDepthRange:(DD)V
+ + glDisable:(I)V
+ + glDisableClientState:(I)V
+ + glDrawArrays:(III)V
+ + glDrawBuffer:(I)V
+ + glDrawElements:(IIIJ)V
+ + glDrawElements:(ILjava/nio/ByteBuffer;)V
+ + glDrawElements:(ILjava/nio/IntBuffer;)V
+ + glDrawElements:(ILjava/nio/ShortBuffer;)V
+ + glDrawPixels:(IIIIJ)V
+ + glDrawPixels:(IIIILjava/nio/ByteBuffer;)V
+ + glDrawPixels:(IIIILjava/nio/IntBuffer;)V
+ + glDrawPixels:(IIIILjava/nio/ShortBuffer;)V
+ + glEdgeFlag:(Z)V
+ + glEdgeFlagPointer:(IJ)V
+ + glEdgeFlagPointer:(ILjava/nio/ByteBuffer;)V
+ + glEnable:(I)V
+ + glEnableClientState:(I)V
+ + glEnd:()V
+ + glEndList:()V
+ + glEvalCoord1d:(D)V
+ + glEvalCoord1f:(F)V
+ + glEvalCoord2d:(DD)V
+ + glEvalCoord2f:(FF)V
+ + glEvalMesh1:(III)V
+ + glEvalMesh2:(IIIII)V
+ + glEvalPoint1:(I)V
+ + glEvalPoint2:(II)V
+ + glFeedbackBuffer:(ILjava/nio/FloatBuffer;)V
+ + glFinish:()V
+ + glFlush:()V
+ > glFog:(ILjava/nio/FloatBuffer;)V --> glFogfv:(ILjava/nio/FloatBuffer;)V
+ > glFog:(ILjava/nio/IntBuffer;)V --> glFogiv:(ILjava/nio/IntBuffer;)V
+ + glFogf:(IF)V
+ + glFogi:(II)V
+ + glFrontFace:(I)V
+ + glFrustum:(DDDDDD)V
+ + glGenLists:(I)I
+ + glGenTextures:()I
+ + glGenTextures:(Ljava/nio/IntBuffer;)V
+ + glGetBoolean:(I)Z
+ > glGetBoolean:(ILjava/nio/ByteBuffer;)V --> glGetBooleanv:(ILjava/nio/ByteBuffer;)V
+ + glGetClipPlane:(ILjava/nio/DoubleBuffer;)V
+ + glGetDouble:(I)D
+ > glGetDouble:(ILjava/nio/DoubleBuffer;)V --> glGetDoublev:(ILjava/nio/DoubleBuffer;)V
+ + glGetError:()I
+ + glGetFloat:(I)F
+ > glGetFloat:(ILjava/nio/FloatBuffer;)V --> glGetFloatv:(ILjava/nio/FloatBuffer;)V
+ + glGetInteger:(I)I
+ > glGetInteger:(ILjava/nio/IntBuffer;)V --> glGetIntegerv:(ILjava/nio/IntBuffer;)V
+ > glGetLight:(IILjava/nio/FloatBuffer;)V --> glGetLightfv:(IILjava/nio/FloatBuffer;)V
+ > glGetLight:(IILjava/nio/IntBuffer;)V --> glGetLightiv:(IILjava/nio/IntBuffer;)V
+ > glGetMap:(IILjava/nio/DoubleBuffer;)V --> glGetMapdv:(IILjava/nio/DoubleBuffer;)V
+ > glGetMap:(IILjava/nio/FloatBuffer;)V --> glGetMapfv:(IILjava/nio/FloatBuffer;)V
+ > glGetMap:(IILjava/nio/IntBuffer;)V --> glGetMapiv:(IILjava/nio/IntBuffer;)V
+ > glGetMaterial:(IILjava/nio/FloatBuffer;)V --> glGetMaterialfv:(IILjava/nio/FloatBuffer;)V
+ > glGetMaterial:(IILjava/nio/IntBuffer;)V --> glGetMaterialiv:(IILjava/nio/IntBuffer;)V
+ > glGetPixelMap:(ILjava/nio/FloatBuffer;)V --> glGetPixelMapfv:(ILjava/nio/FloatBuffer;)V
+ + glGetPixelMapfv:(IJ)V
+ > glGetPixelMapu:(ILjava/nio/IntBuffer;)V --> glGetPixelMapuiv:(ILjava/nio/IntBuffer;)V
+ > glGetPixelMapu:(ILjava/nio/ShortBuffer;)V --> glGetPixelMapusv:(ILjava/nio/ShortBuffer;)V
+ + glGetPixelMapuiv:(IJ)V
+ + glGetPixelMapusv:(IJ)V
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/GL11 : glGetPointer:(IJ)Ljava/nio/ByteBuffer;
+ - glGetPointer:(IJ)Ljava/nio/ByteBuffer;
+ + glGetPolygonStipple:(J)V
+ + glGetPolygonStipple:(Ljava/nio/ByteBuffer;)V
+ + glGetString:(I)Ljava/lang/String;
+ > glGetTexEnv:(IILjava/nio/FloatBuffer;)V --> glGetTexEnvfv:(IILjava/nio/FloatBuffer;)V
+ > glGetTexEnv:(IILjava/nio/IntBuffer;)V --> glGetTexEnviv:(IILjava/nio/IntBuffer;)V
+ + glGetTexEnvf:(II)F
+ + glGetTexEnvi:(II)I
+ > glGetTexGen:(IILjava/nio/DoubleBuffer;)V --> glGetTexGendv:(IILjava/nio/DoubleBuffer;)V
+ > glGetTexGen:(IILjava/nio/FloatBuffer;)V --> glGetTexGenfv:(IILjava/nio/FloatBuffer;)V
+ > glGetTexGen:(IILjava/nio/IntBuffer;)V --> glGetTexGeniv:(IILjava/nio/IntBuffer;)V
+ + glGetTexGend:(II)D
+ + glGetTexGenf:(II)F
+ + glGetTexGeni:(II)I
+ + glGetTexImage:(IIIIJ)V
+ + glGetTexImage:(IIIILjava/nio/ByteBuffer;)V
+ + glGetTexImage:(IIIILjava/nio/DoubleBuffer;)V
+ + glGetTexImage:(IIIILjava/nio/FloatBuffer;)V
+ + glGetTexImage:(IIIILjava/nio/IntBuffer;)V
+ + glGetTexImage:(IIIILjava/nio/ShortBuffer;)V
+ > glGetTexLevelParameter:(IIILjava/nio/FloatBuffer;)V --> glGetTexLevelParameterfv:(IIILjava/nio/FloatBuffer;)V
+ > glGetTexLevelParameter:(IIILjava/nio/IntBuffer;)V --> glGetTexLevelParameteriv:(IIILjava/nio/IntBuffer;)V
+ + glGetTexLevelParameterf:(III)F
+ + glGetTexLevelParameteri:(III)I
+ > glGetTexParameter:(IILjava/nio/FloatBuffer;)V --> glGetTexParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetTexParameter:(IILjava/nio/IntBuffer;)V --> glGetTexParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetTexParameterf:(II)F
+ + glGetTexParameteri:(II)I
+ + glHint:(II)V
+ + glInitNames:()V
+ + glInterleavedArrays:(IIJ)V
+ + glInterleavedArrays:(IILjava/nio/ByteBuffer;)V
+ + glInterleavedArrays:(IILjava/nio/DoubleBuffer;)V
+ + glInterleavedArrays:(IILjava/nio/FloatBuffer;)V
+ + glInterleavedArrays:(IILjava/nio/IntBuffer;)V
+ + glInterleavedArrays:(IILjava/nio/ShortBuffer;)V
+ + glIsEnabled:(I)Z
+ + glIsList:(I)Z
+ + glIsTexture:(I)Z
+ > glLight:(IILjava/nio/FloatBuffer;)V --> glLightfv:(IILjava/nio/FloatBuffer;)V
+ > glLight:(IILjava/nio/IntBuffer;)V --> glLightiv:(IILjava/nio/IntBuffer;)V
+ > glLightModel:(ILjava/nio/FloatBuffer;)V --> glLightModelfv:(ILjava/nio/FloatBuffer;)V
+ > glLightModel:(ILjava/nio/IntBuffer;)V --> glLightModeliv:(ILjava/nio/IntBuffer;)V
+ + glLightModelf:(IF)V
+ + glLightModeli:(II)V
+ + glLightf:(IIF)V
+ + glLighti:(III)V
+ + glLineStipple:(IS)V
+ + glLineWidth:(F)V
+ + glListBase:(I)V
+ + glLoadIdentity:()V
+ > glLoadMatrix:(Ljava/nio/DoubleBuffer;)V --> glLoadMatrixd:(Ljava/nio/DoubleBuffer;)V
+ > glLoadMatrix:(Ljava/nio/FloatBuffer;)V --> glLoadMatrixf:(Ljava/nio/FloatBuffer;)V
+ + glLoadName:(I)V
+ + glLogicOp:(I)V
+ + glMap1d:(IDDIILjava/nio/DoubleBuffer;)V
+ + glMap1f:(IFFIILjava/nio/FloatBuffer;)V
+ + glMap2d:(IDDIIDDIILjava/nio/DoubleBuffer;)V
+ + glMap2f:(IFFIIFFIILjava/nio/FloatBuffer;)V
+ + glMapGrid1d:(IDD)V
+ + glMapGrid1f:(IFF)V
+ + glMapGrid2d:(IDDIDD)V
+ + glMapGrid2f:(IFFIFF)V
+ > glMaterial:(IILjava/nio/FloatBuffer;)V --> glMaterialfv:(IILjava/nio/FloatBuffer;)V
+ > glMaterial:(IILjava/nio/IntBuffer;)V --> glMaterialiv:(IILjava/nio/IntBuffer;)V
+ + glMaterialf:(IIF)V
+ + glMateriali:(III)V
+ + glMatrixMode:(I)V
+ > glMultMatrix:(Ljava/nio/DoubleBuffer;)V --> glMultMatrixd:(Ljava/nio/DoubleBuffer;)V
+ > glMultMatrix:(Ljava/nio/FloatBuffer;)V --> glMultMatrixf:(Ljava/nio/FloatBuffer;)V
+ + glNewList:(II)V
+ + glNormal3b:(BBB)V
+ + glNormal3d:(DDD)V
+ + glNormal3f:(FFF)V
+ + glNormal3i:(III)V
+ + glNormalPointer:(IIJ)V
+ + glNormalPointer:(IILjava/nio/ByteBuffer;)V
+ > glNormalPointer:(ILjava/nio/ByteBuffer;)V --> glNormalPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_BYTE
+ > glNormalPointer:(ILjava/nio/DoubleBuffer;)V --> glNormalPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glNormalPointer:(ILjava/nio/FloatBuffer;)V --> glNormalPointer:(IILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glNormalPointer:(ILjava/nio/IntBuffer;)V --> glNormalPointer:(IILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
+ + glOrtho:(DDDDDD)V
+ + glPassThrough:(F)V
+ > glPixelMap:(ILjava/nio/FloatBuffer;)V --> glPixelMapfv:(ILjava/nio/FloatBuffer;)V
+ + glPixelMapfv:(IIJ)V
+ > glPixelMapu:(ILjava/nio/IntBuffer;)V --> glPixelMapuiv:(ILjava/nio/IntBuffer;)V
+ > glPixelMapu:(ILjava/nio/ShortBuffer;)V --> glPixelMapusv:(ILjava/nio/ShortBuffer;)V
+ + glPixelMapuiv:(IIJ)V
+ + glPixelMapusv:(IIJ)V
+ + glPixelStoref:(IF)V
+ + glPixelStorei:(II)V
+ + glPixelTransferf:(IF)V
+ + glPixelTransferi:(II)V
+ + glPixelZoom:(FF)V
+ + glPointSize:(F)V
+ + glPolygonMode:(II)V
+ + glPolygonOffset:(FF)V
+ + glPolygonStipple:(J)V
+ + glPolygonStipple:(Ljava/nio/ByteBuffer;)V
+ + glPopAttrib:()V
+ + glPopClientAttrib:()V
+ + glPopMatrix:()V
+ + glPopName:()V
+ + glPrioritizeTextures:(Ljava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+ + glPushAttrib:(I)V
+ + glPushClientAttrib:(I)V
+ + glPushMatrix:()V
+ + glPushName:(I)V
+ + glRasterPos2d:(DD)V
+ + glRasterPos2f:(FF)V
+ + glRasterPos2i:(II)V
+ + glRasterPos3d:(DDD)V
+ + glRasterPos3f:(FFF)V
+ + glRasterPos3i:(III)V
+ + glRasterPos4d:(DDDD)V
+ + glRasterPos4f:(FFFF)V
+ + glRasterPos4i:(IIII)V
+ + glReadBuffer:(I)V
+ + glReadPixels:(IIIIIIJ)V
+ + glReadPixels:(IIIIIILjava/nio/ByteBuffer;)V
+ + glReadPixels:(IIIIIILjava/nio/FloatBuffer;)V
+ + glReadPixels:(IIIIIILjava/nio/IntBuffer;)V
+ + glReadPixels:(IIIIIILjava/nio/ShortBuffer;)V
+ + glRectd:(DDDD)V
+ + glRectf:(FFFF)V
+ + glRecti:(IIII)V
+ + glRenderMode:(I)I
+ + glRotated:(DDDD)V
+ + glRotatef:(FFFF)V
+ + glScaled:(DDD)V
+ + glScalef:(FFF)V
+ + glScissor:(IIII)V
+ + glSelectBuffer:(Ljava/nio/IntBuffer;)V
+ + glShadeModel:(I)V
+ + glStencilFunc:(III)V
+ + glStencilMask:(I)V
+ + glStencilOp:(III)V
+ + glTexCoord1d:(D)V
+ + glTexCoord1f:(F)V
+ + glTexCoord2d:(DD)V
+ + glTexCoord2f:(FF)V
+ + glTexCoord3d:(DDD)V
+ + glTexCoord3f:(FFF)V
+ + glTexCoord4d:(DDDD)V
+ + glTexCoord4f:(FFFF)V
+ + glTexCoordPointer:(IIIJ)V
+ + glTexCoordPointer:(IIILjava/nio/ByteBuffer;)V
+ > glTexCoordPointer:(IILjava/nio/DoubleBuffer;)V --> glTexCoordPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glTexCoordPointer:(IILjava/nio/FloatBuffer;)V --> glTexCoordPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glTexCoordPointer:(IILjava/nio/IntBuffer;)V --> glTexCoordPointer:(IIILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
+ > glTexCoordPointer:(IILjava/nio/ShortBuffer;)V --> glTexCoordPointer:(IIILjava/nio/ShortBuffer;)V @org.lwjgl.opengl.GL11.GL_SHORT
+ > glTexEnv:(IILjava/nio/FloatBuffer;)V --> glTexEnvfv:(IILjava/nio/FloatBuffer;)V
+ > glTexEnv:(IILjava/nio/IntBuffer;)V --> glTexEnviv:(IILjava/nio/IntBuffer;)V
+ + glTexEnvf:(IIF)V
+ + glTexEnvi:(III)V
+ > glTexGen:(IILjava/nio/DoubleBuffer;)V --> glTexGendv:(IILjava/nio/DoubleBuffer;)V
+ > glTexGen:(IILjava/nio/FloatBuffer;)V --> glTexGenfv:(IILjava/nio/FloatBuffer;)V
+ > glTexGen:(IILjava/nio/IntBuffer;)V --> glTexGeniv:(IILjava/nio/IntBuffer;)V
+ + glTexGend:(IID)V
+ + glTexGenf:(IIF)V
+ + glTexGeni:(III)V
+ + glTexImage1D:(IIIIIIIJ)V
+ + glTexImage1D:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glTexImage1D:(IIIIIIILjava/nio/DoubleBuffer;)V
+ + glTexImage1D:(IIIIIIILjava/nio/FloatBuffer;)V
+ + glTexImage1D:(IIIIIIILjava/nio/IntBuffer;)V
+ + glTexImage1D:(IIIIIIILjava/nio/ShortBuffer;)V
+ + glTexImage2D:(IIIIIIIIJ)V
+ + glTexImage2D:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glTexImage2D:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTexImage2D:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glTexImage2D:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glTexImage2D:(IIIIIIIILjava/nio/ShortBuffer;)V
+ > glTexParameter:(IILjava/nio/FloatBuffer;)V --> glTexParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glTexParameter:(IILjava/nio/IntBuffer;)V --> glTexParameteriv:(IILjava/nio/IntBuffer;)V
+ + glTexParameterf:(IIF)V
+ + glTexParameteri:(III)V
+ + glTexSubImage1D:(IIIIIIJ)V
+ + glTexSubImage1D:(IIIIIILjava/nio/ByteBuffer;)V
+ + glTexSubImage1D:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glTexSubImage1D:(IIIIIILjava/nio/FloatBuffer;)V
+ + glTexSubImage1D:(IIIIIILjava/nio/IntBuffer;)V
+ + glTexSubImage1D:(IIIIIILjava/nio/ShortBuffer;)V
+ + glTexSubImage2D:(IIIIIIIIJ)V
+ + glTexSubImage2D:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glTexSubImage2D:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTexSubImage2D:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glTexSubImage2D:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glTexSubImage2D:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glTranslated:(DDD)V
+ + glTranslatef:(FFF)V
+ + glVertex2d:(DD)V
+ + glVertex2f:(FF)V
+ + glVertex2i:(II)V
+ + glVertex3d:(DDD)V
+ + glVertex3f:(FFF)V
+ + glVertex3i:(III)V
+ + glVertex4d:(DDDD)V
+ + glVertex4f:(FFFF)V
+ + glVertex4i:(IIII)V
+ + glVertexPointer:(IIIJ)V
+ + glVertexPointer:(IIILjava/nio/ByteBuffer;)V
+ > glVertexPointer:(IILjava/nio/DoubleBuffer;)V --> glVertexPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexPointer:(IILjava/nio/FloatBuffer;)V --> glVertexPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ > glVertexPointer:(IILjava/nio/IntBuffer;)V --> glVertexPointer:(IIILjava/nio/IntBuffer;)V @org.lwjgl.opengl.GL11.GL_INT
+ > glVertexPointer:(IILjava/nio/ShortBuffer;)V --> glVertexPointer:(IIILjava/nio/ShortBuffer;)V @org.lwjgl.opengl.GL11.GL_SHORT
+ + glViewport:(IIII)V
+org/lwjgl/opengl/GL12
+ + glCopyTexSubImage3D:(IIIIIIIII)V
+ + glDrawRangeElements:(IIIIIJ)V
+ + glDrawRangeElements:(IIILjava/nio/ByteBuffer;)V
+ + glDrawRangeElements:(IIILjava/nio/IntBuffer;)V
+ + glDrawRangeElements:(IIILjava/nio/ShortBuffer;)V
+ + glTexImage3D:(IIIIIIIIIJ)V
+ + glTexImage3D:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTexImage3D:(IIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTexImage3D:(IIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTexImage3D:(IIIIIIIIILjava/nio/IntBuffer;)V
+ + glTexImage3D:(IIIIIIIIILjava/nio/ShortBuffer;)V
+ + glTexSubImage3D:(IIIIIIIIIIJ)V
+ + glTexSubImage3D:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTexSubImage3D:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTexSubImage3D:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTexSubImage3D:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glTexSubImage3D:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/GL13
+ + glActiveTexture:(I)V
+ + glClientActiveTexture:(I)V
+ - glCompressedTexImage1D:(IIIIII)V
+ + glCompressedTexImage1D:(IIIIIIJ)V
+ + glCompressedTexImage1D:(IIIIILjava/nio/ByteBuffer;)V
+ - glCompressedTexImage2D:(IIIIIII)V
+ + glCompressedTexImage2D:(IIIIIIIJ)V
+ + glCompressedTexImage2D:(IIIIIILjava/nio/ByteBuffer;)V
+ - glCompressedTexImage3D:(IIIIIIII)V
+ + glCompressedTexImage3D:(IIIIIIIIJ)V
+ + glCompressedTexImage3D:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage1D:(IIIIIIJ)V
+ + glCompressedTexSubImage1D:(IIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage2D:(IIIIIIIIJ)V
+ + glCompressedTexSubImage2D:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTexSubImage3D:(IIIIIIIIIIJ)V
+ + glCompressedTexSubImage3D:(IIIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetCompressedTexImage:(IIJ)V
+ + glGetCompressedTexImage:(IILjava/nio/ByteBuffer;)V
+ > glLoadTransposeMatrix:(Ljava/nio/DoubleBuffer;)V --> glLoadTransposeMatrixd:(Ljava/nio/DoubleBuffer;)V
+ > glLoadTransposeMatrix:(Ljava/nio/FloatBuffer;)V --> glLoadTransposeMatrixf:(Ljava/nio/FloatBuffer;)V
+ > glMultTransposeMatrix:(Ljava/nio/DoubleBuffer;)V --> glMultTransposeMatrixd:(Ljava/nio/DoubleBuffer;)V
+ > glMultTransposeMatrix:(Ljava/nio/FloatBuffer;)V --> glMultTransposeMatrixf:(Ljava/nio/FloatBuffer;)V
+ + glMultiTexCoord1d:(ID)V
+ + glMultiTexCoord1f:(IF)V
+ + glMultiTexCoord2d:(IDD)V
+ + glMultiTexCoord2f:(IFF)V
+ + glMultiTexCoord3d:(IDDD)V
+ + glMultiTexCoord3f:(IFFF)V
+ + glMultiTexCoord4d:(IDDDD)V
+ + glMultiTexCoord4f:(IFFFF)V
+ + glSampleCoverage:(FZ)V
+org/lwjgl/opengl/GL14
+ + glBlendColor:(FFFF)V
+ + glBlendEquation:(I)V
+ + glBlendFuncSeparate:(IIII)V
+ + glFogCoordPointer:(IIJ)V
+ > glFogCoordPointer:(ILjava/nio/DoubleBuffer;)V --> glFogCoordPointer:(IILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glFogCoordPointer:(ILjava/nio/FloatBuffer;)V --> glFogCoordPointer:(IILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ + glFogCoordd:(D)V
+ + glFogCoordf:(F)V
+ + glMultiDrawArrays:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ > glPointParameter:(ILjava/nio/FloatBuffer;)V --> glPointParameterfv:(ILjava/nio/FloatBuffer;)V
+ > glPointParameter:(ILjava/nio/IntBuffer;)V --> glPointParameteriv:(ILjava/nio/IntBuffer;)V
+ + glPointParameterf:(IF)V
+ + glPointParameteri:(II)V
+ + glSecondaryColor3b:(BBB)V
+ + glSecondaryColor3d:(DDD)V
+ + glSecondaryColor3f:(FFF)V
+ + glSecondaryColor3ub:(BBB)V
+ + glSecondaryColorPointer:(IIIJ)V
+ > glSecondaryColorPointer:(IILjava/nio/DoubleBuffer;)V --> glSecondaryColorPointer:(IIILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glSecondaryColorPointer:(IILjava/nio/FloatBuffer;)V --> glSecondaryColorPointer:(IIILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+ + glWindowPos2d:(DD)V
+ + glWindowPos2f:(FF)V
+ + glWindowPos2i:(II)V
+ + glWindowPos3d:(DDD)V
+ + glWindowPos3f:(FFF)V
+ + glWindowPos3i:(III)V
+org/lwjgl/opengl/GL15
+ + glBeginQuery:(II)V
+ + glBindBuffer:(II)V
+ + glBufferData:(IJI)V
+ + glBufferData:(ILjava/nio/ByteBuffer;I)V
+ + glBufferData:(ILjava/nio/DoubleBuffer;I)V
+ + glBufferData:(ILjava/nio/FloatBuffer;I)V
+ + glBufferData:(ILjava/nio/IntBuffer;I)V
+ + glBufferData:(ILjava/nio/ShortBuffer;I)V
+ + glBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ + glDeleteBuffers:(I)V
+ + glDeleteBuffers:(Ljava/nio/IntBuffer;)V
+ + glDeleteQueries:(I)V
+ + glDeleteQueries:(Ljava/nio/IntBuffer;)V
+ + glEndQuery:(I)V
+ + glGenBuffers:()I
+ + glGenBuffers:(Ljava/nio/IntBuffer;)V
+ + glGenQueries:()I
+ + glGenQueries:(Ljava/nio/IntBuffer;)V
+ - glGetBufferParameter:(II)I
+ > glGetBufferParameter:(IILjava/nio/IntBuffer;)V --> glGetBufferParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetBufferParameteri:(II)I
+ - glGetBufferPointer:(II)Ljava/nio/ByteBuffer;
+ + glGetBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glGetBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glGetBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glGetBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glGetBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ - glGetQuery:(II)I
+ > glGetQuery:(IILjava/nio/IntBuffer;)V --> glGetQueryiv:(IILjava/nio/IntBuffer;)V
+ > glGetQueryObject:(IILjava/nio/IntBuffer;)V --> glGetQueryObjectiv:(IILjava/nio/IntBuffer;)V
+ + glGetQueryObjecti:(II)I
+ > glGetQueryObjectu:(IILjava/nio/IntBuffer;)V --> glGetQueryObjectuiv:(IILjava/nio/IntBuffer;)V
+ + glGetQueryObjectui:(II)I
+ + glGetQueryi:(II)I
+ + glIsBuffer:(I)Z
+ + glIsQuery:(I)Z
+ + glMapBuffer:(IIJLjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapBuffer:(IILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glUnmapBuffer:(I)Z
+org/lwjgl/opengl/GL20
+ + glAttachShader:(II)V
+ + glBindAttribLocation:(IILjava/lang/CharSequence;)V
+ + glBindAttribLocation:(IILjava/nio/ByteBuffer;)V
+ + glBlendEquationSeparate:(II)V
+ + glCompileShader:(I)V
+ + glCreateProgram:()I
+ + glCreateShader:(I)I
+ + glDeleteProgram:(I)V
+ + glDeleteShader:(I)V
+ + glDetachShader:(II)V
+ + glDisableVertexAttribArray:(I)V
+ + glDrawBuffers:(I)V
+ + glDrawBuffers:(Ljava/nio/IntBuffer;)V
+ + glEnableVertexAttribArray:(I)V
+ - glGetActiveAttrib:(III)Ljava/lang/String;
+ - glGetActiveAttrib:(IIILjava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetActiveAttrib:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveAttribSize:(II)I
+ - glGetActiveAttribType:(II)I
+ - glGetActiveUniform:(III)Ljava/lang/String;
+ - glGetActiveUniform:(IIILjava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetActiveUniform:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveUniformSize:(II)I
+ - glGetActiveUniformType:(II)I
+ + glGetAttachedShaders:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glGetAttribLocation:(ILjava/lang/CharSequence;)I
+ + glGetAttribLocation:(ILjava/nio/ByteBuffer;)I
+ - glGetProgram:(II)I
+ > glGetProgram:(IILjava/nio/IntBuffer;)V --> glGetProgramiv:(IILjava/nio/IntBuffer;)V
+ + glGetProgramInfoLog:(II)Ljava/lang/String;
+ + glGetProgramInfoLog:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetProgrami:(II)I
+ - glGetShader:(II)I
+ > glGetShader:(IILjava/nio/IntBuffer;)V --> glGetShaderiv:(IILjava/nio/IntBuffer;)V
+ + glGetShaderInfoLog:(II)Ljava/lang/String;
+ + glGetShaderInfoLog:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetShaderSource:(II)Ljava/lang/String;
+ + glGetShaderSource:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetShaderi:(II)I
+ > glGetUniform:(IILjava/nio/FloatBuffer;)V --> glGetUniformfv:(IILjava/nio/FloatBuffer;)V
+ > glGetUniform:(IILjava/nio/IntBuffer;)V --> glGetUniformiv:(IILjava/nio/IntBuffer;)V
+ + glGetUniformLocation:(ILjava/lang/CharSequence;)I
+ + glGetUniformLocation:(ILjava/nio/ByteBuffer;)I
+ > glGetVertexAttrib:(IILjava/nio/DoubleBuffer;)V --> glGetVertexAttribdv:(IILjava/nio/DoubleBuffer;)V
+ > glGetVertexAttrib:(IILjava/nio/FloatBuffer;)V --> glGetVertexAttribfv:(IILjava/nio/FloatBuffer;)V
+ > glGetVertexAttrib:(IILjava/nio/IntBuffer;)V --> glGetVertexAttribiv:(IILjava/nio/IntBuffer;)V
+java.lang.UnsupportedOperationException: long -> org.lwjgl.PointerBuffer in org/lwjgl/opengl/GL20 : glGetVertexAttribPointer:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetVertexAttribPointer:(IIJ)Ljava/nio/ByteBuffer;
+ - glGetVertexAttribPointer:(IILjava/nio/ByteBuffer;)V
+ + glIsProgram:(I)Z
+ + glIsShader:(I)Z
+ + glLinkProgram:(I)V
+ + glShaderSource:(ILjava/lang/CharSequence;)V
+ + glShaderSource:(I[Ljava/lang/CharSequence;)V
+ + glStencilFuncSeparate:(IIII)V
+ + glStencilMaskSeparate:(II)V
+ + glStencilOpSeparate:(IIII)V
+ > glUniform1:(ILjava/nio/FloatBuffer;)V --> glUniform1fv:(ILjava/nio/FloatBuffer;)V
+ > glUniform1:(ILjava/nio/IntBuffer;)V --> glUniform1iv:(ILjava/nio/IntBuffer;)V
+ + glUniform1f:(IF)V
+ + glUniform1i:(II)V
+ > glUniform2:(ILjava/nio/FloatBuffer;)V --> glUniform2fv:(ILjava/nio/FloatBuffer;)V
+ > glUniform2:(ILjava/nio/IntBuffer;)V --> glUniform2iv:(ILjava/nio/IntBuffer;)V
+ + glUniform2f:(IFF)V
+ + glUniform2i:(III)V
+ > glUniform3:(ILjava/nio/FloatBuffer;)V --> glUniform3fv:(ILjava/nio/FloatBuffer;)V
+ > glUniform3:(ILjava/nio/IntBuffer;)V --> glUniform3iv:(ILjava/nio/IntBuffer;)V
+ + glUniform3f:(IFFF)V
+ + glUniform3i:(IIII)V
+ > glUniform4:(ILjava/nio/FloatBuffer;)V --> glUniform4fv:(ILjava/nio/FloatBuffer;)V
+ > glUniform4:(ILjava/nio/IntBuffer;)V --> glUniform4iv:(ILjava/nio/IntBuffer;)V
+ + glUniform4f:(IFFFF)V
+ + glUniform4i:(IIIII)V
+ > glUniformMatrix2:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix3:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix3fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix4:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix4fv:(IZLjava/nio/FloatBuffer;)V
+ + glUseProgram:(I)V
+ + glValidateProgram:(I)V
+ + glVertexAttrib1d:(ID)V
+ + glVertexAttrib1f:(IF)V
+ + glVertexAttrib1s:(IS)V
+ + glVertexAttrib2d:(IDD)V
+ + glVertexAttrib2f:(IFF)V
+ + glVertexAttrib2s:(ISS)V
+ + glVertexAttrib3d:(IDDD)V
+ + glVertexAttrib3f:(IFFF)V
+ + glVertexAttrib3s:(ISSS)V
+ + glVertexAttrib4Nub:(IBBBB)V
+ + glVertexAttrib4d:(IDDDD)V
+ + glVertexAttrib4f:(IFFFF)V
+ + glVertexAttrib4s:(ISSSS)V
+ + glVertexAttribPointer:(IIIZIJ)V
+ + glVertexAttribPointer:(IIIZILjava/nio/ByteBuffer;)V
+ > glVertexAttribPointer:(IIZILjava/nio/DoubleBuffer;)V --> glVertexAttribPointer:(IIIZILjava/nio/ByteBuffer;)V @org.lwjgl.opengl.GL11.GL_DOUBLE
+ > glVertexAttribPointer:(IIZILjava/nio/FloatBuffer;)V --> glVertexAttribPointer:(IIIZILjava/nio/FloatBuffer;)V @org.lwjgl.opengl.GL11.GL_FLOAT
+org/lwjgl/opengl/GL21
+ > glUniformMatrix2x3:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2x3fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix2x4:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix2x4fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix3x2:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix3x2fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix3x4:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix3x4fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix4x2:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix4x2fv:(IZLjava/nio/FloatBuffer;)V
+ > glUniformMatrix4x3:(IZLjava/nio/FloatBuffer;)V --> glUniformMatrix4x3fv:(IZLjava/nio/FloatBuffer;)V
+org/lwjgl/opengl/GL30
+ + glBeginConditionalRender:(II)V
+ + glBeginTransformFeedback:(I)V
+ + glBindBufferBase:(III)V
+ + glBindBufferRange:(IIIJJ)V
+ + glBindFragDataLocation:(IILjava/lang/CharSequence;)V
+ + glBindFragDataLocation:(IILjava/nio/ByteBuffer;)V
+ + glBindFramebuffer:(II)V
+ + glBindRenderbuffer:(II)V
+ + glBindVertexArray:(I)V
+ + glBlitFramebuffer:(IIIIIIIIII)V
+ + glCheckFramebufferStatus:(I)I
+ + glClampColor:(II)V
+ > glClearBuffer:(IILjava/nio/FloatBuffer;)V --> glClearBufferfv:(IILjava/nio/FloatBuffer;)V
+ > glClearBuffer:(IILjava/nio/IntBuffer;)V --> glClearBufferiv:(IILjava/nio/IntBuffer;)V
+ + glClearBufferfi:(IIFI)V
+ > glClearBufferu:(IILjava/nio/IntBuffer;)V --> glClearBufferuiv:(IILjava/nio/IntBuffer;)V
+ + glColorMaski:(IZZZZ)V
+ + glDeleteFramebuffers:(I)V
+ + glDeleteFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glDeleteRenderbuffers:(I)V
+ + glDeleteRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glDeleteVertexArrays:(I)V
+ + glDeleteVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glDisablei:(II)V
+ + glEnablei:(II)V
+ + glEndConditionalRender:()V
+ + glEndTransformFeedback:()V
+ + glFlushMappedBufferRange:(IJJ)V
+ + glFramebufferRenderbuffer:(IIII)V
+ + glFramebufferTexture1D:(IIIII)V
+ + glFramebufferTexture2D:(IIIII)V
+ + glFramebufferTexture3D:(IIIIII)V
+ + glFramebufferTextureLayer:(IIIII)V
+ + glGenFramebuffers:()I
+ + glGenFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glGenRenderbuffers:()I
+ + glGenRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glGenVertexArrays:()I
+ + glGenVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glGenerateMipmap:(I)V
+ - glGetBoolean:(II)Z
+ > glGetBoolean:(IILjava/nio/ByteBuffer;)V --> glGetBooleani_v:(IILjava/nio/ByteBuffer;)V
+ + glGetFragDataLocation:(ILjava/lang/CharSequence;)I
+ + glGetFragDataLocation:(ILjava/nio/ByteBuffer;)I
+ - glGetFramebufferAttachmentParameter:(III)I
+ > glGetFramebufferAttachmentParameter:(IIILjava/nio/IntBuffer;)V --> glGetFramebufferAttachmentParameteriv:(IIILjava/nio/IntBuffer;)V
+ + glGetFramebufferAttachmentParameteri:(III)I
+ - glGetInteger:(II)I
+ > glGetInteger:(IILjava/nio/IntBuffer;)V --> glGetIntegeri_v:(IILjava/nio/IntBuffer;)V
+ - glGetRenderbufferParameter:(II)I
+ > glGetRenderbufferParameter:(IILjava/nio/IntBuffer;)V --> glGetRenderbufferParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetRenderbufferParameteri:(II)I
+ + glGetStringi:(II)Ljava/lang/String;
+ > glGetTexParameterI:(IILjava/nio/IntBuffer;)V --> glGetTexParameterIiv:(IILjava/nio/IntBuffer;)V
+ + glGetTexParameterIi:(II)I
+ > glGetTexParameterIu:(IILjava/nio/IntBuffer;)V --> glGetTexParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glGetTexParameterIui:(II)I
+ + glGetTransformFeedbackVarying:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetTransformFeedbackVarying:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetUniformu:(IILjava/nio/IntBuffer;)V --> glGetUniformuiv:(IILjava/nio/IntBuffer;)V
+ > glGetVertexAttribI:(IILjava/nio/IntBuffer;)V --> glGetVertexAttribIiv:(IILjava/nio/IntBuffer;)V
+ > glGetVertexAttribIu:(IILjava/nio/IntBuffer;)V --> glGetVertexAttribIuiv:(IILjava/nio/IntBuffer;)V
+ + glIsEnabledi:(II)Z
+ + glIsFramebuffer:(I)Z
+ + glIsRenderbuffer:(I)Z
+ + glIsVertexArray:(I)Z
+ + glMapBufferRange:(IJJILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glRenderbufferStorage:(IIII)V
+ + glRenderbufferStorageMultisample:(IIIII)V
+ > glTexParameterI:(IILjava/nio/IntBuffer;)V --> glTexParameterIiv:(IILjava/nio/IntBuffer;)V
+ + glTexParameterIi:(III)V
+ > glTexParameterIu:(IILjava/nio/IntBuffer;)V --> glTexParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glTexParameterIui:(III)V
+ - glTransformFeedbackVaryings:(IILjava/nio/ByteBuffer;I)V
+ + glTransformFeedbackVaryings:(I[Ljava/lang/CharSequence;I)V
+ > glUniform1u:(ILjava/nio/IntBuffer;)V --> glUniform1uiv:(ILjava/nio/IntBuffer;)V
+ + glUniform1ui:(II)V
+ > glUniform2u:(ILjava/nio/IntBuffer;)V --> glUniform2uiv:(ILjava/nio/IntBuffer;)V
+ + glUniform2ui:(III)V
+ > glUniform3u:(ILjava/nio/IntBuffer;)V --> glUniform3uiv:(ILjava/nio/IntBuffer;)V
+ + glUniform3ui:(IIII)V
+ > glUniform4u:(ILjava/nio/IntBuffer;)V --> glUniform4uiv:(ILjava/nio/IntBuffer;)V
+ + glUniform4ui:(IIIII)V
+ > glVertexAttribI1:(ILjava/nio/IntBuffer;)V --> glVertexAttribI1iv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI1i:(II)V
+ > glVertexAttribI1u:(ILjava/nio/IntBuffer;)V --> glVertexAttribI1uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI1ui:(II)V
+ > glVertexAttribI2:(ILjava/nio/IntBuffer;)V --> glVertexAttribI2iv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI2i:(III)V
+ > glVertexAttribI2u:(ILjava/nio/IntBuffer;)V --> glVertexAttribI2uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI2ui:(III)V
+ > glVertexAttribI3:(ILjava/nio/IntBuffer;)V --> glVertexAttribI3iv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI3i:(IIII)V
+ > glVertexAttribI3u:(ILjava/nio/IntBuffer;)V --> glVertexAttribI3uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexAttribI3ui:(IIII)V
+ > glVertexAttribI4:(ILjava/nio/ByteBuffer;)V --> glVertexAttribI4bv:(ILjava/nio/ByteBuffer;)V
+ > glVertexAttribI4:(ILjava/nio/IntBuffer;)V --> glVertexAttribI4iv:(ILjava/nio/IntBuffer;)V
+ > glVertexAttribI4:(ILjava/nio/ShortBuffer;)V --> glVertexAttribI4sv:(ILjava/nio/ShortBuffer;)V
+ + glVertexAttribI4i:(IIIII)V
+ > glVertexAttribI4u:(ILjava/nio/ByteBuffer;)V --> glVertexAttribI4ubv:(ILjava/nio/ByteBuffer;)V
+ > glVertexAttribI4u:(ILjava/nio/IntBuffer;)V --> glVertexAttribI4uiv:(ILjava/nio/IntBuffer;)V
+ > glVertexAttribI4u:(ILjava/nio/ShortBuffer;)V --> glVertexAttribI4usv:(ILjava/nio/ShortBuffer;)V
+ + glVertexAttribI4ui:(IIIII)V
+ + glVertexAttribIPointer:(IIIIJ)V
+ + glVertexAttribIPointer:(IIIILjava/nio/ByteBuffer;)V
+ + glVertexAttribIPointer:(IIIILjava/nio/IntBuffer;)V
+ + glVertexAttribIPointer:(IIIILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/GL31
+ + glCopyBufferSubData:(IIJJJ)V
+ + glDrawArraysInstanced:(IIII)V
+ + glDrawElementsInstanced:(IIIJI)V
+ + glDrawElementsInstanced:(ILjava/nio/ByteBuffer;I)V
+ + glDrawElementsInstanced:(ILjava/nio/IntBuffer;I)V
+ + glDrawElementsInstanced:(ILjava/nio/ShortBuffer;I)V
+ - glGetActiveUniformBlock:(III)I
+ > glGetActiveUniformBlock:(IIILjava/nio/IntBuffer;)V --> glGetActiveUniformBlockiv:(IIILjava/nio/IntBuffer;)V
+ + glGetActiveUniformBlockName:(III)Ljava/lang/String;
+ + glGetActiveUniformBlockName:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetActiveUniformBlocki:(III)I
+ + glGetActiveUniformName:(III)Ljava/lang/String;
+ + glGetActiveUniformName:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveUniforms:(III)I
+ > glGetActiveUniforms:(ILjava/nio/IntBuffer;ILjava/nio/IntBuffer;)V --> glGetActiveUniformsiv:(ILjava/nio/IntBuffer;ILjava/nio/IntBuffer;)V
+ + glGetActiveUniformsi:(III)I
+ + glGetUniformBlockIndex:(ILjava/lang/CharSequence;)I
+ + glGetUniformBlockIndex:(ILjava/nio/ByteBuffer;)I
+ - glGetUniformIndices:(ILjava/nio/ByteBuffer;Ljava/nio/IntBuffer;)V
+ + glGetUniformIndices:(I[Ljava/lang/CharSequence;Ljava/nio/IntBuffer;)V
+ + glPrimitiveRestartIndex:(I)V
+ + glTexBuffer:(III)V
+ + glUniformBlockBinding:(III)V
+org/lwjgl/opengl/GL32
+java.lang.UnsupportedOperationException: org.lwjgl.opengl.GLSync -> long in org/lwjgl/opengl/GL32 : glClientWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)I
+ - glClientWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)I
+java.lang.UnsupportedOperationException: org.lwjgl.opengl.GLSync -> long in org/lwjgl/opengl/GL32 : glDeleteSync:(Lorg/lwjgl/opengl/GLSync;)V
+ - glDeleteSync:(Lorg/lwjgl/opengl/GLSync;)V
+ + glDrawElementsBaseVertex:(IIIJI)V
+ + glDrawElementsBaseVertex:(ILjava/nio/ByteBuffer;I)V
+ + glDrawElementsBaseVertex:(ILjava/nio/IntBuffer;I)V
+ + glDrawElementsBaseVertex:(ILjava/nio/ShortBuffer;I)V
+ + glDrawElementsInstancedBaseVertex:(IIIJII)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/ByteBuffer;II)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/IntBuffer;II)V
+ + glDrawElementsInstancedBaseVertex:(ILjava/nio/ShortBuffer;II)V
+ + glDrawRangeElementsBaseVertex:(IIIIIJI)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/ByteBuffer;I)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/IntBuffer;I)V
+ + glDrawRangeElementsBaseVertex:(IIILjava/nio/ShortBuffer;I)V
+ + glFramebufferTexture:(IIII)V
+ - glGetBufferParameter:(II)J
+ > glGetBufferParameter:(IILjava/nio/LongBuffer;)V --> glGetBufferParameteri64v:(IILjava/nio/LongBuffer;)V
+ + glGetBufferParameteri64:(II)J
+ + glGetInteger64:(I)J
+ - glGetInteger64:(II)J
+ > glGetInteger64:(IILjava/nio/LongBuffer;)V --> glGetInteger64i_v:(IILjava/nio/LongBuffer;)V
+ > glGetInteger64:(ILjava/nio/LongBuffer;)V --> glGetInteger64v:(ILjava/nio/LongBuffer;)V
+ > glGetMultisample:(IILjava/nio/FloatBuffer;)V --> glGetMultisamplefv:(IILjava/nio/FloatBuffer;)V
+ - glGetSync:(Lorg/lwjgl/opengl/GLSync;I)I
+java.lang.UnsupportedOperationException: org.lwjgl.opengl.GLSync -> long in org/lwjgl/opengl/GL32 : glGetSync:(Lorg/lwjgl/opengl/GLSync;ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetSync:(Lorg/lwjgl/opengl/GLSync;ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ - glGetSynci:(Lorg/lwjgl/opengl/GLSync;I)I
+java.lang.UnsupportedOperationException: org.lwjgl.opengl.GLSync -> long in org/lwjgl/opengl/GL32 : glIsSync:(Lorg/lwjgl/opengl/GLSync;)Z
+ - glIsSync:(Lorg/lwjgl/opengl/GLSync;)Z
+ + glProvokingVertex:(I)V
+ + glSampleMaski:(II)V
+ + glTexImage2DMultisample:(IIIIIZ)V
+ + glTexImage3DMultisample:(IIIIIIZ)V
+java.lang.UnsupportedOperationException: org.lwjgl.opengl.GLSync -> long in org/lwjgl/opengl/GL32 : glWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)V
+ - glWaitSync:(Lorg/lwjgl/opengl/GLSync;IJ)V
+org/lwjgl/opengl/GL33
+ + glBindFragDataLocationIndexed:(IIILjava/lang/CharSequence;)V
+ + glBindFragDataLocationIndexed:(IIILjava/nio/ByteBuffer;)V
+ + glBindSampler:(II)V
+ > glColorP3u:(ILjava/nio/IntBuffer;)V --> glColorP3uiv:(ILjava/nio/IntBuffer;)V
+ + glColorP3ui:(II)V
+ > glColorP4u:(ILjava/nio/IntBuffer;)V --> glColorP4uiv:(ILjava/nio/IntBuffer;)V
+ + glColorP4ui:(II)V
+ + glDeleteSamplers:(I)V
+ + glDeleteSamplers:(Ljava/nio/IntBuffer;)V
+ + glGenSamplers:()I
+ + glGenSamplers:(Ljava/nio/IntBuffer;)V
+ + glGetFragDataIndex:(ILjava/lang/CharSequence;)I
+ + glGetFragDataIndex:(ILjava/nio/ByteBuffer;)I
+ - glGetQueryObject:(II)J
+ > glGetQueryObject:(IILjava/nio/LongBuffer;)V --> glGetQueryObjecti64v:(IILjava/nio/LongBuffer;)V
+ + glGetQueryObjecti64:(II)J
+ - glGetQueryObjectu:(II)J
+ > glGetQueryObjectu:(IILjava/nio/LongBuffer;)V --> glGetQueryObjectui64v:(IILjava/nio/LongBuffer;)V
+ + glGetQueryObjectui64:(II)J
+ > glGetSamplerParameter:(IILjava/nio/FloatBuffer;)V --> glGetSamplerParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetSamplerParameter:(IILjava/nio/IntBuffer;)V --> glGetSamplerParameteriv:(IILjava/nio/IntBuffer;)V
+ > glGetSamplerParameterI:(IILjava/nio/IntBuffer;)V --> glGetSamplerParameterIiv:(IILjava/nio/IntBuffer;)V
+ + glGetSamplerParameterIi:(II)I
+ > glGetSamplerParameterIu:(IILjava/nio/IntBuffer;)V --> glGetSamplerParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glGetSamplerParameterIui:(II)I
+ + glGetSamplerParameterf:(II)F
+ + glGetSamplerParameteri:(II)I
+ + glIsSampler:(I)Z
+ > glMultiTexCoordP1u:(IILjava/nio/IntBuffer;)V --> glMultiTexCoordP1uiv:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP1ui:(III)V
+ > glMultiTexCoordP2u:(IILjava/nio/IntBuffer;)V --> glMultiTexCoordP2uiv:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP2ui:(III)V
+ > glMultiTexCoordP3u:(IILjava/nio/IntBuffer;)V --> glMultiTexCoordP3uiv:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP3ui:(III)V
+ > glMultiTexCoordP4u:(IILjava/nio/IntBuffer;)V --> glMultiTexCoordP4uiv:(IILjava/nio/IntBuffer;)V
+ + glMultiTexCoordP4ui:(III)V
+ > glNormalP3u:(ILjava/nio/IntBuffer;)V --> glNormalP3uiv:(ILjava/nio/IntBuffer;)V
+ + glNormalP3ui:(II)V
+ + glQueryCounter:(II)V
+ > glSamplerParameter:(IILjava/nio/FloatBuffer;)V --> glSamplerParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glSamplerParameter:(IILjava/nio/IntBuffer;)V --> glSamplerParameteriv:(IILjava/nio/IntBuffer;)V
+ > glSamplerParameterI:(IILjava/nio/IntBuffer;)V --> glSamplerParameterIiv:(IILjava/nio/IntBuffer;)V
+ > glSamplerParameterIu:(IILjava/nio/IntBuffer;)V --> glSamplerParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glSamplerParameterf:(IIF)V
+ + glSamplerParameteri:(III)V
+ > glSecondaryColorP3u:(ILjava/nio/IntBuffer;)V --> glSecondaryColorP3uiv:(ILjava/nio/IntBuffer;)V
+ + glSecondaryColorP3ui:(II)V
+ > glTexCoordP1u:(ILjava/nio/IntBuffer;)V --> glTexCoordP1uiv:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP1ui:(II)V
+ > glTexCoordP2u:(ILjava/nio/IntBuffer;)V --> glTexCoordP2uiv:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP2ui:(II)V
+ > glTexCoordP3u:(ILjava/nio/IntBuffer;)V --> glTexCoordP3uiv:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP3ui:(II)V
+ > glTexCoordP4u:(ILjava/nio/IntBuffer;)V --> glTexCoordP4uiv:(ILjava/nio/IntBuffer;)V
+ + glTexCoordP4ui:(II)V
+ + glVertexAttribDivisor:(II)V
+ > glVertexAttribP1u:(IIZLjava/nio/IntBuffer;)V --> glVertexAttribP1uiv:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP1ui:(IIZI)V
+ > glVertexAttribP2u:(IIZLjava/nio/IntBuffer;)V --> glVertexAttribP2uiv:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP2ui:(IIZI)V
+ > glVertexAttribP3u:(IIZLjava/nio/IntBuffer;)V --> glVertexAttribP3uiv:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP3ui:(IIZI)V
+ > glVertexAttribP4u:(IIZLjava/nio/IntBuffer;)V --> glVertexAttribP4uiv:(IIZLjava/nio/IntBuffer;)V
+ + glVertexAttribP4ui:(IIZI)V
+ > glVertexP2u:(ILjava/nio/IntBuffer;)V --> glVertexP2uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexP2ui:(II)V
+ > glVertexP3u:(ILjava/nio/IntBuffer;)V --> glVertexP3uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexP3ui:(II)V
+ > glVertexP4u:(ILjava/nio/IntBuffer;)V --> glVertexP4uiv:(ILjava/nio/IntBuffer;)V
+ + glVertexP4ui:(II)V
+org/lwjgl/opengl/GL40
+ + glBeginQueryIndexed:(III)V
+ + glBindTransformFeedback:(II)V
+ + glBlendEquationSeparatei:(III)V
+ + glBlendEquationi:(II)V
+ + glBlendFuncSeparatei:(IIIII)V
+ + glBlendFunci:(III)V
+ + glDeleteTransformFeedbacks:(I)V
+ + glDeleteTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glDrawArraysIndirect:(IJ)V
+ + glDrawArraysIndirect:(ILjava/nio/ByteBuffer;)V
+ + glDrawArraysIndirect:(ILjava/nio/IntBuffer;)V
+ + glDrawElementsIndirect:(IIJ)V
+ + glDrawElementsIndirect:(IILjava/nio/ByteBuffer;)V
+ + glDrawElementsIndirect:(IILjava/nio/IntBuffer;)V
+ + glDrawTransformFeedback:(II)V
+ + glDrawTransformFeedbackStream:(III)V
+ + glEndQueryIndexed:(II)V
+ + glGenTransformFeedbacks:()I
+ + glGenTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glGetActiveSubroutineName:(IIII)Ljava/lang/String;
+ + glGetActiveSubroutineName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveSubroutineUniform:(IIII)I
+ > glGetActiveSubroutineUniform:(IIIILjava/nio/IntBuffer;)V --> glGetActiveSubroutineUniformiv:(IIIILjava/nio/IntBuffer;)V
+ + glGetActiveSubroutineUniformName:(IIII)Ljava/lang/String;
+ + glGetActiveSubroutineUniformName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetActiveSubroutineUniformi:(IIII)I
+ - glGetProgramStage:(III)I
+ > glGetProgramStage:(IIILjava/nio/IntBuffer;)V --> glGetProgramStageiv:(IIILjava/nio/IntBuffer;)V
+ + glGetProgramStagei:(III)I
+ - glGetQueryIndexed:(III)I
+ > glGetQueryIndexed:(IIILjava/nio/IntBuffer;)V --> glGetQueryIndexediv:(IIILjava/nio/IntBuffer;)V
+ + glGetQueryIndexedi:(III)I
+ + glGetSubroutineIndex:(IILjava/lang/CharSequence;)I
+ + glGetSubroutineIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetSubroutineUniformLocation:(IILjava/lang/CharSequence;)I
+ + glGetSubroutineUniformLocation:(IILjava/nio/ByteBuffer;)I
+ > glGetUniform:(IILjava/nio/DoubleBuffer;)V --> glGetUniformdv:(IILjava/nio/DoubleBuffer;)V
+ - glGetUniformSubroutineu:(II)I
+ > glGetUniformSubroutineu:(IILjava/nio/IntBuffer;)V --> glGetUniformSubroutineuiv:(IILjava/nio/IntBuffer;)V
+ + glGetUniformSubroutineui:(II)I
+ + glIsTransformFeedback:(I)Z
+ + glMinSampleShading:(F)V
+ > glPatchParameter:(ILjava/nio/FloatBuffer;)V --> glPatchParameterfv:(ILjava/nio/FloatBuffer;)V
+ + glPatchParameteri:(II)V
+ + glPauseTransformFeedback:()V
+ + glResumeTransformFeedback:()V
+ > glUniform1:(ILjava/nio/DoubleBuffer;)V --> glUniform1dv:(ILjava/nio/DoubleBuffer;)V
+ + glUniform1d:(ID)V
+ > glUniform2:(ILjava/nio/DoubleBuffer;)V --> glUniform2dv:(ILjava/nio/DoubleBuffer;)V
+ + glUniform2d:(IDD)V
+ > glUniform3:(ILjava/nio/DoubleBuffer;)V --> glUniform3dv:(ILjava/nio/DoubleBuffer;)V
+ + glUniform3d:(IDDD)V
+ > glUniform4:(ILjava/nio/DoubleBuffer;)V --> glUniform4dv:(ILjava/nio/DoubleBuffer;)V
+ + glUniform4d:(IDDDD)V
+ > glUniformMatrix2:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix2dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix2x3:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix2x3dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix2x4:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix2x4dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix3:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix3dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix3x2:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix3x2dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix3x4:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix3x4dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix4:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix4dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix4x2:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix4x2dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformMatrix4x3:(IZLjava/nio/DoubleBuffer;)V --> glUniformMatrix4x3dv:(IZLjava/nio/DoubleBuffer;)V
+ > glUniformSubroutinesu:(ILjava/nio/IntBuffer;)V --> glUniformSubroutinesuiv:(ILjava/nio/IntBuffer;)V
+org/lwjgl/opengl/GL41
+ + glActiveShaderProgram:(II)V
+ + glBindProgramPipeline:(I)V
+ + glClearDepthf:(F)V
+ - glCreateShaderProgram:(IILjava/nio/ByteBuffer;)I
+ > glCreateShaderProgram:(ILjava/lang/CharSequence;)I --> glCreateShaderProgramv:(ILjava/lang/CharSequence;)I
+ - glCreateShaderProgram:(I[Ljava/lang/CharSequence;)I
+ - glCreateShaderProgram:(I[Ljava/nio/ByteBuffer;)I
+ + glDeleteProgramPipelines:(I)V
+ + glDeleteProgramPipelines:(Ljava/nio/IntBuffer;)V
+ > glDepthRangeArray:(ILjava/nio/DoubleBuffer;)V --> glDepthRangeArrayv:(ILjava/nio/DoubleBuffer;)V
+ + glDepthRangeIndexed:(IDD)V
+ + glDepthRangef:(FF)V
+ + glGenProgramPipelines:()I
+ + glGenProgramPipelines:(Ljava/nio/IntBuffer;)V
+ - glGetDouble:(II)D
+ > glGetDouble:(IILjava/nio/DoubleBuffer;)V --> glGetDoublei_v:(IILjava/nio/DoubleBuffer;)V
+ - glGetFloat:(II)F
+ > glGetFloat:(IILjava/nio/FloatBuffer;)V --> glGetFloati_v:(IILjava/nio/FloatBuffer;)V
+ + glGetProgramBinary:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetProgramPipeline:(IILjava/nio/IntBuffer;)V --> glGetProgramPipelineiv:(IILjava/nio/IntBuffer;)V
+ + glGetProgramPipelineInfoLog:(II)Ljava/lang/String;
+ + glGetProgramPipelineInfoLog:(ILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glGetProgramPipelinei:(II)I
+ + glGetShaderPrecisionFormat:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ > glGetVertexAttribL:(IILjava/nio/DoubleBuffer;)V --> glGetVertexAttribLdv:(IILjava/nio/DoubleBuffer;)V
+ + glIsProgramPipeline:(I)Z
+ + glProgramBinary:(IILjava/nio/ByteBuffer;)V
+ + glProgramParameteri:(III)V
+ > glProgramUniform1:(IILjava/nio/DoubleBuffer;)V --> glProgramUniform1dv:(IILjava/nio/DoubleBuffer;)V
+ > glProgramUniform1:(IILjava/nio/FloatBuffer;)V --> glProgramUniform1fv:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform1:(IILjava/nio/IntBuffer;)V --> glProgramUniform1iv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1d:(IID)V
+ + glProgramUniform1f:(IIF)V
+ + glProgramUniform1i:(III)V
+ > glProgramUniform1u:(IILjava/nio/IntBuffer;)V --> glProgramUniform1uiv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform1ui:(III)V
+ > glProgramUniform2:(IILjava/nio/DoubleBuffer;)V --> glProgramUniform2dv:(IILjava/nio/DoubleBuffer;)V
+ > glProgramUniform2:(IILjava/nio/FloatBuffer;)V --> glProgramUniform2fv:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform2:(IILjava/nio/IntBuffer;)V --> glProgramUniform2iv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2d:(IIDD)V
+ + glProgramUniform2f:(IIFF)V
+ + glProgramUniform2i:(IIII)V
+ > glProgramUniform2u:(IILjava/nio/IntBuffer;)V --> glProgramUniform2uiv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform2ui:(IIII)V
+ > glProgramUniform3:(IILjava/nio/DoubleBuffer;)V --> glProgramUniform3dv:(IILjava/nio/DoubleBuffer;)V
+ > glProgramUniform3:(IILjava/nio/FloatBuffer;)V --> glProgramUniform3fv:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform3:(IILjava/nio/IntBuffer;)V --> glProgramUniform3iv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3d:(IIDDD)V
+ + glProgramUniform3f:(IIFFF)V
+ + glProgramUniform3i:(IIIII)V
+ > glProgramUniform3u:(IILjava/nio/IntBuffer;)V --> glProgramUniform3uiv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform3ui:(IIIII)V
+ > glProgramUniform4:(IILjava/nio/DoubleBuffer;)V --> glProgramUniform4dv:(IILjava/nio/DoubleBuffer;)V
+ > glProgramUniform4:(IILjava/nio/FloatBuffer;)V --> glProgramUniform4fv:(IILjava/nio/FloatBuffer;)V
+ > glProgramUniform4:(IILjava/nio/IntBuffer;)V --> glProgramUniform4iv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4d:(IIDDDD)V
+ + glProgramUniform4f:(IIFFFF)V
+ + glProgramUniform4i:(IIIIII)V
+ > glProgramUniform4u:(IILjava/nio/IntBuffer;)V --> glProgramUniform4uiv:(IILjava/nio/IntBuffer;)V
+ + glProgramUniform4ui:(IIIIII)V
+ > glProgramUniformMatrix2:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix2dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix2:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix2x3:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix2x3dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix2x3:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2x3fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix2x4:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix2x4dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix2x4:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix2x4fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix3dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix3:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3x2:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix3x2dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix3x2:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3x2fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix3x4:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix3x4dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix3x4:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix3x4fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix4dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix4:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4x2:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix4x2dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix4x2:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4x2fv:(IIZLjava/nio/FloatBuffer;)V
+ > glProgramUniformMatrix4x3:(IIZLjava/nio/DoubleBuffer;)V --> glProgramUniformMatrix4x3dv:(IIZLjava/nio/DoubleBuffer;)V
+ > glProgramUniformMatrix4x3:(IIZLjava/nio/FloatBuffer;)V --> glProgramUniformMatrix4x3fv:(IIZLjava/nio/FloatBuffer;)V
+ + glReleaseShaderCompiler:()V
+ > glScissorArray:(ILjava/nio/IntBuffer;)V --> glScissorArrayv:(ILjava/nio/IntBuffer;)V
+ + glScissorIndexed:(IIIII)V
+ > glScissorIndexed:(ILjava/nio/IntBuffer;)V --> glScissorIndexedv:(ILjava/nio/IntBuffer;)V
+ + glShaderBinary:(Ljava/nio/IntBuffer;ILjava/nio/ByteBuffer;)V
+ + glUseProgramStages:(III)V
+ + glValidateProgramPipeline:(I)V
+ > glVertexAttribL1:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL1dv:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL1d:(ID)V
+ > glVertexAttribL2:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL2dv:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL2d:(IDD)V
+ > glVertexAttribL3:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL3dv:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL3d:(IDDD)V
+ > glVertexAttribL4:(ILjava/nio/DoubleBuffer;)V --> glVertexAttribL4dv:(ILjava/nio/DoubleBuffer;)V
+ + glVertexAttribL4d:(IDDDD)V
+ - glVertexAttribLPointer:(IIIJ)V
+ + glVertexAttribLPointer:(IIILjava/nio/DoubleBuffer;)V
+ > glViewportArray:(ILjava/nio/FloatBuffer;)V --> glViewportArrayv:(ILjava/nio/FloatBuffer;)V
+ > glViewportIndexed:(ILjava/nio/FloatBuffer;)V --> glViewportIndexedfv:(ILjava/nio/FloatBuffer;)V
+ + glViewportIndexedf:(IFFFF)V
+org/lwjgl/opengl/GL42
+ + glBindImageTexture:(IIIZIII)V
+ + glDrawArraysInstancedBaseInstance:(IIIII)V
+ + glDrawElementsInstancedBaseInstance:(IIIJII)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/ByteBuffer;II)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/IntBuffer;II)V
+ + glDrawElementsInstancedBaseInstance:(ILjava/nio/ShortBuffer;II)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(IIIJIII)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/ByteBuffer;III)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/IntBuffer;III)V
+ + glDrawElementsInstancedBaseVertexBaseInstance:(ILjava/nio/ShortBuffer;III)V
+ + glDrawTransformFeedbackInstanced:(III)V
+ + glDrawTransformFeedbackStreamInstanced:(IIII)V
+ - glGetActiveAtomicCounterBuffer:(III)I
+ > glGetActiveAtomicCounterBuffer:(IIILjava/nio/IntBuffer;)V --> glGetActiveAtomicCounterBufferiv:(IIILjava/nio/IntBuffer;)V
+ - glGetInternalformat:(III)I
+ > glGetInternalformat:(IIILjava/nio/IntBuffer;)V --> glGetInternalformativ:(IIILjava/nio/IntBuffer;)V
+ + glMemoryBarrier:(I)V
+ + glTexStorage1D:(IIII)V
+ + glTexStorage2D:(IIIII)V
+ + glTexStorage3D:(IIIIII)V
+org/lwjgl/opengl/GL43
+ + glBindVertexBuffer:(IIJI)V
+ + glClearBufferData:(IIIILjava/nio/ByteBuffer;)V
+ + glClearBufferSubData:(IIJJIILjava/nio/ByteBuffer;)V
+ + glCopyImageSubData:(IIIIIIIIIIIIIII)V
+ - glDebugMessageCallback:(Lorg/lwjgl/opengl/KHRDebugCallback;)V
+ + glDebugMessageControl:(IIILjava/nio/IntBuffer;Z)V
+ + glDebugMessageInsert:(IIIILjava/lang/CharSequence;)V
+ + glDebugMessageInsert:(IIIILjava/nio/ByteBuffer;)V
+ + glDispatchCompute:(III)V
+ + glDispatchComputeIndirect:(J)V
+ + glFramebufferParameteri:(III)V
+ + glGetDebugMessageLog:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)I
+ > glGetFramebufferParameter:(IILjava/nio/IntBuffer;)V --> glGetFramebufferParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetFramebufferParameteri:(II)I
+ > glGetInternalformat:(IIILjava/nio/LongBuffer;)V --> glGetInternalformati64v:(IIILjava/nio/LongBuffer;)V
+ + glGetInternalformati64:(III)J
+ + glGetObjectLabel:(III)Ljava/lang/String;
+ + glGetObjectLabel:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;I)Ljava/lang/String;
+ - glGetObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ > glGetProgramInterface:(IIILjava/nio/IntBuffer;)V --> glGetProgramInterfaceiv:(IIILjava/nio/IntBuffer;)V
+ + glGetProgramInterfacei:(III)I
+ > glGetProgramResource:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V --> glGetProgramResourceiv:(IIILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;)V
+ + glGetProgramResourceIndex:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceLocation:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceLocation:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceLocationIndex:(IILjava/lang/CharSequence;)I
+ + glGetProgramResourceLocationIndex:(IILjava/nio/ByteBuffer;)I
+ + glGetProgramResourceName:(IIII)Ljava/lang/String;
+ + glGetProgramResourceName:(IIILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glInvalidateBufferData:(I)V
+ + glInvalidateBufferSubData:(IJJ)V
+ + glInvalidateFramebuffer:(ILjava/nio/IntBuffer;)V
+ + glInvalidateSubFramebuffer:(ILjava/nio/IntBuffer;IIII)V
+ + glInvalidateTexImage:(II)V
+ + glInvalidateTexSubImage:(IIIIIIII)V
+ + glMultiDrawArraysIndirect:(IJII)V
+ + glMultiDrawArraysIndirect:(ILjava/nio/ByteBuffer;II)V
+ + glMultiDrawArraysIndirect:(ILjava/nio/IntBuffer;II)V
+ + glMultiDrawElementsIndirect:(IIJII)V
+ + glMultiDrawElementsIndirect:(IILjava/nio/ByteBuffer;II)V
+ + glMultiDrawElementsIndirect:(IILjava/nio/IntBuffer;II)V
+ + glObjectLabel:(IILjava/lang/CharSequence;)V
+ + glObjectLabel:(IILjava/nio/ByteBuffer;)V
+java.lang.UnsupportedOperationException: org.lwjgl.PointerWrapper -> long in org/lwjgl/opengl/GL43 : glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/lang/CharSequence;)V
+ - glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/lang/CharSequence;)V
+java.lang.UnsupportedOperationException: org.lwjgl.PointerWrapper -> long in org/lwjgl/opengl/GL43 : glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/nio/ByteBuffer;)V
+ - glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/nio/ByteBuffer;)V
+ + glPopDebugGroup:()V
+ + glPushDebugGroup:(IILjava/lang/CharSequence;)V
+ + glPushDebugGroup:(IILjava/nio/ByteBuffer;)V
+ + glShaderStorageBlockBinding:(III)V
+ + glTexBufferRange:(IIIJJ)V
+ + glTexStorage2DMultisample:(IIIIIZ)V
+ + glTexStorage3DMultisample:(IIIIIIZ)V
+ + glTextureView:(IIIIIIII)V
+ + glVertexAttribBinding:(II)V
+ + glVertexAttribFormat:(IIIZI)V
+ + glVertexAttribIFormat:(IIII)V
+ + glVertexAttribLFormat:(IIII)V
+ + glVertexBindingDivisor:(II)V
+org/lwjgl/opengl/GL44
+ - glBindBuffersBase:(IIILjava/nio/IntBuffer;)V
+ - glBindBuffersRange:(IIILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Lorg/lwjgl/PointerBuffer;)V
+ - glBindImageTextures:(IILjava/nio/IntBuffer;)V
+ - glBindSamplers:(IILjava/nio/IntBuffer;)V
+ - glBindTextures:(IILjava/nio/IntBuffer;)V
+ - glBindVertexBuffers:(IILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Ljava/nio/IntBuffer;)V
+ + glBufferStorage:(IJI)V
+ + glBufferStorage:(ILjava/nio/ByteBuffer;I)V
+ + glBufferStorage:(ILjava/nio/DoubleBuffer;I)V
+ + glBufferStorage:(ILjava/nio/FloatBuffer;I)V
+ + glBufferStorage:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/GL44 : glBufferStorage:(ILjava/nio/LongBuffer;I)V
+ - glBufferStorage:(ILjava/nio/LongBuffer;I)V
+ + glBufferStorage:(ILjava/nio/ShortBuffer;I)V
+ + glClearTexImage:(IIIILjava/nio/ByteBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/DoubleBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/FloatBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/IntBuffer;)V
+ + glClearTexImage:(IIIILjava/nio/ShortBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glClearTexSubImage:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+org/lwjgl/opengl/GL45
+ + glBindTextureUnit:(II)V
+ + glBlitNamedFramebuffer:(IIIIIIIIIIII)V
+ + glCheckNamedFramebufferStatus:(II)I
+ + glClearNamedBufferData:(IIIILjava/nio/ByteBuffer;)V
+ + glClearNamedBufferSubData:(IIJJIILjava/nio/ByteBuffer;)V
+ > glClearNamedFramebuffer:(IIILjava/nio/FloatBuffer;)V --> glClearNamedFramebufferfv:(IIILjava/nio/FloatBuffer;)V
+ > glClearNamedFramebuffer:(IIILjava/nio/IntBuffer;)V --> glClearNamedFramebufferiv:(IIILjava/nio/IntBuffer;)V
+ - glClearNamedFramebufferfi:(IIFI)V
+ > glClearNamedFramebufferu:(IIILjava/nio/IntBuffer;)V --> glClearNamedFramebufferuiv:(IIILjava/nio/IntBuffer;)V
+ + glClipControl:(II)V
+ + glCompressedTextureSubImage1D:(IIIIIIJ)V
+ + glCompressedTextureSubImage1D:(IIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage2D:(IIIIIIIIJ)V
+ + glCompressedTextureSubImage2D:(IIIIIIILjava/nio/ByteBuffer;)V
+ + glCompressedTextureSubImage3D:(IIIIIIIIIIJ)V
+ + glCopyNamedBufferSubData:(IIJJJ)V
+ + glCopyTextureSubImage1D:(IIIIII)V
+ + glCopyTextureSubImage2D:(IIIIIIII)V
+ + glCopyTextureSubImage3D:(IIIIIIIII)V
+ + glCreateBuffers:()I
+ + glCreateBuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateFramebuffers:()I
+ + glCreateFramebuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateProgramPipelines:()I
+ + glCreateProgramPipelines:(Ljava/nio/IntBuffer;)V
+ + glCreateQueries:(I)I
+ + glCreateQueries:(ILjava/nio/IntBuffer;)V
+ + glCreateRenderbuffers:()I
+ + glCreateRenderbuffers:(Ljava/nio/IntBuffer;)V
+ + glCreateSamplers:()I
+ + glCreateSamplers:(Ljava/nio/IntBuffer;)V
+ + glCreateTextures:(I)I
+ + glCreateTextures:(ILjava/nio/IntBuffer;)V
+ + glCreateTransformFeedbacks:()I
+ + glCreateTransformFeedbacks:(Ljava/nio/IntBuffer;)V
+ + glCreateVertexArrays:()I
+ + glCreateVertexArrays:(Ljava/nio/IntBuffer;)V
+ + glDisableVertexArrayAttrib:(II)V
+ + glEnableVertexArrayAttrib:(II)V
+ + glFlushMappedNamedBufferRange:(IJJ)V
+ + glGenerateTextureMipmap:(I)V
+ + glGetCompressedTextureImage:(IIIJ)V
+ + glGetCompressedTextureImage:(IILjava/nio/ByteBuffer;)V
+ - glGetCompressedTextureImage:(IILjava/nio/IntBuffer;)V
+ - glGetCompressedTextureImage:(IILjava/nio/ShortBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIIIJ)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glGetCompressedTextureSubImage:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glGetGraphicsResetStatus:()I
+ > glGetNamedBufferParameter:(IILjava/nio/IntBuffer;)V --> glGetNamedBufferParameteriv:(IILjava/nio/IntBuffer;)V
+ > glGetNamedBufferParameter:(IILjava/nio/LongBuffer;)V --> glGetNamedBufferParameteri64v:(IILjava/nio/LongBuffer;)V
+ + glGetNamedBufferParameteri64:(II)J
+ + glGetNamedBufferParameteri:(II)I
+ - glGetNamedBufferPointer:(II)Ljava/nio/ByteBuffer;
+ + glGetNamedBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glGetNamedBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ - glGetNamedFramebufferAttachmentParameter:(III)I
+ > glGetNamedFramebufferAttachmentParameter:(IIILjava/nio/IntBuffer;)V --> glGetNamedFramebufferAttachmentParameteriv:(IIILjava/nio/IntBuffer;)V
+ - glGetNamedFramebufferParameter:(II)I
+ > glGetNamedFramebufferParameter:(IILjava/nio/IntBuffer;)V --> glGetNamedFramebufferParameteriv:(IILjava/nio/IntBuffer;)V
+ - glGetNamedRenderbufferParameter:(II)I
+ > glGetNamedRenderbufferParameter:(IILjava/nio/IntBuffer;)V --> glGetNamedRenderbufferParameteriv:(IILjava/nio/IntBuffer;)V
+ + glGetTextureImage:(IIIIIJ)V
+ + glGetTextureImage:(IIIILjava/nio/ByteBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/DoubleBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/FloatBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/IntBuffer;)V
+ + glGetTextureImage:(IIIILjava/nio/ShortBuffer;)V
+ > glGetTextureLevelParameter:(IIILjava/nio/FloatBuffer;)V --> glGetTextureLevelParameterfv:(IIILjava/nio/FloatBuffer;)V
+ > glGetTextureLevelParameter:(IIILjava/nio/IntBuffer;)V --> glGetTextureLevelParameteriv:(IIILjava/nio/IntBuffer;)V
+ + glGetTextureLevelParameterf:(III)F
+ + glGetTextureLevelParameteri:(III)I
+ > glGetTextureParameter:(IILjava/nio/FloatBuffer;)V --> glGetTextureParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glGetTextureParameter:(IILjava/nio/IntBuffer;)V --> glGetTextureParameteriv:(IILjava/nio/IntBuffer;)V
+ > glGetTextureParameterI:(IILjava/nio/IntBuffer;)V --> glGetTextureParameterIiv:(IILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIi:(II)I
+ > glGetTextureParameterIu:(IILjava/nio/IntBuffer;)V --> glGetTextureParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glGetTextureParameterIui:(II)I
+ + glGetTextureParameterf:(II)F
+ + glGetTextureParameteri:(II)I
+ + glGetTextureSubImage:(IIIIIIIIIIIJ)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glGetTextureSubImage:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+ > glGetTransformFeedback:(IIILjava/nio/IntBuffer;)V --> glGetTransformFeedbacki_v:(IIILjava/nio/IntBuffer;)V
+ > glGetTransformFeedback:(IIILjava/nio/LongBuffer;)V --> glGetTransformFeedbacki64_v:(IIILjava/nio/LongBuffer;)V
+ > glGetTransformFeedback:(IILjava/nio/IntBuffer;)V --> glGetTransformFeedbackiv:(IILjava/nio/IntBuffer;)V
+ + glGetTransformFeedbacki64:(III)J
+ + glGetTransformFeedbacki:(II)I
+ + glGetTransformFeedbacki:(III)I
+ - glGetVertexArray:(II)I
+ > glGetVertexArray:(IILjava/nio/IntBuffer;)V --> glGetVertexArrayiv:(IILjava/nio/IntBuffer;)V
+ + glGetVertexArrayIndexed64i:(III)J
+ > glGetVertexArrayIndexed64i:(IIILjava/nio/LongBuffer;)V --> glGetVertexArrayIndexed64iv:(IIILjava/nio/LongBuffer;)V
+ - glGetVertexArrayIndexed:(III)I
+ > glGetVertexArrayIndexed:(IIILjava/nio/IntBuffer;)V --> glGetVertexArrayIndexediv:(IIILjava/nio/IntBuffer;)V
+ > glGetnUniform:(IILjava/nio/FloatBuffer;)V --> glGetnUniformfv:(IILjava/nio/FloatBuffer;)V
+ > glGetnUniform:(IILjava/nio/IntBuffer;)V --> glGetnUniformiv:(IILjava/nio/IntBuffer;)V
+ > glGetnUniformu:(IILjava/nio/IntBuffer;)V --> glGetnUniformuiv:(IILjava/nio/IntBuffer;)V
+ + glInvalidateNamedFramebufferData:(ILjava/nio/IntBuffer;)V
+ + glInvalidateNamedFramebufferSubData:(ILjava/nio/IntBuffer;IIII)V
+ + glMapNamedBuffer:(IIJLjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBuffer:(IILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMapNamedBufferRange:(IJJILjava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glMemoryBarrierByRegion:(I)V
+ + glNamedBufferData:(IJI)V
+ + glNamedBufferData:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/IntBuffer;I)V
+ + glNamedBufferData:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferStorage:(IJI)V
+ + glNamedBufferStorage:(ILjava/nio/ByteBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/DoubleBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/FloatBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/IntBuffer;I)V
+java.lang.UnsupportedOperationException: java.nio.LongBuffer -> long in org/lwjgl/opengl/GL45 : glNamedBufferStorage:(ILjava/nio/LongBuffer;I)V
+ - glNamedBufferStorage:(ILjava/nio/LongBuffer;I)V
+ + glNamedBufferStorage:(ILjava/nio/ShortBuffer;I)V
+ + glNamedBufferSubData:(IJLjava/nio/ByteBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/DoubleBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/FloatBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/IntBuffer;)V
+ + glNamedBufferSubData:(IJLjava/nio/ShortBuffer;)V
+ + glNamedFramebufferDrawBuffer:(II)V
+ + glNamedFramebufferDrawBuffers:(ILjava/nio/IntBuffer;)V
+ + glNamedFramebufferParameteri:(III)V
+ + glNamedFramebufferReadBuffer:(II)V
+ + glNamedFramebufferRenderbuffer:(IIII)V
+ + glNamedFramebufferTexture:(IIII)V
+ + glNamedFramebufferTextureLayer:(IIIII)V
+ + glNamedRenderbufferStorage:(IIII)V
+ + glNamedRenderbufferStorageMultisample:(IIIII)V
+ + glReadnPixels:(IIIIIIIJ)V
+ + glReadnPixels:(IIIIIILjava/nio/ByteBuffer;)V
+ - glReadnPixels:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/FloatBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/IntBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/ShortBuffer;)V
+ + glTextureBarrier:()V
+ + glTextureBuffer:(III)V
+ + glTextureBufferRange:(IIIJJ)V
+ > glTextureParameter:(IILjava/nio/FloatBuffer;)V --> glTextureParameterfv:(IILjava/nio/FloatBuffer;)V
+ > glTextureParameter:(IILjava/nio/IntBuffer;)V --> glTextureParameteriv:(IILjava/nio/IntBuffer;)V
+ > glTextureParameterI:(IILjava/nio/IntBuffer;)V --> glTextureParameterIiv:(IILjava/nio/IntBuffer;)V
+ > glTextureParameterIu:(IILjava/nio/IntBuffer;)V --> glTextureParameterIuiv:(IILjava/nio/IntBuffer;)V
+ + glTextureParameterf:(IIF)V
+ + glTextureParameteri:(III)V
+ + glTextureStorage1D:(IIII)V
+ + glTextureStorage2D:(IIIII)V
+ + glTextureStorage2DMultisample:(IIIIIZ)V
+ + glTextureStorage3D:(IIIIII)V
+ + glTextureStorage3DMultisample:(IIIIIIZ)V
+ + glTextureSubImage1D:(IIIIIIJ)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage1D:(IIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIIJ)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage2D:(IIIIIIIILjava/nio/ShortBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIIJ)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/ByteBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/DoubleBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/FloatBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/IntBuffer;)V
+ + glTextureSubImage3D:(IIIIIIIIIILjava/nio/ShortBuffer;)V
+ + glTransformFeedbackBufferBase:(III)V
+ + glTransformFeedbackBufferRange:(IIIJJ)V
+ + glUnmapNamedBuffer:(I)Z
+ + glVertexArrayAttribBinding:(III)V
+ + glVertexArrayAttribFormat:(IIIIZI)V
+ + glVertexArrayAttribIFormat:(IIIII)V
+ + glVertexArrayAttribLFormat:(IIIII)V
+ + glVertexArrayBindingDivisor:(III)V
+ + glVertexArrayElementBuffer:(II)V
+ + glVertexArrayVertexBuffer:(IIIJI)V
+ - glVertexArrayVertexBuffers:(IIILjava/nio/IntBuffer;Lorg/lwjgl/PointerBuffer;Ljava/nio/IntBuffer;)V
+Missing in mod: org/lwjgl/opengl/GLContext : loadOpenGLLibrary:()V
+Missing in mod: org/lwjgl/opengl/GLContext : unloadOpenGLLibrary:()V
+Missing in mod: org/lwjgl/opengl/GLContext : useContext:(Ljava/lang/Object;)V
+Missing in mod: org/lwjgl/opengl/GLContext : useContext:(Ljava/lang/Object;Z)V
+Missing gl3: org/lwjgl/opengl/GLContext
+Missing gl3: org/lwjgl/opengl/GLSync
+Missing gl3: org/lwjgl/opengl/GLUConstants
+org/lwjgl/opengl/GREMEDYFrameTerminator
+ + glFrameTerminatorGREMEDY:()V
+org/lwjgl/opengl/GREMEDYStringMarker
+ + glStringMarkerGREMEDY:(Ljava/lang/CharSequence;)V
+ + glStringMarkerGREMEDY:(Ljava/nio/ByteBuffer;)V
+Missing gl3: org/lwjgl/opengl/HPOcclusionTest
+Missing gl3: org/lwjgl/opengl/IBMRasterposClip
+org/lwjgl/opengl/INTELMapTexture
+ - glMapTexture2DINTEL:(IIJILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)Ljava/nio/ByteBuffer;
+ + glSyncTextureINTEL:(I)V
+ + glUnmapTexture2DINTEL:(II)V
+Missing gl3: org/lwjgl/opengl/InputImplementation
+org/lwjgl/opengl/KHRContextFlushControl
+org/lwjgl/opengl/KHRDebug
+ - glDebugMessageCallback:(Lorg/lwjgl/opengl/KHRDebugCallback;)V
+ + glDebugMessageControl:(IIILjava/nio/IntBuffer;Z)V
+ + glDebugMessageInsert:(IIIILjava/lang/CharSequence;)V
+ + glDebugMessageInsert:(IIIILjava/nio/ByteBuffer;)V
+ + glGetDebugMessageLog:(ILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)I
+ + glGetObjectLabel:(III)Ljava/lang/String;
+ + glGetObjectLabel:(IILjava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;I)Ljava/lang/String;
+ - glGetObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ + glObjectLabel:(IILjava/lang/CharSequence;)V
+ + glObjectLabel:(IILjava/nio/ByteBuffer;)V
+ - glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/lang/CharSequence;)V
+ - glObjectPtrLabel:(Lorg/lwjgl/PointerWrapper;Ljava/nio/ByteBuffer;)V
+ + glPopDebugGroup:()V
+ + glPushDebugGroup:(IILjava/lang/CharSequence;)V
+ + glPushDebugGroup:(IILjava/nio/ByteBuffer;)V
+Missing gl3: org/lwjgl/opengl/KHRDebugCallback
+Missing gl3: org/lwjgl/opengl/KHRDebugCallback$Handler
+org/lwjgl/opengl/KHRRobustness
+ + glGetGraphicsResetStatus:()I
+ - glGetnUniform:(IILjava/nio/FloatBuffer;)V
+ - glGetnUniform:(IILjava/nio/IntBuffer;)V
+ - glGetnUniformu:(IILjava/nio/IntBuffer;)V
+ + glReadnPixels:(IIIIIIIJ)V
+ + glReadnPixels:(IIIIIILjava/nio/ByteBuffer;)V
+ - glReadnPixels:(IIIIIILjava/nio/DoubleBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/FloatBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/IntBuffer;)V
+ + glReadnPixels:(IIIIIILjava/nio/ShortBuffer;)V
+Missing gl3: org/lwjgl/opengl/KHRTextureCompressionAstcLdr
+org/lwjgl/opengl/NVBindlessMultiDrawIndirect
+ + glMultiDrawArraysIndirectBindlessNV:(IJIII)V
+ + glMultiDrawArraysIndirectBindlessNV:(ILjava/nio/ByteBuffer;III)V
+ + glMultiDrawElementsIndirectBindlessNV:(IIJIII)V
+ + glMultiDrawElementsIndirectBindlessNV:(IILjava/nio/ByteBuffer;III)V
+org/lwjgl/opengl/NVBindlessTexture
+ + glGetImageHandleNV:(IIZII)J
+ + glGetTextureHandleNV:(I)J
+ + glGetTextureSamplerHandleNV:(II)J
+ + glIsImageHandleResidentNV:(J)Z
+ + glIsTextureHandleResidentNV:(J)Z
+ + glMakeImageHandleNonResidentNV:(J)V
+ + glMakeImageHandleResidentNV:(JI)V
+ + glMakeTextureHandleNonResidentNV:(J)V
+ + glMakeTextureHandleResidentNV:(J)V
+ > glProgramUniformHandleuNV:(IILjava/nio/LongBuffer;)V --> glProgramUniformHandleui64vNV:(IILjava/nio/LongBuffer;)V
+ + glProgramUniformHandleui64NV:(IIJ)V
+ > glUniformHandleuNV:(ILjava/nio/LongBuffer;)V --> glUniformHandleui64vNV:(ILjava/nio/LongBuffer;)V
+ + glUniformHandleui64NV:(IJ)V
+org/lwjgl/opengl/NVBlendEquationAdvanced
+ + glBlendBarrierNV:()V
+ + glBlendParameteriNV:(II)V
+Missing gl3: org/lwjgl/opengl/NVComputeProgram5
+org/lwjgl/opengl/NVConditionalRender
+ + glBeginConditionalRenderNV:(II)V
+ + glEndConditionalRenderNV:()V
+org/lwjgl/opengl/NVCopyDepthToColor
+org/lwjgl/opengl/NVCopyImage
+ + glCopyImageSubDataNV:(IIIIIIIIIIIIIII)V
+org/lwjgl/opengl/NVDeepTexture3D
+org/lwjgl/opengl/NVDepthBufferFloat
+ + glClearDepthdNV:(D)V
+ + glDepthBoundsdNV:(DD)V
+ + glDepthRangedNV:(DD)V
+org/lwjgl/opengl/NVDepthClamp
+org/lwjgl/opengl/NVDrawTexture
+ + glDrawTextureNV:(IIFFFFFFFFF)V
+Missing gl3: org/lwjgl/opengl/NVEvaluators
+org/lwjgl/opengl/NVExplicitMultisample
+ - glGetBooleanIndexedEXT:(II)Z
+ - glGetBooleanIndexedEXT:(IILjava/nio/ByteBuffer;)V
+ - glGetIntegerIndexedEXT:(II)I
+ - glGetIntegerIndexedEXT:(IILjava/nio/IntBuffer;)V
+ > glGetMultisampleNV:(IILjava/nio/FloatBuffer;)V --> glGetMultisamplefvNV:(IILjava/nio/FloatBuffer;)V
+ + glSampleMaskIndexedNV:(II)V
+ + glTexRenderbufferNV:(II)V
+org/lwjgl/opengl/NVFence
+ + glDeleteFencesNV:(I)V
+ + glDeleteFencesNV:(Ljava/nio/IntBuffer;)V
+ + glFinishFenceNV:(I)V
+ + glGenFencesNV:()I
+ + glGenFencesNV:(Ljava/nio/IntBuffer;)V
+ + glGetFenceivNV:(IILjava/nio/IntBuffer;)V
+ + glIsFenceNV:(I)Z
+ + glSetFenceNV:(II)V
+ + glTestFenceNV:(I)Z
+org/lwjgl/opengl/NVFloatBuffer
+org/lwjgl/opengl/NVFogDistance
+Missing gl3: org/lwjgl/opengl/NVFragmentProgram
+Missing gl3: org/lwjgl/opengl/NVFragmentProgram2
+org/lwjgl/opengl/NVFramebufferMultisampleCoverage
+ + glRenderbufferStorageMultisampleCoverageNV:(IIIIII)V
+Missing gl3: org/lwjgl/opengl/NVGeometryProgram4
+Missing gl3: org/lwjgl/opengl/NVGpuProgram4
+Missing gl3: org/lwjgl/opengl/NVGpuProgram5
+Missing gl3: org/lwjgl/opengl/NVGpuShader5
+org/lwjgl/opengl/NVHalfFloat
+ + glColor3hNV:(SSS)V
+ + glColor4hNV:(SSSS)V
+ + glFogCoordhNV:(S)V
+ + glMultiTexCoord1hNV:(IS)V
+ + glMultiTexCoord2hNV:(ISS)V
+ + glMultiTexCoord3hNV:(ISSS)V
+ + glMultiTexCoord4hNV:(ISSSS)V
+ + glNormal3hNV:(SSS)V
+ + glSecondaryColor3hNV:(SSS)V
+ + glTexCoord1hNV:(S)V
+ + glTexCoord2hNV:(SS)V
+ + glTexCoord3hNV:(SSS)V
+ + glTexCoord4hNV:(SSSS)V
+ + glVertex2hNV:(SS)V
+ + glVertex3hNV:(SSS)V
+ + glVertex4hNV:(SSSS)V
+ + glVertexAttrib1hNV:(IS)V
+ + glVertexAttrib2hNV:(ISS)V
+ + glVertexAttrib3hNV:(ISSS)V
+ + glVertexAttrib4hNV:(ISSSS)V
+ > glVertexAttribs1NV:(ILjava/nio/ShortBuffer;)V --> glVertexAttribs1hvNV:(ILjava/nio/ShortBuffer;)V
+ > glVertexAttribs2NV:(ILjava/nio/ShortBuffer;)V --> glVertexAttribs2hvNV:(ILjava/nio/ShortBuffer;)V
+ > glVertexAttribs3NV:(ILjava/nio/ShortBuffer;)V --> glVertexAttribs3hvNV:(ILjava/nio/ShortBuffer;)V
+ > glVertexAttribs4NV:(ILjava/nio/ShortBuffer;)V --> glVertexAttribs4hvNV:(ILjava/nio/ShortBuffer;)V
+ + glVertexWeighthNV:(S)V
+org/lwjgl/opengl/NVLightMaxExponent
+org/lwjgl/opengl/NVMultisampleCoverage
+org/lwjgl/opengl/NVMultisampleFilterHint
+Missing gl3: org/lwjgl/opengl/NVOcclusionQuery
+org/lwjgl/opengl/NVPackedDepthStencil
+Missing gl3: org/lwjgl/opengl/NVParameterBufferObject
+org/lwjgl/opengl/NVPathRendering
+ + glCopyPathNV:(II)V
+ + glCoverFillPathInstancedNV:(ILjava/nio/ByteBuffer;IIILjava/nio/FloatBuffer;)V
+ + glCoverFillPathNV:(II)V
+ + glCoverStrokePathInstancedNV:(ILjava/nio/ByteBuffer;IIILjava/nio/FloatBuffer;)V
+ + glCoverStrokePathNV:(II)V
+ + glDeletePathsNV:(II)V
+ + glGenPathsNV:(I)I
+ > glGetPathColorGenNV:(IILjava/nio/FloatBuffer;)V --> glGetPathColorGenfvNV:(IILjava/nio/FloatBuffer;)V
+ > glGetPathColorGenNV:(IILjava/nio/IntBuffer;)V --> glGetPathColorGenivNV:(IILjava/nio/IntBuffer;)V
+ + glGetPathColorGenfNV:(II)F
+ + glGetPathColorGeniNV:(II)I
+ + glGetPathCommandsNV:(ILjava/nio/ByteBuffer;)V
+ + glGetPathCoordsNV:(ILjava/nio/FloatBuffer;)V
+ + glGetPathDashArrayNV:(ILjava/nio/FloatBuffer;)V
+ + glGetPathLengthNV:(III)F
+ + glGetPathMetricRangeNV:(IIIILjava/nio/FloatBuffer;)V
+ + glGetPathMetricsNV:(IILjava/nio/ByteBuffer;IILjava/nio/FloatBuffer;)V
+ > glGetPathParameterNV:(IILjava/nio/IntBuffer;)V --> glGetPathParameterivNV:(IILjava/nio/IntBuffer;)V
+ + glGetPathParameterfNV:(II)F
+ + glGetPathParameterfvNV:(IILjava/nio/FloatBuffer;)V
+ + glGetPathParameteriNV:(II)I
+ + glGetPathSpacingNV:(IILjava/nio/ByteBuffer;IFFILjava/nio/FloatBuffer;)V
+ > glGetPathTexGenNV:(IILjava/nio/FloatBuffer;)V --> glGetPathTexGenfvNV:(IILjava/nio/FloatBuffer;)V
+ > glGetPathTexGenNV:(IILjava/nio/IntBuffer;)V --> glGetPathTexGenivNV:(IILjava/nio/IntBuffer;)V
+ + glGetPathTexGenfNV:(II)F
+ + glGetPathTexGeniNV:(II)I
+ + glInterpolatePathsNV:(IIIF)V
+ + glIsPathNV:(I)Z
+ + glIsPointInFillPathNV:(IIFF)Z
+ + glIsPointInStrokePathNV:(IFF)Z
+ + glPathColorGenNV:(IIILjava/nio/FloatBuffer;)V
+ + glPathCommandsNV:(ILjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;)V
+ + glPathCoordsNV:(IILjava/nio/ByteBuffer;)V
+ + glPathCoverDepthFuncNV:(I)V
+ + glPathDashArrayNV:(ILjava/nio/FloatBuffer;)V
+ + glPathFogGenNV:(I)V
+ + glPathGlyphRangeNV:(IILjava/nio/ByteBuffer;IIIIIF)V
+ + glPathGlyphsNV:(IILjava/nio/ByteBuffer;IILjava/nio/ByteBuffer;IIF)V
+ > glPathParameterNV:(IILjava/nio/FloatBuffer;)V --> glPathParameterfvNV:(IILjava/nio/FloatBuffer;)V
+ > glPathParameterNV:(IILjava/nio/IntBuffer;)V --> glPathParameterivNV:(IILjava/nio/IntBuffer;)V
+ + glPathParameterfNV:(IIF)V
+ + glPathParameteriNV:(III)V
+java.lang.UnsupportedOperationException: int -> float in org/lwjgl/opengl/NVPathRendering : glPathStencilDepthOffsetNV:(FI)V
+ - glPathStencilDepthOffsetNV:(FI)V
+ + glPathStencilFuncNV:(III)V
+ + glPathStringNV:(IILjava/nio/ByteBuffer;)V
+ + glPathSubCommandsNV:(IIILjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;)V
+ + glPathSubCoordsNV:(IIILjava/nio/ByteBuffer;)V
+ - glPathTexGenNV:(IILjava/nio/FloatBuffer;)V
+ + glPointAlongPathNV:(IIIFLjava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;Ljava/nio/FloatBuffer;)Z
+ + glStencilFillPathInstancedNV:(ILjava/nio/ByteBuffer;IIIILjava/nio/FloatBuffer;)V
+ + glStencilFillPathNV:(III)V
+ + glStencilStrokePathInstancedNV:(ILjava/nio/ByteBuffer;IIIILjava/nio/FloatBuffer;)V
+ + glStencilStrokePathNV:(III)V
+ + glTransformPathNV:(IIILjava/nio/FloatBuffer;)V
+ + glWeightPathsNV:(ILjava/nio/IntBuffer;Ljava/nio/FloatBuffer;)V
+org/lwjgl/opengl/NVPixelDataRange
+ + glFlushPixelDataRangeNV:(I)V
+ + glPixelDataRangeNV:(ILjava/nio/ByteBuffer;)V
+org/lwjgl/opengl/NVPointSprite
+ > glPointParameterNV:(ILjava/nio/IntBuffer;)V --> glPointParameterivNV:(ILjava/nio/IntBuffer;)V
+ + glPointParameteriNV:(II)V
+Missing gl3: org/lwjgl/opengl/NVPresentVideo
+Missing gl3: org/lwjgl/opengl/NVPresentVideoUtil
+org/lwjgl/opengl/NVPrimitiveRestart
+ + glPrimitiveRestartIndexNV:(I)V
+ + glPrimitiveRestartNV:()V
+Missing gl3: org/lwjgl/opengl/NVProgram
+Missing gl3: org/lwjgl/opengl/NVRegisterCombiners
+Missing gl3: org/lwjgl/opengl/NVRegisterCombiners2
+org/lwjgl/opengl/NVShaderBufferLoad
+ > glGetBufferParameteruNV:(IILjava/nio/LongBuffer;)V --> glGetBufferParameterui64vNV:(IILjava/nio/LongBuffer;)V
+ + glGetBufferParameterui64NV:(II)J
+ > glGetIntegeruNV:(ILjava/nio/LongBuffer;)V --> glGetIntegerui64vNV:(ILjava/nio/LongBuffer;)V
+ + glGetIntegerui64NV:(I)J
+ > glGetNamedBufferParameteruNV:(IILjava/nio/LongBuffer;)V --> glGetNamedBufferParameterui64vNV:(IILjava/nio/LongBuffer;)V
+ + glGetNamedBufferParameterui64NV:(II)J
+ - glGetUniformuNV:(IILjava/nio/LongBuffer;)V
+ + glIsBufferResidentNV:(I)Z
+ + glIsNamedBufferResidentNV:(I)Z
+ + glMakeBufferNonResidentNV:(I)V
+ + glMakeBufferResidentNV:(II)V
+ + glMakeNamedBufferNonResidentNV:(I)V
+ + glMakeNamedBufferResidentNV:(II)V
+ > glProgramUniformuNV:(IILjava/nio/LongBuffer;)V --> glProgramUniformui64vNV:(IILjava/nio/LongBuffer;)V
+ + glProgramUniformui64NV:(IIJ)V
+ > glUniformuNV:(ILjava/nio/LongBuffer;)V --> glUniformui64vNV:(ILjava/nio/LongBuffer;)V
+ + glUniformui64NV:(IJ)V
+org/lwjgl/opengl/NVShaderBufferStore
+Missing gl3: org/lwjgl/opengl/NVTessellationProgram5
+org/lwjgl/opengl/NVTexgenReflection
+org/lwjgl/opengl/NVTextureBarrier
+ + glTextureBarrierNV:()V
+Missing gl3: org/lwjgl/opengl/NVTextureCompressionVTC
+Missing gl3: org/lwjgl/opengl/NVTextureEnvCombine4
+Missing gl3: org/lwjgl/opengl/NVTextureExpandNormal
+org/lwjgl/opengl/NVTextureMultisample
+ + glTexImage2DMultisampleCoverageNV:(IIIIIIZ)V
+ + glTexImage3DMultisampleCoverageNV:(IIIIIIIZ)V
+ + glTextureImage2DMultisampleCoverageNV:(IIIIIIIZ)V
+ + glTextureImage2DMultisampleNV:(IIIIIIZ)V
+ + glTextureImage3DMultisampleCoverageNV:(IIIIIIIIZ)V
+ + glTextureImage3DMultisampleNV:(IIIIIIIZ)V
+Missing gl3: org/lwjgl/opengl/NVTextureRectangle
+org/lwjgl/opengl/NVTextureShader
+org/lwjgl/opengl/NVTextureShader2
+org/lwjgl/opengl/NVTextureShader3
+org/lwjgl/opengl/NVTransformFeedback
+ + glActiveVaryingNV:(ILjava/lang/CharSequence;)V
+ + glActiveVaryingNV:(ILjava/nio/ByteBuffer;)V
+ + glBeginTransformFeedbackNV:(I)V
+ + glBindBufferBaseNV:(III)V
+ + glBindBufferOffsetNV:(IIIJ)V
+ + glBindBufferRangeNV:(IIIJJ)V
+ + glEndTransformFeedbackNV:()V
+ - glGetActiveVaryingNV:(III)Ljava/lang/String;
+ - glGetActiveVaryingNV:(IIILjava/nio/IntBuffer;)Ljava/lang/String;
+ + glGetActiveVaryingNV:(IILjava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/IntBuffer;Ljava/nio/ByteBuffer;)V
+ - glGetActiveVaryingSizeNV:(II)I
+ - glGetActiveVaryingTypeNV:(II)I
+ + glGetTransformFeedbackVaryingNV:(II)I
+ + glGetTransformFeedbackVaryingNV:(IILjava/nio/IntBuffer;)V
+ + glGetVaryingLocationNV:(ILjava/lang/CharSequence;)I
+ + glGetVaryingLocationNV:(ILjava/nio/ByteBuffer;)I
+ + glTransformFeedbackAttribsNV:(Ljava/nio/IntBuffer;I)V
+ + glTransformFeedbackVaryingsNV:(ILjava/nio/IntBuffer;I)V
+org/lwjgl/opengl/NVTransformFeedback2
+ + glBindTransformFeedbackNV:(II)V
+ + glDeleteTransformFeedbacksNV:(I)V
+ + glDeleteTransformFeedbacksNV:(Ljava/nio/IntBuffer;)V
+ + glDrawTransformFeedbackNV:(II)V
+ + glGenTransformFeedbacksNV:()I
+ + glGenTransformFeedbacksNV:(Ljava/nio/IntBuffer;)V
+ + glIsTransformFeedbackNV:(I)Z
+ + glPauseTransformFeedbackNV:()V
+ + glResumeTransformFeedbackNV:()V
+org/lwjgl/opengl/NVVertexArrayRange
+ - glAllocateMemoryNV:(IFFF)Ljava/nio/ByteBuffer;
+ + glFlushVertexArrayRangeNV:()V
+ - glFreeMemoryNV:(Ljava/nio/ByteBuffer;)V
+ + glVertexArrayRangeNV:(Ljava/nio/ByteBuffer;)V
+org/lwjgl/opengl/NVVertexArrayRange2
+org/lwjgl/opengl/NVVertexAttribInteger64bit
+ > glGetVertexAttribLNV:(IILjava/nio/LongBuffer;)V --> glGetVertexAttribLi64vNV:(IILjava/nio/LongBuffer;)V
+ > glGetVertexAttribLuNV:(IILjava/nio/LongBuffer;)V --> glGetVertexAttribLui64vNV:(IILjava/nio/LongBuffer;)V
+ > glVertexAttribL1NV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL1i64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL1i64NV:(IJ)V
+ > glVertexAttribL1uNV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL1ui64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL1ui64NV:(IJ)V
+ > glVertexAttribL2NV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL2i64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL2i64NV:(IJJ)V
+ > glVertexAttribL2uNV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL2ui64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL2ui64NV:(IJJ)V
+ > glVertexAttribL3NV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL3i64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL3i64NV:(IJJJ)V
+ > glVertexAttribL3uNV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL3ui64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL3ui64NV:(IJJJ)V
+ > glVertexAttribL4NV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL4i64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL4i64NV:(IJJJJ)V
+ > glVertexAttribL4uNV:(ILjava/nio/LongBuffer;)V --> glVertexAttribL4ui64vNV:(ILjava/nio/LongBuffer;)V
+ + glVertexAttribL4ui64NV:(IJJJJ)V
+ + glVertexAttribLFormatNV:(IIII)V
+org/lwjgl/opengl/NVVertexBufferUnifiedMemory
+ + glBufferAddressRangeNV:(IIJJ)V
+ + glColorFormatNV:(III)V
+ + glEdgeFlagFormatNV:(I)V
+ + glFogCoordFormatNV:(II)V
+ > glGetIntegeruNV:(IILjava/nio/LongBuffer;)V --> glGetIntegerui64i_vNV:(IILjava/nio/LongBuffer;)V
+ - glGetIntegerui64NV:(II)J
+ + glIndexFormatNV:(II)V
+ + glNormalFormatNV:(II)V
+ + glSecondaryColorFormatNV:(III)V
+ + glTexCoordFormatNV:(III)V
+ + glVertexAttribFormatNV:(IIIZI)V
+ + glVertexAttribIFormatNV:(IIII)V
+ + glVertexFormatNV:(III)V
+Missing gl3: org/lwjgl/opengl/NVVertexProgram
+Missing gl3: org/lwjgl/opengl/NVVertexProgram2Option
+Missing gl3: org/lwjgl/opengl/NVVertexProgram3
+Missing gl3: org/lwjgl/opengl/NVVideoCapture
+Missing gl3: org/lwjgl/opengl/NVVideoCaptureUtil
+Missing gl3: org/lwjgl/opengl/NVXGpuMemoryInfo
+Missing gl3: org/lwjgl/opengl/OpenGLException
+Missing in mod: org/lwjgl/opengl/Pbuffer : checkGLError:()V
+Missing in mod: org/lwjgl/opengl/Pbuffer : createSharedContext:()Lorg/lwjgl/opengl/ContextGL;
+Missing in mod: org/lwjgl/opengl/Pbuffer : destroy:()V
+Missing in mod: org/lwjgl/opengl/Pbuffer : getContext:()Lorg/lwjgl/opengl/ContextGL;
+Missing in mod: org/lwjgl/opengl/Pbuffer : getPixelFormat:()Lorg/lwjgl/opengl/PixelFormatLWJGL;
+Missing in mod: org/lwjgl/opengl/Pbuffer : initContext:(FFF)V
+Missing in mod: org/lwjgl/opengl/Pbuffer : isCurrent:()Z
+Missing in mod: org/lwjgl/opengl/Pbuffer : makeCurrent:()V
+Missing in mod: org/lwjgl/opengl/Pbuffer : releaseContext:()V
+Missing in mod: org/lwjgl/opengl/Pbuffer : setCLSharingProperties:(Lorg/lwjgl/PointerBuffer;)V
+Missing in mod: org/lwjgl/opengl/Pbuffer : setPixelFormat:(Lorg/lwjgl/opengl/PixelFormatLWJGL;)V
+Missing in mod: org/lwjgl/opengl/Pbuffer : setPixelFormat:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengl/ContextAttribs;)V
+Missing in mod: org/lwjgl/opengl/Pbuffer : setSwapInterval:(I)V
+Missing in mod: org/lwjgl/opengl/Pbuffer : swapBuffers:()V
+Missing gl3: org/lwjgl/opengl/Pbuffer
+Missing gl3: org/lwjgl/opengl/PixelFormat
+Missing gl3: org/lwjgl/opengl/PixelFormatLWJGL
+Missing gl3: org/lwjgl/opengl/RenderTexture
+Missing gl3: org/lwjgl/opengl/SGISGenerateMipmap
+Missing gl3: org/lwjgl/opengl/SGISTextureLOD
+Missing gl3: org/lwjgl/opengl/SUNSliceAccum
+Missing in mod: org/lwjgl/opengl/SharedDrawable : checkGLError:()V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : destroy:()V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : getContext:()Lorg/lwjgl/opengl/ContextGL;
+Missing in mod: org/lwjgl/opengl/SharedDrawable : getPixelFormat:()Lorg/lwjgl/opengl/PixelFormatLWJGL;
+Missing in mod: org/lwjgl/opengl/SharedDrawable : initContext:(FFF)V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : isCurrent:()Z
+Missing in mod: org/lwjgl/opengl/SharedDrawable : makeCurrent:()V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : releaseContext:()V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : setCLSharingProperties:(Lorg/lwjgl/PointerBuffer;)V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : setPixelFormat:(Lorg/lwjgl/opengl/PixelFormatLWJGL;)V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : setPixelFormat:(Lorg/lwjgl/opengl/PixelFormatLWJGL;Lorg/lwjgl/opengl/ContextAttribs;)V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : setSwapInterval:(I)V
+Missing in mod: org/lwjgl/opengl/SharedDrawable : swapBuffers:()V
+Missing gl3: org/lwjgl/opengl/SharedDrawable
+Missing gl3: org/lwjgl/opengl/Util
+Missing gl3: org/lwjgl/opengl/XRandR
+Missing gl3: org/lwjgl/opengl/XRandR$Screen
+Missing gl3: org/lwjgl/util/Color
+Missing gl3: org/lwjgl/util/Dimension
+Missing gl3: org/lwjgl/util/Display
+Missing gl3: org/lwjgl/util/Point
+Missing gl3: org/lwjgl/util/ReadableColor
+Missing gl3: org/lwjgl/util/ReadableDimension
+Missing gl3: org/lwjgl/util/ReadablePoint
+Missing gl3: org/lwjgl/util/ReadableRectangle
+Missing gl3: org/lwjgl/util/Rectangle
+Missing gl3: org/lwjgl/util/Renderable
+Missing gl3: org/lwjgl/util/Timer
+Missing gl3: org/lwjgl/util/WaveData
+Missing gl3: org/lwjgl/util/WritableColor
+Missing gl3: org/lwjgl/util/WritableDimension
+Missing gl3: org/lwjgl/util/WritablePoint
+Missing gl3: org/lwjgl/util/WritableRectangle
+Missing gl3: org/lwjgl/util/XPMFile
+Missing gl3: org/lwjgl/util/glu/Cylinder
+Missing gl3: org/lwjgl/util/glu/Disk
+Missing gl3: org/lwjgl/util/glu/GLU
+Missing gl3: org/lwjgl/util/glu/GLUtessellator
+Missing gl3: org/lwjgl/util/glu/GLUtessellatorCallback
+Missing gl3: org/lwjgl/util/glu/GLUtessellatorCallbackAdapter
+Missing gl3: org/lwjgl/util/glu/MipMap
+Missing gl3: org/lwjgl/util/glu/PartialDisk
+Missing gl3: org/lwjgl/util/glu/Project
+Missing gl3: org/lwjgl/util/glu/Quadric
+Missing gl3: org/lwjgl/util/glu/Registry
+Missing gl3: org/lwjgl/util/glu/Sphere
+Missing gl3: org/lwjgl/util/glu/Util
+Missing gl3: org/lwjgl/util/glu/tessellation/Dict$DictLeq
+Missing gl3: org/lwjgl/util/glu/tessellation/GLUtessellatorImpl
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$Leq
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$PQhandleElem
+Missing gl3: org/lwjgl/util/glu/tessellation/PriorityQ$PQnode
+Missing gl3: org/lwjgl/util/input/ControllerAdapter
+Missing gl3: org/lwjgl/util/jinput/LWJGLEnvironmentPlugin
+Missing gl3: org/lwjgl/util/mapped/CacheLinePad
+Missing gl3: org/lwjgl/util/mapped/CacheUtil
+Missing gl3: org/lwjgl/util/mapped/MappedField
+Missing gl3: org/lwjgl/util/mapped/MappedHelper
+Missing gl3: org/lwjgl/util/mapped/MappedObject
+Missing gl3: org/lwjgl/util/mapped/MappedObjectTransformer
+Missing gl3: org/lwjgl/util/mapped/MappedSet
+Missing gl3: org/lwjgl/util/mapped/MappedSet2
+Missing gl3: org/lwjgl/util/mapped/MappedSet3
+Missing gl3: org/lwjgl/util/mapped/MappedSet4
+Missing gl3: org/lwjgl/util/mapped/MappedType
+Missing gl3: org/lwjgl/util/mapped/Pointer
+Missing gl3: org/lwjgl/util/vector/Matrix
+Missing gl3: org/lwjgl/util/vector/Matrix2f
+Missing gl3: org/lwjgl/util/vector/Matrix3f
+Missing gl3: org/lwjgl/util/vector/Matrix4f
+Missing gl3: org/lwjgl/util/vector/Quaternion
+Missing gl3: org/lwjgl/util/vector/ReadableVector
+Missing gl3: org/lwjgl/util/vector/ReadableVector2f
+Missing gl3: org/lwjgl/util/vector/ReadableVector3f
+Missing gl3: org/lwjgl/util/vector/ReadableVector4f
+Missing gl3: org/lwjgl/util/vector/Vector
+Missing in mod: org/lwjgl/util/vector/Vector2f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector2f
+Missing in mod: org/lwjgl/util/vector/Vector3f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector3f
+Missing in mod: org/lwjgl/util/vector/Vector4f : equals:(Ljava/lang/Object;)Z
+Missing gl3: org/lwjgl/util/vector/Vector4f
+Missing gl3: org/lwjgl/util/vector/WritableVector2f
+Missing gl3: org/lwjgl/util/vector/WritableVector3f
+Missing gl3: org/lwjgl/util/vector/WritableVector4f
+
+BUILD SUCCESSFUL in 5s
+17 actionable tasks: 5 executed, 12 up-to-date
+
+
+<=============> 100% EXECUTING [5s]<-------------> 0% WAITING[1A
