@@ -346,26 +346,41 @@ public class Keyboard {
         return eventQueue.peek().nano;
     }
 
-    public static synchronized String getKeyName(int key) {
+    public static String getKeyName(int key) {
         if (key == KEY_NONE) {
             return "NONE";
         }
-        final String cached = keyMap.get(key);
-        if (cached != null) {
-            return cached;
+
+        synchronized (Keyboard.class) {
+            final String cached = keyMap.get(key);
+            if (cached != null) {
+                return cached;
+            }
         }
+
         int sdlScan = KeyCodes.lwjglToSdlScancode(key);
         if (sdlScan == -1 || sdlScan == SDLScancode.SDL_SCANCODE_UNKNOWN) {
             return "Key " + key;
         }
+
         int sdlKey = SDL_GetKeyFromScancode(sdlScan, (short) 0, true);
         if (sdlKey == SDLKeycode.SDLK_UNKNOWN) {
             return "Key " + key;
         }
+
         String name = Objects.firstNonNull(MainThreadExec.runOnMainThread(() -> SDL_GetKeyName(sdlKey)), "UNKNOWN")
             .toUpperCase(Locale.ROOT);
-        keyMap.put(key, name);
-        reverseKeyMap.put(name, key);
+
+        synchronized (Keyboard.class) {
+            String cached = keyMap.get(key);
+            if (cached != null) {
+                return cached;
+            }
+
+            keyMap.put(key, name);
+            reverseKeyMap.put(name, key);
+        }
+
         return name;
     }
 
