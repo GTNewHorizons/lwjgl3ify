@@ -199,7 +199,8 @@ public class Display {
                         props,
                         SDL_PROP_WINDOW_CREATE_HIGH_PIXEL_DENSITY_BOOLEAN,
                         Config.WINDOW_HIDPI_RENDERING));
-                Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_HIDDEN_BOOLEAN, false));
+                // Created hidden so the icon is set before the taskbar button appears, shown below
+                Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_HIDDEN_BOOLEAN, true));
                 Sys.checkSdl(SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_RESIZABLE_BOOLEAN, true));
                 Sys.checkSdl(
                     SDL_SetBooleanProperty(props, SDL_PROP_WINDOW_CREATE_BORDERLESS_BOOLEAN, !Config.WINDOW_DECORATED));
@@ -258,6 +259,12 @@ public class Display {
                 }
                 sdlWindowId = SDL_GetWindowID(sdlWindow);
 
+                if (savedIcons != null) {
+                    setIcon(savedIcons);
+                    savedIcons = null;
+                }
+                Sys.checkSdl(SDL_ShowWindow(sdlWindow));
+
                 if (glCtxEnabled) {
                     Sys.checkSdl(SDL_GL_MakeCurrent(sdlWindow, NULL));
                     sdlMainGlContext = SDL_GL_CreateContext(sdlWindow);
@@ -312,11 +319,6 @@ public class Display {
             displayVisible = (actualWindowFlags & SDL_WINDOW_MINIMIZED) == 0;
 
             updateWindowSizeFromSdl(false);
-
-            if (savedIcons != null) {
-                setIcon(savedIcons);
-                savedIcons = null;
-            }
 
             if (glCtxEnabled) {
                 SDL_GL_SetSwapInterval(1);
