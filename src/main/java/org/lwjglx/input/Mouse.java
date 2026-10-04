@@ -231,6 +231,13 @@ public class Mouse {
                 SDL_SetWindowRelativeMouseMode(Display.getWindow(), grab);
                 if (!grab) {
                     SDL_WarpMouseInWindow(Display.getWindow(), w.get(0) / 2.0f, h.get(0) / 2.0f);
+                } else if (MainThreadExec.IS_MACOS) {
+                    // On macOS, grabbing the mouse again after switching away from the game can make
+                    // the first mouse movement include movement caused by SDL recentering the cursor,
+                    // producing an incorrect delta. SDL2 fixed the same issue by ignoring the first
+                    // mouse motion event after enabling relative mouse mode, which was never ported to SDL3:
+                    // https://github.com/libsdl-org/SDL/issues/7918
+                    ignoreNextDelta = 1;
                 }
                 dx = 0;
                 dy = 0;
