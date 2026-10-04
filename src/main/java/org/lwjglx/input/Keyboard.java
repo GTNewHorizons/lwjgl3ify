@@ -173,8 +173,12 @@ public class Keyboard {
 
     public static ByteBuffer sdlKeyPressedArray;
 
-    private static final TIntObjectHashMap<String> keyMap = new TIntObjectHashMap<>(512, 0.5f);
-    private static final TObjectIntHashMap<String> reverseKeyMap = new TObjectIntHashMap<>(512, 0.5f, -1);
+    // Keep track of original names separately for compat with mods that hardcode LWJGL key names
+    // e.g. InventoryTweaks
+    private static final TIntObjectHashMap<String> keyToNameLWJGL2 = new TIntObjectHashMap<>(512, 0.5f);
+    private static final TObjectIntHashMap<String> nameToKeyLWJGL2 = new TObjectIntHashMap<>(512, 0.5f, -1);
+    private static final TIntObjectHashMap<String> keyToNameSDL = new TIntObjectHashMap<>(512, 0.5f);
+    private static final TObjectIntHashMap<String> nameToKeySDL = new TObjectIntHashMap<>(512, 0.5f, -1);
 
     public enum KeyState {
 
@@ -193,7 +197,6 @@ public class Keyboard {
 
     public static final int KEYBOARD_SIZE = Short.MAX_VALUE;
     public static Queue<KeyEvent> eventQueue = new ArrayBlockingQueue<>(256);
-    private static final String[] unlocalizedKeyNameMiniLut = new String[Short.MAX_VALUE];
 
     static {
         // Use reflection to find out key names
@@ -213,25 +216,20 @@ public class Keyboard {
                     int key = field.getInt(null);
                     String name = field.getName()
                         .substring(4);
-                    unlocalizedKeyNameMiniLut[key] = name;
-                    reverseKeyMap.put(name, key);
+                    keyToNameLWJGL2.put(key, name);
+                    nameToKeyLWJGL2.put(name, key);
                     keyCounter++;
                 }
             }
         } catch (Exception e) {}
         keyCount = keyCounter;
-        for (int i = 0; i < unlocalizedKeyNameMiniLut.length; i++) {
-            if (unlocalizedKeyNameMiniLut[i] == null) {
-                unlocalizedKeyNameMiniLut[i] = "Key " + i;
-            }
-        }
         eventQueue.add(new KeyEvent(0, 0, '\0', KeyState.RELEASE, Sys.getNanoTime()));
     }
 
     /** Populates the key name->index lookup table with the current keyboard layout based names. */
     public static void populateKeyLookupTables() {
-        keyMap.clear();
-        reverseKeyMap.clear();
+        keyToNameSDL.clear();
+        nameToKeySDL.clear();
         for (int key = 0; key <= 255; key++) {
             getKeyName(key);
         }
@@ -350,7 +348,11 @@ public class Keyboard {
         if (key == KEY_NONE) {
             return "NONE";
         }
-        final String cached = keyMap.get(key);
+        final String cachedLWJGL = keyToNameLWJGL2.get(key);
+        if (cachedLWJGL != null) {
+            return cachedLWJGL;
+        }
+        final String cached = keyToNameSDL.get(key);
         if (cached != null) {
             return cached;
         }
@@ -364,8 +366,8 @@ public class Keyboard {
         }
         String name = Objects.firstNonNull(MainThreadExec.runOnMainThread(() -> SDL_GetKeyName(sdlKey)), "UNKNOWN")
             .toUpperCase(Locale.ROOT);
-        keyMap.put(key, name);
-        reverseKeyMap.put(name, key);
+        keyToNameSDL.put(key, name);
+        nameToKeySDL.put(name, key);
         return name;
     }
 
@@ -374,7 +376,10 @@ public class Keyboard {
             return KEY_NONE;
         }
 
-        int ret = reverseKeyMap.get(keyName);
+        int ret = nameToKeyLWJGL2.get(keyName);
+        if (ret == -1) {
+            ret = nameToKeySDL.get(keyName);
+        }
         if (ret == -1) {
             if (keyName.matches("Key -?[0-9]+]")) {
                 return Integer.parseInt(StringUtils.removeStart(keyName, "Key "));
