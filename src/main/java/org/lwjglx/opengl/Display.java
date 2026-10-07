@@ -35,8 +35,10 @@ import org.lwjgl.opengl.GL11C;
 import org.lwjgl.sdl.SDLKeyboard;
 import org.lwjgl.sdl.SDLVideo;
 import org.lwjgl.sdl.SDL_DisplayMode;
+import org.lwjgl.sdl.SDL_Rect;
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.Platform;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -87,6 +89,13 @@ public class Display {
 
     private static int displayX = 0;
     private static int displayY = 0;
+
+    /** Whether the window is currently in the manual Windows borderless mode, only touched on the main thread. */
+    private static boolean windowsBorderlessActive = false;
+    /** Window position and state before entering the manual Windows borderless mode, restored when leaving it. */
+    private static int windowedX = 0;
+    private static int windowedY = 0;
+    private static boolean windowedMaximized = false;
 
     private static boolean displayResized = false;
     private static int displayWidth = 1;
@@ -508,7 +517,12 @@ public class Display {
                     SwapchainInvalidatingChange.Kind.DISPLAY_MODE,
                     displayWindowed.isFullscreen,
                     dm));
-            MainThreadExec.runOnMainThread(() -> { SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight()); });
+            MainThreadExec.runOnMainThread(() -> {
+                // In the manual Windows borderless mode the size follows the monitor, as in real fullscreen
+                if (!windowsBorderlessActive) {
+                    SDL_SetWindowSize(sdlWindow, dm.getWidth(), dm.getHeight());
+                }
+            });
         }
     }
 
@@ -689,27 +703,67 @@ public class Display {
         }
     }
 
-    // TODO
+    private static void doSetFullscreenLocked(boolean fullscreen) {
+        MainThreadExec.runOnMainThread(() -> {
+            if (Config.WINDOW_BORDERLESS_REPLACES_FULLSCREEN && Platform.get() == Platform.WINDOWS) {
+                setWindowsBorderless(fullscreen);
+            } else {
+                SDL_SetWindowFullscreen(sdlWindow, fullscreen);
+                // restore original window size as dictated by the game
+                if (!fullscreen) {
+                    SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+                }
+            }
+            SDL_SyncWindow(sdlWindow);
+        });
+    }
+
     // Fix bothered from
     // https: //
     // github.com/Kir-Antipov/cubes-without-borders/blob/b38306bf17d3f0936475a3a28c4ee2be4e881a62/src/main/java/
     // dev/kir/cubeswithoutborders/mixin/WindowMixin.java#L130
-    // There's a bug that causes a fullscreen window to flicker when it loses focus.
-    // As far as I know, this is relevant for Windows and X11 desktops.
-    // Fuck X11 - it's a perpetually broken piece of legacy.
-    // However, we do need to implement a fix for Windows desktops, as they
-    // are not going anywhere in the foreseeable future (sadly enough).
-    // This "fix" involves not bringing a window into a "proper" fullscreen mode,
-    // but rather stretching it 1 pixel beyond the screen's supported resolution.
-    private static void doSetFullscreenLocked(boolean fullscreen) {
-        MainThreadExec.runOnMainThread(() -> {
-            SDL_SetWindowFullscreen(sdlWindow, fullscreen);
-            // restore original window size as dictated by the game
-            if (!fullscreen) {
-                SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+    // SDL's fullscreen is a borderless window exactly the size of the monitor, and on Windows some OpenGL drivers
+    // (NVIDIA's at least) silently switch such a window to exclusive fullscreen: every monitor flickers when entering
+    // it and when the window loses focus. So on Windows the borderless mode is done by hand, and with the compatibility
+    // option the window is stretched 1 pixel beyond the monitor so that the driver leaves it alone.
+    private static void setWindowsBorderless(boolean borderless) {
+        if (borderless) {
+            try (MemoryStack stack = stackPush()) {
+                if (!windowsBorderlessActive) {
+                    // SDL ignores position and size changes on a maximized window
+                    windowedMaximized = (SDL_GetWindowFlags(sdlWindow) & SDL_WINDOW_MAXIMIZED) != 0;
+                    if (windowedMaximized) {
+                        SDL_RestoreWindow(sdlWindow);
+                    }
+                    IntBuffer x = stack.ints(0);
+                    IntBuffer y = stack.ints(0);
+                    SDL_GetWindowPosition(sdlWindow, x, y);
+                    windowedX = x.get(0);
+                    windowedY = y.get(0);
+                }
+                int display = SDL_GetDisplayForWindow(sdlWindow);
+                if (display == 0) {
+                    display = Sys.checkSdl(SDL_GetPrimaryDisplay());
+                }
+                final SDL_Rect bounds = SDL_Rect.malloc(stack);
+                Sys.checkSdl(SDL_GetDisplayBounds(display, bounds));
+                final int height = bounds.h() + (Config.WINDOW_BORDERLESS_WINDOWS_COMPATIBILITY ? 1 : 0);
+                SDL_SetWindowBordered(sdlWindow, false);
+                SDL_SetWindowPosition(sdlWindow, bounds.x(), bounds.y());
+                SDL_SetWindowSize(sdlWindow, bounds.w(), height);
             }
-            SDL_SyncWindow(sdlWindow);
-        });
+        } else {
+            SDL_SetWindowBordered(sdlWindow, Config.WINDOW_DECORATED);
+            // restore original window size as dictated by the game
+            SDL_SetWindowSize(sdlWindow, mode.getWidth(), mode.getHeight());
+            if (windowsBorderlessActive) {
+                SDL_SetWindowPosition(sdlWindow, windowedX, windowedY);
+                if (windowedMaximized) {
+                    SDL_MaximizeWindow(sdlWindow);
+                }
+            }
+        }
+        windowsBorderlessActive = borderless;
     }
 
     public static boolean isFullscreen() {
