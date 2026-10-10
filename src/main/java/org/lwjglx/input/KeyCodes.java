@@ -167,6 +167,7 @@ public class KeyCodes {
             case SDLK_COLON -> Keyboard.KEY_COLON; /* (NEC PC98) */
             // case SDLK_UNDERLINE -> Keyboard.KEY_UNDERLINE; /* (NEC PC98) */
 
+            case L3F_SDLK_NONUSBACKSLASH -> Keyboard.KEY_BACKSLASH; /* UK Keyboard backslash key */
             case L3F_SDLK_LANG3 -> Keyboard.KEY_KANA; /* (Japanese keyboard) */
             case L3F_SDLK_LANG2 -> Keyboard.KEY_CONVERT; /* (Japanese keyboard) */
             case L3F_SDLK_LANG4 -> Keyboard.KEY_NOCONVERT; /* (Japanese keyboard) */
@@ -308,6 +309,8 @@ public class KeyCodes {
             case SDL_SCANCODE_KP_AT -> Keyboard.KEY_AT; /* (NEC PC98) */
             case SDL_SCANCODE_KP_COLON -> Keyboard.KEY_COLON; /* (NEC PC98) */
             // case SDL_SCANCODE_UNDERLINE -> Keyboard.KEY_UNDERLINE; /* (NEC PC98) */
+
+            case SDL_SCANCODE_NONUSBACKSLASH -> Keyboard.KEY_BACKSLASH; /* UK Keyboard backslash */
 
             case SDL_SCANCODE_LANG3 -> Keyboard.KEY_KANA; /* (Japanese keyboard) */
             case SDL_SCANCODE_LANG2 -> Keyboard.KEY_CONVERT; /* (Japanese keyboard) */
@@ -451,6 +454,8 @@ public class KeyCodes {
             case Keyboard.KEY_COLON -> SDLK_COLON; /* (NEC PC98) */
             // case Keyboard.KEY_UNDERLINE -> SDLK_UNDERLINE; /* (NEC PC98) */
 
+            // case Keyboard.KEY_BACKSLASH -> L3F_SDLK_NONUSBACKSLASH; /* UK Keyboard backslash */
+
             case Keyboard.KEY_KANA -> L3F_SDLK_LANG3; /* (Japanese keyboard) */
             case Keyboard.KEY_CONVERT -> L3F_SDLK_LANG2; /* (Japanese keyboard) */
             case Keyboard.KEY_NOCONVERT -> L3F_SDLK_LANG4; /* (Japanese keyboard) */
@@ -592,6 +597,8 @@ public class KeyCodes {
             case Keyboard.KEY_AT -> SDL_SCANCODE_KP_AT; /* (NEC PC98) */
             case Keyboard.KEY_COLON -> SDL_SCANCODE_KP_COLON; /* (NEC PC98) */
             // case Keyboard.KEY_UNDERLINE -> SDL_SCANCODE_UNDERLINE; /* (NEC PC98) */
+
+            // case Keyboard.KEY_BACKSLASH -> SDL_SCANCODE_NONUSBACKSLASH; /* UK Keyboard backslash */
 
             case Keyboard.KEY_KANA -> SDL_SCANCODE_LANG3; /* (Japanese keyboard) */
             case Keyboard.KEY_CONVERT -> SDL_SCANCODE_LANG2; /* (Japanese keyboard) */
