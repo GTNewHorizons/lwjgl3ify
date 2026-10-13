@@ -18,7 +18,7 @@ pluginManagement {
 
 plugins {
     embeddedKotlin("jvm") apply false
-    id("com.gtnewhorizons.gtnhsettingsconvention") version("2.0.31")
+    id("com.gtnewhorizons.gtnhsettingsconvention") version("2.0.34")
 }
 
 rootProject.name = "lwjgl3ify"
