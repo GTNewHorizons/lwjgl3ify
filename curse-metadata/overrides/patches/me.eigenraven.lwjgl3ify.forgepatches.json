@@ -1,0 +1,10 @@
+{
+  "+jvmArgs": [
+    ${jvmArgs}
+  ],
+  "libraries": [
+    {
+      "name": "com.github.GTNewHorizons:lwjgl3ify:${version}:forgePatches"
+    }
+  ]
+}

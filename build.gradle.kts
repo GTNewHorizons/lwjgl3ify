@@ -247,6 +247,49 @@ val mmcInstanceFilesZip = tasks.register<MmcZip>("mmcInstanceFiles") {
     }
 }
 
+val curseInstanceFilesZip = tasks.register<MmcZip>("curseInstanceFiles") {
+    group = taskGroup
+    description = "Packages the Curseforge patches"
+    dependsOn(forgePatchesJar, tasks.makeLwjgl3Json)
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
+    archiveClassifier.set("curse")
+    from(project.file("curse-metadata/"))
+    from(forgePatchesJar) {
+        into("overrides/libraries/")
+    }
+    from(configurations.patchedMinecraft.map { it.filter { it.name.contains("log4j") && it.name.contains("2.0-beta9-fixed") } }) {
+        into("overrides/libraries/")
+    }
+
+    exclude("META-INF", "META-INF/**")
+    val projVersion = project.version
+    val jvmArgs = extraJavaArgs.joinToString(", ") { '"' + it + '"' }
+    val lwjglVersion = libs.versions.lwjgl.get()
+    val lwjglDownloadsFile = lwjgl3Json.asFile.get().absolutePath
+    filesMatching(
+        listOf(
+            "manifest-additions.json",
+            "overrides/patches/me.eigenraven.lwjgl3ify.forgepatches.json",
+            "overrides/patches/me.eigenraven.lwjgl3ify.launchargs.json",
+            "overrides/patches/org.lwjgl3.json"
+        )
+    ) {
+        expand(
+            mapOf(
+                "version" to projVersion,
+                "jvmArgs" to jvmArgs,
+                "lwjglVersion" to lwjglVersion,
+                "lwjglDownloadsFile" to lwjglDownloadsFile
+            )
+        )
+    }
+    filesMatching("overrides/patches/net.minecraft.json") {
+        filter {
+            it.replace("\${lwjglVersion}", lwjglVersion)
+        }
+    }
+}
+
 val versionJsonPath = layout.buildDirectory.file("libs/version.json").get().asFile
 
 abstract class VersionJsonTask : DefaultTask() {
@@ -336,6 +379,7 @@ val versionJsonArtifact = artifacts.add("versionJsonElements", versionJsonPath) 
 tasks.named("assemble").configure {
     dependsOn(forgePatchesJar)
     dependsOn(mmcInstanceFilesZip)
+    dependsOn(curseInstanceFilesZip)
     dependsOn(versionJsonFile)
 }
 
