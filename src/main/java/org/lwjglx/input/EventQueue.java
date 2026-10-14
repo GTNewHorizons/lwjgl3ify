@@ -21,14 +21,6 @@ class EventQueue {
      */
     synchronized void add() {
         eventCount++; // increment event count
-        if (eventCount > maxEvents) {
-            eventCount = maxEvents; // cap max events
-            long ms = System.currentTimeMillis();
-            if (ms - lastDroppedMessageMs > 1000) {
-                lastDroppedMessageMs = ms;
-                System.out.println("Dropping LWJGL input events due to not frequent enough polling");
-            }
-        }
 
         writeEventPos++; // increment next event position
         if (writeEventPos >= maxEvents) writeEventPos = 0; // wrap next event position
@@ -36,6 +28,11 @@ class EventQueue {
         if (writeEventPos == readEventPos) {
             readEventPos++;
             eventCount--;
+            long ms = System.currentTimeMillis();
+            if (ms - lastDroppedMessageMs > 1000) {
+                lastDroppedMessageMs = ms;
+                System.out.println("Dropping LWJGL input events due to not frequent enough polling");
+            }
         } // skip oldest event is queue full
         if (readEventPos >= maxEvents) readEventPos = 0; // wrap current event position
     }
