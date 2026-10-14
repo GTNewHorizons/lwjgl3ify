@@ -1,0 +1,5 @@
+{
+  "+libraries": [
+    ${new File(lwjglDownloadsFile).getText('UTF-8')}
+  ]
+}

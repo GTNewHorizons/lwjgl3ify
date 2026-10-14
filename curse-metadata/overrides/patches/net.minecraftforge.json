@@ -1,0 +1,6 @@
+{
+  "-libraries": [
+    "net.minecraft:launchwrapper",
+    "org.ow2.asm:asm-all"
+  ]
+}
