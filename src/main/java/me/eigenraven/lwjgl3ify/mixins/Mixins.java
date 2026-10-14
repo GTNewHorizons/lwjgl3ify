@@ -48,6 +48,9 @@ public enum Mixins implements IMixins {
     ),
 
     // Mod compat patches
+    XAEROS_MINIMAP_TEXT_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins("xaeros.XaerosMinimapTextInput")
+        .addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
     XAEROS_MINIMAP_SCROLL(Phase.LATE, new MixinBuilder()
         .addClientMixins("xaeros.XaerosMinimapScrolling")
         .addRequiredMod(TargetedMod.XAEROS_MINIMAP)),
