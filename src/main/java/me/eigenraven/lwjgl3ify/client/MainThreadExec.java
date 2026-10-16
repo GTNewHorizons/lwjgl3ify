@@ -1,8 +1,5 @@
 package me.eigenraven.lwjgl3ify.client;
 
-import static org.lwjgl.sdl.SDLError.*;
-import static org.lwjgl.sdl.SDLInit.*;
-
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -80,8 +77,8 @@ public class MainThreadExec {
         return Thread.currentThread() == mainThread;
     }
 
-    private static <R> Callable<R> bindClassloader(Callable<R> callable) {
-        return new CallableWithClassLoader<>(callable);
+    private static <R> R submit(Callable<R> callable) {
+        return futureGet(executor.submit(new CallableWithClassLoader<>(callable)));
     }
 
     private static <V> V futureGet(Future<V> future) {
@@ -104,24 +101,21 @@ public class MainThreadExec {
         if (isMainThread()) {
             r.run();
         } else {
-            futureGet(executor.submit(bindClassloader(Executors.callable(r))));
+            submit(Executors.callable(r));
         }
     }
 
     /**
      * Requires SDL to already have been initialized on the correct thread.
      *
-     * @param r The Supplier to run on the main thread - if the current thread is main, it gets run immediately.
+     * @param r   The Supplier to run on the main thread - if the current thread is main, it gets run immediately.
+     * @param <R> The supplier return type
      * @return The value produced by the supplier.
      */
-    public static <ReturnType> @Nullable ReturnType runOnMainThread(Callable<@Nullable ReturnType> r) {
+    public static <R> @Nullable R runOnMainThread(Callable<@Nullable R> r) {
         Objects.requireNonNull(r);
         try {
-            if (isMainThread()) {
-                return r.call();
-            } else {
-                return futureGet(executor.submit(bindClassloader(r)));
-            }
+            return isMainThread() ? r.call() : submit(r);
         } catch (Exception e) {
             throw Throwables.propagate(e);
         }
@@ -129,33 +123,21 @@ public class MainThreadExec {
 
     public static boolean runOnMainThread(BooleanSupplier r) {
         Objects.requireNonNull(r);
-        if (isMainThread()) {
-            return r.getAsBoolean();
-        }
-        return Objects.requireNonNull(runOnMainThread(() -> (Boolean) r.getAsBoolean()));
+        return isMainThread() ? r.getAsBoolean() : submit(r::getAsBoolean);
     }
 
     public static int runOnMainThread(IntSupplier r) {
         Objects.requireNonNull(r);
-        if (isMainThread()) {
-            return r.getAsInt();
-        }
-        return Objects.requireNonNull(runOnMainThread(() -> (Integer) r.getAsInt()));
+        return isMainThread() ? r.getAsInt() : submit(r::getAsInt);
     }
 
     public static long runOnMainThread(LongSupplier r) {
         Objects.requireNonNull(r);
-        if (isMainThread()) {
-            return r.getAsLong();
-        }
-        return Objects.requireNonNull(runOnMainThread(() -> (Long) r.getAsLong()));
+        return isMainThread() ? r.getAsLong() : submit(r::getAsLong);
     }
 
     public static double runOnMainThread(DoubleSupplier r) {
         Objects.requireNonNull(r);
-        if (isMainThread()) {
-            return r.getAsDouble();
-        }
-        return Objects.requireNonNull(runOnMainThread(() -> (Double) r.getAsDouble()));
+        return isMainThread() ? r.getAsDouble() : submit(r::getAsDouble);
     }
 }
