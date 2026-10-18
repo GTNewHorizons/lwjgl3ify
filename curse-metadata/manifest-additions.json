@@ -1,0 +1,12 @@
+{
+  "minecraft": {
+    "javaVersion": 25,
+    "patches": [
+      "patches/org.lwjgl3.json",
+      "patches/net.minecraft.json",
+      "patches/me.eigenraven.lwjgl3ify.forgepatches.json",
+      "patches/net.minecraftforge.json",
+      "patches/me.eigenraven.lwjgl3ify.launchargs.json"
+    ]
+  }
+}
