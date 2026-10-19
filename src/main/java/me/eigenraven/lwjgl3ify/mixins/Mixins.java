@@ -76,6 +76,11 @@ public enum Mixins implements IMixins {
             "steves.StevesFactoryManager",
             "steves.StevesFactoryTextField")
         .addRequiredMod(TargetedMod.STEVES_FACTORY)),
+    LOGISTICSPIPES_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "logistics.LogisticsPipesTextInput",
+            "logistics.LogisticsPipesTextField")
+        .addRequiredMod(TargetedMod.LOGISTICSPIPES)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
