@@ -32,7 +32,8 @@ public enum TargetedMod implements ITargetMod {
     OPENCOMPUTERS(new TargetModBuilder().setCoreModClass("li.cil.oc.common.launch.TransformerLoader")
         .setModId("OpenComputers")),
     BETTERQUESTING(new TargetModBuilder().setModId("betterquesting")),
-    BIBLIOCRAFT(new TargetModBuilder().setModId("BiblioCraft"))
+    BIBLIOCRAFT(new TargetModBuilder().setModId("BiblioCraft")),
+    STEVES_ADDON(new TargetModBuilder().setModId("StevesAddons"))
     //
     ;
 

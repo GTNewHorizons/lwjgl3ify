@@ -68,6 +68,9 @@ public enum Mixins implements IMixins {
             "biblio.BiblioCraftFancySign",
             "biblio.BiblioCraftTextField")
         .addRequiredMod(TargetedMod.BIBLIOCRAFT)),
+    STEVES_ADDON_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins("steves.StevesAddonLabeler")
+        .addRequiredMod(TargetedMod.STEVES_ADDON)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
