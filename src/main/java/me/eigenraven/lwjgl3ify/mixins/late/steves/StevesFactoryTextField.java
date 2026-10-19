@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vswe.stevesfactory.components.TextBoxLogic;
 import vswe.stevesfactory.interfaces.GuiManager;
 
-@Mixin(value = { TextBoxLogic.class })
+@Mixin(value = TextBoxLogic.class)
 public abstract class StevesFactoryTextField {
 
     @Inject(

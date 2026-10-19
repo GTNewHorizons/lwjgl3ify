@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import jds.bibliocraft.gui.GuiBiblioTextField;
 
-@Mixin(value = { GuiBiblioTextField.class })
+@Mixin(value = GuiBiblioTextField.class)
 public abstract class BiblioCraftTextField {
 
     @Inject(

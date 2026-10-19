@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 import stevesaddons.interfaces.GuiLabeler;
 
-@Mixin(value = { GuiLabeler.class })
+@Mixin(value = GuiLabeler.class)
 public class StevesAddonLabeler {
 
     @Inject(method = "initGui()V", at = @At("HEAD"))

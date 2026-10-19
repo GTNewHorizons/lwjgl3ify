@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 import vswe.stevesfactory.interfaces.GuiManager;
 
-@Mixin(value = { GuiManager.class })
+@Mixin(value = GuiManager.class)
 public abstract class StevesFactoryManager extends GuiScreen {
 
     @Override

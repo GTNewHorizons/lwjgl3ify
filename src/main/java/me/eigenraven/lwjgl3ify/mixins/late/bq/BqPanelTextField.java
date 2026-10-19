@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import betterquesting.api2.client.gui.controls.PanelTextField;
 
-@Mixin(value = { PanelTextField.class })
+@Mixin(value = PanelTextField.class)
 public abstract class BqPanelTextField {
 
     @Inject(

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import jds.bibliocraft.gui.GuiFancySign;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 
-@Mixin(value = { GuiFancySign.class })
+@Mixin(value = GuiFancySign.class)
 public class BiblioCraftFancySign {
 
     @Inject(method = "initGui()V", at = @At("HEAD"))

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import jds.bibliocraft.gui.GuiClipboard;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 
-@Mixin(value = { GuiClipboard.class })
+@Mixin(value = GuiClipboard.class)
 public class BiblioCraftClipboard {
 
     @Inject(method = "initGui()V", at = @At("HEAD"))
