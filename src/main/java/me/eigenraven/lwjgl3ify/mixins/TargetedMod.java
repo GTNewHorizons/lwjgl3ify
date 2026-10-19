@@ -31,7 +31,8 @@ public enum TargetedMod implements ITargetMod {
     // Support both the NH fork and upstream
     OPENCOMPUTERS(new TargetModBuilder().setCoreModClass("li.cil.oc.common.launch.TransformerLoader")
         .setModId("OpenComputers")),
-    BETTERQUESTING(new TargetModBuilder().setModId("betterquesting"))
+    BETTERQUESTING(new TargetModBuilder().setModId("betterquesting")),
+    BIBLIOCRAFT(new TargetModBuilder().setModId("BiblioCraft"))
     //
     ;
 

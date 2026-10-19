@@ -62,6 +62,11 @@ public enum Mixins implements IMixins {
             "bq.BqTextInput",
             "bq.BqPanelTextField")
         .addRequiredMod(TargetedMod.BETTERQUESTING)),
+    BIBLIOCRAFT_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "biblio.BiblioCraftClipboard",
+            "biblio.BiblioCraftTextField")
+        .addRequiredMod(TargetedMod.BIBLIOCRAFT)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft

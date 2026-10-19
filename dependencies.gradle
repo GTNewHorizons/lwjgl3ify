@@ -64,6 +64,7 @@ dependencies {
 
     compileOnly(rfg.deobf("curse.maven:xaeros-minimap-263420:6012805"))
     compileOnly(rfg.deobf("curse.maven:xaeros-world-map-317780:5987124"))
+    compileOnly(rfg.deobf("curse.maven:bibliocraft-228027:2423369"))
     compileOnly('com.github.GTNewHorizons:OpenComputers:1.12.64-GTNH:dev')
     compileOnly('com.github.GTNewHorizons:BetterQuesting:3.8.92-GTNH:dev')
 
