@@ -49,6 +49,12 @@ public class KeyCodes {
     /** reserved */
     public static final int L3F_SDLK_LANG9 = SDL_SCANCODE_LANG9 | SDLK_SCANCODE_MASK;
 
+    /**
+     * LWJGL2 key code for the extra key next to left shift on ISO keyboards
+     * (SDL_SCANCODE_NONUSBACKSLASH).
+     */
+    public static final int LWJGL_KEY_OEM_102 = 0x56;
+
     public static int sdlKeycodeToLwjgl(int sdlKeycode) {
         return switch (sdlKeycode) {
             case -1 -> Keyboard.KEY_UNLABELED;
@@ -292,6 +298,7 @@ public class KeyCodes {
             case SDL_SCANCODE_NUMLOCKCLEAR -> Keyboard.KEY_NUMLOCK;
             case SDL_SCANCODE_SEMICOLON -> Keyboard.KEY_SEMICOLON;
             case SDL_SCANCODE_BACKSLASH -> Keyboard.KEY_BACKSLASH;
+            case SDL_SCANCODE_NONUSBACKSLASH -> LWJGL_KEY_OEM_102;
             case SDL_SCANCODE_COMMA -> Keyboard.KEY_COMMA;
             case SDL_SCANCODE_PERIOD -> Keyboard.KEY_PERIOD;
             case SDL_SCANCODE_SLASH -> Keyboard.KEY_SLASH;
@@ -576,6 +583,7 @@ public class KeyCodes {
             case Keyboard.KEY_NUMLOCK -> SDL_SCANCODE_NUMLOCKCLEAR;
             case Keyboard.KEY_SEMICOLON -> SDL_SCANCODE_SEMICOLON;
             case Keyboard.KEY_BACKSLASH -> SDL_SCANCODE_BACKSLASH;
+            case LWJGL_KEY_OEM_102 -> SDL_SCANCODE_NONUSBACKSLASH;
             case Keyboard.KEY_COMMA -> SDL_SCANCODE_COMMA;
             case Keyboard.KEY_PERIOD -> SDL_SCANCODE_PERIOD;
             case Keyboard.KEY_SLASH -> SDL_SCANCODE_SLASH;
