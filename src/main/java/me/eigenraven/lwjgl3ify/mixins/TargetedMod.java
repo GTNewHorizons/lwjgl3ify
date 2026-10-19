@@ -30,7 +30,8 @@ public enum TargetedMod implements ITargetMod {
     XAEROS_WORLDMAP(new TargetModBuilder().setModId("XaeroWorldMap")),
     // Support both the NH fork and upstream
     OPENCOMPUTERS(new TargetModBuilder().setCoreModClass("li.cil.oc.common.launch.TransformerLoader")
-        .setModId("OpenComputers"))
+        .setModId("OpenComputers")),
+    BETTERQUESTING(new TargetModBuilder().setModId("betterquesting"))
     //
     ;
 

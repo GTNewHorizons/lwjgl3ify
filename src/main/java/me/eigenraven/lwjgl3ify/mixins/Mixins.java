@@ -57,6 +57,11 @@ public enum Mixins implements IMixins {
     OPENCOMPUTERS_KEYBOARD_INPUT_FIX(Phase.EARLY, new MixinBuilder()
         .addClientMixins("oc.OcInputBuffer")
         .addRequiredMod(TargetedMod.OPENCOMPUTERS)),
+    BETTERQUESTING_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "bq.BqTextInput",
+            "bq.BqPanelTextField")
+        .addRequiredMod(TargetedMod.BETTERQUESTING)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
