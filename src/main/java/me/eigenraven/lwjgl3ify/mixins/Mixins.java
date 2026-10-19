@@ -65,6 +65,7 @@ public enum Mixins implements IMixins {
     BIBLIOCRAFT_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
         .addClientMixins(
             "biblio.BiblioCraftClipboard",
+            "biblio.BiblioCraftFancySign",
             "biblio.BiblioCraftTextField")
         .addRequiredMod(TargetedMod.BIBLIOCRAFT)),
 
