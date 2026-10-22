@@ -57,6 +57,33 @@ public enum Mixins implements IMixins {
     OPENCOMPUTERS_KEYBOARD_INPUT_FIX(Phase.EARLY, new MixinBuilder()
         .addClientMixins("oc.OcInputBuffer")
         .addRequiredMod(TargetedMod.OPENCOMPUTERS)),
+    BETTERQUESTING_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "bq.BqTextInput",
+            "bq.BqPanelTextField")
+        .addRequiredMod(TargetedMod.BETTERQUESTING)),
+    BIBLIOCRAFT_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "biblio.BiblioCraftClipboard",
+            "biblio.BiblioCraftFancySign",
+            "biblio.BiblioCraftTextField")
+        .addRequiredMod(TargetedMod.BIBLIOCRAFT)),
+    STEVES_ADDON_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins("steves.StevesAddonLabeler")
+        .addRequiredMod(TargetedMod.STEVES_ADDON)),
+    STEVES_FACTORY_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "steves.StevesFactoryManager",
+            "steves.StevesFactoryTextField")
+        .addRequiredMod(TargetedMod.STEVES_FACTORY)),
+    LOGISTICSPIPES_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins(
+            "logistics.LogisticsPipesTextInput",
+            "logistics.LogisticsPipesTextField")
+        .addRequiredMod(TargetedMod.LOGISTICSPIPES)),
+    ETFUTURUM_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins("etfuturum.EtfuturumWoodSign")
+        .addRequiredMod(TargetedMod.ETFUTURUM)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
