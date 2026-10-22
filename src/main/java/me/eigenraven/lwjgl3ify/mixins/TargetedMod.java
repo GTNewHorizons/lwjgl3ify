@@ -35,7 +35,8 @@ public enum TargetedMod implements ITargetMod {
     BIBLIOCRAFT(new TargetModBuilder().setModId("BiblioCraft")),
     STEVES_ADDON(new TargetModBuilder().setModId("StevesAddons")),
     STEVES_FACTORY(new TargetModBuilder().setModId("StevesFactoryManager")),
-    LOGISTICSPIPES(new TargetModBuilder().setModId("LogisticsPipes"))
+    LOGISTICSPIPES(new TargetModBuilder().setModId("LogisticsPipes")),
+    ETFUTURUM(new TargetModBuilder().setModId("etfuturum"))
     //
     ;
 

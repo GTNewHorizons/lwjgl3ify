@@ -81,6 +81,9 @@ public enum Mixins implements IMixins {
             "logistics.LogisticsPipesTextInput",
             "logistics.LogisticsPipesTextField")
         .addRequiredMod(TargetedMod.LOGISTICSPIPES)),
+    ETFUTURUM_TEXT_FIELD_SDL_INPUT(Phase.LATE, new MixinBuilder()
+        .addClientMixins("etfuturum.EtfuturumWoodSign")
+        .addRequiredMod(TargetedMod.ETFUTURUM)),
 
     // apply the texture stitching mixin if
     // - you don't have fastcraft
