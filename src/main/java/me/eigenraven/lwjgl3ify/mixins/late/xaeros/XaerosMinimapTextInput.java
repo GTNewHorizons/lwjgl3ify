@@ -13,10 +13,16 @@ import xaero.common.gui.GuiTransfer;
 import xaero.common.gui.GuiWaypoints;
 
 @Mixin(value = { GuiEntityRadar.class, GuiTransfer.class, GuiWaypoints.class, GuiAddWaypoint.class })
-public abstract class XaerosMinimapTextInput {
+public abstract class XaerosMinimapTextInput extends GuiScreen {
+
+    // Ensure "initGui" exists in the target class
+    @Unique
+    @Override
+    public void initGui() {}
 
     // Ensure "onGuiClosed" exists in the target class
-    @Unique(silent = true)
+    @Unique
+    @Override
     public void onGuiClosed() {}
 
     @Inject(method = "initGui()V", at = @At("HEAD"), remap = false)
