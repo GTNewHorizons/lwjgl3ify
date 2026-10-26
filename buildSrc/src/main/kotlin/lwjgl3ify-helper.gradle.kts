@@ -4,6 +4,7 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonObject
 import org.gradle.api.DefaultTask
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -108,6 +109,8 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
     abstract val libraries: ConfigurableFileCollection
     @get:OutputFile
     abstract val outputFile: RegularFileProperty
+    @get:OutputFile
+    abstract val outputFileCurse: RegularFileProperty
     @get:Input
     abstract val lwjglVersionString: Property<String>
     @get:Input
@@ -117,6 +120,7 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
     fun makeJson() {
         val sha1 = MessageDigest.getInstance("SHA-1")
         val outArr = mutableListOf<JsonObject>()
+        val outCurseArr = mutableListOf<JsonObject>()
         val lwjglVersion = lwjglVersionString.get()
         for (file in libraries.files) {
             val fileName = file.name
@@ -140,6 +144,7 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
             val classifier = fileName.substring(versionIdx + versionInterlude.length).removePrefix("-").removeSuffix(".jar")
             val dashClassifier = if (classifier.isEmpty()) {classifier} else { "-$classifier" }
             val gav = "org.lwjgl:${artifact}${dashClassifier}:${fileVersion}"
+            val filePath = "org/lwjgl/${artifact}/${fileVersion}/${artifact}${dashClassifier}-${fileVersion}.jar"
             /*
             {
                 "downloads": {
@@ -181,23 +186,41 @@ abstract class Lwjgl3JsonMaker : DefaultTask() {
                 ),
                 "name" to JsonPrimitive(gav)
             )
+            val curseObj = mutableMapOf(
+                "downloads" to JsonObject(
+                    mapOf(
+                        "artifact" to JsonObject(
+                            mapOf(
+                                "path" to JsonPrimitive(filePath),
+                                "sha1" to JsonPrimitive(fileSha1),
+                                "size" to JsonPrimitive(fileSize),
+                                "url" to JsonPrimitive(downloadUrl)
+                            )
+                        )
+                    )
+                ),
+                "name" to JsonPrimitive(gav)
+            )
             if (!classifier.isEmpty()) {
                 val native: LwjglPlatform = lwjglNativesTable.get()[classifier.removePrefix("natives-")]
                     ?: throw IllegalStateException("Could not determine native for ${fileName}, classifier ${classifier}");
                 outObj["rules"] = native.getJsonRules()
+                curseObj["rules"] = native.getJsonRules()
             }
-            outArr += JsonObject(
-                outObj
-            )
+            outArr += JsonObject(outObj)
+            outCurseArr += JsonObject(curseObj)
         }
         outArr.sortBy { j -> (j["name"] as JsonPrimitive).toString() }
+        outCurseArr.sortBy { j -> (j["name"] as JsonPrimitive).toString() }
         outputFile.asFile.get().writeText(outArr.joinToString(",\n") { j -> j.toString() }, Charsets.UTF_8)
+        outputFileCurse.asFile.get().writeText(outCurseArr.joinToString(",\n") { j -> j.toString() }, Charsets.UTF_8)
     }
 }
 
 tasks.register<Lwjgl3JsonMaker>("makeLwjgl3Json") {
     libraries = allOfLwjgl3
     outputFile = project.layout.buildDirectory.file("lwjgl3-libs.json")
+    outputFileCurse = project.layout.buildDirectory.file("lwjgl3-libs-curse.json")
     lwjglVersionString = lwjglVersion
     lwjglNativesTable = nativesByName
 }
