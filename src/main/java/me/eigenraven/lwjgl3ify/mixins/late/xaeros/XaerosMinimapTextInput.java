@@ -27,13 +27,12 @@ public abstract class XaerosMinimapTextInput extends GuiScreen {
     @Override
     public void onGuiClosed() {}
 
-    @Inject(method = "initGui()V", at = @At("HEAD"), remap = false)
+    @Inject(method = "initGui()V", at = @At("HEAD"))
     private void lwjgl3ify$onInit(CallbackInfo ci) {
         TextFieldHandler.beginTextInput();
     }
 
-    //
-    @Inject(method = "onGuiClosed()V", at = @At("HEAD"), remap = false)
+    @Inject(method = "onGuiClosed()V", at = @At("HEAD"))
     public void lwjgl3ify$onGuiClosed(CallbackInfo ci) {
         TextFieldHandler.endTextInput(null);
     }
