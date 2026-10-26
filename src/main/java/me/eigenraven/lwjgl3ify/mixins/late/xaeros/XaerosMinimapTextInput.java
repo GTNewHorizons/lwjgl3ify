@@ -1,5 +1,7 @@
 package me.eigenraven.lwjgl3ify.mixins.late.xaeros;
 
+import net.minecraft.client.gui.GuiScreen;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
