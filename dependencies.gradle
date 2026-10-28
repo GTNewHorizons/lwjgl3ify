@@ -22,6 +22,9 @@ dependencies {
     // 100% binary compatible, 1 minor source compatibility issue (removed a throws IOException clause)
     vanilla_minecraft(libs.gson)
     forgePatchesEmbedded(libs.gson)
+    // Last release of the 4.0.x line, API compatible with the bundled 4.0.10.Final
+    vanilla_minecraft(libs.netty)
+    forgePatchesEmbedded(libs.netty)
 
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}")
     patchedMinecraft("org.lwjgl:lwjgl-sdl:${lwjglVersion}:${lwjgl3Natives}")

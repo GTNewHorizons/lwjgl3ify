@@ -20,6 +20,17 @@
       "name": "com.google.code.gson:gson:2.10.1"
     },
     {
+      "downloads": {
+        "artifact": {
+          "path": "io/netty/netty-all/4.0.56.Final/netty-all-4.0.56.Final.jar",
+          "sha1": "26b28bcb33ec9e4286cd856321eea3df57c31aaf",
+          "size": 2291648,
+          "url": "https://repo1.maven.org/maven2/io/netty/netty-all/4.0.56.Final/netty-all-4.0.56.Final.jar"
+        }
+      },
+      "name": "io.netty:netty-all:4.0.56.Final"
+    },
+    {
       "name": "org.apache.logging.log4j:log4j-api:2.0-beta9-fixed"
     },
     {

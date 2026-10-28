@@ -11,5 +11,6 @@ asmTree = { module = "org.ow2.asm:asm-tree", version.ref = "asm" }
 asmAnalysis = { module = "org.ow2.asm:asm-analysis", version.ref = "asm" }
 asmUtil = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
 gson = { module = "com.google.code.gson:gson", version = "2.13.2" }
+netty = { module = "io.netty:netty-all", version = "4.0.56.Final" }
 
 rfb = { module = "com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap", version = "1.1.1" }

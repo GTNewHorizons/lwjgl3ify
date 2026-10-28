@@ -277,13 +277,13 @@
         {
             "downloads": {
                 "artifact": {
-                    "path": "io/netty/netty-all/4.0.10.Final/netty-all-4.0.10.Final.jar",
-                    "sha1": "9e50bd52ffe257a0e2cd8d971688d6ce7d174325",
-                    "size": 1452995,
-                    "url": "https://libraries.minecraft.net/io/netty/netty-all/4.0.10.Final/netty-all-4.0.10.Final.jar"
+                    "path": "io/netty/netty-all/4.0.56.Final/netty-all-4.0.56.Final.jar",
+                    "sha1": "26b28bcb33ec9e4286cd856321eea3df57c31aaf",
+                    "size": 2291648,
+                    "url": "https://repo1.maven.org/maven2/io/netty/netty-all/4.0.56.Final/netty-all-4.0.56.Final.jar"
                 }
             },
-            "name": "io.netty:netty-all:4.0.10.Final"
+            "name": "io.netty:netty-all:4.0.56.Final"
         },
         {
             "downloads": {
