@@ -29,6 +29,10 @@ public class Lwjgl3ifyRfbPlugin implements RfbPlugin {
         Launch.classLoader.addClassLoaderExclusion("me.eigenraven.lwjgl3ify.rfb.EarlyConfig");
         Launch.blackboard.put("lwjgl3ify:rfb-booted", Boolean.TRUE);
         Launch.blackboard.put("lwjgl3ify:major-version", 3);
+        // Newer Netty allocates direct buffers by default, but vanilla calls array() on ByteBuf.readBytes(int) results
+        if (System.getProperty("io.netty.noPreferDirect") == null) {
+            System.setProperty("io.netty.noPreferDirect", "true");
+        }
         try {
             @SuppressWarnings("unchecked")
             final Class<EarlyConfig> earlyConfig = (Class<EarlyConfig>) Class
