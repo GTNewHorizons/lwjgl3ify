@@ -115,6 +115,19 @@ public class Mouse {
             dyFloat = 0;
         }
 
+        // Coalesce with the last unread motion event, so a burst of motion can't evict button events from the queue
+        if (queue.getEventCount() > 0) {
+            final int last = queue.getLastWrittenPos();
+            if (buttonEvents[last] == -1 && wheelEvents[last] == 0) {
+                lastEventX = latestX;
+                lastEventY = latestY;
+                xEvents[last] = latestX;
+                yEvents[last] = latestY;
+                nanoTimeEvents[last] = Sys.getNanoTime();
+                return;
+            }
+        }
+
         lastxEvents[queue.getNextPos()] = lastEventX;
         lastyEvents[queue.getNextPos()] = lastEventY;
         lastEventX = latestX;
