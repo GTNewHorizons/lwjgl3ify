@@ -1,5 +1,6 @@
 package org.lwjglx;
 
+import static org.lwjgl.sdl.SDLError.*;
 import static org.lwjgl.sdl.SDLHints.*;
 import static org.lwjgl.sdl.SDLInit.*;
 import static org.lwjgl.sdl.SDLMessageBox.*;
@@ -29,8 +30,15 @@ import org.lwjglx.opengl.Display;
 
 import me.eigenraven.lwjgl3ify.client.MainThreadExec;
 import me.eigenraven.lwjgl3ify.core.Config;
+import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
+import me.eigenraven.lwjgl3ify.rfb.EarlyConfig;
 
 public class Sys {
+
+    private static final int SDL_INPUT_SUBSYSTEMS = SDL_INIT_JOYSTICK | SDL_INIT_GAMEPAD
+        | SDL_INIT_HAPTIC
+        | SDL_INIT_SENSOR;
+    private static boolean sdlInputInitialized;
 
     static private void firstTimeInit() {
         Configuration.OPENGL_EXPLICIT_INIT.set(true);
@@ -74,13 +82,15 @@ public class Sys {
                 SDL_SetHint(SDL_HINT_VIDEO_FORCE_EGL, "1");
             }
 
-            if (!SDL_Init(
-                SDL_INIT_VIDEO | SDL_INIT_EVENTS
-                    | SDL_INIT_JOYSTICK
-                    | SDL_INIT_GAMEPAD
-                    | SDL_INIT_HAPTIC
-                    | SDL_INIT_SENSOR)) {
+            if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
                 throw new SDLException("Could not initialize SDL.");
+            }
+            if (Config.INPUT_EAGER_SDL_GAMEPAD) {
+                EarlyConfig.SDL_INPUT_REQUESTED = true;
+            }
+            initRequestedInput();
+            if (!sdlInputInitialized) {
+                Lwjgl3ifyCoremod.LOGGER.info("SDL input subsystems not initialized, waiting for a mod to use them");
             }
             // Platform-specific tricks
             switch (currentPlatform) {
@@ -143,6 +153,19 @@ public class Sys {
         System.out.println(
             "lwjgl3ify: Created a .desktop file at " + appDesktopPath
                 + " for better Wayland support, because linuxCreateAppDesktopEntry=true in lwjgl3ify.cfg");
+    }
+
+    // Main thread only.
+    static void initRequestedInput() {
+        if (sdlInputInitialized || !EarlyConfig.SDL_INPUT_REQUESTED) {
+            return;
+        }
+        sdlInputInitialized = true;
+        if (SDL_InitSubSystem(SDL_INPUT_SUBSYSTEMS)) {
+            Lwjgl3ifyCoremod.LOGGER.info("SDL input subsystems initialized");
+        } else {
+            Lwjgl3ifyCoremod.LOGGER.warn("Could not initialize SDL input subsystems: {}", SDL_GetError());
+        }
     }
 
     private static final AtomicBoolean isFirstInit = new AtomicBoolean(true);

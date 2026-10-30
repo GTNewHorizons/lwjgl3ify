@@ -68,6 +68,9 @@ public class EarlyConfig {
 
     public static final Set<String> EXTENSIBLE_ENUMS = new HashSet<>(Arrays.asList(DEFAULT_EXTENSIBLE_ENUMS));
 
+    // Main thread reads, potential off thread writes
+    public static volatile boolean SDL_INPUT_REQUESTED;
+
     public static class ConfigObject {
 
         public String[] extensibleEnums;
