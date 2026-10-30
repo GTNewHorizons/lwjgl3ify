@@ -1,8 +1,12 @@
 {
   "+jvmArgs": [
-    ${jvmArgs}
+    ${jvmArgs},
+    {
+      "rules": [{ "action": "allow", "os": { "name": "osx" } }],
+      "value": "-XstartOnFirstThread"
+    }
   ],
-  "libraries": [
+  "+libraries": [
     {
       "name": "com.github.GTNewHorizons:lwjgl3ify:${version}:forgePatches"
     }

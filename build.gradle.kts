@@ -251,7 +251,7 @@ val curseInstanceFilesZip = tasks.register<MmcZip>("curseInstanceFiles") {
     group = taskGroup
     description = "Packages the Curseforge patches"
     dependsOn(forgePatchesJar, tasks.makeLwjgl3Json)
-    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFile }
+    lwjgl3Json = tasks.makeLwjgl3Json.flatMap { it.outputFileCurse }
     archiveClassifier.set("curse")
     from(project.file("curse-metadata/"))
     from(forgePatchesJar) {
