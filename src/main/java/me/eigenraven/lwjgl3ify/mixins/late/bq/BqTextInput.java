@@ -7,19 +7,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import betterquesting.client.gui2.GuiQuestSearch;
-import betterquesting.client.gui2.editors.GuiQuestLinesEditor;
-import betterquesting.client.gui2.editors.GuiTaskEditor;
-import betterquesting.client.gui2.editors.nbt.GuiEntitySelection;
-import betterquesting.client.gui2.editors.nbt.GuiFluidSelection;
-import betterquesting.client.gui2.editors.nbt.GuiNbtAdd;
-import bq_standard.client.gui.editors.GuiEditLootGroup;
-import bq_standard.client.gui.editors.tasks.GuiEditTaskScoreboard;
+import betterquesting.api2.client.gui.GuiScreenCanvas;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 
-@Mixin(
-    value = { GuiQuestSearch.class, GuiEditLootGroup.class, GuiEditTaskScoreboard.class, GuiEntitySelection.class,
-        GuiFluidSelection.class, GuiQuestLinesEditor.class, GuiTaskEditor.class, GuiNbtAdd.class })
+@Mixin(value = GuiScreenCanvas.class)
 public abstract class BqTextInput extends GuiScreen {
 
     @Inject(method = "initPanel()V", at = @At("HEAD"), remap = false)
@@ -27,9 +18,8 @@ public abstract class BqTextInput extends GuiScreen {
         TextFieldHandler.beginTextInput();
     }
 
-    @Override
-    public void onGuiClosed() {
-        super.onGuiClosed();
+    @Inject(method = "onGuiClosed()V", at = @At("HEAD"), remap = false)
+    private void lwjgl3ify$onClose(CallbackInfo ci) {
         TextFieldHandler.endTextInput(null);
     }
 }
