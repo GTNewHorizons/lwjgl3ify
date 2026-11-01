@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 import vswe.stevesfactory.components.TextBoxLogic;
 import vswe.stevesfactory.interfaces.GuiManager;
 
@@ -22,7 +23,8 @@ public abstract class StevesFactoryTextField {
         remap = false,
         cancellable = true)
     public void lwjgl3ify$fixDoubleChar(GuiManager gui, char c, int k, CallbackInfo ci) {
-        if (k != 0) {
+        // Without active text input SDL sends no text events, so the key event is the only source of the character
+        if (k != 0 && TextFieldHandler.isTextInputActive()) {
             ci.cancel();
         }
     }

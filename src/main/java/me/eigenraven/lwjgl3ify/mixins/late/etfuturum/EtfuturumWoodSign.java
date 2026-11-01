@@ -26,7 +26,8 @@ public class EtfuturumWoodSign {
         at = @At(value = "INVOKE", target = "Lnet/minecraft/util/ChatAllowedCharacters;isAllowedCharacter(C)Z"),
         cancellable = true)
     private void lwjgl3ify$fixDoubleChar(char typedChar, int keyCode, CallbackInfo ci) {
-        if (keyCode != 0) {
+        // Without active text input SDL sends no text events, so the key event is the only source of the character
+        if (keyCode != 0 && TextFieldHandler.isTextInputActive()) {
             ci.cancel();
         }
     }
