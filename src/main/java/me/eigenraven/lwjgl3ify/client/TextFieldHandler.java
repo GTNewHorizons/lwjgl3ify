@@ -26,6 +26,10 @@ public final class TextFieldHandler {
     private static WeakReference<GuiTextField> focusedTextInput = NULL_TEXT_FIELD;
     public static final StringBuilder textBuffer = new StringBuilder(8);
 
+    public static boolean isTextInputActive() {
+        return textInputDepth > 0;
+    }
+
     public static void beginTextInput() {
         if (textInputDepth == Integer.MAX_VALUE) {
             return;
