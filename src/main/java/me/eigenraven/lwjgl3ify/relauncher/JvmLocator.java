@@ -144,7 +144,7 @@ public final class JvmLocator {
     }
 
     private static List<String> scanRegistryJvms(String sdkSubkey, String path, String value) {
-        return getRegistrySubkeys("HKLM\\" + sdkSubkey).stream()
+        return getRegistrySubkeys("HKEY_LOCAL_MACHINE\\" + sdkSubkey).stream()
             .map(withVersion -> getRegistryKey(withVersion + path, value))
             .collect(Collectors.toList());
     }
