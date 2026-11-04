@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import betterquesting.api2.client.gui.controls.PanelTextField;
+import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 
 @Mixin(value = PanelTextField.class)
 public abstract class BqPanelTextField {
@@ -22,7 +23,8 @@ public abstract class BqPanelTextField {
         remap = false,
         cancellable = true)
     public void lwjgl3ify$fixDoubleChar(char typedChar, int keyCode, CallbackInfoReturnable<Boolean> cir) {
-        if (keyCode != 0) {
+        // Without active text input SDL sends no text events, so the key event is the only source of the character
+        if (keyCode != 0 && TextFieldHandler.isTextInputActive()) {
             cir.setReturnValue(true);
         }
     }
