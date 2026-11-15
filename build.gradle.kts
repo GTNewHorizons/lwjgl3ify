@@ -432,6 +432,14 @@ for (jarTask in listOf(tasks.jar, tasks.shadowJar, forgePatchesJar, tasks.apiJar
     }
 }
 
+tasks.withType<RunMinecraftTask>().configureEach {
+    if (side == Distribution.CLIENT && SystemUtils.IS_OS_LINUX) {
+        // Sys forces EGL on Linux, which can fail to create an X11 window surface. Allow GLX instead.
+        environment("SDL_VIDEO_FORCE_EGL", providers.environmentVariable("SDL_VIDEO_FORCE_EGL").getOrElse("0"))
+        environment("JAVA_TOOL_OPTIONS", "-Dorg.lwjgl.sdl.libname=/usr/lib/libSDL3.so.0")
+    }
+}
+
 for (runTask in listOf(tasks.runClient, tasks.runServer, tasks.runObfClient, tasks.runObfServer)) {
     runTask.configure {
         classpath = files(forgePatchesJar) + classpath
