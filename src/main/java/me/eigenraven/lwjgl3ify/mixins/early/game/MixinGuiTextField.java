@@ -1,5 +1,6 @@
 package me.eigenraven.lwjgl3ify.mixins.early.game;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 
@@ -37,10 +38,14 @@ public class MixinGuiTextField implements GuiTextFieldExt {
     @Override
     public int lwjgl3ify$getCaretOffset() {
         final GuiTextField self = (GuiTextField) (Object) this;
+        final FontRenderer font = field_146211_a != null ? field_146211_a : Minecraft.getMinecraft().fontRenderer;
+        if (font == null || text == null) {
+            return 0;
+        }
         final int scroll = Math.max(0, Math.min(lineScrollOffset, text.length()));
-        final String visible = field_146211_a.trimStringToWidth(text.substring(scroll), self.getWidth());
+        final String visible = font.trimStringToWidth(text.substring(scroll), self.getWidth());
         final int caret = Math.max(0, Math.min(cursorPosition - scroll, visible.length()));
-        return field_146211_a.getStringWidth(visible.substring(0, caret));
+        return font.getStringWidth(visible.substring(0, caret));
     }
 
     @Inject(method = "setFocused", at = @At("HEAD"))
