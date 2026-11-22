@@ -2,6 +2,7 @@ package me.eigenraven.lwjgl3ify.relauncher;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -238,6 +239,10 @@ public class RelauncherUserInterface {
                 .putProperty(DefaultEditorKit.EndOfLineStringProperty, "\n");
             contents.optCustom.setText(initCfg.customOptionsToQuotedString());
             contents.optForwardLogs.setSelected(initCfg.forwardLogs);
+            contents.optShowConsole.setSelected(initCfg.showConsole);
+            contents.optShowConsole.setEnabled(!contents.optForwardLogs.isSelected());
+            contents.optForwardLogs.addItemListener(
+                e -> { contents.optShowConsole.setEnabled(e.getStateChange() == ItemEvent.DESELECTED); });
             contents.optDebugAgent.setSelected(initCfg.allowDebugger);
             contents.optDebugSuspend.setSelected(initCfg.waitForDebugger);
             contents.optMixinDebug.setSelected(initCfg.mixinDebug);
@@ -353,6 +358,7 @@ public class RelauncherUserInterface {
             contents.optCustom.getText()
                 .replace("\r\n", "\n"));
         initCfg.forwardLogs = contents.optForwardLogs.isSelected();
+        initCfg.showConsole = contents.optShowConsole.isSelected();
         initCfg.allowDebugger = contents.optDebugAgent.isSelected();
         initCfg.waitForDebugger = contents.optDebugSuspend.isSelected();
         initCfg.mixinDebug = contents.optMixinDebug.isSelected();

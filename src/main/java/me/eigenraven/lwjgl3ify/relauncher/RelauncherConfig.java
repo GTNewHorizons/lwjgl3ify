@@ -45,6 +45,7 @@ public class RelauncherConfig {
         public boolean hideSettingsOnLaunch = false;
         // Advanced
         public boolean forwardLogs = false;
+        public boolean showConsole = true;
         public boolean allowDebugger = false;
         public boolean waitForDebugger = false;
         public boolean mixinDebug = false;

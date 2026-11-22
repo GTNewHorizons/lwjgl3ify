@@ -39,6 +39,7 @@ public class SettingsDialog {
     public JCheckBox optDebugAgent;
     public JCheckBox optDebugSuspend;
     public JCheckBox optForwardLogs;
+    public JCheckBox optShowConsole;
     public JSlider optMaxMemory;
     public JCheckBox optMixinDebug;
     public JCheckBox optMixinExport;
@@ -81,6 +82,7 @@ public class SettingsDialog {
         buttonPreviewJavaOpts.setText(translations.getString(TranslationsBundle.KEY_PREVIEW_JAVA_OPTS));
 
         optForwardLogs.setText(translations.getString(TranslationsBundle.KEY_FORWARD_LOGS));
+        optShowConsole.setText(translations.getString(TranslationsBundle.KEY_SHOW_CONSOLE));
         optDebugAgent.setText(translations.getString(TranslationsBundle.KEY_ALLOW_DEBUGGER));
         optDebugSuspend.setText(translations.getString(TranslationsBundle.KEY_WAIT_FOR_DEBUGGER));
         optMixinDebug.setText(translations.getString(TranslationsBundle.KEY_MIXIN_DEBUG));
@@ -91,6 +93,7 @@ public class SettingsDialog {
         optRfbDumpTransformers.setText(translations.getString(TranslationsBundle.KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER));
 
         optForwardLogs.setToolTipText(translations.getString(TranslationsBundle.KEY_FORWARD_LOGS_TIP));
+        optShowConsole.setToolTipText(translations.getString(TranslationsBundle.KEY_SHOW_CONSOLE_TIP));
     }
 
     {
@@ -293,21 +296,21 @@ public class SettingsDialog {
         optRfbDumpClasses.setText("KEY_RFB_DUMP_CLASSES");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optRfbDumpClasses, gbc);
         final JPanel spacer3 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelAdvanced.add(spacer3, gbc);
         final JPanel spacer4 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 10;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.VERTICAL;
         panelAdvanced.add(spacer4, gbc);
@@ -315,7 +318,7 @@ public class SettingsDialog {
         optRfbDumpTransformers.setText("KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optRfbDumpTransformers, gbc);
@@ -323,7 +326,7 @@ public class SettingsDialog {
         optDebugAgent.setText("KEY_ALLOW_DEBUGGER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optDebugAgent, gbc);
@@ -331,7 +334,7 @@ public class SettingsDialog {
         optDebugSuspend.setText("KEY_WAIT_FOR_DEBUGGER");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optDebugSuspend, gbc);
@@ -349,7 +352,7 @@ public class SettingsDialog {
         optMixinExport.setText("KEY_MIXIN_EXPORT_CLASSES");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinExport, gbc);
@@ -357,7 +360,7 @@ public class SettingsDialog {
         optMixinDebug.setText("KEY_MIXIN_DEBUG");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinDebug, gbc);
@@ -365,7 +368,7 @@ public class SettingsDialog {
         optMixinCount.setText("KEY_MIXIN_COUNT_INJECTIONS");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optMixinCount, gbc);
@@ -373,10 +376,18 @@ public class SettingsDialog {
         optFmlDebugAts.setText("KEY_FML_DEBUG_AT");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(4, 0, 0, 0);
         panelAdvanced.add(optFmlDebugAts, gbc);
+        optShowConsole = new JCheckBox();
+        optShowConsole.setText("KEY_SHOW_CONSOLE");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(4, 0, 0, 0);
+        panelAdvanced.add(optShowConsole, gbc);
         buttonRun = new JButton();
         buttonRun.setText("KEY_RUN_GAME");
         gbc = new GridBagConstraints();
