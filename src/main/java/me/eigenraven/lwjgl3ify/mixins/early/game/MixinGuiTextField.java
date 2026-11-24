@@ -1,7 +1,10 @@
 package me.eigenraven.lwjgl3ify.mixins.early.game;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,13 +13,40 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import me.eigenraven.lwjgl3ify.client.GuiTextFieldExt;
 import me.eigenraven.lwjgl3ify.client.TextFieldHandler;
 
 @Mixin(GuiTextField.class)
-public class MixinGuiTextField {
+public class MixinGuiTextField implements GuiTextFieldExt {
 
     @Shadow
     private boolean isFocused;
+
+    @Shadow
+    @Final
+    private FontRenderer field_146211_a;
+
+    @Shadow
+    private String text;
+
+    @Shadow
+    private int lineScrollOffset;
+
+    @Shadow
+    private int cursorPosition;
+
+    @Override
+    public int lwjgl3ify$getCaretOffset() {
+        final GuiTextField self = (GuiTextField) (Object) this;
+        final FontRenderer font = field_146211_a != null ? field_146211_a : Minecraft.getMinecraft().fontRenderer;
+        if (font == null || text == null) {
+            return 0;
+        }
+        final int scroll = Math.max(0, Math.min(lineScrollOffset, text.length()));
+        final String visible = font.trimStringToWidth(text.substring(scroll), self.getWidth());
+        final int caret = Math.max(0, Math.min(cursorPosition - scroll, visible.length()));
+        return font.getStringWidth(visible.substring(0, caret));
+    }
 
     @Inject(method = "setFocused", at = @At("HEAD"))
     private void lwjgl3ify$onFocusChange(boolean nowFocused, CallbackInfo ci) {

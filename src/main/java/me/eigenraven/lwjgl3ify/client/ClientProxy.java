@@ -18,6 +18,7 @@ import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ProgressManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import me.eigenraven.lwjgl3ify.CommonProxy;
 import me.eigenraven.lwjgl3ify.api.InputEvents;
 import me.eigenraven.lwjgl3ify.core.Config;
@@ -114,6 +115,14 @@ public class ClientProxy extends CommonProxy {
         }
         if (oldScreen != newScreen) {
             TextFieldHandler.resetTextInput();
+        }
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    public void onRenderTick(final TickEvent.RenderTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            TextFieldHandler.updateTextInputArea();
         }
     }
 
