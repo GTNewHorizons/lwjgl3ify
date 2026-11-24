@@ -92,9 +92,11 @@ public final class TextFieldHandler {
         final GuiTextField textField = focusedTextInput.get();
         if (textField == null || !textField.isFocused() || !textField.getVisible()) {
             if (textInputAreaSet) {
+                if (!MainThreadExec.runOnMainThread(() -> SDL_SetTextInputArea(Display.getWindow(), null, 0))) {
+                    return;
+                }
                 textInputAreaSet = false;
                 textInputAreaSent = false;
-                MainThreadExec.runOnMainThread(() -> { SDL_SetTextInputArea(Display.getWindow(), null, 0); });
                 if (Config.DEBUG_PRINT_KEY_EVENTS) {
                     Lwjgl3ify.LOG.info("[DEBUG] Text input area cleared");
                 }
@@ -106,11 +108,12 @@ public final class TextFieldHandler {
         final boolean background = textField.getEnableBackgroundDrawing();
         final int textX = background ? textField.xPosition + 4 : textField.xPosition;
         final int textY = background ? textField.yPosition + (textField.height - 8) / 2 : textField.yPosition;
-        final int x = textX * scale;
-        final int y = (textY - 1) * scale;
-        final int w = textField.getWidth() * scale;
-        final int h = (mc.fontRenderer.FONT_HEIGHT + 2) * scale;
-        final int cursor = ((GuiTextFieldExt) textField).lwjgl3ify$getCaretOffset() * scale;
+        final float windowScale = scale / Display.getPixelScaleFactor();
+        final int x = Math.round(textX * windowScale);
+        final int y = Math.round((textY - 1) * windowScale);
+        final int w = Math.round(textField.getWidth() * windowScale);
+        final int h = Math.round((mc.fontRenderer.FONT_HEIGHT + 2) * windowScale);
+        final int cursor = Math.round(((GuiTextFieldExt) textField).lwjgl3ify$getCaretOffset() * windowScale);
         final int[] area = lastTextInputArea;
         if (textInputAreaSent && area[0] == x && area[1] == y && area[2] == w && area[3] == h && area[4] == cursor) {
             return;
@@ -120,23 +123,24 @@ public final class TextFieldHandler {
         area[2] = w;
         area[3] = h;
         area[4] = cursor;
-        textInputAreaSent = true;
         textInputAreaSet = true;
-        MainThreadExec.runOnMainThread(() -> {
-            final float invScale = 1.0f / Display.getPixelScaleFactor();
+        textInputAreaSent = MainThreadExec.runOnMainThread(() -> {
             try (MemoryStack stack = MemoryStack.stackPush()) {
                 final SDL_Rect.Buffer rect = SDL_Rect.malloc(1, stack);
                 rect.get(0)
-                    .set(
-                        Math.round(x * invScale),
-                        Math.round(y * invScale),
-                        Math.round(w * invScale),
-                        Math.round(h * invScale));
-                SDL_SetTextInputArea(Display.getWindow(), rect, Math.round(cursor * invScale));
+                    .set(x, y, w, h);
+                return SDL_SetTextInputArea(Display.getWindow(), rect, cursor);
             }
         });
         if (Config.DEBUG_PRINT_KEY_EVENTS) {
-            Lwjgl3ify.LOG.info("[DEBUG] Text input area x={} y={} w={} h={} cursor={} (pixels)", x, y, w, h, cursor);
+            Lwjgl3ify.LOG.info(
+                "[DEBUG] Text input area x={} y={} w={} h={} cursor={} sent={}",
+                x,
+                y,
+                w,
+                h,
+                cursor,
+                textInputAreaSent);
         }
     }
 
