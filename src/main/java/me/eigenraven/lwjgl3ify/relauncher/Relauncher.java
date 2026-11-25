@@ -281,7 +281,7 @@ public class Relauncher {
             bootstrapCmd.add(forgePatchesJarPath + File.pathSeparator + myJarPath);
             bootstrapCmd.add("me.eigenraven.lwjgl3ify.relauncherstub.RelauncherStubMain");
             bootstrapCmd.add(Long.toString(getCurrentPid()));
-            bootstrapCmd.add("true");
+            bootstrapCmd.add(Boolean.toString(RelauncherConfig.config.showConsole));
             bootstrapCmd.add(javaPath);
             bootstrapCmd.add(argFile.toString());
         }

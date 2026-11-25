@@ -27,6 +27,7 @@ public class TranslationsBundle extends ListResourceBundle {
     public static final String KEY_CUSTOM_OPTIONS = "customOptions";
     public static final String KEY_SKIP_IN_FUTURE = "skipInFuture";
     public static final String KEY_FORWARD_LOGS = "forwardLogs";
+    public static final String KEY_SHOW_CONSOLE = "showConsole";
     public static final String KEY_ALLOW_DEBUGGER = "allowDebugger";
     public static final String KEY_WAIT_FOR_DEBUGGER = "waitForDebugger";
     public static final String KEY_MIXIN_DEBUG = "mixinDebug";
@@ -36,6 +37,7 @@ public class TranslationsBundle extends ListResourceBundle {
     public static final String KEY_RFB_DUMP_CLASSES = "rfbDumpClasses";
     public static final String KEY_RFB_DUMP_CLASSES_PER_TRANSFORMER = "rfbDumpClassesPerTransformer";
     public static final String KEY_FORWARD_LOGS_TIP = "forwardLogsTip";
+    public static final String KEY_SHOW_CONSOLE_TIP = "showConsoleTip";
     public static final String KEY_PREVIEW_JAVA_OPTS = "previewJavaOpts";
 
     @Override
@@ -62,6 +64,8 @@ public class TranslationsBundle extends ListResourceBundle {
 
             { KEY_FORWARD_LOGS, "Forward logs to the parent launcher (uses more memory)" },
             { KEY_FORWARD_LOGS_TIP, "Requires you to keep running this old java instance in parallel with the new java instance, so if you didn't configure your launcher to use less memory, the game might use double the memory or more." },
+            { KEY_SHOW_CONSOLE, "Show the console" },
+            { KEY_SHOW_CONSOLE_TIP, "Not available if forwarding logs" },
             { KEY_ALLOW_DEBUGGER, "Allow attaching a debugger" },
             { KEY_WAIT_FOR_DEBUGGER, "Wait for debugger" },
             { KEY_MIXIN_DEBUG, "Mixin: Debug" },
