@@ -25,6 +25,7 @@ import com.gtnewhorizons.retrofuturabootstrap.api.RfbClassTransformer;
 
 import me.eigenraven.lwjgl3ify.api.Lwjgl3Aware;
 import me.eigenraven.lwjgl3ify.core.Lwjgl3ifyCoremod;
+import me.eigenraven.lwjgl3ify.rfb.EarlyConfig;
 
 public class LwjglRedirectTransformer extends Remapper implements RfbClassTransformer {
 
@@ -42,6 +43,11 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
     final BytePatternMatcher deprecatedClassMatcher = new BytePatternMatcher(
         fromPrefixes,
         BytePatternMatcher.Mode.Contains);
+
+    final BytePatternMatcher sdlInputMatcher = new BytePatternMatcher(
+        new String[] { "org/lwjgl/sdl/SDLJoystick", "org/lwjgl/sdl/SDLGamepad", "org/lwjgl/sdl/SDLHaptic",
+            "org/lwjgl/sdl/SDLSensor" },
+        BytePatternMatcher.Mode.StartsWith);
 
     @Override
     public @NotNull String @Nullable [] sortAfter() {
@@ -75,14 +81,18 @@ public class LwjglRedirectTransformer extends Remapper implements RfbClassTransf
         if (!nodeHandle.isPresent()) {
             return false;
         }
-        if (manifest != null && "true".equals(
-            manifest.getMainAttributes()
-                .getValue(MANIFEST_SAFE_ATTRIBUTE))) {
+        final ClassHeaderMetadata metadata = nodeHandle.getOriginalMetadata();
+        final byte[] bytes = nodeHandle.getOriginalBytes();
+        if (metadata == null || !metadata.matchesBytes(bytes, deprecatedClassMatcher)) {
             return false;
         }
-
-        final ClassHeaderMetadata metadata = nodeHandle.getOriginalMetadata();
-        return metadata != null && metadata.matchesBytes(nodeHandle.getOriginalBytes(), deprecatedClassMatcher);
+        if (!EarlyConfig.SDL_INPUT_REQUESTED && metadata.matchesBytes(bytes, sdlInputMatcher)) {
+            EarlyConfig.SDL_INPUT_REQUESTED = true;
+            Lwjgl3ifyCoremod.LOGGER.info("{} uses SDL input APIs, enabling SDL input subsystems", className);
+        }
+        return manifest == null || !"true".equals(
+            manifest.getMainAttributes()
+                .getValue(MANIFEST_SAFE_ATTRIBUTE));
     }
 
     @Override

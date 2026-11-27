@@ -51,6 +51,7 @@ public class Lwjgl3ifyEventLoop {
         if (!SDL_IsMainThread()) {
             throw new IllegalStateException("SDL Event pump called from a non-main thread " + Thread.currentThread());
         }
+        Sys.initRequestedInput();
         SDL_PumpEvents();
         int peepedEvents = 0;
         while ((peepedEvents = SDL_PeepEvents(eventPeepArray, SDL_GETEVENT, SDL_EVENT_FIRST, SDL_EVENT_LAST)) > 0) {
