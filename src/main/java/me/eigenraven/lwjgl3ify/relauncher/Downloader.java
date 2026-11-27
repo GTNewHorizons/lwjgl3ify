@@ -108,6 +108,10 @@ public class Downloader {
                 }
                 final String elGav = elLibrary.getAsJsonPrimitive("name")
                     .getAsString();
+                final GavCoords gav = new GavCoords(elGav);
+                if (gav.mArtifact.equals("lwjgl3ify")) {
+                    continue;
+                }
                 if (elLibrary.has("downloads")) {
                     final JsonObject elDownloads = elLibrary.getAsJsonObject("downloads");
                     // URL artifact
@@ -137,11 +141,6 @@ public class Downloader {
                     // Maven artifact
                     final String elMavenUrl = elLibrary.getAsJsonPrimitive("url")
                         .getAsString();
-                    final GavCoords gav = new GavCoords(elGav);
-                    if (gav.mArtifact.equals("lwjgl3ify")) {
-                        continue;
-                    }
-
                     final String mURL = elMavenUrl + gav.mPath;
                     final Path path = mavenCachePath.resolve(gav.mPath);
                     final URL url = new URL(mURL);
