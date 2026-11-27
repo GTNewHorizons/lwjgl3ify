@@ -39,6 +39,7 @@ import org.lwjgl.sdl.SDL_Rect;
 import org.lwjgl.sdl.SDL_Surface;
 import org.lwjgl.system.MemoryStack;
 import org.lwjgl.system.Platform;
+import org.lwjgl.system.windows.User32;
 import org.lwjglx.Lwjgl3ifyEventLoop;
 import org.lwjglx.Sys;
 import org.lwjglx.input.Keyboard;
@@ -715,7 +716,58 @@ public class Display {
                 }
             }
             SDL_SyncWindow(sdlWindow);
+            if (fullscreen) {
+                lwjgl3ify$fixWindowsFullscreenIme();
+            }
+            // The window style and size changes can make the OS drop the IME context. Restarting text input
+            // re-associates it and re-applies the text input area, so the IME keeps working after the switch.
+            if (SDLKeyboard.SDL_TextInputActive(sdlWindow)) {
+                SDLKeyboard.SDL_StopTextInput(sdlWindow);
+                SDLKeyboard.SDL_StartTextInput(sdlWindow);
+            }
         });
+    }
+
+    /**
+     * Windows treats a {@code WS_POPUP} window covering the whole monitor as a fullscreen application and IMEs (e.g.
+     * Microsoft Pinyin) hide their candidate window above such a window. Both SDL's fullscreen mode and the manual
+     * borderless mode use that style, so the IME looks broken in fullscreen even though the window is a regular
+     * borderless window. Clearing the popup style bit keeps the window borderless but makes the IME UI show up in
+     * front of the game again.
+     * <p>
+     * This is the same workaround IMBlocker uses for Minecraft on Windows.
+     */
+    private static void lwjgl3ify$fixWindowsFullscreenIme() {
+        if (Platform.get() != Platform.WINDOWS) {
+            return;
+        }
+        final int props = SDL_GetWindowProperties(sdlWindow);
+        if (props == 0) {
+            return;
+        }
+        final long hwnd = SDL_GetPointerProperty(props, SDL_PROP_WINDOW_WIN32_HWND_POINTER, NULL);
+        if (hwnd == NULL) {
+            return;
+        }
+        final long style = User32.GetWindowLongPtr(hwnd, User32.GWL_STYLE);
+        // WS_POPUP - see https://learn.microsoft.com/en-us/windows/win32/winmsg/window-styles
+        if ((style & 0x80000000L) == 0) {
+            return;
+        }
+        User32.SetWindowLongPtr(null, hwnd, User32.GWL_STYLE, style & 0x7FFFFFFFL);
+        // A stray topmost flag would keep the IME UI behind the game as well
+        User32.SetWindowPos(
+            null,
+            hwnd,
+            User32.HWND_NOTOPMOST,
+            0,
+            0,
+            0,
+            0,
+            User32.SWP_NOMOVE | User32.SWP_NOSIZE | User32.SWP_NOSENDCHANGING);
+        if (Config.DEBUG_PRINT_WINDOW_EVENTS) {
+            Lwjgl3ify.LOG.info("[DEBUG-WINDOW] cleared WS_POPUP from the fullscreen window so the IME UI is visible");
+        }
     }
 
     // Fix bothered from
