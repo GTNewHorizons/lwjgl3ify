@@ -26,7 +26,8 @@ public class StevesAddonLabeler {
         at = @At(value = "INVOKE", target = "Lstevesaddons/interfaces/GuiTextField;keyTyped(CI)V", remap = false),
         cancellable = true)
     private void lwjgl3ify$fixDoubleChar(char character, int keyCode, CallbackInfo ci) {
-        if (Character.isLetterOrDigit(character) && keyCode != 0) {
+        // Without active text input SDL sends no text events, so the key event is the only source of the character
+        if (Character.isLetterOrDigit(character) && keyCode != 0 && TextFieldHandler.isTextInputActive()) {
             ci.cancel();
         }
     }
